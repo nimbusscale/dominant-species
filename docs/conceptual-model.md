@@ -3,7 +3,7 @@ This page outlines the key parts of a game and how gameplay flows. It presents a
 
 The first section describes a generic conceptual model, while the second explains how this model applies to Dominant Species (DS).
 
-## Generic Game
+## Generic Game Model
 This section details the core concepts of a game model, using examples from Dominant Species and other games for clarity.
 
 ### Game Objects
@@ -66,7 +66,81 @@ The system may also take turns and perform actions. An example would be during t
 #### Action and Action Step
 An action is something a that can be done to change the state of the game. In DS this almost always involves adding or removing a piece from a space. Actions are comprised on one or more action steps. Many actions in DS would be a single step; a turn in the Adaption phase would include the action of taking an available element and placing it on an animal's space. Some actions have multiple steps, such as a turn in the Competition phase. A turn in the Competition phase, the faction would have potentially three steps each eliminating an opposing species on a tile of each terrain type associated with the action space their pawn occupies.
 
+Addition steps can be added to an action in progress. A DS example of this would be speciation where the first action step would be choosing the element to speciate on. A new step would be created for each tile around that element allowing the player to choose how many new species they wish to place on each tile.
 
 
+## Dominant Species Model
+This section will walk through and describe how each phase of DS works.
 
+### Planning
+The planning phase is straight forward. A round is created including turns (in initiative order) for each animal that has available action pawns. Each turn an animal can take an action to place an action pawn on an available space in the action display area.
+
+### Execution Initiative
+This round consists of a single turn with two steps:
+
+1. Update the Initiative order
+2. Move their action pawn to another available space in the action display area.
+
+### Execution Adaption
+Each turn takes an action with two steps:
+
+1. Choosing an element and putting on their animal.
+2. Checking every tile that which the animal has species to determine dominance
+
+### Execution Regression 
+Each animal has a regression protection counter. Each action pawn placed on a regression space would increase the animal regression protection counter by one. 
+
+The round in the regression phase includes system turns, along with any animals that have an action pawn in the regression spaces. The turns in the round look like this:
+
+1. A system turn that has two action steps. The first action step sets the regression protection of each animal by the number of regression action pawns. The second action step sets the regression threat of each animal with the type of elements in the regression box.
+2. Each animal that has an action pawn in the regression space has a turn where they can take one action with a single step choosing to remove one type of element from their regression threat.
+3. A system turn that removes any non-default elements from each animal that has remaining elements types in the regression threat.
+
+### Execution Abundance
+Each turn takes an action with two steps:
+
+1. Place the element on a vacant corner of any terrain tile.
+2. Determine dominance for any tiles that touch the new element.
+
+### Execution Wasteland
+The round consists of a turn of an animal with their action pawn in the space, plus a system turn at the end of the round.
+
+The animal's turn has a single action with one step to remove an element from the wasteland box.
+
+The system turn at the end of the round would create and add another turn for each element touching tundra tiles that match a kind of element in the wasteland box. These newly created system turns would do the following:
+
+1. remove the specified element touching tundra tiles that match a kind of element in the wasteland box.
+2. Determine dominance for any tiles that lost an element.
+
+### Execution Depletion
+A single turn with two actions:
+
+1. Remove an element from the board matching an element in the depletion box.
+2. Determine dominance for any tiles that lost an element.
+
+### Execution Glaciation
+A single turn with multiple actions:
+
+1. Place a tundra tile and score
+2. Return all but one species to each animal
+3. Remove all elements from earth that are surrounded by exactly three tundra tiles.
+4. Determine dominance for any tiles that lost an element.
+
+### Execution Speciation
+Each turn would have a valuable number of steps with the first step choosing an element to speciate on. A new step would be created for each tile around that element allowing the player to choose how many new species they wish to place on each tile. The last action step would be checking for dominance.
+
+
+### Execution Wanderlust
+When a faction chooses where to place the new terrain tile as part of the Wanderlust action, then a new round is created and inserted to be next in the sequence. This new round would include a turn for any faction that had adjacent species to the newly placed terrain tile allowing them to move to the new tile. Once the round added to accommodate the moving is completed, then the next turn in the Wanderlust action track would be taken.
+
+### Execution Migration
+
+
+### Execution Competition
+
+
+### Execution Domination
+
+## Reset
+Three system turns
 
