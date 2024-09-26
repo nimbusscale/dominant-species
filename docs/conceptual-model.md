@@ -1,39 +1,39 @@
 # Conceptual Model
-This page describes the things that are part of a game and the flow of how a game is played. This is done in a implementation agnostic way and provides a conceptual model of how a game should work.
+This page outlines the key parts of a game and how gameplay flows. It presents a high-level conceptual model of game mechanics, independent of any specific implementation.
 
-The first section of this page described the conceptual mode for a generic game and the second section describes how the conceptual model applies to Dominant Species (DS).
+The first section describes a generic conceptual model, while the second explains how this model applies to Dominant Species (DS).
 
 ## Generic Game
-This section describes the conceptual model generically. Examples how the model related to DS and other games are provided to help illustrate the concepts.
+This section details the core concepts of a game model, using examples from Dominant Species and other games for clarity.
 
 ### Game Objects
-The "things" in a game.
+Game objects represent the various "things" in a game.
 
 #### Player and Faction
-A player is a person that makes decisions and takes actions in the game. Players control a faction and actions taken by a player are done under the guise of a faction. Generally, there is a one-to-one relationship between a player and a faction, and that is the case in DS where each player controls a faction that is an animal (Mammal, Bird, Insect, Etc). Factions interact with the game and players control factions.
+A player makes decisions and takes actions in a game. Each player controls a faction, and actions are carried out through this faction. Typically, a player controls one faction throughout the game (e.g., in Dominant Species, each player controls an animal faction like Mammal, Bird, or Insect).
 
-In many games, the faction is only identified by a player's color, so a player may control the blue or red faction. Most games a player controls the same faction for the entire game, but that is not the case for all games. For example, in Imperial, the control of each player can change over the course of the game and a single player can control multiple factions.
+Some games, such as Imperial, allow players to control multiple factions or shift control over the course of the game. In many other games, players are distinguished by colors, such as the red or blue factions.
 
 #### Area and Space
-An area represents a board or part of a board on a table, and each area contains one or more spaces. A space is a place where an action can interact with an area. These interactions are typically putting or removing a piece (see below for more details on pieces). An area can be shared, such as the game board, or owned by a faction, such as a player's tableau.
+An area represents a section of the game board or a player's tableau, while spaces are smaller subdivisions within areas where actions occur (e.g., placing or removing pieces). Typically, all spaces in an area share the same behavior. 
 
-Typically, all spaces in an area share the same behavior. As an example, DS would have the following area and spaces:
+In Dominant Species, several areas and spaces exist:
 
-- Earth which is what DS calls the hex gird area of the board. The Earth area contains spaces where the hex tiles are places.
-- Terrain tile area which contains three spaces each with a deck of terrain tiles and one space containing the tundra tiles. These are the tiles that are used by a faction when performing Wanderlust. The terrain tiles are removed from the deck in one of the terrain tile area's spaces and placed in one of the Earth area's spaces.
-- Action display area contains the spaces that a faction's action pawn (a type of piece) is placed on and then removed when the faction takes the corresponding action.
-- Dominance card deck area and dominance card display areas. Where the dominance card deck area has a single space containing the dominance card deck and the dominance card display area containing five spaces, each containing a face up dominance card. The dominance card deck area and the dominance card display area are separated into two different areas because their spaces work differently. One holding a deck and the other holding face up cards.
-- Animal faction areas where each animal faction in the game has an area owned by and related to that animal faction. This area has spaces used to store the elements which can be added or removed from an animal.
+- **Earth**: The hexagonal grid area where terrain tiles are placed.
+- **Terrain Tile Area**: Contains spaces for terrain tiles used in the Wanderlust phase.
+- **Action Display**: Where action pawns are placed by factions, marking available actions.
+- **Dominance Card Deck and Dominance Card Display Areas**: Where the dominance card deck area has a single space containing the dominance card deck and the dominance card display area containing five spaces, each containing a face up dominance card. The dominance card deck area and the dominance card display area are separated into two different areas because their spaces work differently. One holding a deck and the other holding face up cards.
+- **Faction Areas**: Each animal faction has its own area for storing elements and other game-specific pieces.
 
 #### Piece, Pile and Deck
-A piece is an object typically placed or removed from a space as the result of an action. Pieces can be owned by a faction, such as an action pawn, or can be unowned like a terrain tile.
+Pieces are objects used during gameplay, often placed or removed from spaces as part of actions. Pieces can be faction-owned (e.g., action pawns) or unowned (e.g., terrain tiles).
 
-In most cases, pieces are stored in either a:
+Pieces are typically organized into:
 
-- Deck which is an ordered sequence of pieces. When a piece is removed from a deck, typically the piece at the top of (i.e. first in the sequence) is removed. Decks are always finite and new pieces can be added to the top or bottom of a deck. Decks can also be shuffled to randomly rearrange the order of the pieces in the deck. Examples of decks in DS would be the terrain tile deck or dominance card deck.
-- Pile which is an unordered pool of pieces. When a piece is removed from a pile, a random piece is removed. Piles can either be finite or infinite. Examples of piles in DS would be the element draw pool which represents the draw bag in the physical game, and each animal has one pile of species (i.e. the cubes) and one pile of action pawns.
+- **Decks**: Ordered sequences of pieces (e.g., terrain tiles in DS).
+- **Piles**: Unordered pools of pieces, where removal may be random (e.g., species cubes in DS).
 
-Note that there does not need to be a one-to-one mapping of pieces in a physical game. A DS example would be how dominance of a hext is marked. In the physical game, this is done using a cone, but in the digital implementation this is just a bit of metadata associated with a space.
+In some games, there may not be a direct mapping between physical components and digital ones (e.g., dominance in DS is marked by a cone in the physical game but represented by metadata in the digital version).
 
 ### Play Flow
 The process of how a game is played.
@@ -41,8 +41,8 @@ The process of how a game is played.
 #### Game
 When considering the concept of "a game" there are two different specific concepts that one could be referring to.
 
-- A game title is the "kind" of game being played, such as Dominant Species or Terraforming Mars. A game title defines how the game works, the rules, winning conditions, etc.
-- A game instance is a specific "play through" of a game title. One or more players participate in a game instance, and the game instance has a definitive start and end. Multiple games instances of the same game title can exist at the same time.
+- **Game Title**: The "kind" of game being played, such as Dominant Species or Terraforming Mars. A game title defines how the game works, the rules, winning conditions, etc.
+- **Game Instance**: A specific "play through" of a game title. One or more players participate in a game instance, and the game instance has a definitive start and end. Multiple games instances of the same game title can exist at the same time.
 
 A reference to "game" will be used to mean game instance. Any reference to a game title will specifically use that term.
 
@@ -64,7 +64,7 @@ A turn is owned/controlled by a faction and allows that faction to take one or m
 The system may also take turns and perform actions. An example would be during the Wasteland phase, a system turn would be added to the end of the round. When the system's turn is reached, it would perform the action of removing all appropriate elements from tundra tiles.
 
 #### Action and Action Step
-An action is something a that can be done to change the state of the game. In DS this almost always involves adding or removing a piece from a space. Actions are comprised on one or more action steps. Many actions in DS would be a single step; a turn in the Adaption phase would include the action of taking an available element and placing it on an animal's space. But some actions have multiple steps, such as a turn in the Competition phase where the player would have potentially three steps eliminating an opposing species on a tile of each terrain type associated with the action space their pawn occupies.
+An action is something a that can be done to change the state of the game. In DS this almost always involves adding or removing a piece from a space. Actions are comprised on one or more action steps. Many actions in DS would be a single step; a turn in the Adaption phase would include the action of taking an available element and placing it on an animal's space. Some actions have multiple steps, such as a turn in the Competition phase. A turn in the Competition phase, the faction would have potentially three steps each eliminating an opposing species on a tile of each terrain type associated with the action space their pawn occupies.
 
 
 
