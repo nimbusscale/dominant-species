@@ -30,8 +30,12 @@ describe('Pile', () => {
       const pile = new Pile<ElementKind, Element>(elementCountMap, elementFactory);
       const result = pile.pull();
       expect(result.length).toEqual(1);
-      expect(result[0]).toBeTruthy();
-      expect(pile.itemCounts.get(result[0]!.kind)).toEqual(9);
+      if (result[0] !== null) {
+        expect(result[0]).toBeTruthy();
+        expect(pile.itemCounts.get(result[0].kind)).toEqual(9);
+      } else {
+        fail('Expected result[0] to be a valid Element, but got null');
+      }
     });
     it('should can pull more than one and reduce count by that many', () => {
       const pile = new Pile<ElementKind, Element>(elementCountMap, elementFactory);
@@ -40,8 +44,10 @@ describe('Pile', () => {
       expect(result.every((item) => Boolean(item))).toBeTrue();
       const kindPulledCount = new Map<ElementKind, number>();
       for (const element of result) {
-        const currentCount = kindPulledCount.get(element!.kind) ?? 0;
-        kindPulledCount.set(element!.kind, currentCount + 1);
+        if (element !== null) {
+          const currentCount = kindPulledCount.get(element.kind) ?? 0;
+          kindPulledCount.set(element.kind, currentCount + 1);
+        }
       }
       kindPulledCount.forEach((value, key) => {
         expect(pile.itemCounts.get(key)).toEqual(10 - value);

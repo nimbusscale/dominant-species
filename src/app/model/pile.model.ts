@@ -1,6 +1,8 @@
 import { Piece } from './piece.model';
 
-type ItemFactory<TpieceKind extends string, Tpiece extends Piece<TpieceKind>> = (itemKind: TpieceKind) => Tpiece;
+type ItemFactory<TpieceKind extends string, Tpiece extends Piece<TpieceKind>> = (
+  itemKind: TpieceKind,
+) => Tpiece;
 
 /**
  * A Pile is used to draw one or more random pieces for a defined pool of pieces.
@@ -30,13 +32,15 @@ export class Pile<TpieceKind extends string, Tpiece extends Piece<TpieceKind>> {
     const items: (Tpiece | null)[] = [];
     for (let i = 1; i <= count; i++) {
       const itemsWithCount = Array.from(this.itemCounts.keys()).filter((key) => {
-        const itemCount = this.itemCounts.get(key)!;
+        /** this.itemCounts.get(key) will always return a value, but TSC complains it could be unknown. */
+        const itemCount = this.itemCounts.get(key) ?? 0;
         return itemCount > 0;
       });
       if (itemsWithCount.length) {
         const itemKind = itemsWithCount[Math.floor(Math.random() * itemsWithCount.length)];
+        const currentCount = this.itemCounts.get(itemKind) ?? 0;
         items.push(this.itemFactory(itemKind));
-        this.itemCounts.set(itemKind, this.itemCounts.get(itemKind)! - 1);
+        this.itemCounts.set(itemKind, currentCount - 1);
       } else {
         items.push(null);
       }
