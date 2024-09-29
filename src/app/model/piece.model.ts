@@ -1,3 +1,3 @@
-export interface Piece {
-  kind: any
+export interface Piece<K extends string> {
+  kind: K;
 }

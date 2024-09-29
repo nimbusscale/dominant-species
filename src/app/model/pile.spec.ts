@@ -1,4 +1,4 @@
-import { Pile } from './pile';
+import { Pile } from './pile.model';
 
 describe('Pile', () => {
   it('should create an instance', () => {
