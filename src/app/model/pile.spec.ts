@@ -39,8 +39,8 @@ describe('Pile', () => {
       expect(result.length).toEqual(3);
       expect(result.every((item) => Boolean(item))).toBeTrue();
       const kindPulledCount = new Map<ElementKind, number>();
-      for (let element of result) {
-        const currentCount = kindPulledCount.get(element!.kind) || 0;
+      for (const element of result) {
+        const currentCount = kindPulledCount.get(element!.kind) ?? 0;
         kindPulledCount.set(element!.kind, currentCount + 1);
       }
       kindPulledCount.forEach((value, key) => {
