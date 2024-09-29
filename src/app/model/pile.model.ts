@@ -10,16 +10,20 @@ export class Pile<K extends string, T extends Piece<K>> {
     private itemFactory: ItemFactory<K, T>
   ) {}
 
-  pull(count: number = 1 ): T[] {
-    const items: T[] = []
+  pull(count: number = 1 ): (T | null)[] {
+    const items: (T | null)[] = []
     for (let i = 1; i <= count; i++) {
       let itemsWithCount =  Array.from(this.itemCounts.keys()).filter((key) => {
         const itemCount = this.itemCounts.get(key)!
         return itemCount > 0
       })
-      const itemKind = itemsWithCount[Math.floor(Math.random() * itemsWithCount.length)]
-      items.push(this.itemFactory(itemKind))
-      this.itemCounts.set(itemKind, this.itemCounts.get(itemKind)! - 1)
+      if (itemsWithCount.length) {
+        const itemKind = itemsWithCount[Math.floor(Math.random() * itemsWithCount.length)]
+        items.push(this.itemFactory(itemKind))
+        this.itemCounts.set(itemKind, this.itemCounts.get(itemKind)! - 1)
+      } else {
+        items.push(null)
+      }
     }
     return items
   }
