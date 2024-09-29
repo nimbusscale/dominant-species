@@ -1,17 +1,35 @@
 import {Piece} from "./piece.model";
 
-interface ItemFactory<K extends string, T extends Piece<K>> {
-  (itemKind: K): T;
+interface ItemFactory<TpieceKind extends string, Tpiece extends Piece<TpieceKind>> {
+  (itemKind: TpieceKind): Tpiece;
 }
 
-export class Pile<K extends string, T extends Piece<K>> {
+/**
+ * A Pile is used to draw one or more random pieces for a defined pool of pieces.
+ * A Pile has two Type Vars needed to be set when it's instantiated.
+ *
+ * @param TpieceKind - A type var used to set the kinds of Pieces the Pipe can contain
+ * @param Tpiece - A type var used to set the type of Piece the Pile creates
+ */
+export class Pile<TpieceKind extends string, Tpiece extends Piece<TpieceKind>> {
+  /**
+   * @param itemCounts - A map that that acts as the definition for the pool of pieces the Pile represents.
+   * Each map key is the kind of items included in the Pile, and the values are the count of that kind of item in
+   * the pile.
+   * @param itemFactory - A factory function use to build the random selected piece.
+   */
   constructor(
-    public itemCounts: Map<K, number>,
-    private itemFactory: ItemFactory<K, T>
+    public itemCounts: Map<TpieceKind, number>,
+    private itemFactory: ItemFactory<TpieceKind, Tpiece>
   ) {}
 
-  pull(count: number = 1 ): (T | null)[] {
-    const items: (T | null)[] = []
+  /**
+   * @param count - The number of items to draw from the pile.
+   * @returns - An array where each member represents the piece that was drawn. A `null`
+   * will be returned for any piece drawn while the pile is empty.
+   */
+  pull(count: number = 1 ): (Tpiece | null)[] {
+    const items: (Tpiece | null)[] = []
     for (let i = 1; i <= count; i++) {
       let itemsWithCount =  Array.from(this.itemCounts.keys()).filter((key) => {
         const itemCount = this.itemCounts.get(key)!
@@ -28,7 +46,10 @@ export class Pile<K extends string, T extends Piece<K>> {
     return items
   }
 
-  put(items: T[]): void {
+  /**
+   * @param items - An array of items to add to the pile.
+   */
+  put(items: Tpiece[]): void {
     for (let item of items) {
       const currentItemCount = this.itemCounts.get(item.kind)
       if (currentItemCount !== undefined) {
