@@ -6,22 +6,20 @@ interface ItemFactory<K extends string, T extends Piece<K>> {
 
 export class Pile<K extends string, T extends Piece<K>> {
   constructor(
-    public itemCounts: Map<K, number>, // The key is now of type K (string literal type)
-    private itemFactory: ItemFactory<K, T> // The factory is generic over K and T
+    public itemCounts: Map<K, number>,
+    private itemFactory: ItemFactory<K, T>
   ) {}
 
   pull(count: number = 1 ): T[] {
-    const itemsWithCount =  Array.from(this.itemCounts.keys()).filter((key) => {
-      const itemCount = this.itemCounts.get(key)!
-      return itemCount > 0
-      })
-
     const items: T[] = []
-    if (itemsWithCount.length) {
-      for (let i = 1; i <= count; i++) {
-        const itemKind = itemsWithCount[Math.floor(Math.random() * itemsWithCount.length)]
-        items.push(this.itemFactory(itemKind))
-      }
+    for (let i = 1; i <= count; i++) {
+      let itemsWithCount =  Array.from(this.itemCounts.keys()).filter((key) => {
+        const itemCount = this.itemCounts.get(key)!
+        return itemCount > 0
+      })
+      const itemKind = itemsWithCount[Math.floor(Math.random() * itemsWithCount.length)]
+      items.push(this.itemFactory(itemKind))
+      this.itemCounts.set(itemKind, this.itemCounts.get(itemKind)! - 1)
     }
     return items
   }
