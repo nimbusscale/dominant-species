@@ -27,7 +27,7 @@ export class Pile<TpieceKind extends string, Tpiece extends Piece<TpieceKind>> {
    * Returns the total number of items in the pile.
    */
   get length(): number {
-    return Array.from(this.itemCounts.values()).reduce((sum, value) => sum + value, 0)
+    return Array.from(this.itemCounts.values()).reduce((sum, value) => sum + value, 0);
   }
 
   /**
