@@ -18,6 +18,9 @@ export const inherentElementKindByAnimalKind = new Map<AnimalKind, ElementKind>(
   ['reptileAnimal', 'sunElement'],
 ] as const);
 
+/**
+ * Represents an animal owned by a player with inherent (printed on the card) and added elements.
+ */
 export class Animal {
   readonly owner: Player;
   readonly kind: AnimalKind;
@@ -42,15 +45,28 @@ export class Animal {
     }
   }
 
+  /**
+   * Gets the name of the animal, based on its kind.
+   * @returns The capitalized name of the animal without the "Animal" suffix.
+   */
   get name(): string {
     const animalName = this.kind.replace('Animal', '');
     return animalName.charAt(0).toUpperCase() + animalName.slice(1);
   }
 
+  /**
+   * Gets all elements of the animal, including both inherent and added ones.
+   * @returns A list of all elements.
+   */
   get elements(): Element[] {
     return [...this.inherentElements, ...this.addedElements];
   }
 
+  /**
+   * Adds a new element to the animal, ensuring it does not exceed the limit of 6 elements.
+   * @param element - The element to add.
+   * @throws Will throw an error if the animal already has 6 elements.
+   */
   addElement(element: Element): void {
     if (this.elements.length <= 6) {
       this.addedElements.push(element);
@@ -59,6 +75,11 @@ export class Animal {
     }
   }
 
+  /**
+   * Removes an added element from the animal.
+   * @param element - The element to remove.
+   * @throws Will throw an error if the specified element is not found in the added elements.
+   */
   removeElement(element: Element): void {
     const elementIndex = this.addedElements.findIndex(
       (addedElement) => addedElement.kind === element.kind,
