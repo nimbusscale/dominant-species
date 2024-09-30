@@ -16,13 +16,13 @@ export const inherentElementKindByAnimalKind = new Map<AnimalKind, ElementKind>(
   ['insectAnimal', 'grassElement'],
   ['mammalAnimal', 'meatElement'],
   ['reptileAnimal', 'sunElement']
-])
+] as const)
 
 export class Animal {
   readonly owner: Player
   readonly kind: AnimalKind
-  private inherentElements: Element[] = []
-  private addedElements: Element[] = []
+  private readonly inherentElements: Element[] = []
+  private readonly addedElements: Element[] = []
 
   constructor(owner: Player, kind: AnimalKind) {
     this.owner = owner
@@ -43,8 +43,8 @@ export class Animal {
   }
 
   get name(): string {
-    const animalName = this.kind.slice(0, -6)
-    return animalName.charAt(0).toUpperCase() + animalName.slice(1)
+    const animalName = this.kind.replace('Animal', '');
+    return animalName.charAt(0).toUpperCase() + animalName.slice(1);
   }
 
   get elements(): Element[] {
