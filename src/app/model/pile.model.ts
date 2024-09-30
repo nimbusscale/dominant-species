@@ -37,7 +37,7 @@ export class Pile<TpieceKind extends string, Tpiece extends Piece<TpieceKind>> {
    */
   pull(count = 1): (Tpiece | null)[] {
     const items: (Tpiece | null)[] = [];
-    for (let i = 1; i <= count; i++) {
+    for (let i = 0; i < count; i++) {
       const itemsWithCount = Array.from(this.itemCounts.keys()).filter((key) => {
         /** this.itemCounts.get(key) will always return a value, but TSC complains it could be unknown. */
         const itemCount = this.itemCounts.get(key) ?? 0;

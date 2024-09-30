@@ -26,12 +26,12 @@ export class ElementDrawPoolService {
   initialize() {
     // 20 Elements each, with 2 being places on Earth, leaving 18 in the bag
     const config = new Map<ElementKind, number>([
-      ['grass', 18],
-      ['grub', 18],
-      ['meat', 18],
-      ['seed', 18],
-      ['sun', 18],
-      ['water', 18],
+      ['grassElement', 18],
+      ['grubElement', 18],
+      ['meatElement', 18],
+      ['seedElement', 18],
+      ['sunElement', 18],
+      ['waterElement', 18],
     ]);
     this.elementPile = new Pile<ElementKind, Element>(config, this.elementFactory);
   }
