@@ -1,4 +1,10 @@
-export type ElementKind = 'grass' | 'grub' | 'meat' | 'seed' | 'sun' | 'water';
+export type ElementKind =
+  | 'grassElement'
+  | 'grubElement'
+  | 'meatElement'
+  | 'seedElement'
+  | 'sunElement'
+  | 'waterElement';
 
 export interface Element {
   kind: ElementKind;
