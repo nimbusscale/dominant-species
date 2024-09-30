@@ -25,6 +25,19 @@ describe('Pile', () => {
   it('should create an instance', () => {
     expect(new Pile<ElementKind, Element>(elementCountMap, elementFactory)).toBeTruthy();
   });
+  describe('length', () => {
+    it('should return total number of items when pile has items', () => {
+      const pile = new Pile<ElementKind, Element>(elementCountMap, elementFactory);
+      const result = pile.length;
+      expect(result).toEqual(20)
+    })
+    it('should return zero when pile has no items', () => {
+      const emptyElementCountMap = new Map<ElementKind, number>([]);
+      const pile = new Pile<ElementKind, Element>(emptyElementCountMap, elementFactory);
+      const result = pile.length;
+      expect(result).toEqual(0)
+    })
+  })
   describe('pull', () => {
     it('should pull one by default and reduce count by one', () => {
       const pile = new Pile<ElementKind, Element>(elementCountMap, elementFactory);
