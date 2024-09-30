@@ -11,9 +11,9 @@ export class ElementDrawPoolService {
     this.initialize()
   }
 
-  private elementFactory(elementKind: ElementKind): Element {
-  return { kind: elementKind };
-  }
+  private elementFactory = (elementKind: ElementKind): Element => {
+    return {kind: elementKind};
+  };
 
   private get drawPool(): Pile<ElementKind, Element> {
     if (!this.elementPile) {
