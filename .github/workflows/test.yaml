@@ -19,4 +19,4 @@ jobs:
           cache: 'npm'
       - run: npm ci
       - run: npm run build
-      - run: ng test --browsers ChromeHeadless --no-watch
+      - run: npm run testCI
