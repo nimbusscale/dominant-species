@@ -4,17 +4,22 @@
 
 ![High Level Systems Architecture](./img/high-level-system-arch.drawio.svg "High Level Systems Architecture")
 
-The system consists of two main parts: the client and the backend. The client, which runs the game engine, handles all the game logic and enables player interaction. The backend manages the game’s lifecycle (e.g., creating and organizing players) and facilitates communication of game state updates between clients.
+The system has two main components: the client and the backend.
 
-Each player is associated with a client. Players can create new games and invite others to join via their clients. The player who creates a game becomes the owner, and their client acts as the game host, a role that will be explained in detail later. The backend can support multiple games concurrently, ensuring that state updates made by one player are distributed to all clients participating in the same game.
+- **Client**: This is where the game engine runs. It handles game logic and allows players to interact with the game.
+- **Backend**: This manages the game lifecycle (e.g., creating and managing players) and handles communication between clients, ensuring game state updates are synchronized.
 
-The backend does not need to understand the specific game being played; its role is to track games, clients, and the current game state. The game state is a JSON-serializable object representing the entire game at any given point in time. When a player takes an action, the client generates a Game State Patch (GSP), which describes how the action modifies the game state. The flow of a GSP is shown below.
+Each player is associated with a client. Players can create new games and invite others through their clients. The player who creates a game becomes the game host, a role explained later. The backend supports multiple games running at the same time, ensuring that when one player makes a state change, all other clients in the same game receive the update.
+
+The backend doesn't need to know the specifics of the game being played. It only tracks the games, clients, and game states. The game state is a JSON-serializable object representing the game's current status. When a player takes an action, the client creates a **Game State Patch (GSP)** that describes how the action changes the game.
 
 ## Game State Patch Flow
 
 ![Game State Patch Flow](./img/game-state-flow.drawio.svg "Game State Patch Flow")
 
-When a player takes an action via their client, a GSP is created and sent to the backend. The backend updates its version of the game state using the GSP, then forwards it to all other clients in the game. These clients apply the GSP to update their own game states, allowing all players to see the updated state. If a client disconnects (e.g., due to a browser refresh or crash), it can reconnect and download the latest game state from the backend.
+When a player takes an action on their client, a GSP is created and sent to the backend. The backend updates its version of the game state using the GSP and then forwards it to all other clients in the game. These clients apply the GSP to update their game states, ensuring all players see the latest state.
+
+If a client disconnects (e.g., due to a browser refresh or crash), it can reconnect and retrieve the current game state from the backend.
 
 ## Game State Immutability and Updates
 
@@ -38,16 +43,36 @@ The following diagram shows a more detailed view of how the game state is update
 
 ![Game State Interactions](./img/game-state-detailed-flow.drawio.svg "Game State Interactions")
 
-First, let's describe the various objects in the diagram and then follow on with how they interact to update the game state.
+Before exploring the interactions, let's define the key objects involved:
 
-- **Component** - An Angular Component is responsible for binding data to the view and allowing the player to interact with the application. In this implementation components should have minimal (ideally no) state and business logic and should be responsible for the "View" part of the application. 
-- **Service** - An Angular Service is responsible for the business logic and responsible for the "Controller" part of the application. Service have business logic, but should have minimal (ideally no) state. Components interact with zero or more services as needed to get the data the need or process an input from a player.
-- **Model** - A Model is a class that represents a thing within the game and models the behavior of that thing. Model objects keep a state specific to the thing they represent. More details about the model objects can be found in a later section.
-- **Game State Service and Object** - While each Model keeps state specific to its operation, the Game State Service (an Angular Service) and Object are responsible for the game state as a whole. The object stores the entire game state and provides an interface to get or set any part of the state. The service orchestrates setting or getting updates state between the other Service, the Game State object and the Game State Client.
-- **Game State Client Service** - An Angular service that allows the client to get or send game state data to the backend.
-- **Backend** - The backend which stores and distributes state to all clients.
+- **Component**: 
+  An Angular Component is responsible for binding data to the view and enabling the player to interact with the application. In this implementation, Components should hold minimal (ideally no) state or business logic. Their primary role is to handle the "View" aspect of the application. Components interact with one or more Services as needed to retrieve data or process player input.
 
-Both the Model and Game State Object keep track of state, but for different purposes. The Game State Object has a copy of the entire game state and is responsible for providing that data to the rest of the objects in the client and processing updates made by the player (or system). The Model needs a copy of that state relevant to the operations of that model. Let's take the state for a deck of cards as an example. What cards are still in the deck would be the state and that state would be stored in the Game State Object. All other state related to the game is also stored in the Game State Object, such as the cards in each player's hand. The deck of cards model allows a player to draw a card, so it needs to know what cards are in the deck. When the deck of cards model object is instantiated, it gets a copy of the deck of cards state that is stored in the game state object. When a player draws a card the state in the deck of cards model object is updated and then sent to the Game State Object so it can update its copy. This update in state is ultimately sent to the backend via a GSP. When the GSP is received by another client the Game State Object is updated with the latest state. The deck of cards model is then updated to get a copy of the latest state from the Game State Object.  It can generally through of the Game State Object being the authoritative copy of the state and the state stored in each model object a cache of the game state.
+- **Service**: 
+  An Angular Service manages the business logic, representing the "Controller" part of the application. Services contain business logic but should maintain minimal (ideally no) state. 
+
+- **Model**: 
+  A Model represents a specific entity within the game and models the behavior of that entity. Models maintain state relevant to the entity they represent.
+
+- **Game State Service and Object**: 
+  While each Model maintains its own state, the **Game State Service** (an Angular Service) and **Game State Object** manage the entire game state. The Game State Object stores the complete state and provides an interface to access or modify any part of it. The Game State Service orchestrates interactions between other Services, the Game State Object, and the Game State Client.
+
+- **Game State Client Service**: 
+  An Angular Service that enables the client to send or retrieve game state data from the backend.
+
+- **Backend**: 
+  The server that stores and distributes the game state to all connected clients.
+
+Both the Model and Game State Object track state but serve different purposes. The Game State Object holds a complete copy of the game state and provides it to other client-side objects, processing player or system-triggered updates. On the other hand, each Model retains a subset of the game state relevant to its function.
+
+### Example: Managing a Deck of Cards 
+Consider the state of a deck of cards in the game. The Game State Object stores the current state of the deck—specifically, which cards remain in the deck. 
+
+The Deck of Cards Model needs to know the current state of the deck to allow players to draw cards. When the model is instantiated, it retrieves the state of the deck from the Game State Object. As a player draws a card, the Deck of Cards Model updates its internal state and sends this updated state back to the Game State Object. 
+
+The Game State Object then updates its full copy of the state and sends the change to the backend via a Game State Patch (GSP). When another client receives the GSP, the Game State Object on that client is updated. The Deck of Cards Model on that client subsequently fetches the latest state from the Game State Object.
+
+In essence, the Game State Object serves as the authoritative source of truth, while each Model holds a cached subset of the game state specific to its operations.
 
 ### Updating the Game State
 The following diagram shows the flow of a state change by a play through the client to the backend. Each step is labeled with a corresponding row in the table beneath the diagram.
@@ -85,6 +110,10 @@ And this diagram shows the flow when a GSP is received from the backend
 | 8     | The component shows a representation of the updated state (i.e. which card was drawn) to the player |
 
 ### Game State Transactions and GSP Creation
-The section on updating the game state implies that a GSP is created for every update sent to the game state object, but this isn't the case. When a player takes a turn, before them taking any actions, a game state transaction is started. When the transaction starts, the game state object creates a copy of the game state. Any updates to the game state is done to the copy of the game state. Once all updates for the turn have been made, then the player commits the turn. Commiting the turn causes a GSP to be created based on the delta between the original and updated game state. That GSP is then sent to the game state client, which in turn sends it to the backend.
+The previous section may suggest that a Game State Patch (GSP) is created for every update sent to the Game State Object. However, this is not the case.
 
-If the player doesn't wish to commit their turn, then the new game state, and any changes to that state, are discarded and another transaction is started based on the original unchanged game state.
+When a player starts their turn, a game state transaction is initiated before any actions are taken. At this point, the Game State Object creates a copy of the current game state. Any changes made during the player's turn are applied to this copy.
+
+Once all updates for the turn are complete, the player commits the turn. Committing generates a GSP, which reflects the difference (delta) between the original and the updated game state. This GSP is then sent to the Game State Client, which forwards it to the backend.
+
+If the player decides not to commit their turn, the updated game state and all associated changes are discarded. A new transaction is then initiated, using the original, unchanged game state.
