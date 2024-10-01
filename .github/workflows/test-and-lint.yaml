@@ -4,15 +4,15 @@ on:
   push:
     branches-ignore:
       - main
-    paths:
-      - '*.json'
-      - 'src/**'
+    paths-ignore:
+      - 'docs/**'
+      - 'public/**'
   pull_request:
     branches-ignore:
       - main
-    paths:
-      - '*.json'
-      - 'src/**'
+    paths-ignore:
+      - 'docs/**'
+      - 'public/**'
 
 jobs:
   test-and-lint:
