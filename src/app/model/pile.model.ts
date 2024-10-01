@@ -35,10 +35,11 @@ export class Pile<TpieceKind extends string, Tpiece extends Piece<TpieceKind>> {
    */
   get length(): number {
     return Object.keys(this.state).reduce(
-      (sum, key) => sum + ((this.state[key as TpieceKind] as number) ?? 0),
+      (sum, key) => sum + (this.state[key as TpieceKind] ?? 0),
       0,
     );
   }
+
 
   /**
    * @param count - The number of items to draw from the pile.

@@ -117,21 +117,21 @@ describe('Pile', () => {
     it('should increase count of existing item', () => {
       const pile = new Pile<ElementKind, Element>(pileState, elementFactory);
       pile.put([{ kind: 'grass' }]);
-      expect(pile.state['grass']).toEqual(11);
-      expect(pile.state['grub']).toEqual(10);
+      expect(pile.state.grass).toEqual(11);
+      expect(pile.state.grub).toEqual(10);
     });
     it('should be able to add more than one', () => {
       const pile = new Pile<ElementKind, Element>(pileState, elementFactory);
       pile.put([{ kind: 'grass' }, { kind: 'grub' }]);
-      expect(pile.state['grass']).toEqual(11);
-      expect(pile.state['grub']).toEqual(11);
+      expect(pile.state.grass).toEqual(11);
+      expect(pile.state.grub).toEqual(11);
     });
     it('should be able to add new kind', () => {
       const pile = new Pile<ElementKind, Element>(pileState, elementFactory);
       pile.put([{ kind: 'meat' }]);
-      expect(pile.state['grass']).toEqual(10);
-      expect(pile.state['grub']).toEqual(10);
-      expect(pile.state['meat']).toEqual(1);
+      expect(pile.state.grass).toEqual(10);
+      expect(pile.state.grub).toEqual(10);
+      expect(pile.state.meat).toEqual(1);
     });
   });
 });
