@@ -18,31 +18,33 @@ export const inherentElementKindByAnimalKind = new Map<AnimalKind, ElementKind>(
   ['reptileAnimal', 'sunElement'],
 ] as const);
 
+export interface AnimalState {
+  owner: Player;
+  kind: AnimalKind;
+  inherentElements: Element[];
+  addedElements: Element[];
+}
+
 /**
  * Represents an animal owned by a player with inherent (printed on the card) and added elements.
  */
 export class Animal {
-  readonly owner: Player;
-  readonly kind: AnimalKind;
-  private readonly inherentElements: Element[] = [];
-  private readonly addedElements: Element[] = [];
+  public state: AnimalState;
 
-  constructor(owner: Player, kind: AnimalKind) {
-    this.owner = owner;
-    this.kind = kind;
-    this.initialize();
+  constructor(state: AnimalState) {
+    this.state = state;
   }
 
-  private initialize() {
-    const inherentElementKind = inherentElementKindByAnimalKind.get(this.kind);
-    if (inherentElementKind) {
-      const inherentElementCount = this.kind === 'amphibianAnimal' ? 3 : 2;
-      for (let i = 0; i < inherentElementCount; i++) {
-        this.inherentElements.push({ kind: inherentElementKind });
-      }
-    } else {
-      throw new Error(`Unable to find inherentElementKind for Animal type ${this.kind}`);
-    }
+  /**
+   * Gets all elements of the animal, including both inherent and added ones.
+   * @returns A list of all elements.
+   */
+  get elements(): Element[] {
+    return [...this.state.inherentElements, ...this.state.addedElements];
+  }
+
+  get kind(): AnimalKind {
+    return this.state.kind;
   }
 
   /**
@@ -54,12 +56,8 @@ export class Animal {
     return animalName.charAt(0).toUpperCase() + animalName.slice(1);
   }
 
-  /**
-   * Gets all elements of the animal, including both inherent and added ones.
-   * @returns A list of all elements.
-   */
-  get elements(): Element[] {
-    return [...this.inherentElements, ...this.addedElements];
+  get owner(): Player {
+    return this.state.owner;
   }
 
   /**
@@ -69,7 +67,7 @@ export class Animal {
    */
   addElement(element: Element): void {
     if (this.elements.length <= 6) {
-      this.addedElements.push(element);
+      this.state.addedElements.push(element);
     } else {
       throw new Error(`${this.name} already has 6 Elements.`);
     }
@@ -81,11 +79,11 @@ export class Animal {
    * @throws Will throw an error if the specified element is not found in the added elements.
    */
   removeElement(element: Element): void {
-    const elementIndex = this.addedElements.findIndex(
+    const elementIndex = this.state.addedElements.findIndex(
       (addedElement) => addedElement.kind === element.kind,
     );
     if (elementIndex !== -1) {
-      this.addedElements.splice(elementIndex, 1);
+      this.state.addedElements.splice(elementIndex, 1);
     } else {
       throw new Error(
         `${this.name} does not have element kind ${element.kind} as an added element.`,

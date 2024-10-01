@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Pile } from '../model/pile.model';
+import { Pile, PileState } from '../model/pile.model';
 import { Element, ElementKind } from '../model/element.model';
 
 @Injectable({
@@ -22,18 +22,18 @@ export class ElementDrawPoolService {
     return this.elementPile;
   }
 
-  /** for not we are initializing the data in the service, but this will be done by the game state service in the future. */
+  /** for now we are initializing the data in the service, but this will be done by the game state service in the future. */
   initialize() {
     // 20 Elements each, with 2 being places on Earth, leaving 18 in the bag
-    const config = new Map<ElementKind, number>([
-      ['grassElement', 18],
-      ['grubElement', 18],
-      ['meatElement', 18],
-      ['seedElement', 18],
-      ['sunElement', 18],
-      ['waterElement', 18],
-    ]);
-    this.elementPile = new Pile<ElementKind, Element>(config, this.elementFactory);
+    const state: PileState<ElementKind> = {
+      grassElement: 18,
+      grubElement: 18,
+      meatElement: 18,
+      seedElement: 18,
+      sunElement: 18,
+      waterElement: 18,
+    };
+    this.elementPile = new Pile<ElementKind, Element>(state, this.elementFactory);
   }
 
   get length(): number {

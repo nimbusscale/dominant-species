@@ -5,6 +5,13 @@ type ItemFactory<TpieceKind extends string, Tpiece extends Piece<TpieceKind>> = 
 ) => Tpiece;
 
 /**
+ * PileState is pretty simple as it just keeps tracks of what kinds of pieces are in the pile and how many of them.
+ */
+export type PileState<TpieceKind extends string> = {
+  [K in TpieceKind]?: number;
+};
+
+/**
  * A Pile is used to draw one or more random pieces for a defined pool of pieces.
  * A Pile has two Type Vars needed to be set when it's instantiated.
  *
@@ -13,13 +20,13 @@ type ItemFactory<TpieceKind extends string, Tpiece extends Piece<TpieceKind>> = 
  */
 export class Pile<TpieceKind extends string, Tpiece extends Piece<TpieceKind>> {
   /**
-   * @param itemCounts - A map that that acts as the definition for the pool of pieces the Pile represents.
-   * Each map key is the kind of items included in the Pile, and the values are the count of that kind of item in
+   * @param state - An object that acts as the definition for the pool of pieces the Pile represents.
+   * Each key is the kind of items included in the Pile, and the values are the count of that kind of item in
    * the pile.
    * @param itemFactory - A factory function use to build the random selected piece.
    */
   constructor(
-    public itemCounts: Map<TpieceKind, number>,
+    public state: PileState<TpieceKind>,
     private itemFactory: ItemFactory<TpieceKind, Tpiece>,
   ) {}
 
@@ -27,7 +34,10 @@ export class Pile<TpieceKind extends string, Tpiece extends Piece<TpieceKind>> {
    * Returns the total number of items in the pile.
    */
   get length(): number {
-    return Array.from(this.itemCounts.values()).reduce((sum, value) => sum + value, 0);
+    return Object.keys(this.state).reduce(
+      (sum, key) => sum + (this.state[key as TpieceKind] ?? 0),
+      0,
+    );
   }
 
   /**
@@ -38,16 +48,17 @@ export class Pile<TpieceKind extends string, Tpiece extends Piece<TpieceKind>> {
   pull(count = 1): (Tpiece | null)[] {
     const items: (Tpiece | null)[] = [];
     for (let i = 0; i < count; i++) {
-      const itemsWithCount = Array.from(this.itemCounts.keys()).filter((key) => {
+      const itemsWithCount = Object.keys(this.state).filter((key) => {
         /** this.itemCounts.get(key) will always return a value, but TSC complains it could be unknown. */
-        const itemCount = this.itemCounts.get(key) ?? 0;
+        const itemCount = this.state[key as TpieceKind] ?? 0;
         return itemCount > 0;
-      });
+      }) as TpieceKind[];
+
       if (itemsWithCount.length) {
         const itemKind = itemsWithCount[Math.floor(Math.random() * itemsWithCount.length)];
-        const currentCount = this.itemCounts.get(itemKind) ?? 0;
+        const currentCount = this.state[itemKind] ?? 0;
         items.push(this.itemFactory(itemKind));
-        this.itemCounts.set(itemKind, currentCount - 1);
+        this.state[itemKind] = currentCount - 1;
       } else {
         items.push(null);
       }
@@ -60,11 +71,11 @@ export class Pile<TpieceKind extends string, Tpiece extends Piece<TpieceKind>> {
    */
   put(items: Tpiece[]): void {
     for (const item of items) {
-      const currentItemCount = this.itemCounts.get(item.kind);
+      const currentItemCount = this.state[item.kind];
       if (currentItemCount !== undefined) {
-        this.itemCounts.set(item.kind, currentItemCount + 1);
+        this.state[item.kind] = currentItemCount + 1;
       } else {
-        this.itemCounts.set(item.kind, 1);
+        this.state[item.kind] = 1;
       }
     }
   }

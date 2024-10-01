@@ -8,7 +8,8 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "testCI": "ng test --browsers ChromeHeadless --no-watch",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "format": "npx prettier ./src --write"
   },
   "private": true,
   "dependencies": {
