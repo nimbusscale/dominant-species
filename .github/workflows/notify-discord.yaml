@@ -1,12 +1,12 @@
 name: notify-discord
 
 on:
-  push:
-    branches:
-      - main
+  pull_request:
+    types: [ closed ]
 
 jobs:
   notify-discord:
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
       - name: Discord notification
