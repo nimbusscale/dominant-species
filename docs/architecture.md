@@ -33,6 +33,7 @@ A client of the player who owns the game has the host role. The host is responsi
 ## Game State
 The Game State is a distributed eventually consistent data structure synchronized between all the clients in a game and the backend. There are varios 
 
+### Game State Overview
 The following diagram shows a more detailed view of how the game state is updated/read, and its relationship to other objects in the system.
 
 ![Game State Interactions](./img/game-state-detailed-flow.drawio.svg "Game State Interactions")
@@ -48,6 +49,7 @@ First, let's describe the various objects in the diagram and then follow on with
 
 Both the Model and Game State Object keep track of state, but for different purposes. The Game State Object has a copy of the entire game state and is responsible for providing that data to the rest of the objects in the client and processing updates made by the player (or system). The Model needs a copy of that state relevant to the operations of that model. Let's take the state for a deck of cards as an example. What cards are still in the deck would be the state and that state would be stored in the Game State Object. All other state related to the game is also stored in the Game State Object, such as the cards in each player's hand. The deck of cards model allows a player to draw a card, so it needs to know what cards are in the deck. When the deck of cards model object is instantiated, it gets a copy of the deck of cards state that is stored in the game state object. When a player draws a card the state in the deck of cards model object is updated and then sent to the Game State Object so it can update its copy. This update in state is ultimately sent to the backend via a GSP. When the GSP is received by another client the Game State Object is updated with the latest state. The deck of cards model is then updated to get a copy of the latest state from the Game State Object.  It can generally through of the Game State Object being the authoritative copy of the state and the state stored in each model object a cache of the game state.
 
+### Updating the Game State
 The following diagram shows the flow of a state change by a play through the client to the backend. Each step is labeled with a corresponding row in the table beneath the diagram.
 
 ![Game State Update Interactions](./img/game-state-detailed-flow-update.drawio.svg "Game State Update Interactions")
@@ -66,6 +68,7 @@ The following diagram shows the flow of a state change by a play through the cli
 | 10    | The game state service sends the GSP to the game state client service                                        |
 | 11    | The game state client service sends the GSP to the backend                                                   |
 
+### Receiving Game State Updates
 And this diagram shows the flow when a GSP is received from the backend
 
 ![Game State Received Interactions](./img/game-state-detailed-flow-receive.drawio.svg "Game State Received Interactions")
@@ -81,4 +84,7 @@ And this diagram shows the flow when a GSP is received from the backend
 | 7     | The updated state is sent to the deck of cards model object                                         |
 | 8     | The component shows a representation of the updated state (i.e. which card was drawn) to the player |
 
+### Game State Transactions and GSP Creation
+The section on updating the game state implies that a GSP is created for every update sent to the game state object, but this isn't the case. When a player takes a turn, before them taking any actions, a game state transaction is started. When the transaction starts, the game state object creates a copy of the game state. Any updates to the game state is done to the copy of the game state. Once all updates for the turn have been made, then the player commits the turn. Commiting the turn causes a GSP to be created based on the delta between the original and updated game state. That GSP is then sent to the game state client, which in turn sends it to the backend.
 
+If the player doesn't wish to commit their turn, then the new game state, and any changes to that state, are discarded and another transaction is started based on the original unchanged game state.
