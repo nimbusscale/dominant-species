@@ -23,7 +23,7 @@ export interface AnimalState {
   kind: AnimalKind;
   inherentElements: Element[];
   addedElements: Element[];
-};
+}
 
 /**
  * Represents an animal owned by a player with inherent (printed on the card) and added elements.

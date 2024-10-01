@@ -40,7 +40,6 @@ export class Pile<TpieceKind extends string, Tpiece extends Piece<TpieceKind>> {
     );
   }
 
-
   /**
    * @param count - The number of items to draw from the pile.
    * @returns - An array where each member represents the piece that was drawn. A `null`
