@@ -8,7 +8,10 @@ type ItemFactory<TpieceKind extends string, Tpiece extends Piece<TpieceKind>> = 
  * PileState is pretty simple as it just keeps tracks of what kinds of pieces are in the pile and how many of them.
  */
 export type PileState<TpieceKind extends string> = {
-  [K in TpieceKind]?: number;
+  id: string,
+  inventory: {
+    [K in TpieceKind]?: number;
+  }
 };
 
 /**
@@ -35,7 +38,7 @@ export class Pile<TpieceKind extends string, Tpiece extends Piece<TpieceKind>> {
    */
   get length(): number {
     return Object.keys(this.state).reduce(
-      (sum, key) => sum + (this.state[key as TpieceKind] ?? 0),
+      (sum, key) => sum + (this.state.inventory[key as TpieceKind] ?? 0),
       0,
     );
   }
@@ -50,15 +53,15 @@ export class Pile<TpieceKind extends string, Tpiece extends Piece<TpieceKind>> {
     for (let i = 0; i < count; i++) {
       const itemsWithCount = Object.keys(this.state).filter((key) => {
         /** this.itemCounts.get(key) will always return a value, but TSC complains it could be unknown. */
-        const itemCount = this.state[key as TpieceKind] ?? 0;
+        const itemCount = this.state.inventory[key as TpieceKind] ?? 0;
         return itemCount > 0;
       }) as TpieceKind[];
 
       if (itemsWithCount.length) {
         const itemKind = itemsWithCount[Math.floor(Math.random() * itemsWithCount.length)];
-        const currentCount = this.state[itemKind] ?? 0;
+        const currentCount = this.state.inventory[itemKind] ?? 0;
         items.push(this.itemFactory(itemKind));
-        this.state[itemKind] = currentCount - 1;
+        this.state.inventory[itemKind] = currentCount - 1;
       } else {
         items.push(null);
       }
@@ -71,11 +74,11 @@ export class Pile<TpieceKind extends string, Tpiece extends Piece<TpieceKind>> {
    */
   put(items: Tpiece[]): void {
     for (const item of items) {
-      const currentItemCount = this.state[item.kind];
+      const currentItemCount = this.state.inventory[item.kind];
       if (currentItemCount !== undefined) {
-        this.state[item.kind] = currentItemCount + 1;
+        this.state.inventory[item.kind] = currentItemCount + 1;
       } else {
-        this.state[item.kind] = 1;
+        this.state.inventory[item.kind] = 1;
       }
     }
   }
