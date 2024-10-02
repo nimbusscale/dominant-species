@@ -3,6 +3,7 @@ import { BehaviorSubject, distinctUntilChanged, map, Observable } from 'rxjs';
 import {FactionState} from "./faction.model";
 
 export interface GameState {
+  faction: FactionState[]
   pile: PileState<string>[];
 }
 
@@ -25,20 +26,26 @@ export class GameStateStore {
     return JSON.stringify(first) === JSON.stringify(second)
   }
 
+  private getObservableForKey<T>(selector: (state: GameState) => T): Observable<T> {
+    return this.gameStateSubject.asObservable().pipe(
+      map(selector),
+      distinctUntilChanged(
+        (previous, current) => this.objectsEqual(previous, current),
+      )
+    )
+  }
+
   // Will be replaced by function that will update state via GSP/
   setState(newState: GameState) {
     this.gameState = newState;
     this.gameStateSubject.next(this.gameState);
   }
 
+  factionState$(): Observable<FactionState[]> {
+    return this.getObservableForKey((state) => state.faction);
+  }
+
   pileState$(): Observable<PileState<string>[]> {
-    return this.gameStateSubject.asObservable().pipe(
-      // Map to only the pile property from the GameState
-      map((gameState) => gameState.pile),
-      // Compare previous and current piles to emit only when piles change
-      distinctUntilChanged(
-        (previousPile, currentPile) => this.objectsEqual(previousPile, currentPile),
-      ),
-    );
+    return this.getObservableForKey((state) => state.pile);
   }
 }
