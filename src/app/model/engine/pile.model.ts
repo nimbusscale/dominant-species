@@ -1,4 +1,5 @@
 import { Piece } from './piece.model';
+import {GameStateElement} from "./game-state.model";
 
 type ItemFactory<TpieceKind extends string, Tpiece extends Piece<TpieceKind>> = (
   itemKind: TpieceKind,
@@ -7,11 +8,10 @@ type ItemFactory<TpieceKind extends string, Tpiece extends Piece<TpieceKind>> = 
 /**
  * PileState is pretty simple as it just keeps tracks of what kinds of pieces are in the pile and how many of them.
  */
-export type PileState<TpieceKind extends string> = {
-  kind: string,
+export type PileState<TpieceKind extends string> = GameStateElement & {
   inventory: {
     [K in TpieceKind]?: number;
-  }
+  };
 };
 
 /**

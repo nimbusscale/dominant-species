@@ -19,7 +19,7 @@ export const inherentElementKindByAnimalKind = new Map<AnimalKind, ElementKind>(
   ['reptileAnimal', 'sunElement'],
 ] as const);
 
-export interface AnimalState extends FactionState {
+export type AnimalState = FactionState & {
   kind: AnimalKind;
   inherentElements: Element[];
   addedElements: Element[];
