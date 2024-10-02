@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Pile, PileState } from '../model/pile.model';
-import { Element, ElementKind } from '../model/element.model';
+import { Pile, PileState } from '../model/engine/pile.model';
+import { Element, ElementKind } from '../model/game/element.model';
 
 @Injectable({
   providedIn: 'root',

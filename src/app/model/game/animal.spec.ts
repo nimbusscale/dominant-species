@@ -1,5 +1,5 @@
 import { Animal, AnimalState } from './animal.model';
-import { Player } from './player.model';
+import { Player } from '../engine/player.model';
 
 const testPlayer: Player = {
   id: 'test',
