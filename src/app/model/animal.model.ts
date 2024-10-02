@@ -1,5 +1,6 @@
 import { Player } from './player.model';
 import { Element, ElementKind } from './element.model';
+import {FactionState} from "./faction.model";
 
 export type AnimalKind =
   | 'amphibianAnimal'
@@ -18,8 +19,7 @@ export const inherentElementKindByAnimalKind = new Map<AnimalKind, ElementKind>(
   ['reptileAnimal', 'sunElement'],
 ] as const);
 
-export interface AnimalState {
-  owner: Player;
+export interface AnimalState extends FactionState {
   kind: AnimalKind;
   inherentElements: Element[];
   addedElements: Element[];
