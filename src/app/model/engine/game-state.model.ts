@@ -6,6 +6,7 @@
  * A type is used instead of an interface, and some of the state objects, such as pile, are a generic and require a
  * type var which is not supported by interface.
  */
+// eslint-disable-next-line @typescript-eslint/consistent-type-definitions
 export type GameStateElement = {
   kind: string;
 };

@@ -1,5 +1,5 @@
 import { Piece } from './piece.model';
-import {GameStateElement} from "./game-state.model";
+import { GameStateElement } from './game-state.model';
 
 type ItemFactory<TpieceKind extends string, Tpiece extends Piece<TpieceKind>> = (
   itemKind: TpieceKind,
@@ -37,7 +37,7 @@ export class Pile<TpieceKind extends string, Tpiece extends Piece<TpieceKind>> {
    * Returns the total number of items in the pile.
    */
   get length(): number {
-    return Object.keys(this.state).reduce(
+    return Object.keys(this.state.inventory).reduce(
       (sum, key) => sum + (this.state.inventory[key as TpieceKind] ?? 0),
       0,
     );
@@ -51,7 +51,7 @@ export class Pile<TpieceKind extends string, Tpiece extends Piece<TpieceKind>> {
   pull(count = 1): (Tpiece | null)[] {
     const items: (Tpiece | null)[] = [];
     for (let i = 0; i < count; i++) {
-      const itemsWithCount = Object.keys(this.state).filter((key) => {
+      const itemsWithCount = Object.keys(this.state.inventory).filter((key) => {
         /** this.itemCounts.get(key) will always return a value, but TSC complains it could be unknown. */
         const itemCount = this.state.inventory[key as TpieceKind] ?? 0;
         return itemCount > 0;

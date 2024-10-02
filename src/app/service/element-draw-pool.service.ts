@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Pile, PileState } from '../model/engine/pile.model';
 import { Element, ElementKind } from '../model/game/element.model';
-import {DrawPileKind} from "../constants/dominant-species.constants";
+import { DrawPileKind } from '../constants/dominant-species.constants';
 
 @Injectable({
   providedIn: 'root',
@@ -35,7 +35,7 @@ export class ElementDrawPoolService {
         seedElement: 18,
         sunElement: 18,
         waterElement: 18,
-      }
+      },
     };
     this.elementPile = new Pile<ElementKind, Element>(state, this.elementFactory);
   }

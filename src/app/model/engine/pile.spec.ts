@@ -24,18 +24,18 @@ describe('Pile', () => {
       inventory: {
         grass: 10,
         grub: 10,
-      }
+      },
     };
     emptyPileState = {
       kind: 'empty',
       inventory: {
         grass: 0,
         grub: 0,
-      }
+      },
     };
     noInventoryPileState = {
       kind: 'noInventory',
-      inventory: {}
+      inventory: {},
     };
     pile = new Pile<ElementKind, Element>(pileState, elementFactory);
   });
@@ -46,11 +46,11 @@ describe('Pile', () => {
     });
     it('should be updatable', () => {
       const newPileState: PileState<ElementKind> = {
-      kind: 'test',
-      inventory: {
-        meat: 1
-      }
-    };
+        kind: 'test',
+        inventory: {
+          meat: 1,
+        },
+      };
       pile.state = newPileState;
       expect(pile.state).toBe(newPileState);
     });
@@ -103,7 +103,7 @@ describe('Pile', () => {
       const result = pile.pull();
       expect(result.length).toEqual(1);
       expect(result[0]).toBeNull();
-      Object.keys(emptyPileState).forEach((key) => {
+      Object.keys(emptyPileState.inventory).forEach((key) => {
         expect(pile.state.inventory[key as ElementKind]).toEqual(0);
       });
     });
@@ -113,7 +113,7 @@ describe('Pile', () => {
         inventory: {
           grass: 1,
           grub: 0,
-        }
+        },
       };
       const pile = new Pile<ElementKind, Element>(testPileState, elementFactory);
       const result = pile.pull(3);

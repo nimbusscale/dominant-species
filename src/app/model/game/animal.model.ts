@@ -1,6 +1,6 @@
 import { Player } from '../engine/player.model';
 import { Element, ElementKind } from './element.model';
-import {FactionState} from "../engine/faction.model";
+import { FactionState } from '../engine/faction.model';
 
 export type AnimalKind =
   | 'amphibianAnimal'
@@ -23,7 +23,7 @@ export type AnimalState = FactionState & {
   kind: AnimalKind;
   inherentElements: Element[];
   addedElements: Element[];
-}
+};
 
 /**
  * Represents an animal owned by a player with inherent (printed on the card) and added elements.

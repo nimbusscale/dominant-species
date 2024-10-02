@@ -7,23 +7,32 @@ describe('GameStateStore', () => {
 
   beforeEach(() => {
     testGameState = {
-      pile: [{ test1: 10, test2: 10 }, { test3: 10 }],
+      pile: [
+        {
+          kind: 'pile1',
+          inventory: { test1: 10, test2: 10 },
+        },
+        {
+          kind: 'pile2',
+          inventory: { test3: 10 },
+        },
+      ],
       faction: [
         {
           owner: {
             id: 'test1',
-            name: 'Tester1'
+            name: 'Tester1',
           },
-          kind: 'redTester'
+          kind: 'redTester',
         },
         {
           owner: {
             id: 'test2',
-            name: 'Tester2'
+            name: 'Tester2',
           },
-          kind: 'blueTester'
-        }
-      ]
+          kind: 'blueTester',
+        },
+      ],
     };
     gameStateStore = new GameStateStore(testGameState);
   });
@@ -39,7 +48,16 @@ describe('GameStateStore', () => {
       it('should emit updated state when pile is updated', (done) => {
         const newGameState = {
           ...testGameState,
-          pile: [{ test1: 10, test2: 10 }, { test3: 20 }],
+          pile: [
+            {
+              kind: 'pile1',
+              inventory: { test1: 10, test2: 10 },
+            },
+            {
+              kind: 'pile2',
+              inventory: { test3: 20 },
+            },
+          ],
         };
         gameStateStore
           .pileState$()

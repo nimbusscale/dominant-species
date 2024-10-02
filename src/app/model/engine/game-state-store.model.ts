@@ -1,9 +1,10 @@
 import { PileState } from './pile.model';
 import { BehaviorSubject, distinctUntilChanged, map, Observable } from 'rxjs';
-import {FactionState} from "./faction.model";
+import { FactionState } from './faction.model';
+import { GameStateElement } from './game-state.model';
 
 export interface GameState {
-  faction: FactionState[]
+  faction: FactionState[];
   pile: PileState<string>[];
 }
 
@@ -22,17 +23,26 @@ export class GameStateStore {
    * @returns - True if objects are the same, otherwise false
    * @private
    */
-  private objectsEqual(first: any, second: any): boolean {
-    return JSON.stringify(first) === JSON.stringify(second)
+  private objectsEqual(first: unknown, second: unknown): boolean {
+    return JSON.stringify(first) === JSON.stringify(second);
   }
 
   private getObservableForKey<T>(selector: (state: GameState) => T): Observable<T> {
     return this.gameStateSubject.asObservable().pipe(
       map(selector),
-      distinctUntilChanged(
-        (previous, current) => this.objectsEqual(previous, current),
-      )
-    )
+      distinctUntilChanged((previous, current) => this.objectsEqual(previous, current)),
+    );
+  }
+
+  private setGameStateElement(key: keyof GameState, newState: GameStateElement): void {
+    const subStateArray = this.gameState[key] as (typeof newState)[];
+    const index = subStateArray.findIndex((item) => item.kind === newState.kind);
+
+    if (index > -1) {
+      subStateArray[index] = newState;
+    } else {
+      subStateArray.push(newState);
+    }
   }
 
   // Will be replaced by function that will update state via GSP/
@@ -42,10 +52,19 @@ export class GameStateStore {
   }
 
   factionState$(): Observable<FactionState[]> {
-    return this.getObservableForKey((state) => state.faction);
+    return this.getObservableForKey((gameState) => gameState.faction);
   }
 
   pileState$(): Observable<PileState<string>[]> {
-    return this.getObservableForKey((state) => state.pile);
+    return this.getObservableForKey((gameState) => gameState.pile);
+  }
+
+  setPileState(newState: PileState<string>): void {
+    const index = this.gameState.pile.findIndex((item) => item.kind === newState.kind);
+    if (index > -1) {
+      this.gameState.pile[index] = newState;
+    } else {
+      this.gameState.pile.push(newState);
+    }
   }
 }

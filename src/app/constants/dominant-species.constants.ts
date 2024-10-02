@@ -1,3 +1,3 @@
 export enum DrawPileKind {
-  ELEMENT = 'element'
+  ELEMENT = 'element',
 }
