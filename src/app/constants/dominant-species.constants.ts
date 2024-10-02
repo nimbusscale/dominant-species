@@ -1,3 +1,3 @@
-export enum DrawPileId {
+export enum DrawPileKind {
   ELEMENT = 'element'
 }
