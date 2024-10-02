@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Pile, PileState } from '../model/engine/pile.model';
 import { Element, ElementKind } from '../model/game/element.model';
-import {DrawPileId} from "../constants/dominant-species.constants";
+import {DrawPileKind} from "../constants/dominant-species.constants";
 
 @Injectable({
   providedIn: 'root',
@@ -27,7 +27,7 @@ export class ElementDrawPoolService {
   initialize() {
     // 20 Elements each, with 2 being places on Earth, leaving 18 in the bag
     const state: PileState<ElementKind> = {
-      id: DrawPileId.ELEMENT,
+      kind: DrawPileKind.ELEMENT,
       inventory: {
         grassElement: 18,
         grubElement: 18,

@@ -8,7 +8,7 @@ type ItemFactory<TpieceKind extends string, Tpiece extends Piece<TpieceKind>> = 
  * PileState is pretty simple as it just keeps tracks of what kinds of pieces are in the pile and how many of them.
  */
 export type PileState<TpieceKind extends string> = {
-  id: string,
+  kind: string,
   inventory: {
     [K in TpieceKind]?: number;
   }

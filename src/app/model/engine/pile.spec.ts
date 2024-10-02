@@ -20,21 +20,21 @@ describe('Pile', () => {
 
   beforeEach(() => {
     pileState = {
-      id: 'test',
+      kind: 'test',
       inventory: {
         grass: 10,
         grub: 10,
       }
     };
     emptyPileState = {
-      id: 'empty',
+      kind: 'empty',
       inventory: {
         grass: 0,
         grub: 0,
       }
     };
     noInventoryPileState = {
-      id: 'noInventory',
+      kind: 'noInventory',
       inventory: {}
     };
     pile = new Pile<ElementKind, Element>(pileState, elementFactory);
@@ -46,7 +46,7 @@ describe('Pile', () => {
     });
     it('should be updatable', () => {
       const newPileState: PileState<ElementKind> = {
-      id: 'test',
+      kind: 'test',
       inventory: {
         meat: 1
       }
@@ -109,7 +109,7 @@ describe('Pile', () => {
     });
     it('should return a null for each pull where there is not an item', () => {
       const testPileState = {
-        id: 'test',
+        kind: 'test',
         inventory: {
           grass: 1,
           grub: 0,
