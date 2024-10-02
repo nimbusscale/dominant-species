@@ -28,7 +28,7 @@ export interface AnimalState {
 /**
  * Represents an animal owned by a player with inherent (printed on the card) and added elements.
  */
-export class Animal {
+export class AnimalModel {
   public state: AnimalState;
 
   constructor(state: AnimalState) {
@@ -49,7 +49,7 @@ export class Animal {
 
   /**
    * Gets the name of the animal, based on its kind.
-   * @returns The capitalized name of the animal without the "Animal" suffix.
+   * @returns The capitalized name of the animal without the "AnimalModel" suffix.
    */
   get name(): string {
     const animalName = this.kind.replace('Animal', '');
