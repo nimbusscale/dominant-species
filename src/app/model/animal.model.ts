@@ -28,7 +28,7 @@ export interface AnimalState {
 /**
  * Represents an animal owned by a player with inherent (printed on the card) and added elements.
  */
-export class AnimalModel {
+export class Animal {
   public state: AnimalState;
 
   constructor(state: AnimalState) {

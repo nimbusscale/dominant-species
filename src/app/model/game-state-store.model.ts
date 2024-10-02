@@ -1,8 +1,8 @@
 import { PileState } from './pile.model';
-import {BehaviorSubject, distinctUntilChanged, map, Observable} from 'rxjs';
+import { BehaviorSubject, distinctUntilChanged, map, Observable } from 'rxjs';
 
 export interface GameState {
-  pile: Array<PileState<string>>;
+  pile: PileState<string>[];
 }
 
 export class GameStateStore {
@@ -21,13 +21,13 @@ export class GameStateStore {
   }
 
   pileState$(): Observable<PileState<string>[]> {
-    return this.gameStateSubject
-      .asObservable()
-      .pipe(
-        // Map to only the pile property from the GameState
-        map(gameState => gameState.pile),
-        // Compare previous and current piles to emit only when piles change
-        distinctUntilChanged((previousPile, currentPile) => JSON.stringify(previousPile) === JSON.stringify(currentPile))
-      );
+    return this.gameStateSubject.asObservable().pipe(
+      // Map to only the pile property from the GameState
+      map((gameState) => gameState.pile),
+      // Compare previous and current piles to emit only when piles change
+      distinctUntilChanged(
+        (previousPile, currentPile) => JSON.stringify(previousPile) === JSON.stringify(currentPile),
+      ),
+    );
   }
 }

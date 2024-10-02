@@ -16,6 +16,7 @@ describe('Pile', () => {
   let pileState: PileState<ElementKind>;
   let emptyPileState: PileState<ElementKind>;
   let noItemPileState: PileState<ElementKind>;
+  let pile: Pile<ElementKind, Element>;
 
   beforeEach(() => {
     pileState = {
@@ -27,18 +28,14 @@ describe('Pile', () => {
       grub: 0,
     };
     noItemPileState = {};
+    pile = new Pile<ElementKind, Element>(pileState, elementFactory);
   });
 
-  it('should create an instance', () => {
-    expect(new Pile<ElementKind, Element>(pileState, elementFactory)).toBeTruthy();
-  });
   describe('state', () => {
     it('should be retrievable', () => {
-      const pile = new Pile<ElementKind, Element>(pileState, elementFactory);
       expect(pile.state).toBe(pileState);
     });
     it('should be updatable', () => {
-      const pile = new Pile<ElementKind, Element>(pileState, elementFactory);
       const newPileState: PileState<ElementKind> = {
         meat: 1,
       };
@@ -48,7 +45,6 @@ describe('Pile', () => {
   });
   describe('length', () => {
     it('should return total number of items when pile has items', () => {
-      const pile = new Pile<ElementKind, Element>(pileState, elementFactory);
       const result = pile.length;
       expect(result).toEqual(20);
     });
@@ -60,7 +56,6 @@ describe('Pile', () => {
   });
   describe('pull', () => {
     it('should pull one by default and reduce count by one', () => {
-      const pile = new Pile<ElementKind, Element>(pileState, elementFactory);
       const result = pile.pull();
       expect(result.length).toEqual(1);
       if (result[0] !== null) {
@@ -71,7 +66,6 @@ describe('Pile', () => {
       }
     });
     it('should can pull more than one and reduce count by that many', () => {
-      const pile = new Pile<ElementKind, Element>(pileState, elementFactory);
       const result = pile.pull(3);
       expect(result.length).toEqual(3);
       expect(result.every((item) => Boolean(item))).toBeTrue();
@@ -102,11 +96,11 @@ describe('Pile', () => {
       });
     });
     it('should return a null for each pull where there is not an item', () => {
-      pileState = {
+      const testPileState = {
         grass: 1,
         grub: 0,
       };
-      const pile = new Pile<ElementKind, Element>(pileState, elementFactory);
+      const pile = new Pile<ElementKind, Element>(testPileState, elementFactory);
       const result = pile.pull(3);
       expect(result[0]).toBeTruthy();
       expect(result[1]).toBeNull();
@@ -115,19 +109,16 @@ describe('Pile', () => {
   });
   describe('putt', () => {
     it('should increase count of existing item', () => {
-      const pile = new Pile<ElementKind, Element>(pileState, elementFactory);
       pile.put([{ kind: 'grass' }]);
       expect(pile.state.grass).toEqual(11);
       expect(pile.state.grub).toEqual(10);
     });
     it('should be able to add more than one', () => {
-      const pile = new Pile<ElementKind, Element>(pileState, elementFactory);
       pile.put([{ kind: 'grass' }, { kind: 'grub' }]);
       expect(pile.state.grass).toEqual(11);
       expect(pile.state.grub).toEqual(11);
     });
     it('should be able to add new kind', () => {
-      const pile = new Pile<ElementKind, Element>(pileState, elementFactory);
       pile.put([{ kind: 'meat' }]);
       expect(pile.state.grass).toEqual(10);
       expect(pile.state.grub).toEqual(10);
