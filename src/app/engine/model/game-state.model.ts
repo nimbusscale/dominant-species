@@ -1,5 +1,5 @@
-import {FactionState} from "./faction.model";
-import {PileState} from "./pile.model";
+import { FactionState } from './faction.model';
+import { PileState } from './pile.model';
 
 /**
  * Defining the GameState object managed by GameStateStoreService
@@ -21,4 +21,3 @@ export interface GameState {
 export type GameStateElement = {
   kind: string;
 };
-

@@ -1,10 +1,10 @@
 import { GameStateStoreService } from './game-state-store.service';
-import { filter, skip } from 'rxjs';
-import {GameState} from "../model/game-state.model";
+import { skip } from 'rxjs';
+import { GameState } from '../model/game-state.model';
 
 describe('GameStateStore', () => {
   let testGameState: GameState;
-  let newGameState: GameState
+  let newGameState: GameState;
   let gameStateStore: GameStateStoreService;
 
   beforeEach(() => {
@@ -36,8 +36,8 @@ describe('GameStateStore', () => {
         },
       ],
     };
-    newGameState = JSON.parse(JSON.stringify(testGameState))
-    newGameState.pile[0].inventory['test1'] = 20
+    newGameState = JSON.parse(JSON.stringify(testGameState)) as GameState;
+    newGameState.pile[0].inventory['test1'] = 20;
     gameStateStore = new GameStateStoreService(testGameState);
   });
 
@@ -54,7 +54,22 @@ describe('GameStateStore', () => {
         done();
       });
     });
-  })
+  });
+  describe('state properties', () => {
+    it('gameState should return a copy of current game state', () => {
+      const gameStateCopy = gameStateStore.gameState;
+      expect(gameStateCopy).toEqual(testGameState);
+      expect(gameStateCopy).not.toBe(testGameState);
+    });
+    it('transactionState should return a copy of transaction game state when transaction', () => {
+      gameStateStore.startTransaction();
+      expect(gameStateStore.transactionState).toEqual(testGameState);
+      expect(gameStateStore.transactionState).not.toBe(testGameState);
+    });
+    it('transactionState should return null when no transaction', () => {
+      expect(gameStateStore.transactionState).toBe(null);
+    });
+  });
   describe('transaction', () => {
     it('emits update state when commit', (done) => {
       gameStateStore
@@ -65,10 +80,10 @@ describe('GameStateStore', () => {
           done();
         });
 
-      gameStateStore.startTransaction()
-      gameStateStore.setPile(newGameState.pile[0])
-      gameStateStore.commitTransaction()
-    })
+      gameStateStore.startTransaction();
+      gameStateStore.setPile(newGameState.pile[0]);
+      gameStateStore.commitTransaction();
+    });
     it('emits original state when rollback', (done) => {
       gameStateStore
         .pile$()
@@ -78,32 +93,30 @@ describe('GameStateStore', () => {
           done();
         });
 
-      gameStateStore.startTransaction()
-      gameStateStore.setPile(newGameState.pile[0])
-      gameStateStore.rollbackTransaction()
-    })
+      gameStateStore.startTransaction();
+      gameStateStore.setPile(newGameState.pile[0]);
+      gameStateStore.rollbackTransaction();
+    });
     it('throws error if update without transaction', () => {
       expect(() => {
-        gameStateStore.setPile(newGameState.pile[0])
-      }).toThrowError()
-    })
+        gameStateStore.setPile(newGameState.pile[0]);
+      }).toThrowError();
+    });
     it('throws error if start transaction, when one is already started', () => {
-      gameStateStore.startTransaction()
+      gameStateStore.startTransaction();
       expect(() => {
-        gameStateStore.startTransaction()
-      }).toThrowError()
-    })
+        gameStateStore.startTransaction();
+      }).toThrowError();
+    });
     it('throws error if commit without transaction', () => {
       expect(() => {
-        gameStateStore.commitTransaction()
-      }).toThrowError()
-    })
+        gameStateStore.commitTransaction();
+      }).toThrowError();
+    });
     it('throws error if rollback without transaction', () => {
       expect(() => {
-        gameStateStore.rollbackTransaction()
-      }).toThrowError()
-    })
-  })
-
-
+        gameStateStore.rollbackTransaction();
+      }).toThrowError();
+    });
+  });
 });
