@@ -1,9 +1,10 @@
-import { GameState, GameStateStore } from './game-state-store.model';
+import { GameStateStoreService } from './game-state-store.service';
 import { skip } from 'rxjs';
+import {GameState} from "../model/game-state.model";
 
 describe('GameStateStore', () => {
   let testGameState: GameState;
-  let gameStateStore: GameStateStore;
+  let gameStateStore: GameStateStoreService;
 
   beforeEach(() => {
     testGameState = {
@@ -34,7 +35,7 @@ describe('GameStateStore', () => {
         },
       ],
     };
-    gameStateStore = new GameStateStore(testGameState);
+    gameStateStore = new GameStateStoreService(testGameState);
   });
 
   describe('pile', () => {

@@ -1,14 +1,13 @@
-import { PileState } from './pile.model';
-import { BehaviorSubject, distinctUntilChanged, map, Observable } from 'rxjs';
-import { FactionState } from './faction.model';
-import { GameStateElement } from './game-state.model';
+import {PileState} from '../model/pile.model';
+import {BehaviorSubject, distinctUntilChanged, map, Observable} from 'rxjs';
+import {FactionState} from '../model/faction.model';
+import {GameState, GameStateElement} from '../model/game-state.model';
+import {Injectable} from "@angular/core";
 
-export interface GameState {
-  faction: FactionState[];
-  pile: PileState<string>[];
-}
-
-export class GameStateStore {
+@Injectable({
+  providedIn: 'root',
+})
+export class GameStateStoreService {
   private gameState: GameState;
   private gameStateSubject: BehaviorSubject<GameState>;
 
