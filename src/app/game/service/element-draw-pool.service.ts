@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Pile, PileState } from '../model/engine/pile.model';
-import { Element, ElementKind } from '../model/game/element.model';
-import { DrawPileKind } from '../constants/dominant-species.constants';
+import { Pile, PileState } from '../../engine/model/pile.model';
+import { Element, ElementKind } from '../model/element.model';
+import { DrawPileKind } from '../dominant-species.constants';
 
 @Injectable({
   providedIn: 'root',
