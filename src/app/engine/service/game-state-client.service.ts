@@ -22,7 +22,7 @@ export class GameStateClientService {
     console.log(JSON.stringify(gsp))
   }
 
-  gsp$(): Observable<GameStatePatch> {
+  get gsp$(): Observable<GameStatePatch> {
     return this.gspSubject.asObservable()
   }
 }
