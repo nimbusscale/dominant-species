@@ -72,8 +72,7 @@ describe('GameStateStore', () => {
   });
   describe('transaction', () => {
     it('emits update state when commit', (done) => {
-      gameStateStore
-        .pile$
+      gameStateStore.pile$
         .pipe(skip(1)) // Skip the initial state
         .subscribe((emittedState) => {
           expect(emittedState[0]).toEqual(newGameState.pile[0]);
@@ -85,8 +84,7 @@ describe('GameStateStore', () => {
       gameStateStore.commitTransaction();
     });
     it('emits original state when rollback', (done) => {
-      gameStateStore
-        .pile$
+      gameStateStore.pile$
         .pipe(skip(1)) // Skip the initial state
         .subscribe((emittedState) => {
           expect(emittedState[0]).toEqual(testGameState.pile[0]);
