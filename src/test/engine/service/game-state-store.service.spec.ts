@@ -1,6 +1,6 @@
-import { GameStateStoreService } from './game-state-store.service';
+import { GameStateStoreService } from '../../../app/engine/service/game-state-store.service';
 import { skip } from 'rxjs';
-import { GameState } from '../model/game-state.model';
+import { GameState } from '../../../app/engine/model/game-state.model';
 
 describe('GameStateStore', () => {
   let testGameState: GameState;
