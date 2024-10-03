@@ -18,20 +18,9 @@ export class GameStateStoreService {
     this.gameStateSubject = new BehaviorSubject<GameState>(this.gameState);
   }
 
-  /**
-   * Compares two objects to determine if they are equal.
-   * Current done by dumps to JSON and compare strings, but not sure about performance or accuracy, may need to look into a better method in the future.
-   * @returns - True if objects are the same, otherwise false
-   * @private
-   */
-  private objectsEqual(first: unknown, second: unknown): boolean {
-    return JSON.stringify(first) === JSON.stringify(second);
-  }
-
   private getObservableForKey<T>(selector: (state: GameState) => T): Observable<T> {
     return this.gameStateSubject.asObservable().pipe(
-      map(selector),
-      distinctUntilChanged((previous, current) => this.objectsEqual(previous, current)),
+      map(selector)
     );
   }
 
@@ -65,9 +54,8 @@ export class GameStateStoreService {
 
   commitTransaction(): void {
     if (this.transactionState) {
-      this.gameState = this.transactionState
+      this.setGameState(this.transactionState)
       this.transactionState = null
-      this.gameStateSubject.next(this.gameState);
     } else {
       throw new Error('No transaction in progress to commit')
     }
