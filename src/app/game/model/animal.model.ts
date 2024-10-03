@@ -1,5 +1,6 @@
-import { Player } from './player.model';
+import { Player } from '../../engine/model/player.model';
 import { Element, ElementKind } from './element.model';
+import { FactionState } from '../../engine/model/faction.model';
 
 export type AnimalKind =
   | 'amphibianAnimal'
@@ -18,12 +19,11 @@ export const inherentElementKindByAnimalKind = new Map<AnimalKind, ElementKind>(
   ['reptileAnimal', 'sunElement'],
 ] as const);
 
-export interface AnimalState {
-  owner: Player;
+export type AnimalState = FactionState & {
   kind: AnimalKind;
   inherentElements: Element[];
   addedElements: Element[];
-}
+};
 
 /**
  * Represents an animal owned by a player with inherent (printed on the card) and added elements.
@@ -49,7 +49,7 @@ export class Animal {
 
   /**
    * Gets the name of the animal, based on its kind.
-   * @returns The capitalized name of the animal without the "Animal" suffix.
+   * @returns The capitalized name of the animal without the "AnimalModel" suffix.
    */
   get name(): string {
     const animalName = this.kind.replace('Animal', '');
