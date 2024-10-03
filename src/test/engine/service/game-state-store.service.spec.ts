@@ -1,6 +1,6 @@
-import { GameStateStoreService } from './game-state-store.service';
+import { GameStateStoreService } from '../../../app/engine/service/game-state-store.service';
 import { skip } from 'rxjs';
-import { GameState } from '../model/game-state.model';
+import { GameState } from '../../../app/engine/model/game-state.model';
 
 describe('GameStateStore', () => {
   let testGameState: GameState;
@@ -43,13 +43,13 @@ describe('GameStateStore', () => {
 
   describe('state observable', () => {
     it('$faction should emit state', (done) => {
-      gameStateStore.faction$().subscribe((emittedState) => {
+      gameStateStore.faction$.subscribe((emittedState) => {
         expect(emittedState).toBe(testGameState.faction);
         done();
       });
     });
     it('$pile should emit state', (done) => {
-      gameStateStore.pile$().subscribe((emittedState) => {
+      gameStateStore.pile$.subscribe((emittedState) => {
         expect(emittedState).toBe(testGameState.pile);
         done();
       });
@@ -72,8 +72,7 @@ describe('GameStateStore', () => {
   });
   describe('transaction', () => {
     it('emits update state when commit', (done) => {
-      gameStateStore
-        .pile$()
+      gameStateStore.pile$
         .pipe(skip(1)) // Skip the initial state
         .subscribe((emittedState) => {
           expect(emittedState[0]).toEqual(newGameState.pile[0]);
@@ -85,8 +84,7 @@ describe('GameStateStore', () => {
       gameStateStore.commitTransaction();
     });
     it('emits original state when rollback', (done) => {
-      gameStateStore
-        .pile$()
+      gameStateStore.pile$
         .pipe(skip(1)) // Skip the initial state
         .subscribe((emittedState) => {
           expect(emittedState[0]).toEqual(testGameState.pile[0]);

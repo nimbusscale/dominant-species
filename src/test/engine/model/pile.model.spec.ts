@@ -1,4 +1,4 @@
-import { Pile, PileState } from './pile.model';
+import { Pile, PileState } from '../../../app/engine/model/pile.model';
 
 type ElementKind = 'grass' | 'grub' | 'meat';
 

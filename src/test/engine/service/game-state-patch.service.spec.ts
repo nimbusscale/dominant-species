@@ -1,7 +1,7 @@
-import { GameStatePatchService } from './game-state-patch.service';
-import { GameState } from '../model/game-state.model';
+import { GameStatePatchService } from '../../../app/engine/service/game-state-patch.service';
+import { GameState } from '../../../app/engine/model/game-state.model';
 import { Operation } from 'fast-json-patch';
-import { GameStatePatch } from '../model/game-state-patch.model';
+import { GameStatePatch } from '../../../app/engine/model/game-state-patch.model';
 
 describe('GameStatePatchService', () => {
   let oldGameState: GameState;

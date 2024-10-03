@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ElementDrawPoolService } from './element-draw-pool.service';
+import { ElementDrawPoolService } from '../../../app/game/service/element-draw-pool.service';
 
 describe('ElementDrawPoolService', () => {
   let service: ElementDrawPoolService;

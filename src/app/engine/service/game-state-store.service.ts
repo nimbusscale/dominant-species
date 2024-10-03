@@ -98,7 +98,7 @@ export class GameStateStoreService {
     }
   }
 
-  faction$(): Observable<FactionState[]> {
+  get faction$(): Observable<FactionState[]> {
     return this.getObservableForKey((gameState) => gameState.faction);
   }
 
@@ -106,7 +106,7 @@ export class GameStateStoreService {
     this.setTransactionStateElement('faction', newState);
   }
 
-  pile$(): Observable<PileState<string>[]> {
+  get pile$(): Observable<PileState<string>[]> {
     return this.getObservableForKey((gameState) => gameState.pile);
   }
 
