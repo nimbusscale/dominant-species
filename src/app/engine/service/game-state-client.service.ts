@@ -6,23 +6,17 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class GameStateClientService {
-  private gspSubject: BehaviorSubject<GameStatePatch>;
+  private gspSubject: BehaviorSubject<GameStatePatch | null>;
 
   constructor() {
-    this.gspSubject = new BehaviorSubject<GameStatePatch>({
-      timeStamp: Date.now(),
-      patch: [
-        { op: 'remove', path: '/pile/1' },
-        { op: 'replace', path: '/pile/0/inventory/test1', value: 20 },
-      ],
-    });
+    this.gspSubject = new BehaviorSubject<GameStatePatch | null>(null);
   }
 
   sendGspToBackend(gsp: GameStatePatch): void {
     console.log(JSON.stringify(gsp));
   }
 
-  get gsp$(): Observable<GameStatePatch> {
+  get gsp$(): Observable<GameStatePatch | null> {
     return this.gspSubject.asObservable();
   }
 }
