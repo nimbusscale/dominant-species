@@ -13,6 +13,7 @@ export const baseGameState: GameState = {
     {
       kind: DrawPileKind.ELEMENT,
       inventory: {
+        // 20 Elements each, with 2 being places on Earth, leaving 18 in the bag
         grassElement: 18,
         grubElement: 18,
         meatElement: 18,
