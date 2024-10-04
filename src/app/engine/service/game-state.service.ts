@@ -67,7 +67,7 @@ export class GameStateService {
    */
   requireTransaction(): void {
     if (!this.gameStateStore.transactionState) {
-      throw new Error("Transaction has not been started.")
+      throw new Error('Transaction has not been started.');
     }
   }
 

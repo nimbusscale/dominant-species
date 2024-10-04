@@ -13,14 +13,16 @@ import { ElementDrawPoolService } from '../../service/element-draw-pool.service'
   styleUrl: './draw-pool-game.component.scss',
 })
 export class DrawPoolGameComponent {
-  drawPoolLength: number = 0
-  log: string[] = []
+  drawPoolLength = 0;
+  log: string[] = [];
   constructor(
     private gameManagementSvc: GameManagementService,
     private gameStateSvc: GameStateService,
     private drawPoolSvc: ElementDrawPoolService,
   ) {
-    this.drawPoolSvc.length$.subscribe((length) => {this.drawPoolLength = length})
+    this.drawPoolSvc.length$.subscribe((length) => {
+      this.drawPoolLength = length;
+    });
   }
 
   createGame(): void {
@@ -34,15 +36,14 @@ export class DrawPoolGameComponent {
   }
 
   draw(): void {
-    const item = this.drawPoolSvc.pull()
+    const item = this.drawPoolSvc.pull();
     if (item[0]) {
-      let element = item[0].kind.replace('Element', '')
-      element = element.charAt(0).toUpperCase() + element.slice(1)
-      this.log.push(`You drew a ${element}`)
+      let element = item[0].kind.replace('Element', '');
+      element = element.charAt(0).toUpperCase() + element.slice(1);
+      this.log.push(`You drew a ${element}`);
     } else {
-      this.log.push('Pile is empty!')
+      this.log.push('Pile is empty!');
     }
-
   }
 
   endTurn(): void {

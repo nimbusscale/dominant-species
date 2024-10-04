@@ -13,14 +13,13 @@ describe('GameStateService', () => {
   let gameStateClientMock: jasmine.SpyObj<GameStateClientService>;
 
   beforeEach(() => {
-    gameStateStoreMock = jasmine.createSpyObj('GameStateStoreService', [
-      'gameState',
-      'setGameState',
-      'startTransaction',
-      'commitTransaction',
-    ], {
-      transactionState: null
-    });
+    gameStateStoreMock = jasmine.createSpyObj(
+      'GameStateStoreService',
+      ['gameState', 'setGameState', 'startTransaction', 'commitTransaction'],
+      {
+        transactionState: null,
+      },
+    );
     gspServiceMock = jasmine.createSpyObj('GameStatePatchService', ['apply', 'create']);
     gameStateClientMock = jasmine.createSpyObj('GameStateClientService', ['sendGspToBackend'], {
       gsp$: of(testGameStatePatch1),
@@ -75,13 +74,17 @@ describe('GameStateService', () => {
   describe('requireTransaction', () => {
     it('does not throw error when transaction has stated', () => {
       Object.defineProperty(gameStateStoreMock, 'transactionState', {
-        get: jasmine.createSpy('transactionState').and.returnValue(of(true))
+        get: jasmine.createSpy('transactionState').and.returnValue(of(true)),
       });
-      expect(() => {gameStateService.requireTransaction()}).not.toThrowError()
-    })
+      expect(() => {
+        gameStateService.requireTransaction();
+      }).not.toThrowError();
+    });
     it('throws error when transaction has not started', () => {
       //testbed default value for transactionState is null.
-      expect(() => {gameStateService.requireTransaction()}).toThrowError()
-    })
-  })
+      expect(() => {
+        gameStateService.requireTransaction();
+      }).toThrowError();
+    });
+  });
 });

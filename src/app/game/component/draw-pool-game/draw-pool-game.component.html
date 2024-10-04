@@ -6,9 +6,7 @@
     <button mat-raised-button (click)="endTurn()">End Turn</button>
   </section>
   <section class="draw-pool-display">
-    <div class="draw-pool-counter">
-      Draw Pool: {{ drawPoolLength }}
-    </div>
+    <div class="draw-pool-counter">Draw Pool: {{ drawPoolLength }}</div>
     <div class="draw-pool-log">
       <div class="log-line">
         @for (line of log; track $index) {
