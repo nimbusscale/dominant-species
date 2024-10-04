@@ -10,16 +10,20 @@ describe('ElementDrawPoolService', () => {
   let gameStateServiceMock: jasmine.SpyObj<GameStateService>;
 
   beforeEach(() => {
-    gameStateServiceMock = jasmine.createSpyObj('GameStateService', ['setPile'], {
-      pile$: of([
-        {
-          kind: DrawPileKind.ELEMENT,
-          inventory: {
-            grassElement: 10,
+    gameStateServiceMock = jasmine.createSpyObj(
+      'GameStateService',
+      ['setPile', 'requireTransaction'],
+      {
+        pile$: of([
+          {
+            kind: DrawPileKind.ELEMENT,
+            inventory: {
+              grassElement: 10,
+            },
           },
-        },
-      ]),
-    });
+        ]),
+      },
+    );
 
     TestBed.configureTestingModule({
       providers: [
