@@ -26,8 +26,13 @@ export class GameStateService {
   }
 
   private applyGsp(gsp: GameStatePatch): void {
-    const updatedState = this.gspService.apply(this.gameStateStore.gameState, gsp);
-    this.gameStateStore.setGameState(updatedState);
+    if (this.gameStateStore.gameState) {
+      const updatedState = this.gspService.apply(this.gameStateStore.gameState, gsp);
+      this.gameStateStore.setGameState(updatedState);
+    } else {
+      throw new Error("Can't apply a GSP to an uninitialized GameStateStore.")
+    }
+
   }
 
   startTransaction(): void {
@@ -35,15 +40,17 @@ export class GameStateService {
   }
 
   commitTransaction(): void {
-    if (this.gameStateStore.transactionState) {
+    if (!this.gameStateStore.gameState) {
+      throw new Error('GameStateStore uninitialized')
+    } else if (!this.gameStateStore.transactionState) {
+      throw new Error('No transaction in progress to commit');
+    } else {
       const gsp = this.gspService.create(
         this.gameStateStore.gameState,
         this.gameStateStore.transactionState,
       );
       this.gameStateStore.commitTransaction();
       this.gameStateClient.sendGspToBackend(gsp);
-    } else {
-      throw new Error('No transaction in progress to commit');
     }
   }
 
