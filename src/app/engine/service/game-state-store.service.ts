@@ -77,7 +77,7 @@ export class GameStateStoreService {
 
   private _setGameState(newState: GameState) {
     this._gameState = newState;
-    this.gameStateSubject.next(this._gameState);
+    this.gameStateSubject.next(this.gameState);
   }
 
   initializeGameState(gameState: GameState): void {
@@ -102,7 +102,7 @@ export class GameStateStoreService {
     if (!this._transactionState) {
       this._transactionState = deepClone(this._gameState) as GameState;
     } else {
-      throw new Error("Can't start transaction and one already in progress.");
+      throw new Error("Can't start transaction as one already in progress.");
     }
   }
 
