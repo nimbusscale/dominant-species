@@ -13,11 +13,14 @@ import { ElementDrawPoolService } from '../../service/element-draw-pool.service'
   styleUrl: './draw-pool-game.component.scss',
 })
 export class DrawPoolGameComponent {
+  drawPoolLength: number = 0
   constructor(
     private gameManagementSvc: GameManagementService,
     private gameStateSvc: GameStateService,
     private drawPoolSvc: ElementDrawPoolService,
-  ) {}
+  ) {
+    this.drawPoolSvc.length$.subscribe((length) => {this.drawPoolLength = length})
+  }
 
   createGame(): void {
     console.log('Create Game');
