@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { FactionState } from '../model/faction.model';
 import { PileState } from '../model/pile.model';
 import { GameStatePatch } from '../model/game-state-patch.model';
+import { GameState } from '../model/game-state.model';
 
 /**
  * The GameStateService provides an interface for the rest of the system to interact with state.
@@ -32,6 +33,10 @@ export class GameStateService {
     } else {
       throw new Error("Can't apply a GSP to an uninitialized GameStateStore.");
     }
+  }
+
+  initializeGameState(gameState: GameState): void {
+    this.gameStateStore.initializeGameState(gameState);
   }
 
   startTransaction(): void {
