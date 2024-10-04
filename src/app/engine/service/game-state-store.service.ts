@@ -66,8 +66,12 @@ export class GameStateStoreService {
   }
 
   setGameState(newState: GameState) {
-    this._gameState = newState;
-    this.gameStateSubject.next(this._gameState);
+    if (!this._transactionState) {
+      this._gameState = newState;
+      this.gameStateSubject.next(this._gameState);
+    } else {
+      throw new Error('State can not be updated during a transaction.');
+    }
   }
 
   startTransaction(): void {
@@ -80,8 +84,9 @@ export class GameStateStoreService {
 
   commitTransaction(): void {
     if (this._transactionState) {
-      this.setGameState(this._transactionState);
+      this._gameState = this._transactionState;
       this._transactionState = null;
+      this.gameStateSubject.next(this._gameState);
     } else {
       throw new Error('No transaction in progress to commit');
     }
