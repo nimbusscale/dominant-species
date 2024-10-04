@@ -45,11 +45,22 @@ export class ElementDrawPoolService {
     return this.drawPool.length;
   }
 
+  private updateGameState(): void {
+    if (this.elementPile) {
+      this.gameStateSvc.setPile(this.elementPile.state);
+    } else {
+      throw new Error("elementPile doesn't have state!");
+    }
+  }
+
   pull(count = 1): (Element | null)[] {
-    return this.drawPool.pull(count);
+    const items = this.drawPool.pull(count);
+    this.updateGameState();
+    return items;
   }
 
   put(elements: Element[]): void {
     this.drawPool.put(elements);
+    this.updateGameState();
   }
 }
