@@ -18,6 +18,6 @@ export class GameStatePatchService {
   }
 
   apply(gameState: GameState, gsp: GameStatePatch): GameState {
-    return applyPatch(gameState, gsp.patch).newDocument;
+    return applyPatch(gameState, gsp.patch, undefined, false).newDocument;
   }
 }

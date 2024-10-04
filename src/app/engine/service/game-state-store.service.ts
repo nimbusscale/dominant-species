@@ -8,6 +8,8 @@ import { deepClone } from 'fast-json-patch';
 /**
  * GameStateStoreService is responsible for maintain the GameState and making it accessible to others.
  *
+ * A GameStateStoreService cannot be used until the initializeGameState method is called an initial GameState is passed in.
+ *
  * The GameState has several top level keys, and GameStateStoreService provides observables for each of those keys.
  * So if someone was interested in the faction key, then they could subscribe to the faction$ observable.
  * A value will be emitted on each observable whenever the GameState is updated, regardless of if the particular key has been updated.
@@ -26,22 +28,28 @@ import { deepClone } from 'fast-json-patch';
   providedIn: 'root',
 })
 export class GameStateStoreService {
-  private _gameState: GameState;
+  private _gameState: GameState | null = null;
   private _transactionState: GameState | null = null;
-  private gameStateSubject: BehaviorSubject<GameState>;
+  private gameStateSubject: BehaviorSubject<GameState | null>;
 
-  constructor(gameState: GameState) {
-    this._gameState = gameState;
-    this.gameStateSubject = new BehaviorSubject<GameState>(this._gameState);
+  constructor() {
+    this.gameStateSubject = new BehaviorSubject<GameState | null>(this._gameState);
   }
 
   private getObservableForKey<T>(selector: (state: GameState) => T): Observable<T> {
-    return this.gameStateSubject.asObservable().pipe(map(selector));
+    return this.gameStateSubject.asObservable().pipe(
+      map((gameState) => {
+        if (!gameState) {
+          throw new Error('GameState is not initialized.');
+        }
+        return selector(gameState);
+      }),
+    );
   }
 
   private setTransactionStateElement(key: keyof GameState, newState: GameStateElement): void {
     if (!this._transactionState) {
-      throw new Error('Must start transaction before updating state.');
+      throw new Error('Must start transaction before updating GameState.');
     }
     const subStateArray = this._transactionState[key] as (typeof newState)[];
     const index = subStateArray.findIndex((item) => item.kind === newState.kind);
@@ -53,8 +61,12 @@ export class GameStateStoreService {
     }
   }
 
-  get gameState(): GameState {
-    return deepClone(this._gameState) as GameState;
+  get gameState(): GameState | null {
+    if (this._gameState) {
+      return deepClone(this._gameState) as GameState;
+    } else {
+      return null;
+    }
   }
 
   get transactionState(): GameState | null {
@@ -65,12 +77,26 @@ export class GameStateStoreService {
     }
   }
 
-  setGameState(newState: GameState) {
-    if (!this._transactionState) {
-      this._gameState = newState;
-      this.gameStateSubject.next(this._gameState);
+  private _setGameState(newState: GameState) {
+    this._gameState = newState;
+    this.gameStateSubject.next(this._gameState);
+  }
+
+  initializeGameState(gameState: GameState): void {
+    if (!this._gameState) {
+      this._setGameState(gameState);
     } else {
-      throw new Error('State can not be updated during a transaction.');
+      throw new Error('GameState all ready initialized.');
+    }
+  }
+
+  setGameState(newState: GameState) {
+    if (!this._gameState) {
+      throw new Error('GameState must be initialized before it can be set.');
+    } else if (this._transactionState) {
+      throw new Error('GameState can not be set during a transaction.');
+    } else {
+      this._setGameState(newState);
     }
   }
 
@@ -84,9 +110,8 @@ export class GameStateStoreService {
 
   commitTransaction(): void {
     if (this._transactionState) {
-      this._gameState = this._transactionState;
+      this._setGameState(this._transactionState);
       this._transactionState = null;
-      this.gameStateSubject.next(this._gameState);
     } else {
       throw new Error('No transaction in progress to commit');
     }
@@ -96,8 +121,7 @@ export class GameStateStoreService {
     if (this._transactionState) {
       this._transactionState = null;
       // Ensures gameState is a new object so that subscribers can detect the update
-      this._gameState = deepClone(this._gameState) as GameState;
-      this.gameStateSubject.next(this._gameState);
+      this._setGameState(deepClone(this._gameState) as GameState);
     } else {
       throw new Error('No transaction in progress to rollback');
     }

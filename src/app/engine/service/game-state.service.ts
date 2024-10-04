@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { FactionState } from '../model/faction.model';
 import { PileState } from '../model/pile.model';
 import { GameStatePatch } from '../model/game-state-patch.model';
+import { GameState } from '../model/game-state.model';
 
 /**
  * The GameStateService provides an interface for the rest of the system to interact with state.
@@ -26,8 +27,16 @@ export class GameStateService {
   }
 
   private applyGsp(gsp: GameStatePatch): void {
-    const updatedState = this.gspService.apply(this.gameStateStore.gameState, gsp);
-    this.gameStateStore.setGameState(updatedState);
+    if (this.gameStateStore.gameState) {
+      const updatedState = this.gspService.apply(this.gameStateStore.gameState, gsp);
+      this.gameStateStore.setGameState(updatedState);
+    } else {
+      throw new Error("Can't apply a GSP to an uninitialized GameStateStore.");
+    }
+  }
+
+  initializeGameState(gameState: GameState): void {
+    this.gameStateStore.initializeGameState(gameState);
   }
 
   startTransaction(): void {
@@ -35,15 +44,17 @@ export class GameStateService {
   }
 
   commitTransaction(): void {
-    if (this.gameStateStore.transactionState) {
+    if (!this.gameStateStore.gameState) {
+      throw new Error('GameStateStore uninitialized');
+    } else if (!this.gameStateStore.transactionState) {
+      throw new Error('No transaction in progress to commit');
+    } else {
       const gsp = this.gspService.create(
         this.gameStateStore.gameState,
         this.gameStateStore.transactionState,
       );
       this.gameStateStore.commitTransaction();
       this.gameStateClient.sendGspToBackend(gsp);
-    } else {
-      throw new Error('No transaction in progress to commit');
     }
   }
 
