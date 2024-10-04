@@ -8,3 +8,26 @@
 button {
   width: 115px;
 }
+
+.draw-pool-play-area {
+  display: flex;
+  flex-direction: row;
+}
+
+.draw-pool-display {
+  margin-left: 100px;
+  flex-direction: column;
+}
+
+.draw-pool-log {
+  height: calc(1.2em * 20);
+  width: 200px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  padding: 5px;
+  white-space: pre-wrap;
+}
+
+.log-line {
+  padding: 2px 0; /* Optional: Space between lines */
+}

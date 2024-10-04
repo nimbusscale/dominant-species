@@ -14,6 +14,7 @@ import { ElementDrawPoolService } from '../../service/element-draw-pool.service'
 })
 export class DrawPoolGameComponent {
   drawPoolLength: number = 0
+  log: string[] = []
   constructor(
     private gameManagementSvc: GameManagementService,
     private gameStateSvc: GameStateService,
@@ -33,8 +34,15 @@ export class DrawPoolGameComponent {
   }
 
   draw(): void {
-    console.log('Draw!');
-    console.log(this.drawPoolSvc.pull());
+    const item = this.drawPoolSvc.pull()
+    if (item[0]) {
+      let element = item[0].kind.replace('Element', '')
+      element = element.charAt(0).toUpperCase() + element.slice(1)
+      this.log.push(`You drew a ${element}`)
+    } else {
+      this.log.push('Pile is empty!')
+    }
+
   }
 
   endTurn(): void {
