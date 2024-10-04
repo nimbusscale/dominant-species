@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
-import { Pile, PileState } from '../../engine/model/pile.model';
+import { Pile } from '../../engine/model/pile.model';
 import { Element, ElementKind } from '../model/element.model';
 import { DrawPileKind } from '../dominant-species.constants';
+import { GameStateService } from '../../engine/service/game-state.service';
+import { map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ElementDrawPoolService {
   private elementPile: Pile<ElementKind, Element> | undefined = undefined;
-  constructor() {
+  constructor(private gameStateSvc: GameStateService) {
     this.initialize();
   }
 
@@ -23,21 +25,20 @@ export class ElementDrawPoolService {
     return this.elementPile;
   }
 
-  /** for now we are initializing the data in the service, but this will be done by the game state service in the future. */
   initialize() {
-    // 20 Elements each, with 2 being places on Earth, leaving 18 in the bag
-    const state: PileState<ElementKind> = {
-      kind: DrawPileKind.ELEMENT,
-      inventory: {
-        grassElement: 18,
-        grubElement: 18,
-        meatElement: 18,
-        seedElement: 18,
-        sunElement: 18,
-        waterElement: 18,
-      },
-    };
-    this.elementPile = new Pile<ElementKind, Element>(state, this.elementFactory);
+    this.gameStateSvc.pile$
+      .pipe(
+        map((pileStates) =>
+          pileStates.find((pileState) => (pileState.kind as DrawPileKind) === DrawPileKind.ELEMENT),
+        ),
+      )
+      .subscribe((drawPileState) => {
+        if (drawPileState) {
+          this.elementPile = new Pile<ElementKind, Element>(drawPileState, this.elementFactory);
+        } else {
+          throw new Error('GameState does not include a state element for the ElementDrawPool');
+        }
+      });
   }
 
   get length(): number {
