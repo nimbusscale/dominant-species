@@ -21,9 +21,7 @@ export class GameStateService {
     private gameStateClient: GameStateClientService,
   ) {
     this.gameStateClient.gsp$.subscribe((gsp) => {
-      if (gsp) {
-        this.applyGsp(gsp);
-      }
+      this.applyGsp(gsp);
     });
   }
 
