@@ -34,7 +34,7 @@ describe('GameStateStore', () => {
       it('$pile should emit a copy of state', (done) => {
         gameStateStore.pile$.subscribe((emittedState) => {
           expect(emittedState).toEqual(testGameState1.pile);
-          expect(emittedState).not.toBe(testGameState1.pile)
+          expect(emittedState).not.toBe(testGameState1.pile);
           done();
         });
       });

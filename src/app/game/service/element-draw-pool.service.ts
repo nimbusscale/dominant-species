@@ -3,7 +3,7 @@ import { Pile } from '../../engine/model/pile.model';
 import { Element, ElementKind } from '../model/element.model';
 import { DrawPileKind } from '../dominant-species.constants';
 import { GameStateService } from '../../engine/service/game-state.service';
-import { map } from 'rxjs';
+import { map, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -43,6 +43,10 @@ export class ElementDrawPoolService {
 
   get length(): number {
     return this.drawPool.length;
+  }
+
+  get length$(): Observable<number> {
+    return this.drawPool.length$;
   }
 
   private updateGameState(): void {
