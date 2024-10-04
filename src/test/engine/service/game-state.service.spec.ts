@@ -21,13 +21,7 @@ describe('GameStateService', () => {
     ]);
     gspServiceMock = jasmine.createSpyObj('GameStatePatchService', ['apply', 'create']);
     gameStateClientMock = jasmine.createSpyObj('GameStateClientService', ['sendGspToBackend'], {
-      gsp$: of({
-        timeStamp: Date.now(),
-        patch: [
-          { op: 'remove', path: '/pile/1' },
-          { op: 'replace', path: '/pile/0/inventory/test1', value: 20 },
-        ],
-      }),
+      gsp$: of(testGameStatePatch1),
     });
 
     TestBed.configureTestingModule({

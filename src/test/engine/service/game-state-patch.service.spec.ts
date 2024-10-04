@@ -2,6 +2,7 @@ import { GameStatePatchService } from '../../../app/engine/service/game-state-pa
 import { GameState } from '../../../app/engine/model/game-state.model';
 import { Operation } from 'fast-json-patch';
 import { GameStatePatch } from '../../../app/engine/model/game-state-patch.model';
+import {testGameStatePatch1} from "./game-state-test.constant";
 
 describe('GameStatePatchService', () => {
   let oldGameState: GameState;
@@ -49,11 +50,7 @@ describe('GameStatePatchService', () => {
 
   describe('apply', () => {
     it('applies a GSP', () => {
-      const gsp: GameStatePatch = {
-        timeStamp: Date.now(),
-        patch: patchOps,
-      };
-      const updatedState = service.apply(oldGameState, gsp);
+      const updatedState = service.apply(oldGameState, testGameStatePatch1);
       expect(updatedState).toEqual(newGameState);
     });
   });
