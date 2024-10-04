@@ -9,7 +9,7 @@ import {BehaviorSubject, map, Observable} from 'rxjs';
   providedIn: 'root',
 })
 export class ElementDrawPoolService {
-  private lengthSubject = new BehaviorSubject<number>(0); // Initial value set to 0
+  private lengthSubject = new BehaviorSubject<number>(0)
   length$: Observable<number> = this.lengthSubject.asObservable();
   private elementPile: Pile<ElementKind, Element> | undefined = undefined;
   constructor(private gameStateSvc: GameStateService) {
@@ -58,12 +58,14 @@ export class ElementDrawPoolService {
   }
 
   pull(count = 1): (Element | null)[] {
+    this.gameStateSvc.requireTransaction()
     const items = this.drawPool.pull(count);
     this.updateGameState();
     return items;
   }
 
   put(elements: Element[]): void {
+    this.gameStateSvc.requireTransaction()
     this.drawPool.put(elements);
     this.updateGameState();
   }

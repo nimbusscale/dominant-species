@@ -62,6 +62,15 @@ export class GameStateService {
     this.gameStateStore.rollbackTransaction();
   }
 
+  /**
+   * Will throw error if there is not a transaction in progress. Call before state updates that require a transaction.
+   */
+  requireTransaction(): void {
+    if (!this.gameStateStore.transactionState) {
+      throw new Error("Transaction has not been started.")
+    }
+  }
+
   get faction$(): Observable<FactionState[]> {
     return this.gameStateStore.faction$;
   }
