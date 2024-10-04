@@ -51,7 +51,7 @@ describe('Pile', () => {
           meat: 1,
         },
       };
-      pile.state = newPileState;
+      pile.setState(newPileState);
       expect(pile.state).toBe(newPileState);
     });
   });
@@ -64,6 +64,22 @@ describe('Pile', () => {
       const pile = new Pile<ElementKind, Element>(noInventoryPileState, elementFactory);
       const result = pile.length;
       expect(result).toEqual(0);
+    });
+  });
+  describe('length$', () => {
+    it('should emit initial length 20 and then 0 after setState', (done) => {
+      const expectedValues = [20, 0];
+      let emissionIndex = 0;
+
+      pile.length$.subscribe((length) => {
+        expect(length).toEqual(expectedValues[emissionIndex]);
+        emissionIndex++;
+        if (emissionIndex === expectedValues.length) {
+          done();
+        }
+      });
+
+      pile.setState(emptyPileState); // Triggers the second emission (0)
     });
   });
   describe('pull', () => {

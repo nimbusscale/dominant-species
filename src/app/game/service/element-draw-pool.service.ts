@@ -3,12 +3,14 @@ import { Pile } from '../../engine/model/pile.model';
 import { Element, ElementKind } from '../model/element.model';
 import { DrawPileKind } from '../dominant-species.constants';
 import { GameStateService } from '../../engine/service/game-state.service';
-import { map } from 'rxjs';
+import { BehaviorSubject, map, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ElementDrawPoolService {
+  private lengthSubject = new BehaviorSubject<number>(0);
+  length$: Observable<number> = this.lengthSubject.asObservable();
   private elementPile: Pile<ElementKind, Element> | undefined = undefined;
   constructor(private gameStateSvc: GameStateService) {
     this.initialize();
@@ -25,7 +27,7 @@ export class ElementDrawPoolService {
     return this.elementPile;
   }
 
-  initialize() {
+  private initialize() {
     this.gameStateSvc.pile$
       .pipe(
         map((pileStates) =>
@@ -35,6 +37,7 @@ export class ElementDrawPoolService {
       .subscribe((drawPileState) => {
         if (drawPileState) {
           this.elementPile = new Pile<ElementKind, Element>(drawPileState, this.elementFactory);
+          this.lengthSubject.next(this.elementPile.length);
         } else {
           throw new Error('GameState does not include a state element for the ElementDrawPool');
         }
@@ -47,6 +50,7 @@ export class ElementDrawPoolService {
 
   private updateGameState(): void {
     if (this.elementPile) {
+      this.lengthSubject.next(this.elementPile.length);
       this.gameStateSvc.setPile(this.elementPile.state);
     } else {
       throw new Error("elementPile doesn't have state!");
@@ -54,12 +58,14 @@ export class ElementDrawPoolService {
   }
 
   pull(count = 1): (Element | null)[] {
+    this.gameStateSvc.requireTransaction();
     const items = this.drawPool.pull(count);
     this.updateGameState();
     return items;
   }
 
   put(elements: Element[]): void {
+    this.gameStateSvc.requireTransaction();
     this.drawPool.put(elements);
     this.updateGameState();
   }

@@ -1,5 +1,6 @@
 import { Piece } from './piece.model';
 import { GameStateElement } from './game-state.model';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 type ItemFactory<TpieceKind extends string, Tpiece extends Piece<TpieceKind>> = (
   itemKind: TpieceKind,
@@ -22,25 +23,44 @@ export type PileState<TpieceKind extends string> = GameStateElement & {
  * @param Tpiece - A type var used to set the type of Piece the Pile creates
  */
 export class Pile<TpieceKind extends string, Tpiece extends Piece<TpieceKind>> {
+  private readonly itemFactory: ItemFactory<TpieceKind, Tpiece>;
+  private lengthSubject = new BehaviorSubject<number>(0);
+  private _state: PileState<TpieceKind>;
+  readonly length$: Observable<number> = this.lengthSubject.asObservable();
+
   /**
    * @param state - An object that acts as the definition for the pool of pieces the Pile represents.
    * Each key is the kind of items included in the Pile, and the values are the count of that kind of item in
    * the pile.
    * @param itemFactory - A factory function use to build the random selected piece.
    */
-  constructor(
-    public state: PileState<TpieceKind>,
-    private itemFactory: ItemFactory<TpieceKind, Tpiece>,
-  ) {}
+  constructor(state: PileState<TpieceKind>, itemFactory: ItemFactory<TpieceKind, Tpiece>) {
+    this._state = state;
+    this.itemFactory = itemFactory;
+    this.emitLength();
+  }
 
   /**
    * Returns the total number of items in the pile.
    */
   get length(): number {
-    return Object.keys(this.state.inventory).reduce(
-      (sum, key) => sum + (this.state.inventory[key as TpieceKind] ?? 0),
+    return Object.keys(this._state.inventory).reduce(
+      (sum, key) => sum + (this._state.inventory[key as TpieceKind] ?? 0),
       0,
     );
+  }
+
+  private emitLength() {
+    this.lengthSubject.next(this.length);
+  }
+
+  get state(): PileState<TpieceKind> {
+    return this._state;
+  }
+
+  setState(newState: PileState<TpieceKind>) {
+    this._state = newState;
+    this.emitLength();
   }
 
   /**
@@ -51,21 +71,22 @@ export class Pile<TpieceKind extends string, Tpiece extends Piece<TpieceKind>> {
   pull(count = 1): (Tpiece | null)[] {
     const items: (Tpiece | null)[] = [];
     for (let i = 0; i < count; i++) {
-      const itemsWithCount = Object.keys(this.state.inventory).filter((key) => {
+      const itemsWithCount = Object.keys(this._state.inventory).filter((key) => {
         /** this.itemCounts.get(key) will always return a value, but TSC complains it could be unknown. */
-        const itemCount = this.state.inventory[key as TpieceKind] ?? 0;
+        const itemCount = this._state.inventory[key as TpieceKind] ?? 0;
         return itemCount > 0;
       }) as TpieceKind[];
 
       if (itemsWithCount.length) {
         const itemKind = itemsWithCount[Math.floor(Math.random() * itemsWithCount.length)];
-        const currentCount = this.state.inventory[itemKind] ?? 0;
+        const currentCount = this._state.inventory[itemKind] ?? 0;
         items.push(this.itemFactory(itemKind));
-        this.state.inventory[itemKind] = currentCount - 1;
+        this._state.inventory[itemKind] = currentCount - 1;
       } else {
         items.push(null);
       }
     }
+    this.emitLength();
     return items;
   }
 
@@ -74,12 +95,13 @@ export class Pile<TpieceKind extends string, Tpiece extends Piece<TpieceKind>> {
    */
   put(items: Tpiece[]): void {
     for (const item of items) {
-      const currentItemCount = this.state.inventory[item.kind];
+      const currentItemCount = this._state.inventory[item.kind];
       if (currentItemCount !== undefined) {
-        this.state.inventory[item.kind] = currentItemCount + 1;
+        this._state.inventory[item.kind] = currentItemCount + 1;
       } else {
-        this.state.inventory[item.kind] = 1;
+        this._state.inventory[item.kind] = 1;
       }
     }
+    this.emitLength();
   }
 }

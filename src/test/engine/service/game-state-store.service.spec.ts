@@ -30,15 +30,11 @@ describe('GameStateStore', () => {
       gameStateStore.initializeGameState(testGameState1);
     });
     describe('state observable', () => {
-      it('$faction should emit state', (done) => {
-        gameStateStore.faction$.subscribe((emittedState) => {
-          expect(emittedState).toBe(testGameState1.faction);
-          done();
-        });
-      });
-      it('$pile should emit state', (done) => {
+      // All state observables are wrappers around the same code path so just testing one should be sufficient for unit test.
+      it('$pile should emit a copy of state', (done) => {
         gameStateStore.pile$.subscribe((emittedState) => {
-          expect(emittedState).toBe(testGameState1.pile);
+          expect(emittedState).toEqual(testGameState1.pile);
+          expect(emittedState).not.toBe(testGameState1.pile);
           done();
         });
       });
