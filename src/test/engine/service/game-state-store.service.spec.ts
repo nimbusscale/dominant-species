@@ -70,6 +70,19 @@ describe('GameStateStore', () => {
       expect(gameStateStore.transactionState).toBe(null);
     });
   });
+  describe('gameState', ()=> {
+    it('can be retrieved', () => {
+      expect(gameStateStore.gameState).toEqual(testGameState)
+    })
+    it('can be set', () => {
+      gameStateStore.setGameState(newGameState)
+      expect(gameStateStore.gameState).toEqual(newGameState)
+    })
+    it('throws error when set during a transaction', () => {
+      gameStateStore.startTransaction()
+      expect(() => gameStateStore.setGameState(newGameState)).toThrowError()
+    })
+  })
   describe('transaction', () => {
     it('emits update state when commit', (done) => {
       gameStateStore.pile$
