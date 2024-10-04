@@ -42,21 +42,25 @@ describe('GameStateStore', () => {
   });
   describe('when not initialized', () => {
     it('initializes', () => {
-      gameStateStore.initializeGameState(testGameState)
-      expect(gameStateStore.gameState).toEqual(testGameState)
-    })
+      gameStateStore.initializeGameState(testGameState);
+      expect(gameStateStore.gameState).toEqual(testGameState);
+    });
     it('Throws error when trying to initialize an already initialized GameState', () => {
-      gameStateStore.initializeGameState(testGameState)
-      expect(() => {gameStateStore.initializeGameState(testGameState)}).toThrowError()
-    })
+      gameStateStore.initializeGameState(testGameState);
+      expect(() => {
+        gameStateStore.initializeGameState(testGameState);
+      }).toThrowError();
+    });
     it('Throws error when trying to set GameState when not initialized', () => {
-      expect(() => {gameStateStore.setGameState(newGameState)}).toThrowError()
-    })
-  })
+      expect(() => {
+        gameStateStore.setGameState(newGameState);
+      }).toThrowError();
+    });
+  });
   describe('when initialized', () => {
     beforeEach(() => {
-      gameStateStore.initializeGameState(testGameState)
-    })
+      gameStateStore.initializeGameState(testGameState);
+    });
     describe('state observable', () => {
       it('$faction should emit state', (done) => {
         gameStateStore.faction$.subscribe((emittedState) => {

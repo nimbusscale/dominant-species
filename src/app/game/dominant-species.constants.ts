@@ -1,4 +1,4 @@
-import {GameState} from "../engine/model/game-state.model";
+import { GameState } from '../engine/model/game-state.model';
 
 export enum DrawPileKind {
   ELEMENT = 'element',
@@ -19,7 +19,7 @@ export const baseGameState: GameState = {
         seedElement: 18,
         sunElement: 18,
         waterElement: 18,
-      }
-    }
-  ]
-}
+      },
+    },
+  ],
+};

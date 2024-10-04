@@ -41,7 +41,7 @@ export class GameStateStoreService {
           throw new Error('GameState is not initialized.');
         }
         return selector(gameState);
-      })
+      }),
     );
   }
 
@@ -63,7 +63,7 @@ export class GameStateStoreService {
     if (this._gameState) {
       return deepClone(this._gameState) as GameState;
     } else {
-      return null
+      return null;
     }
   }
 
@@ -76,26 +76,25 @@ export class GameStateStoreService {
   }
 
   private _setGameState(newState: GameState) {
-      this._gameState = newState;
-      this.gameStateSubject.next(this._gameState);
+    this._gameState = newState;
+    this.gameStateSubject.next(this._gameState);
   }
 
   initializeGameState(gameState: GameState): void {
     if (!this._gameState) {
-      this._setGameState(gameState)
+      this._setGameState(gameState);
     } else {
-      throw new Error('GameState all ready initialized.')
+      throw new Error('GameState all ready initialized.');
     }
-
   }
 
   setGameState(newState: GameState) {
     if (!this._gameState) {
-      throw new Error('GameState must be initialized before it can be set.')
+      throw new Error('GameState must be initialized before it can be set.');
     } else if (this._transactionState) {
       throw new Error('GameState can not be set during a transaction.');
     } else {
-      this._setGameState(newState)
+      this._setGameState(newState);
     }
   }
 
@@ -109,7 +108,7 @@ export class GameStateStoreService {
 
   commitTransaction(): void {
     if (this._transactionState) {
-      this._setGameState(this._transactionState)
+      this._setGameState(this._transactionState);
       this._transactionState = null;
     } else {
       throw new Error('No transaction in progress to commit');
@@ -120,7 +119,7 @@ export class GameStateStoreService {
     if (this._transactionState) {
       this._transactionState = null;
       // Ensures gameState is a new object so that subscribers can detect the update
-      this._setGameState(deepClone(this._gameState) as GameState)
+      this._setGameState(deepClone(this._gameState) as GameState);
     } else {
       throw new Error('No transaction in progress to rollback');
     }
