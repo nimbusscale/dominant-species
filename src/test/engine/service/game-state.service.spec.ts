@@ -47,14 +47,16 @@ describe('GameStateService', () => {
       gspServiceMock.create.and.returnValue(testGameStatePatch1);
 
       gameStateService.commitTransaction();
-      expect(gameStateStoreMock.commitTransaction).toHaveBeenCalled()
-      expect(gameStateClientMock.sendGspToBackend).toHaveBeenCalledWith(testGameStatePatch1)
+      expect(gameStateStoreMock.commitTransaction).toHaveBeenCalled();
+      expect(gameStateClientMock.sendGspToBackend).toHaveBeenCalledWith(testGameStatePatch1);
     });
     it('throws error when GameStateStore not initialized', () => {
       Object.defineProperty(gameStateStoreMock, 'gameState', {
         get: () => false,
       });
-      expect(() => {gameStateService.commitTransaction()}).toThrowError()
+      expect(() => {
+        gameStateService.commitTransaction();
+      }).toThrowError();
     });
     it('throws error when no transaction to commit', () => {
       Object.defineProperty(gameStateStoreMock, 'gameState', {
@@ -63,7 +65,9 @@ describe('GameStateService', () => {
       Object.defineProperty(gameStateStoreMock, 'transactionState', {
         get: () => false,
       });
-      expect(() => {gameStateService.commitTransaction()}).toThrowError()
+      expect(() => {
+        gameStateService.commitTransaction();
+      }).toThrowError();
     });
   });
 });

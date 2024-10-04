@@ -8,6 +8,8 @@ import { deepClone } from 'fast-json-patch';
 /**
  * GameStateStoreService is responsible for maintain the GameState and making it accessible to others.
  *
+ * A GameStateStoreService cannot be used until the initializeGameState method is called an initial GameState is passed in.
+ *
  * The GameState has several top level keys, and GameStateStoreService provides observables for each of those keys.
  * So if someone was interested in the faction key, then they could subscribe to the faction$ observable.
  * A value will be emitted on each observable whenever the GameState is updated, regardless of if the particular key has been updated.
