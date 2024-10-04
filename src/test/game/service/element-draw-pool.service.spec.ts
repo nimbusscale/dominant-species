@@ -10,7 +10,7 @@ describe('ElementDrawPoolService', () => {
   let gameStateServiceMock: jasmine.SpyObj<GameStateService>;
 
   beforeEach(() => {
-    gameStateServiceMock = jasmine.createSpyObj('GameStateService', [], {
+    gameStateServiceMock = jasmine.createSpyObj('GameStateService', ['setPile'], {
       pile$: of([
         {
           kind: DrawPileKind.ELEMENT,
