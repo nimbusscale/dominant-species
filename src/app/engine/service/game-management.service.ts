@@ -9,9 +9,7 @@ import { Animal } from '../../game/model/animal.model';
   providedIn: 'root',
 })
 export class GameManagementService {
-  constructor(private gameStateService: GameStateService) {
-    this.createGame();
-  }
+  constructor(private gameStateService: GameStateService) {}
 
   createGame(): void {
     const gameState = deepClone(baseGameState) as GameState;
