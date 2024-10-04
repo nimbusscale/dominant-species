@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { GameStateService } from './game-state.service';
 import { deepClone } from 'fast-json-patch';
 import { baseGameState } from '../../game/dominant-species.constants';
-import {GameState} from "../model/game-state.model";
-import {Animal} from "../../game/model/animal.model";
+import { GameState } from '../model/game-state.model';
+import { Animal } from '../../game/model/animal.model';
 
 @Injectable({
   providedIn: 'root',
