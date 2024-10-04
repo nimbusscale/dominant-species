@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DrawPoolGameComponent } from './draw-pool-game.component';
+import { DrawPoolGameComponent } from '../../../../app/game/component/draw-pool-game/draw-pool-game.component';
 
 describe('DrawPoolGameComponent', () => {
   let component: DrawPoolGameComponent;
@@ -8,9 +8,8 @@ describe('DrawPoolGameComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DrawPoolGameComponent]
-    })
-    .compileComponents();
+      imports: [DrawPoolGameComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(DrawPoolGameComponent);
     component = fixture.componentInstance;

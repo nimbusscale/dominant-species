@@ -25,7 +25,7 @@ export class ElementDrawPoolService {
     return this.elementPile;
   }
 
-  initialize() {
+  private initialize() {
     this.gameStateSvc.pile$
       .pipe(
         map((pileStates) =>

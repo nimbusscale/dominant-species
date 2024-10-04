@@ -10,13 +10,7 @@ export class GameStateClientService {
     console.log(JSON.stringify(gsp));
   }
 
-  get gsp$(): Observable<GameStatePatch> {
-    return of({
-      timeStamp: Date.now(),
-      patch: [
-        { op: 'remove', path: '/pile/1' },
-        { op: 'replace', path: '/pile/0/inventory/test1', value: 20 },
-      ],
-    });
+  get gsp$(): Observable<GameStatePatch | undefined> {
+    return of(undefined);
   }
 }

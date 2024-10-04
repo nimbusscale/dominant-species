@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { GameStateStoreService } from './game-state-store.service';
 import { GameStatePatchService } from './game-state-patch.service';
 import { GameStateClientService } from './game-state-client.service';
-import { Observable } from 'rxjs';
+import { filter, Observable } from 'rxjs';
 import { FactionState } from '../model/faction.model';
 import { PileState } from '../model/pile.model';
 import { GameStatePatch } from '../model/game-state-patch.model';
@@ -21,7 +21,7 @@ export class GameStateService {
     private gspService: GameStatePatchService,
     private gameStateClient: GameStateClientService,
   ) {
-    this.gameStateClient.gsp$.subscribe((gsp) => {
+    this.gameStateClient.gsp$.pipe(filter((gsp) => gsp != undefined)).subscribe((gsp) => {
       this.applyGsp(gsp);
     });
   }

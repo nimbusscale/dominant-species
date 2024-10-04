@@ -1,5 +1,5 @@
 import { PileState } from '../model/pile.model';
-import { BehaviorSubject, map, Observable } from 'rxjs';
+import { BehaviorSubject, filter, map, Observable } from 'rxjs';
 import { FactionState } from '../model/faction.model';
 import { GameState, GameStateElement } from '../model/game-state.model';
 import { Injectable } from '@angular/core';
@@ -38,10 +38,8 @@ export class GameStateStoreService {
 
   private getObservableForKey<T>(selector: (state: GameState) => T): Observable<T> {
     return this.gameStateSubject.asObservable().pipe(
+      filter((gameState) => gameState != null),
       map((gameState) => {
-        if (!gameState) {
-          throw new Error('GameState is not initialized.');
-        }
         return selector(gameState);
       }),
     );
