@@ -29,7 +29,7 @@ export class ElementDrawPoolService {
     this.gameStateSvc.pile$
       .pipe(
         map((pileStates) =>
-          pileStates.find((pileState) => (pileState.kind as DrawPileKind) === DrawPileKind.ELEMENT),
+          pileStates.find((pileState) => pileState.kind === (DrawPileKind.ELEMENT as string)),
         ),
       )
       .subscribe((drawPileState) => {
