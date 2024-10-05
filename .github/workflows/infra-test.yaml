@@ -6,6 +6,11 @@ on:
       - main
     paths:
       - 'infra/**'
+  pull_request:
+    branches-ignore:
+      - main
+    paths:
+      - 'infra/**'
 
 jobs:
   test-and-lint:
