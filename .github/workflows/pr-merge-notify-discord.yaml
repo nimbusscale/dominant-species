@@ -1,4 +1,4 @@
-name: notify-discord
+name: pr-merge-notify-discord
 
 on:
   pull_request:
