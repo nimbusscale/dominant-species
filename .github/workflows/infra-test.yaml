@@ -1,14 +1,7 @@
 name: infra-test
 
 on:
-  push:
-    branches-ignore:
-      - main
-    paths:
-      - 'infra/**'
   pull_request:
-    branches-ignore:
-      - main
     paths:
       - 'infra/**'
 
