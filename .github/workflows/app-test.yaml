@@ -3,6 +3,7 @@ name: app-test
 on:
   pull_request:
     paths-ignore:
+      - '.github/workflows/**'
       - 'docs/**'
       - 'public/**'
       - 'infra/**'
