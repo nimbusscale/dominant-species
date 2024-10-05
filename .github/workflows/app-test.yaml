@@ -1,18 +1,11 @@
-name: test-and-lint
+name: app-test
 
 on:
-  push:
-    branches-ignore:
-      - main
-    paths-ignore:
-      - 'docs/**'
-      - 'public/**'
   pull_request:
-    branches-ignore:
-      - main
     paths-ignore:
       - 'docs/**'
       - 'public/**'
+      - 'infra/**'
 
 jobs:
   test-and-lint:
