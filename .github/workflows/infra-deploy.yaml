@@ -1,4 +1,4 @@
-name: deploy-infra
+name: infra-deploy
 
 on:
   push:
