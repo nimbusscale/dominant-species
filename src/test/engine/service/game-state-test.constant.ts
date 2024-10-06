@@ -78,4 +78,4 @@ export const testGameState1updated: GameState = deepFreeze({
       kind: 'blueTester',
     },
   ],
-});
+} as { pile: PileState[]; faction: FactionState[] });
