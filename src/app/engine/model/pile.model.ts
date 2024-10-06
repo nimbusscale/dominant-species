@@ -1,4 +1,4 @@
-import {Piece, PieceFactory} from './piece.model';
+import {defaultPieceFactory, Piece, PieceFactory} from './piece.model';
 import {GameStateElement} from './game-state.model';
 import {BehaviorSubject, Observable} from 'rxjs';
 
@@ -27,18 +27,18 @@ export class Pile {
 
   /**
    * @param state An object that acts as the definition for the pool of pieces the Pile represents.
-   * Each key is the kind of items included in the Pile, and the values are the count of that kind of item in
+   * Each key is the kind of pieces included in the Pile, and the values are the count of that kind of piece in
    * the pile.
-   * @param itemFactory A factory function use to build the random selected piece.
+   * @param pieceFactory A factory function use to build the random selected piece.
    */
-  constructor(state: PileState, itemFactory: PieceFactory) {
+  constructor(state: PileState, pieceFactory: PieceFactory = defaultPieceFactory) {
     this._state = state;
-    this.pieceFactory = itemFactory;
+    this.pieceFactory = pieceFactory;
     this.emitLength();
   }
 
   /**
-   * Returns the total number of items in the pile.
+   * Returns the total number of pieces in the pile.
    */
   get length(): number {
     return Object.keys(this._state.inventory).reduce(
@@ -47,6 +47,7 @@ export class Pile {
     );
   }
 
+  // Todo: lengthSubject isn't being used, so should probably remove
   private emitLength() {
     this.lengthSubject.next(this.length);
   }
@@ -61,40 +62,40 @@ export class Pile {
   }
 
   /**
-   * @param count The number of items to draw from the pile.
+   * @param count The number of pieces to draw from the pile.
    * @returns An array where each member represents the piece that was drawn. A `null`
    * will be returned for any piece drawn while the pile is empty.
    */
   pull(count = 1): (Piece | null)[] {
-    const items: (Piece | null)[] = [];
+    const pieces: (Piece | null)[] = [];
     for (let i = 0; i < count; i++) {
-      const itemsWithCount = Object.keys(this._state.inventory).filter((key) => {
-        /** this.itemCounts.get(key) will always return a value, but TSC complains it could be unknown. */
-        const itemCount = this._state.inventory[key] ?? 0;
-        return itemCount > 0;
+      const piecesWithCount = Object.keys(this._state.inventory).filter((key) => {
+        /** this.pieceCounts.get(key) will always return a value, but TSC complains it could be unknown. */
+        const pieceCount = this._state.inventory[key] ?? 0;
+        return pieceCount > 0;
       });
 
-      if (itemsWithCount.length) {
-        const itemKind = itemsWithCount[Math.floor(Math.random() * itemsWithCount.length)];
-        const currentCount = this._state.inventory[itemKind] ?? 0;
-        items.push(this.pieceFactory(itemKind));
-        this._state.inventory[itemKind] = currentCount - 1;
+      if (piecesWithCount.length) {
+        const kind = piecesWithCount[Math.floor(Math.random() * piecesWithCount.length)];
+        const currentCount = this._state.inventory[kind] ?? 0;
+        pieces.push(this.pieceFactory(kind));
+        this._state.inventory[kind] = currentCount - 1;
       } else {
-        items.push(null);
+        pieces.push(null);
       }
     }
     this.emitLength();
-    return items;
+    return pieces;
   }
 
   /**
-   * @param items An array of items to add to the pile.
+   * @param pieces An array of pieces to add to the pile.
    */
-  put(items: Piece[]): void {
-    for (const item of items) {
-      // Assume the current count is 0 if the item is not yet in the inventory
-      const currentItemCount = this._state.inventory[item.kind] || 0;
-      this._state.inventory[item.kind] = currentItemCount + 1;
+  put(pieces: Piece[]): void {
+    for (const piece of pieces) {
+      // Assume the current count is 0 if the piece is not yet in the inventory
+      const currentItemCount = this._state.inventory[piece.kind] || 0;
+      this._state.inventory[piece.kind] = currentItemCount + 1;
     }
     this.emitLength();
   }
