@@ -133,11 +133,11 @@ export class GameStateStoreService {
     this.setTransactionStateElement('faction', newState);
   }
 
-  get pile$(): Observable<PileState<string>[]> {
+  get pile$(): Observable<PileState[]> {
     return this.getObservableForKey((gameState) => gameState.pile);
   }
 
-  setPile(newState: PileState<string>): void {
+  setPile(newState: PileState): void {
     this.setTransactionStateElement('pile', newState);
   }
 }

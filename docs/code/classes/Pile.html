@@ -520,9 +520,7 @@ the pile.</p>
                                             </td>
 
                                             <td>
-                                                    <ul>
-<li>The number of items to draw from the pile.</li>
-</ul>
+                                                    <p>The number of items to draw from the pile.</p>
 
                                             </td>
                                         </tr>
@@ -534,10 +532,8 @@ the pile.</p>
 
                         </div>
                             <div class="io-description">
-                                <ul>
-<li>An array where each member represents the piece that was drawn. A <code>null</code>
-will be returned for any piece drawn while the pile is empty.</li>
-</ul>
+                                <p>An array where each member represents the piece that was drawn. A <code>null</code>
+will be returned for any piece drawn while the pile is empty.</p>
 
                             </div>
                 </td>
@@ -598,9 +594,7 @@ will be returned for any piece drawn while the pile is empty.</li>
 
 
                                             <td>
-                                                    <ul>
-<li>An array of items to add to the pile.</li>
-</ul>
+                                                    <p>An array of items to add to the pile.</p>
 
                                             </td>
                                         </tr>
@@ -823,8 +817,8 @@ export class Pile&lt;TpieceKind extends string, Tpiece extends Piece&lt;TpieceKi
   }
 
   /**
-   * @param count - The number of items to draw from the pile.
-   * @returns - An array where each member represents the piece that was drawn. A &#x60;null&#x60;
+   * @param count The number of items to draw from the pile.
+   * @returns An array where each member represents the piece that was drawn. A &#x60;null&#x60;
    * will be returned for any piece drawn while the pile is empty.
    */
   pull(count &#x3D; 1): (Tpiece | null)[] {
@@ -850,7 +844,7 @@ export class Pile&lt;TpieceKind extends string, Tpiece extends Piece&lt;TpieceKi
   }
 
   /**
-   * @param items - An array of items to add to the pile.
+   * @param items An array of items to add to the pile.
    */
   put(items: Tpiece[]): void {
     for (const item of items) {

@@ -1,4 +1,5 @@
 import { Pile, PileState } from '../../../app/engine/model/pile.model';
+import {defaultPieceFactory} from "../../../app/engine/model/piece.model";
 
 type ElementKind = 'grass' | 'grub' | 'meat';
 
@@ -6,17 +7,11 @@ interface Element {
   kind: ElementKind;
 }
 
-function elementFactory(elementKind: ElementKind): Element {
-  return {
-    kind: elementKind,
-  };
-}
-
 describe('Pile', () => {
-  let pileState: PileState<ElementKind>;
-  let emptyPileState: PileState<ElementKind>;
-  let noInventoryPileState: PileState<ElementKind>;
-  let pile: Pile<ElementKind, Element>;
+  let pileState: PileState;
+  let emptyPileState: PileState;
+  let noInventoryPileState: PileState;
+  let pile: Pile;
 
   beforeEach(() => {
     pileState = {
@@ -37,7 +32,7 @@ describe('Pile', () => {
       kind: 'noInventory',
       inventory: {},
     };
-    pile = new Pile<ElementKind, Element>(pileState, elementFactory);
+    pile = new Pile(pileState, defaultPieceFactory);
   });
 
   describe('state', () => {
@@ -45,7 +40,7 @@ describe('Pile', () => {
       expect(pile.state).toBe(pileState);
     });
     it('should be updatable', () => {
-      const newPileState: PileState<ElementKind> = {
+      const newPileState: PileState = {
         kind: 'test',
         inventory: {
           meat: 1,
@@ -61,7 +56,7 @@ describe('Pile', () => {
       expect(result).toEqual(20);
     });
     it('should return zero when pile has no items', () => {
-      const pile = new Pile<ElementKind, Element>(noInventoryPileState, elementFactory);
+      const pile = new Pile(noInventoryPileState, defaultPieceFactory);
       const result = pile.length;
       expect(result).toEqual(0);
     });
@@ -97,7 +92,7 @@ describe('Pile', () => {
       const result = pile.pull(3);
       expect(result.length).toEqual(3);
       expect(result.every((item) => Boolean(item))).toBeTrue();
-      const kindPulledCount = new Map<ElementKind, number>();
+      const kindPulledCount = new Map<string, number>();
       for (const element of result) {
         if (element !== null) {
           const currentCount = kindPulledCount.get(element.kind) ?? 0;
@@ -109,13 +104,13 @@ describe('Pile', () => {
       });
     });
     it('should return a null when drawing from a pile with no items', () => {
-      const pile = new Pile<ElementKind, Element>(noInventoryPileState, elementFactory);
+      const pile = new Pile(noInventoryPileState, defaultPieceFactory);
       const result = pile.pull();
       expect(result.length).toEqual(1);
       expect(result[0]).toBeNull();
     });
     it('should return a null when drawing from an empty pile', () => {
-      const pile = new Pile<ElementKind, Element>(emptyPileState, elementFactory);
+      const pile = new Pile(emptyPileState, defaultPieceFactory);
       const result = pile.pull();
       expect(result.length).toEqual(1);
       expect(result[0]).toBeNull();
@@ -131,7 +126,7 @@ describe('Pile', () => {
           grub: 0,
         },
       };
-      const pile = new Pile<ElementKind, Element>(testPileState, elementFactory);
+      const pile = new Pile(testPileState, defaultPieceFactory);
       const result = pile.pull(3);
       expect(result[0]).toBeTruthy();
       expect(result[1]).toBeNull();
@@ -141,19 +136,19 @@ describe('Pile', () => {
   describe('putt', () => {
     it('should increase count of existing item', () => {
       pile.put([{ kind: 'grass' }]);
-      expect(pile.state.inventory.grass).toEqual(11);
-      expect(pile.state.inventory.grub).toEqual(10);
+      expect(pile.state.inventory['grass']).toEqual(11);
+      expect(pile.state.inventory['grub']).toEqual(10);
     });
     it('should be able to add more than one', () => {
       pile.put([{ kind: 'grass' }, { kind: 'grub' }]);
-      expect(pile.state.inventory.grass).toEqual(11);
-      expect(pile.state.inventory.grub).toEqual(11);
+      expect(pile.state.inventory['grass']).toEqual(11);
+      expect(pile.state.inventory['grub']).toEqual(11);
     });
     it('should be able to add new kind', () => {
       pile.put([{ kind: 'meat' }]);
-      expect(pile.state.inventory.grass).toEqual(10);
-      expect(pile.state.inventory.grub).toEqual(10);
-      expect(pile.state.inventory.meat).toEqual(1);
+      expect(pile.state.inventory['grass']).toEqual(10);
+      expect(pile.state.inventory['grub']).toEqual(10);
+      expect(pile.state.inventory['meat']).toEqual(1);
     });
   });
 });

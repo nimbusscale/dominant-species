@@ -79,11 +79,11 @@ export class GameStateService {
     this.gameStateStore.setFaction(newState);
   }
 
-  get pile$(): Observable<PileState<string>[]> {
+  get pile$(): Observable<PileState[]> {
     return this.gameStateStore.pile$;
   }
 
-  setPile(newState: PileState<string>): void {
+  setPile(newState: PileState): void {
     this.gameStateStore.setPile(newState);
   }
 }

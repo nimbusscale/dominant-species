@@ -6,7 +6,7 @@ import { PileState } from './pile.model';
  */
 export interface GameState {
   faction: FactionState[];
-  pile: PileState<string>[];
+  pile: PileState[];
 }
 
 /**
