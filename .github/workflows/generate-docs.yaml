@@ -24,7 +24,7 @@ jobs:
       - run: npm ci
       - run: npm run compodoc:build
       - run: npm run tsuml2
-        uses: peter-evans/create-pull-request@v7
+      - uses: peter-evans/create-pull-request@v7
         with:
           commit-message: code-docs-update
           title: Code Docs Update
