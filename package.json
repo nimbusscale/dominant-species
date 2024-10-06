@@ -9,7 +9,10 @@
     "test": "ng test",
     "testCI": "ng test --browsers ChromeHeadless --no-watch",
     "lint": "ng lint",
-    "format": "npx prettier ./src --write"
+    "format": "npx prettier ./src --write",
+    "compodoc:build": "compodoc -p tsconfig.doc.json --theme vagrant -d docs/code",
+    "compodoc:build-and-serve": "compodoc -p tsconfig.doc.json -s --theme vagrant -d docs/code",
+    "compodoc:serve": "compodoc -s"
   },
   "private": true,
   "dependencies": {
@@ -33,6 +36,7 @@
     "@angular-devkit/build-angular": "^18.2.5",
     "@angular/cli": "^18.2.5",
     "@angular/compiler-cli": "^18.2.0",
+    "@compodoc/compodoc": "^1.1.25",
     "@types/jasmine": "~5.1.0",
     "@types/lodash": "^4.17.10",
     "angular-eslint": "18.3.1",
