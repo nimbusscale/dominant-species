@@ -15,4 +15,7 @@ Another example is that I am utilizing Angular as the framework, which may not m
 
 # Code
 - [Code Docs](./code/index.html)
+<<<<<<< HEAD
 - [Service and Component UML](./service-component-uml.svg)
+=======
+>>>>>>> main
