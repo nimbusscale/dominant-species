@@ -7,8 +7,11 @@ To that end some design decisions may only make sense keeping these goals in min
 
 Another example is that I am utilizing Angular as the framework, which may not make the most sense for a personal project. But given I generally work in the enterprise space where Angular is more common, it makes sense to increase my experience with that framework.
 
-# Design Docs
+# Design
 
 - [Conceptual-Model](./conceptual-model) - Describes an implementation agnostic model of boardgames and how that model is used in DS.
 - [Architecture](./architecture) - Describes the high level design and outlines major design decisions for the project.
-- [Milestone](./milestone) - Describes the development milestones and which capabilities are to be added in each milestones.
+- [Milestone](./milestone) - Describes the development milestones and which capabilities are to be added in each milestone.
+
+# Code
+- [Code Docs](./code/index.html)
