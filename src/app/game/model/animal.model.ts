@@ -62,7 +62,7 @@ export class Animal {
 
   /**
    * Adds a new element to the animal, ensuring it does not exceed the limit of 6 elements.
-   * @param element - The element to add.
+   * @param elementThe element to add.
    * @throws Will throw an error if the animal already has 6 elements.
    */
   addElement(element: Element): void {
@@ -75,7 +75,7 @@ export class Animal {
 
   /**
    * Removes an added element from the animal.
-   * @param element - The element to remove.
+   * @param elementThe element to remove.
    * @throws Will throw an error if the specified element is not found in the added elements.
    */
   removeElement(element: Element): void {
