@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { ElementDrawPoolService } from '../../../app/game/service/element-draw-pool.service';
 import { GameStateService } from '../../../app/engine/service/game-state.service';
 import { of } from 'rxjs';
-import { DrawPileKindEnum } from '../../../app/game/dominant-species.constants';
+import {dsPieceKind} from '../../../app/game/dominant-species.constants';
 
 describe('ElementDrawPoolService', () => {
   let drawPoolService: ElementDrawPoolService;
@@ -16,7 +16,7 @@ describe('ElementDrawPoolService', () => {
       {
         pile$: of([
           {
-            kind: DrawPileKindEnum.ELEMENT,
+            kind: dsPieceKind.ELEMENT,
             inventory: {
               grassElement: 10,
             },

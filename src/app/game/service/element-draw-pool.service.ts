@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Pile } from '../../engine/model/pile.model';
-import { DrawPileKindEnum } from '../dominant-species.constants';
+import { dsPieceKind} from '../dominant-species.constants';
 import { GameStateService } from '../../engine/service/game-state.service';
 import { BehaviorSubject, map, Observable } from 'rxjs';
 import {defaultPieceFactory, Piece} from "../../engine/model/piece.model";
@@ -27,7 +27,7 @@ export class ElementDrawPoolService {
     this.gameStateSvc.pile$
       .pipe(
         map((pileStates) =>
-          pileStates.find((pileState) => pileState.kind === (DrawPileKindEnum.ELEMENT as string)),
+          pileStates.find((pileState) => pileState.kind === (dsPieceKind.ELEMENT as string)),
         ),
       )
       .subscribe((drawPileState) => {
