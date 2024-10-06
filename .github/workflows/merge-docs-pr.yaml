@@ -1,0 +1,15 @@
+name: merge-docs-pr
+on: pull_request
+
+permissions:
+  pull-requests: write
+  contents: write
+
+jobs:
+  merge-docs-pr:
+    runs-on: ubuntu-latest
+    if: github.head_ref == 'automation/generate-docs'
+    steps:
+      - uses: peter-evans/enable-pull-request-automerge@v3
+        with:
+          pull-request-number: ${{ github.event.pull_request.number }}
