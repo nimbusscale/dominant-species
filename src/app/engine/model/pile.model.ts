@@ -5,11 +5,10 @@ import {BehaviorSubject, Observable} from 'rxjs';
 /**
  * PileState is pretty simple as it just keeps tracks of what kinds of pieces are in the pile and how many of them.
  */
-export type PileState = GameStateElement & {
-  inventory: {
-    [key: string]: number;
-  };
-};
+export interface PileState extends GameStateElement {
+  inventory: Record<string, number>;
+}
+
 
 /**
  * A Pile is used to draw one or more random pieces for a defined pool of pieces.
@@ -73,7 +72,7 @@ export class Pile {
         /** this.itemCounts.get(key) will always return a value, but TSC complains it could be unknown. */
         const itemCount = this._state.inventory[key] ?? 0;
         return itemCount > 0;
-      }) as string[];
+      });
 
       if (itemsWithCount.length) {
         const itemKind = itemsWithCount[Math.floor(Math.random() * itemsWithCount.length)];
@@ -93,12 +92,9 @@ export class Pile {
    */
   put(items: Piece[]): void {
     for (const item of items) {
-      const currentItemCount = this._state.inventory[item.kind];
-      if (currentItemCount !== undefined) {
-        this._state.inventory[item.kind] = currentItemCount + 1;
-      } else {
-        this._state.inventory[item.kind] = 1;
-      }
+      // Assume the current count is 0 if the item is not yet in the inventory
+      const currentItemCount = this._state.inventory[item.kind] || 0;
+      this._state.inventory[item.kind] = currentItemCount + 1;
     }
     this.emitLength();
   }

@@ -1,12 +1,6 @@
 import { Pile, PileState } from '../../../app/engine/model/pile.model';
 import {defaultPieceFactory} from "../../../app/engine/model/piece.model";
 
-type ElementKind = 'grass' | 'grub' | 'meat';
-
-interface Element {
-  kind: ElementKind;
-}
-
 describe('Pile', () => {
   let pileState: PileState;
   let emptyPileState: PileState;
@@ -115,7 +109,7 @@ describe('Pile', () => {
       expect(result.length).toEqual(1);
       expect(result[0]).toBeNull();
       Object.keys(emptyPileState.inventory).forEach((key) => {
-        expect(pile.state.inventory[key as ElementKind]).toEqual(0);
+        expect(pile.state.inventory[key]).toEqual(0);
       });
     });
     it('should return a null for each pull where there is not an item', () => {
