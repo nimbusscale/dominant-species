@@ -1,6 +1,5 @@
 import {defaultPieceFactory, Piece, PieceFactory} from './piece.model';
 import {GameStateElement} from './game-state.model';
-import {BehaviorSubject, Observable} from 'rxjs';
 import {deepClone} from "fast-json-patch";
 
 /**
@@ -47,7 +46,7 @@ export class Pile {
   }
 
   get state(): PileState {
-    return deepClone(this._state);
+    return deepClone(this._state) as PileState;
   }
 
   get kind(): string {
