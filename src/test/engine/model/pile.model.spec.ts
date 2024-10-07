@@ -30,8 +30,9 @@ describe('Pile', () => {
   });
 
   describe('state', () => {
-    it('should be retrievable', () => {
-      expect(pile.state).toBe(pileState);
+    it('should be able to retrieve a copy', () => {
+      expect(pile.state).toEqual(pileState)
+      expect(pile.state).not.toBe(pileState);
     });
     it('should be updatable', () => {
       const newPileState: PileState = {
@@ -41,7 +42,7 @@ describe('Pile', () => {
         },
       };
       pile.setState(newPileState);
-      expect(pile.state).toBe(newPileState);
+      expect(pile.state).toEqual(newPileState);
     });
   });
   describe('length', () => {
@@ -53,22 +54,6 @@ describe('Pile', () => {
       const pile = new Pile(noInventoryPileState, defaultPieceFactory);
       const result = pile.length;
       expect(result).toEqual(0);
-    });
-  });
-  describe('length$', () => {
-    it('should emit initial length 20 and then 0 after setState', (done) => {
-      const expectedValues = [20, 0];
-      let emissionIndex = 0;
-
-      pile.length$.subscribe((length) => {
-        expect(length).toEqual(expectedValues[emissionIndex]);
-        emissionIndex++;
-        if (emissionIndex === expectedValues.length) {
-          done();
-        }
-      });
-
-      pile.setState(emptyPileState); // Triggers the second emission (0)
     });
   });
   describe('pull', () => {

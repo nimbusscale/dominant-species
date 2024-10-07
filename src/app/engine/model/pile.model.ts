@@ -1,6 +1,7 @@
 import {defaultPieceFactory, Piece, PieceFactory} from './piece.model';
 import {GameStateElement} from './game-state.model';
 import {BehaviorSubject, Observable} from 'rxjs';
+import {deepClone} from "fast-json-patch";
 
 /**
  * PileState is pretty simple as it just keeps tracks of what kinds of pieces are in the pile and how many of them.
@@ -21,9 +22,8 @@ export interface PileState extends GameStateElement {
  */
 export class Pile {
   private readonly pieceFactory: PieceFactory;
-  private lengthSubject = new BehaviorSubject<number>(0);
   private _state: PileState;
-  readonly length$: Observable<number> = this.lengthSubject.asObservable();
+
 
   /**
    * @param state An object that acts as the definition for the pool of pieces the Pile represents.
@@ -34,7 +34,6 @@ export class Pile {
   constructor(state: PileState, pieceFactory: PieceFactory = defaultPieceFactory) {
     this._state = state;
     this.pieceFactory = pieceFactory;
-    this.emitLength();
   }
 
   /**
@@ -47,18 +46,16 @@ export class Pile {
     );
   }
 
-  // Todo: lengthSubject isn't being used, so should probably remove
-  private emitLength() {
-    this.lengthSubject.next(this.length);
+  get state(): PileState {
+    return deepClone(this._state);
   }
 
-  get state(): PileState {
-    return this._state;
+  get kind(): string {
+    return this._state.kind
   }
 
   setState(newState: PileState) {
     this._state = newState;
-    this.emitLength();
   }
 
   /**
@@ -84,7 +81,6 @@ export class Pile {
         pieces.push(null);
       }
     }
-    this.emitLength();
     return pieces;
   }
 
@@ -97,6 +93,5 @@ export class Pile {
       const currentItemCount = this._state.inventory[piece.kind] || 0;
       this._state.inventory[piece.kind] = currentItemCount + 1;
     }
-    this.emitLength();
   }
 }
