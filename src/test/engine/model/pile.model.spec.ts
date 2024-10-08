@@ -1,5 +1,5 @@
 import { Pile, PileState } from '../../../app/engine/model/pile.model';
-import {defaultPieceFactory} from "../../../app/engine/model/piece.model";
+import { defaultPieceFactory } from '../../../app/engine/model/piece.model';
 
 describe('Pile', () => {
   let pileState: PileState;
@@ -31,7 +31,7 @@ describe('Pile', () => {
 
   describe('state', () => {
     it('should be able to retrieve a copy', () => {
-      expect(pile.state).toEqual(pileState)
+      expect(pile.state).toEqual(pileState);
       expect(pile.state).not.toBe(pileState);
     });
     it('should be updatable', () => {

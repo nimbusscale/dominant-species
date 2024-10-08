@@ -1,6 +1,6 @@
 import { Player } from '../../engine/model/player.model';
 import { FactionState } from '../../engine/model/faction.model';
-import {Piece} from "../../engine/model/piece.model";
+import { Piece } from '../../engine/model/piece.model';
 
 export type AnimalKind =
   | 'amphibianAnimal'

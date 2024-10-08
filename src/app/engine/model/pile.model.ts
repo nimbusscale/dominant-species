@@ -1,6 +1,6 @@
-import {defaultPieceFactory, Piece, PieceFactory} from './piece.model';
-import {GameStateElement} from './game-state.model';
-import {deepClone} from "fast-json-patch";
+import { defaultPieceFactory, Piece, PieceFactory } from './piece.model';
+import { GameStateElement } from './game-state.model';
+import { deepClone } from 'fast-json-patch';
 
 /**
  * PileState is pretty simple as it just keeps tracks of what kinds of pieces are in the pile and how many of them.
@@ -8,7 +8,6 @@ import {deepClone} from "fast-json-patch";
 export interface PileState extends GameStateElement {
   inventory: Record<string, number>;
 }
-
 
 /**
  * A Pile is used to draw one or more random pieces for a defined pool of pieces.
@@ -22,7 +21,6 @@ export interface PileState extends GameStateElement {
 export class Pile {
   private readonly pieceFactory: PieceFactory;
   private _state: PileState;
-
 
   /**
    * @param state An object that acts as the definition for the pool of pieces the Pile represents.
@@ -50,7 +48,7 @@ export class Pile {
   }
 
   get kind(): string {
-    return this._state.kind
+    return this._state.kind;
   }
 
   setState(newState: PileState) {

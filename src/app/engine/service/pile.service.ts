@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
-import { GameStateService } from "./game-state.service";
-import { Pile } from "../model/pile.model";
-import { Piece } from "../model/piece.model";
-import { BehaviorSubject, distinctUntilChanged, Observable } from "rxjs";
-
+import { GameStateService } from './game-state.service';
+import { Pile } from '../model/pile.model';
+import { Piece } from '../model/piece.model';
+import { BehaviorSubject, distinctUntilChanged, Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 /**
  * PileService is used to interact with the Piles used within the game. It manages their local state and related game state.
@@ -19,7 +18,10 @@ export class PileService {
   private kindToPile: Map<string, Pile> = new Map<string, Pile>();
   private registeredPileKinds: Set<string> = new Set<string>();
   private registeredPilesSubject = new BehaviorSubject<Set<string>>(new Set());
-  private kindToLengthSubjects: Map<string, BehaviorSubject<number>> = new Map<string, BehaviorSubject<number>>();
+  private kindToLengthSubjects: Map<string, BehaviorSubject<number>> = new Map<
+    string,
+    BehaviorSubject<number>
+  >();
   /**
    * Subscribers can use this Observable to determine if the pile they have been interested has been registered. Once the pile is registered,
    * then the subscriber can subscribe to other Observables, such as those made available in kindToLengthObservables
@@ -29,7 +31,6 @@ export class PileService {
    * Returns a map with a key for each registered pile and the value being an Observable emitting the length of the respective pile.
    */
   kindToLengthObservables: Map<string, Observable<number>> = new Map<string, Observable<number>>();
-
 
   constructor(private gameStateSvc: GameStateService) {
     this.initialize();
@@ -73,16 +74,19 @@ export class PileService {
   register(piles: Pile[]): void {
     piles.forEach((pile) => {
       if (!this.registeredPileKinds.has(pile.kind)) {
-      this.kindToPile.set(pile.kind, pile);
-      this.registeredPileKinds.add(pile.kind);
-      const lengthSubject = new BehaviorSubject<number>(pile.length);
-      this.kindToLengthSubjects.set(pile.kind, lengthSubject);
-      this.kindToLengthObservables.set(pile.kind, lengthSubject.asObservable().pipe(distinctUntilChanged()));
+        this.kindToPile.set(pile.kind, pile);
+        this.registeredPileKinds.add(pile.kind);
+        const lengthSubject = new BehaviorSubject<number>(pile.length);
+        this.kindToLengthSubjects.set(pile.kind, lengthSubject);
+        this.kindToLengthObservables.set(
+          pile.kind,
+          lengthSubject.asObservable().pipe(distinctUntilChanged()),
+        );
       } else {
         throw new Error(`Pile for kind ${pile.kind} already registered.`);
       }
-    })
-    this.registeredPilesSubject.next(this.registeredPileKinds)
+    });
+    this.registeredPilesSubject.next(this.registeredPileKinds);
     this.updateGameState();
   }
 

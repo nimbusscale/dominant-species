@@ -5,5 +5,5 @@ export interface Piece {
 export type PieceFactory = (kind: string) => Piece;
 
 export function defaultPieceFactory(kind: string): Piece {
-  return { kind: kind }
+  return { kind: kind };
 }

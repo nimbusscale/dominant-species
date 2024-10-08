@@ -14,7 +14,6 @@ export enum dsPieceKind {
   SPECIES_INSECT = 'speciesInsect',
   SPECIES_MAMMAL = 'speciesMammal',
   SPECIES_REPTILE = 'speciesReptile',
-
 }
 
 /**
