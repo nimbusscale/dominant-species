@@ -35,10 +35,6 @@ export class GameStateService {
     }
   }
 
-  initializeGameState(gameState: GameState): void {
-    this.gameStateStore.initializeGameState(gameState);
-  }
-
   startTransaction(): void {
     this.gameStateStore.startTransaction();
   }
@@ -85,5 +81,9 @@ export class GameStateService {
 
   setPile(newState: PileState): void {
     this.gameStateStore.setPile(newState);
+  }
+
+  registerPile(newState: PileState): void {
+    this.gameStateStore.registerPile(newState);
   }
 }
