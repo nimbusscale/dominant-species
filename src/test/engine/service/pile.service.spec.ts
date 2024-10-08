@@ -17,7 +17,7 @@ describe('PileService', () => {
     gameStatePileSubject = new BehaviorSubject<PileState[]>([]);
     const gameStateSvcSpyObj = jasmine.createSpyObj(
       'GameStateService',
-      ['setPile', 'requireTransaction'],
+      ['registerPile', 'setPile', 'requireTransaction'],
       {
         pile$: gameStatePileSubject.asObservable(),
       },
@@ -37,7 +37,7 @@ describe('PileService', () => {
   describe('register', () => {
     it('allows registration of new piles and updates GameState', () => {
       pileService.register([testPile1, testPile2]);
-      expect(gameStateSvcSpy.setPile).toHaveBeenCalled();
+      expect(gameStateSvcSpy.registerPile).toHaveBeenCalled();
     });
     it('emits to kindToLengthSubjects', (done) => {
       pileService.register([testPile1, testPile2]);

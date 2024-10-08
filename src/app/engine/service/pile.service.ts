@@ -62,6 +62,13 @@ export class PileService {
     }
   }
 
+  private registerPiles(): void {
+    for (const pile of this.kindToPile.values()) {
+      this.gameStateSvc.registerPile(pile.state);
+      this.emitLength(pile);
+    }
+  }
+
   private getPile(kind: string): Pile {
     const pile = this.kindToPile.get(kind);
     if (!pile) {
@@ -87,7 +94,7 @@ export class PileService {
       }
     });
     this.registeredPilesSubject.next(this.registeredPileKinds);
-    this.updateGameState();
+    this.registerPiles();
   }
 
   /**
