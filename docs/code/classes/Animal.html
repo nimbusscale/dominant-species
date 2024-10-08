@@ -305,7 +305,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>addElement(element: <a href="../interfaces/Element.html" target="_self">Element</a>)</code>
+<code>addElement(element: <a href="../interfaces/Piece.html" target="_self">Piece</a>)</code>
                 </td>
             </tr>
 
@@ -332,13 +332,14 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
                                                 <td>element</td>
                                             <td>
-                                                            <code><a href="../interfaces/Element.html" target="_self" >Element</a></code>
+                                                            <code><a href="../interfaces/Piece.html" target="_self" >Piece</a></code>
                                             </td>
 
                                             <td>
@@ -346,6 +347,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>The element to add.</p>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -374,7 +379,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>removeElement(element: <a href="../interfaces/Element.html" target="_self">Element</a>)</code>
+<code>removeElement(element: <a href="../interfaces/Piece.html" target="_self">Piece</a>)</code>
                 </td>
             </tr>
 
@@ -401,13 +406,14 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
                                                 <td>element</td>
                                             <td>
-                                                            <code><a href="../interfaces/Element.html" target="_self" >Element</a></code>
+                                                            <code><a href="../interfaces/Piece.html" target="_self" >Piece</a></code>
                                             </td>
 
                                             <td>
@@ -415,6 +421,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>The element to remove.</p>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -467,7 +477,7 @@
                                 <div>
                                 </div>
                                 <div class="io-description">
-                                    <b>Returns : </b>        <code><a href="../interfaces/Element.html" target="_self" >Element[]</a></code>
+                                    <b>Returns : </b>        <code><a href="../interfaces/Piece.html" target="_self" >Piece[]</a></code>
 
                                 </div>
                         </td>
@@ -560,8 +570,8 @@
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Player } from &#x27;../../engine/model/player.model&#x27;;
-import { Element, ElementKind } from &#x27;./element.model&#x27;;
 import { FactionState } from &#x27;../../engine/model/faction.model&#x27;;
+import {Piece} from &quot;../../engine/model/piece.model&quot;;
 
 export type AnimalKind &#x3D;
   | &#x27;amphibianAnimal&#x27;
@@ -571,7 +581,7 @@ export type AnimalKind &#x3D;
   | &#x27;mammalAnimal&#x27;
   | &#x27;reptileAnimal&#x27;;
 
-export const inherentElementKindByAnimalKind &#x3D; new Map&lt;AnimalKind, ElementKind&gt;([
+export const inherentElementKindByAnimalKind &#x3D; new Map&lt;AnimalKind, string&gt;([
   [&#x27;amphibianAnimal&#x27;, &#x27;waterElement&#x27;],
   [&#x27;arachnidAnimal&#x27;, &#x27;grubElement&#x27;],
   [&#x27;birdAnimal&#x27;, &#x27;seedElement&#x27;],
@@ -582,8 +592,8 @@ export const inherentElementKindByAnimalKind &#x3D; new Map&lt;AnimalKind, Eleme
 
 export type AnimalState &#x3D; FactionState &amp; {
   kind: AnimalKind;
-  inherentElements: Element[];
-  addedElements: Element[];
+  inherentElements: Piece[];
+  addedElements: Piece[];
 };
 
 /**
@@ -600,7 +610,7 @@ export class Animal {
    * Gets all elements of the animal, including both inherent and added ones.
    * @returns A list of all elements.
    */
-  get elements(): Element[] {
+  get elements(): Piece[] {
     return [...this.state.inherentElements, ...this.state.addedElements];
   }
 
@@ -623,10 +633,10 @@ export class Animal {
 
   /**
    * Adds a new element to the animal, ensuring it does not exceed the limit of 6 elements.
-   * @param elementThe element to add.
+   * @param element The element to add.
    * @throws Will throw an error if the animal already has 6 elements.
    */
-  addElement(element: Element): void {
+  addElement(element: Piece): void {
     if (this.elements.length &lt;&#x3D; 6) {
       this.state.addedElements.push(element);
     } else {
@@ -636,10 +646,10 @@ export class Animal {
 
   /**
    * Removes an added element from the animal.
-   * @param elementThe element to remove.
+   * @param element The element to remove.
    * @throws Will throw an error if the specified element is not found in the added elements.
    */
-  removeElement(element: Element): void {
+  removeElement(element: Piece): void {
     const elementIndex &#x3D; this.state.addedElements.findIndex(
       (addedElement) &#x3D;&gt; addedElement.kind &#x3D;&#x3D;&#x3D; element.kind,
     );

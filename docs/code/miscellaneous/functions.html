@@ -80,7 +80,7 @@
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content miscellaneous-typealiases">
+               <div class="content miscellaneous-functions">
                    <div class="content-data">
 
 
@@ -102,7 +102,7 @@
 
 <ol class="breadcrumb">
   <li class="breadcrumb-item">Miscellaneous</li>
-  <li class="breadcrumb-item">Type aliases</li>
+  <li class="breadcrumb-item">Functions</li>
 </ol>
 
 <section data-compodoc="block-index">
@@ -113,13 +113,10 @@
                 <td class="col-md-4">
                     <ul class="index-list">
                         <li>
-                            <a href="#AnimalKind" title="src/app/game/model/animal.model.ts" ><b>AnimalKind</b>&nbsp;&nbsp;&nbsp;(src/.../animal.model.ts)</a>
+                            <a href="#deepCompare" title="src/app/engine/util.ts" ><b>deepCompare</b>&nbsp;&nbsp;&nbsp;(src/.../util.ts)</a>
                         </li>
                         <li>
-                            <a href="#AnimalState" title="src/app/game/model/animal.model.ts" ><b>AnimalState</b>&nbsp;&nbsp;&nbsp;(src/.../animal.model.ts)</a>
-                        </li>
-                        <li>
-                            <a href="#PieceFactory" title="src/app/engine/model/piece.model.ts" ><b>PieceFactory</b>&nbsp;&nbsp;&nbsp;(src/.../piece.model.ts)</a>
+                            <a href="#defaultPieceFactory" title="src/app/engine/model/piece.model.ts" ><b>defaultPieceFactory</b>&nbsp;&nbsp;&nbsp;(src/.../piece.model.ts)</a>
                         </li>
                     </ul>
                 </td>
@@ -128,54 +125,135 @@
     </table>
 </section>
 
-    <h3>src/app/game/model/animal.model.ts</h3>
-    <section data-compodoc="block-typealias">
-    <table class="table table-sm table-bordered">
+    <h3>src/app/engine/util.ts</h3>
+    <section data-compodoc="block-methods">
+    <h3></h3>    <table class="table table-sm table-bordered">
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="AnimalKind"></a>
-                    <span class="name "><b>AnimalKind</b><a href="#AnimalKind"><span class="icon ion-ios-link"></span></a></span>
+                    <a name="deepCompare"></a>
+                    <span class="name">
+                        <span ><b>deepCompare</b></span>
+                        <a href="#deepCompare"><span class="icon ion-ios-link"></span></a>
+                    </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <code>        <code><a href="../classes/Animal.html" target="_self" >&quot;amphibianAnimal&quot; | &quot;arachnidAnimal&quot; | &quot;birdAnimal&quot; | &quot;insectAnimal&quot; | &quot;mammalAnimal&quot; | &quot;reptileAnimal&quot;</a></code>
-</code>
+<code>deepCompare(object1, object2)</code>
                 </td>
             </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
+
+
+
+
             <tr>
                 <td class="col-md-4">
-                    <a name="AnimalState"></a>
-                    <span class="name "><b>AnimalState</b><a href="#AnimalState"><span class="icon ion-ios-link"></span></a></span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <code>    <code></code>
-</code>
+                        <div class="io-description"><p>Used to determine if two objects are equal. Often used in distinctUntilChanged().</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>object1</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>object2</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
                 </td>
             </tr>
         </tbody>
     </table>
 </section>    <h3>src/app/engine/model/piece.model.ts</h3>
-    <section data-compodoc="block-typealias">
-    <table class="table table-sm table-bordered">
+    <section data-compodoc="block-methods">
+    <h3></h3>    <table class="table table-sm table-bordered">
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="PieceFactory"></a>
-                    <span class="name "><b>PieceFactory</b><a href="#PieceFactory"><span class="icon ion-ios-link"></span></a></span>
+                    <a name="defaultPieceFactory"></a>
+                    <span class="name">
+                        <span ><b>defaultPieceFactory</b></span>
+                        <a href="#defaultPieceFactory"><span class="icon ion-ios-link"></span></a>
+                    </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <code>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
-</code>
+<code>defaultPieceFactory(kind: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>kind</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/Piece.html" target="_self" >Piece</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -208,8 +286,8 @@
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'miscellaneous-typealiases';
-            var COMPODOC_CURRENT_PAGE_URL = 'typealiases.html';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'miscellaneous-functions';
+            var COMPODOC_CURRENT_PAGE_URL = 'functions.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

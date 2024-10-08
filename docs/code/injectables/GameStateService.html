@@ -538,7 +538,7 @@ It does this by orchestrating the various other GameState related services.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>setFaction(newState: <a href="../undefineds/FactionState.html" target="_self">FactionState</a>)</code>
+<code>setFaction(newState: <a href="../interfaces/FactionState.html" target="_self">FactionState</a>)</code>
                 </td>
             </tr>
 
@@ -569,7 +569,7 @@ It does this by orchestrating the various other GameState related services.</p>
                                         <tr>
                                                 <td>newState</td>
                                             <td>
-                                                            <code><a href="../miscellaneous/typealiases.html#FactionState" target="_self" >FactionState</a></code>
+                                                            <code><a href="../interfaces/FactionState.html" target="_self" >FactionState</a></code>
                                             </td>
 
                                             <td>
@@ -605,7 +605,7 @@ It does this by orchestrating the various other GameState related services.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>setPile(newState: <a href="../classes/Pile.html" target="_self">PileState&lt;string&gt;</a>)</code>
+<code>setPile(newState: <a href="../interfaces/PileState.html" target="_self">PileState</a>)</code>
                 </td>
             </tr>
 
@@ -636,7 +636,7 @@ It does this by orchestrating the various other GameState related services.</p>
                                         <tr>
                                                 <td>newState</td>
                                             <td>
-                                                            <code><a href="../classes/Pile.html" target="_self" >PileState&lt;string&gt;</a></code>
+                                                            <code><a href="../interfaces/PileState.html" target="_self" >PileState</a></code>
                                             </td>
 
                                             <td>
@@ -832,11 +832,11 @@ export class GameStateService {
     this.gameStateStore.setFaction(newState);
   }
 
-  get pile$(): Observable&lt;PileState&lt;string&gt;[]&gt; {
+  get pile$(): Observable&lt;PileState[]&gt; {
     return this.gameStateStore.pile$;
   }
 
-  setPile(newState: PileState&lt;string&gt;): void {
+  setPile(newState: PileState): void {
     this.gameStateStore.setPile(newState);
   }
 }

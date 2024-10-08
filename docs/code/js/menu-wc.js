@@ -108,6 +108,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <li class="link">
                                     <a href="injectables/GameStateStoreService.html" data-type="entity-link" >GameStateStoreService</a>
                                 </li>
+                                <li class="link">
+                                    <a href="injectables/PileService.html" data-type="entity-link" >PileService</a>
+                                </li>
                             </ul>
                         </li>
                     <li class="chapter">
@@ -119,16 +122,22 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         </div>
                         <ul class="links collapse " ${ isNormalMode ? ' id="interfaces-links"' : 'id="xs-interfaces-links"' }>
                             <li class="link">
-                                <a href="interfaces/Element.html" data-type="entity-link" >Element</a>
+                                <a href="interfaces/FactionState.html" data-type="entity-link" >FactionState</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/GameState.html" data-type="entity-link" >GameState</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/GameStateElement.html" data-type="entity-link" >GameStateElement</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/GameStatePatch.html" data-type="entity-link" >GameStatePatch</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/Piece.html" data-type="entity-link" >Piece</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/PileState.html" data-type="entity-link" >PileState</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/Player.html" data-type="entity-link" >Player</a>
@@ -145,6 +154,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         <ul class="links collapse " ${ isNormalMode ? 'id="miscellaneous-links"' : 'id="xs-miscellaneous-links"' }>
                             <li class="link">
                                 <a href="miscellaneous/enumerations.html" data-type="entity-link">Enums</a>
+                            </li>
+                            <li class="link">
+                                <a href="miscellaneous/functions.html" data-type="entity-link">Functions</a>
                             </li>
                             <li class="link">
                                 <a href="miscellaneous/typealiases.html" data-type="entity-link">Type aliases</a>
