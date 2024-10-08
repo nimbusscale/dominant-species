@@ -10,22 +10,28 @@ describe('GameStateStore', () => {
   });
   describe('when blank', () => {
     it('can register new game state elements', () => {
-      gameStateStore.registerPile(testGameState1.pile[0])
-      expect(gameStateStore.gameState.pile[0]).toEqual(testGameState1.pile[0])
-      expect(gameStateStore.gameState.pile[0]).not.toBe(testGameState1.pile[0])
-    })
+      gameStateStore.registerPile(testGameState1.pile[0]);
+      expect(gameStateStore.gameState.pile[0]).toEqual(testGameState1.pile[0]);
+      expect(gameStateStore.gameState.pile[0]).not.toBe(testGameState1.pile[0]);
+    });
     it('throws error if transaction started with trying to register', () => {
-      gameStateStore.startTransaction()
-      expect(() => {gameStateStore.registerPile(testGameState1.pile[0])}).toThrowError()
-    })
+      gameStateStore.startTransaction();
+      expect(() => {
+        gameStateStore.registerPile(testGameState1.pile[0]);
+      }).toThrowError();
+    });
     it('throws error if trying to register already registered element', () => {
-      gameStateStore.registerPile(testGameState1.pile[0])
-      expect(() => {gameStateStore.registerPile(testGameState1.pile[0])}).toThrowError()
-    })
+      gameStateStore.registerPile(testGameState1.pile[0]);
+      expect(() => {
+        gameStateStore.registerPile(testGameState1.pile[0]);
+      }).toThrowError();
+    });
     it('throws error if trying to update an unregistered state element', () => {
-      gameStateStore.startTransaction()
-      expect(() => {gameStateStore.setPile(testGameState1.pile[0])}).toThrowError()
-    })
+      gameStateStore.startTransaction();
+      expect(() => {
+        gameStateStore.setPile(testGameState1.pile[0]);
+      }).toThrowError();
+    });
   });
   describe('when GameState set', () => {
     beforeEach(() => {

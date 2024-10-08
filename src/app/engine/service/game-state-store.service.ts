@@ -1,7 +1,7 @@
-import {Pile, PileState} from '../model/pile.model';
-import { BehaviorSubject, filter, map, Observable } from 'rxjs';
+import { PileState } from '../model/pile.model';
+import { BehaviorSubject, map, Observable } from 'rxjs';
 import { FactionState } from '../model/faction.model';
-import {emptyGameState, GameState, GameStateElement} from '../model/game-state.model';
+import { emptyGameState, GameState, GameStateElement } from '../model/game-state.model';
 import { Injectable } from '@angular/core';
 import { deepClone } from 'fast-json-patch';
 
@@ -53,7 +53,10 @@ export class GameStateStoreService {
    * GameStateElement will be updated.
    * @private
    */
-  private setTransactionStateElement(key: keyof GameState, newGameStateElement: GameStateElement): void {
+  private setTransactionStateElement(
+    key: keyof GameState,
+    newGameStateElement: GameStateElement,
+  ): void {
     if (!this._transactionState) {
       throw new Error('Must start transaction before updating GameState.');
     }
@@ -63,18 +66,21 @@ export class GameStateStoreService {
     if (index > -1) {
       subStateArray[index] = newGameStateElement;
     } else {
-      throw new Error(`State Element ${JSON.stringify(newGameStateElement)} not registered`)
+      throw new Error(`State Element ${JSON.stringify(newGameStateElement)} not registered`);
     }
   }
 
-    /**
+  /**
    * Used to register a new GameStateElement.
    * A transaction must NOT be started. Cannot register the same GameStateElement more than once.
    * @param key key of the GameState object that stores this kind of GameStateElement
    * @param newGameStateElement the GameStateElement to register.
    * @private
    */
-  private registerTransactionStateElement(key: keyof GameState, newGameStateElement: GameStateElement): void {
+  private registerTransactionStateElement(
+    key: keyof GameState,
+    newGameStateElement: GameStateElement,
+  ): void {
     if (this.transactionState) {
       throw new Error('Can not register new State Elements while a transaction is in progress.');
     }
@@ -82,7 +88,7 @@ export class GameStateStoreService {
     const index = subStateArray.findIndex((item) => item.kind === newGameStateElement.kind);
 
     if (index > -1) {
-      throw new Error(`State Element ${JSON.stringify(newGameStateElement)} already registered`)
+      throw new Error(`State Element ${JSON.stringify(newGameStateElement)} already registered`);
     } else {
       subStateArray.push(newGameStateElement);
     }
@@ -157,6 +163,6 @@ export class GameStateStoreService {
   }
 
   registerPile(newState: PileState): void {
-    this.registerTransactionStateElement('pile', newState)
+    this.registerTransactionStateElement('pile', newState);
   }
 }

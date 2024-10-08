@@ -1,6 +1,5 @@
 import { FactionState } from './faction.model';
 import { PileState } from './pile.model';
-import {dsPieceKind} from "../../game/dominant-species.constants";
 
 /**
  * Defining the GameState object managed by GameStateStoreService
@@ -13,7 +12,7 @@ export interface GameState {
 export const emptyGameState: GameState = {
   faction: [],
   pile: [],
-}
+};
 
 /**
  * GameStateElement defines the base type of state objects distributed to the various objects outside the GameStateStore.
