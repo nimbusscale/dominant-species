@@ -383,8 +383,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="60"
-                                    class="link-to-prism">src/app/game/component/draw-pool-game/draw-pool-game.component.ts:60</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="59"
+                                    class="link-to-prism">src/app/game/component/draw-pool-game/draw-pool-game.component.ts:59</a></div>
                         </td>
                     </tr>
 
@@ -420,8 +420,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="70"
-                                    class="link-to-prism">src/app/game/component/draw-pool-game/draw-pool-game.component.ts:70</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="69"
+                                    class="link-to-prism">src/app/game/component/draw-pool-game/draw-pool-game.component.ts:69</a></div>
                         </td>
                     </tr>
 
@@ -661,9 +661,9 @@ import { GameManagementService } from &#x27;../../../engine/service/game-managem
 import { MatButton } from &#x27;@angular/material/button&#x27;;
 import { MatTooltip } from &#x27;@angular/material/tooltip&#x27;;
 import { GameStateService } from &#x27;../../../engine/service/game-state.service&#x27;;
-import {PileService} from &quot;../../../engine/service/pile.service&quot;;
-import {dsPieceKind} from &quot;../../dominant-species.constants&quot;;
-import {filter} from &quot;rxjs&quot;;
+import { PileService } from &#x27;../../../engine/service/pile.service&#x27;;
+import { dsPieceKind } from &#x27;../../dominant-species.constants&#x27;;
+import { filter } from &#x27;rxjs&#x27;;
 
 @Component({
   selector: &#x27;app-draw-pool-game&#x27;,
@@ -678,25 +678,25 @@ export class DrawPoolGameComponent {
   constructor(
     private gameManagementSvc: GameManagementService,
     private gameStateSvc: GameStateService,
-    private pileSvc: PileService
+    private pileSvc: PileService,
   ) {
-    this.initialize()
+    this.initialize();
   }
 
   private initialize(): void {
-    const registeredPilesSubscription &#x3D; this.pileSvc.registeredPiles$.pipe(
-      filter(registeredPiles &#x3D;&gt; registeredPiles.has(dsPieceKind.ELEMENT))
-    ).subscribe(() &#x3D;&gt; {
-      const lengthObservable &#x3D; this.pileSvc.kindToLengthObservables.get(dsPieceKind.ELEMENT)
-      if (lengthObservable) {
-        lengthObservable.subscribe((length) &#x3D;&gt; {
-          this.drawPoolLength &#x3D; length
-        })
-      } else {
-        throw new Error(&#x27;Length observable for not found&#x27;)
-      }
-      registeredPilesSubscription.unsubscribe()
-    })
+    const registeredPilesSubscription &#x3D; this.pileSvc.registeredPiles$
+      .pipe(filter((registeredPiles) &#x3D;&gt; registeredPiles.has(dsPieceKind.ELEMENT)))
+      .subscribe(() &#x3D;&gt; {
+        const lengthObservable &#x3D; this.pileSvc.kindToLengthObservables.get(dsPieceKind.ELEMENT);
+        if (lengthObservable) {
+          lengthObservable.subscribe((length) &#x3D;&gt; {
+            this.drawPoolLength &#x3D; length;
+          });
+        } else {
+          throw new Error(&#x27;Length observable for not found&#x27;);
+        }
+        registeredPilesSubscription.unsubscribe();
+      });
   }
 
   createGame(): void {
@@ -710,15 +710,14 @@ export class DrawPoolGameComponent {
   }
 
   private formatElementName(kind: string): string {
-      let elementName &#x3D; kind.replace(&#x27;Element&#x27;, &#x27;&#x27;);
-      return elementName.charAt(0).toUpperCase() + elementName.slice(1);
+    const elementName &#x3D; kind.replace(&#x27;Element&#x27;, &#x27;&#x27;);
+    return elementName.charAt(0).toUpperCase() + elementName.slice(1);
   }
-
 
   draw(): void {
     const item &#x3D; this.pileSvc.pull(dsPieceKind.ELEMENT);
     if (item[0]) {
-      const element &#x3D; this.formatElementName(item[0].kind)
+      const element &#x3D; this.formatElementName(item[0].kind);
       this.log.push(&#x60;You drew a ${element}&#x60;);
     } else {
       this.log.push(&#x27;Pile is empty!&#x27;);
