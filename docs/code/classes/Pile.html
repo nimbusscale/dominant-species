@@ -223,7 +223,7 @@ A Pile has two Type Vars needed to be set when it&#39;s instantiated:</p>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/engine/model/pile.model.ts:24</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/engine/model/pile.model.ts:23</a></div>
                             </td>
                         </tr>
 
@@ -312,7 +312,7 @@ the pile.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/engine/model/pile.model.ts:24</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/engine/model/pile.model.ts:23</a></div>
                         </td>
                     </tr>
 
@@ -340,7 +340,7 @@ the pile.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/engine/model/pile.model.ts:23</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/engine/model/pile.model.ts:22</a></div>
                         </td>
                     </tr>
 
@@ -374,8 +374,8 @@ the pile.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="65"
-                                    class="link-to-prism">src/app/engine/model/pile.model.ts:65</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="63"
+                                    class="link-to-prism">src/app/engine/model/pile.model.ts:63</a></div>
                         </td>
                     </tr>
 
@@ -454,8 +454,8 @@ will be returned for any piece drawn while the pile is empty.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="89"
-                                    class="link-to-prism">src/app/engine/model/pile.model.ts:89</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="87"
+                                    class="link-to-prism">src/app/engine/model/pile.model.ts:87</a></div>
                         </td>
                     </tr>
 
@@ -526,8 +526,8 @@ will be returned for any piece drawn while the pile is empty.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="56"
-                                    class="link-to-prism">src/app/engine/model/pile.model.ts:56</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="54"
+                                    class="link-to-prism">src/app/engine/model/pile.model.ts:54</a></div>
                         </td>
                     </tr>
 
@@ -599,7 +599,7 @@ will be returned for any piece drawn while the pile is empty.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/engine/model/pile.model.ts:41</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/engine/model/pile.model.ts:39</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -632,7 +632,7 @@ will be returned for any piece drawn while the pile is empty.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/engine/model/pile.model.ts:48</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/engine/model/pile.model.ts:46</a></div>
                                 </td>
                             </tr>
 
@@ -654,7 +654,7 @@ will be returned for any piece drawn while the pile is empty.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/engine/model/pile.model.ts:52</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/engine/model/pile.model.ts:50</a></div>
                                 </td>
                             </tr>
 
@@ -665,9 +665,9 @@ will be returned for any piece drawn while the pile is empty.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {defaultPieceFactory, Piece, PieceFactory} from &#x27;./piece.model&#x27;;
-import {GameStateElement} from &#x27;./game-state.model&#x27;;
-import {deepClone} from &quot;fast-json-patch&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { defaultPieceFactory, Piece, PieceFactory } from &#x27;./piece.model&#x27;;
+import { GameStateElement } from &#x27;./game-state.model&#x27;;
+import { deepClone } from &#x27;fast-json-patch&#x27;;
 
 /**
  * PileState is pretty simple as it just keeps tracks of what kinds of pieces are in the pile and how many of them.
@@ -675,7 +675,6 @@ import {deepClone} from &quot;fast-json-patch&quot;;
 export interface PileState extends GameStateElement {
   inventory: Record&lt;string, number&gt;;
 }
-
 
 /**
  * A Pile is used to draw one or more random pieces for a defined pool of pieces.
@@ -689,7 +688,6 @@ export interface PileState extends GameStateElement {
 export class Pile {
   private readonly pieceFactory: PieceFactory;
   private _state: PileState;
-
 
   /**
    * @param state An object that acts as the definition for the pool of pieces the Pile represents.
@@ -717,7 +715,7 @@ export class Pile {
   }
 
   get kind(): string {
-    return this._state.kind
+    return this._state.kind;
   }
 
   setState(newState: PileState) {
