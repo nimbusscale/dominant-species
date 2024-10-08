@@ -137,10 +137,6 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#elementFactory" >elementFactory</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Private</span>
                                 <a href="#elementPile" >elementPile</a>
                             </li>
                             <li>
@@ -281,8 +277,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="30"
-                                    class="link-to-prism">src/app/game/service/element-draw-pool.service.ts:30</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="26"
+                                    class="link-to-prism">src/app/game/service/element-draw-pool.service.ts:26</a></div>
                         </td>
                     </tr>
 
@@ -318,8 +314,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="60"
-                                    class="link-to-prism">src/app/game/service/element-draw-pool.service.ts:60</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="56"
+                                    class="link-to-prism">src/app/game/service/element-draw-pool.service.ts:56</a></div>
                         </td>
                     </tr>
 
@@ -382,15 +378,15 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>put(elements: <a href="../interfaces/Element.html" target="_self">Element[]</a>)</code>
+<code>put(elements: <a href="../interfaces/Piece.html" target="_self">Piece[]</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="67"
-                                    class="link-to-prism">src/app/game/service/element-draw-pool.service.ts:67</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="63"
+                                    class="link-to-prism">src/app/game/service/element-draw-pool.service.ts:63</a></div>
                         </td>
                     </tr>
 
@@ -413,7 +409,7 @@
                                         <tr>
                                                 <td>elements</td>
                                             <td>
-                                                            <code><a href="../interfaces/Element.html" target="_self" >Element[]</a></code>
+                                                            <code><a href="../interfaces/Piece.html" target="_self" >Piece[]</a></code>
                                             </td>
 
                                             <td>
@@ -458,8 +454,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="51"
-                                    class="link-to-prism">src/app/game/service/element-draw-pool.service.ts:51</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="47"
+                                    class="link-to-prism">src/app/game/service/element-draw-pool.service.ts:47</a></div>
                         </td>
                     </tr>
 
@@ -485,32 +481,6 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="elementFactory"></a>
-                    <span class="name">
-                            <span class="modifier">Private</span>
-                        <span ><b>elementFactory</b></span>
-                        <a href="#elementFactory"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/game/service/element-draw-pool.service.ts:19</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
                     <a name="elementPile"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
@@ -521,7 +491,7 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../interfaces/Element.html" target="_self" >Pile&lt;ElementKind | Element&gt; | undefined</a></code>
+                        <i>Type : </i>        <code><a href="../classes/Pile.html" target="_self" >Pile | undefined</a></code>
 
                     </td>
                 </tr>
@@ -618,7 +588,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/game/service/element-draw-pool.service.ts:23</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/game/service/element-draw-pool.service.ts:19</a></div>
                                 </td>
                             </tr>
 
@@ -640,7 +610,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/game/service/element-draw-pool.service.ts:47</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/game/service/element-draw-pool.service.ts:43</a></div>
                                 </td>
                             </tr>
 
@@ -653,10 +623,10 @@
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
 import { Pile } from &#x27;../../engine/model/pile.model&#x27;;
-import { Element, ElementKind } from &#x27;../model/element.model&#x27;;
-import { DrawPileKind } from &#x27;../dominant-species.constants&#x27;;
+import { dsPieceKind} from &#x27;../dominant-species.constants&#x27;;
 import { GameStateService } from &#x27;../../engine/service/game-state.service&#x27;;
 import { BehaviorSubject, map, Observable } from &#x27;rxjs&#x27;;
+import {defaultPieceFactory, Piece} from &quot;../../engine/model/piece.model&quot;;
 
 @Injectable({
   providedIn: &#x27;root&#x27;,
@@ -664,16 +634,12 @@ import { BehaviorSubject, map, Observable } from &#x27;rxjs&#x27;;
 export class ElementDrawPoolService {
   private lengthSubject &#x3D; new BehaviorSubject&lt;number&gt;(0);
   length$: Observable&lt;number&gt; &#x3D; this.lengthSubject.asObservable();
-  private elementPile: Pile&lt;ElementKind, Element&gt; | undefined &#x3D; undefined;
+  private elementPile: Pile | undefined &#x3D; undefined;
   constructor(private gameStateSvc: GameStateService) {
     this.initialize();
   }
 
-  private elementFactory &#x3D; (elementKind: ElementKind): Element &#x3D;&gt; {
-    return { kind: elementKind };
-  };
-
-  private get drawPool(): Pile&lt;ElementKind, Element&gt; {
+  private get drawPool(): Pile {
     if (!this.elementPile) {
       throw new Error(&#x27;Element pile has not been initialized.&#x27;);
     }
@@ -684,12 +650,12 @@ export class ElementDrawPoolService {
     this.gameStateSvc.pile$
       .pipe(
         map((pileStates) &#x3D;&gt;
-          pileStates.find((pileState) &#x3D;&gt; pileState.kind &#x3D;&#x3D;&#x3D; (DrawPileKind.ELEMENT as string)),
+          pileStates.find((pileState) &#x3D;&gt; pileState.kind &#x3D;&#x3D;&#x3D; (dsPieceKind.ELEMENT as string)),
         ),
       )
       .subscribe((drawPileState) &#x3D;&gt; {
         if (drawPileState) {
-          this.elementPile &#x3D; new Pile&lt;ElementKind, Element&gt;(drawPileState, this.elementFactory);
+          this.elementPile &#x3D; new Pile(drawPileState, defaultPieceFactory);
           this.lengthSubject.next(this.elementPile.length);
         } else {
           throw new Error(&#x27;GameState does not include a state element for the ElementDrawPool&#x27;);
@@ -710,14 +676,14 @@ export class ElementDrawPoolService {
     }
   }
 
-  pull(count &#x3D; 1): (Element | null)[] {
+  pull(count &#x3D; 1): (Piece | null)[] {
     this.gameStateSvc.requireTransaction();
     const items &#x3D; this.drawPool.pull(count);
     this.updateGameState();
     return items;
   }
 
-  put(elements: Element[]): void {
+  put(elements: Piece[]): void {
     this.gameStateSvc.requireTransaction();
     this.drawPool.put(elements);
     this.updateGameState();

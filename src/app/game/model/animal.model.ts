@@ -1,6 +1,6 @@
 import { Player } from '../../engine/model/player.model';
-import { Element, ElementKind } from './element.model';
 import { FactionState } from '../../engine/model/faction.model';
+import { Piece } from '../../engine/model/piece.model';
 
 export type AnimalKind =
   | 'amphibianAnimal'
@@ -10,7 +10,7 @@ export type AnimalKind =
   | 'mammalAnimal'
   | 'reptileAnimal';
 
-export const inherentElementKindByAnimalKind = new Map<AnimalKind, ElementKind>([
+export const inherentElementKindByAnimalKind = new Map<AnimalKind, string>([
   ['amphibianAnimal', 'waterElement'],
   ['arachnidAnimal', 'grubElement'],
   ['birdAnimal', 'seedElement'],
@@ -21,8 +21,8 @@ export const inherentElementKindByAnimalKind = new Map<AnimalKind, ElementKind>(
 
 export type AnimalState = FactionState & {
   kind: AnimalKind;
-  inherentElements: Element[];
-  addedElements: Element[];
+  inherentElements: Piece[];
+  addedElements: Piece[];
 };
 
 /**
@@ -39,7 +39,7 @@ export class Animal {
    * Gets all elements of the animal, including both inherent and added ones.
    * @returns A list of all elements.
    */
-  get elements(): Element[] {
+  get elements(): Piece[] {
     return [...this.state.inherentElements, ...this.state.addedElements];
   }
 
@@ -62,10 +62,10 @@ export class Animal {
 
   /**
    * Adds a new element to the animal, ensuring it does not exceed the limit of 6 elements.
-   * @param element - The element to add.
+   * @param element The element to add.
    * @throws Will throw an error if the animal already has 6 elements.
    */
-  addElement(element: Element): void {
+  addElement(element: Piece): void {
     if (this.elements.length <= 6) {
       this.state.addedElements.push(element);
     } else {
@@ -75,10 +75,10 @@ export class Animal {
 
   /**
    * Removes an added element from the animal.
-   * @param element - The element to remove.
+   * @param element The element to remove.
    * @throws Will throw an error if the specified element is not found in the added elements.
    */
-  removeElement(element: Element): void {
+  removeElement(element: Piece): void {
     const elementIndex = this.state.addedElements.findIndex(
       (addedElement) => addedElement.kind === element.kind,
     );

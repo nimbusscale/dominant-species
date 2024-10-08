@@ -188,7 +188,7 @@
   faction: [],
   pile: [
     {
-      kind: DrawPileKind.ELEMENT,
+      kind: dsPieceKind.ELEMENT as string,
       inventory: {
         // 20 Elements each, with 2 being places on Earth, leaving 18 in the bag
         grassElement: 18,
@@ -229,7 +229,7 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>new Map&lt;AnimalKind, ElementKind&gt;([
+                        <i>Default value : </i><code>new Map&lt;AnimalKind, string&gt;([
   [&#x27;amphibianAnimal&#x27;, &#x27;waterElement&#x27;],
   [&#x27;arachnidAnimal&#x27;, &#x27;grubElement&#x27;],
   [&#x27;birdAnimal&#x27;, &#x27;seedElement&#x27;],

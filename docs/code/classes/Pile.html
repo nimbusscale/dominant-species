@@ -129,7 +129,9 @@
             </p>
             <p class="comment">
                 <p>A Pile is used to draw one or more random pieces for a defined pool of pieces.
-A Pile has two Type Vars needed to be set when it&#39;s instantiated.</p>
+A Pile has two Type Vars needed to be set when it&#39;s instantiated:</p>
+<p><strong>Tpiece</strong> Kind A type var used to set the kinds of Pieces the Pipe can contain and</p>
+<p><strong>Tpiece</strong> A type var used to set the type of Piece the Pile creates</p>
 
             </p>
 
@@ -155,15 +157,7 @@ A Pile has two Type Vars needed to be set when it&#39;s instantiated.</p>
                             <li>
                                     <span class="modifier">Private</span>
                                     <span class="modifier">Readonly</span>
-                                <a href="#itemFactory" >itemFactory</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Readonly</span>
-                                <a href="#length$" >length$</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#lengthSubject" >lengthSubject</a>
+                                <a href="#pieceFactory" >pieceFactory</a>
                             </li>
                         </ul>
                     </td>
@@ -177,10 +171,6 @@ A Pile has two Type Vars needed to be set when it&#39;s instantiated.</p>
                 <tr>
                     <td class="col-md-4">
                         <ul class="index-list">
-                            <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#emitLength" >emitLength</a>
-                            </li>
                             <li>
                                 <a href="#pull" >pull</a>
                             </li>
@@ -212,6 +202,9 @@ A Pile has two Type Vars needed to be set when it&#39;s instantiated.</p>
                                 <li>
                                     <a href="#state" >state</a>
                                 </li>
+                                <li>
+                                    <a href="#kind" >kind</a>
+                                </li>
                             </ul>
                         </td>
                     </tr>
@@ -225,18 +218,18 @@ A Pile has two Type Vars needed to be set when it&#39;s instantiated.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(state: <a href="../classes/Pile.html" target="_self">PileState&lt;TpieceKind&gt;</a>, itemFactory: <a href="../undefineds/ItemFactory.html" target="_self">ItemFactory&lt;TpieceKind | Tpiece&gt;</a>)</code>
+<code>constructor(state: <a href="../interfaces/PileState.html" target="_self">PileState</a>, pieceFactory: <a href="../undefineds/PieceFactory.html" target="_self">PieceFactory</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/engine/model/pile.model.ts:29</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/engine/model/pile.model.ts:23</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
-                            <div class="io-description"><p>Each key is the kind of items included in the Pile, and the values are the count of that kind of item in
+                            <div class="io-description"><p>Each key is the kind of pieces included in the Pile, and the values are the count of that kind of piece in
 the pile.</p>
 </div>
                             <div>
@@ -255,7 +248,7 @@ the pile.</p>
                                                         <td>state</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../classes/Pile.html" target="_self" >PileState&lt;TpieceKind&gt;</a></code>
+                                                                        <code><a href="../interfaces/PileState.html" target="_self" >PileState</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -263,19 +256,17 @@ the pile.</p>
                                                     </td>
                                                     
                                                         <td>
-                                                                <ul>
-<li>An object that acts as the definition for the pool of pieces the Pile represents.
-Each key is the kind of items included in the Pile, and the values are the count of that kind of item in
-the pile.</li>
-</ul>
+                                                                <p>An object that acts as the definition for the pool of pieces the Pile represents.
+Each key is the kind of pieces included in the Pile, and the values are the count of that kind of piece in
+the pile.</p>
 
                                                         </td>
                                                 </tr>
                                                 <tr>
-                                                        <td>itemFactory</td>
+                                                        <td>pieceFactory</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../miscellaneous/typealiases.html#ItemFactory" target="_self" >ItemFactory&lt;TpieceKind | Tpiece&gt;</a></code>
+                                                                        <code><a href="../miscellaneous/typealiases.html#PieceFactory" target="_self" >PieceFactory</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -283,9 +274,7 @@ the pile.</li>
                                                     </td>
                                                     
                                                         <td>
-                                                                <ul>
-<li>A factory function use to build the random selected piece.</li>
-</ul>
+                                                                <p>A factory function use to build the random selected piece.</p>
 
                                                         </td>
                                                 </tr>
@@ -317,13 +306,13 @@ the pile.</li>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../classes/Pile.html" target="_self" >PileState&lt;TpieceKind&gt;</a></code>
+                        <i>Type : </i>        <code><a href="../interfaces/PileState.html" target="_self" >PileState</a></code>
 
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/engine/model/pile.model.ts:28</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/engine/model/pile.model.ts:23</a></div>
                         </td>
                     </tr>
 
@@ -334,82 +323,24 @@ the pile.</li>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="itemFactory"></a>
+                    <a name="pieceFactory"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
                             <span class="modifier">Readonly</span>
-                        <span ><b>itemFactory</b></span>
-                        <a href="#itemFactory"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>pieceFactory</b></span>
+                        <a href="#pieceFactory"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#ItemFactory" target="_self" >ItemFactory&lt;TpieceKind | Tpiece&gt;</a></code>
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#PieceFactory" target="_self" >PieceFactory</a></code>
 
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/engine/model/pile.model.ts:26</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="length$"></a>
-                    <span class="name">
-                            <span class="modifier">Readonly</span>
-                        <span ><b>length$</b></span>
-                        <a href="#length$"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>    <code>Observable&lt;number&gt;</code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>this.lengthSubject.asObservable()</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/engine/model/pile.model.ts:29</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="lengthSubject"></a>
-                    <span class="name">
-                            <span class="modifier">Private</span>
-                        <span ><b>lengthSubject</b></span>
-                        <a href="#lengthSubject"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>new BehaviorSubject&lt;number&gt;(0)</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/engine/model/pile.model.ts:27</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/engine/model/pile.model.ts:22</a></div>
                         </td>
                     </tr>
 
@@ -423,45 +354,6 @@ the pile.</li>
     <h3 id="methods">
         Methods
     </h3>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="emitLength"></a>
-                    <span class="name">
-                            <span class="modifier">Private</span>
-                        <span ><b>emitLength</b></span>
-                        <a href="#emitLength"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                        <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>emitLength()</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="53"
-                                    class="link-to-prism">src/app/engine/model/pile.model.ts:53</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                        </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -482,8 +374,8 @@ the pile.</li>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="71"
-                                    class="link-to-prism">src/app/engine/model/pile.model.ts:71</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="63"
+                                    class="link-to-prism">src/app/engine/model/pile.model.ts:63</a></div>
                         </td>
                     </tr>
 
@@ -522,9 +414,7 @@ the pile.</li>
                                             </td>
 
                                             <td>
-                                                    <ul>
-<li>The number of items to draw from the pile.</li>
-</ul>
+                                                    <p>The number of pieces to draw from the pile.</p>
 
                                             </td>
                                         </tr>
@@ -536,10 +426,8 @@ the pile.</li>
 
                         </div>
                             <div class="io-description">
-                                <ul>
-<li>An array where each member represents the piece that was drawn. A <code>null</code>
-will be returned for any piece drawn while the pile is empty.</li>
-</ul>
+                                <p>An array where each member represents the piece that was drawn. A <code>null</code>
+will be returned for any piece drawn while the pile is empty.</p>
 
                             </div>
                 </td>
@@ -559,15 +447,15 @@ will be returned for any piece drawn while the pile is empty.</li>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>put(items: Tpiece[])</code>
+<code>put(pieces: <a href="../interfaces/Piece.html" target="_self">Piece[]</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="96"
-                                    class="link-to-prism">src/app/engine/model/pile.model.ts:96</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="87"
+                                    class="link-to-prism">src/app/engine/model/pile.model.ts:87</a></div>
                         </td>
                     </tr>
 
@@ -589,9 +477,9 @@ will be returned for any piece drawn while the pile is empty.</li>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                                <td>items</td>
+                                                <td>pieces</td>
                                             <td>
-                                                        <code>Tpiece[]</code>
+                                                            <code><a href="../interfaces/Piece.html" target="_self" >Piece[]</a></code>
                                             </td>
 
                                             <td>
@@ -600,9 +488,7 @@ will be returned for any piece drawn while the pile is empty.</li>
 
 
                                             <td>
-                                                    <ul>
-<li>An array of items to add to the pile.</li>
-</ul>
+                                                    <p>An array of pieces to add to the pile.</p>
 
                                             </td>
                                         </tr>
@@ -633,15 +519,15 @@ will be returned for any piece drawn while the pile is empty.</li>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>setState(newState: <a href="../classes/Pile.html" target="_self">PileState&lt;TpieceKind&gt;</a>)</code>
+<code>setState(newState: <a href="../interfaces/PileState.html" target="_self">PileState</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="61"
-                                    class="link-to-prism">src/app/engine/model/pile.model.ts:61</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="54"
+                                    class="link-to-prism">src/app/engine/model/pile.model.ts:54</a></div>
                         </td>
                     </tr>
 
@@ -664,7 +550,7 @@ will be returned for any piece drawn while the pile is empty.</li>
                                         <tr>
                                                 <td>newState</td>
                                             <td>
-                                                            <code><a href="../classes/Pile.html" target="_self" >PileState&lt;TpieceKind&gt;</a></code>
+                                                            <code><a href="../interfaces/PileState.html" target="_self" >PileState</a></code>
                                             </td>
 
                                             <td>
@@ -713,12 +599,12 @@ will be returned for any piece drawn while the pile is empty.</li>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/engine/model/pile.model.ts:46</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/engine/model/pile.model.ts:39</a></div>
                                 </td>
                             </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-description"><p>Returns the total number of items in the pile.</p>
+                                <div class="io-description"><p>Returns the total number of pieces in the pile.</p>
 </div>
 
                                 <div class="io-description">
@@ -746,7 +632,29 @@ will be returned for any piece drawn while the pile is empty.</li>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/engine/model/pile.model.ts:57</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/engine/model/pile.model.ts:46</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="kind"></a>
+                        <span class="name"><b>kind</b><a href="#kind"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>kind()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/engine/model/pile.model.ts:50</a></div>
                                 </td>
                             </tr>
 
@@ -757,111 +665,98 @@ will be returned for any piece drawn while the pile is empty.</li>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Piece } from &#x27;./piece.model&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { defaultPieceFactory, Piece, PieceFactory } from &#x27;./piece.model&#x27;;
 import { GameStateElement } from &#x27;./game-state.model&#x27;;
-import { BehaviorSubject, Observable } from &#x27;rxjs&#x27;;
-
-type ItemFactory&lt;TpieceKind extends string, Tpiece extends Piece&lt;TpieceKind&gt;&gt; &#x3D; (
-  itemKind: TpieceKind,
-) &#x3D;&gt; Tpiece;
+import { deepClone } from &#x27;fast-json-patch&#x27;;
 
 /**
  * PileState is pretty simple as it just keeps tracks of what kinds of pieces are in the pile and how many of them.
  */
-export type PileState&lt;TpieceKind extends string&gt; &#x3D; GameStateElement &amp; {
-  inventory: {
-    [K in TpieceKind]?: number;
-  };
-};
+export interface PileState extends GameStateElement {
+  inventory: Record&lt;string, number&gt;;
+}
 
 /**
  * A Pile is used to draw one or more random pieces for a defined pool of pieces.
- * A Pile has two Type Vars needed to be set when it&#x27;s instantiated.
+ * A Pile has two Type Vars needed to be set when it&#x27;s instantiated:
  *
- * @param TpieceKind - A type var used to set the kinds of Pieces the Pipe can contain
- * @param Tpiece - A type var used to set the type of Piece the Pile creates
+ * **Tpiece** Kind A type var used to set the kinds of Pieces the Pipe can contain and
+ *
+ * **Tpiece** A type var used to set the type of Piece the Pile creates
+ *
  */
-export class Pile&lt;TpieceKind extends string, Tpiece extends Piece&lt;TpieceKind&gt;&gt; {
-  private readonly itemFactory: ItemFactory&lt;TpieceKind, Tpiece&gt;;
-  private lengthSubject &#x3D; new BehaviorSubject&lt;number&gt;(0);
-  private _state: PileState&lt;TpieceKind&gt;;
-  readonly length$: Observable&lt;number&gt; &#x3D; this.lengthSubject.asObservable();
+export class Pile {
+  private readonly pieceFactory: PieceFactory;
+  private _state: PileState;
 
   /**
-   * @param state - An object that acts as the definition for the pool of pieces the Pile represents.
-   * Each key is the kind of items included in the Pile, and the values are the count of that kind of item in
+   * @param state An object that acts as the definition for the pool of pieces the Pile represents.
+   * Each key is the kind of pieces included in the Pile, and the values are the count of that kind of piece in
    * the pile.
-   * @param itemFactory - A factory function use to build the random selected piece.
+   * @param pieceFactory A factory function use to build the random selected piece.
    */
-  constructor(state: PileState&lt;TpieceKind&gt;, itemFactory: ItemFactory&lt;TpieceKind, Tpiece&gt;) {
+  constructor(state: PileState, pieceFactory: PieceFactory &#x3D; defaultPieceFactory) {
     this._state &#x3D; state;
-    this.itemFactory &#x3D; itemFactory;
-    this.emitLength();
+    this.pieceFactory &#x3D; pieceFactory;
   }
 
   /**
-   * Returns the total number of items in the pile.
+   * Returns the total number of pieces in the pile.
    */
   get length(): number {
     return Object.keys(this._state.inventory).reduce(
-      (sum, key) &#x3D;&gt; sum + (this._state.inventory[key as TpieceKind] ?? 0),
+      (sum, key) &#x3D;&gt; sum + (this._state.inventory[key] ?? 0),
       0,
     );
   }
 
-  private emitLength() {
-    this.lengthSubject.next(this.length);
+  get state(): PileState {
+    return deepClone(this._state) as PileState;
   }
 
-  get state(): PileState&lt;TpieceKind&gt; {
-    return this._state;
+  get kind(): string {
+    return this._state.kind;
   }
 
-  setState(newState: PileState&lt;TpieceKind&gt;) {
+  setState(newState: PileState) {
     this._state &#x3D; newState;
-    this.emitLength();
   }
 
   /**
-   * @param count - The number of items to draw from the pile.
-   * @returns - An array where each member represents the piece that was drawn. A &#x60;null&#x60;
+   * @param count The number of pieces to draw from the pile.
+   * @returns An array where each member represents the piece that was drawn. A &#x60;null&#x60;
    * will be returned for any piece drawn while the pile is empty.
    */
-  pull(count &#x3D; 1): (Tpiece | null)[] {
-    const items: (Tpiece | null)[] &#x3D; [];
+  pull(count &#x3D; 1): (Piece | null)[] {
+    const pieces: (Piece | null)[] &#x3D; [];
     for (let i &#x3D; 0; i &lt; count; i++) {
-      const itemsWithCount &#x3D; Object.keys(this._state.inventory).filter((key) &#x3D;&gt; {
-        /** this.itemCounts.get(key) will always return a value, but TSC complains it could be unknown. */
-        const itemCount &#x3D; this._state.inventory[key as TpieceKind] ?? 0;
-        return itemCount &gt; 0;
-      }) as TpieceKind[];
+      const piecesWithCount &#x3D; Object.keys(this._state.inventory).filter((key) &#x3D;&gt; {
+        /** this.pieceCounts.get(key) will always return a value, but TSC complains it could be unknown. */
+        const pieceCount &#x3D; this._state.inventory[key] ?? 0;
+        return pieceCount &gt; 0;
+      });
 
-      if (itemsWithCount.length) {
-        const itemKind &#x3D; itemsWithCount[Math.floor(Math.random() * itemsWithCount.length)];
-        const currentCount &#x3D; this._state.inventory[itemKind] ?? 0;
-        items.push(this.itemFactory(itemKind));
-        this._state.inventory[itemKind] &#x3D; currentCount - 1;
+      if (piecesWithCount.length) {
+        const kind &#x3D; piecesWithCount[Math.floor(Math.random() * piecesWithCount.length)];
+        const currentCount &#x3D; this._state.inventory[kind] ?? 0;
+        pieces.push(this.pieceFactory(kind));
+        this._state.inventory[kind] &#x3D; currentCount - 1;
       } else {
-        items.push(null);
+        pieces.push(null);
       }
     }
-    this.emitLength();
-    return items;
+    return pieces;
   }
 
   /**
-   * @param items - An array of items to add to the pile.
+   * @param pieces An array of pieces to add to the pile.
    */
-  put(items: Tpiece[]): void {
-    for (const item of items) {
-      const currentItemCount &#x3D; this._state.inventory[item.kind];
-      if (currentItemCount !&#x3D;&#x3D; undefined) {
-        this._state.inventory[item.kind] &#x3D; currentItemCount + 1;
-      } else {
-        this._state.inventory[item.kind] &#x3D; 1;
-      }
+  put(pieces: Piece[]): void {
+    for (const piece of pieces) {
+      // Assume the current count is 0 if the piece is not yet in the inventory
+      const currentItemCount &#x3D; this._state.inventory[piece.kind] || 0;
+      this._state.inventory[piece.kind] &#x3D; currentItemCount + 1;
     }
-    this.emitLength();
   }
 }
 </code></pre>

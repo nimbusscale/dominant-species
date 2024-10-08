@@ -1,7 +1,19 @@
 import { GameState } from '../engine/model/game-state.model';
 
-export enum DrawPileKind {
+export enum dsPieceKind {
   ELEMENT = 'element',
+  ACTION_PAWN_AMPHIBIAN = 'actionPawnAmphibian',
+  ACTION_PAWN_ARACHNID = 'actionPawnArachnid',
+  ACTION_PAWN_BIRD = 'actionPawnBird',
+  ACTION_PAWN_INSECT = 'actionPawnInsect',
+  ACTION_PAWN_MAMMAL = 'actionPawnMammal',
+  ACTION_PAWN_REPTILE = 'actionPawnReptile',
+  SPECIES_AMPHIBIAN = 'speciesAmphibian',
+  SPECIES_ARACHNID = 'speciesArachnid',
+  SPECIES_BIRD = 'speciesBird',
+  SPECIES_INSECT = 'speciesInsect',
+  SPECIES_MAMMAL = 'speciesMammal',
+  SPECIES_REPTILE = 'speciesReptile',
 }
 
 /**
@@ -11,7 +23,7 @@ export const baseGameState: GameState = {
   faction: [],
   pile: [
     {
-      kind: DrawPileKind.ELEMENT,
+      kind: dsPieceKind.ELEMENT as string,
       inventory: {
         // 20 Elements each, with 2 being places on Earth, leaving 18 in the bag
         grassElement: 18,

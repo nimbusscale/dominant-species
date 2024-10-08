@@ -3,7 +3,9 @@ import { GameManagementService } from '../../../engine/service/game-management.s
 import { MatButton } from '@angular/material/button';
 import { MatTooltip } from '@angular/material/tooltip';
 import { GameStateService } from '../../../engine/service/game-state.service';
-import { ElementDrawPoolService } from '../../service/element-draw-pool.service';
+import { PileService } from '../../../engine/service/pile.service';
+import { dsPieceKind } from '../../dominant-species.constants';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-draw-pool-game',
@@ -18,11 +20,25 @@ export class DrawPoolGameComponent {
   constructor(
     private gameManagementSvc: GameManagementService,
     private gameStateSvc: GameStateService,
-    private drawPoolSvc: ElementDrawPoolService,
+    private pileSvc: PileService,
   ) {
-    this.drawPoolSvc.length$.subscribe((length) => {
-      this.drawPoolLength = length;
-    });
+    this.initialize();
+  }
+
+  private initialize(): void {
+    const registeredPilesSubscription = this.pileSvc.registeredPiles$
+      .pipe(filter((registeredPiles) => registeredPiles.has(dsPieceKind.ELEMENT)))
+      .subscribe(() => {
+        const lengthObservable = this.pileSvc.kindToLengthObservables.get(dsPieceKind.ELEMENT);
+        if (lengthObservable) {
+          lengthObservable.subscribe((length) => {
+            this.drawPoolLength = length;
+          });
+        } else {
+          throw new Error('Length observable for not found');
+        }
+        registeredPilesSubscription.unsubscribe();
+      });
   }
 
   createGame(): void {
@@ -35,11 +51,15 @@ export class DrawPoolGameComponent {
     this.gameStateSvc.startTransaction();
   }
 
+  private formatElementName(kind: string): string {
+    const elementName = kind.replace('Element', '');
+    return elementName.charAt(0).toUpperCase() + elementName.slice(1);
+  }
+
   draw(): void {
-    const item = this.drawPoolSvc.pull();
+    const item = this.pileSvc.pull(dsPieceKind.ELEMENT);
     if (item[0]) {
-      let element = item[0].kind.replace('Element', '');
-      element = element.charAt(0).toUpperCase() + element.slice(1);
+      const element = this.formatElementName(item[0].kind);
       this.log.push(`You drew a ${element}`);
     } else {
       this.log.push('Pile is empty!');

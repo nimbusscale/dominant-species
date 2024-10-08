@@ -6,7 +6,6 @@ import { filter, Observable } from 'rxjs';
 import { FactionState } from '../model/faction.model';
 import { PileState } from '../model/pile.model';
 import { GameStatePatch } from '../model/game-state-patch.model';
-import { GameState } from '../model/game-state.model';
 
 /**
  * The GameStateService provides an interface for the rest of the system to interact with state.
@@ -27,16 +26,8 @@ export class GameStateService {
   }
 
   private applyGsp(gsp: GameStatePatch): void {
-    if (this.gameStateStore.gameState) {
-      const updatedState = this.gspService.apply(this.gameStateStore.gameState, gsp);
-      this.gameStateStore.setGameState(updatedState);
-    } else {
-      throw new Error("Can't apply a GSP to an uninitialized GameStateStore.");
-    }
-  }
-
-  initializeGameState(gameState: GameState): void {
-    this.gameStateStore.initializeGameState(gameState);
+    const updatedState = this.gspService.apply(this.gameStateStore.gameState, gsp);
+    this.gameStateStore.setGameState(updatedState);
   }
 
   startTransaction(): void {
@@ -44,9 +35,7 @@ export class GameStateService {
   }
 
   commitTransaction(): void {
-    if (!this.gameStateStore.gameState) {
-      throw new Error('GameStateStore uninitialized');
-    } else if (!this.gameStateStore.transactionState) {
+    if (!this.gameStateStore.transactionState) {
       throw new Error('No transaction in progress to commit');
     } else {
       const gsp = this.gspService.create(
@@ -79,11 +68,15 @@ export class GameStateService {
     this.gameStateStore.setFaction(newState);
   }
 
-  get pile$(): Observable<PileState<string>[]> {
+  get pile$(): Observable<PileState[]> {
     return this.gameStateStore.pile$;
   }
 
-  setPile(newState: PileState<string>): void {
+  setPile(newState: PileState): void {
     this.gameStateStore.setPile(newState);
+  }
+
+  registerPile(newState: PileState): void {
+    this.gameStateStore.registerPile(newState);
   }
 }

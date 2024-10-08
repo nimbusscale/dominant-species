@@ -1,5 +1,7 @@
 import { GameStatePatch } from '../../../app/engine/model/game-state-patch.model';
 import { GameState } from '../../../app/engine/model/game-state.model';
+import { PileState } from '../../../app/engine/model/pile.model';
+import { FactionState } from '../../../app/engine/model/faction.model';
 
 function deepFreeze<T>(obj: T): T {
   const propNames = Object.getOwnPropertyNames(obj) as (keyof T)[];
@@ -12,6 +14,16 @@ function deepFreeze<T>(obj: T): T {
 
   return Object.freeze(obj);
 }
+
+export const testPileState1: PileState = deepFreeze({
+  kind: 'pile1',
+  inventory: { test1: 10, test2: 10 },
+});
+
+export const testPileState2: PileState = deepFreeze({
+  kind: 'pile2',
+  inventory: { test3: 10 },
+});
 
 export const testGameStatePatch1: GameStatePatch = deepFreeze({
   timeStamp: 1728051798261,
@@ -48,7 +60,7 @@ export const testGameState1: GameState = deepFreeze({
       kind: 'blueTester',
     },
   ],
-});
+} as { pile: PileState[]; faction: FactionState[] });
 
 // Since testGameState1 is frozen, we need to just duplicate the object config here.
 export const testGameState1updated: GameState = deepFreeze({
@@ -76,4 +88,4 @@ export const testGameState1updated: GameState = deepFreeze({
       kind: 'blueTester',
     },
   ],
-});
+} as { pile: PileState[]; faction: FactionState[] });

@@ -222,6 +222,14 @@
                                 <a href="#endTurn" >endTurn</a>
                             </li>
                             <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#formatElementName" >formatElementName</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#initialize" >initialize</a>
+                            </li>
+                            <li>
                                 <a href="#startTurn" >startTurn</a>
                             </li>
                         </ul>
@@ -242,12 +250,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(gameManagementSvc: <a href="../injectables/GameManagementService.html" target="_self">GameManagementService</a>, gameStateSvc: <a href="../injectables/GameStateService.html" target="_self">GameStateService</a>, drawPoolSvc: <a href="../injectables/ElementDrawPoolService.html" target="_self">ElementDrawPoolService</a>)</code>
+<code>constructor(gameManagementSvc: <a href="../injectables/GameManagementService.html" target="_self">GameManagementService</a>, gameStateSvc: <a href="../injectables/GameStateService.html" target="_self">GameStateService</a>, pileSvc: <a href="../injectables/PileService.html" target="_self">PileService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/game/component/draw-pool-game/draw-pool-game.component.ts:17</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/game/component/draw-pool-game/draw-pool-game.component.ts:19</a></div>
                             </td>
                         </tr>
 
@@ -289,10 +297,10 @@
                                                     
                                                 </tr>
                                                 <tr>
-                                                        <td>drawPoolSvc</td>
+                                                        <td>pileSvc</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../injectables/ElementDrawPoolService.html" target="_self" >ElementDrawPoolService</a></code>
+                                                                        <code><a href="../injectables/PileService.html" target="_self" >PileService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -338,8 +346,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="28"
-                                    class="link-to-prism">src/app/game/component/draw-pool-game/draw-pool-game.component.ts:28</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="44"
+                                    class="link-to-prism">src/app/game/component/draw-pool-game/draw-pool-game.component.ts:44</a></div>
                         </td>
                     </tr>
 
@@ -375,8 +383,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="38"
-                                    class="link-to-prism">src/app/game/component/draw-pool-game/draw-pool-game.component.ts:38</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="60"
+                                    class="link-to-prism">src/app/game/component/draw-pool-game/draw-pool-game.component.ts:60</a></div>
                         </td>
                     </tr>
 
@@ -412,8 +420,116 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="49"
-                                    class="link-to-prism">src/app/game/component/draw-pool-game/draw-pool-game.component.ts:49</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="70"
+                                    class="link-to-prism">src/app/game/component/draw-pool-game/draw-pool-game.component.ts:70</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="formatElementName"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>formatElementName</b></span>
+                        <a href="#formatElementName"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>formatElementName(kind: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="54"
+                                    class="link-to-prism">src/app/game/component/draw-pool-game/draw-pool-game.component.ts:54</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>kind</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="initialize"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>initialize</b></span>
+                        <a href="#initialize"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>initialize()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="28"
+                                    class="link-to-prism">src/app/game/component/draw-pool-game/draw-pool-game.component.ts:28</a></div>
                         </td>
                     </tr>
 
@@ -449,8 +565,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="33"
-                                    class="link-to-prism">src/app/game/component/draw-pool-game/draw-pool-game.component.ts:33</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="49"
+                                    class="link-to-prism">src/app/game/component/draw-pool-game/draw-pool-game.component.ts:49</a></div>
                         </td>
                     </tr>
 
@@ -496,7 +612,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/game/component/draw-pool-game/draw-pool-game.component.ts:16</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/game/component/draw-pool-game/draw-pool-game.component.ts:18</a></div>
                         </td>
                     </tr>
 
@@ -527,7 +643,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/game/component/draw-pool-game/draw-pool-game.component.ts:17</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/game/component/draw-pool-game/draw-pool-game.component.ts:19</a></div>
                         </td>
                     </tr>
 
@@ -545,7 +661,9 @@ import { GameManagementService } from &#x27;../../../engine/service/game-managem
 import { MatButton } from &#x27;@angular/material/button&#x27;;
 import { MatTooltip } from &#x27;@angular/material/tooltip&#x27;;
 import { GameStateService } from &#x27;../../../engine/service/game-state.service&#x27;;
-import { ElementDrawPoolService } from &#x27;../../service/element-draw-pool.service&#x27;;
+import {PileService} from &quot;../../../engine/service/pile.service&quot;;
+import {dsPieceKind} from &quot;../../dominant-species.constants&quot;;
+import {filter} from &quot;rxjs&quot;;
 
 @Component({
   selector: &#x27;app-draw-pool-game&#x27;,
@@ -560,11 +678,25 @@ export class DrawPoolGameComponent {
   constructor(
     private gameManagementSvc: GameManagementService,
     private gameStateSvc: GameStateService,
-    private drawPoolSvc: ElementDrawPoolService,
+    private pileSvc: PileService
   ) {
-    this.drawPoolSvc.length$.subscribe((length) &#x3D;&gt; {
-      this.drawPoolLength &#x3D; length;
-    });
+    this.initialize()
+  }
+
+  private initialize(): void {
+    const registeredPilesSubscription &#x3D; this.pileSvc.registeredPiles$.pipe(
+      filter(registeredPiles &#x3D;&gt; registeredPiles.has(dsPieceKind.ELEMENT))
+    ).subscribe(() &#x3D;&gt; {
+      const lengthObservable &#x3D; this.pileSvc.kindToLengthObservables.get(dsPieceKind.ELEMENT)
+      if (lengthObservable) {
+        lengthObservable.subscribe((length) &#x3D;&gt; {
+          this.drawPoolLength &#x3D; length
+        })
+      } else {
+        throw new Error(&#x27;Length observable for not found&#x27;)
+      }
+      registeredPilesSubscription.unsubscribe()
+    })
   }
 
   createGame(): void {
@@ -577,11 +709,16 @@ export class DrawPoolGameComponent {
     this.gameStateSvc.startTransaction();
   }
 
+  private formatElementName(kind: string): string {
+      let elementName &#x3D; kind.replace(&#x27;Element&#x27;, &#x27;&#x27;);
+      return elementName.charAt(0).toUpperCase() + elementName.slice(1);
+  }
+
+
   draw(): void {
-    const item &#x3D; this.drawPoolSvc.pull();
+    const item &#x3D; this.pileSvc.pull(dsPieceKind.ELEMENT);
     if (item[0]) {
-      let element &#x3D; item[0].kind.replace(&#x27;Element&#x27;, &#x27;&#x27;);
-      element &#x3D; element.charAt(0).toUpperCase() + element.slice(1);
+      const element &#x3D; this.formatElementName(item[0].kind)
       this.log.push(&#x60;You drew a ${element}&#x60;);
     } else {
       this.log.push(&#x27;Pile is empty!&#x27;);
