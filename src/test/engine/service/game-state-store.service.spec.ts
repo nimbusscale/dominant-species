@@ -8,26 +8,28 @@ describe('GameStateStore', () => {
   beforeEach(() => {
     gameStateStore = new GameStateStoreService();
   });
-  describe('when not initialized', () => {
-    it('initializes', () => {
-      gameStateStore.initializeGameState(testGameState1);
-      expect(gameStateStore.gameState).toEqual(testGameState1);
-    });
-    it('Throws error when trying to initialize an already initialized GameState', () => {
-      gameStateStore.initializeGameState(testGameState1);
-      expect(() => {
-        gameStateStore.initializeGameState(testGameState1);
-      }).toThrowError();
-    });
-    it('Throws error when trying to set GameState when not initialized', () => {
-      expect(() => {
-        gameStateStore.setGameState(testGameState1updated);
-      }).toThrowError();
-    });
+  describe('when blank', () => {
+    it('can register new game state elements', () => {
+      gameStateStore.registerPile(testGameState1.pile[0])
+      expect(gameStateStore.gameState.pile[0]).toEqual(testGameState1.pile[0])
+      expect(gameStateStore.gameState.pile[0]).not.toBe(testGameState1.pile[0])
+    })
+    it('throws error if transaction started with trying to register', () => {
+      gameStateStore.startTransaction()
+      expect(() => {gameStateStore.registerPile(testGameState1.pile[0])}).toThrowError()
+    })
+    it('throws error if trying to register already registered element', () => {
+      gameStateStore.registerPile(testGameState1.pile[0])
+      expect(() => {gameStateStore.registerPile(testGameState1.pile[0])}).toThrowError()
+    })
+    it('throws error if trying to update an unregistered state element', () => {
+      gameStateStore.startTransaction()
+      expect(() => {gameStateStore.setPile(testGameState1.pile[0])}).toThrowError()
+    })
   });
-  describe('when initialized', () => {
+  describe('when GameState set', () => {
     beforeEach(() => {
-      gameStateStore.initializeGameState(testGameState1);
+      gameStateStore.setGameState(testGameState1);
     });
     describe('state observable', () => {
       // All state observables are wrappers around the same code path so just testing one should be sufficient for unit test.
