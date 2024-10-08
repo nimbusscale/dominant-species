@@ -192,6 +192,10 @@
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
+                                <a href="#registerPiles" >registerPiles</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
                                 <a href="#updateGameState" >updateGameState</a>
                             </li>
                         </ul>
@@ -351,8 +355,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="65"
-                                    class="link-to-prism">src/app/engine/service/pile.service.ts:65</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="72"
+                                    class="link-to-prism">src/app/engine/service/pile.service.ts:72</a></div>
                         </td>
                     </tr>
 
@@ -457,8 +461,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="99"
-                                    class="link-to-prism">src/app/engine/service/pile.service.ts:99</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="106"
+                                    class="link-to-prism">src/app/engine/service/pile.service.ts:106</a></div>
                         </td>
                     </tr>
 
@@ -554,8 +558,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="112"
-                                    class="link-to-prism">src/app/engine/service/pile.service.ts:112</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="119"
+                                    class="link-to-prism">src/app/engine/service/pile.service.ts:119</a></div>
                         </td>
                     </tr>
 
@@ -644,8 +648,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="74"
-                                    class="link-to-prism">src/app/engine/service/pile.service.ts:74</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="81"
+                                    class="link-to-prism">src/app/engine/service/pile.service.ts:81</a></div>
                         </td>
                     </tr>
 
@@ -687,6 +691,45 @@
                             <div class="io-description">
                                 
                             </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="registerPiles"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>registerPiles</b></span>
+                        <a href="#registerPiles"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>registerPiles()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="65"
+                                    class="link-to-prism">src/app/engine/service/pile.service.ts:65</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
                 </td>
             </tr>
         </tbody>
@@ -1006,6 +1049,13 @@ export class PileService {
     }
   }
 
+  private registerPiles(): void {
+    for (const pile of this.kindToPile.values()) {
+      this.gameStateSvc.registerPile(pile.state);
+      this.emitLength(pile);
+    }
+  }
+
   private getPile(kind: string): Pile {
     const pile &#x3D; this.kindToPile.get(kind);
     if (!pile) {
@@ -1031,7 +1081,7 @@ export class PileService {
       }
     });
     this.registeredPilesSubject.next(this.registeredPileKinds);
-    this.updateGameState();
+    this.registerPiles();
   }
 
   /**
