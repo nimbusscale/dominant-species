@@ -1,5 +1,6 @@
 import { FactionState } from './faction.model';
 import { PileState } from './pile.model';
+import {dsPieceKind} from "../../game/dominant-species.constants";
 
 /**
  * Defining the GameState object managed by GameStateStoreService
@@ -7,6 +8,11 @@ import { PileState } from './pile.model';
 export interface GameState {
   faction: FactionState[];
   pile: PileState[];
+}
+
+export const emptyGameState: GameState = {
+  faction: [],
+  pile: [],
 }
 
 /**
