@@ -14,8 +14,8 @@ import { PileStateService } from './pile-state.service';
  * it's length.
  */
 export class PileRegistryService {
-  private kindToPile: Map<string, Pile> = new Map<string, Pile>();
-  private registeredPileKinds: Set<string> = new Set<string>();
+  private pileById: Map<string, Pile> = new Map<string, Pile>();
+  private registeredPileIds: Set<string> = new Set<string>();
   private registeredPilesSubject = new BehaviorSubject<Set<string>>(new Set());
   /**
    * Subscribers can use this Observable to determine if the pile they have been interested has been registered. Once the pile is registered,
@@ -25,10 +25,10 @@ export class PileRegistryService {
 
   constructor(private pileStateSvc: PileStateService) {}
 
-  public get(kind: string): Pile {
-    const pile = this.kindToPile.get(kind);
+  public get(id: string): Pile {
+    const pile = this.pileById.get(id);
     if (!pile) {
-      throw new Error(`Pile for kind ${kind} is not registered.`);
+      throw new Error(`Pile for kind ${id} is not registered.`);
     } else {
       return pile;
     }
@@ -36,14 +36,14 @@ export class PileRegistryService {
 
   register(piles: Pile[]): void {
     piles.forEach((pile) => {
-      if (!this.registeredPileKinds.has(pile.id)) {
-        this.kindToPile.set(pile.id, pile);
-        this.registeredPileKinds.add(pile.id);
+      if (!this.registeredPileIds.has(pile.id)) {
+        this.pileById.set(pile.id, pile);
+        this.registeredPileIds.add(pile.id);
       } else {
-        throw new Error(`Pile for kind ${pile.id} already registered.`);
+        throw new Error(`Pile for id ${pile.id} already registered.`);
       }
     });
-    this.registeredPilesSubject.next(this.registeredPileKinds);
+    this.registeredPilesSubject.next(this.registeredPileIds);
     this.pileStateSvc.register(piles);
   }
 }

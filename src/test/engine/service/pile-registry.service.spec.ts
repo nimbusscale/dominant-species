@@ -35,8 +35,8 @@ describe('PileRegistryService', () => {
       expect(pileStateSvcSpy.register).toHaveBeenCalledWith(piles);
     });
     it('updates and emits registeredPiles$', (done) => {
-      pileRegistrySvc.registeredPiles$.pipe(skip(1)).subscribe((pileKinds) => {
-        expect(pileKinds.has(testPile1.id)).toBeTrue();
+      pileRegistrySvc.registeredPiles$.pipe(skip(1)).subscribe((pileIds) => {
+        expect(pileIds.has(testPile1.id)).toBeTrue();
         done();
       });
       pileRegistrySvc.register([testPile1]);
