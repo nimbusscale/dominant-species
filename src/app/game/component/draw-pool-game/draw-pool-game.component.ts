@@ -7,6 +7,7 @@ import { dsPieceKind } from '../../dominant-species.constants';
 import { filter } from 'rxjs';
 import {PileRegistryService} from "../../../engine/service/pile-registry.service";
 import {Pile} from "../../../engine/model/pile.model";
+import {ElementDrawPoolService} from "../../service/element-draw-pool.service";
 
 @Component({
   selector: 'app-draw-pool-game',
@@ -22,17 +23,17 @@ export class DrawPoolGameComponent {
   constructor(
     private gameManagementSvc: GameManagementService,
     private gameStateSvc: GameStateService,
-    private pileRegistrySvc: PileRegistryService,
+    private elementDrawPoolSvc: ElementDrawPoolService
   ) {
     this.initialize();
   }
 
   private initialize(): void {
-    const registeredPilesSubscription = this.pileRegistrySvc.registeredPiles$
-      .pipe(filter((registeredPiles) => registeredPiles.has(dsPieceKind.ELEMENT)))
-      .subscribe(() => {
-        this.drawPool = this.pileRegistrySvc.get(dsPieceKind.ELEMENT)
-        this.drawPool.length$.subscribe((length) => {this.drawPoolLength = length})
+    const registeredPilesSubscription = this.elementDrawPoolSvc.drawPool$
+      .pipe(filter((drawPool) => drawPool != null))
+      .subscribe((drawPool) => {
+        this.drawPool = drawPool
+        drawPool.length$.subscribe((length) => {this.drawPoolLength = length})
         registeredPilesSubscription.unsubscribe();
       });
   }

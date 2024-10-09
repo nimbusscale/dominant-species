@@ -21,6 +21,7 @@ export class ElementDrawPoolService {
       .pipe(filter((registeredPiles) => registeredPiles.has(dsPieceKind.ELEMENT)))
       .subscribe(() => {
         this._drawPool = this.pileRegistrySvc.get(dsPieceKind.ELEMENT)
+        this.drawPoolSubject.next(this._drawPool)
         registeredPilesSubscription.unsubscribe();
       });
   }
