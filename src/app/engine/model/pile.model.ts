@@ -1,7 +1,7 @@
 import { defaultPieceFactory, Piece, PieceFactory } from './piece.model';
 import { GameStateElement } from './game-state.model';
 import { deepClone } from 'fast-json-patch';
-import {BehaviorSubject, distinctUntilChanged, Observable} from "rxjs";
+import { BehaviorSubject, distinctUntilChanged, Observable } from 'rxjs';
 
 /**
  * PileState is pretty simple as it just keeps tracks of what kinds of pieces are in the pile and how many of them.
@@ -22,10 +22,10 @@ export interface PileState extends GameStateElement {
 export class Pile {
   private readonly pieceFactory: PieceFactory;
   private _state: PileState;
-  private stateSubject: BehaviorSubject<PileState>
-  private lengthSubject: BehaviorSubject<number>
-  state$: Observable<PileState>
-  length$: Observable<number>
+  private stateSubject: BehaviorSubject<PileState>;
+  private lengthSubject: BehaviorSubject<number>;
+  state$: Observable<PileState>;
+  length$: Observable<number>;
 
   /**
    * @param state An object that acts as the definition for the pool of pieces the Pile represents.
@@ -36,10 +36,10 @@ export class Pile {
   constructor(state: PileState, pieceFactory: PieceFactory = defaultPieceFactory) {
     this._state = state;
     this.pieceFactory = pieceFactory;
-    this.stateSubject = new BehaviorSubject<PileState>(this.state)
-    this.state$ = this.stateSubject.asObservable()
-    this.lengthSubject = new BehaviorSubject<number>(this.length)
-    this.length$ = this.lengthSubject.asObservable().pipe(distinctUntilChanged())
+    this.stateSubject = new BehaviorSubject<PileState>(this.state);
+    this.state$ = this.stateSubject.asObservable();
+    this.lengthSubject = new BehaviorSubject<number>(this.length);
+    this.length$ = this.lengthSubject.asObservable().pipe(distinctUntilChanged());
   }
 
   /**
@@ -65,8 +65,8 @@ export class Pile {
   }
 
   private emitState(): void {
-    this.stateSubject.next(this.state)
-    this.lengthSubject.next(this.length)
+    this.stateSubject.next(this.state);
+    this.lengthSubject.next(this.length);
   }
 
   /**
@@ -92,7 +92,7 @@ export class Pile {
         pieces.push(null);
       }
     }
-    this.emitState()
+    this.emitState();
     return pieces;
   }
 
@@ -106,6 +106,6 @@ export class Pile {
       const currentItemCount = this._state.inventory[piece.kind] || 0;
       this._state.inventory[piece.kind] = currentItemCount + 1;
     }
-    this.emitState()
+    this.emitState();
   }
 }

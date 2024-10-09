@@ -3,11 +3,9 @@ import { GameManagementService } from '../../../engine/service/game-management.s
 import { MatButton } from '@angular/material/button';
 import { MatTooltip } from '@angular/material/tooltip';
 import { GameStateService } from '../../../engine/service/game-state.service';
-import { dsPieceKind } from '../../dominant-species.constants';
 import { filter } from 'rxjs';
-import {PileRegistryService} from "../../../engine/service/pile-registry.service";
-import {Pile} from "../../../engine/model/pile.model";
-import {ElementDrawPoolService} from "../../service/element-draw-pool.service";
+import { Pile } from '../../../engine/model/pile.model';
+import { ElementDrawPoolService } from '../../service/element-draw-pool.service';
 
 @Component({
   selector: 'app-draw-pool-game',
@@ -17,13 +15,13 @@ import {ElementDrawPoolService} from "../../service/element-draw-pool.service";
   styleUrl: './draw-pool-game.component.scss',
 })
 export class DrawPoolGameComponent {
-  drawPool: Pile | null = null
+  drawPool: Pile | null = null;
   drawPoolLength = 0;
   log: string[] = [];
   constructor(
     private gameManagementSvc: GameManagementService,
     private gameStateSvc: GameStateService,
-    private elementDrawPoolSvc: ElementDrawPoolService
+    private elementDrawPoolSvc: ElementDrawPoolService,
   ) {
     this.initialize();
   }
@@ -32,8 +30,10 @@ export class DrawPoolGameComponent {
     const registeredPilesSubscription = this.elementDrawPoolSvc.drawPool$
       .pipe(filter((drawPool) => drawPool != null))
       .subscribe((drawPool) => {
-        this.drawPool = drawPool
-        drawPool.length$.subscribe((length) => {this.drawPoolLength = length})
+        this.drawPool = drawPool;
+        drawPool.length$.subscribe((length) => {
+          this.drawPoolLength = length;
+        });
         registeredPilesSubscription.unsubscribe();
       });
   }
@@ -63,7 +63,6 @@ export class DrawPoolGameComponent {
         this.log.push('Pile is empty!');
       }
     }
-
   }
 
   endTurn(): void {

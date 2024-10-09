@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Pile } from '../model/pile.model';
 import { BehaviorSubject, Observable } from 'rxjs';
-import {PileStateService} from "./pile-state.service";
+import { PileStateService } from './pile-state.service';
 
 @Injectable({
   providedIn: 'root',
@@ -23,8 +23,7 @@ export class PileRegistryService {
    */
   registeredPiles$: Observable<Set<string>> = this.registeredPilesSubject.asObservable();
 
-  constructor(private pileStateSvc: PileStateService) {
-  }
+  constructor(private pileStateSvc: PileStateService) {}
 
   public get(kind: string): Pile {
     const pile = this.kindToPile.get(kind);
@@ -45,7 +44,6 @@ export class PileRegistryService {
       }
     });
     this.registeredPilesSubject.next(this.registeredPileKinds);
-    this.pileStateSvc.register(piles)
+    this.pileStateSvc.register(piles);
   }
 }
-

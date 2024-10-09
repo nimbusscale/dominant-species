@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { baseGameState } from '../../game/dominant-species.constants';
 import { Pile } from '../model/pile.model';
-import {PileRegistryService} from "./pile-registry.service";
+import { PileRegistryService } from './pile-registry.service';
 
 @Injectable({
   providedIn: 'root',
