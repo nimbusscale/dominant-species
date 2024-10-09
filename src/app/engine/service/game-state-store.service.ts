@@ -4,6 +4,7 @@ import { FactionState } from '../model/faction.model';
 import { emptyGameState, GameState, GameStateElement } from '../model/game-state.model';
 import { Injectable } from '@angular/core';
 import { deepClone } from 'fast-json-patch';
+import {AreaState} from "../model/area.model";
 
 /**
  * GameStateStoreService is responsible for maintain the GameState and making it accessible to others.
@@ -144,6 +145,18 @@ export class GameStateStoreService {
     } else {
       throw new Error('No transaction in progress to rollback');
     }
+  }
+
+  get area$(): Observable<AreaState[]> {
+    return this.getObservableForKey((gameState) => gameState.area);
+  }
+
+  setArea(newState: AreaState): void {
+    this.setTransactionStateElement('area', newState);
+  }
+
+  registerArea(newState: AreaState): void {
+    this.registerTransactionStateElement('area', newState);
   }
 
   get faction$(): Observable<FactionState[]> {

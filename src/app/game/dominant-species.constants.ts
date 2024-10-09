@@ -20,6 +20,7 @@ export enum dsPieceKind {
  * GameState defining the static elements of the DS game
  */
 export const baseGameState: GameState = {
+  area: [],
   faction: [],
   pile: [
     {
