@@ -13,7 +13,7 @@ describe('Animal', () => {
   beforeEach(() => {
     animalState = {
       owner: testPlayer,
-      kind: 'birdAnimal',
+      id: 'birdAnimal',
       inherentElements: [{ kind: 'seedElement' }, { kind: 'seedElement' }],
       addedElements: [],
     };

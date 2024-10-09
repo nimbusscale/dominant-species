@@ -20,5 +20,5 @@ export const emptyGameState: GameState = {
  * This object defining the state would be of type GameStateElement.
  */
 export interface GameStateElement {
-  kind: string;
+  id: string;
 }

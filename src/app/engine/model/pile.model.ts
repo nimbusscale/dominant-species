@@ -12,12 +12,6 @@ export interface PileState extends GameStateElement {
 
 /**
  * A Pile is used to draw one or more random pieces for a defined pool of pieces.
- * A Pile has two Type Vars needed to be set when it's instantiated:
- *
- * **Tpiece** Kind A type var used to set the kinds of Pieces the Pipe can contain and
- *
- * **Tpiece** A type var used to set the type of Piece the Pile creates
- *
  */
 export class Pile {
   private readonly pieceFactory: PieceFactory;
@@ -57,7 +51,7 @@ export class Pile {
   }
 
   get kind(): string {
-    return this._state.kind;
+    return this._state.id;
   }
 
   setState(newState: PileState) {

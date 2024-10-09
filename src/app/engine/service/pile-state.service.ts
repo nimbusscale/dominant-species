@@ -17,8 +17,8 @@ export class PileStateService {
   private initialize(): void {
     this.gameStateSvc.pile$.subscribe((pileStates) => {
       pileStates.forEach((pileState) => {
-        if (this.registeredPileKinds.has(pileState.kind)) {
-          const pile = this.getPile(pileState.kind);
+        if (this.registeredPileKinds.has(pileState.id)) {
+          const pile = this.getPile(pileState.id);
           pile.setState(pileState);
         }
       });

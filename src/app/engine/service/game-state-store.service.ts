@@ -61,7 +61,7 @@ export class GameStateStoreService {
       throw new Error('Must start transaction before updating GameState.');
     }
     const subStateArray = this._transactionState[key] as (typeof newGameStateElement)[];
-    const index = subStateArray.findIndex((item) => item.kind === newGameStateElement.kind);
+    const index = subStateArray.findIndex((item) => item.id === newGameStateElement.id);
 
     if (index > -1) {
       subStateArray[index] = newGameStateElement;
@@ -85,7 +85,7 @@ export class GameStateStoreService {
       throw new Error('Can not register new State Elements while a transaction is in progress.');
     }
     const subStateArray = this._gameState[key] as (typeof newGameStateElement)[];
-    const index = subStateArray.findIndex((item) => item.kind === newGameStateElement.kind);
+    const index = subStateArray.findIndex((item) => item.id === newGameStateElement.id);
 
     if (index > -1) {
       throw new Error(`State Element ${JSON.stringify(newGameStateElement)} already registered`);

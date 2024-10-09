@@ -23,7 +23,7 @@ export const baseGameState: GameState = {
   faction: [],
   pile: [
     {
-      kind: dsPieceKind.ELEMENT as string,
+      id: dsPieceKind.ELEMENT as string,
       inventory: {
         // 20 Elements each, with 2 being places on Earth, leaving 18 in the bag
         grassElement: 18,

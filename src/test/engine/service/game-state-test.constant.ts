@@ -16,12 +16,12 @@ function deepFreeze<T>(obj: T): T {
 }
 
 export const testPileState1: PileState = deepFreeze({
-  kind: 'pile1',
+  id: 'pile1',
   inventory: { test1: 10, test2: 10 },
 });
 
 export const testPileState2: PileState = deepFreeze({
-  kind: 'pile2',
+  id: 'pile2',
   inventory: { test3: 10 },
 });
 
@@ -36,11 +36,11 @@ export const testGameStatePatch1: GameStatePatch = deepFreeze({
 export const testGameState1: GameState = deepFreeze({
   pile: [
     {
-      kind: 'pile1',
+      id: 'pile1',
       inventory: { test1: 10, test2: 10 },
     },
     {
-      kind: 'pile2',
+      id: 'pile2',
       inventory: { test3: 10 },
     },
   ],
@@ -50,14 +50,14 @@ export const testGameState1: GameState = deepFreeze({
         id: 'test1',
         name: 'Tester1',
       },
-      kind: 'redTester',
+      id: 'redTester',
     },
     {
       owner: {
         id: 'test2',
         name: 'Tester2',
       },
-      kind: 'blueTester',
+      id: 'blueTester',
     },
   ],
 } as { pile: PileState[]; faction: FactionState[] });
@@ -66,7 +66,7 @@ export const testGameState1: GameState = deepFreeze({
 export const testGameState1updated: GameState = deepFreeze({
   pile: [
     {
-      kind: 'pile1',
+      id: 'pile1',
       // Updated with test1 = 20
       inventory: { test1: 20, test2: 10 },
     },
@@ -78,14 +78,14 @@ export const testGameState1updated: GameState = deepFreeze({
         id: 'test1',
         name: 'Tester1',
       },
-      kind: 'redTester',
+      id: 'redTester',
     },
     {
       owner: {
         id: 'test2',
         name: 'Tester2',
       },
-      kind: 'blueTester',
+      id: 'blueTester',
     },
   ],
 } as { pile: PileState[]; faction: FactionState[] });

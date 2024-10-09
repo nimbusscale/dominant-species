@@ -20,7 +20,7 @@ export const inherentElementKindByAnimalKind = new Map<AnimalKind, string>([
 ] as const);
 
 export type AnimalState = FactionState & {
-  kind: AnimalKind;
+  id: AnimalKind;
   inherentElements: Piece[];
   addedElements: Piece[];
 };
@@ -44,7 +44,7 @@ export class Animal {
   }
 
   get kind(): AnimalKind {
-    return this.state.kind;
+    return this.state.id;
   }
 
   /**
