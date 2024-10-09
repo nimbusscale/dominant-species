@@ -36,11 +36,11 @@ export class PileRegistryService {
 
   register(piles: Pile[]): void {
     piles.forEach((pile) => {
-      if (!this.registeredPileKinds.has(pile.kind)) {
-        this.kindToPile.set(pile.kind, pile);
-        this.registeredPileKinds.add(pile.kind);
+      if (!this.registeredPileKinds.has(pile.id)) {
+        this.kindToPile.set(pile.id, pile);
+        this.registeredPileKinds.add(pile.id);
       } else {
-        throw new Error(`Pile for kind ${pile.kind} already registered.`);
+        throw new Error(`Pile for kind ${pile.id} already registered.`);
       }
     });
     this.registeredPilesSubject.next(this.registeredPileKinds);

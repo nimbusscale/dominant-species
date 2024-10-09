@@ -1,4 +1,4 @@
-import { Area } from './area.model';
+// import { Area } from '../../../app/engine/model/area.model';
 
 // describe('Area', () => {
 //   it('should create an instance', () => {

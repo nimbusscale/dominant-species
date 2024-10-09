@@ -50,7 +50,7 @@ export class Pile {
     return deepClone(this._state) as PileState;
   }
 
-  get kind(): string {
+  get id(): string {
     return this._state.id;
   }
 

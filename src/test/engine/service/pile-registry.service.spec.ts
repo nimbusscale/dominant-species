@@ -36,7 +36,7 @@ describe('PileRegistryService', () => {
     });
     it('updates and emits registeredPiles$', (done) => {
       pileRegistrySvc.registeredPiles$.pipe(skip(1)).subscribe((pileKinds) => {
-        expect(pileKinds.has(testPile1.kind)).toBeTrue();
+        expect(pileKinds.has(testPile1.id)).toBeTrue();
         done();
       });
       pileRegistrySvc.register([testPile1]);
@@ -51,12 +51,12 @@ describe('PileRegistryService', () => {
   describe('get', () => {
     it('should return registered piles', () => {
       pileRegistrySvc.register([testPile1, testPile2]);
-      expect(pileRegistrySvc.get(testPile1.kind)).toEqual(testPile1);
-      expect(pileRegistrySvc.get(testPile2.kind)).toEqual(testPile2);
+      expect(pileRegistrySvc.get(testPile1.id)).toEqual(testPile1);
+      expect(pileRegistrySvc.get(testPile2.id)).toEqual(testPile2);
     });
     it('should throw error if getting unregistered pile', () => {
       expect(() => {
-        pileRegistrySvc.get(testPile1.kind);
+        pileRegistrySvc.get(testPile1.id);
       }).toThrowError();
     });
   });

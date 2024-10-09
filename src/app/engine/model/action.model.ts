@@ -1,3 +1,3 @@
 export interface Action {
-  temp: string
+  id: string;
 }
