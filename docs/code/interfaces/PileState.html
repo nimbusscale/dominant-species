@@ -212,6 +212,7 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { defaultPieceFactory, Piece, PieceFactory } from &#x27;./piece.model&#x27;;
 import { GameStateElement } from &#x27;./game-state.model&#x27;;
 import { deepClone } from &#x27;fast-json-patch&#x27;;
+import { BehaviorSubject, distinctUntilChanged, Observable } from &#x27;rxjs&#x27;;
 
 /**
  * PileState is pretty simple as it just keeps tracks of what kinds of pieces are in the pile and how many of them.
@@ -232,6 +233,10 @@ export interface PileState extends GameStateElement {
 export class Pile {
   private readonly pieceFactory: PieceFactory;
   private _state: PileState;
+  private stateSubject: BehaviorSubject&lt;PileState&gt;;
+  private lengthSubject: BehaviorSubject&lt;number&gt;;
+  state$: Observable&lt;PileState&gt;;
+  length$: Observable&lt;number&gt;;
 
   /**
    * @param state An object that acts as the definition for the pool of pieces the Pile represents.
@@ -242,6 +247,10 @@ export class Pile {
   constructor(state: PileState, pieceFactory: PieceFactory &#x3D; defaultPieceFactory) {
     this._state &#x3D; state;
     this.pieceFactory &#x3D; pieceFactory;
+    this.stateSubject &#x3D; new BehaviorSubject&lt;PileState&gt;(this.state);
+    this.state$ &#x3D; this.stateSubject.asObservable();
+    this.lengthSubject &#x3D; new BehaviorSubject&lt;number&gt;(this.length);
+    this.length$ &#x3D; this.lengthSubject.asObservable().pipe(distinctUntilChanged());
   }
 
   /**
@@ -266,10 +275,15 @@ export class Pile {
     this._state &#x3D; newState;
   }
 
+  private emitState(): void {
+    this.stateSubject.next(this.state);
+    this.lengthSubject.next(this.length);
+  }
+
   /**
-   * @param count The number of pieces to draw from the pile.
-   * @returns An array where each member represents the piece that was drawn. A &#x60;null&#x60;
-   * will be returned for any piece drawn while the pile is empty.
+   * Pulls a specified number of pieces from the pile of the given kind.
+   * @param count The number of pieces to pull. Defaults to 1.
+   * @returns An array of pieces pulled from the pile, or null values if the pile is empty.
    */
   pull(count &#x3D; 1): (Piece | null)[] {
     const pieces: (Piece | null)[] &#x3D; [];
@@ -289,11 +303,13 @@ export class Pile {
         pieces.push(null);
       }
     }
+    this.emitState();
     return pieces;
   }
 
   /**
-   * @param pieces An array of pieces to add to the pile.
+   * Puts the specified pieces into the pile of the given kind.
+   * @param pieces The pieces to put into the pile.
    */
   put(pieces: Piece[]): void {
     for (const piece of pieces) {
@@ -301,6 +317,7 @@ export class Pile {
       const currentItemCount &#x3D; this._state.inventory[piece.kind] || 0;
       this._state.inventory[piece.kind] &#x3D; currentItemCount + 1;
     }
+    this.emitState();
   }
 }
 </code></pre>
