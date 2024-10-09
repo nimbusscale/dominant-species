@@ -157,7 +157,7 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(pileSvc: <a href="../injectables/PileService.html" target="_self">PileService</a>)</code>
+<code>constructor(pileRegistrySvc: <a href="../injectables/PileRegistryService.html" target="_self">PileRegistryService</a>)</code>
                     </td>
                 </tr>
                         <tr>
@@ -180,10 +180,10 @@
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>pileSvc</td>
+                                                        <td>pileRegistrySvc</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../injectables/PileService.html" target="_self" >PileService</a></code>
+                                                                        <code><a href="../injectables/PileRegistryService.html" target="_self" >PileRegistryService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -250,21 +250,21 @@
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
 import { baseGameState } from &#x27;../../game/dominant-species.constants&#x27;;
-import { PileService } from &#x27;./pile.service&#x27;;
 import { Pile } from &#x27;../model/pile.model&#x27;;
+import { PileRegistryService } from &#x27;./pile-registry.service&#x27;;
 
 @Injectable({
   providedIn: &#x27;root&#x27;,
 })
 export class GameManagementService {
-  constructor(private pileSvc: PileService) {}
+  constructor(private pileRegistrySvc: PileRegistryService) {}
 
   createGame(): void {
     const piles: Pile[] &#x3D; [];
     baseGameState.pile.forEach((pileState) &#x3D;&gt; {
       piles.push(new Pile(pileState));
     });
-    this.pileSvc.register(piles);
+    this.pileRegistrySvc.register(piles);
   }
 }
 </code></pre>

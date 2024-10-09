@@ -155,9 +155,23 @@ A Pile has two Type Vars needed to be set when it&#39;s instantiated:</p>
                                 <a href="#_state" >_state</a>
                             </li>
                             <li>
+                                <a href="#length$" >length$</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#lengthSubject" >lengthSubject</a>
+                            </li>
+                            <li>
                                     <span class="modifier">Private</span>
                                     <span class="modifier">Readonly</span>
                                 <a href="#pieceFactory" >pieceFactory</a>
+                            </li>
+                            <li>
+                                <a href="#state$" >state$</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#stateSubject" >stateSubject</a>
                             </li>
                         </ul>
                     </td>
@@ -171,6 +185,10 @@ A Pile has two Type Vars needed to be set when it&#39;s instantiated:</p>
                 <tr>
                     <td class="col-md-4">
                         <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#emitState" >emitState</a>
+                            </li>
                             <li>
                                 <a href="#pull" >pull</a>
                             </li>
@@ -223,7 +241,7 @@ A Pile has two Type Vars needed to be set when it&#39;s instantiated:</p>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/engine/model/pile.model.ts:23</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/engine/model/pile.model.ts:28</a></div>
                             </td>
                         </tr>
 
@@ -312,7 +330,60 @@ the pile.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/engine/model/pile.model.ts:23</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/engine/model/pile.model.ts:24</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="length$"></a>
+                    <span class="name">
+                        <span ><b>length$</b></span>
+                        <a href="#length$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Observable&lt;number&gt;</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/engine/model/pile.model.ts:28</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="lengthSubject"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>lengthSubject</b></span>
+                        <a href="#lengthSubject"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>BehaviorSubject&lt;number&gt;</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/engine/model/pile.model.ts:26</a></div>
                         </td>
                     </tr>
 
@@ -340,7 +411,60 @@ the pile.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/engine/model/pile.model.ts:22</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/engine/model/pile.model.ts:23</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="state$"></a>
+                    <span class="name">
+                        <span ><b>state$</b></span>
+                        <a href="#state$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/PileState.html" target="_self" >Observable&lt;PileState&gt;</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/engine/model/pile.model.ts:27</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="stateSubject"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>stateSubject</b></span>
+                        <a href="#stateSubject"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/PileState.html" target="_self" >BehaviorSubject&lt;PileState&gt;</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/engine/model/pile.model.ts:25</a></div>
                         </td>
                     </tr>
 
@@ -354,6 +478,45 @@ the pile.</p>
     <h3 id="methods">
         Methods
     </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="emitState"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>emitState</b></span>
+                        <a href="#emitState"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>emitState()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="67"
+                                    class="link-to-prism">src/app/engine/model/pile.model.ts:67</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -374,15 +537,15 @@ the pile.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="63"
-                                    class="link-to-prism">src/app/engine/model/pile.model.ts:63</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="77"
+                                    class="link-to-prism">src/app/engine/model/pile.model.ts:77</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>will be returned for any piece drawn while the pile is empty.</p>
+                        <div class="io-description"><p>Pulls a specified number of pieces from the pile of the given kind.</p>
 </div>
 
                             <div class="io-description">
@@ -414,7 +577,7 @@ the pile.</p>
                                             </td>
 
                                             <td>
-                                                    <p>The number of pieces to draw from the pile.</p>
+                                                    <p>The number of pieces to pull. Defaults to 1.</p>
 
                                             </td>
                                         </tr>
@@ -426,8 +589,7 @@ the pile.</p>
 
                         </div>
                             <div class="io-description">
-                                <p>An array where each member represents the piece that was drawn. A <code>null</code>
-will be returned for any piece drawn while the pile is empty.</p>
+                                <p>An array of pieces pulled from the pile, or null values if the pile is empty.</p>
 
                             </div>
                 </td>
@@ -454,14 +616,16 @@ will be returned for any piece drawn while the pile is empty.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="87"
-                                    class="link-to-prism">src/app/engine/model/pile.model.ts:87</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="103"
+                                    class="link-to-prism">src/app/engine/model/pile.model.ts:103</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Puts the specified pieces into the pile of the given kind.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -488,7 +652,7 @@ will be returned for any piece drawn while the pile is empty.</p>
 
 
                                             <td>
-                                                    <p>An array of pieces to add to the pile.</p>
+                                                    <p>The pieces to put into the pile.</p>
 
                                             </td>
                                         </tr>
@@ -526,8 +690,8 @@ will be returned for any piece drawn while the pile is empty.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="54"
-                                    class="link-to-prism">src/app/engine/model/pile.model.ts:54</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="63"
+                                    class="link-to-prism">src/app/engine/model/pile.model.ts:63</a></div>
                         </td>
                     </tr>
 
@@ -599,7 +763,7 @@ will be returned for any piece drawn while the pile is empty.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/engine/model/pile.model.ts:39</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/engine/model/pile.model.ts:48</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -632,7 +796,7 @@ will be returned for any piece drawn while the pile is empty.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/engine/model/pile.model.ts:46</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/engine/model/pile.model.ts:55</a></div>
                                 </td>
                             </tr>
 
@@ -654,7 +818,7 @@ will be returned for any piece drawn while the pile is empty.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/engine/model/pile.model.ts:50</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/app/engine/model/pile.model.ts:59</a></div>
                                 </td>
                             </tr>
 
@@ -668,6 +832,7 @@ will be returned for any piece drawn while the pile is empty.</p>
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { defaultPieceFactory, Piece, PieceFactory } from &#x27;./piece.model&#x27;;
 import { GameStateElement } from &#x27;./game-state.model&#x27;;
 import { deepClone } from &#x27;fast-json-patch&#x27;;
+import { BehaviorSubject, distinctUntilChanged, Observable } from &#x27;rxjs&#x27;;
 
 /**
  * PileState is pretty simple as it just keeps tracks of what kinds of pieces are in the pile and how many of them.
@@ -688,6 +853,10 @@ export interface PileState extends GameStateElement {
 export class Pile {
   private readonly pieceFactory: PieceFactory;
   private _state: PileState;
+  private stateSubject: BehaviorSubject&lt;PileState&gt;;
+  private lengthSubject: BehaviorSubject&lt;number&gt;;
+  state$: Observable&lt;PileState&gt;;
+  length$: Observable&lt;number&gt;;
 
   /**
    * @param state An object that acts as the definition for the pool of pieces the Pile represents.
@@ -698,6 +867,10 @@ export class Pile {
   constructor(state: PileState, pieceFactory: PieceFactory &#x3D; defaultPieceFactory) {
     this._state &#x3D; state;
     this.pieceFactory &#x3D; pieceFactory;
+    this.stateSubject &#x3D; new BehaviorSubject&lt;PileState&gt;(this.state);
+    this.state$ &#x3D; this.stateSubject.asObservable();
+    this.lengthSubject &#x3D; new BehaviorSubject&lt;number&gt;(this.length);
+    this.length$ &#x3D; this.lengthSubject.asObservable().pipe(distinctUntilChanged());
   }
 
   /**
@@ -722,10 +895,15 @@ export class Pile {
     this._state &#x3D; newState;
   }
 
+  private emitState(): void {
+    this.stateSubject.next(this.state);
+    this.lengthSubject.next(this.length);
+  }
+
   /**
-   * @param count The number of pieces to draw from the pile.
-   * @returns An array where each member represents the piece that was drawn. A &#x60;null&#x60;
-   * will be returned for any piece drawn while the pile is empty.
+   * Pulls a specified number of pieces from the pile of the given kind.
+   * @param count The number of pieces to pull. Defaults to 1.
+   * @returns An array of pieces pulled from the pile, or null values if the pile is empty.
    */
   pull(count &#x3D; 1): (Piece | null)[] {
     const pieces: (Piece | null)[] &#x3D; [];
@@ -745,11 +923,13 @@ export class Pile {
         pieces.push(null);
       }
     }
+    this.emitState();
     return pieces;
   }
 
   /**
-   * @param pieces An array of pieces to add to the pile.
+   * Puts the specified pieces into the pile of the given kind.
+   * @param pieces The pieces to put into the pile.
    */
   put(pieces: Piece[]): void {
     for (const piece of pieces) {
@@ -757,6 +937,7 @@ export class Pile {
       const currentItemCount &#x3D; this._state.inventory[piece.kind] || 0;
       this._state.inventory[piece.kind] &#x3D; currentItemCount + 1;
     }
+    this.emitState();
   }
 }
 </code></pre>
