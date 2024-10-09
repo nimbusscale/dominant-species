@@ -3,9 +3,9 @@ import { GameManagementService } from '../../../engine/service/game-management.s
 import { MatButton } from '@angular/material/button';
 import { MatTooltip } from '@angular/material/tooltip';
 import { GameStateService } from '../../../engine/service/game-state.service';
-import { PileService } from '../../../engine/service/pile.service';
-import { dsPieceKind } from '../../dominant-species.constants';
 import { filter } from 'rxjs';
+import { Pile } from '../../../engine/model/pile.model';
+import { ElementDrawPoolService } from '../../service/element-draw-pool.service';
 
 @Component({
   selector: 'app-draw-pool-game',
@@ -15,28 +15,25 @@ import { filter } from 'rxjs';
   styleUrl: './draw-pool-game.component.scss',
 })
 export class DrawPoolGameComponent {
+  drawPool: Pile | null = null;
   drawPoolLength = 0;
   log: string[] = [];
   constructor(
     private gameManagementSvc: GameManagementService,
     private gameStateSvc: GameStateService,
-    private pileSvc: PileService,
+    private elementDrawPoolSvc: ElementDrawPoolService,
   ) {
     this.initialize();
   }
 
   private initialize(): void {
-    const registeredPilesSubscription = this.pileSvc.registeredPiles$
-      .pipe(filter((registeredPiles) => registeredPiles.has(dsPieceKind.ELEMENT)))
-      .subscribe(() => {
-        const lengthObservable = this.pileSvc.kindToLengthObservables.get(dsPieceKind.ELEMENT);
-        if (lengthObservable) {
-          lengthObservable.subscribe((length) => {
-            this.drawPoolLength = length;
-          });
-        } else {
-          throw new Error('Length observable for not found');
-        }
+    const registeredPilesSubscription = this.elementDrawPoolSvc.drawPool$
+      .pipe(filter((drawPool) => drawPool != null))
+      .subscribe((drawPool) => {
+        this.drawPool = drawPool;
+        drawPool.length$.subscribe((length) => {
+          this.drawPoolLength = length;
+        });
         registeredPilesSubscription.unsubscribe();
       });
   }
@@ -57,12 +54,14 @@ export class DrawPoolGameComponent {
   }
 
   draw(): void {
-    const item = this.pileSvc.pull(dsPieceKind.ELEMENT);
-    if (item[0]) {
-      const element = this.formatElementName(item[0].kind);
-      this.log.push(`You drew a ${element}`);
-    } else {
-      this.log.push('Pile is empty!');
+    if (this.drawPool) {
+      const item = this.drawPool.pull();
+      if (item[0]) {
+        const element = this.formatElementName(item[0].kind);
+        this.log.push(`You drew a ${element}`);
+      } else {
+        this.log.push('Pile is empty!');
+      }
     }
   }
 
