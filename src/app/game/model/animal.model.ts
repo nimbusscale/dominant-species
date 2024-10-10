@@ -1,4 +1,4 @@
-import { Player } from '../../engine/model/player.model';
+import { PlayerState } from '../../engine/model/player.model';
 import { FactionState } from '../../engine/model/faction.model';
 import { Piece } from '../../engine/model/piece.model';
 
@@ -56,7 +56,7 @@ export class Animal {
     return animalName.charAt(0).toUpperCase() + animalName.slice(1);
   }
 
-  get owner(): Player {
+  get owner(): PlayerState {
     return this.state.owner;
   }
 

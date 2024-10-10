@@ -1,7 +1,7 @@
 import { Animal, AnimalState } from '../../../app/game/model/animal.model';
-import { Player } from '../../../app/engine/model/player.model';
+import { PlayerState } from '../../../app/engine/model/player.model';
 
-const testPlayer: Player = {
+const testPlayer: PlayerState = {
   id: 'test',
   name: 'NimbusScale',
 };

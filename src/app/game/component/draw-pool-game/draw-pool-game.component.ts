@@ -39,8 +39,8 @@ export class DrawPoolGameComponent {
   }
 
   createGame(): void {
-    console.log('Create Game');
     this.gameManagementSvc.createGame();
+    console.log('Create Game');
   }
 
   startTurn(): void {
