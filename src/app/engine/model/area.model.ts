@@ -1,12 +1,12 @@
 import { Space, SpaceState } from './space.model';
-import { GameStateElement } from './game-state.model';
+import { GameElementState } from './game-state.model';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { deepClone } from 'fast-json-patch';
 
 /**
  * AreaState does not extend GameStateElement as each Area is unique with a unique ID
  */
-export interface AreaState extends GameStateElement {
+export interface AreaState extends GameElementState {
   space: SpaceState[];
 }
 

@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 import { baseGameState } from '../../game/dominant-species.constants';
 import { Pile } from '../model/pile.model';
-import { PileRegistryService } from './pile-registry.service';
-import {Space} from "../model/space.model";
-import {Area} from "../model/area.model";
-import {AreaRegistryService} from "./area-registry.service";
-import {PlayerState} from "../model/player.model";
+import { AreaRegistryService, PileRegistryService } from './game-element-registry.service';
+import { Space } from '../model/space.model';
+import { Area } from '../model/area.model';
+import { PlayerState } from '../model/player.model';
 
 @Injectable({
   providedIn: 'root',
@@ -13,27 +12,28 @@ import {PlayerState} from "../model/player.model";
 export class GameManagementService {
   constructor(
     private areaRegistrySvc: AreaRegistryService,
-    private pileRegistrySvc: PileRegistryService
+    private pileRegistrySvc: PileRegistryService,
   ) {}
 
   createGame(): void {
-    this.createArea()
-    this.createPile()
+    this.createArea();
+    this.createPile();
   }
 
   private createArea(): void {
-    const areas: Area[] = []
+    const areas: Area[] = [];
     baseGameState.area.forEach((areaState) => {
-      const spaces: Space[] = []
+      const spaces: Space[] = [];
       areaState.space.forEach((spaceState) => {
-        spaces.push(new Space(spaceState.kind))
-      })
-      areas.push(new Area(areaState.id, spaces))
-    })
-    this.areaRegistrySvc.register(areas)
+        spaces.push(new Space(spaceState.kind));
+      });
+      areas.push(new Area(areaState.id, spaces));
+    });
+    this.areaRegistrySvc.register(areas);
   }
 
   private createFactions(players: PlayerState[]) {
+    console.log(players);
   }
 
   private createPile(): void {
@@ -43,5 +43,4 @@ export class GameManagementService {
     });
     this.pileRegistrySvc.register(piles);
   }
-
 }

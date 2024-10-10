@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
 import { ElementDrawPoolService } from '../../../app/game/service/element-draw-pool.service';
-import { PileRegistryService } from '../../../app/engine/service/pile-registry.service';
+import { PileRegistryService } from '../../../app/engine/service/game-element-registry.service';
 import { BehaviorSubject, skip } from 'rxjs';
 import { dsPieceKind } from '../../../app/game/dominant-species.constants';
 import { deepClone } from 'fast-json-patch';
@@ -18,7 +18,7 @@ describe('ElementDrawPoolService', () => {
     registeredPilesSubject = new BehaviorSubject<Set<string>>(new Set());
 
     const pileRegistrySvcSpyObj = jasmine.createSpyObj('pileRegistrySvc', ['get'], {
-      registeredPiles$: registeredPilesSubject.asObservable(),
+      registeredIds$: registeredPilesSubject.asObservable(),
     });
 
     // These probably should be mocks /

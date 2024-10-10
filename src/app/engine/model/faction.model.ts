@@ -1,7 +1,6 @@
-import { PlayerState } from './player.model';
-import { GameStateElement } from './game-state.model';
+import { GameElementState } from './game-state.model';
 
-export interface FactionState extends GameStateElement {
-  owner: PlayerState;
-  score: number
+export interface FactionState extends GameElementState {
+  ownerId: string;
+  score: number;
 }

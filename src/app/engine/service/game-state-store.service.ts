@@ -1,10 +1,10 @@
 import { PileState } from '../model/pile.model';
 import { BehaviorSubject, map, Observable } from 'rxjs';
 import { FactionState } from '../model/faction.model';
-import { emptyGameState, GameState, GameStateElement } from '../model/game-state.model';
+import { emptyGameState, GameState, GameElementState } from '../model/game-state.model';
 import { Injectable } from '@angular/core';
 import { deepClone } from 'fast-json-patch';
-import {AreaState} from "../model/area.model";
+import { AreaState } from '../model/area.model';
 
 /**
  * GameStateStoreService is responsible for maintain the GameState and making it accessible to others.
@@ -56,7 +56,7 @@ export class GameStateStoreService {
    */
   private setTransactionStateElement(
     key: keyof GameState,
-    newGameStateElement: GameStateElement,
+    newGameStateElement: GameElementState,
   ): void {
     if (!this._transactionState) {
       throw new Error('Must start transaction before updating GameState.');
@@ -80,7 +80,7 @@ export class GameStateStoreService {
    */
   private registerTransactionStateElement(
     key: keyof GameState,
-    newGameStateElement: GameStateElement,
+    newGameStateElement: GameElementState,
   ): void {
     if (this.transactionState) {
       throw new Error('Can not register new State Elements while a transaction is in progress.');

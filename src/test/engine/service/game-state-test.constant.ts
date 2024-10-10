@@ -1,7 +1,8 @@
 import { GameStatePatch } from '../../../app/engine/model/game-state-patch.model';
-import { GameState } from '../../../app/engine/model/game-state.model';
+import { GameState, GlobalState } from '../../../app/engine/model/game-state.model';
 import { PileState } from '../../../app/engine/model/pile.model';
 import { FactionState } from '../../../app/engine/model/faction.model';
+import { AreaState } from '../../../app/engine/model/area.model';
 
 function deepFreeze<T>(obj: T): T {
   const propNames = Object.getOwnPropertyNames(obj) as (keyof T)[];
@@ -33,7 +34,24 @@ export const testGameStatePatch1: GameStatePatch = deepFreeze({
   ],
 });
 
+export const testFactionState1: FactionState = deepFreeze({
+  id: 'redTester',
+  ownerId: 'tester1',
+  score: 0,
+});
+
+export const testFactionState2: FactionState = deepFreeze({
+  id: 'blueTester',
+  ownerId: 'tester2',
+  score: 0,
+});
+
 export const testGameState1: GameState = deepFreeze({
+  area: [],
+  faction: [testFactionState1, testFactionState2],
+  global: {
+    player: [],
+  },
   pile: [
     {
       id: 'pile1',
@@ -44,26 +62,15 @@ export const testGameState1: GameState = deepFreeze({
       inventory: { test3: 10 },
     },
   ],
-  faction: [
-    {
-      owner: {
-        id: 'test1',
-        name: 'Tester1',
-      },
-      id: 'redTester',
-    },
-    {
-      owner: {
-        id: 'test2',
-        name: 'Tester2',
-      },
-      id: 'blueTester',
-    },
-  ],
-} as { pile: PileState[]; faction: FactionState[] });
+} as { area: AreaState[]; faction: FactionState[]; global: GlobalState; pile: PileState[] });
 
 // Since testGameState1 is frozen, we need to just duplicate the object config here.
 export const testGameState1updated: GameState = deepFreeze({
+  area: [],
+  faction: [testFactionState1, testFactionState2],
+  global: {
+    player: [],
+  },
   pile: [
     {
       id: 'pile1',
@@ -72,20 +79,4 @@ export const testGameState1updated: GameState = deepFreeze({
     },
     // removed second pile
   ],
-  faction: [
-    {
-      owner: {
-        id: 'test1',
-        name: 'Tester1',
-      },
-      id: 'redTester',
-    },
-    {
-      owner: {
-        id: 'test2',
-        name: 'Tester2',
-      },
-      id: 'blueTester',
-    },
-  ],
-} as { pile: PileState[]; faction: FactionState[] });
+} as { area: AreaState[]; faction: FactionState[]; global: GlobalState; pile: PileState[] });

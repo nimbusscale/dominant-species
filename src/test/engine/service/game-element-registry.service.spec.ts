@@ -1,12 +1,16 @@
 import { TestBed } from '@angular/core/testing';
 
-import { PileRegistryService } from '../../../app/engine/service/pile-registry.service';
-import { PileStateService } from '../../../app/engine/service/pile-state.service';
+import { PileRegistryService } from '../../../app/engine/service/game-element-registry.service';
+import { PileStateService } from '../../../app/engine/service/game-element-state.service';
 import { Pile, PileState } from '../../../app/engine/model/pile.model';
 import { deepClone } from 'fast-json-patch';
 import { testPileState1, testPileState2 } from './game-state-test.constant';
 import { skip } from 'rxjs';
 
+
+/**
+ * PileRegistryService is an implementation of GameElementRegistryService and provides sufficient testing of GameElementRegistryService
+ */
 describe('PileRegistryService', () => {
   let pileRegistrySvc: PileRegistryService;
   let pileStateSvcSpy: jasmine.SpyObj<PileStateService>;
@@ -35,7 +39,7 @@ describe('PileRegistryService', () => {
       expect(pileStateSvcSpy.register).toHaveBeenCalledWith(piles);
     });
     it('updates and emits registeredPiles$', (done) => {
-      pileRegistrySvc.registeredPiles$.pipe(skip(1)).subscribe((pileIds) => {
+      pileRegistrySvc.registeredIds$.pipe(skip(1)).subscribe((pileIds) => {
         expect(pileIds.has(testPile1.id)).toBeTrue();
         done();
       });

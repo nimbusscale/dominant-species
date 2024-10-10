@@ -1,12 +1,15 @@
 import { TestBed } from '@angular/core/testing';
 
-import { PileStateService } from '../../../app/engine/service/pile-state.service';
+import { PileStateService } from '../../../app/engine/service/game-element-state.service';
 import { BehaviorSubject } from 'rxjs';
 import { Pile, PileState } from '../../../app/engine/model/pile.model';
 import { deepClone } from 'fast-json-patch';
 import { testPileState1, testPileState2 } from './game-state-test.constant';
 import { GameStateService } from '../../../app/engine/service/game-state.service';
 
+/**
+ * PileStateService is an implementation of GameElementStateService and provides sufficient testing of GameElementStateService
+ */
 describe('PileStateService', () => {
   let pileStateSvc: PileStateService;
   let gameStateSvcSpy: jasmine.SpyObj<GameStateService>;

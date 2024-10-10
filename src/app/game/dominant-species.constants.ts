@@ -1,6 +1,5 @@
 import { GameState } from '../engine/model/game-state.model';
 
-
 export enum dsAnimal {
   AMPHIBIAN = 'amphibian',
   ARACHNID = 'arachnid',
@@ -47,10 +46,9 @@ export enum dsPieceKind {
 }
 
 export enum dsSpaceKind {
-  ACTION_PAWN='actionPawn',
+  ACTION_PAWN = 'actionPawn',
   ELEMENT = 'element',
 }
-
 
 /**
  * GameState defining the static elements of the DS game
@@ -60,17 +58,15 @@ export const baseGameState: GameState = {
     {
       id: dsAreaId.ACTION_DISPLAY_ADAPTION as string,
       space: [
-        {kind: dsSpaceKind.ACTION_PAWN as string, piece: null},
-        {kind: dsSpaceKind.ACTION_PAWN as string, piece: null},
-        {kind: dsSpaceKind.ACTION_PAWN as string, piece: null}
-      ]
-    }
+        { kind: dsSpaceKind.ACTION_PAWN as string, piece: null },
+        { kind: dsSpaceKind.ACTION_PAWN as string, piece: null },
+        { kind: dsSpaceKind.ACTION_PAWN as string, piece: null },
+      ],
+    },
   ],
   faction: [],
   global: {
-    player: [
-      {id: 'test', name: 'Test Player'}
-    ]
+    player: [{ id: 'test', name: 'Test Player' }],
   },
   pile: [
     {
@@ -88,12 +84,13 @@ export const baseGameState: GameState = {
   ],
 };
 
-
-export const inherentElementKindByAnimal = new Map<dsAnimal, { kind: dsElement; inherent: number }>([
-  [dsAnimal.AMPHIBIAN, {kind: dsElement.WATER, inherent: 3}],
-  [dsAnimal.ARACHNID, {kind: dsElement.GRUB, inherent: 2}],
-  [dsAnimal.BIRD, {kind: dsElement.SEED, inherent: 2}],
-  [dsAnimal.INSECT, {kind: dsElement.GRASS, inherent: 2}],
-  [dsAnimal.MAMMAL, {kind: dsElement.MEAT, inherent: 2}],
-  [dsAnimal.REPTILE, {kind: dsElement.SUN, inherent: 2}],
-] as const);
+export const inherentElementKindByAnimal = new Map<dsAnimal, { kind: dsElement; inherent: number }>(
+  [
+    [dsAnimal.AMPHIBIAN, { kind: dsElement.WATER, inherent: 3 }],
+    [dsAnimal.ARACHNID, { kind: dsElement.GRUB, inherent: 2 }],
+    [dsAnimal.BIRD, { kind: dsElement.SEED, inherent: 2 }],
+    [dsAnimal.INSECT, { kind: dsElement.GRASS, inherent: 2 }],
+    [dsAnimal.MAMMAL, { kind: dsElement.MEAT, inherent: 2 }],
+    [dsAnimal.REPTILE, { kind: dsElement.SUN, inherent: 2 }],
+  ] as const,
+);
