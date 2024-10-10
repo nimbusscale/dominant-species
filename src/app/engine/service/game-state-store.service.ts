@@ -167,6 +167,10 @@ export class GameStateStoreService {
     this.setTransactionStateElement('faction', newState);
   }
 
+  registerFaction(newState: FactionState): void {
+    this.registerTransactionStateElement('faction', newState);
+  }
+
   get pile$(): Observable<PileState[]> {
     return this.getObservableForKey((gameState) => gameState.pile);
   }

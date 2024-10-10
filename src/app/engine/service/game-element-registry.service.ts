@@ -4,10 +4,12 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { Pile } from '../model/pile.model';
 import {
   AreaStateService,
+  FactionStateService,
   GameElementStateService,
   PileStateService,
 } from './game-element-state.service';
 import { Area } from '../model/area.model';
+import { Faction } from '../model/faction.model';
 
 @Injectable({
   providedIn: 'root',
@@ -51,6 +53,18 @@ export abstract class GameElementRegistryService<
 export class AreaRegistryService extends GameElementRegistryService<Area, AreaStateService> {
   constructor(protected areaStateSvc: AreaStateService) {
     super(areaStateSvc);
+  }
+}
+
+@Injectable({
+  providedIn: 'root',
+})
+export class FactionRegistryService extends GameElementRegistryService<
+  Faction,
+  FactionStateService
+> {
+  constructor(protected factionStateSvc: FactionStateService) {
+    super(factionStateSvc);
   }
 }
 

@@ -6,6 +6,7 @@ import { GameStateService } from '../../../engine/service/game-state.service';
 import { filter } from 'rxjs';
 import { Pile } from '../../../engine/model/pile.model';
 import { ElementDrawPoolService } from '../../service/element-draw-pool.service';
+import { FactionRegistryService } from '../../../engine/service/game-element-registry.service';
 
 @Component({
   selector: 'app-draw-pool-game',
@@ -22,6 +23,7 @@ export class DrawPoolGameComponent {
     private gameManagementSvc: GameManagementService,
     private gameStateSvc: GameStateService,
     private elementDrawPoolSvc: ElementDrawPoolService,
+    private factionRegistrySvc: FactionRegistryService,
   ) {
     this.initialize();
   }
@@ -41,6 +43,9 @@ export class DrawPoolGameComponent {
   createGame(): void {
     this.gameManagementSvc.createGame();
     console.log('Create Game');
+    this.factionRegistrySvc.registeredIds$.subscribe((ids) => {
+      this.log.push(`Welcome ${Array.from(ids)[0]}!`);
+    });
   }
 
   startTurn(): void {

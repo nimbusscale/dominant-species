@@ -80,6 +80,9 @@ export class GameStateService {
   setFaction(newState: FactionState): void {
     this.gameStateStore.setFaction(newState);
   }
+  registerFaction(newState: FactionState): void {
+    this.gameStateStore.registerFaction(newState);
+  }
 
   get pile$(): Observable<PileState[]> {
     return this.gameStateStore.pile$;

@@ -4,6 +4,7 @@ import { Observable, skip } from 'rxjs';
 import { Area, AreaState } from '../model/area.model';
 import { Pile, PileState } from '../model/pile.model';
 import { GameElement, GameElementState } from '../model/game-state.model';
+import { Faction, FactionState } from '../model/faction.model';
 
 @Injectable({
   providedIn: 'root',
@@ -72,6 +73,23 @@ export class AreaStateService extends GameElementStateService<AreaState, Area> {
 
   protected setEntityState(state: AreaState) {
     this.gameStateSvc.setArea(state);
+  }
+}
+
+@Injectable({
+  providedIn: 'root',
+})
+export class FactionStateService extends GameElementStateService<FactionState, Faction> {
+  protected get elementState$() {
+    return this.gameStateSvc.faction$;
+  }
+
+  protected registerEntityState(faction: Faction) {
+    this.gameStateSvc.registerFaction(faction.state);
+  }
+
+  protected setEntityState(state: FactionState) {
+    this.gameStateSvc.setFaction(state);
   }
 }
 

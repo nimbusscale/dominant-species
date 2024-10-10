@@ -1,10 +1,16 @@
 import { Injectable } from '@angular/core';
-import { baseGameState } from '../../game/dominant-species.constants';
+import { baseGameState, dsAnimal } from '../../game/dominant-species.constants';
 import { Pile } from '../model/pile.model';
-import { AreaRegistryService, PileRegistryService } from './game-element-registry.service';
+import {
+  AreaRegistryService,
+  FactionRegistryService,
+  PileRegistryService,
+} from './game-element-registry.service';
 import { Space } from '../model/space.model';
 import { Area } from '../model/area.model';
 import { PlayerState } from '../model/player.model';
+import { shuffle } from 'lodash';
+import { Faction } from '../model/faction.model';
 
 @Injectable({
   providedIn: 'root',
@@ -12,12 +18,14 @@ import { PlayerState } from '../model/player.model';
 export class GameManagementService {
   constructor(
     private areaRegistrySvc: AreaRegistryService,
+    private factionRegistrySvc: FactionRegistryService,
     private pileRegistrySvc: PileRegistryService,
   ) {}
 
   createGame(): void {
     this.createArea();
     this.createPile();
+    this.createFactions(baseGameState.global.player);
   }
 
   private createArea(): void {
@@ -33,7 +41,18 @@ export class GameManagementService {
   }
 
   private createFactions(players: PlayerState[]) {
-    console.log(players);
+    const factions: Faction[] = [];
+    const shuffledAnimals = shuffle(Object.values(dsAnimal));
+    players.forEach((player, index) => {
+      factions.push(
+        new Faction({
+          id: shuffledAnimals[index] as string,
+          ownerId: player.id,
+          score: 0,
+        }),
+      );
+    });
+    this.factionRegistrySvc.register(factions);
   }
 
   private createPile(): void {
