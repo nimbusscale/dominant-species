@@ -1,10 +1,10 @@
-import {GameElementState} from "./game-state.model";
-import {BehaviorSubject, Observable} from "rxjs";
-import {deepClone} from "fast-json-patch";
+import { GameElementState } from './game-state.model';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { deepClone } from 'fast-json-patch';
 
 export class GameElement<T extends GameElementState> {
   protected _state: T;
-  private stateSubject: BehaviorSubject<T>;
+  protected stateSubject: BehaviorSubject<T>;
   state$: Observable<T>;
 
   constructor(state: T) {
@@ -14,15 +14,23 @@ export class GameElement<T extends GameElementState> {
   }
 
   get id(): string {
-    return this._state.id
+    return this._state.id;
   }
 
   get state(): T {
     return deepClone(this._state) as T;
   }
 
+  /**
+   * Set state happens when a GSP is received, so state is not emitted back as it's already in the GameState
+   * @param newState
+   */
   setState(newState: T) {
-    this._state = newState;
+    if (newState.id === this.id) {
+      this._state = newState;
+    } else {
+      throw new Error("new id doesn't match existing it");
+    }
   }
 
   protected emitState(): void {

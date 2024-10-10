@@ -29,22 +29,6 @@ describe('Pile', () => {
     pile = new Pile(pileState, defaultPieceFactory);
   });
 
-  describe('state', () => {
-    it('should be able to retrieve a copy', () => {
-      expect(pile.state).toEqual(pileState);
-      expect(pile.state).not.toBe(pileState);
-    });
-    it('should be updatable', () => {
-      const newPileState: PileState = {
-        id: 'test',
-        inventory: {
-          meat: 1,
-        },
-      };
-      pile.setState(newPileState);
-      expect(pile.state).toEqual(newPileState);
-    });
-  });
   describe('length', () => {
     it('should return total number of items when pile has items', () => {
       const result = pile.length;

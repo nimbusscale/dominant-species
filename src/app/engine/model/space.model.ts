@@ -37,13 +37,21 @@ export class Space {
   }
 
   addPiece(piece: Piece): void {
-    this._piece = piece;
-    this.stateSubject.next(this.state);
+    if (!this._piece) {
+      this._piece = piece;
+      this.stateSubject.next(this.state);
+    } else {
+      throw new Error('space already has a piece');
+    }
   }
 
   removePiece(): void {
-    this._piece = null;
-    this.stateSubject.next(this.state);
+    if (this._piece) {
+      this._piece = null;
+      this.stateSubject.next(this.state);
+    } else {
+      throw new Error('no piece to remove from space');
+    }
   }
 
   setState(newState: SpaceState) {

@@ -1,7 +1,6 @@
 import { Space, SpaceState } from './space.model';
 import { GameElementState } from './game-state.model';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { deepClone } from 'fast-json-patch';
+import { GameElement } from './game-element.model';
 
 /**
  * AreaState does not extend GameStateElement as each Area is unique with a unique ID
@@ -10,19 +9,15 @@ export interface AreaState extends GameElementState {
   space: SpaceState[];
 }
 
-export class Area {
-  readonly id: string;
+export class Area extends GameElement<AreaState> {
   readonly spaces: Space[];
   private readonly spaceState: SpaceState[];
-  private stateSubject: BehaviorSubject<AreaState>;
-  state$: Observable<AreaState>;
 
   constructor(id: string, spaces: Space[]) {
-    this.id = id;
+    const spaceState = spaces.map((space) => space.state);
+    super({ id: id, space: spaceState });
     this.spaces = spaces;
-    this.spaceState = spaces.map((space) => space.state);
-    this.stateSubject = new BehaviorSubject<AreaState>(this.state);
-    this.state$ = this.stateSubject.asObservable();
+    this.spaceState = spaceState;
     this.initialize();
   }
 
@@ -35,19 +30,13 @@ export class Area {
     });
   }
 
-  get state(): AreaState {
-    return deepClone({ id: this.id, space: this.spaceState }) as AreaState;
-  }
-
-  setState(newState: AreaState) {
+  override setState(newState: AreaState) {
     if (newState.id != this.id) {
       throw new Error('State does not match area id');
     }
 
-    const currentSpaceKinds = this.spaces.map((space) => space.kind);
-    const stateSpaceKinds = newState.space.map((space) => space.kind);
-    if (currentSpaceKinds != stateSpaceKinds) {
-      throw new Error('State does not match spaces in area');
+    if (this.spaces.length != newState.space.length) {
+      throw new Error('Number of spaces in the new state does not match current state');
     }
 
     newState.space.forEach((spaceState, index) => {
