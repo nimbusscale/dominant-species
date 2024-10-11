@@ -1,13 +1,10 @@
 import { Injectable } from '@angular/core';
+import {Player} from "../model/player.model";
 
 @Injectable({
   providedIn: 'root'
 })
 export class PlayerService {
-
-  constructor() { }
-
-  get currentPlayerId(): string {
-    return 'test1'
-  }
+  readonly currentPlayer: Player = new Player({ id: 'test1', name: 'Test Player' })
+  readonly players: Player[] = [this.currentPlayer] as const
 }

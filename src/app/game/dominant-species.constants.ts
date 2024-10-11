@@ -65,9 +65,6 @@ export const baseGameState: GameState = {
     },
   ],
   faction: [],
-  global: {
-    player: [{ id: 'test1', name: 'Test Player' }],
-  },
   pile: [
     {
       id: dsPieceKind.ELEMENT as string,

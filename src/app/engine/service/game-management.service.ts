@@ -8,9 +8,9 @@ import {
 } from './game-element-registry.service';
 import { Space } from '../model/space.model';
 import { Area } from '../model/area.model';
-import { PlayerState } from '../model/player.model';
 import { shuffle } from 'lodash';
 import { Faction } from '../model/faction.model';
+import {PlayerService} from "./player.service";
 
 @Injectable({
   providedIn: 'root',
@@ -19,13 +19,14 @@ export class GameManagementService {
   constructor(
     private areaRegistrySvc: AreaRegistryService,
     private factionRegistrySvc: FactionRegistryService,
+    private playerService: PlayerService,
     private pileRegistrySvc: PileRegistryService,
   ) {}
 
   createGame(): void {
     this.createArea();
     this.createPile();
-    this.createFactions(baseGameState.global.player);
+    this.createFactions();
   }
 
   private createArea(): void {
@@ -40,10 +41,10 @@ export class GameManagementService {
     this.areaRegistrySvc.register(areas);
   }
 
-  private createFactions(players: PlayerState[]) {
+  private createFactions() {
     const factions: Faction[] = [];
     const shuffledAnimals = shuffle(Object.values(dsAnimal));
-    players.forEach((player, index) => {
+    this.playerService.players.forEach((player, index) => {
       factions.push(
         new Faction({
           id: shuffledAnimals[index] as string,
