@@ -1,5 +1,5 @@
 import { GameStatePatch } from '../../../app/engine/model/game-state-patch.model';
-import { GameState, GlobalState } from '../../../app/engine/model/game-state.model';
+import { GameState } from '../../../app/engine/model/game-state.model';
 import { PileState } from '../../../app/engine/model/pile.model';
 import { FactionState } from '../../../app/engine/model/faction.model';
 import { AreaState } from '../../../app/engine/model/area.model';
@@ -62,7 +62,7 @@ export const testGameState1: GameState = deepFreeze({
       inventory: { test3: 10 },
     },
   ],
-} as { area: AreaState[]; faction: FactionState[]; global: GlobalState; pile: PileState[] });
+} as { area: AreaState[]; faction: FactionState[]; pile: PileState[] });
 
 // Since testGameState1 is frozen, we need to just duplicate the object config here.
 export const testGameState1updated: GameState = deepFreeze({
@@ -79,4 +79,4 @@ export const testGameState1updated: GameState = deepFreeze({
     },
     // removed second pile
   ],
-} as { area: AreaState[]; faction: FactionState[]; global: GlobalState; pile: PileState[] });
+} as { area: AreaState[]; faction: FactionState[]; pile: PileState[] });
