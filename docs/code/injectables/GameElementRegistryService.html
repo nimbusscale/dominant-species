@@ -92,7 +92,7 @@
 
 <ol class="breadcrumb">
   <li class="breadcrumb-item">Injectables</li>
-  <li class="breadcrumb-item" >GameManagementService</li>
+  <li class="breadcrumb-item" >GameElementRegistryService</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -116,7 +116,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/engine/service/game-management.service.ts</code>
+            <code>src/app/engine/service/game-element-registry.service.ts</code>
         </p>
 
 
@@ -127,6 +127,32 @@
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#elementById" >elementById</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#registeredElementSubject" >registeredElementSubject</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#registeredIds" >registeredIds</a>
+                            </li>
+                            <li>
+                                <a href="#registeredIds$" >registeredIds$</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
                 <tr>
                     <td class="col-md-4">
@@ -137,19 +163,10 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#createArea" >createArea</a>
+                                <a href="#get" >get</a>
                             </li>
                             <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#createFactions" >createFactions</a>
-                            </li>
-                            <li>
-                                <a href="#createGame" >createGame</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#createPile" >createPile</a>
+                                <a href="#register" >register</a>
                             </li>
                         </ul>
                     </td>
@@ -169,12 +186,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(areaRegistrySvc: <a href="../injectables/AreaRegistryService.html" target="_self">AreaRegistryService</a>, factionRegistrySvc: <a href="../injectables/FactionRegistryService.html" target="_self">FactionRegistryService</a>, playerService: <a href="../injectables/PlayerService.html" target="_self">PlayerService</a>, pileRegistrySvc: <a href="../injectables/PileRegistryService.html" target="_self">PileRegistryService</a>)</code>
+<code>constructor(gameElementStateSvc: TgameElementStateSvc)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/engine/service/game-management.service.ts:18</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/engine/service/game-element-registry.service.ts:25</a></div>
                             </td>
                         </tr>
 
@@ -192,46 +209,10 @@
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>areaRegistrySvc</td>
+                                                        <td>gameElementStateSvc</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../injectables/AreaRegistryService.html" target="_self" >AreaRegistryService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>factionRegistrySvc</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/FactionRegistryService.html" target="_self" >FactionRegistryService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>playerService</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/PlayerService.html" target="_self" >PlayerService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>pileRegistrySvc</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/PileRegistryService.html" target="_self" >PileRegistryService</a></code>
+                                                                    <code>TgameElementStateSvc</code>
                                                         </td>
                                                   
                                                     <td>
@@ -257,26 +238,24 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="createArea"></a>
+                    <a name="get"></a>
                     <span class="name">
-                            <span class="modifier">Private</span>
-                        <span ><b>createArea</b></span>
-                        <a href="#createArea"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>get</b></span>
+                        <a href="#get"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-                        <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>createArea()</code>
+<code>get(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="32"
-                                    class="link-to-prism">src/app/engine/service/game-management.service.ts:32</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="29"
+                                    class="link-to-prism">src/app/engine/service/game-element-registry.service.ts:29</a></div>
                         </td>
                     </tr>
 
@@ -284,10 +263,40 @@
             <tr>
                 <td class="col-md-4">
 
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                            <b>Returns : </b>    <code>TgameElement</code>
 
                         </div>
+                            <div class="io-description">
+                                
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -296,26 +305,24 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="createFactions"></a>
+                    <a name="register"></a>
                     <span class="name">
-                            <span class="modifier">Private</span>
-                        <span ><b>createFactions</b></span>
-                        <a href="#createFactions"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>register</b></span>
+                        <a href="#register"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-                        <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>createFactions()</code>
+<code>register(elements: TgameElement[])</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="44"
-                                    class="link-to-prism">src/app/engine/service/game-management.service.ts:44</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="37"
+                                    class="link-to-prism">src/app/engine/service/game-element-registry.service.ts:37</a></div>
                         </td>
                     </tr>
 
@@ -323,88 +330,169 @@
             <tr>
                 <td class="col-md-4">
 
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>elements</td>
+                                            <td>
+                                                        <code>TgameElement[]</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                         </div>
+                            <div class="io-description">
+                                
+                            </div>
                 </td>
             </tr>
+        </tbody>
+    </table>
+</section>
+            <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="elementById"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>elementById</b></span>
+                        <a href="#elementById"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Map&lt;string | TgameElement&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Map&lt;string, TgameElement&gt;()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/engine/service/game-element-registry.service.ts:23</a></div>
+                        </td>
+                    </tr>
+
+
         </tbody>
     </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="createGame"></a>
+                    <a name="registeredElementSubject"></a>
                     <span class="name">
-                        <span ><b>createGame</b></span>
-                        <a href="#createGame"><span class="icon ion-ios-link"></span></a>
+                            <span class="modifier">Private</span>
+                        <span ><b>registeredElementSubject</b></span>
+                        <a href="#registeredElementSubject"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
-            <tr>
-                <td class="col-md-4">
-<code>createGame()</code>
-                </td>
-            </tr>
-
-
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new BehaviorSubject&lt;Set&lt;string&gt;&gt;(new Set())</code>
+                    </td>
+                </tr>
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="26"
-                                    class="link-to-prism">src/app/engine/service/game-management.service.ts:26</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/engine/service/game-element-registry.service.ts:24</a></div>
                         </td>
                     </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                        </div>
-                </td>
-            </tr>
         </tbody>
     </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="createPile"></a>
+                    <a name="registeredIds"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
-                        <span ><b>createPile</b></span>
-                        <a href="#createPile"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>registeredIds</b></span>
+                        <a href="#registeredIds"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
-            <tr>
-                <td class="col-md-4">
-                        <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>createPile()</code>
-                </td>
-            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Set&lt;string&gt;</code>
 
-
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Set&lt;string&gt;()</code>
+                    </td>
+                </tr>
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="74"
-                                    class="link-to-prism">src/app/engine/service/game-management.service.ts:74</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/engine/service/game-element-registry.service.ts:22</a></div>
                         </td>
                     </tr>
 
 
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
             <tr>
                 <td class="col-md-4">
-
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                        </div>
+                    <a name="registeredIds$"></a>
+                    <span class="name">
+                        <span ><b>registeredIds$</b></span>
+                        <a href="#registeredIds$"><span class="icon ion-ios-link"></span></a>
+                    </span>
                 </td>
             </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Observable&lt;Set&lt;string&gt;&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.registeredElementSubject.asObservable()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/engine/service/game-element-registry.service.ts:25</a></div>
+                        </td>
+                    </tr>
+
+
         </tbody>
     </table>
 </section>
@@ -414,84 +502,91 @@
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
-import {baseGameState, dsAnimal, dsAreaId, elementConfigByAnimal} from &#x27;../../game/dominant-species.constants&#x27;;
-import { Pile } from &#x27;../model/pile.model&#x27;;
+import { BehaviorSubject, Observable } from &#x27;rxjs&#x27;;
+import { Pile, PileState } from &#x27;../model/pile.model&#x27;;
 import {
-  AreaRegistryService,
-  FactionRegistryService,
-  PileRegistryService,
-} from &#x27;./game-element-registry.service&#x27;;
-import { Space } from &#x27;../model/space.model&#x27;;
-import { Area } from &#x27;../model/area.model&#x27;;
-import { shuffle } from &#x27;lodash&#x27;;
-import { Faction } from &#x27;../model/faction.model&#x27;;
-import { PlayerService } from &#x27;./player.service&#x27;;
+  AreaStateService,
+  FactionStateService,
+  GameElementStateService,
+  PileStateService,
+} from &#x27;./game-element-state.service&#x27;;
+import { Area, AreaState } from &#x27;../model/area.model&#x27;;
+import { Faction, FactionState } from &#x27;../model/faction.model&#x27;;
+import { GameElement, GameElementState } from &#x27;../model/game-element.model&#x27;;
 
 @Injectable({
   providedIn: &#x27;root&#x27;,
 })
-export class GameManagementService {
-  constructor(
-    private areaRegistrySvc: AreaRegistryService,
-    private factionRegistrySvc: FactionRegistryService,
-    private playerService: PlayerService,
-    private pileRegistrySvc: PileRegistryService,
-  ) {}
+export abstract class GameElementRegistryService&lt;
+  TgameElementState extends GameElementState,
+  TgameElement extends GameElement&lt;TgameElementState&gt;,
+  TgameElementStateSvc extends GameElementStateService&lt;TgameElementState, TgameElement&gt;,
+&gt; {
+  private registeredIds: Set&lt;string&gt; &#x3D; new Set&lt;string&gt;();
+  private elementById: Map&lt;string, TgameElement&gt; &#x3D; new Map&lt;string, TgameElement&gt;();
+  private registeredElementSubject &#x3D; new BehaviorSubject&lt;Set&lt;string&gt;&gt;(new Set());
+  registeredIds$: Observable&lt;Set&lt;string&gt;&gt; &#x3D; this.registeredElementSubject.asObservable();
 
-  createGame(): void {
-    this.createArea();
-    this.createPile();
-    this.createFactions();
+  constructor(protected gameElementStateSvc: TgameElementStateSvc) {}
+
+  get(id: string): TgameElement {
+    const element &#x3D; this.elementById.get(id);
+    if (!element) {
+      throw new Error(&#x60;Element with id ${id} is not registered.&#x60;);
+    } else {
+      return element;
+    }
   }
-
-  private createArea(): void {
-    const areas: Area[] &#x3D; [];
-    baseGameState.area.forEach((areaState) &#x3D;&gt; {
-      const spaces: Space[] &#x3D; [];
-      areaState.space.forEach((spaceState) &#x3D;&gt; {
-        spaces.push(new Space(spaceState.kind));
-      });
-      areas.push(new Area(areaState.id, spaces));
-    });
-    this.areaRegistrySvc.register(areas);
-  }
-
-  private createFactions() {
-    const factions: Faction[] &#x3D; [];
-    const areas: Area[] &#x3D; []
-    const piles: Pile[] &#x3D; []
-    const shuffledAnimals &#x3D; shuffle(Object.values(dsAnimal));
-    this.playerService.players.forEach((player, index) &#x3D;&gt; {
-      const assignedAnimal &#x3D; shuffledAnimals[index]
-      const elementConfig &#x3D; elementConfigByAnimal.get(assignedAnimal)
-      if (!elementConfig) {
-        throw new Error(&#x60;Unable to find ${assignedAnimal} in elementConfigByAnimal&#x60;)
+  register(elements: TgameElement[]): void {
+    elements.forEach((element) &#x3D;&gt; {
+      if (!this.registeredIds.has(element.id)) {
+        this.elementById.set(element.id, element);
+        this.registeredIds.add(element.id);
+      } else {
+        throw new Error(&#x60;Element with id ${element.id} already registered.&#x60;);
       }
-
-
-      factions.push(
-        new Faction({
-          id: assignedAnimal,
-          ownerId: player.id,
-          score: 0,
-        }),
-      );
-
-      const addedElementSpaces &#x3D; 6 - elementConfigByAnimal.get(assignedAnimal)
-      areas.push(new Area(
-        elementConfigByAnimal.get(assignedAnimal),
-
-      ))
     });
-    this.factionRegistrySvc.register(factions);
+    this.registeredElementSubject.next(this.registeredIds);
+    this.gameElementStateSvc.register(elements);
   }
+}
 
-  private createPile(): void {
-    const piles: Pile[] &#x3D; [];
-    baseGameState.pile.forEach((pileState) &#x3D;&gt; {
-      piles.push(new Pile(pileState));
-    });
-    this.pileRegistrySvc.register(piles);
+@Injectable({
+  providedIn: &#x27;root&#x27;,
+})
+export class AreaRegistryService extends GameElementRegistryService&lt;
+  AreaState,
+  Area,
+  AreaStateService
+&gt; {
+  constructor(protected areaStateSvc: AreaStateService) {
+    super(areaStateSvc);
+  }
+}
+
+@Injectable({
+  providedIn: &#x27;root&#x27;,
+})
+export class FactionRegistryService extends GameElementRegistryService&lt;
+  FactionState,
+  Faction,
+  FactionStateService
+&gt; {
+  constructor(protected factionStateSvc: FactionStateService) {
+    super(factionStateSvc);
+  }
+}
+
+@Injectable({
+  providedIn: &#x27;root&#x27;,
+})
+export class PileRegistryService extends GameElementRegistryService&lt;
+  PileState,
+  Pile,
+  PileStateService
+&gt; {
+  constructor(protected pileStateSvc: PileStateService) {
+    super(pileStateSvc);
   }
 }
 </code></pre>
@@ -537,7 +632,7 @@ export class GameManagementService {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
-            var COMPODOC_CURRENT_PAGE_URL = 'GameManagementService.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'GameElementRegistryService.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

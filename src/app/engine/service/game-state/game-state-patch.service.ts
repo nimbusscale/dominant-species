@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { GameState } from '../model/game-state.model';
-import { GameStatePatch } from '../model/game-state-patch.model';
+import { GameState } from '../../model/game-state.model';
+import { GameStatePatch } from '../../model/game-state-patch.model';
 import { applyPatch, compare } from 'fast-json-patch';
 
 /**

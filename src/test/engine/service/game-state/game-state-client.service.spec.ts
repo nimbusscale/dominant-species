@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { GameStateClientService } from '../../../app/engine/service/game-state-client.service';
+import { GameStateClientService } from '../../../../app/engine/service/game-state/game-state-client.service';
 
 describe('GameStateClientService', () => {
   let service: GameStateClientService;

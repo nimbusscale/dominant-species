@@ -1,11 +1,11 @@
-import { PileState } from '../model/pile.model';
+import { PileState } from '../../model/pile.model';
 import { BehaviorSubject, map, Observable } from 'rxjs';
-import { FactionState } from '../model/faction.model';
-import { emptyGameState, GameState } from '../model/game-state.model';
+import { FactionState } from '../../model/faction.model';
+import { emptyGameState, GameState } from '../../model/game-state.model';
 import { Injectable } from '@angular/core';
 import { deepClone } from 'fast-json-patch';
-import { AreaState } from '../model/area.model';
-import { GameElementState } from '../model/game-element.model';
+import { AreaState } from '../../model/area.model';
+import { GameElementState } from '../../model/game-element.model';
 
 /**
  * GameStateStoreService is responsible for maintain the GameState and making it accessible to others.

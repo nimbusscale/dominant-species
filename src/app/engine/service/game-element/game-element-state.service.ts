@@ -1,10 +1,7 @@
 import { Injectable } from '@angular/core';
-import { GameStateService } from './game-state.service';
+import { GameStateService } from '../game-state/game-state.service';
 import { Observable, skip } from 'rxjs';
-import { Area, AreaState } from '../model/area.model';
-import { Pile, PileState } from '../model/pile.model';
-import { Faction, FactionState } from '../model/faction.model';
-import { GameElement, GameElementState } from '../model/game-element.model';
+import { GameElement, GameElementState } from '../../model/game-element.model';
 
 @Injectable({
   providedIn: 'root',
@@ -56,56 +53,5 @@ export abstract class GameElementStateService<
         throw new Error(`Entity for id ${element.id} already registered.`);
       }
     });
-  }
-}
-
-@Injectable({
-  providedIn: 'root',
-})
-export class AreaStateService extends GameElementStateService<AreaState, Area> {
-  protected get elementState$() {
-    return this.gameStateSvc.area$;
-  }
-
-  protected registerEntityState(area: Area) {
-    this.gameStateSvc.registerArea(area.state);
-  }
-
-  protected setEntityState(state: AreaState) {
-    this.gameStateSvc.setArea(state);
-  }
-}
-
-@Injectable({
-  providedIn: 'root',
-})
-export class FactionStateService extends GameElementStateService<FactionState, Faction> {
-  protected get elementState$() {
-    return this.gameStateSvc.faction$;
-  }
-
-  protected registerEntityState(faction: Faction) {
-    this.gameStateSvc.registerFaction(faction.state);
-  }
-
-  protected setEntityState(state: FactionState) {
-    this.gameStateSvc.setFaction(state);
-  }
-}
-
-@Injectable({
-  providedIn: 'root',
-})
-export class PileStateService extends GameElementStateService<PileState, Pile> {
-  protected get elementState$() {
-    return this.gameStateSvc.pile$;
-  }
-
-  protected registerEntityState(pile: Pile) {
-    this.gameStateSvc.registerPile(pile.state);
-  }
-
-  protected setEntityState(state: PileState) {
-    this.gameStateSvc.setPile(state);
   }
 }

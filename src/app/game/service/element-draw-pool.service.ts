@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { Pile } from '../../engine/model/pile.model';
 import { BehaviorSubject, filter, Observable } from 'rxjs';
 import { dsPieceKind } from '../dominant-species.constants';
-import { PileRegistryService } from '../../engine/service/game-element-registry.service';
+
+import { PileRegistryService } from '../../engine/service/game-element/pile-registry.service';
 
 @Injectable({
   providedIn: 'root',

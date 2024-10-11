@@ -1,15 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { Pile, PileState } from '../model/pile.model';
-import {
-  AreaStateService,
-  FactionStateService,
-  GameElementStateService,
-  PileStateService,
-} from './game-element-state.service';
-import { Area, AreaState } from '../model/area.model';
-import { Faction, FactionState } from '../model/faction.model';
-import { GameElement, GameElementState } from '../model/game-element.model';
+import { GameElementStateService } from './game-element-state.service';
+import { GameElement, GameElementState } from '../../model/game-element.model';
 
 @Injectable({
   providedIn: 'root',
@@ -45,44 +37,5 @@ export abstract class GameElementRegistryService<
     });
     this.registeredElementSubject.next(this.registeredIds);
     this.gameElementStateSvc.register(elements);
-  }
-}
-
-@Injectable({
-  providedIn: 'root',
-})
-export class AreaRegistryService extends GameElementRegistryService<
-  AreaState,
-  Area,
-  AreaStateService
-> {
-  constructor(protected areaStateSvc: AreaStateService) {
-    super(areaStateSvc);
-  }
-}
-
-@Injectable({
-  providedIn: 'root',
-})
-export class FactionRegistryService extends GameElementRegistryService<
-  FactionState,
-  Faction,
-  FactionStateService
-> {
-  constructor(protected factionStateSvc: FactionStateService) {
-    super(factionStateSvc);
-  }
-}
-
-@Injectable({
-  providedIn: 'root',
-})
-export class PileRegistryService extends GameElementRegistryService<
-  PileState,
-  Pile,
-  PileStateService
-> {
-  constructor(protected pileStateSvc: PileStateService) {
-    super(pileStateSvc);
   }
 }

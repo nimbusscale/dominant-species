@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { GameStatePatch } from '../model/game-state-patch.model';
+import { GameStatePatch } from '../../model/game-state-patch.model';
 import { of, Observable } from 'rxjs';
 
 @Injectable({

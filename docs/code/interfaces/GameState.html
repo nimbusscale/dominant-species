@@ -149,6 +149,12 @@
                         <td class="col-md-4">
                             <ul class="index-list">
                                 <li>
+                                        <a href="#area" 
+>
+                                            area
+                                        </a>
+                                </li>
+                                <li>
                                         <a href="#faction" 
 >
                                             faction
@@ -171,6 +177,39 @@
 
             <section data-compodoc="block-properties">
                 <h3 id="inputs">Properties</h3>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="area"></a>
+                                        <span class="name "><b>area</b>
+                                            <a href="#area">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>area:         <code><a href="../interfaces/AreaState.html" target="_self" >AreaState[]</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="../interfaces/AreaState.html" target="_self" >AreaState[]</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
                     <table class="table table-sm table-bordered">
                         <tbody>
                                 <tr>
@@ -244,28 +283,22 @@
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { FactionState } from &#x27;./faction.model&#x27;;
 import { PileState } from &#x27;./pile.model&#x27;;
+import { AreaState } from &#x27;./area.model&#x27;;
 
 /**
  * Defining the GameState object managed by GameStateStoreService
  */
 export interface GameState {
+  area: AreaState[];
   faction: FactionState[];
   pile: PileState[];
 }
 
 export const emptyGameState: GameState &#x3D; {
+  area: [],
   faction: [],
   pile: [],
 };
-
-/**
- * GameStateElement defines the base type of state objects distributed to the various objects outside the GameStateStore.
- * An example would be each object representing a faction (e.g., animal) would have a state that defines that faction.
- * This object defining the state would be of type GameStateElement.
- */
-export interface GameStateElement {
-  kind: string;
-}
 </code></pre>
     </div>
 </div>

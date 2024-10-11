@@ -81,13 +81,20 @@ export const baseGameState: GameState = {
   ],
 };
 
-export const inherentElementKindByAnimal = new Map<dsAnimal, { kind: dsElement; inherent: number }>(
+export const elementConfigByAnimal = new Map<
+  dsAnimal,
+  { kind: dsElement; inherentCount: number; areaId: dsAreaId }
+>([
   [
-    [dsAnimal.AMPHIBIAN, { kind: dsElement.WATER, inherent: 3 }],
-    [dsAnimal.ARACHNID, { kind: dsElement.GRUB, inherent: 2 }],
-    [dsAnimal.BIRD, { kind: dsElement.SEED, inherent: 2 }],
-    [dsAnimal.INSECT, { kind: dsElement.GRASS, inherent: 2 }],
-    [dsAnimal.MAMMAL, { kind: dsElement.MEAT, inherent: 2 }],
-    [dsAnimal.REPTILE, { kind: dsElement.SUN, inherent: 2 }],
-  ] as const,
-);
+    dsAnimal.AMPHIBIAN,
+    { kind: dsElement.WATER, inherentCount: 3, areaId: dsAreaId.AMPHIBIAN_ELEMENT },
+  ],
+  [
+    dsAnimal.ARACHNID,
+    { kind: dsElement.GRUB, inherentCount: 2, areaId: dsAreaId.ARACHNID_ELEMENT },
+  ],
+  [dsAnimal.BIRD, { kind: dsElement.SEED, inherentCount: 2, areaId: dsAreaId.BIRD_ELEMENT }],
+  [dsAnimal.INSECT, { kind: dsElement.GRASS, inherentCount: 2, areaId: dsAreaId.INSECT_ELEMENT }],
+  [dsAnimal.MAMMAL, { kind: dsElement.MEAT, inherentCount: 2, areaId: dsAreaId.MAMMAL_ELEMENT }],
+  [dsAnimal.REPTILE, { kind: dsElement.SUN, inherentCount: 2, areaId: dsAreaId.REPTILE_ELEMENT }],
+] as const);

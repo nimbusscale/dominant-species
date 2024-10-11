@@ -132,7 +132,7 @@
                 <h3>Extends</h3>
             </p>
             <p class="comment">
-                            <code><a href="../interfaces/GameStateElement.html" target="_self" >GameStateElement</a></code>
+                            <code><a href="../interfaces/GameElementState.html" target="_self" >GameElementState</a></code>
             </p>
 
         <section data-compodoc="block-index">
@@ -148,9 +148,15 @@
                         <td class="col-md-4">
                             <ul class="index-list">
                                 <li>
-                                        <a href="#owner" 
+                                        <a href="#ownerId" 
 >
-                                            owner
+                                            ownerId
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#score" 
+>
+                                            score
                                         </a>
                                 </li>
                             </ul>
@@ -168,9 +174,9 @@
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
-                                        <a name="owner"></a>
-                                        <span class="name "><b>owner</b>
-                                            <a href="#owner">
+                                        <a name="ownerId"></a>
+                                        <span class="name "><b>ownerId</b>
+                                            <a href="#ownerId">
                                                 <span class="icon ion-ios-link"></span>
                                             </a>
                                         </span>
@@ -178,7 +184,7 @@
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>owner:         <code><a href="../interfaces/Player.html" target="_self" >Player</a></code>
+                                        <code>ownerId:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 </code>
                                     </td>
                                 </tr>
@@ -186,7 +192,40 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="../interfaces/Player.html" target="_self" >Player</a></code>
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="score"></a>
+                                        <span class="name "><b>score</b>
+                                            <a href="#score">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>score:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
 
                                         </td>
                                     </tr>
@@ -202,11 +241,36 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Player } from &#x27;./player.model&#x27;;
-import { GameStateElement } from &#x27;./game-state.model&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { GameElement, GameElementState } from &#x27;./game-element.model&#x27;;
 
-export interface FactionState extends GameStateElement {
-  owner: Player;
+export interface FactionState extends GameElementState {
+  ownerId: string;
+  score: number;
+}
+
+export class Faction extends GameElement&lt;FactionState&gt; {
+  get ownerId(): string {
+    return this._state.ownerId;
+  }
+
+  get score(): number {
+    return this._state.score;
+  }
+
+  increaseScore(amount: number): void {
+    this._state.score +&#x3D; amount;
+    this.emitState();
+  }
+
+  decreaseScore(amount: number): void {
+    this._state.score -&#x3D; amount;
+    this.emitState();
+  }
+
+  setScore(amount: number): void {
+    this._state.score &#x3D; amount;
+    this.emitState();
+  }
 }
 </code></pre>
     </div>

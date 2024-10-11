@@ -152,6 +152,12 @@ It does this by orchestrating the various other GameState related services.</p>
                                 <a href="#commitTransaction" >commitTransaction</a>
                             </li>
                             <li>
+                                <a href="#registerArea" >registerArea</a>
+                            </li>
+                            <li>
+                                <a href="#registerFaction" >registerFaction</a>
+                            </li>
+                            <li>
                                 <a href="#registerPile" >registerPile</a>
                             </li>
                             <li>
@@ -159,6 +165,9 @@ It does this by orchestrating the various other GameState related services.</p>
                             </li>
                             <li>
                                 <a href="#rollbackTransaction" >rollbackTransaction</a>
+                            </li>
+                            <li>
+                                <a href="#setArea" >setArea</a>
                             </li>
                             <li>
                                 <a href="#setFaction" >setFaction</a>
@@ -186,6 +195,9 @@ It does this by orchestrating the various other GameState related services.</p>
                         <td class="col-md-4">
                             <ul class="index-list">
                                 <li>
+                                    <a href="#area$" >area$</a>
+                                </li>
+                                <li>
                                     <a href="#faction$" >faction$</a>
                                 </li>
                                 <li>
@@ -209,7 +221,7 @@ It does this by orchestrating the various other GameState related services.</p>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/engine/service/game-state.service.ts:17</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/engine/service/game-state.service.ts:18</a></div>
                             </td>
                         </tr>
 
@@ -298,8 +310,8 @@ It does this by orchestrating the various other GameState related services.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="28"
-                                    class="link-to-prism">src/app/engine/service/game-state.service.ts:28</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="29"
+                                    class="link-to-prism">src/app/engine/service/game-state.service.ts:29</a></div>
                         </td>
                     </tr>
 
@@ -365,8 +377,8 @@ It does this by orchestrating the various other GameState related services.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="37"
-                                    class="link-to-prism">src/app/engine/service/game-state.service.ts:37</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="38"
+                                    class="link-to-prism">src/app/engine/service/game-state.service.ts:38</a></div>
                         </td>
                     </tr>
 
@@ -378,6 +390,140 @@ It does this by orchestrating the various other GameState related services.</p>
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                         </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="registerArea"></a>
+                    <span class="name">
+                        <span ><b>registerArea</b></span>
+                        <a href="#registerArea"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>registerArea(newState: <a href="../interfaces/AreaState.html" target="_self">AreaState</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="72"
+                                    class="link-to-prism">src/app/engine/service/game-state.service.ts:72</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>newState</td>
+                                            <td>
+                                                            <code><a href="../interfaces/AreaState.html" target="_self" >AreaState</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="registerFaction"></a>
+                    <span class="name">
+                        <span ><b>registerFaction</b></span>
+                        <a href="#registerFaction"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>registerFaction(newState: <a href="../interfaces/FactionState.html" target="_self">FactionState</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="83"
+                                    class="link-to-prism">src/app/engine/service/game-state.service.ts:83</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>newState</td>
+                                            <td>
+                                                            <code><a href="../interfaces/FactionState.html" target="_self" >FactionState</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -402,8 +548,8 @@ It does this by orchestrating the various other GameState related services.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="79"
-                                    class="link-to-prism">src/app/engine/service/game-state.service.ts:79</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="95"
+                                    class="link-to-prism">src/app/engine/service/game-state.service.ts:95</a></div>
                         </td>
                     </tr>
 
@@ -469,8 +615,8 @@ It does this by orchestrating the various other GameState related services.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="57"
-                                    class="link-to-prism">src/app/engine/service/game-state.service.ts:57</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="58"
+                                    class="link-to-prism">src/app/engine/service/game-state.service.ts:58</a></div>
                         </td>
                     </tr>
 
@@ -508,8 +654,8 @@ It does this by orchestrating the various other GameState related services.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="50"
-                                    class="link-to-prism">src/app/engine/service/game-state.service.ts:50</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="51"
+                                    class="link-to-prism">src/app/engine/service/game-state.service.ts:51</a></div>
                         </td>
                     </tr>
 
@@ -521,6 +667,73 @@ It does this by orchestrating the various other GameState related services.</p>
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                         </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setArea"></a>
+                    <span class="name">
+                        <span ><b>setArea</b></span>
+                        <a href="#setArea"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>setArea(newState: <a href="../interfaces/AreaState.html" target="_self">AreaState</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="68"
+                                    class="link-to-prism">src/app/engine/service/game-state.service.ts:68</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>newState</td>
+                                            <td>
+                                                            <code><a href="../interfaces/AreaState.html" target="_self" >AreaState</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -545,8 +758,8 @@ It does this by orchestrating the various other GameState related services.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="67"
-                                    class="link-to-prism">src/app/engine/service/game-state.service.ts:67</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="80"
+                                    class="link-to-prism">src/app/engine/service/game-state.service.ts:80</a></div>
                         </td>
                     </tr>
 
@@ -612,8 +825,8 @@ It does this by orchestrating the various other GameState related services.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="75"
-                                    class="link-to-prism">src/app/engine/service/game-state.service.ts:75</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="91"
+                                    class="link-to-prism">src/app/engine/service/game-state.service.ts:91</a></div>
                         </td>
                     </tr>
 
@@ -679,8 +892,8 @@ It does this by orchestrating the various other GameState related services.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="33"
-                                    class="link-to-prism">src/app/engine/service/game-state.service.ts:33</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="34"
+                                    class="link-to-prism">src/app/engine/service/game-state.service.ts:34</a></div>
                         </td>
                     </tr>
 
@@ -706,6 +919,28 @@ It does this by orchestrating the various other GameState related services.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
+                        <a name="area$"></a>
+                        <span class="name"><b>area$</b><a href="#area$"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>area$()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/app/engine/service/game-state.service.ts:64</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
                         <a name="faction$"></a>
                         <span class="name"><b>faction$</b><a href="#faction$"><span class="icon ion-ios-link"></span></a></span>
                     </td>
@@ -718,7 +953,7 @@ It does this by orchestrating the various other GameState related services.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/app/engine/service/game-state.service.ts:63</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/app/engine/service/game-state.service.ts:76</a></div>
                                 </td>
                             </tr>
 
@@ -740,7 +975,7 @@ It does this by orchestrating the various other GameState related services.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/app/engine/service/game-state.service.ts:71</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">src/app/engine/service/game-state.service.ts:87</a></div>
                                 </td>
                             </tr>
 
@@ -759,6 +994,7 @@ import { filter, Observable } from &#x27;rxjs&#x27;;
 import { FactionState } from &#x27;../model/faction.model&#x27;;
 import { PileState } from &#x27;../model/pile.model&#x27;;
 import { GameStatePatch } from &#x27;../model/game-state-patch.model&#x27;;
+import { AreaState } from &#x27;../model/area.model&#x27;;
 
 /**
  * The GameStateService provides an interface for the rest of the system to interact with state.
@@ -813,12 +1049,27 @@ export class GameStateService {
     }
   }
 
+  get area$(): Observable&lt;AreaState[]&gt; {
+    return this.gameStateStore.area$;
+  }
+
+  setArea(newState: AreaState): void {
+    this.gameStateStore.setArea(newState);
+  }
+
+  registerArea(newState: AreaState): void {
+    this.gameStateStore.registerArea(newState);
+  }
+
   get faction$(): Observable&lt;FactionState[]&gt; {
     return this.gameStateStore.faction$;
   }
 
   setFaction(newState: FactionState): void {
     this.gameStateStore.setFaction(newState);
+  }
+  registerFaction(newState: FactionState): void {
+    this.gameStateStore.registerFaction(newState);
   }
 
   get pile$(): Observable&lt;PileState[]&gt; {

@@ -118,6 +118,9 @@
                         <li>
                             <a href="#defaultPieceFactory" title="src/app/engine/model/piece.model.ts" ><b>defaultPieceFactory</b>&nbsp;&nbsp;&nbsp;(src/.../piece.model.ts)</a>
                         </li>
+                        <li>
+                            <a href="#getOrThrow" title="src/app/engine/util.ts" ><b>getOrThrow</b>&nbsp;&nbsp;&nbsp;(src/.../util.ts)</a>
+                        </li>
                     </ul>
                 </td>
             </tr>
@@ -190,6 +193,108 @@
                         </div>
                             <div class="io-description">
                                 
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getOrThrow"></a>
+                    <span class="name">
+                        <span ><b>getOrThrow</b></span>
+                        <a href="#getOrThrow"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getOrThrow(map: Map, key: K, errorMessage?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Retrieves a value from a Map by its key, throwing an error if the key does not exist.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>map</td>
+                                            <td>
+                                                        <code>Map</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The map to retrieve the value from.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>key</td>
+                                            <td>
+                                                        <code>K</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The key whose corresponding value is to be returned.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>errorMessage</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                            <td>
+                                                    <p>An optional custom error message to throw if the key is not found.
+ If not provided, a default message is used.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>V</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The value associated with the specified key in the map.</p>
+
                             </div>
                 </td>
             </tr>
