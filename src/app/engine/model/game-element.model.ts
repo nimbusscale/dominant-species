@@ -1,6 +1,9 @@
-import { GameElementState } from './game-state.model';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { deepClone } from 'fast-json-patch';
+
+export interface GameElementState {
+  id: string;
+}
 
 export class GameElement<T extends GameElementState> {
   protected _state: T;

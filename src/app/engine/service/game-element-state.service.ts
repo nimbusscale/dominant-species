@@ -3,9 +3,8 @@ import { GameStateService } from './game-state.service';
 import { Observable, skip } from 'rxjs';
 import { Area, AreaState } from '../model/area.model';
 import { Pile, PileState } from '../model/pile.model';
-import { GameElementState } from '../model/game-state.model';
 import { Faction, FactionState } from '../model/faction.model';
-import {GameElement} from "../model/game-element.model";
+import { GameElement, GameElementState } from '../model/game-element.model';
 
 @Injectable({
   providedIn: 'root',

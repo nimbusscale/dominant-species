@@ -1,7 +1,6 @@
 import { defaultPieceFactory, Piece, PieceFactory } from './piece.model';
-import { GameElementState } from './game-state.model';
 import { BehaviorSubject, distinctUntilChanged, Observable } from 'rxjs';
-import { GameElement } from './game-element.model';
+import { GameElement, GameElementState } from './game-element.model';
 
 /**
  * PileState is pretty simple as it just keeps tracks of what kinds of pieces are in the pile and how many of them.

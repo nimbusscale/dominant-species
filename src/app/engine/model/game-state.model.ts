@@ -1,8 +1,6 @@
 import { FactionState } from './faction.model';
 import { PileState } from './pile.model';
 import { AreaState } from './area.model';
-import { PlayerState } from './player.model';
-import { Observable } from 'rxjs';
 
 /**
  * Defining the GameState object managed by GameStateStoreService
@@ -18,14 +16,3 @@ export const emptyGameState: GameState = {
   faction: [],
   pile: [],
 };
-
-export interface GameElementState {
-  id: string;
-}
-
-export interface GameElement {
-  id: string;
-  state: GameElementState;
-  state$: Observable<GameElementState>;
-  setState(state: GameElementState): void;
-}

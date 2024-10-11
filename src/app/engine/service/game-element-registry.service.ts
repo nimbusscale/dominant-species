@@ -1,16 +1,15 @@
 import { Injectable } from '@angular/core';
-import { GameElementState } from '../model/game-state.model';
 import { BehaviorSubject, Observable } from 'rxjs';
-import {Pile, PileState} from '../model/pile.model';
+import { Pile, PileState } from '../model/pile.model';
 import {
   AreaStateService,
   FactionStateService,
   GameElementStateService,
   PileStateService,
 } from './game-element-state.service';
-import {Area, AreaState} from '../model/area.model';
-import {Faction, FactionState} from '../model/faction.model';
-import {GameElement} from "../model/game-element.model";
+import { Area, AreaState } from '../model/area.model';
+import { Faction, FactionState } from '../model/faction.model';
+import { GameElement, GameElementState } from '../model/game-element.model';
 
 @Injectable({
   providedIn: 'root',
@@ -52,7 +51,11 @@ export abstract class GameElementRegistryService<
 @Injectable({
   providedIn: 'root',
 })
-export class AreaRegistryService extends GameElementRegistryService<AreaState, Area, AreaStateService> {
+export class AreaRegistryService extends GameElementRegistryService<
+  AreaState,
+  Area,
+  AreaStateService
+> {
   constructor(protected areaStateSvc: AreaStateService) {
     super(areaStateSvc);
   }
@@ -61,7 +64,8 @@ export class AreaRegistryService extends GameElementRegistryService<AreaState, A
 @Injectable({
   providedIn: 'root',
 })
-export class FactionRegistryService extends GameElementRegistryService<FactionState,
+export class FactionRegistryService extends GameElementRegistryService<
+  FactionState,
   Faction,
   FactionStateService
 > {
@@ -73,7 +77,11 @@ export class FactionRegistryService extends GameElementRegistryService<FactionSt
 @Injectable({
   providedIn: 'root',
 })
-export class PileRegistryService extends GameElementRegistryService<PileState, Pile, PileStateService> {
+export class PileRegistryService extends GameElementRegistryService<
+  PileState,
+  Pile,
+  PileStateService
+> {
   constructor(protected pileStateSvc: PileStateService) {
     super(pileStateSvc);
   }

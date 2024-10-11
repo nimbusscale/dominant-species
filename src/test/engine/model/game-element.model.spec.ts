@@ -1,5 +1,4 @@
-import { GameElement } from '../../../app/engine/model/game-element.model';
-import { GameElementState } from '../../../app/engine/model/game-state.model';
+import { GameElement, GameElementState } from '../../../app/engine/model/game-element.model';
 
 export interface TestState extends GameElementState {
   score: number;

@@ -1,5 +1,4 @@
-import { GameElementState } from './game-state.model';
-import { GameElement } from './game-element.model';
+import { GameElement, GameElementState } from './game-element.model';
 
 export interface FactionState extends GameElementState {
   ownerId: string;

@@ -10,7 +10,7 @@ import { Space } from '../model/space.model';
 import { Area } from '../model/area.model';
 import { shuffle } from 'lodash';
 import { Faction } from '../model/faction.model';
-import {PlayerService} from "./player.service";
+import { PlayerService } from './player.service';
 
 @Injectable({
   providedIn: 'root',

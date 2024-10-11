@@ -1,6 +1,5 @@
 import { Space, SpaceState } from './space.model';
-import { GameElementState } from './game-state.model';
-import { GameElement } from './game-element.model';
+import { GameElement, GameElementState } from './game-element.model';
 
 /**
  * AreaState does not extend GameStateElement as each Area is unique with a unique ID
