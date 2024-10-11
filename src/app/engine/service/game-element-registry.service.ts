@@ -1,22 +1,24 @@
 import { Injectable } from '@angular/core';
-import { GameElement, GameElementState } from '../model/game-state.model';
+import { GameElementState } from '../model/game-state.model';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { Pile } from '../model/pile.model';
+import {Pile, PileState} from '../model/pile.model';
 import {
   AreaStateService,
   FactionStateService,
   GameElementStateService,
   PileStateService,
 } from './game-element-state.service';
-import { Area } from '../model/area.model';
-import { Faction } from '../model/faction.model';
+import {Area, AreaState} from '../model/area.model';
+import {Faction, FactionState} from '../model/faction.model';
+import {GameElement} from "../model/game-element.model";
 
 @Injectable({
   providedIn: 'root',
 })
 export abstract class GameElementRegistryService<
-  TgameElement extends GameElement,
-  TgameElementStateSvc extends GameElementStateService<GameElementState, TgameElement>,
+  TgameElementState extends GameElementState,
+  TgameElement extends GameElement<TgameElementState>,
+  TgameElementStateSvc extends GameElementStateService<TgameElementState, TgameElement>,
 > {
   private registeredIds: Set<string> = new Set<string>();
   private elementById: Map<string, TgameElement> = new Map<string, TgameElement>();
@@ -50,7 +52,7 @@ export abstract class GameElementRegistryService<
 @Injectable({
   providedIn: 'root',
 })
-export class AreaRegistryService extends GameElementRegistryService<Area, AreaStateService> {
+export class AreaRegistryService extends GameElementRegistryService<AreaState, Area, AreaStateService> {
   constructor(protected areaStateSvc: AreaStateService) {
     super(areaStateSvc);
   }
@@ -59,7 +61,7 @@ export class AreaRegistryService extends GameElementRegistryService<Area, AreaSt
 @Injectable({
   providedIn: 'root',
 })
-export class FactionRegistryService extends GameElementRegistryService<
+export class FactionRegistryService extends GameElementRegistryService<FactionState,
   Faction,
   FactionStateService
 > {
@@ -71,7 +73,7 @@ export class FactionRegistryService extends GameElementRegistryService<
 @Injectable({
   providedIn: 'root',
 })
-export class PileRegistryService extends GameElementRegistryService<Pile, PileStateService> {
+export class PileRegistryService extends GameElementRegistryService<PileState, Pile, PileStateService> {
   constructor(protected pileStateSvc: PileStateService) {
     super(pileStateSvc);
   }

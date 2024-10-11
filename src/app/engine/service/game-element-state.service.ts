@@ -3,15 +3,16 @@ import { GameStateService } from './game-state.service';
 import { Observable, skip } from 'rxjs';
 import { Area, AreaState } from '../model/area.model';
 import { Pile, PileState } from '../model/pile.model';
-import { GameElement, GameElementState } from '../model/game-state.model';
+import { GameElementState } from '../model/game-state.model';
 import { Faction, FactionState } from '../model/faction.model';
+import {GameElement} from "../model/game-element.model";
 
 @Injectable({
   providedIn: 'root',
 })
 export abstract class GameElementStateService<
   TgameElementState extends GameElementState,
-  TgameElement extends GameElement,
+  TgameElement extends GameElement<TgameElementState>,
 > {
   private registeredIds: Set<string> = new Set<string>();
   private elementById: Map<string, TgameElement> = new Map<string, TgameElement>();
