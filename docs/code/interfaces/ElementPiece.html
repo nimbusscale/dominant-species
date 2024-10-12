@@ -99,7 +99,7 @@
   <li class="breadcrumb-item">Interfaces</li>
   <li class="breadcrumb-item"
   >
-  GameElementState</li>
+  ElementPiece</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -123,11 +123,17 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/engine/model/game-element.model.ts</code>
+            <code>src/app/game/model/piece.model.ts</code>
         </p>
 
 
 
+            <p class="comment">
+                <h3>Extends</h3>
+            </p>
+            <p class="comment">
+                            <code><a href="../interfaces/Piece.html" target="_self" >Piece</a></code>
+            </p>
 
         <section data-compodoc="block-index">
             <h3 id="index">Index</h3>
@@ -142,9 +148,15 @@
                         <td class="col-md-4">
                             <ul class="index-list">
                                 <li>
-                                        <a href="#id" 
+                                        <a href="#kind" 
 >
-                                            id
+                                            kind
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#owner" 
+>
+                                            owner
                                         </a>
                                 </li>
                             </ul>
@@ -162,9 +174,9 @@
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
-                                        <a name="id"></a>
-                                        <span class="name "><b>id</b>
-                                            <a href="#id">
+                                        <a name="kind"></a>
+                                        <span class="name "><b>kind</b>
+                                            <a href="#kind">
                                                 <span class="icon ion-ios-link"></span>
                                             </a>
                                         </span>
@@ -172,7 +184,7 @@
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>id:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                        <code>kind:         <code><a href="../miscellaneous/typealiases.html#ElementKind" target="_self" >ElementKind</a></code>
 </code>
                                     </td>
                                 </tr>
@@ -180,10 +192,37 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#ElementKind" target="_self" >ElementKind</a></code>
 
                                         </td>
                                     </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="owner"></a>
+                                        <span class="name "><b>owner</b>
+                                            <a href="#owner">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>owner:     <code></code>
+</code>
+                                    </td>
+                                </tr>
+
+
 
 
 
@@ -196,47 +235,16 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { BehaviorSubject, Observable } from &#x27;rxjs&#x27;;
-import { deepClone } from &#x27;fast-json-patch&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { defaultPieceFactory, Piece } from &#x27;../../engine/model/piece.model&#x27;;
+import { ElementKind } from &#x27;../dominant-species.constants&#x27;;
 
-export interface GameElementState {
-  id: string;
+export interface ElementPiece extends Piece {
+  kind: ElementKind;
+  owner: null;
 }
 
-export class GameElement&lt;T extends GameElementState&gt; {
-  protected _state: T;
-  protected stateSubject: BehaviorSubject&lt;T&gt;;
-  state$: Observable&lt;T&gt;;
-
-  constructor(state: T) {
-    this._state &#x3D; state;
-    this.stateSubject &#x3D; new BehaviorSubject&lt;T&gt;(this.state);
-    this.state$ &#x3D; this.stateSubject.asObservable();
-  }
-
-  get id(): string {
-    return this._state.id;
-  }
-
-  get state(): T {
-    return deepClone(this._state) as T;
-  }
-
-  /**
-   * Set state happens when a GSP is received, so state is not emitted back as it&#x27;s already in the GameState
-   * @param newState
-   */
-  setState(newState: T) {
-    if (newState.id &#x3D;&#x3D;&#x3D; this.id) {
-      this._state &#x3D; newState;
-    } else {
-      throw new Error(&quot;new id doesn&#x27;t match existing it&quot;);
-    }
-  }
-
-  protected emitState(): void {
-    this.stateSubject.next(this.state);
-  }
+export function elementPieceFactory(kind: ElementKind): ElementPiece {
+  return defaultPieceFactory(kind, null) as ElementPiece;
 }
 </code></pre>
     </div>
@@ -275,7 +283,7 @@ export class GameElement&lt;T extends GameElementState&gt; {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
-            var COMPODOC_CURRENT_PAGE_URL = 'GameElementState.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'ElementPiece.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

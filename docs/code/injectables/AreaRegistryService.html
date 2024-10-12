@@ -116,7 +116,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/engine/service/game-element-registry.service.ts</code>
+            <code>src/app/engine/service/game-element/area-registry.service.ts</code>
         </p>
 
 
@@ -197,7 +197,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/engine/service/game-element-registry.service.ts:58</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/engine/service/game-element/area-registry.service.ts:13</a></div>
                             </td>
                         </tr>
 
@@ -266,7 +266,7 @@
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../injectables/GameElementRegistryService.html#source" target="_self" >GameElementRegistryService:29</a></code>
+                                <div class="io-line">Defined in         <code><a href="../injectables/GameElementRegistryService.html#source" target="_self" >GameElementRegistryService:21</a></code>
 </div>
                         </td>
                     </tr>
@@ -339,7 +339,7 @@
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../injectables/GameElementRegistryService.html#source" target="_self" >GameElementRegistryService:37</a></code>
+                                <div class="io-line">Defined in         <code><a href="../injectables/GameElementRegistryService.html#source" target="_self" >GameElementRegistryService:29</a></code>
 </div>
                         </td>
                     </tr>
@@ -423,7 +423,7 @@
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../injectables/GameElementRegistryService.html#source" target="_self" >GameElementRegistryService:23</a></code>
+                                <div class="io-line">Defined in         <code><a href="../injectables/GameElementRegistryService.html#source" target="_self" >GameElementRegistryService:15</a></code>
 </div>
                         </td>
                     </tr>
@@ -456,7 +456,7 @@
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../injectables/GameElementRegistryService.html#source" target="_self" >GameElementRegistryService:24</a></code>
+                                <div class="io-line">Defined in         <code><a href="../injectables/GameElementRegistryService.html#source" target="_self" >GameElementRegistryService:16</a></code>
 </div>
                         </td>
                     </tr>
@@ -495,7 +495,7 @@
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../injectables/GameElementRegistryService.html#source" target="_self" >GameElementRegistryService:22</a></code>
+                                <div class="io-line">Defined in         <code><a href="../injectables/GameElementRegistryService.html#source" target="_self" >GameElementRegistryService:14</a></code>
 </div>
                         </td>
                     </tr>
@@ -533,7 +533,7 @@
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../injectables/GameElementRegistryService.html#source" target="_self" >GameElementRegistryService:25</a></code>
+                                <div class="io-line">Defined in         <code><a href="../injectables/GameElementRegistryService.html#source" target="_self" >GameElementRegistryService:17</a></code>
 </div>
                         </td>
                     </tr>
@@ -548,54 +548,9 @@
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
-import { BehaviorSubject, Observable } from &#x27;rxjs&#x27;;
-import { Pile, PileState } from &#x27;../model/pile.model&#x27;;
-import {
-  AreaStateService,
-  FactionStateService,
-  GameElementStateService,
-  PileStateService,
-} from &#x27;./game-element-state.service&#x27;;
-import { Area, AreaState } from &#x27;../model/area.model&#x27;;
-import { Faction, FactionState } from &#x27;../model/faction.model&#x27;;
-import { GameElement, GameElementState } from &#x27;../model/game-element.model&#x27;;
-
-@Injectable({
-  providedIn: &#x27;root&#x27;,
-})
-export abstract class GameElementRegistryService&lt;
-  TgameElementState extends GameElementState,
-  TgameElement extends GameElement&lt;TgameElementState&gt;,
-  TgameElementStateSvc extends GameElementStateService&lt;TgameElementState, TgameElement&gt;,
-&gt; {
-  private registeredIds: Set&lt;string&gt; &#x3D; new Set&lt;string&gt;();
-  private elementById: Map&lt;string, TgameElement&gt; &#x3D; new Map&lt;string, TgameElement&gt;();
-  private registeredElementSubject &#x3D; new BehaviorSubject&lt;Set&lt;string&gt;&gt;(new Set());
-  registeredIds$: Observable&lt;Set&lt;string&gt;&gt; &#x3D; this.registeredElementSubject.asObservable();
-
-  constructor(protected gameElementStateSvc: TgameElementStateSvc) {}
-
-  get(id: string): TgameElement {
-    const element &#x3D; this.elementById.get(id);
-    if (!element) {
-      throw new Error(&#x60;Element with id ${id} is not registered.&#x60;);
-    } else {
-      return element;
-    }
-  }
-  register(elements: TgameElement[]): void {
-    elements.forEach((element) &#x3D;&gt; {
-      if (!this.registeredIds.has(element.id)) {
-        this.elementById.set(element.id, element);
-        this.registeredIds.add(element.id);
-      } else {
-        throw new Error(&#x60;Element with id ${element.id} already registered.&#x60;);
-      }
-    });
-    this.registeredElementSubject.next(this.registeredIds);
-    this.gameElementStateSvc.register(elements);
-  }
-}
+import { Area, AreaState } from &#x27;../../model/area.model&#x27;;
+import { GameElementRegistryService } from &#x27;./game-element-registry.service&#x27;;
+import { AreaStateService } from &#x27;./area-state.service&#x27;;
 
 @Injectable({
   providedIn: &#x27;root&#x27;,
@@ -607,32 +562,6 @@ export class AreaRegistryService extends GameElementRegistryService&lt;
 &gt; {
   constructor(protected areaStateSvc: AreaStateService) {
     super(areaStateSvc);
-  }
-}
-
-@Injectable({
-  providedIn: &#x27;root&#x27;,
-})
-export class FactionRegistryService extends GameElementRegistryService&lt;
-  FactionState,
-  Faction,
-  FactionStateService
-&gt; {
-  constructor(protected factionStateSvc: FactionStateService) {
-    super(factionStateSvc);
-  }
-}
-
-@Injectable({
-  providedIn: &#x27;root&#x27;,
-})
-export class PileRegistryService extends GameElementRegistryService&lt;
-  PileState,
-  Pile,
-  PileStateService
-&gt; {
-  constructor(protected pileStateSvc: PileStateService) {
-    super(pileStateSvc);
   }
 }
 </code></pre>

@@ -183,6 +183,9 @@
                                 <a href="#initialize" >initialize</a>
                             </li>
                             <li>
+                                <a href="#nextAvailableSpace" >nextAvailableSpace</a>
+                            </li>
+                            <li>
                                     <span class="modifier"></span>
                                 <a href="#setState" >setState</a>
                             </li>
@@ -213,7 +216,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/engine/model/area.model.ts:13</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/engine/model/area.model.ts:14</a></div>
                             </td>
                         </tr>
 
@@ -288,7 +291,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/engine/model/area.model.ts:12</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/engine/model/area.model.ts:13</a></div>
                         </td>
                     </tr>
 
@@ -316,7 +319,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/engine/model/area.model.ts:13</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/engine/model/area.model.ts:14</a></div>
                         </td>
                     </tr>
 
@@ -453,8 +456,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="23"
-                                    class="link-to-prism">src/app/engine/model/area.model.ts:23</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="24"
+                                    class="link-to-prism">src/app/engine/model/area.model.ts:24</a></div>
                         </td>
                     </tr>
 
@@ -464,6 +467,43 @@
 
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="nextAvailableSpace"></a>
+                    <span class="name">
+                        <span ><b>nextAvailableSpace</b></span>
+                        <a href="#nextAvailableSpace"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>nextAvailableSpace()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="47"
+                                    class="link-to-prism">src/app/engine/model/area.model.ts:47</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../classes/Space.html" target="_self" >Space | null</a></code>
 
                         </div>
                 </td>
@@ -498,7 +538,7 @@
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../classes/GameElement.html#source" target="_self" >GameElement:32</a></code>
+                                <div class="io-line">Defined in         <code><a href="../classes/GameElement.html#source" target="_self" >GameElement:33</a></code>
 </div>
                         </td>
                     </tr>
@@ -602,6 +642,7 @@
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Space, SpaceState } from &#x27;./space.model&#x27;;
 import { GameElement, GameElementState } from &#x27;./game-element.model&#x27;;
+import { isNull } from &#x27;../predicate&#x27;;
 
 /**
  * AreaState does not extend GameStateElement as each Area is unique with a unique ID
@@ -643,6 +684,15 @@ export class Area extends GameElement&lt;AreaState&gt; {
     newState.space.forEach((spaceState, index) &#x3D;&gt; {
       this.spaces[index].setState(spaceState);
     });
+  }
+
+  nextAvailableSpace(): Space | null {
+    const availableSpaces &#x3D; this.spaces.filter((space) &#x3D;&gt; isNull(space.piece));
+    if (availableSpaces.length &gt; 0) {
+      return availableSpaces[0];
+    } else {
+      return null;
+    }
   }
 }
 </code></pre>

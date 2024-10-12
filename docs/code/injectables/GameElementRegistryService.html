@@ -116,7 +116,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/engine/service/game-element-registry.service.ts</code>
+            <code>src/app/engine/service/game-element/game-element-registry.service.ts</code>
         </p>
 
 
@@ -191,7 +191,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/engine/service/game-element-registry.service.ts:25</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/engine/service/game-element/game-element-registry.service.ts:17</a></div>
                             </td>
                         </tr>
 
@@ -254,8 +254,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="29"
-                                    class="link-to-prism">src/app/engine/service/game-element-registry.service.ts:29</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="21"
+                                    class="link-to-prism">src/app/engine/service/game-element/game-element-registry.service.ts:21</a></div>
                         </td>
                     </tr>
 
@@ -321,8 +321,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="37"
-                                    class="link-to-prism">src/app/engine/service/game-element-registry.service.ts:37</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="29"
+                                    class="link-to-prism">src/app/engine/service/game-element/game-element-registry.service.ts:29</a></div>
                         </td>
                     </tr>
 
@@ -399,7 +399,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/engine/service/game-element-registry.service.ts:23</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/engine/service/game-element/game-element-registry.service.ts:15</a></div>
                         </td>
                     </tr>
 
@@ -425,7 +425,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/engine/service/game-element-registry.service.ts:24</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/engine/service/game-element/game-element-registry.service.ts:16</a></div>
                         </td>
                     </tr>
 
@@ -457,7 +457,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/engine/service/game-element-registry.service.ts:22</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/engine/service/game-element/game-element-registry.service.ts:14</a></div>
                         </td>
                     </tr>
 
@@ -488,7 +488,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/engine/service/game-element-registry.service.ts:25</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/engine/service/game-element/game-element-registry.service.ts:17</a></div>
                         </td>
                     </tr>
 
@@ -503,16 +503,8 @@
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
 import { BehaviorSubject, Observable } from &#x27;rxjs&#x27;;
-import { Pile, PileState } from &#x27;../model/pile.model&#x27;;
-import {
-  AreaStateService,
-  FactionStateService,
-  GameElementStateService,
-  PileStateService,
-} from &#x27;./game-element-state.service&#x27;;
-import { Area, AreaState } from &#x27;../model/area.model&#x27;;
-import { Faction, FactionState } from &#x27;../model/faction.model&#x27;;
-import { GameElement, GameElementState } from &#x27;../model/game-element.model&#x27;;
+import { GameElementStateService } from &#x27;./game-element-state.service&#x27;;
+import { GameElement, GameElementState } from &#x27;../../model/game-element.model&#x27;;
 
 @Injectable({
   providedIn: &#x27;root&#x27;,
@@ -548,45 +540,6 @@ export abstract class GameElementRegistryService&lt;
     });
     this.registeredElementSubject.next(this.registeredIds);
     this.gameElementStateSvc.register(elements);
-  }
-}
-
-@Injectable({
-  providedIn: &#x27;root&#x27;,
-})
-export class AreaRegistryService extends GameElementRegistryService&lt;
-  AreaState,
-  Area,
-  AreaStateService
-&gt; {
-  constructor(protected areaStateSvc: AreaStateService) {
-    super(areaStateSvc);
-  }
-}
-
-@Injectable({
-  providedIn: &#x27;root&#x27;,
-})
-export class FactionRegistryService extends GameElementRegistryService&lt;
-  FactionState,
-  Faction,
-  FactionStateService
-&gt; {
-  constructor(protected factionStateSvc: FactionStateService) {
-    super(factionStateSvc);
-  }
-}
-
-@Injectable({
-  providedIn: &#x27;root&#x27;,
-})
-export class PileRegistryService extends GameElementRegistryService&lt;
-  PileState,
-  Pile,
-  PileStateService
-&gt; {
-  constructor(protected pileStateSvc: PileStateService) {
-    super(pileStateSvc);
   }
 }
 </code></pre>

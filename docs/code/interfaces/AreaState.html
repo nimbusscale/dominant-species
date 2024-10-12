@@ -211,6 +211,7 @@
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Space, SpaceState } from &#x27;./space.model&#x27;;
 import { GameElement, GameElementState } from &#x27;./game-element.model&#x27;;
+import { isNull } from &#x27;../predicate&#x27;;
 
 /**
  * AreaState does not extend GameStateElement as each Area is unique with a unique ID
@@ -252,6 +253,15 @@ export class Area extends GameElement&lt;AreaState&gt; {
     newState.space.forEach((spaceState, index) &#x3D;&gt; {
       this.spaces[index].setState(spaceState);
     });
+  }
+
+  nextAvailableSpace(): Space | null {
+    const availableSpaces &#x3D; this.spaces.filter((space) &#x3D;&gt; isNull(space.piece));
+    if (availableSpaces.length &gt; 0) {
+      return availableSpaces[0];
+    } else {
+      return null;
+    }
   }
 }
 </code></pre>

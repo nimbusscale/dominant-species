@@ -99,7 +99,7 @@
   <li class="breadcrumb-item">Interfaces</li>
   <li class="breadcrumb-item"
   >
-  GameElementState</li>
+  ElementConfig</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -123,7 +123,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/engine/model/game-element.model.ts</code>
+            <code>src/app/game/dominant-species.constants.ts</code>
         </p>
 
 
@@ -142,9 +142,21 @@
                         <td class="col-md-4">
                             <ul class="index-list">
                                 <li>
-                                        <a href="#id" 
+                                        <a href="#areaId" 
 >
-                                            id
+                                            areaId
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#inherentCount" 
+>
+                                            inherentCount
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#kind" 
+>
+                                            kind
                                         </a>
                                 </li>
                             </ul>
@@ -162,9 +174,9 @@
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
-                                        <a name="id"></a>
-                                        <span class="name "><b>id</b>
-                                            <a href="#id">
+                                        <a name="areaId"></a>
+                                        <span class="name "><b>areaId</b>
+                                            <a href="#areaId">
                                                 <span class="icon ion-ios-link"></span>
                                             </a>
                                         </span>
@@ -172,7 +184,7 @@
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>id:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                        <code>areaId:         <code><a href="../miscellaneous/typealiases.html#AreaId" target="_self" >AreaId</a></code>
 </code>
                                     </td>
                                 </tr>
@@ -180,7 +192,73 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#AreaId" target="_self" >AreaId</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="inherentCount"></a>
+                                        <span class="name "><b>inherentCount</b>
+                                            <a href="#inherentCount">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>inherentCount:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="kind"></a>
+                                        <span class="name "><b>kind</b>
+                                            <a href="#kind">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>kind:         <code><a href="../miscellaneous/typealiases.html#ElementKind" target="_self" >ElementKind</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#ElementKind" target="_self" >ElementKind</a></code>
 
                                         </td>
                                     </tr>
@@ -196,48 +274,132 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { BehaviorSubject, Observable } from &#x27;rxjs&#x27;;
-import { deepClone } from &#x27;fast-json-patch&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { GameState } from &#x27;../engine/model/game-state.model&#x27;;
 
-export interface GameElementState {
-  id: string;
+export enum AnimalEnum {
+  AMPHIBIAN &#x3D; &#x27;amphibian&#x27;,
+  ARACHNID &#x3D; &#x27;arachnid&#x27;,
+  BIRD &#x3D; &#x27;bird&#x27;,
+  INSECT &#x3D; &#x27;insect&#x27;,
+  MAMMAL &#x3D; &#x27;mammal&#x27;,
+  REPTILE &#x3D; &#x27;reptile&#x27;,
 }
 
-export class GameElement&lt;T extends GameElementState&gt; {
-  protected _state: T;
-  protected stateSubject: BehaviorSubject&lt;T&gt;;
-  state$: Observable&lt;T&gt;;
+export type AnimalKind &#x3D; &#x60;${AnimalEnum}&#x60;;
 
-  constructor(state: T) {
-    this._state &#x3D; state;
-    this.stateSubject &#x3D; new BehaviorSubject&lt;T&gt;(this.state);
-    this.state$ &#x3D; this.stateSubject.asObservable();
-  }
-
-  get id(): string {
-    return this._state.id;
-  }
-
-  get state(): T {
-    return deepClone(this._state) as T;
-  }
-
-  /**
-   * Set state happens when a GSP is received, so state is not emitted back as it&#x27;s already in the GameState
-   * @param newState
-   */
-  setState(newState: T) {
-    if (newState.id &#x3D;&#x3D;&#x3D; this.id) {
-      this._state &#x3D; newState;
-    } else {
-      throw new Error(&quot;new id doesn&#x27;t match existing it&quot;);
-    }
-  }
-
-  protected emitState(): void {
-    this.stateSubject.next(this.state);
-  }
+export enum AreaIdEnum {
+  ACTION_DISPLAY_ABUNDANCE &#x3D; &#x27;actionDisplayAbundance&#x27;,
+  ACTION_DISPLAY_ADAPTION &#x3D; &#x27;actionDisplayAdaption&#x27;,
+  AMPHIBIAN_ELEMENT &#x3D; &#x27;amphibianElement&#x27;,
+  ARACHNID_ELEMENT &#x3D; &#x27;arachnidElement&#x27;,
+  BIRD_ELEMENT &#x3D; &#x27;birdElement&#x27;,
+  INSECT_ELEMENT &#x3D; &#x27;insectElement&#x27;,
+  MAMMAL_ELEMENT &#x3D; &#x27;mammalElement&#x27;,
+  REPTILE_ELEMENT &#x3D; &#x27;reptileElement&#x27;,
 }
+
+export type AreaId &#x3D; &#x60;${AreaIdEnum}&#x60;;
+
+export enum ElementEnum {
+  GRASS &#x3D; &#x27;grassElement&#x27;,
+  GRUB &#x3D; &#x27;grubElement&#x27;,
+  MEAT &#x3D; &#x27;meatElement&#x27;,
+  SEED &#x3D; &#x27;seedElement&#x27;,
+  SUN &#x3D; &#x27;sunElement&#x27;,
+  WATER &#x3D; &#x27;waterElement&#x27;,
+}
+
+export type ElementKind &#x3D; &#x60;${ElementEnum}&#x60;;
+
+export enum PieceKindEnum {
+  ACTION_PAWN_AMPHIBIAN &#x3D; &#x27;actionPawnAmphibian&#x27;,
+  ACTION_PAWN_ARACHNID &#x3D; &#x27;actionPawnArachnid&#x27;,
+  ACTION_PAWN_BIRD &#x3D; &#x27;actionPawnBird&#x27;,
+  ACTION_PAWN_INSECT &#x3D; &#x27;actionPawnInsect&#x27;,
+  ACTION_PAWN_MAMMAL &#x3D; &#x27;actionPawnMammal&#x27;,
+  ACTION_PAWN_REPTILE &#x3D; &#x27;actionPawnReptile&#x27;,
+  ELEMENT &#x3D; &#x27;element&#x27;,
+  SPECIES_AMPHIBIAN &#x3D; &#x27;speciesAmphibian&#x27;,
+  SPECIES_ARACHNID &#x3D; &#x27;speciesArachnid&#x27;,
+  SPECIES_BIRD &#x3D; &#x27;speciesBird&#x27;,
+  SPECIES_INSECT &#x3D; &#x27;speciesInsect&#x27;,
+  SPECIES_MAMMAL &#x3D; &#x27;speciesMammal&#x27;,
+  SPECIES_REPTILE &#x3D; &#x27;speciesReptile&#x27;,
+}
+
+export type ActionPawnKind &#x3D;
+  | PieceKindEnum.ACTION_PAWN_AMPHIBIAN
+  | PieceKindEnum.ACTION_PAWN_BIRD
+  | PieceKindEnum.ACTION_PAWN_ARACHNID
+  | PieceKindEnum.ACTION_PAWN_INSECT
+  | PieceKindEnum.ACTION_PAWN_MAMMAL
+  | PieceKindEnum.ACTION_PAWN_REPTILE;
+
+export enum SpaceKindEnum {
+  ACTION_PAWN &#x3D; &#x27;actionPawn&#x27;,
+  ELEMENT &#x3D; &#x27;element&#x27;,
+}
+
+/**
+ * GameState defining the static elements of the DS game
+ */
+export const baseGameState: GameState &#x3D; {
+  area: [
+    {
+      id: AreaIdEnum.ACTION_DISPLAY_ADAPTION as string,
+      space: [
+        { kind: SpaceKindEnum.ACTION_PAWN as string, piece: null },
+        { kind: SpaceKindEnum.ACTION_PAWN as string, piece: null },
+        { kind: SpaceKindEnum.ACTION_PAWN as string, piece: null },
+      ],
+    },
+  ],
+  faction: [],
+  pile: [
+    {
+      id: PieceKindEnum.ELEMENT as string,
+      inventory: {
+        // 20 Elements each, with 2 being places on Earth, leaving 18 in the bag
+        grassElement: 18,
+        grubElement: 18,
+        meatElement: 18,
+        seedElement: 18,
+        sunElement: 18,
+        waterElement: 18,
+      },
+    },
+  ],
+};
+
+export interface ElementConfig {
+  kind: ElementKind;
+  inherentCount: number;
+  areaId: AreaId;
+}
+
+export const elementConfigByAnimal &#x3D; new Map&lt;AnimalEnum, ElementConfig&gt;([
+  [
+    AnimalEnum.AMPHIBIAN,
+    { kind: ElementEnum.WATER, inherentCount: 3, areaId: AreaIdEnum.AMPHIBIAN_ELEMENT },
+  ],
+  [
+    AnimalEnum.ARACHNID,
+    { kind: ElementEnum.GRUB, inherentCount: 2, areaId: AreaIdEnum.ARACHNID_ELEMENT },
+  ],
+  [AnimalEnum.BIRD, { kind: ElementEnum.SEED, inherentCount: 2, areaId: AreaIdEnum.BIRD_ELEMENT }],
+  [
+    AnimalEnum.INSECT,
+    { kind: ElementEnum.GRASS, inherentCount: 2, areaId: AreaIdEnum.INSECT_ELEMENT },
+  ],
+  [
+    AnimalEnum.MAMMAL,
+    { kind: ElementEnum.MEAT, inherentCount: 2, areaId: AreaIdEnum.MAMMAL_ELEMENT },
+  ],
+  [
+    AnimalEnum.REPTILE,
+    { kind: ElementEnum.SUN, inherentCount: 2, areaId: AreaIdEnum.REPTILE_ELEMENT },
+  ],
+] as const);
 </code></pre>
     </div>
 </div>
@@ -275,7 +437,7 @@ export class GameElement&lt;T extends GameElementState&gt; {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
-            var COMPODOC_CURRENT_PAGE_URL = 'GameElementState.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'ElementConfig.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

@@ -199,7 +199,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/game/service/element-draw-pool.service.ts:15</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/game/service/element-draw-pool.service.ts:16</a></div>
                             </td>
                         </tr>
 
@@ -264,8 +264,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="21"
-                                    class="link-to-prism">src/app/game/service/element-draw-pool.service.ts:21</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="22"
+                                    class="link-to-prism">src/app/game/service/element-draw-pool.service.ts:22</a></div>
                         </td>
                     </tr>
 
@@ -312,7 +312,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/app/game/service/element-draw-pool.service.ts:11</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/game/service/element-draw-pool.service.ts:12</a></div>
                         </td>
                     </tr>
 
@@ -343,7 +343,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/game/service/element-draw-pool.service.ts:15</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/game/service/element-draw-pool.service.ts:16</a></div>
                         </td>
                     </tr>
 
@@ -377,7 +377,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/game/service/element-draw-pool.service.ts:12</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/game/service/element-draw-pool.service.ts:13</a></div>
                         </td>
                     </tr>
 
@@ -406,7 +406,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/game/service/element-draw-pool.service.ts:31</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/game/service/element-draw-pool.service.ts:32</a></div>
                                 </td>
                             </tr>
 
@@ -420,8 +420,9 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
 import { Pile } from &#x27;../../engine/model/pile.model&#x27;;
 import { BehaviorSubject, filter, Observable } from &#x27;rxjs&#x27;;
-import { dsPieceKind } from &#x27;../dominant-species.constants&#x27;;
-import { PileRegistryService } from &#x27;../../engine/service/game-element-registry.service&#x27;;
+import { PieceKindEnum } from &#x27;../dominant-species.constants&#x27;;
+
+import { PileRegistryService } from &#x27;../../engine/service/game-element/pile-registry.service&#x27;;
 
 @Injectable({
   providedIn: &#x27;root&#x27;,
@@ -439,9 +440,9 @@ export class ElementDrawPoolService {
 
   private initialize(): void {
     const registeredPilesSubscription &#x3D; this.pileRegistrySvc.registeredIds$
-      .pipe(filter((registeredIds) &#x3D;&gt; registeredIds.has(dsPieceKind.ELEMENT)))
+      .pipe(filter((registeredIds) &#x3D;&gt; registeredIds.has(PieceKindEnum.ELEMENT)))
       .subscribe(() &#x3D;&gt; {
-        this._drawPool &#x3D; this.pileRegistrySvc.get(dsPieceKind.ELEMENT);
+        this._drawPool &#x3D; this.pileRegistrySvc.get(PieceKindEnum.ELEMENT);
         this.drawPoolSubject.next(this._drawPool);
         registeredPilesSubscription.unsubscribe();
       });

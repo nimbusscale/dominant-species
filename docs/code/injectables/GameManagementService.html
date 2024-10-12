@@ -174,7 +174,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/engine/service/game-management.service.ts:18</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/engine/service/game-management.service.ts:23</a></div>
                             </td>
                         </tr>
 
@@ -275,8 +275,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="32"
-                                    class="link-to-prism">src/app/engine/service/game-management.service.ts:32</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="37"
+                                    class="link-to-prism">src/app/engine/service/game-management.service.ts:37</a></div>
                         </td>
                     </tr>
 
@@ -314,8 +314,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="44"
-                                    class="link-to-prism">src/app/engine/service/game-management.service.ts:44</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="49"
+                                    class="link-to-prism">src/app/engine/service/game-management.service.ts:49</a></div>
                         </td>
                     </tr>
 
@@ -351,8 +351,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="26"
-                                    class="link-to-prism">src/app/engine/service/game-management.service.ts:26</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="31"
+                                    class="link-to-prism">src/app/engine/service/game-management.service.ts:31</a></div>
                         </td>
                     </tr>
 
@@ -390,8 +390,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="74"
-                                    class="link-to-prism">src/app/engine/service/game-management.service.ts:74</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="85"
+                                    class="link-to-prism">src/app/engine/service/game-management.service.ts:85</a></div>
                         </td>
                     </tr>
 
@@ -414,18 +414,23 @@
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
-import {baseGameState, dsAnimal, dsAreaId, elementConfigByAnimal} from &#x27;../../game/dominant-species.constants&#x27;;
-import { Pile } from &#x27;../model/pile.model&#x27;;
 import {
-  AreaRegistryService,
-  FactionRegistryService,
-  PileRegistryService,
-} from &#x27;./game-element-registry.service&#x27;;
+  baseGameState,
+  AnimalEnum,
+  SpaceKindEnum,
+  elementConfigByAnimal,
+} from &#x27;../../game/dominant-species.constants&#x27;;
+import { Pile } from &#x27;../model/pile.model&#x27;;
 import { Space } from &#x27;../model/space.model&#x27;;
 import { Area } from &#x27;../model/area.model&#x27;;
 import { shuffle } from &#x27;lodash&#x27;;
 import { Faction } from &#x27;../model/faction.model&#x27;;
 import { PlayerService } from &#x27;./player.service&#x27;;
+import { getOrThrow } from &#x27;../util&#x27;;
+import { AreaRegistryService } from &#x27;./game-element/area-registry.service&#x27;;
+import { FactionRegistryService } from &#x27;./game-element/faction-registry.service&#x27;;
+import { PileRegistryService } from &#x27;./game-element/pile-registry.service&#x27;;
+import { elementPieceFactory } from &#x27;../../game/model/piece.model&#x27;;
 
 @Injectable({
   providedIn: &#x27;root&#x27;,
@@ -458,16 +463,11 @@ export class GameManagementService {
 
   private createFactions() {
     const factions: Faction[] &#x3D; [];
-    const areas: Area[] &#x3D; []
-    const piles: Pile[] &#x3D; []
-    const shuffledAnimals &#x3D; shuffle(Object.values(dsAnimal));
+    const areas: Area[] &#x3D; [];
+    const shuffledAnimals &#x3D; shuffle(Object.values(AnimalEnum));
     this.playerService.players.forEach((player, index) &#x3D;&gt; {
-      const assignedAnimal &#x3D; shuffledAnimals[index]
-      const elementConfig &#x3D; elementConfigByAnimal.get(assignedAnimal)
-      if (!elementConfig) {
-        throw new Error(&#x60;Unable to find ${assignedAnimal} in elementConfigByAnimal&#x60;)
-      }
-
+      const assignedAnimal &#x3D; shuffledAnimals[index];
+      const elementConfig &#x3D; getOrThrow(elementConfigByAnimal, assignedAnimal);
 
       factions.push(
         new Faction({
@@ -477,13 +477,24 @@ export class GameManagementService {
         }),
       );
 
-      const addedElementSpaces &#x3D; 6 - elementConfigByAnimal.get(assignedAnimal)
-      areas.push(new Area(
-        elementConfigByAnimal.get(assignedAnimal),
+      const spaces: Space[] &#x3D; [];
+      // inherent element spaces
+      for (let i &#x3D; 0; i &lt; elementConfig.inherentCount; i++) {
+        const space &#x3D; new Space(SpaceKindEnum.ELEMENT);
+        space.addPiece(elementPieceFactory(elementConfig.kind));
+        spaces.push(space);
+      }
 
-      ))
+      // added element spaces
+      for (let i &#x3D; 0; i &lt; 6 - elementConfig.inherentCount; i++) {
+        const space &#x3D; new Space(SpaceKindEnum.ELEMENT);
+        spaces.push(space);
+      }
+
+      areas.push(new Area(elementConfig.areaId, spaces));
     });
     this.factionRegistrySvc.register(factions);
+    this.areaRegistrySvc.register(areas);
   }
 
   private createPile(): void {

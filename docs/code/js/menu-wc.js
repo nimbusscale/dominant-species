@@ -167,6 +167,15 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/AreaState.html" data-type="entity-link" >AreaState</a>
                             </li>
                             <li class="link">
+                                <a href="interfaces/ElementConfig.html" data-type="entity-link" >ElementConfig</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ElementPiece.html" data-type="entity-link" >ElementPiece</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/FactionAssignment.html" data-type="entity-link" >FactionAssignment</a>
+                            </li>
+                            <li class="link">
                                 <a href="interfaces/FactionState.html" data-type="entity-link" >FactionState</a>
                             </li>
                             <li class="link">

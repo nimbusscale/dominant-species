@@ -99,7 +99,7 @@
   <li class="breadcrumb-item">Interfaces</li>
   <li class="breadcrumb-item"
   >
-  GameElementState</li>
+  FactionAssignment</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -123,7 +123,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/engine/model/game-element.model.ts</code>
+            <code>src/app/engine/service/game-element/faction-registry.service.ts</code>
         </p>
 
 
@@ -145,6 +145,12 @@
                                         <a href="#id" 
 >
                                             id
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#ownerId" 
+>
+                                            ownerId
                                         </a>
                                 </li>
                             </ul>
@@ -191,51 +197,82 @@
 
                         </tbody>
                     </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="ownerId"></a>
+                                        <span class="name "><b>ownerId</b>
+                                            <a href="#ownerId">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>ownerId:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
             </section>
     </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { BehaviorSubject, Observable } from &#x27;rxjs&#x27;;
-import { deepClone } from &#x27;fast-json-patch&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
+import { Faction, FactionState } from &#x27;../../model/faction.model&#x27;;
+import { GameElementRegistryService } from &#x27;./game-element-registry.service&#x27;;
+import { FactionStateService } from &#x27;./faction-state.service&#x27;;
+import { BehaviorSubject, Observable } from &#x27;rxjs&#x27;;
 
-export interface GameElementState {
+export interface FactionAssignment {
   id: string;
+  ownerId: string;
 }
 
-export class GameElement&lt;T extends GameElementState&gt; {
-  protected _state: T;
-  protected stateSubject: BehaviorSubject&lt;T&gt;;
-  state$: Observable&lt;T&gt;;
-
-  constructor(state: T) {
-    this._state &#x3D; state;
-    this.stateSubject &#x3D; new BehaviorSubject&lt;T&gt;(this.state);
-    this.state$ &#x3D; this.stateSubject.asObservable();
+@Injectable({
+  providedIn: &#x27;root&#x27;,
+})
+export class FactionRegistryService extends GameElementRegistryService&lt;
+  FactionState,
+  Faction,
+  FactionStateService
+&gt; {
+  private factionAssignment: FactionAssignment[] &#x3D; [];
+  private factionAssignmentSubject &#x3D; new BehaviorSubject&lt;FactionAssignment[]&gt;(
+    this.factionAssignment,
+  );
+  factionAssignment$: Observable&lt;FactionAssignment[]&gt; &#x3D;
+    this.factionAssignmentSubject.asObservable();
+  constructor(protected factionStateSvc: FactionStateService) {
+    super(factionStateSvc);
   }
 
-  get id(): string {
-    return this._state.id;
-  }
-
-  get state(): T {
-    return deepClone(this._state) as T;
-  }
-
-  /**
-   * Set state happens when a GSP is received, so state is not emitted back as it&#x27;s already in the GameState
-   * @param newState
-   */
-  setState(newState: T) {
-    if (newState.id &#x3D;&#x3D;&#x3D; this.id) {
-      this._state &#x3D; newState;
-    } else {
-      throw new Error(&quot;new id doesn&#x27;t match existing it&quot;);
-    }
-  }
-
-  protected emitState(): void {
-    this.stateSubject.next(this.state);
+  override register(elements: Faction[]): void {
+    super.register(elements);
+    elements.forEach((faction) &#x3D;&gt; {
+      this.factionAssignment.push({
+        id: faction.id,
+        ownerId: faction.ownerId,
+      });
+    });
+    this.factionAssignmentSubject.next(this.factionAssignment);
   }
 }
 </code></pre>
@@ -275,7 +312,7 @@ export class GameElement&lt;T extends GameElementState&gt; {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
-            var COMPODOC_CURRENT_PAGE_URL = 'GameElementState.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'FactionAssignment.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 
