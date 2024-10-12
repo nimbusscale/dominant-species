@@ -191,7 +191,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/engine/service/game-element/game-element-registry.service.ts:17</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/engine/service/game-element/game-element-registry.service.ts:18</a></div>
                             </td>
                         </tr>
 
@@ -254,8 +254,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="21"
-                                    class="link-to-prism">src/app/engine/service/game-element/game-element-registry.service.ts:21</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="22"
+                                    class="link-to-prism">src/app/engine/service/game-element/game-element-registry.service.ts:22</a></div>
                         </td>
                     </tr>
 
@@ -321,8 +321,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="29"
-                                    class="link-to-prism">src/app/engine/service/game-element/game-element-registry.service.ts:29</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="26"
+                                    class="link-to-prism">src/app/engine/service/game-element/game-element-registry.service.ts:26</a></div>
                         </td>
                     </tr>
 
@@ -399,7 +399,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/engine/service/game-element/game-element-registry.service.ts:15</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/engine/service/game-element/game-element-registry.service.ts:16</a></div>
                         </td>
                     </tr>
 
@@ -425,7 +425,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/engine/service/game-element/game-element-registry.service.ts:16</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/engine/service/game-element/game-element-registry.service.ts:17</a></div>
                         </td>
                     </tr>
 
@@ -457,7 +457,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/engine/service/game-element/game-element-registry.service.ts:14</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/engine/service/game-element/game-element-registry.service.ts:15</a></div>
                         </td>
                     </tr>
 
@@ -488,7 +488,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/engine/service/game-element/game-element-registry.service.ts:17</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/engine/service/game-element/game-element-registry.service.ts:18</a></div>
                         </td>
                     </tr>
 
@@ -505,6 +505,7 @@
 import { BehaviorSubject, Observable } from &#x27;rxjs&#x27;;
 import { GameElementStateService } from &#x27;./game-element-state.service&#x27;;
 import { GameElement, GameElementState } from &#x27;../../model/game-element.model&#x27;;
+import { getOrThrow } from &#x27;../../util&#x27;;
 
 @Injectable({
   providedIn: &#x27;root&#x27;,
@@ -522,13 +523,9 @@ export abstract class GameElementRegistryService&lt;
   constructor(protected gameElementStateSvc: TgameElementStateSvc) {}
 
   get(id: string): TgameElement {
-    const element &#x3D; this.elementById.get(id);
-    if (!element) {
-      throw new Error(&#x60;Element with id ${id} is not registered.&#x60;);
-    } else {
-      return element;
-    }
+    return getOrThrow(this.elementById, id);
   }
+
   register(elements: TgameElement[]): void {
     elements.forEach((element) &#x3D;&gt; {
       if (!this.registeredIds.has(element.id)) {
