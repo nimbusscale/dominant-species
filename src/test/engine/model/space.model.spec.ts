@@ -1,13 +1,13 @@
 import { Space } from '../../../app/engine/model/space.model';
-import {defaultPieceFactory, Piece} from "../../../app/engine/model/piece.model";
+import { defaultPieceFactory, Piece } from '../../../app/engine/model/piece.model';
 
 describe('Space', () => {
   let space: Space;
-  let testPiece: Piece
+  let testPiece: Piece;
 
   beforeEach(() => {
     space = new Space('test');
-    testPiece = defaultPieceFactory('test')
+    testPiece = defaultPieceFactory('test');
   });
   it('should not emit initial state', (done) => {
     const observerSpy = jasmine.createSpy('observerSpy');

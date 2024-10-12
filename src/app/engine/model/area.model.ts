@@ -1,6 +1,6 @@
 import { Space, SpaceState } from './space.model';
 import { GameElement, GameElementState } from './game-element.model';
-import {isNotNull, isNull} from "../predicate";
+import { isNull } from '../predicate';
 
 /**
  * AreaState does not extend GameStateElement as each Area is unique with a unique ID
@@ -44,12 +44,12 @@ export class Area extends GameElement<AreaState> {
     });
   }
 
-  nextAvailableSpace (): Space | null {
-    const availableSpaces = this.spaces.filter((space) => isNull(space.piece))
+  nextAvailableSpace(): Space | null {
+    const availableSpaces = this.spaces.filter((space) => isNull(space.piece));
     if (availableSpaces.length > 0) {
-      return availableSpaces[0]
+      return availableSpaces[0];
     } else {
-      return null
+      return null;
     }
   }
 }

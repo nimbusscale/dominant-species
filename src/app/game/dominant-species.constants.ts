@@ -9,7 +9,7 @@ export enum AnimalEnum {
   REPTILE = 'reptile',
 }
 
-export type AnimalKind = `${AnimalEnum}`
+export type AnimalKind = `${AnimalEnum}`;
 
 export enum AreaIdEnum {
   ACTION_DISPLAY_ABUNDANCE = 'actionDisplayAbundance',
@@ -22,6 +22,8 @@ export enum AreaIdEnum {
   REPTILE_ELEMENT = 'reptileElement',
 }
 
+export type AreaId = `${AreaIdEnum}`;
+
 export enum ElementEnum {
   GRASS = 'grassElement',
   GRUB = 'grubElement',
@@ -31,7 +33,7 @@ export enum ElementEnum {
   WATER = 'waterElement',
 }
 
-export type ElementKind = `${ElementEnum}`
+export type ElementKind = `${ElementEnum}`;
 
 export enum PieceKindEnum {
   ACTION_PAWN_AMPHIBIAN = 'actionPawnAmphibian',
@@ -49,7 +51,13 @@ export enum PieceKindEnum {
   SPECIES_REPTILE = 'speciesReptile',
 }
 
-export type ActionPawnKind = PieceKindEnum.ACTION_PAWN_AMPHIBIAN | PieceKindEnum.ACTION_PAWN_BIRD | PieceKindEnum.ACTION_PAWN_ARACHNID | PieceKindEnum.ACTION_PAWN_INSECT | PieceKindEnum.ACTION_PAWN_MAMMAL | PieceKindEnum.ACTION_PAWN_REPTILE
+export type ActionPawnKind =
+  | PieceKindEnum.ACTION_PAWN_AMPHIBIAN
+  | PieceKindEnum.ACTION_PAWN_BIRD
+  | PieceKindEnum.ACTION_PAWN_ARACHNID
+  | PieceKindEnum.ACTION_PAWN_INSECT
+  | PieceKindEnum.ACTION_PAWN_MAMMAL
+  | PieceKindEnum.ACTION_PAWN_REPTILE;
 
 export enum SpaceKindEnum {
   ACTION_PAWN = 'actionPawn',
@@ -87,10 +95,13 @@ export const baseGameState: GameState = {
   ],
 };
 
-export const elementConfigByAnimal = new Map<
-  AnimalEnum,
-  { kind: ElementEnum; inherentCount: number; areaId: AreaIdEnum }
->([
+export interface ElementConfig {
+  kind: ElementKind;
+  inherentCount: number;
+  areaId: AreaId;
+}
+
+export const elementConfigByAnimal = new Map<AnimalEnum, ElementConfig>([
   [
     AnimalEnum.AMPHIBIAN,
     { kind: ElementEnum.WATER, inherentCount: 3, areaId: AreaIdEnum.AMPHIBIAN_ELEMENT },
@@ -100,7 +111,16 @@ export const elementConfigByAnimal = new Map<
     { kind: ElementEnum.GRUB, inherentCount: 2, areaId: AreaIdEnum.ARACHNID_ELEMENT },
   ],
   [AnimalEnum.BIRD, { kind: ElementEnum.SEED, inherentCount: 2, areaId: AreaIdEnum.BIRD_ELEMENT }],
-  [AnimalEnum.INSECT, { kind: ElementEnum.GRASS, inherentCount: 2, areaId: AreaIdEnum.INSECT_ELEMENT }],
-  [AnimalEnum.MAMMAL, { kind: ElementEnum.MEAT, inherentCount: 2, areaId: AreaIdEnum.MAMMAL_ELEMENT }],
-  [AnimalEnum.REPTILE, { kind: ElementEnum.SUN, inherentCount: 2, areaId: AreaIdEnum.REPTILE_ELEMENT }],
+  [
+    AnimalEnum.INSECT,
+    { kind: ElementEnum.GRASS, inherentCount: 2, areaId: AreaIdEnum.INSECT_ELEMENT },
+  ],
+  [
+    AnimalEnum.MAMMAL,
+    { kind: ElementEnum.MEAT, inherentCount: 2, areaId: AreaIdEnum.MAMMAL_ELEMENT },
+  ],
+  [
+    AnimalEnum.REPTILE,
+    { kind: ElementEnum.SUN, inherentCount: 2, areaId: AreaIdEnum.REPTILE_ELEMENT },
+  ],
 ] as const);

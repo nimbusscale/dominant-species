@@ -1,14 +1,14 @@
 import { Pile, PileState } from '../../../app/engine/model/pile.model';
-import {defaultPieceFactory, Piece} from '../../../app/engine/model/piece.model';
+import { defaultPieceFactory, Piece } from '../../../app/engine/model/piece.model';
 
 describe('Pile', () => {
   let pileState: PileState;
   let emptyPileState: PileState;
   let noInventoryPileState: PileState;
   let pile: Pile;
-  let grassPiece: Piece
-  let grubPiece: Piece
-  let meatPiece: Piece
+  let grassPiece: Piece;
+  let grubPiece: Piece;
+  let meatPiece: Piece;
 
   beforeEach(() => {
     pileState = {
@@ -31,9 +31,9 @@ describe('Pile', () => {
     };
     pile = new Pile(pileState, defaultPieceFactory);
 
-    grassPiece = defaultPieceFactory('grass')
-    grubPiece = defaultPieceFactory('grub')
-    meatPiece = defaultPieceFactory('meat')
+    grassPiece = defaultPieceFactory('grass');
+    grubPiece = defaultPieceFactory('grub');
+    meatPiece = defaultPieceFactory('meat');
   });
 
   describe('length', () => {

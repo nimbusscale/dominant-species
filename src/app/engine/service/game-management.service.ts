@@ -15,7 +15,7 @@ import { getOrThrow } from '../util';
 import { AreaRegistryService } from './game-element/area-registry.service';
 import { FactionRegistryService } from './game-element/faction-registry.service';
 import { PileRegistryService } from './game-element/pile-registry.service';
-import {elementPieceFactory} from "../../game/model/piece.model";
+import { elementPieceFactory } from '../../game/model/piece.model';
 
 @Injectable({
   providedIn: 'root',
