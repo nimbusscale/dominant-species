@@ -119,10 +119,10 @@
                             <a href="#baseGameState" title="src/app/game/dominant-species.constants.ts" ><b>baseGameState</b>&nbsp;&nbsp;&nbsp;(src/.../dominant-species.constants.ts)</a>
                         </li>
                         <li>
-                            <a href="#emptyGameState" title="src/app/engine/model/game-state.model.ts" ><b>emptyGameState</b>&nbsp;&nbsp;&nbsp;(src/.../game-state.model.ts)</a>
+                            <a href="#elementConfigByAnimal" title="src/app/game/dominant-species.constants.ts" ><b>elementConfigByAnimal</b>&nbsp;&nbsp;&nbsp;(src/.../dominant-species.constants.ts)</a>
                         </li>
                         <li>
-                            <a href="#inherentElementKindByAnimalKind" title="src/app/game/model/animal.model.ts" ><b>inherentElementKindByAnimalKind</b>&nbsp;&nbsp;&nbsp;(src/.../animal.model.ts)</a>
+                            <a href="#emptyGameState" title="src/app/engine/model/game-state.model.ts" ><b>emptyGameState</b>&nbsp;&nbsp;&nbsp;(src/.../game-state.model.ts)</a>
                         </li>
                     </ul>
                 </td>
@@ -188,10 +188,20 @@
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>{
+  area: [
+    {
+      id: AreaIdEnum.ACTION_DISPLAY_ADAPTION as string,
+      space: [
+        { kind: SpaceKindEnum.ACTION_PAWN as string, piece: null },
+        { kind: SpaceKindEnum.ACTION_PAWN as string, piece: null },
+        { kind: SpaceKindEnum.ACTION_PAWN as string, piece: null },
+      ],
+    },
+  ],
   faction: [],
   pile: [
     {
-      kind: dsPieceKind.ELEMENT as string,
+      id: PieceKindEnum.ELEMENT as string,
       inventory: {
         // 20 Elements each, with 2 being places on Earth, leaving 18 in the bag
         grassElement: 18,
@@ -213,6 +223,48 @@
 </div>
                 </td>
             </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="elementConfigByAnimal"></a>
+                    <span class="name">
+                        <span ><b>elementConfigByAnimal</b></span>
+                        <a href="#elementConfigByAnimal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Map&lt;AnimalEnum, ElementConfig&gt;([
+  [
+    AnimalEnum.AMPHIBIAN,
+    { kind: ElementEnum.WATER, inherentCount: 3, areaId: AreaIdEnum.AMPHIBIAN_ELEMENT },
+  ],
+  [
+    AnimalEnum.ARACHNID,
+    { kind: ElementEnum.GRUB, inherentCount: 2, areaId: AreaIdEnum.ARACHNID_ELEMENT },
+  ],
+  [AnimalEnum.BIRD, { kind: ElementEnum.SEED, inherentCount: 2, areaId: AreaIdEnum.BIRD_ELEMENT }],
+  [
+    AnimalEnum.INSECT,
+    { kind: ElementEnum.GRASS, inherentCount: 2, areaId: AreaIdEnum.INSECT_ELEMENT },
+  ],
+  [
+    AnimalEnum.MAMMAL,
+    { kind: ElementEnum.MEAT, inherentCount: 2, areaId: AreaIdEnum.MAMMAL_ELEMENT },
+  ],
+  [
+    AnimalEnum.REPTILE,
+    { kind: ElementEnum.SUN, inherentCount: 2, areaId: AreaIdEnum.REPTILE_ELEMENT },
+  ],
+] as const)</code>
+                    </td>
+                </tr>
+
 
         </tbody>
     </table>
@@ -239,39 +291,10 @@
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>{
+  area: [],
   faction: [],
   pile: [],
 }</code>
-                    </td>
-                </tr>
-
-
-        </tbody>
-    </table>
-</section>
-    <h3>src/app/game/model/animal.model.ts</h3>
-    <section data-compodoc="block-properties">
-    <h3></h3>    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="inherentElementKindByAnimalKind"></a>
-                    <span class="name">
-                        <span ><b>inherentElementKindByAnimalKind</b></span>
-                        <a href="#inherentElementKindByAnimalKind"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>new Map&lt;AnimalKind, string&gt;([
-  [&#x27;amphibianAnimal&#x27;, &#x27;waterElement&#x27;],
-  [&#x27;arachnidAnimal&#x27;, &#x27;grubElement&#x27;],
-  [&#x27;birdAnimal&#x27;, &#x27;seedElement&#x27;],
-  [&#x27;insectAnimal&#x27;, &#x27;grassElement&#x27;],
-  [&#x27;mammalAnimal&#x27;, &#x27;meatElement&#x27;],
-  [&#x27;reptileAnimal&#x27;, &#x27;sunElement&#x27;],
-] as const)</code>
                     </td>
                 </tr>
 

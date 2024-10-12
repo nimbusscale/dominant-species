@@ -2,6 +2,8 @@ import { GameStatePatch } from '../../../app/engine/model/game-state-patch.model
 import { GameState } from '../../../app/engine/model/game-state.model';
 import { PileState } from '../../../app/engine/model/pile.model';
 import { FactionState } from '../../../app/engine/model/faction.model';
+import { AreaState } from '../../../app/engine/model/area.model';
+import { PlayerState } from '../../../app/engine/model/player.model';
 
 function deepFreeze<T>(obj: T): T {
   const propNames = Object.getOwnPropertyNames(obj) as (keyof T)[];
@@ -16,12 +18,12 @@ function deepFreeze<T>(obj: T): T {
 }
 
 export const testPileState1: PileState = deepFreeze({
-  kind: 'pile1',
+  id: 'pile1',
   inventory: { test1: 10, test2: 10 },
 });
 
 export const testPileState2: PileState = deepFreeze({
-  kind: 'pile2',
+  id: 'pile2',
   inventory: { test3: 10 },
 });
 
@@ -33,59 +35,54 @@ export const testGameStatePatch1: GameStatePatch = deepFreeze({
   ],
 });
 
+export const testPlayerState1: PlayerState = deepFreeze({
+  id: 'tester1',
+  name: 'Test Player',
+});
+
+export const testFactionState1: FactionState = deepFreeze({
+  id: 'redTester',
+  ownerId: 'tester1',
+  score: 0,
+});
+
+export const testFactionState2: FactionState = deepFreeze({
+  id: 'blueTester',
+  ownerId: 'tester2',
+  score: 0,
+});
+
 export const testGameState1: GameState = deepFreeze({
+  area: [],
+  faction: [testFactionState1, testFactionState2],
+  global: {
+    player: [],
+  },
   pile: [
     {
-      kind: 'pile1',
+      id: 'pile1',
       inventory: { test1: 10, test2: 10 },
     },
     {
-      kind: 'pile2',
+      id: 'pile2',
       inventory: { test3: 10 },
     },
   ],
-  faction: [
-    {
-      owner: {
-        id: 'test1',
-        name: 'Tester1',
-      },
-      kind: 'redTester',
-    },
-    {
-      owner: {
-        id: 'test2',
-        name: 'Tester2',
-      },
-      kind: 'blueTester',
-    },
-  ],
-} as { pile: PileState[]; faction: FactionState[] });
+} as { area: AreaState[]; faction: FactionState[]; pile: PileState[] });
 
 // Since testGameState1 is frozen, we need to just duplicate the object config here.
 export const testGameState1updated: GameState = deepFreeze({
+  area: [],
+  faction: [testFactionState1, testFactionState2],
+  global: {
+    player: [],
+  },
   pile: [
     {
-      kind: 'pile1',
+      id: 'pile1',
       // Updated with test1 = 20
       inventory: { test1: 20, test2: 10 },
     },
     // removed second pile
   ],
-  faction: [
-    {
-      owner: {
-        id: 'test1',
-        name: 'Tester1',
-      },
-      kind: 'redTester',
-    },
-    {
-      owner: {
-        id: 'test2',
-        name: 'Tester2',
-      },
-      kind: 'blueTester',
-    },
-  ],
-} as { pile: PileState[]; faction: FactionState[] });
+} as { area: AreaState[]; faction: FactionState[]; pile: PileState[] });

@@ -1,50 +1,41 @@
 import { Pile, PileState } from '../../../app/engine/model/pile.model';
-import { defaultPieceFactory } from '../../../app/engine/model/piece.model';
+import { defaultPieceFactory, Piece } from '../../../app/engine/model/piece.model';
 
 describe('Pile', () => {
   let pileState: PileState;
   let emptyPileState: PileState;
   let noInventoryPileState: PileState;
   let pile: Pile;
+  let grassPiece: Piece;
+  let grubPiece: Piece;
+  let meatPiece: Piece;
 
   beforeEach(() => {
     pileState = {
-      kind: 'test',
+      id: 'test',
       inventory: {
         grass: 10,
         grub: 10,
       },
     };
     emptyPileState = {
-      kind: 'empty',
+      id: 'empty',
       inventory: {
         grass: 0,
         grub: 0,
       },
     };
     noInventoryPileState = {
-      kind: 'noInventory',
+      id: 'noInventory',
       inventory: {},
     };
     pile = new Pile(pileState, defaultPieceFactory);
+
+    grassPiece = defaultPieceFactory('grass');
+    grubPiece = defaultPieceFactory('grub');
+    meatPiece = defaultPieceFactory('meat');
   });
 
-  describe('state', () => {
-    it('should be able to retrieve a copy', () => {
-      expect(pile.state).toEqual(pileState);
-      expect(pile.state).not.toBe(pileState);
-    });
-    it('should be updatable', () => {
-      const newPileState: PileState = {
-        kind: 'test',
-        inventory: {
-          meat: 1,
-        },
-      };
-      pile.setState(newPileState);
-      expect(pile.state).toEqual(newPileState);
-    });
-  });
   describe('length', () => {
     it('should return total number of items when pile has items', () => {
       const result = pile.length;
@@ -99,7 +90,7 @@ describe('Pile', () => {
     });
     it('should return a null for each pull where there is not an item', () => {
       const testPileState = {
-        kind: 'test',
+        id: 'test',
         inventory: {
           grass: 1,
           grub: 0,
@@ -114,17 +105,17 @@ describe('Pile', () => {
   });
   describe('putt', () => {
     it('should increase count of existing item', () => {
-      pile.put([{ kind: 'grass' }]);
+      pile.put([grassPiece]);
       expect(pile.state.inventory['grass']).toEqual(11);
       expect(pile.state.inventory['grub']).toEqual(10);
     });
     it('should be able to add more than one', () => {
-      pile.put([{ kind: 'grass' }, { kind: 'grub' }]);
+      pile.put([grassPiece, grubPiece]);
       expect(pile.state.inventory['grass']).toEqual(11);
       expect(pile.state.inventory['grub']).toEqual(11);
     });
     it('should be able to add new kind', () => {
-      pile.put([{ kind: 'meat' }]);
+      pile.put([meatPiece]);
       expect(pile.state.inventory['grass']).toEqual(10);
       expect(pile.state.inventory['grub']).toEqual(10);
       expect(pile.state.inventory['meat']).toEqual(1);

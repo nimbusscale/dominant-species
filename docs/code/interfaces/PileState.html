@@ -139,7 +139,7 @@
                 <h3>Extends</h3>
             </p>
             <p class="comment">
-                            <code><a href="../interfaces/GameStateElement.html" target="_self" >GameStateElement</a></code>
+                            <code><a href="../interfaces/GameElementState.html" target="_self" >GameElementState</a></code>
             </p>
 
         <section data-compodoc="block-index">
@@ -210,32 +210,22 @@
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { defaultPieceFactory, Piece, PieceFactory } from &#x27;./piece.model&#x27;;
-import { GameStateElement } from &#x27;./game-state.model&#x27;;
-import { deepClone } from &#x27;fast-json-patch&#x27;;
 import { BehaviorSubject, distinctUntilChanged, Observable } from &#x27;rxjs&#x27;;
+import { GameElement, GameElementState } from &#x27;./game-element.model&#x27;;
 
 /**
  * PileState is pretty simple as it just keeps tracks of what kinds of pieces are in the pile and how many of them.
  */
-export interface PileState extends GameStateElement {
+export interface PileState extends GameElementState {
   inventory: Record&lt;string, number&gt;;
 }
 
 /**
  * A Pile is used to draw one or more random pieces for a defined pool of pieces.
- * A Pile has two Type Vars needed to be set when it&#x27;s instantiated:
- *
- * **Tpiece** Kind A type var used to set the kinds of Pieces the Pipe can contain and
- *
- * **Tpiece** A type var used to set the type of Piece the Pile creates
- *
  */
-export class Pile {
+export class Pile extends GameElement&lt;PileState&gt; {
   private readonly pieceFactory: PieceFactory;
-  private _state: PileState;
-  private stateSubject: BehaviorSubject&lt;PileState&gt;;
   private lengthSubject: BehaviorSubject&lt;number&gt;;
-  state$: Observable&lt;PileState&gt;;
   length$: Observable&lt;number&gt;;
 
   /**
@@ -245,10 +235,8 @@ export class Pile {
    * @param pieceFactory A factory function use to build the random selected piece.
    */
   constructor(state: PileState, pieceFactory: PieceFactory &#x3D; defaultPieceFactory) {
-    this._state &#x3D; state;
+    super(state);
     this.pieceFactory &#x3D; pieceFactory;
-    this.stateSubject &#x3D; new BehaviorSubject&lt;PileState&gt;(this.state);
-    this.state$ &#x3D; this.stateSubject.asObservable();
     this.lengthSubject &#x3D; new BehaviorSubject&lt;number&gt;(this.length);
     this.length$ &#x3D; this.lengthSubject.asObservable().pipe(distinctUntilChanged());
   }
@@ -263,20 +251,8 @@ export class Pile {
     );
   }
 
-  get state(): PileState {
-    return deepClone(this._state) as PileState;
-  }
-
-  get kind(): string {
-    return this._state.kind;
-  }
-
-  setState(newState: PileState) {
-    this._state &#x3D; newState;
-  }
-
-  private emitState(): void {
-    this.stateSubject.next(this.state);
+  private emitPileState(): void {
+    this.emitState();
     this.lengthSubject.next(this.length);
   }
 
@@ -303,7 +279,7 @@ export class Pile {
         pieces.push(null);
       }
     }
-    this.emitState();
+    this.emitPileState();
     return pieces;
   }
 
@@ -317,7 +293,7 @@ export class Pile {
       const currentItemCount &#x3D; this._state.inventory[piece.kind] || 0;
       this._state.inventory[piece.kind] &#x3D; currentItemCount + 1;
     }
-    this.emitState();
+    this.emitPileState();
   }
 }
 </code></pre>

@@ -128,13 +128,16 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>A Pile is used to draw one or more random pieces for a defined pool of pieces.
-A Pile has two Type Vars needed to be set when it&#39;s instantiated:</p>
-<p><strong>Tpiece</strong> Kind A type var used to set the kinds of Pieces the Pipe can contain and</p>
-<p><strong>Tpiece</strong> A type var used to set the type of Piece the Pile creates</p>
+                <p>A Pile is used to draw one or more random pieces for a defined pool of pieces.</p>
 
             </p>
 
+            <p class="comment">
+                <h3>Extends</h3>
+            </p>
+            <p class="comment">
+                            <code><a href="../classes/GameElement.html" target="_self" >GameElement</a></code>
+            </p>
 
 
 
@@ -151,10 +154,6 @@ A Pile has two Type Vars needed to be set when it&#39;s instantiated:</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#_state" >_state</a>
-                            </li>
-                            <li>
                                 <a href="#length$" >length$</a>
                             </li>
                             <li>
@@ -167,10 +166,14 @@ A Pile has two Type Vars needed to be set when it&#39;s instantiated:</p>
                                 <a href="#pieceFactory" >pieceFactory</a>
                             </li>
                             <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#_state" >_state</a>
+                            </li>
+                            <li>
                                 <a href="#state$" >state$</a>
                             </li>
                             <li>
-                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Protected</span>
                                 <a href="#stateSubject" >stateSubject</a>
                             </li>
                         </ul>
@@ -187,13 +190,17 @@ A Pile has two Type Vars needed to be set when it&#39;s instantiated:</p>
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#emitState" >emitState</a>
+                                <a href="#emitPileState" >emitPileState</a>
                             </li>
                             <li>
                                 <a href="#pull" >pull</a>
                             </li>
                             <li>
                                 <a href="#put" >put</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#emitState" >emitState</a>
                             </li>
                             <li>
                                 <a href="#setState" >setState</a>
@@ -217,12 +224,6 @@ A Pile has two Type Vars needed to be set when it&#39;s instantiated:</p>
                                 <li>
                                     <a href="#length" >length</a>
                                 </li>
-                                <li>
-                                    <a href="#state" >state</a>
-                                </li>
-                                <li>
-                                    <a href="#kind" >kind</a>
-                                </li>
                             </ul>
                         </td>
                     </tr>
@@ -241,7 +242,7 @@ A Pile has two Type Vars needed to be set when it&#39;s instantiated:</p>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/engine/model/pile.model.ts:28</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/engine/model/pile.model.ts:18</a></div>
                             </td>
                         </tr>
 
@@ -314,33 +315,6 @@ the pile.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="_state"></a>
-                    <span class="name">
-                            <span class="modifier">Private</span>
-                        <span ><b>_state</b></span>
-                        <a href="#_state"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../interfaces/PileState.html" target="_self" >PileState</a></code>
-
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/engine/model/pile.model.ts:24</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
                     <a name="length$"></a>
                     <span class="name">
                         <span ><b>length$</b></span>
@@ -356,7 +330,7 @@ the pile.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/engine/model/pile.model.ts:28</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/engine/model/pile.model.ts:18</a></div>
                         </td>
                     </tr>
 
@@ -383,7 +357,7 @@ the pile.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/engine/model/pile.model.ts:26</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/engine/model/pile.model.ts:17</a></div>
                         </td>
                     </tr>
 
@@ -411,7 +385,41 @@ the pile.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/engine/model/pile.model.ts:23</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/engine/model/pile.model.ts:16</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_state"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>_state</b></span>
+                        <a href="#_state"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>T</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../classes/GameElement.html" target="_self" >GameElement</a></code>
+</div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../classes/GameElement.html#source" target="_self" >GameElement:9</a></code>
+</div>
                         </td>
                     </tr>
 
@@ -431,13 +439,20 @@ the pile.</p>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../interfaces/PileState.html" target="_self" >Observable&lt;PileState&gt;</a></code>
+                        <i>Type : </i>    <code>Observable&lt;T&gt;</code>
 
                     </td>
                 </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../classes/GameElement.html" target="_self" >GameElement</a></code>
+</div>
+                            </td>
+                        </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/engine/model/pile.model.ts:27</a></div>
+                                <div class="io-line">Defined in         <code><a href="../classes/GameElement.html#source" target="_self" >GameElement:11</a></code>
+</div>
                         </td>
                     </tr>
 
@@ -450,7 +465,7 @@ the pile.</p>
                 <td class="col-md-4">
                     <a name="stateSubject"></a>
                     <span class="name">
-                            <span class="modifier">Private</span>
+                            <span class="modifier">Protected</span>
                         <span ><b>stateSubject</b></span>
                         <a href="#stateSubject"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -458,13 +473,20 @@ the pile.</p>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../interfaces/PileState.html" target="_self" >BehaviorSubject&lt;PileState&gt;</a></code>
+                        <i>Type : </i>    <code>BehaviorSubject&lt;T&gt;</code>
 
                     </td>
                 </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../classes/GameElement.html" target="_self" >GameElement</a></code>
+</div>
+                            </td>
+                        </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/engine/model/pile.model.ts:25</a></div>
+                                <div class="io-line">Defined in         <code><a href="../classes/GameElement.html#source" target="_self" >GameElement:10</a></code>
+</div>
                         </td>
                     </tr>
 
@@ -482,26 +504,26 @@ the pile.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="emitState"></a>
+                    <a name="emitPileState"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
-                        <span ><b>emitState</b></span>
-                        <a href="#emitState"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>emitPileState</b></span>
+                        <a href="#emitPileState"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>emitState()</code>
+                    <code>emitPileState()</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="67"
-                                    class="link-to-prism">src/app/engine/model/pile.model.ts:67</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="43"
+                                    class="link-to-prism">src/app/engine/model/pile.model.ts:43</a></div>
                         </td>
                     </tr>
 
@@ -537,8 +559,8 @@ the pile.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="77"
-                                    class="link-to-prism">src/app/engine/model/pile.model.ts:77</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="53"
+                                    class="link-to-prism">src/app/engine/model/pile.model.ts:53</a></div>
                         </td>
                     </tr>
 
@@ -616,8 +638,8 @@ the pile.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="103"
-                                    class="link-to-prism">src/app/engine/model/pile.model.ts:103</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="79"
+                                    class="link-to-prism">src/app/engine/model/pile.model.ts:79</a></div>
                         </td>
                     </tr>
 
@@ -674,6 +696,51 @@ the pile.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="emitState"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>emitState</b></span>
+                        <a href="#emitState"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>emitState()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Inherited from         <code><a href="../classes/GameElement.html" target="_self" >GameElement</a></code>
+</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../classes/GameElement.html#source" target="_self" >GameElement:39</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="setState"></a>
                     <span class="name">
                         <span ><b>setState</b></span>
@@ -683,21 +750,29 @@ the pile.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>setState(newState: <a href="../interfaces/PileState.html" target="_self">PileState</a>)</code>
+<code>setState(newState: T)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="63"
-                                    class="link-to-prism">src/app/engine/model/pile.model.ts:63</a></div>
+                            <div class="io-line">Inherited from         <code><a href="../classes/GameElement.html" target="_self" >GameElement</a></code>
+</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../classes/GameElement.html#source" target="_self" >GameElement:31</a></code>
+</div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Set state happens when a GSP is received, so state is not emitted back as it&#39;s already in the GameState</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -714,7 +789,7 @@ the pile.</p>
                                         <tr>
                                                 <td>newState</td>
                                             <td>
-                                                            <code><a href="../interfaces/PileState.html" target="_self" >PileState</a></code>
+                                                        <code>T</code>
                                             </td>
 
                                             <td>
@@ -763,7 +838,7 @@ the pile.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/engine/model/pile.model.ts:48</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/engine/model/pile.model.ts:36</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -780,82 +855,28 @@ the pile.</p>
 
             </tbody>
         </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="state"></a>
-                        <span class="name"><b>state</b><a href="#state"><span class="icon ion-ios-link"></span></a></span>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <span class="accessor"><b>get</b><code>state()</code></span>
-                    </td>
-                </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/engine/model/pile.model.ts:55</a></div>
-                                </td>
-                            </tr>
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="kind"></a>
-                        <span class="name"><b>kind</b><a href="#kind"><span class="icon ion-ios-link"></span></a></span>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <span class="accessor"><b>get</b><code>kind()</code></span>
-                    </td>
-                </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/app/engine/model/pile.model.ts:59</a></div>
-                                </td>
-                            </tr>
-
-            </tbody>
-        </table>
 </section>
     </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { defaultPieceFactory, Piece, PieceFactory } from &#x27;./piece.model&#x27;;
-import { GameStateElement } from &#x27;./game-state.model&#x27;;
-import { deepClone } from &#x27;fast-json-patch&#x27;;
 import { BehaviorSubject, distinctUntilChanged, Observable } from &#x27;rxjs&#x27;;
+import { GameElement, GameElementState } from &#x27;./game-element.model&#x27;;
 
 /**
  * PileState is pretty simple as it just keeps tracks of what kinds of pieces are in the pile and how many of them.
  */
-export interface PileState extends GameStateElement {
+export interface PileState extends GameElementState {
   inventory: Record&lt;string, number&gt;;
 }
 
 /**
  * A Pile is used to draw one or more random pieces for a defined pool of pieces.
- * A Pile has two Type Vars needed to be set when it&#x27;s instantiated:
- *
- * **Tpiece** Kind A type var used to set the kinds of Pieces the Pipe can contain and
- *
- * **Tpiece** A type var used to set the type of Piece the Pile creates
- *
  */
-export class Pile {
+export class Pile extends GameElement&lt;PileState&gt; {
   private readonly pieceFactory: PieceFactory;
-  private _state: PileState;
-  private stateSubject: BehaviorSubject&lt;PileState&gt;;
   private lengthSubject: BehaviorSubject&lt;number&gt;;
-  state$: Observable&lt;PileState&gt;;
   length$: Observable&lt;number&gt;;
 
   /**
@@ -865,10 +886,8 @@ export class Pile {
    * @param pieceFactory A factory function use to build the random selected piece.
    */
   constructor(state: PileState, pieceFactory: PieceFactory &#x3D; defaultPieceFactory) {
-    this._state &#x3D; state;
+    super(state);
     this.pieceFactory &#x3D; pieceFactory;
-    this.stateSubject &#x3D; new BehaviorSubject&lt;PileState&gt;(this.state);
-    this.state$ &#x3D; this.stateSubject.asObservable();
     this.lengthSubject &#x3D; new BehaviorSubject&lt;number&gt;(this.length);
     this.length$ &#x3D; this.lengthSubject.asObservable().pipe(distinctUntilChanged());
   }
@@ -883,20 +902,8 @@ export class Pile {
     );
   }
 
-  get state(): PileState {
-    return deepClone(this._state) as PileState;
-  }
-
-  get kind(): string {
-    return this._state.kind;
-  }
-
-  setState(newState: PileState) {
-    this._state &#x3D; newState;
-  }
-
-  private emitState(): void {
-    this.stateSubject.next(this.state);
+  private emitPileState(): void {
+    this.emitState();
     this.lengthSubject.next(this.length);
   }
 
@@ -923,7 +930,7 @@ export class Pile {
         pieces.push(null);
       }
     }
-    this.emitState();
+    this.emitPileState();
     return pieces;
   }
 
@@ -937,7 +944,7 @@ export class Pile {
       const currentItemCount &#x3D; this._state.inventory[piece.kind] || 0;
       this._state.inventory[piece.kind] &#x3D; currentItemCount + 1;
     }
-    this.emitState();
+    this.emitPileState();
   }
 }
 </code></pre>
