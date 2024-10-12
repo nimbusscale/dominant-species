@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { GameStateService } from '../game-state/game-state.service';
 import { Observable, skip } from 'rxjs';
 import { GameElement, GameElementState } from '../../model/game-element.model';
-import {getOrThrow} from "../../util";
+import { getOrThrow } from '../../util';
 
 @Injectable({
   providedIn: 'root',
@@ -34,7 +34,7 @@ export abstract class GameElementStateService<
   }
 
   private getEntity(id: string): TgameElement {
-    return getOrThrow(this.elementById, id)
+    return getOrThrow(this.elementById, id);
   }
 
   register(entities: TgameElement[]): void {

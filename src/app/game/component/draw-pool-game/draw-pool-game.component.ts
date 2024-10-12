@@ -3,7 +3,7 @@ import { GameManagementService } from '../../../engine/service/game-management.s
 import { MatButton } from '@angular/material/button';
 import { MatTooltip } from '@angular/material/tooltip';
 import { GameStateService } from '../../../engine/service/game-state/game-state.service';
-import { filter } from 'rxjs';
+import { filter, first } from 'rxjs';
 import { Pile } from '../../../engine/model/pile.model';
 import { ElementDrawPoolService } from '../../service/element-draw-pool.service';
 
@@ -30,14 +30,16 @@ export class DrawPoolGameComponent {
   }
 
   private initialize(): void {
-    const registeredPilesSubscription = this.elementDrawPoolSvc.drawPool$
-      .pipe(filter((drawPool) => drawPool != null))
+    this.elementDrawPoolSvc.drawPool$
+      .pipe(
+        filter((drawPool) => drawPool != null),
+        first(),
+      )
       .subscribe((drawPool) => {
         this.drawPool = drawPool;
         drawPool.length$.subscribe((length) => {
           this.drawPoolLength = length;
         });
-        registeredPilesSubscription.unsubscribe();
       });
   }
 

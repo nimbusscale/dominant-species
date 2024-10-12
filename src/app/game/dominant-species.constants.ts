@@ -70,18 +70,18 @@ export enum SpaceKindEnum {
 export const baseGameState: GameState = {
   area: [
     {
-      id: AreaIdEnum.ACTION_DISPLAY_ADAPTION as string,
+      id: AreaIdEnum.ACTION_DISPLAY_ADAPTION,
       space: [
-        { kind: SpaceKindEnum.ACTION_PAWN as string, piece: null },
-        { kind: SpaceKindEnum.ACTION_PAWN as string, piece: null },
-        { kind: SpaceKindEnum.ACTION_PAWN as string, piece: null },
+        { kind: SpaceKindEnum.ACTION_PAWN, piece: null },
+        { kind: SpaceKindEnum.ACTION_PAWN, piece: null },
+        { kind: SpaceKindEnum.ACTION_PAWN, piece: null },
       ],
     },
   ],
   faction: [],
   pile: [
     {
-      id: PieceKindEnum.ELEMENT as string,
+      id: PieceKindEnum.ELEMENT,
       inventory: {
         // 20 Elements each, with 2 being places on Earth, leaving 18 in the bag
         grassElement: 18,

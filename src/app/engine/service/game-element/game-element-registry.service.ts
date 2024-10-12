@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { GameElementStateService } from './game-element-state.service';
 import { GameElement, GameElementState } from '../../model/game-element.model';
-import {getOrThrow} from "../../util";
+import { getOrThrow } from '../../util';
 
 @Injectable({
   providedIn: 'root',
@@ -20,7 +20,7 @@ export abstract class GameElementRegistryService<
   constructor(protected gameElementStateSvc: TgameElementStateSvc) {}
 
   get(id: string): TgameElement {
-    return  getOrThrow(this.elementById, id)
+    return getOrThrow(this.elementById, id);
   }
 
   register(elements: TgameElement[]): void {
