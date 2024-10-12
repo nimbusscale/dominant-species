@@ -50,4 +50,17 @@ describe('Area', () => {
       area.setState(newState);
     }).toThrowError();
   });
+  describe('nextAvailableSpace', () => {
+    it('returns next available space', () => {
+      space1.addPiece({ kind: 'testPiece' });
+      expect(area.nextAvailableSpace()).toBe(space2)
+    })
+    it('returns null when no available spaces', () => {
+      space1.addPiece({ kind: 'testPiece' });
+      space2.addPiece({ kind: 'testPiece' });
+      expect(area.nextAvailableSpace()).toBeNull()
+    })
+
+
+  })
 });
