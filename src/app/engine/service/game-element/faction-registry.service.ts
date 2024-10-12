@@ -4,7 +4,7 @@ import { GameElementRegistryService } from './game-element-registry.service';
 import { FactionStateService } from './faction-state.service';
 import { BehaviorSubject, Observable } from 'rxjs';
 
-interface FactionAssignment {
+export interface FactionAssignment {
   id: string;
   ownerId: string;
 }
