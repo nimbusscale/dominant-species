@@ -361,8 +361,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="44"
-                                    class="link-to-prism">src/app/game/component/draw-pool-game/draw-pool-game.component.ts:44</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="46"
+                                    class="link-to-prism">src/app/game/component/draw-pool-game/draw-pool-game.component.ts:46</a></div>
                         </td>
                     </tr>
 
@@ -398,8 +398,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="62"
-                                    class="link-to-prism">src/app/game/component/draw-pool-game/draw-pool-game.component.ts:62</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="64"
+                                    class="link-to-prism">src/app/game/component/draw-pool-game/draw-pool-game.component.ts:64</a></div>
                         </td>
                     </tr>
 
@@ -435,8 +435,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="74"
-                                    class="link-to-prism">src/app/game/component/draw-pool-game/draw-pool-game.component.ts:74</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="76"
+                                    class="link-to-prism">src/app/game/component/draw-pool-game/draw-pool-game.component.ts:76</a></div>
                         </td>
                     </tr>
 
@@ -474,8 +474,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="57"
-                                    class="link-to-prism">src/app/game/component/draw-pool-game/draw-pool-game.component.ts:57</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="59"
+                                    class="link-to-prism">src/app/game/component/draw-pool-game/draw-pool-game.component.ts:59</a></div>
                         </td>
                     </tr>
 
@@ -580,8 +580,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="52"
-                                    class="link-to-prism">src/app/game/component/draw-pool-game/draw-pool-game.component.ts:52</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="54"
+                                    class="link-to-prism">src/app/game/component/draw-pool-game/draw-pool-game.component.ts:54</a></div>
                         </td>
                     </tr>
 
@@ -707,7 +707,7 @@ import { GameManagementService } from &#x27;../../../engine/service/game-managem
 import { MatButton } from &#x27;@angular/material/button&#x27;;
 import { MatTooltip } from &#x27;@angular/material/tooltip&#x27;;
 import { GameStateService } from &#x27;../../../engine/service/game-state/game-state.service&#x27;;
-import { filter } from &#x27;rxjs&#x27;;
+import { filter, first } from &#x27;rxjs&#x27;;
 import { Pile } from &#x27;../../../engine/model/pile.model&#x27;;
 import { ElementDrawPoolService } from &#x27;../../service/element-draw-pool.service&#x27;;
 
@@ -734,14 +734,16 @@ export class DrawPoolGameComponent {
   }
 
   private initialize(): void {
-    const registeredPilesSubscription &#x3D; this.elementDrawPoolSvc.drawPool$
-      .pipe(filter((drawPool) &#x3D;&gt; drawPool !&#x3D; null))
+    this.elementDrawPoolSvc.drawPool$
+      .pipe(
+        filter((drawPool) &#x3D;&gt; drawPool !&#x3D; null),
+        first(),
+      )
       .subscribe((drawPool) &#x3D;&gt; {
         this.drawPool &#x3D; drawPool;
         drawPool.length$.subscribe((length) &#x3D;&gt; {
           this.drawPoolLength &#x3D; length;
         });
-        registeredPilesSubscription.unsubscribe();
       });
   }
 
