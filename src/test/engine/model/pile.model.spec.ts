@@ -1,11 +1,14 @@
 import { Pile, PileState } from '../../../app/engine/model/pile.model';
-import { defaultPieceFactory } from '../../../app/engine/model/piece.model';
+import {defaultPieceFactory, Piece} from '../../../app/engine/model/piece.model';
 
 describe('Pile', () => {
   let pileState: PileState;
   let emptyPileState: PileState;
   let noInventoryPileState: PileState;
   let pile: Pile;
+  let grassPiece: Piece
+  let grubPiece: Piece
+  let meatPiece: Piece
 
   beforeEach(() => {
     pileState = {
@@ -27,6 +30,10 @@ describe('Pile', () => {
       inventory: {},
     };
     pile = new Pile(pileState, defaultPieceFactory);
+
+    grassPiece = defaultPieceFactory('grass')
+    grubPiece = defaultPieceFactory('grub')
+    meatPiece = defaultPieceFactory('meat')
   });
 
   describe('length', () => {
@@ -98,17 +105,17 @@ describe('Pile', () => {
   });
   describe('putt', () => {
     it('should increase count of existing item', () => {
-      pile.put([{ kind: 'grass' }]);
+      pile.put([grassPiece]);
       expect(pile.state.inventory['grass']).toEqual(11);
       expect(pile.state.inventory['grub']).toEqual(10);
     });
     it('should be able to add more than one', () => {
-      pile.put([{ kind: 'grass' }, { kind: 'grub' }]);
+      pile.put([grassPiece, grubPiece]);
       expect(pile.state.inventory['grass']).toEqual(11);
       expect(pile.state.inventory['grub']).toEqual(11);
     });
     it('should be able to add new kind', () => {
-      pile.put([{ kind: 'meat' }]);
+      pile.put([meatPiece]);
       expect(pile.state.inventory['grass']).toEqual(10);
       expect(pile.state.inventory['grub']).toEqual(10);
       expect(pile.state.inventory['meat']).toEqual(1);

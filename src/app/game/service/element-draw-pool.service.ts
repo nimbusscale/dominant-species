@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Pile } from '../../engine/model/pile.model';
 import { BehaviorSubject, filter, Observable } from 'rxjs';
-import { dsPieceKind } from '../dominant-species.constants';
+import { PieceKindEnum } from '../dominant-species.constants';
 
 import { PileRegistryService } from '../../engine/service/game-element/pile-registry.service';
 
@@ -21,9 +21,9 @@ export class ElementDrawPoolService {
 
   private initialize(): void {
     const registeredPilesSubscription = this.pileRegistrySvc.registeredIds$
-      .pipe(filter((registeredIds) => registeredIds.has(dsPieceKind.ELEMENT)))
+      .pipe(filter((registeredIds) => registeredIds.has(PieceKindEnum.ELEMENT)))
       .subscribe(() => {
-        this._drawPool = this.pileRegistrySvc.get(dsPieceKind.ELEMENT);
+        this._drawPool = this.pileRegistrySvc.get(PieceKindEnum.ELEMENT);
         this.drawPoolSubject.next(this._drawPool);
         registeredPilesSubscription.unsubscribe();
       });

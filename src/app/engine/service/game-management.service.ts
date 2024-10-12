@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import {
   baseGameState,
-  dsAnimal,
-  dsSpaceKind,
+  AnimalEnum,
+  SpaceKindEnum,
   elementConfigByAnimal,
 } from '../../game/dominant-species.constants';
 import { Pile } from '../model/pile.model';
@@ -15,6 +15,7 @@ import { getOrThrow } from '../util';
 import { AreaRegistryService } from './game-element/area-registry.service';
 import { FactionRegistryService } from './game-element/faction-registry.service';
 import { PileRegistryService } from './game-element/pile-registry.service';
+import {elementPieceFactory} from "../../game/model/piece.model";
 
 @Injectable({
   providedIn: 'root',
@@ -48,7 +49,7 @@ export class GameManagementService {
   private createFactions() {
     const factions: Faction[] = [];
     const areas: Area[] = [];
-    const shuffledAnimals = shuffle(Object.values(dsAnimal));
+    const shuffledAnimals = shuffle(Object.values(AnimalEnum));
     this.playerService.players.forEach((player, index) => {
       const assignedAnimal = shuffledAnimals[index];
       const elementConfig = getOrThrow(elementConfigByAnimal, assignedAnimal);
@@ -64,14 +65,14 @@ export class GameManagementService {
       const spaces: Space[] = [];
       // inherent element spaces
       for (let i = 0; i < elementConfig.inherentCount; i++) {
-        const space = new Space(dsSpaceKind.ELEMENT);
-        space.addPiece({ kind: elementConfig.kind });
+        const space = new Space(SpaceKindEnum.ELEMENT);
+        space.addPiece(elementPieceFactory(elementConfig.kind));
         spaces.push(space);
       }
 
       // added element spaces
       for (let i = 0; i < 6 - elementConfig.inherentCount; i++) {
-        const space = new Space(dsSpaceKind.ELEMENT);
+        const space = new Space(SpaceKindEnum.ELEMENT);
         spaces.push(space);
       }
 

@@ -1,9 +1,10 @@
 export interface Piece {
   kind: string;
+  owner: string | null
 }
 
-export type PieceFactory = (kind: string) => Piece;
+export type PieceFactory = (kind: string, owner?: string | null) => Piece;
 
-export function defaultPieceFactory(kind: string): Piece {
-  return { kind: kind };
+export function defaultPieceFactory(kind: string, owner: string | null = null): Piece {
+  return { kind: kind , owner: owner};
 }

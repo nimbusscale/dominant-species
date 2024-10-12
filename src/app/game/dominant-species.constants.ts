@@ -1,6 +1,6 @@
 import { GameState } from '../engine/model/game-state.model';
 
-export enum dsAnimal {
+export enum AnimalEnum {
   AMPHIBIAN = 'amphibian',
   ARACHNID = 'arachnid',
   BIRD = 'bird',
@@ -9,7 +9,9 @@ export enum dsAnimal {
   REPTILE = 'reptile',
 }
 
-export enum dsAreaId {
+export type AnimalKind = `${AnimalEnum}`
+
+export enum AreaIdEnum {
   ACTION_DISPLAY_ABUNDANCE = 'actionDisplayAbundance',
   ACTION_DISPLAY_ADAPTION = 'actionDisplayAdaption',
   AMPHIBIAN_ELEMENT = 'amphibianElement',
@@ -20,7 +22,7 @@ export enum dsAreaId {
   REPTILE_ELEMENT = 'reptileElement',
 }
 
-export enum dsElement {
+export enum ElementEnum {
   GRASS = 'grassElement',
   GRUB = 'grubElement',
   MEAT = 'meatElement',
@@ -29,7 +31,9 @@ export enum dsElement {
   WATER = 'waterElement',
 }
 
-export enum dsPieceKind {
+export type ElementKind = `${ElementEnum}`
+
+export enum PieceKindEnum {
   ACTION_PAWN_AMPHIBIAN = 'actionPawnAmphibian',
   ACTION_PAWN_ARACHNID = 'actionPawnArachnid',
   ACTION_PAWN_BIRD = 'actionPawnBird',
@@ -45,7 +49,9 @@ export enum dsPieceKind {
   SPECIES_REPTILE = 'speciesReptile',
 }
 
-export enum dsSpaceKind {
+export type ActionPawnKind = PieceKindEnum.ACTION_PAWN_AMPHIBIAN | PieceKindEnum.ACTION_PAWN_BIRD | PieceKindEnum.ACTION_PAWN_ARACHNID | PieceKindEnum.ACTION_PAWN_INSECT | PieceKindEnum.ACTION_PAWN_MAMMAL | PieceKindEnum.ACTION_PAWN_REPTILE
+
+export enum SpaceKindEnum {
   ACTION_PAWN = 'actionPawn',
   ELEMENT = 'element',
 }
@@ -56,18 +62,18 @@ export enum dsSpaceKind {
 export const baseGameState: GameState = {
   area: [
     {
-      id: dsAreaId.ACTION_DISPLAY_ADAPTION as string,
+      id: AreaIdEnum.ACTION_DISPLAY_ADAPTION as string,
       space: [
-        { kind: dsSpaceKind.ACTION_PAWN as string, piece: null },
-        { kind: dsSpaceKind.ACTION_PAWN as string, piece: null },
-        { kind: dsSpaceKind.ACTION_PAWN as string, piece: null },
+        { kind: SpaceKindEnum.ACTION_PAWN as string, piece: null },
+        { kind: SpaceKindEnum.ACTION_PAWN as string, piece: null },
+        { kind: SpaceKindEnum.ACTION_PAWN as string, piece: null },
       ],
     },
   ],
   faction: [],
   pile: [
     {
-      id: dsPieceKind.ELEMENT as string,
+      id: PieceKindEnum.ELEMENT as string,
       inventory: {
         // 20 Elements each, with 2 being places on Earth, leaving 18 in the bag
         grassElement: 18,
@@ -82,19 +88,19 @@ export const baseGameState: GameState = {
 };
 
 export const elementConfigByAnimal = new Map<
-  dsAnimal,
-  { kind: dsElement; inherentCount: number; areaId: dsAreaId }
+  AnimalEnum,
+  { kind: ElementEnum; inherentCount: number; areaId: AreaIdEnum }
 >([
   [
-    dsAnimal.AMPHIBIAN,
-    { kind: dsElement.WATER, inherentCount: 3, areaId: dsAreaId.AMPHIBIAN_ELEMENT },
+    AnimalEnum.AMPHIBIAN,
+    { kind: ElementEnum.WATER, inherentCount: 3, areaId: AreaIdEnum.AMPHIBIAN_ELEMENT },
   ],
   [
-    dsAnimal.ARACHNID,
-    { kind: dsElement.GRUB, inherentCount: 2, areaId: dsAreaId.ARACHNID_ELEMENT },
+    AnimalEnum.ARACHNID,
+    { kind: ElementEnum.GRUB, inherentCount: 2, areaId: AreaIdEnum.ARACHNID_ELEMENT },
   ],
-  [dsAnimal.BIRD, { kind: dsElement.SEED, inherentCount: 2, areaId: dsAreaId.BIRD_ELEMENT }],
-  [dsAnimal.INSECT, { kind: dsElement.GRASS, inherentCount: 2, areaId: dsAreaId.INSECT_ELEMENT }],
-  [dsAnimal.MAMMAL, { kind: dsElement.MEAT, inherentCount: 2, areaId: dsAreaId.MAMMAL_ELEMENT }],
-  [dsAnimal.REPTILE, { kind: dsElement.SUN, inherentCount: 2, areaId: dsAreaId.REPTILE_ELEMENT }],
+  [AnimalEnum.BIRD, { kind: ElementEnum.SEED, inherentCount: 2, areaId: AreaIdEnum.BIRD_ELEMENT }],
+  [AnimalEnum.INSECT, { kind: ElementEnum.GRASS, inherentCount: 2, areaId: AreaIdEnum.INSECT_ELEMENT }],
+  [AnimalEnum.MAMMAL, { kind: ElementEnum.MEAT, inherentCount: 2, areaId: AreaIdEnum.MAMMAL_ELEMENT }],
+  [AnimalEnum.REPTILE, { kind: ElementEnum.SUN, inherentCount: 2, areaId: AreaIdEnum.REPTILE_ELEMENT }],
 ] as const);
