@@ -17,9 +17,13 @@ describe('ElementDrawPoolService', () => {
   beforeEach(() => {
     registeredPilesSubject = new BehaviorSubject<Set<string>>(new Set());
 
-    const pileRegistrySvcSpyObj = jasmine.createSpyObj('pileRegistrySvc', ['get'], {
-      registeredIds$: registeredPilesSubject.asObservable(),
-    });
+    const pileRegistrySvcSpyObj = jasmine.createSpyObj<PileRegistryService>(
+      'PileRegistryService',
+      ['get'],
+      {
+        registeredIds$: registeredPilesSubject.asObservable(),
+      },
+    );
 
     // These probably should be mocks /
     testPile1 = new Pile(deepClone(testPileState1) as PileState);

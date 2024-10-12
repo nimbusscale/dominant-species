@@ -3,6 +3,7 @@ import { GameState } from '../../../app/engine/model/game-state.model';
 import { PileState } from '../../../app/engine/model/pile.model';
 import { FactionState } from '../../../app/engine/model/faction.model';
 import { AreaState } from '../../../app/engine/model/area.model';
+import { PlayerState } from '../../../app/engine/model/player.model';
 
 function deepFreeze<T>(obj: T): T {
   const propNames = Object.getOwnPropertyNames(obj) as (keyof T)[];
@@ -32,6 +33,11 @@ export const testGameStatePatch1: GameStatePatch = deepFreeze({
     { op: 'remove', path: '/pile/1' },
     { op: 'replace', path: '/pile/0/inventory/test1', value: 20 },
   ],
+});
+
+export const testPlayerState1: PlayerState = deepFreeze({
+  id: 'tester1',
+  name: 'Test Player',
 });
 
 export const testFactionState1: FactionState = deepFreeze({

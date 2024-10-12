@@ -7,11 +7,8 @@ import {
   FactionAssignment,
   FactionRegistryService,
 } from '../../engine/service/game-element/faction-registry.service';
-import {BehaviorSubject, filter, map} from 'rxjs';
-import {
-  elementConfigByAnimal,
-  ElementConfig,
-} from '../dominant-species.constants';
+import { BehaviorSubject, filter, first, map } from 'rxjs';
+import { elementConfigByAnimal, ElementConfig } from '../dominant-species.constants';
 import { getOrThrow } from '../../engine/util';
 import { isNotNull, isNotUndefined } from '../../engine/predicate';
 import { Space } from '../../engine/model/space.model';
@@ -25,10 +22,10 @@ export class AnimalService {
   private elementConfig: ElementConfig | undefined = undefined;
   private elementArea: Area | undefined = undefined;
   private elementSpaces: Space[] | undefined = undefined;
-  private elementsSubject: BehaviorSubject<Space[] | undefined> = new BehaviorSubject<Space[] | undefined>(
-    this.elementSpaces,
-  );
-  elements$ = this.elementsSubject.asObservable();
+  private elementsSpacesSubject: BehaviorSubject<Space[] | undefined> = new BehaviorSubject<
+    Space[] | undefined
+  >(this.elementSpaces);
+  elementSpaces$ = this.elementsSpacesSubject.asObservable();
 
   constructor(
     private areaRegistrySvc: AreaRegistryService,
@@ -43,7 +40,7 @@ export class AnimalService {
   }
 
   private factionAssignmentSubscription(): void {
-    const factionAssignmentSubscription = this.factionRegistryService.factionAssignment$
+    this.factionRegistryService.factionAssignment$
       .pipe(
         map((factionAssignments) =>
           factionAssignments.find(
@@ -54,10 +51,10 @@ export class AnimalService {
         filter((factionAssignment): factionAssignment is FactionAssignment =>
           isNotUndefined(factionAssignment),
         ),
+        first(),
       )
       .subscribe((factionAssignment) => {
         this.faction = this.factionRegistryService.get(factionAssignment.id);
-        factionAssignmentSubscription.unsubscribe();
         this.registeredAreaSubscription();
       });
   }
@@ -67,15 +64,17 @@ export class AnimalService {
     Defining elementConfig in local scope so that TS can track value is being set.
     Using this.elementConfig means TS thinks it could be undefined
     */
-    const elementConfig = getOrThrow(elementConfigByAnimal, this.faction.id);
+    const elementConfig = getOrThrow(elementConfigByAnimal, this.faction?.id);
     this.elementConfig = elementConfig;
-    const registeredAreasSubscription = this.areaRegistrySvc.registeredIds$
-      .pipe(filter((registeredIds) => registeredIds.has(elementConfig.areaId)))
+    this.areaRegistrySvc.registeredIds$
+      .pipe(
+        filter((registeredIds) => registeredIds.has(elementConfig.areaId)),
+        first(),
+      )
       .subscribe(() => {
         this.elementArea = this.areaRegistrySvc.get(elementConfig.areaId);
         this.elementSpaces = this.elementArea.spaces;
-        this.elementsSubject.next(this.elementSpaces);
-        registeredAreasSubscription.unsubscribe();
+        this.elementsSpacesSubject.next(this.elementSpaces);
       });
   }
 
@@ -113,7 +112,7 @@ export class AnimalService {
       const availableSpace = this.elementArea.nextAvailableSpace();
       if (availableSpace) {
         availableSpace.addPiece(element);
-        this.elementsSubject.next(this.elementSpaces);
+        this.elementsSpacesSubject.next(this.elementSpaces);
       } else {
         throw new Error('No available element spaces');
       }
@@ -124,9 +123,12 @@ export class AnimalService {
 
   removeElement(element: ElementPiece): void {
     if (this.addedElementSpaces) {
-      const elementSpace = this.addedElementSpaces.find((space) => space.piece === element);
+      const elementSpace = this.addedElementSpaces.find(
+        (space) => space.piece && space.piece.kind === element.kind,
+      );
       if (elementSpace) {
         elementSpace.removePiece();
+        this.elementsSpacesSubject.next(this.elementSpaces);
       } else {
         throw new Error(`Animal does not have added element ${JSON.stringify(element)}`);
       }
