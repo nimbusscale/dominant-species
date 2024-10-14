@@ -7,6 +7,7 @@ import { Pile, PileState } from '../../../app/engine/model/pile.model';
 import { testPileState1 } from '../../engine/service/game-state-test.constant';
 import { PileRegistryService } from '../../../app/engine/service/game-element/pile-registry.service';
 import { PieceKindEnum } from '../../../app/game/constant/piece.constant';
+import {PileIdEnum} from "../../../app/game/constant/pile.constant";
 
 describe('ElementDrawPoolService', () => {
   let elementDrawPoolSvc: ElementDrawPoolService;
@@ -41,7 +42,7 @@ describe('ElementDrawPoolService', () => {
   describe('initialize', () => {
     it('gets pile from registry and can be retrieved', () => {
       pileRegistrySvcSpy.get.and.returnValue(testPile1);
-      registeredPilesSubject.next(new Set([PieceKindEnum.ELEMENT as string]));
+      registeredPilesSubject.next(new Set([PileIdEnum.ELEMENT as string]));
       expect(elementDrawPoolSvc.drawPool).toEqual(testPile1);
     });
     it('gets pile from registry and emits drawPool', (done) => {
@@ -50,7 +51,7 @@ describe('ElementDrawPoolService', () => {
         done();
       });
       pileRegistrySvcSpy.get.and.returnValue(testPile1);
-      registeredPilesSubject.next(new Set([PieceKindEnum.ELEMENT as string]));
+      registeredPilesSubject.next(new Set([PileIdEnum.ELEMENT as string]));
     });
     it('drawPool returns null when not initialized', () => {
       expect(elementDrawPoolSvc.drawPool).toBeNull();

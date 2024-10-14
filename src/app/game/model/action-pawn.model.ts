@@ -6,6 +6,6 @@ export interface ActionPawnPiece extends Piece {
   owner: AnimalKind;
 }
 
-export function actionPawnFactory(kind: AnimalKind): ActionPawnPiece {
+export function actionPawnFactory(kind: string): ActionPawnPiece {
   return defaultPieceFactory(PieceKindEnum.ACTION_PAWN, kind) as ActionPawnPiece;
 }

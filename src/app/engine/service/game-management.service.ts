@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Pile } from '../model/pile.model';
+import {Pile, PileState} from '../model/pile.model';
 import { Space } from '../model/space.model';
 import { Area } from '../model/area.model';
 import { shuffle, startCase } from 'lodash';
@@ -47,6 +47,7 @@ export class GameManagementService {
   private createFactions() {
     const factions: Faction[] = [];
     const areas: Area[] = [];
+    const piles: Pile[] = []
     const shuffledAnimals = shuffle(Object.values(AnimalEnum));
     this.playerService.players.forEach((player, index) => {
       const assignedAnimal = shuffledAnimals[index];
@@ -76,6 +77,10 @@ export class GameManagementService {
       }
 
       areas.push(new Area(elementConfig.areaId, spaces));
+
+      // const actionPawnPileState: PileState = {
+      //   id:
+      // }
     });
     this.factionRegistrySvc.register(factions);
     this.areaRegistrySvc.register(areas);
