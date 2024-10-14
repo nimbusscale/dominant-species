@@ -123,7 +123,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/game/model/piece.model.ts</code>
+            <code>src/app/game/model/element.model.ts</code>
         </p>
 
 
@@ -236,14 +236,15 @@
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { defaultPieceFactory, Piece } from &#x27;../../engine/model/piece.model&#x27;;
-import { ElementKind } from &#x27;../dominant-species.constants&#x27;;
+
+import { ElementKind } from &#x27;../constant/element.constant&#x27;;
 
 export interface ElementPiece extends Piece {
   kind: ElementKind;
   owner: null;
 }
 
-export function elementPieceFactory(kind: ElementKind): ElementPiece {
+export function elementPieceFactory(kind: string): ElementPiece {
   return defaultPieceFactory(kind, null) as ElementPiece;
 }
 </code></pre>

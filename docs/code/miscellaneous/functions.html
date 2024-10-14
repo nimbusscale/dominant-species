@@ -113,13 +113,16 @@
                 <td class="col-md-4">
                     <ul class="index-list">
                         <li>
+                            <a href="#actionPawnFactory" title="src/app/game/model/action-pawn.model.ts" ><b>actionPawnFactory</b>&nbsp;&nbsp;&nbsp;(src/.../action-pawn.model.ts)</a>
+                        </li>
+                        <li>
                             <a href="#deepCompare" title="src/app/engine/util.ts" ><b>deepCompare</b>&nbsp;&nbsp;&nbsp;(src/.../util.ts)</a>
                         </li>
                         <li>
                             <a href="#defaultPieceFactory" title="src/app/engine/model/piece.model.ts" ><b>defaultPieceFactory</b>&nbsp;&nbsp;&nbsp;(src/.../piece.model.ts)</a>
                         </li>
                         <li>
-                            <a href="#elementPieceFactory" title="src/app/game/model/piece.model.ts" ><b>elementPieceFactory</b>&nbsp;&nbsp;&nbsp;(src/.../piece.model.ts)</a>
+                            <a href="#elementPieceFactory" title="src/app/game/model/element.model.ts" ><b>elementPieceFactory</b>&nbsp;&nbsp;&nbsp;(src/.../element.model.ts)</a>
                         </li>
                         <li>
                             <a href="#getOrThrow" title="src/app/engine/util.ts" ><b>getOrThrow</b>&nbsp;&nbsp;&nbsp;(src/.../util.ts)</a>
@@ -140,7 +143,70 @@
     </table>
 </section>
 
-    <h3>src/app/engine/util.ts</h3>
+    <h3>src/app/game/model/action-pawn.model.ts</h3>
+    <section data-compodoc="block-methods">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="actionPawnFactory"></a>
+                    <span class="name">
+                        <span ><b>actionPawnFactory</b></span>
+                        <a href="#actionPawnFactory"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>actionPawnFactory(kind: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>kind</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/ActionPawnPiece.html" target="_self" >ActionPawnPiece</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>src/app/engine/util.ts</h3>
     <section data-compodoc="block-methods">
     <h3></h3>    <table class="table table-sm table-bordered">
         <tbody>
@@ -223,7 +289,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>getOrThrow(map: Map, key: K, errorMessage?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>getOrThrow(map, key: K, errorMessage?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
@@ -251,7 +317,6 @@
                                         <tr>
                                                 <td>map</td>
                                             <td>
-                                                        <code>Map</code>
                                             </td>
 
                                             <td>
@@ -327,7 +392,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>defaultPieceFactory(kind: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, owner)</code>
+<code>defaultPieceFactory(kind: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, owner, name)</code>
                 </td>
             </tr>
 
@@ -378,6 +443,20 @@
                                             </td>
 
                                         </tr>
+                                        <tr>
+                                                <td>name</td>
+                                            <td>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>null</code>
+                                            </td>
+
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -392,7 +471,7 @@
             </tr>
         </tbody>
     </table>
-</section>    <h3>src/app/game/model/piece.model.ts</h3>
+</section>    <h3>src/app/game/model/element.model.ts</h3>
     <section data-compodoc="block-methods">
     <h3></h3>    <table class="table table-sm table-bordered">
         <tbody>
@@ -407,7 +486,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>elementPieceFactory(kind: <a href="../undefineds/ElementKind.html" target="_self">ElementKind</a>)</code>
+<code>elementPieceFactory(kind: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
@@ -432,7 +511,7 @@
                                         <tr>
                                                 <td>kind</td>
                                             <td>
-                                                            <code><a href="../miscellaneous/typealiases.html#ElementKind" target="_self" >ElementKind</a></code>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                             </td>
 
                                             <td>

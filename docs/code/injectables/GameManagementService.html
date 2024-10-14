@@ -174,7 +174,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/engine/service/game-management.service.ts:23</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/engine/service/game-management.service.ts:21</a></div>
                             </td>
                         </tr>
 
@@ -275,8 +275,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="37"
-                                    class="link-to-prism">src/app/engine/service/game-management.service.ts:37</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="35"
+                                    class="link-to-prism">src/app/engine/service/game-management.service.ts:35</a></div>
                         </td>
                     </tr>
 
@@ -314,8 +314,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="49"
-                                    class="link-to-prism">src/app/engine/service/game-management.service.ts:49</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="47"
+                                    class="link-to-prism">src/app/engine/service/game-management.service.ts:47</a></div>
                         </td>
                     </tr>
 
@@ -351,8 +351,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="31"
-                                    class="link-to-prism">src/app/engine/service/game-management.service.ts:31</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="29"
+                                    class="link-to-prism">src/app/engine/service/game-management.service.ts:29</a></div>
                         </td>
                     </tr>
 
@@ -390,8 +390,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="85"
-                                    class="link-to-prism">src/app/engine/service/game-management.service.ts:85</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="84"
+                                    class="link-to-prism">src/app/engine/service/game-management.service.ts:84</a></div>
                         </td>
                     </tr>
 
@@ -414,23 +414,21 @@
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
-import {
-  baseGameState,
-  AnimalEnum,
-  SpaceKindEnum,
-  elementConfigByAnimal,
-} from &#x27;../../game/dominant-species.constants&#x27;;
 import { Pile } from &#x27;../model/pile.model&#x27;;
 import { Space } from &#x27;../model/space.model&#x27;;
 import { Area } from &#x27;../model/area.model&#x27;;
-import { shuffle } from &#x27;lodash&#x27;;
+import { shuffle, startCase } from &#x27;lodash&#x27;;
 import { Faction } from &#x27;../model/faction.model&#x27;;
 import { PlayerService } from &#x27;./player.service&#x27;;
 import { getOrThrow } from &#x27;../util&#x27;;
 import { AreaRegistryService } from &#x27;./game-element/area-registry.service&#x27;;
 import { FactionRegistryService } from &#x27;./game-element/faction-registry.service&#x27;;
 import { PileRegistryService } from &#x27;./game-element/pile-registry.service&#x27;;
-import { elementPieceFactory } from &#x27;../../game/model/piece.model&#x27;;
+import { elementPieceFactory } from &#x27;../../game/model/element.model&#x27;;
+import { baseGameState } from &#x27;../../game/constant/game-state.constant&#x27;;
+import { AnimalEnum } from &#x27;../../game/constant/animal.constant&#x27;;
+import { SpaceKindEnum } from &#x27;../../game/constant/area.constant&#x27;;
+import { elementConfigByAnimal } from &#x27;../../game/constant/element-config.constant&#x27;;
 
 @Injectable({
   providedIn: &#x27;root&#x27;,
@@ -472,6 +470,7 @@ export class GameManagementService {
       factions.push(
         new Faction({
           id: assignedAnimal,
+          name: startCase(assignedAnimal),
           ownerId: player.id,
           score: 0,
         }),
@@ -500,7 +499,7 @@ export class GameManagementService {
   private createPile(): void {
     const piles: Pile[] &#x3D; [];
     baseGameState.pile.forEach((pileState) &#x3D;&gt; {
-      piles.push(new Pile(pileState));
+      piles.push(new Pile(pileState, elementPieceFactory));
     });
     this.pileRegistrySvc.register(piles);
   }

@@ -59,10 +59,16 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         </div>
                         <ul class="links collapse " ${ isNormalMode ? 'id="components-links"' : 'id="xs-components-links"' }>
                             <li class="link">
+                                <a href="components/ActionPawnComponent.html" data-type="entity-link" >ActionPawnComponent</a>
+                            </li>
+                            <li class="link">
                                 <a href="components/AppComponent.html" data-type="entity-link" >AppComponent</a>
                             </li>
                             <li class="link">
                                 <a href="components/DrawPoolGameComponent.html" data-type="entity-link" >DrawPoolGameComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/ElementComponent.html" data-type="entity-link" >ElementComponent</a>
                             </li>
                         </ul>
                     </li>
@@ -162,6 +168,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         <ul class="links collapse " ${ isNormalMode ? ' id="interfaces-links"' : 'id="xs-interfaces-links"' }>
                             <li class="link">
                                 <a href="interfaces/Action.html" data-type="entity-link" >Action</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ActionPawnPiece.html" data-type="entity-link" >ActionPawnPiece</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/AreaState.html" data-type="entity-link" >AreaState</a>

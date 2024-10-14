@@ -113,16 +113,22 @@
                 <td class="col-md-4">
                     <ul class="index-list">
                         <li>
+                            <a href="#animalByActionPawnKind" title="src/app/game/constant/piece.constant.ts" ><b>animalByActionPawnKind</b>&nbsp;&nbsp;&nbsp;(src/.../piece.constant.ts)</a>
+                        </li>
+                        <li>
                             <a href="#appConfig" title="src/app/app.config.ts" ><b>appConfig</b>&nbsp;&nbsp;&nbsp;(src/.../app.config.ts)</a>
                         </li>
                         <li>
-                            <a href="#baseGameState" title="src/app/game/dominant-species.constants.ts" ><b>baseGameState</b>&nbsp;&nbsp;&nbsp;(src/.../dominant-species.constants.ts)</a>
+                            <a href="#baseGameState" title="src/app/game/constant/game-state.constant.ts" ><b>baseGameState</b>&nbsp;&nbsp;&nbsp;(src/.../game-state.constant.ts)</a>
                         </li>
                         <li>
-                            <a href="#elementConfigByAnimal" title="src/app/game/dominant-species.constants.ts" ><b>elementConfigByAnimal</b>&nbsp;&nbsp;&nbsp;(src/.../dominant-species.constants.ts)</a>
+                            <a href="#elementConfigByAnimal" title="src/app/game/constant/element-config.constant.ts" ><b>elementConfigByAnimal</b>&nbsp;&nbsp;&nbsp;(src/.../element-config.constant.ts)</a>
                         </li>
                         <li>
                             <a href="#emptyGameState" title="src/app/engine/model/game-state.model.ts" ><b>emptyGameState</b>&nbsp;&nbsp;&nbsp;(src/.../game-state.model.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#imgPathByKind" title="src/app/game/constant/image.constant.ts" ><b>imgPathByKind</b>&nbsp;&nbsp;&nbsp;(src/.../image.constant.ts)</a>
                         </li>
                     </ul>
                 </td>
@@ -131,6 +137,46 @@
     </table>
 </section>
 
+    <h3>src/app/game/constant/piece.constant.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="animalByActionPawnKind"></a>
+                    <span class="name">
+                        <span ><b>animalByActionPawnKind</b></span>
+                        <a href="#animalByActionPawnKind"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>ReadonlyMap&lt;string, string | null&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Map&lt;
+  string,
+  string | null
+&gt;([
+  [PieceKindEnum.ACTION_PAWN_AMPHIBIAN, AnimalEnum.AMPHIBIAN],
+  [PieceKindEnum.ACTION_PAWN_ARACHNID, AnimalEnum.ARACHNID],
+  [PieceKindEnum.ACTION_PAWN_BIRD, AnimalEnum.BIRD],
+  [PieceKindEnum.ACTION_PAWN_INSECT, AnimalEnum.INSECT],
+  [PieceKindEnum.ACTION_PAWN_MAMMAL, AnimalEnum.MAMMAL],
+  [PieceKindEnum.ACTION_PAWN_REPTILE, AnimalEnum.REPTILE],
+  [PieceKindEnum.ACTION_PAWN_EYEBALL, null],
+])</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
     <h3>src/app/app.config.ts</h3>
     <section data-compodoc="block-properties">
     <h3></h3>    <table class="table table-sm table-bordered">
@@ -166,7 +212,7 @@
         </tbody>
     </table>
 </section>
-    <h3>src/app/game/dominant-species.constants.ts</h3>
+    <h3>src/app/game/constant/game-state.constant.ts</h3>
     <section data-compodoc="block-properties">
     <h3></h3>    <table class="table table-sm table-bordered">
         <tbody>
@@ -226,7 +272,10 @@
 
         </tbody>
     </table>
-    <table class="table table-sm table-bordered">
+</section>
+    <h3>src/app/game/constant/element-config.constant.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
         <tbody>
             <tr>
                 <td class="col-md-4">
@@ -239,7 +288,16 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>new Map&lt;AnimalEnum, ElementConfig&gt;([
+                        <i>Type : </i>        <code><a href="../interfaces/ElementConfig.html" target="_self" >ReadonlyMap&lt;AnimalEnum, ElementConfig&gt;</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Map&lt;
+  AnimalEnum,
+  ElementConfig
+&gt;([
   [
     AnimalEnum.AMPHIBIAN,
     { kind: ElementEnum.WATER, inherentCount: 3, areaId: AreaIdEnum.AMPHIBIAN_ELEMENT },
@@ -295,6 +353,52 @@
   faction: [],
   pile: [],
 }</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/game/constant/image.constant.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="imgPathByKind"></a>
+                    <span class="name">
+                        <span ><b>imgPathByKind</b></span>
+                        <a href="#imgPathByKind"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>ReadonlyMap&lt;string, string&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Map&lt;string, string&gt;([
+  // elements /
+  [&#x27;grass&#x27;, &#x27;dominant-species/element/noun-grass-7195612.svg&#x27;],
+  [&#x27;grub&#x27;, &#x27;dominant-species/element/noun-grub-3386143.svg&#x27;],
+  [&#x27;meat&#x27;, &#x27;dominant-species/element/noun-cow-skull-151117.svg&#x27;],
+  [&#x27;seed&#x27;, &#x27;dominant-species/element/noun-seed-6850047.svg&#x27;],
+  [&#x27;sun&#x27;, &#x27;dominant-species/element/noun-sun-7300296.svg&#x27;],
+  [&#x27;water&#x27;, &#x27;dominant-species/element/noun-water-water-1235535.svg&#x27;],
+  // animals /
+  [&#x27;actionPawnAmphibian&#x27;, &#x27;dominant-species/animal/noun-gecko-367390.svg&#x27;],
+  [&#x27;actionPawnArachnid&#x27;, &#x27;dominant-species/animal/noun-spider-7144060.svg&#x27;],
+  [&#x27;actionPawnBird&#x27;, &#x27;dominant-species/animal/noun-eagle-6606521.svg&#x27;],
+  [&#x27;actionPawnInsect&#x27;, &#x27;dominant-species/animal/noun-grasshopper-7049525.svg&#x27;],
+  [&#x27;actionPawnMammal&#x27;, &#x27;dominant-species/animal/noun-monkey-2997582.svg&#x27;],
+  [&#x27;actionPawnReptile&#x27;, &#x27;dominant-species/animal/noun-snake-4412103.svg&#x27;],
+  // others /
+  [&#x27;actionPawnEyeball&#x27;, &#x27;dominant-species/other/noun-eye-2037742.svg&#x27;],
+])</code>
                     </td>
                 </tr>
 
