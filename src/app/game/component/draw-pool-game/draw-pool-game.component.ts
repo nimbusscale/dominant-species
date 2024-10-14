@@ -17,11 +17,12 @@ import { AnimalEnum } from '../../constant/animal.constant';
 import {PieceKindEnum} from "../../constant/piece.constant";
 import {defaultPieceFactory} from "../../../engine/model/piece.model";
 import {ActionPawnPiece} from "../../model/action-pawn.model";
+import {AnimalCardComponent} from "../animal-card/animal-card.component";
 
 @Component({
   selector: 'app-draw-pool-game',
   standalone: true,
-  imports: [MatButton, MatTooltip, ElementComponent, ActionPawnComponent],
+  imports: [MatButton, MatTooltip, ElementComponent, ActionPawnComponent, AnimalCardComponent],
   templateUrl: './draw-pool-game.component.html',
   styleUrl: './draw-pool-game.component.scss',
 })
