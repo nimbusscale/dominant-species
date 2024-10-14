@@ -6,7 +6,7 @@ import { deepClone } from 'fast-json-patch';
 import { Pile, PileState } from '../../../app/engine/model/pile.model';
 import { testPileState1 } from '../../engine/service/game-state-test.constant';
 import { PileRegistryService } from '../../../app/engine/service/game-element/pile-registry.service';
-import {PieceKindEnum} from "../../../app/game/constant/piece.constant";
+import { PieceKindEnum } from '../../../app/game/constant/piece.constant';
 
 describe('ElementDrawPoolService', () => {
   let elementDrawPoolSvc: ElementDrawPoolService;

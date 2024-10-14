@@ -15,4 +15,4 @@ export const imgPathByKind: ReadonlyMap<string, string> = new Map<string, string
   ['actionPawnReptile', 'dominant-species/animal/noun-snake-4412103.svg'],
   // others /
   ['actionPawnEyeball', 'dominant-species/other/noun-eye-2037742.svg'],
-])
+]);

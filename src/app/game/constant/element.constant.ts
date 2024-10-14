@@ -8,4 +8,3 @@ export enum ElementEnum {
 }
 
 export type ElementKind = `${ElementEnum}`;
-

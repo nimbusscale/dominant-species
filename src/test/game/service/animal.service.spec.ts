@@ -11,9 +11,9 @@ import { Space } from '../../../app/engine/model/space.model';
 import { elementPieceFactory } from '../../../app/game/model/element.model';
 import { Player } from '../../../app/engine/model/player.model';
 import { testPlayerState1 } from '../../engine/service/game-state-test.constant';
-import {AnimalEnum} from "../../../app/game/constant/animal.constant";
-import {AreaIdEnum, SpaceKindEnum} from "../../../app/game/constant/area.constant";
-import {ElementEnum} from "../../../app/game/constant/element.constant";
+import { AnimalEnum } from '../../../app/game/constant/animal.constant';
+import { AreaIdEnum, SpaceKindEnum } from '../../../app/game/constant/area.constant';
+import { ElementEnum } from '../../../app/game/constant/element.constant';
 
 describe('AnimalService', () => {
   let animalService: AnimalService;
@@ -24,6 +24,7 @@ describe('AnimalService', () => {
   beforeEach(() => {
     testFaction = new Faction({
       id: AnimalEnum.BIRD,
+      name: AnimalEnum.BIRD,
       ownerId: 'tester1',
       score: 0,
     });

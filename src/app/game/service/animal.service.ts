@@ -12,7 +12,7 @@ import { getOrThrow } from '../../engine/util';
 import { isNotNull, isNotUndefined } from '../../engine/predicate';
 import { Space } from '../../engine/model/space.model';
 import { ElementPiece } from '../model/element.model';
-import {ElementConfig, elementConfigByAnimal} from "../constant/element-config.constant";
+import { ElementConfig, elementConfigByAnimal } from '../constant/element-config.constant';
 
 @Injectable({
   providedIn: 'root',

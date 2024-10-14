@@ -1,6 +1,6 @@
-import {GameState} from "../../engine/model/game-state.model";
-import {AreaIdEnum, SpaceKindEnum} from "./area.constant";
-import {PieceKindEnum} from "./piece.constant";
+import { GameState } from '../../engine/model/game-state.model';
+import { AreaIdEnum, SpaceKindEnum } from './area.constant';
+import { PieceKindEnum } from './piece.constant';
 
 /**
  * GameState defining the static elements of the DS game
@@ -10,9 +10,9 @@ export const baseGameState: GameState = {
     {
       id: AreaIdEnum.ACTION_DISPLAY_ADAPTION,
       space: [
-        {kind: SpaceKindEnum.ACTION_PAWN, piece: null},
-        {kind: SpaceKindEnum.ACTION_PAWN, piece: null},
-        {kind: SpaceKindEnum.ACTION_PAWN, piece: null},
+        { kind: SpaceKindEnum.ACTION_PAWN, piece: null },
+        { kind: SpaceKindEnum.ACTION_PAWN, piece: null },
+        { kind: SpaceKindEnum.ACTION_PAWN, piece: null },
       ],
     },
   ],

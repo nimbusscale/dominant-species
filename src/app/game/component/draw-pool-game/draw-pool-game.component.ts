@@ -8,13 +8,13 @@ import { Pile } from '../../../engine/model/pile.model';
 import { ElementDrawPoolService } from '../../service/element-draw-pool.service';
 
 import { FactionRegistryService } from '../../../engine/service/game-element/faction-registry.service';
-import {ElementComponent} from "../element/element.component";
-import {ElementPiece, elementPieceFactory} from "../../model/element.model";
-import {ElementEnum} from "../../constant/element.constant";
-import {Faction} from "../../../engine/model/faction.model";
-import {actionPawnFactory, ActionPawnPiece} from "../../model/action-pawn.model";
-import {animalByActionPawnKind} from "../../constant/piece.constant";
-import {ActionPawnComponent} from "../action-pawn/action-pawn.component";
+import { ElementComponent } from '../element/element.component';
+import { ElementPiece, elementPieceFactory } from '../../model/element.model';
+import { ElementEnum } from '../../constant/element.constant';
+import { Faction } from '../../../engine/model/faction.model';
+import { actionPawnFactory, ActionPawnPiece } from '../../model/action-pawn.model';
+import { animalByActionPawnKind } from '../../constant/piece.constant';
+import { ActionPawnComponent } from '../action-pawn/action-pawn.component';
 
 @Component({
   selector: 'app-draw-pool-game',
@@ -24,7 +24,7 @@ import {ActionPawnComponent} from "../action-pawn/action-pawn.component";
   styleUrl: './draw-pool-game.component.scss',
 })
 export class DrawPoolGameComponent {
-  faction: Faction | undefined = undefined
+  faction: Faction | undefined = undefined;
   drawPool: Pile | undefined = undefined;
   drawPoolLength = 0;
   log: string[] = [];
@@ -56,7 +56,7 @@ export class DrawPoolGameComponent {
     console.log('Create Game');
     // should be using factionAssignments$
     this.factionRegistrySvc.registeredIds$.subscribe((ids) => {
-      this.faction = this.factionRegistrySvc.get(Array.from(ids)[0])
+      this.faction = this.factionRegistrySvc.get(Array.from(ids)[0]);
       this.log.push(`Welcome ${this.faction.name}!`);
     });
   }
@@ -89,18 +89,18 @@ export class DrawPoolGameComponent {
   }
 
   get elements(): ElementPiece[] {
-    const elements: ElementPiece[] = []
+    const elements: ElementPiece[] = [];
     for (const elementKind of Object.values(ElementEnum)) {
-      elements.push(elementPieceFactory(elementKind))
+      elements.push(elementPieceFactory(elementKind));
     }
-    return elements
+    return elements;
   }
 
   get actionPawns(): ActionPawnPiece[] {
-    const actionPawns: ActionPawnPiece[] = []
+    const actionPawns: ActionPawnPiece[] = [];
     for (const kind of animalByActionPawnKind.keys()) {
-        actionPawns.push(actionPawnFactory(kind))
-      }
-    return actionPawns
+      actionPawns.push(actionPawnFactory(kind));
+    }
+    return actionPawns;
   }
 }

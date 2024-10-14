@@ -1,9 +1,8 @@
-import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
-import {ElementPiece} from "../../model/element.model";
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ElementPiece } from '../../model/element.model';
 
-import {ElementEnum} from "../../constant/element.constant";
-import {imgPathByKind} from "../../constant/image.constant";
-import {getOrThrow} from "../../../engine/util";
+import { imgPathByKind } from '../../constant/image.constant';
+import { getOrThrow } from '../../../engine/util';
 
 @Component({
   selector: 'app-element',
@@ -11,25 +10,24 @@ import {getOrThrow} from "../../../engine/util";
   standalone: true,
   imports: [],
   templateUrl: './element.component.html',
-  styleUrl: './element.component.scss'
+  styleUrl: './element.component.scss',
 })
 export class ElementComponent {
-  @Input() element: ElementPiece | undefined = undefined
+  @Input() element: ElementPiece | undefined = undefined;
 
   get kind(): string | undefined {
-    return this.element?.kind
+    return this.element?.kind;
   }
 
   get name(): string | undefined {
-    return this.element?.name
+    return this.element?.name;
   }
 
   get imgPath(): string | undefined {
     if (this.kind) {
-      return getOrThrow(imgPathByKind, this.kind)
+      return getOrThrow(imgPathByKind, this.kind);
     } else {
-      return undefined
+      return undefined;
     }
   }
-
 }

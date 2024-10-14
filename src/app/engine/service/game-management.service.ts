@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Pile } from '../model/pile.model';
 import { Space } from '../model/space.model';
 import { Area } from '../model/area.model';
-import {shuffle, startCase} from 'lodash';
+import { shuffle, startCase } from 'lodash';
 import { Faction } from '../model/faction.model';
 import { PlayerService } from './player.service';
 import { getOrThrow } from '../util';
@@ -10,10 +10,10 @@ import { AreaRegistryService } from './game-element/area-registry.service';
 import { FactionRegistryService } from './game-element/faction-registry.service';
 import { PileRegistryService } from './game-element/pile-registry.service';
 import { elementPieceFactory } from '../../game/model/element.model';
-import {baseGameState} from "../../game/constant/game-state.constant";
-import {AnimalEnum} from "../../game/constant/animal.constant";
-import {SpaceKindEnum} from "../../game/constant/area.constant";
-import {elementConfigByAnimal} from "../../game/constant/element-config.constant";
+import { baseGameState } from '../../game/constant/game-state.constant';
+import { AnimalEnum } from '../../game/constant/animal.constant';
+import { SpaceKindEnum } from '../../game/constant/area.constant';
+import { elementConfigByAnimal } from '../../game/constant/element-config.constant';
 
 @Injectable({
   providedIn: 'root',

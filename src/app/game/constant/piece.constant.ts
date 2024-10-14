@@ -1,4 +1,4 @@
-import {AnimalEnum} from "./animal.constant";
+import { AnimalEnum } from './animal.constant';
 
 export enum PieceKindEnum {
   ACTION_PAWN_AMPHIBIAN = 'actionPawnAmphibian',
@@ -27,7 +27,10 @@ export type ActionPawnKind =
   | PieceKindEnum.ACTION_PAWN_REPTILE
   | PieceKindEnum.ACTION_PAWN_EYEBALL;
 
-export const animalByActionPawnKind: ReadonlyMap<string, string | null> = new Map<string, string | null>([
+export const animalByActionPawnKind: ReadonlyMap<string, string | null> = new Map<
+  string,
+  string | null
+>([
   [PieceKindEnum.ACTION_PAWN_AMPHIBIAN, AnimalEnum.AMPHIBIAN],
   [PieceKindEnum.ACTION_PAWN_ARACHNID, AnimalEnum.ARACHNID],
   [PieceKindEnum.ACTION_PAWN_BIRD, AnimalEnum.BIRD],
@@ -35,4 +38,4 @@ export const animalByActionPawnKind: ReadonlyMap<string, string | null> = new Ma
   [PieceKindEnum.ACTION_PAWN_MAMMAL, AnimalEnum.MAMMAL],
   [PieceKindEnum.ACTION_PAWN_REPTILE, AnimalEnum.REPTILE],
   [PieceKindEnum.ACTION_PAWN_EYEBALL, null],
-])
+]);

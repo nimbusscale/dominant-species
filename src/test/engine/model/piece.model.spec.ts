@@ -1,4 +1,4 @@
-import {defaultPieceFactory} from "../../../app/engine/model/piece.model";
+import { defaultPieceFactory } from '../../../app/engine/model/piece.model';
 
 describe('defaultPieceFactory', () => {
   it('should return a Piece object with the given kind, owner, and name when name is provided', () => {

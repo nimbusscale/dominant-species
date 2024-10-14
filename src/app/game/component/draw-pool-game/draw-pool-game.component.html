@@ -1,32 +1,32 @@
 <body>
-<section class="draw-pool-play-area">
-  <section class="button-container">
-    <button mat-raised-button (click)="createGame()">Initialize</button>
-    <button mat-raised-button (click)="startTurn()">Start Turn</button>
-    <button mat-raised-button (click)="draw()">Draw!</button>
-    <button mat-raised-button (click)="endTurn()">End Turn</button>
-  </section>
-  <section class="draw-pool-display">
-    <div class="draw-pool-counter">Draw Pool: {{ drawPoolLength }}</div>
-    <div class="draw-pool-log">
-      <div class="log-line">
-        @for (line of log; track $index) {
-          <p>{{ line }}</p>
-        }
+  <section class="draw-pool-play-area">
+    <section class="button-container">
+      <button mat-raised-button (click)="createGame()">Initialize</button>
+      <button mat-raised-button (click)="startTurn()">Start Turn</button>
+      <button mat-raised-button (click)="draw()">Draw!</button>
+      <button mat-raised-button (click)="endTurn()">End Turn</button>
+    </section>
+    <section class="draw-pool-display">
+      <div class="draw-pool-counter">Draw Pool: {{ drawPoolLength }}</div>
+      <div class="draw-pool-log">
+        <div class="log-line">
+          @for (line of log; track $index) {
+            <p>{{ line }}</p>
+          }
+        </div>
       </div>
-    </div>
+    </section>
   </section>
-</section>
-<div class="icon-area">
-  <section class="icon-display">
-    @for (element of elements ; track element.kind) {
-      <app-element [element]="element"></app-element>
-    }
-  </section>
-  <section class="icon-display">
-    @for (pawn of actionPawns ; track pawn.kind) {
-      <app-action-pawn [actionPawn]="pawn"></app-action-pawn>
-    }
-  </section>
-</div>
+  <div class="icon-area">
+    <section class="icon-display">
+      @for (element of elements; track element.kind) {
+        <app-element [element]="element"></app-element>
+      }
+    </section>
+    <section class="icon-display">
+      @for (pawn of actionPawns; track pawn.kind) {
+        <app-action-pawn [actionPawn]="pawn"></app-action-pawn>
+      }
+    </section>
+  </div>
 </body>

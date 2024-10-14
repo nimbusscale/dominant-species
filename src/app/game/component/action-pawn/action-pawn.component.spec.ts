@@ -8,9 +8,8 @@ describe('ActionPawnComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ActionPawnComponent]
-    })
-    .compileComponents();
+      imports: [ActionPawnComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ActionPawnComponent);
     component = fixture.componentInstance;
