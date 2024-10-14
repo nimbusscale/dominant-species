@@ -9,11 +9,13 @@ import { getOrThrow } from '../util';
 import { AreaRegistryService } from './game-element/area-registry.service';
 import { FactionRegistryService } from './game-element/faction-registry.service';
 import { PileRegistryService } from './game-element/pile-registry.service';
-import { elementPieceFactory } from '../../game/model/element.model';
 import { baseGameState } from '../../game/constant/game-state.constant';
 import { AnimalEnum } from '../../game/constant/animal.constant';
 import { SpaceKindEnum } from '../../game/constant/area.constant';
 import { elementConfigByAnimal } from '../../game/constant/element-config.constant';
+import {pileIdsByAnimal} from "../../game/constant/pile.constant";
+import {PieceKindEnum} from "../../game/constant/piece.constant";
+import {defaultPieceFactory} from "../model/piece.model";
 
 @Injectable({
   providedIn: 'root',
@@ -66,7 +68,7 @@ export class GameManagementService {
       // inherent element spaces
       for (let i = 0; i < elementConfig.inherentCount; i++) {
         const space = new Space(SpaceKindEnum.ELEMENT);
-        space.addPiece(elementPieceFactory(elementConfig.kind));
+        space.addPiece(defaultPieceFactory(elementConfig.kind));
         spaces.push(space);
       }
 
@@ -78,18 +80,33 @@ export class GameManagementService {
 
       areas.push(new Area(elementConfig.areaId, spaces));
 
-      // const actionPawnPileState: PileState = {
-      //   id:
-      // }
+      const actionPawnPileState: PileState = {
+        id: getOrThrow(pileIdsByAnimal, assignedAnimal)['actionPawn'],
+        owner: assignedAnimal,
+        inventory: {
+          [PieceKindEnum.ACTION_PAWN]: 7
+        }
+      }
+      piles.push(new Pile(actionPawnPileState))
+
+      const speciesPileState: PileState = {
+        id: getOrThrow(pileIdsByAnimal, assignedAnimal)['species'],
+        owner: assignedAnimal,
+        inventory: {
+          [PieceKindEnum.SPECIES]: 55
+        }
+      }
+      piles.push(new Pile(speciesPileState))
     });
     this.factionRegistrySvc.register(factions);
     this.areaRegistrySvc.register(areas);
+    this.pileRegistrySvc.register(piles)
   }
 
   private createDrawPoolPile(): void {
     const piles: Pile[] = [];
     baseGameState.pile.forEach((pileState) => {
-      piles.push(new Pile(pileState, elementPieceFactory));
+      piles.push(new Pile(pileState));
     });
     this.pileRegistrySvc.register(piles);
   }

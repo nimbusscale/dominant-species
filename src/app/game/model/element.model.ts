@@ -6,7 +6,3 @@ export interface ElementPiece extends Piece {
   kind: ElementKind;
   owner: null;
 }
-
-export function elementPieceFactory(kind: string): ElementPiece {
-  return defaultPieceFactory(kind, null) as ElementPiece;
-}

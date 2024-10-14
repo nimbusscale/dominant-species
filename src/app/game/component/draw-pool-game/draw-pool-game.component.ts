@@ -9,12 +9,14 @@ import { ElementDrawPoolService } from '../../service/element-draw-pool.service'
 
 import { FactionRegistryService } from '../../../engine/service/game-element/faction-registry.service';
 import { ElementComponent } from '../element/element.component';
-import { ElementPiece, elementPieceFactory } from '../../model/element.model';
+import { ElementPiece } from '../../model/element.model';
 import { ElementEnum } from '../../constant/element.constant';
 import { Faction } from '../../../engine/model/faction.model';
-import { actionPawnFactory, ActionPawnPiece } from '../../model/action-pawn.model';
 import { ActionPawnComponent } from '../action-pawn/action-pawn.component';
 import { AnimalEnum } from '../../constant/animal.constant';
+import {PieceKindEnum} from "../../constant/piece.constant";
+import {defaultPieceFactory} from "../../../engine/model/piece.model";
+import {ActionPawnPiece} from "../../model/action-pawn.model";
 
 @Component({
   selector: 'app-draw-pool-game',
@@ -90,17 +92,17 @@ export class DrawPoolGameComponent {
 
   get elements(): ElementPiece[] {
     const elements: ElementPiece[] = [];
-    for (const elementKind of Object.values(ElementEnum)) {
-      elements.push(elementPieceFactory(elementKind));
+    for (const elementKind of Object.values(ElementEnum) as ElementEnum[]) {
+      elements.push(defaultPieceFactory(elementKind) as ElementPiece);
     }
     return elements;
   }
 
   get actionPawns(): ActionPawnPiece[] {
     const actionPawns: ActionPawnPiece[] = [];
-    for (const animal of Object.values(AnimalEnum)) {
-      actionPawns.push(actionPawnFactory(animal));
-    }
+  for (const animal of Object.values(AnimalEnum) as AnimalEnum[]) {
+    actionPawns.push(defaultPieceFactory(PieceKindEnum.ACTION_PAWN, animal) as ActionPawnPiece);
+  }
     return actionPawns;
   }
 }

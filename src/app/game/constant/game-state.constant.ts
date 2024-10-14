@@ -20,6 +20,7 @@ export const baseGameState: GameState = {
   pile: [
     {
       id: PileIdEnum.ELEMENT,
+      owner: null,
       inventory: {
         // 20 Elements each, with 2 being places on Earth, leaving 18 in the bag
         grassElement: 18,

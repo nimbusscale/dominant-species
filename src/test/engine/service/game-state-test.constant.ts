@@ -19,11 +19,13 @@ function deepFreeze<T>(obj: T): T {
 
 export const testPileState1: PileState = deepFreeze({
   id: 'pile1',
+  owner: 'test',
   inventory: { test1: 10, test2: 10 },
 });
 
 export const testPileState2: PileState = deepFreeze({
   id: 'pile2',
+  owner: 'test',
   inventory: { test3: 10 },
 });
 
@@ -63,10 +65,12 @@ export const testGameState1: GameState = deepFreeze({
   pile: [
     {
       id: 'pile1',
+      owner: 'test',
       inventory: { test1: 10, test2: 10 },
     },
     {
       id: 'pile2',
+      owner: 'test',
       inventory: { test3: 10 },
     },
   ],
@@ -82,6 +86,7 @@ export const testGameState1updated: GameState = deepFreeze({
   pile: [
     {
       id: 'pile1',
+      owner: 'test',
       // Updated with test1 = 20
       inventory: { test1: 20, test2: 10 },
     },
