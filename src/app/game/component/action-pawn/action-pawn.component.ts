@@ -26,7 +26,7 @@ export class ActionPawnComponent {
     if (this.owner) {
       return getOrThrow(imgPathByKind, this.owner);
     } else {
-        return undefined;
-      }
+      return undefined;
     }
+  }
 }

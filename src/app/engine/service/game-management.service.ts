@@ -81,8 +81,6 @@ export class GameManagementService {
     this.areaRegistrySvc.register(areas);
   }
 
-
-
   private createDrawPoolPile(): void {
     const piles: Pile[] = [];
     baseGameState.pile.forEach((pileState) => {

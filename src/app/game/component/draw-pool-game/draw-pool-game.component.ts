@@ -13,10 +13,8 @@ import { ElementPiece, elementPieceFactory } from '../../model/element.model';
 import { ElementEnum } from '../../constant/element.constant';
 import { Faction } from '../../../engine/model/faction.model';
 import { actionPawnFactory, ActionPawnPiece } from '../../model/action-pawn.model';
-import {animalByActionPawnKind, PieceKindEnum} from '../../constant/piece.constant';
 import { ActionPawnComponent } from '../action-pawn/action-pawn.component';
-import {AnimalEnum} from "../../constant/animal.constant";
-import {defaultPieceFactory} from "../../../engine/model/piece.model";
+import { AnimalEnum } from '../../constant/animal.constant';
 
 @Component({
   selector: 'app-draw-pool-game',
