@@ -1,3 +1,7 @@
+body {
+  background-color: #f8f9fa;
+}
+
 .button-container {
   display: flex;
   flex-direction: column;
@@ -30,4 +34,16 @@ button {
 
 .log-line {
   padding: 2px 0; /* Optional: Space between lines */
+}
+
+.icon-area {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.icon-display {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
 }

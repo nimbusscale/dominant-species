@@ -42,12 +42,14 @@ export const testPlayerState1: PlayerState = deepFreeze({
 
 export const testFactionState1: FactionState = deepFreeze({
   id: 'redTester',
+  name: 'Red',
   ownerId: 'tester1',
   score: 0,
 });
 
 export const testFactionState2: FactionState = deepFreeze({
   id: 'blueTester',
+  name: 'Blue',
   ownerId: 'tester2',
   score: 0,
 });

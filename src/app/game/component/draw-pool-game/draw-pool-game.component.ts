@@ -8,16 +8,24 @@ import { Pile } from '../../../engine/model/pile.model';
 import { ElementDrawPoolService } from '../../service/element-draw-pool.service';
 
 import { FactionRegistryService } from '../../../engine/service/game-element/faction-registry.service';
+import { ElementComponent } from '../element/element.component';
+import { ElementPiece, elementPieceFactory } from '../../model/element.model';
+import { ElementEnum } from '../../constant/element.constant';
+import { Faction } from '../../../engine/model/faction.model';
+import { actionPawnFactory, ActionPawnPiece } from '../../model/action-pawn.model';
+import { animalByActionPawnKind } from '../../constant/piece.constant';
+import { ActionPawnComponent } from '../action-pawn/action-pawn.component';
 
 @Component({
   selector: 'app-draw-pool-game',
   standalone: true,
-  imports: [MatButton, MatTooltip],
+  imports: [MatButton, MatTooltip, ElementComponent, ActionPawnComponent],
   templateUrl: './draw-pool-game.component.html',
   styleUrl: './draw-pool-game.component.scss',
 })
 export class DrawPoolGameComponent {
-  drawPool: Pile | null = null;
+  faction: Faction | undefined = undefined;
+  drawPool: Pile | undefined = undefined;
   drawPoolLength = 0;
   log: string[] = [];
   constructor(
@@ -46,8 +54,10 @@ export class DrawPoolGameComponent {
   createGame(): void {
     this.gameManagementSvc.createGame();
     console.log('Create Game');
+    // should be using factionAssignments$
     this.factionRegistrySvc.registeredIds$.subscribe((ids) => {
-      this.log.push(`Welcome ${Array.from(ids)[0]}!`);
+      this.faction = this.factionRegistrySvc.get(Array.from(ids)[0]);
+      this.log.push(`Welcome ${this.faction.name}!`);
     });
   }
 
@@ -76,5 +86,21 @@ export class DrawPoolGameComponent {
   endTurn(): void {
     console.log('End Turn');
     this.gameStateSvc.commitTransaction();
+  }
+
+  get elements(): ElementPiece[] {
+    const elements: ElementPiece[] = [];
+    for (const elementKind of Object.values(ElementEnum)) {
+      elements.push(elementPieceFactory(elementKind));
+    }
+    return elements;
+  }
+
+  get actionPawns(): ActionPawnPiece[] {
+    const actionPawns: ActionPawnPiece[] = [];
+    for (const kind of animalByActionPawnKind.keys()) {
+      actionPawns.push(actionPawnFactory(kind));
+    }
+    return actionPawns;
   }
 }
