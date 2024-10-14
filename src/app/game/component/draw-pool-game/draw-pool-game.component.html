@@ -19,24 +19,9 @@
 </section>
 <div class="icon-area">
   <section class="icon-display">
-    <div class="element-circle grass">
-      <img src="dominant-species/element/noun-grass-7195612.svg" alt="Grass Element" class="element">
-    </div>
-    <div class="element-circle grub">
-      <img src="dominant-species/element/noun-grub-3386143.svg" alt="Grub Element" class="element">
-    </div>
-    <div class="element-circle meat">
-      <img src="dominant-species/element/noun-cow-skull-151117.svg" alt="Meat Element" class="element">
-    </div>
-    <div class="element-circle seed">
-      <img src="dominant-species/element/noun-seed-6850047.svg" alt="Seed Element" class="element">
-    </div>
-    <div class="element-circle sun">
-      <img src="dominant-species/element/noun-sun-7300296.svg" alt="Sun Element" class="element">
-    </div>
-    <div class="element-circle water">
-      <img src="dominant-species/element/noun-water-water-1235535.svg" alt="Water Element" class="element">
-    </div>
+    @for (element of elements ; track element.kind) {
+      <app-element [element]="element"></app-element>
+    }
   </section>
   <section class="icon-display">
     <div class="action-pawn-circle eyeball">

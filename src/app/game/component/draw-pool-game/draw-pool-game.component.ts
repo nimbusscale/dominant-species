@@ -8,11 +8,14 @@ import { Pile } from '../../../engine/model/pile.model';
 import { ElementDrawPoolService } from '../../service/element-draw-pool.service';
 
 import { FactionRegistryService } from '../../../engine/service/game-element/faction-registry.service';
+import {ElementComponent} from "../element/element.component";
+import {ElementPiece, elementPieceFactory} from "../../model/element.model";
+import {ElementEnum} from "../../constant/element.constant";
 
 @Component({
   selector: 'app-draw-pool-game',
   standalone: true,
-  imports: [MatButton, MatTooltip],
+  imports: [MatButton, MatTooltip, ElementComponent],
   templateUrl: './draw-pool-game.component.html',
   styleUrl: './draw-pool-game.component.scss',
 })
@@ -76,5 +79,13 @@ export class DrawPoolGameComponent {
   endTurn(): void {
     console.log('End Turn');
     this.gameStateSvc.commitTransaction();
+  }
+
+  get elements(): ElementPiece[] {
+    const elements: ElementPiece[] = []
+    for (const elementKind of Object.values(ElementEnum)) {
+      elements.push(elementPieceFactory(elementKind))
+    }
+    return elements
   }
 }
