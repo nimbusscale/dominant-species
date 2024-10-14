@@ -13,7 +13,6 @@ describe('defaultPieceFactory', () => {
     const result = defaultPieceFactory('dragon');
     expect(result).toEqual({ kind: 'dragon', owner: null, name: 'Dragon' });
   });
-  });
   it('should handle empty string for name and return startCase of kind', () => {
     const result = defaultPieceFactory('queen', 'player1', '');
     expect(result).toEqual({ kind: 'queen', owner: 'player1', name: 'Queen' });
