@@ -24,27 +24,9 @@
     }
   </section>
   <section class="icon-display">
-    <div class="action-pawn-circle eyeball">
-      <img src="dominant-species/noun-eye-2037742.svg" alt="Eyeball Space" class="action-pawn">
-    </div>
-    <div class="action-pawn-circle amphibian">
-      <img src="dominant-species/animal/noun-gecko-367390.svg" alt="Amphibian Action Pawn" class="action-pawn">
-    </div>
-    <div class="action-pawn-circle arachnid">
-      <img src="dominant-species/animal/noun-spider-7144060.svg" alt="Arachnid Action Pawn" class="action-pawn">
-    </div>
-    <div class="action-pawn-circle bird">
-      <img src="dominant-species/animal/noun-eagle-6606521.svg" alt="Amphibian Action Pawn" class="action-pawn">
-    </div>
-    <div class="action-pawn-circle insect">
-      <img src="dominant-species/animal/noun-grasshopper-7049525.svg" alt="Amphibian Action Pawn" class="action-pawn">
-    </div>
-    <div class="action-pawn-circle mammal">
-      <img src="dominant-species/animal/noun-monkey-2997582.svg" alt="Amphibian Action Pawn" class="action-pawn">
-    </div>
-    <div class="action-pawn-circle reptile">
-      <img src="dominant-species/animal/noun-snake-4412103.svg" alt="Amphibian Action Pawn" class="action-pawn">
-    </div>
+    @for (pawn of actionPawns ; track pawn.kind) {
+      <app-action-pawn [actionPawn]="pawn"></app-action-pawn>
+    }
   </section>
 </div>
 </body>

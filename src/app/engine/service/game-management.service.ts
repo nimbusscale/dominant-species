@@ -84,7 +84,7 @@ export class GameManagementService {
   private createPile(): void {
     const piles: Pile[] = [];
     baseGameState.pile.forEach((pileState) => {
-      piles.push(new Pile(pileState));
+      piles.push(new Pile(pileState, elementPieceFactory));
     });
     this.pileRegistrySvc.register(piles);
   }

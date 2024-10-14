@@ -1,0 +1,44 @@
+.action-pawn-circle {
+  width: 43px;
+  height: 43px;
+  border: 2px solid #000000;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.action-pawn {
+  width: 100%;
+  height: 100%;
+}
+
+.actionPawnAmphibian {
+  background-color: #1E90FF;
+}
+
+.actionPawnArachnid {
+  background-color: #FF0000;
+}
+
+.actionPawnBird {
+  background-color: #FFFF00;
+}
+
+.actionPawnInsect {
+  background-color: #00FF00;
+}
+
+.actionPawnMammal {
+  background-color: #FFFFFF;
+}
+
+.actionPawnReptile {
+  background-color: #000000;
+}
+
+.actionPawnEyeball {
+  background-color: #FAF0E6;
+  border: 2px dotted #000000;
+}
+

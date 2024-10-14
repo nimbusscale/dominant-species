@@ -1,27 +1,25 @@
 import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
-import {ElementPiece} from "../../model/element.model";
-
-import {ElementEnum} from "../../constant/element.constant";
+import {ActionPawnPiece} from "../../model/action-pawn.model";
 import {imgPathByKind} from "../../constant/image.constant";
 import {getOrThrow} from "../../../engine/util";
 
 @Component({
-  selector: 'app-element',
+  selector: 'app-action-pawn',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [],
-  templateUrl: './element.component.html',
-  styleUrl: './element.component.scss'
+  templateUrl: './action-pawn.component.html',
+  styleUrl: './action-pawn.component.scss'
 })
-export class ElementComponent {
-  @Input() element: ElementPiece | undefined = undefined
+export class ActionPawnComponent {
+  @Input() actionPawn: ActionPawnPiece | undefined = undefined
 
   get kind(): string | undefined {
-    return this.element?.kind
+    return this.actionPawn?.kind
   }
 
   get name(): string | undefined {
-    return this.element?.name
+    return this.actionPawn?.name
   }
 
   get imgPath(): string | undefined {

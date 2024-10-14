@@ -12,11 +12,14 @@ import {ElementComponent} from "../element/element.component";
 import {ElementPiece, elementPieceFactory} from "../../model/element.model";
 import {ElementEnum} from "../../constant/element.constant";
 import {Faction} from "../../../engine/model/faction.model";
+import {actionPawnFactory, ActionPawnPiece} from "../../model/action-pawn.model";
+import {animalByActionPawnKind} from "../../constant/piece.constant";
+import {ActionPawnComponent} from "../action-pawn/action-pawn.component";
 
 @Component({
   selector: 'app-draw-pool-game',
   standalone: true,
-  imports: [MatButton, MatTooltip, ElementComponent],
+  imports: [MatButton, MatTooltip, ElementComponent, ActionPawnComponent],
   templateUrl: './draw-pool-game.component.html',
   styleUrl: './draw-pool-game.component.scss',
 })
@@ -91,5 +94,13 @@ export class DrawPoolGameComponent {
       elements.push(elementPieceFactory(elementKind))
     }
     return elements
+  }
+
+  get actionPawns(): ActionPawnPiece[] {
+    const actionPawns: ActionPawnPiece[] = []
+    for (const kind of animalByActionPawnKind.keys()) {
+        actionPawns.push(actionPawnFactory(kind))
+      }
+    return actionPawns
   }
 }
