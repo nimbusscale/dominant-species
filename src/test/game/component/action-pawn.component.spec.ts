@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ActionPawnComponent } from './action-pawn.component';
+import { ActionPawnComponent } from '../../../app/game/component/action-pawn/action-pawn.component';
 
 describe('ActionPawnComponent', () => {
   let component: ActionPawnComponent;
