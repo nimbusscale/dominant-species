@@ -123,7 +123,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/game/dominant-species.constants.ts</code>
+            <code>src/app/game/constant/element-config.constant.ts</code>
         </p>
 
 
@@ -274,102 +274,9 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { GameState } from &#x27;../engine/model/game-state.model&#x27;;
-
-export enum AnimalEnum {
-  AMPHIBIAN &#x3D; &#x27;amphibian&#x27;,
-  ARACHNID &#x3D; &#x27;arachnid&#x27;,
-  BIRD &#x3D; &#x27;bird&#x27;,
-  INSECT &#x3D; &#x27;insect&#x27;,
-  MAMMAL &#x3D; &#x27;mammal&#x27;,
-  REPTILE &#x3D; &#x27;reptile&#x27;,
-}
-
-export type AnimalKind &#x3D; &#x60;${AnimalEnum}&#x60;;
-
-export enum AreaIdEnum {
-  ACTION_DISPLAY_ABUNDANCE &#x3D; &#x27;actionDisplayAbundance&#x27;,
-  ACTION_DISPLAY_ADAPTION &#x3D; &#x27;actionDisplayAdaption&#x27;,
-  AMPHIBIAN_ELEMENT &#x3D; &#x27;amphibianElement&#x27;,
-  ARACHNID_ELEMENT &#x3D; &#x27;arachnidElement&#x27;,
-  BIRD_ELEMENT &#x3D; &#x27;birdElement&#x27;,
-  INSECT_ELEMENT &#x3D; &#x27;insectElement&#x27;,
-  MAMMAL_ELEMENT &#x3D; &#x27;mammalElement&#x27;,
-  REPTILE_ELEMENT &#x3D; &#x27;reptileElement&#x27;,
-}
-
-export type AreaId &#x3D; &#x60;${AreaIdEnum}&#x60;;
-
-export enum ElementEnum {
-  GRASS &#x3D; &#x27;grassElement&#x27;,
-  GRUB &#x3D; &#x27;grubElement&#x27;,
-  MEAT &#x3D; &#x27;meatElement&#x27;,
-  SEED &#x3D; &#x27;seedElement&#x27;,
-  SUN &#x3D; &#x27;sunElement&#x27;,
-  WATER &#x3D; &#x27;waterElement&#x27;,
-}
-
-export type ElementKind &#x3D; &#x60;${ElementEnum}&#x60;;
-
-export enum PieceKindEnum {
-  ACTION_PAWN_AMPHIBIAN &#x3D; &#x27;actionPawnAmphibian&#x27;,
-  ACTION_PAWN_ARACHNID &#x3D; &#x27;actionPawnArachnid&#x27;,
-  ACTION_PAWN_BIRD &#x3D; &#x27;actionPawnBird&#x27;,
-  ACTION_PAWN_INSECT &#x3D; &#x27;actionPawnInsect&#x27;,
-  ACTION_PAWN_MAMMAL &#x3D; &#x27;actionPawnMammal&#x27;,
-  ACTION_PAWN_REPTILE &#x3D; &#x27;actionPawnReptile&#x27;,
-  ELEMENT &#x3D; &#x27;element&#x27;,
-  SPECIES_AMPHIBIAN &#x3D; &#x27;speciesAmphibian&#x27;,
-  SPECIES_ARACHNID &#x3D; &#x27;speciesArachnid&#x27;,
-  SPECIES_BIRD &#x3D; &#x27;speciesBird&#x27;,
-  SPECIES_INSECT &#x3D; &#x27;speciesInsect&#x27;,
-  SPECIES_MAMMAL &#x3D; &#x27;speciesMammal&#x27;,
-  SPECIES_REPTILE &#x3D; &#x27;speciesReptile&#x27;,
-}
-
-export type ActionPawnKind &#x3D;
-  | PieceKindEnum.ACTION_PAWN_AMPHIBIAN
-  | PieceKindEnum.ACTION_PAWN_BIRD
-  | PieceKindEnum.ACTION_PAWN_ARACHNID
-  | PieceKindEnum.ACTION_PAWN_INSECT
-  | PieceKindEnum.ACTION_PAWN_MAMMAL
-  | PieceKindEnum.ACTION_PAWN_REPTILE;
-
-export enum SpaceKindEnum {
-  ACTION_PAWN &#x3D; &#x27;actionPawn&#x27;,
-  ELEMENT &#x3D; &#x27;element&#x27;,
-}
-
-/**
- * GameState defining the static elements of the DS game
- */
-export const baseGameState: GameState &#x3D; {
-  area: [
-    {
-      id: AreaIdEnum.ACTION_DISPLAY_ADAPTION,
-      space: [
-        { kind: SpaceKindEnum.ACTION_PAWN, piece: null },
-        { kind: SpaceKindEnum.ACTION_PAWN, piece: null },
-        { kind: SpaceKindEnum.ACTION_PAWN, piece: null },
-      ],
-    },
-  ],
-  faction: [],
-  pile: [
-    {
-      id: PieceKindEnum.ELEMENT,
-      inventory: {
-        // 20 Elements each, with 2 being places on Earth, leaving 18 in the bag
-        grassElement: 18,
-        grubElement: 18,
-        meatElement: 18,
-        seedElement: 18,
-        sunElement: 18,
-        waterElement: 18,
-      },
-    },
-  ],
-};
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ElementEnum, ElementKind } from &#x27;./element.constant&#x27;;
+import { AreaId, AreaIdEnum } from &#x27;./area.constant&#x27;;
+import { AnimalEnum } from &#x27;./animal.constant&#x27;;
 
 export interface ElementConfig {
   kind: ElementKind;
@@ -377,7 +284,10 @@ export interface ElementConfig {
   areaId: AreaId;
 }
 
-export const elementConfigByAnimal &#x3D; new Map&lt;AnimalEnum, ElementConfig&gt;([
+export const elementConfigByAnimal: ReadonlyMap&lt;AnimalEnum, ElementConfig&gt; &#x3D; new Map&lt;
+  AnimalEnum,
+  ElementConfig
+&gt;([
   [
     AnimalEnum.AMPHIBIAN,
     { kind: ElementEnum.WATER, inherentCount: 3, areaId: AreaIdEnum.AMPHIBIAN_ELEMENT },
