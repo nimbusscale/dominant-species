@@ -6,17 +6,14 @@ import { FactionRegistryService } from '../../../app/engine/service/game-element
 import { PlayerService } from '../../../app/engine/service/player.service';
 import { Faction } from '../../../app/engine/model/faction.model';
 import { of, skip } from 'rxjs';
-import {
-  AnimalEnum,
-  AreaIdEnum,
-  ElementEnum,
-  SpaceKindEnum,
-} from '../../../app/game/dominant-species.constants';
 import { Area } from '../../../app/engine/model/area.model';
 import { Space } from '../../../app/engine/model/space.model';
-import { elementPieceFactory } from '../../../app/game/model/piece.model';
+import { elementPieceFactory } from '../../../app/game/model/element.model';
 import { Player } from '../../../app/engine/model/player.model';
 import { testPlayerState1 } from '../../engine/service/game-state-test.constant';
+import {AnimalEnum} from "../../../app/game/constant/animal.constant";
+import {AreaIdEnum, SpaceKindEnum} from "../../../app/game/constant/area.constant";
+import {ElementEnum} from "../../../app/game/constant/element.constant";
 
 describe('AnimalService', () => {
   let animalService: AnimalService;

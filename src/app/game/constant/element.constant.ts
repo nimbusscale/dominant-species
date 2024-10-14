@@ -8,3 +8,7 @@ export enum ElementEnum {
 }
 
 export type ElementKind = `${ElementEnum}`;
+
+export const elementImgPathByElementKind: ReadonlyMap<string, string> = new Map<string, string>([
+  ['grass', 'dominant-species/element/noun-grass-7195612.svg']
+])

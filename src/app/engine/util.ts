@@ -17,7 +17,7 @@ export function deepCompare(object1: unknown, object2: unknown): boolean {
  * @returns {V} The value associated with the specified key in the map.
  * @throws {Error} If the key is not found in the map.
  */
-export function getOrThrow<K, V>(map: Map<K, V>, key: K, errorMessage?: string): V {
+export function getOrThrow<K, V>(map: Map<K, V> | ReadonlyMap<K, V>, key: K, errorMessage?: string): V {
   const value = map.get(key);
   if (value === undefined) {
     throw new Error(errorMessage ?? `Key "${String(key)}" not found in the map`);

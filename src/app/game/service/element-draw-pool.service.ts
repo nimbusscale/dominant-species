@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Pile } from '../../engine/model/pile.model';
 import { BehaviorSubject, filter, first, Observable } from 'rxjs';
-import { PieceKindEnum } from '../dominant-species.constants';
 
 import { PileRegistryService } from '../../engine/service/game-element/pile-registry.service';
+import {PieceKindEnum} from "../constant/piece.constant";
 
 @Injectable({
   providedIn: 'root',

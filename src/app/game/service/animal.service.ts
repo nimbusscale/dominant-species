@@ -8,11 +8,11 @@ import {
   FactionRegistryService,
 } from '../../engine/service/game-element/faction-registry.service';
 import { BehaviorSubject, filter, first, map } from 'rxjs';
-import { elementConfigByAnimal, ElementConfig } from '../dominant-species.constants';
 import { getOrThrow } from '../../engine/util';
 import { isNotNull, isNotUndefined } from '../../engine/predicate';
 import { Space } from '../../engine/model/space.model';
-import { ElementPiece } from '../model/piece.model';
+import { ElementPiece } from '../model/element.model';
+import {ElementConfig, elementConfigByAnimal} from "../constant/element-config.constant";
 
 @Injectable({
   providedIn: 'root',

@@ -8,7 +8,7 @@ export interface ElementConfig {
   areaId: AreaId;
 }
 
-export const elementConfigByAnimal = new Map<AnimalEnum, ElementConfig>([
+export const elementConfigByAnimal: ReadonlyMap<AnimalEnum, ElementConfig> = new Map<AnimalEnum, ElementConfig>([
   [
     AnimalEnum.AMPHIBIAN,
     {kind: ElementEnum.WATER, inherentCount: 3, areaId: AreaIdEnum.AMPHIBIAN_ELEMENT},
