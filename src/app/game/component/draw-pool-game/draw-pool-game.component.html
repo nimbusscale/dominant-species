@@ -30,6 +30,9 @@
     </section>
   </div>
   <div class="animal-card-area">
-    <app-animal-card></app-animal-card>
+    @for (faction of factions; track faction.id) {
+      <app-animal-card [faction]="faction"></app-animal-card>
+    }
+
   </div>
 </body>

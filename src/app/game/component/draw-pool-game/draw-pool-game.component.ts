@@ -27,7 +27,8 @@ import {AnimalCardComponent} from "../animal-card/animal-card.component";
   styleUrl: './draw-pool-game.component.scss',
 })
 export class DrawPoolGameComponent {
-  faction: Faction | undefined = undefined;
+  currentPlayerFaction: Faction | undefined = undefined;
+  factions: Faction[] = []
   drawPool: Pile | undefined = undefined;
   drawPoolLength = 0;
   log: string[] = [];
@@ -59,8 +60,8 @@ export class DrawPoolGameComponent {
     console.log('Create Game');
     // should be using factionAssignments$
     this.factionRegistrySvc.registeredIds$.subscribe((ids) => {
-      this.faction = this.factionRegistrySvc.get(Array.from(ids)[0]);
-      this.log.push(`Welcome ${this.faction.name}!`);
+      this.currentPlayerFaction = this.factionRegistrySvc.get(Array.from(ids)[0]);
+      this.factions.push(this.currentPlayerFaction)
     });
   }
 
