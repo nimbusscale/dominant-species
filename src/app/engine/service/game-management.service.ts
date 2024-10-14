@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Pile } from '../model/pile.model';
 import { Space } from '../model/space.model';
 import { Area } from '../model/area.model';
-import { shuffle } from 'lodash';
+import {shuffle, startCase} from 'lodash';
 import { Faction } from '../model/faction.model';
 import { PlayerService } from './player.service';
 import { getOrThrow } from '../util';
@@ -55,6 +55,7 @@ export class GameManagementService {
       factions.push(
         new Faction({
           id: assignedAnimal,
+          name: startCase(assignedAnimal),
           ownerId: player.id,
           score: 0,
         }),

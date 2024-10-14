@@ -11,6 +11,7 @@ import { FactionRegistryService } from '../../../engine/service/game-element/fac
 import {ElementComponent} from "../element/element.component";
 import {ElementPiece, elementPieceFactory} from "../../model/element.model";
 import {ElementEnum} from "../../constant/element.constant";
+import {Faction} from "../../../engine/model/faction.model";
 
 @Component({
   selector: 'app-draw-pool-game',
@@ -20,7 +21,8 @@ import {ElementEnum} from "../../constant/element.constant";
   styleUrl: './draw-pool-game.component.scss',
 })
 export class DrawPoolGameComponent {
-  drawPool: Pile | null = null;
+  faction: Faction | undefined = undefined
+  drawPool: Pile | undefined = undefined;
   drawPoolLength = 0;
   log: string[] = [];
   constructor(
@@ -49,8 +51,10 @@ export class DrawPoolGameComponent {
   createGame(): void {
     this.gameManagementSvc.createGame();
     console.log('Create Game');
+    // should be using factionAssignments$
     this.factionRegistrySvc.registeredIds$.subscribe((ids) => {
-      this.log.push(`Welcome ${Array.from(ids)[0]}!`);
+      this.faction = this.factionRegistrySvc.get(Array.from(ids)[0])
+      this.log.push(`Welcome ${this.faction.name}!`);
     });
   }
 
