@@ -28,8 +28,8 @@ export class GameManagementService {
 
   createGame(): void {
     this.createArea();
-    this.createPile();
     this.createFactions();
+    this.createDrawPoolPile();
   }
 
   private createArea(): void {
@@ -81,7 +81,9 @@ export class GameManagementService {
     this.areaRegistrySvc.register(areas);
   }
 
-  private createPile(): void {
+
+
+  private createDrawPoolPile(): void {
     const piles: Pile[] = [];
     baseGameState.pile.forEach((pileState) => {
       piles.push(new Pile(pileState, elementPieceFactory));

@@ -13,31 +13,32 @@
   height: 100%;
 }
 
-.actionPawnAmphibian {
+.amphibian {
   background-color: #1e90ff;
 }
 
-.actionPawnArachnid {
+.arachnid {
   background-color: #ff0000;
 }
 
-.actionPawnBird {
+.bird {
   background-color: #ffff00;
 }
 
-.actionPawnInsect {
+.insect {
   background-color: #00ff00;
 }
 
-.actionPawnMammal {
+.mammal {
   background-color: #ffffff;
 }
 
-.actionPawnReptile {
+.reptile {
   background-color: #000000;
 }
 
-.actionPawnEyeball {
+// Todo: figure out what to do with eyeball. Its not really an Action Pawn
+.eyeball {
   background-color: #faf0e6;
   border: 2px dotted #000000;
 }

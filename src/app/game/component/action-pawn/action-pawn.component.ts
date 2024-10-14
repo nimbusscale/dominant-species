@@ -14,8 +14,8 @@ import { getOrThrow } from '../../../engine/util';
 export class ActionPawnComponent {
   @Input() actionPawn: ActionPawnPiece | undefined = undefined;
 
-  get kind(): string | undefined {
-    return this.actionPawn?.kind;
+  get owner(): string | null | undefined {
+    return this.actionPawn?.owner;
   }
 
   get name(): string | undefined {
@@ -23,10 +23,10 @@ export class ActionPawnComponent {
   }
 
   get imgPath(): string | undefined {
-    if (this.kind) {
-      return getOrThrow(imgPathByKind, this.kind);
+    if (this.owner) {
+      return getOrThrow(imgPathByKind, this.owner);
     } else {
-      return undefined;
+        return undefined;
+      }
     }
-  }
 }

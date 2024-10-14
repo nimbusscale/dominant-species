@@ -1,12 +1,12 @@
 import { defaultPieceFactory, Piece } from '../../engine/model/piece.model';
-import { ActionPawnKind, animalByActionPawnKind } from '../constant/piece.constant';
+import {ActionPawnKind, animalByActionPawnKind, PieceKindEnum} from '../constant/piece.constant';
 import { getOrThrow } from '../../engine/util';
+import {AnimalKind} from "../constant/animal.constant";
 
 export interface ActionPawnPiece extends Piece {
-  kind: ActionPawnKind;
+  owner: AnimalKind
 }
 
-export function actionPawnFactory(kind: string): ActionPawnPiece {
-  const owner = getOrThrow(animalByActionPawnKind, kind);
-  return defaultPieceFactory(kind, owner) as ActionPawnPiece;
+export function actionPawnFactory(owner: AnimalKind): ActionPawnPiece {
+  return defaultPieceFactory(PieceKindEnum.ACTION_PAWN, owner) as ActionPawnPiece;
 }

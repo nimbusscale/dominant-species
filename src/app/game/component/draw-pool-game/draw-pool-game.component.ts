@@ -13,8 +13,10 @@ import { ElementPiece, elementPieceFactory } from '../../model/element.model';
 import { ElementEnum } from '../../constant/element.constant';
 import { Faction } from '../../../engine/model/faction.model';
 import { actionPawnFactory, ActionPawnPiece } from '../../model/action-pawn.model';
-import { animalByActionPawnKind } from '../../constant/piece.constant';
+import {animalByActionPawnKind, PieceKindEnum} from '../../constant/piece.constant';
 import { ActionPawnComponent } from '../action-pawn/action-pawn.component';
+import {AnimalEnum} from "../../constant/animal.constant";
+import {defaultPieceFactory} from "../../../engine/model/piece.model";
 
 @Component({
   selector: 'app-draw-pool-game',
@@ -98,8 +100,8 @@ export class DrawPoolGameComponent {
 
   get actionPawns(): ActionPawnPiece[] {
     const actionPawns: ActionPawnPiece[] = [];
-    for (const kind of animalByActionPawnKind.keys()) {
-      actionPawns.push(actionPawnFactory(kind));
+    for (const animal of Object.values(AnimalEnum)) {
+      actionPawns.push(actionPawnFactory(animal));
     }
     return actionPawns;
   }

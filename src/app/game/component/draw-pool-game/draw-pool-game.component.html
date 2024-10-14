@@ -24,7 +24,7 @@
       }
     </section>
     <section class="icon-display">
-      @for (pawn of actionPawns; track pawn.kind) {
+      @for (pawn of actionPawns; track pawn.owner) {
         <app-action-pawn [actionPawn]="pawn"></app-action-pawn>
       }
     </section>

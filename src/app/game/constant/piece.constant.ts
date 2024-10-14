@@ -1,6 +1,9 @@
 import { AnimalEnum } from './animal.constant';
 
 export enum PieceKindEnum {
+  ACTION_PAWN = 'actionPawn',
+  ELEMENT = 'element',
+  SPECIES = 'species',
   ACTION_PAWN_AMPHIBIAN = 'actionPawnAmphibian',
   ACTION_PAWN_ARACHNID = 'actionPawnArachnid',
   ACTION_PAWN_BIRD = 'actionPawnBird',
@@ -9,7 +12,6 @@ export enum PieceKindEnum {
   ACTION_PAWN_REPTILE = 'actionPawnReptile',
   // Represents the lack of an Action Pawn in an action space.
   ACTION_PAWN_EYEBALL = 'actionPawnEyeball',
-  ELEMENT = 'element',
   SPECIES_AMPHIBIAN = 'speciesAmphibian',
   SPECIES_ARACHNID = 'speciesArachnid',
   SPECIES_BIRD = 'speciesBird',
