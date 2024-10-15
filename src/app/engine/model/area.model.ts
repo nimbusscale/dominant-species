@@ -52,12 +52,12 @@ export class Area extends GameElement<AreaState> {
     this.spacesSubject.next(this.spaces)
   }
 
-  nextAvailableSpace(): Space | null {
-    const availableSpaces = this.spaces.filter((space) => isNull(space.piece));
-    if (availableSpaces.length > 0) {
-      return availableSpaces[0];
-    } else {
-      return null;
-    }
+  nextAvailableSpace(kind?: string): Space | null {
+    const availableSpaces = this.spaces
+      .filter((space) => !kind || space.kind === kind)
+      .filter((space) => space.piece === null);
+
+    return availableSpaces.length > 0 ? availableSpaces[0] : null;
   }
+
 }

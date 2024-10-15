@@ -108,7 +108,7 @@ export class DrawPoolGameComponent {
     if (this.drawPool && this.adaptionArea) {
       const item = this.drawPool.pull();
       if (item[0]) {
-        const nextSpace = this.adaptionArea.nextAvailableSpace()
+        const nextSpace = this.adaptionArea.nextAvailableSpace(SpaceKindEnum.ELEMENT)
         if (nextSpace) {
           nextSpace.addPiece(item[0] as ElementPiece)
         }

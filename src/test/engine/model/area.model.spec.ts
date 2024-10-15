@@ -82,14 +82,22 @@ describe('Area', () => {
 
   })
   describe('nextAvailableSpace', () => {
-    it('returns next available space', () => {
+    it('returns next available space, when no kind is specified', () => {
       space1.addPiece(testPiece1);
       expect(area.nextAvailableSpace()).toBe(space2);
+    });
+    it('returns next available space, when kind is specified', () => {
+      space1.addPiece(testPiece1);
+      expect(area.nextAvailableSpace('testSpace')).toBe(space2);
     });
     it('returns null when no available spaces', () => {
       space1.addPiece(testPiece1);
       space2.addPiece(testPiece2);
       expect(area.nextAvailableSpace()).toBeNull();
+    });
+    it('returns null, when no space with matching kind is available', () => {
+      space1.addPiece(testPiece1);
+      expect(area.nextAvailableSpace('otherKind')).toBeNull();
     });
   });
 });
