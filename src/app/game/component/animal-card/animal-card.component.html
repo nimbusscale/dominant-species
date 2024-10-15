@@ -1,5 +1,5 @@
 <mat-card appearance="outlined" class="animal-card">
-  <mat-grid-list cols="2" rowHeight="50px">
+  <mat-grid-list cols="2" rowHeight="45px">
     <!-- Add a custom class to this tile -->
     <mat-grid-tile colspan="2">
       <div class="animal-card-title">
@@ -13,7 +13,7 @@
         <app-element [element]="element"></app-element>
       }
       @for (emptyElementSpace of emptyElementSpaces; track $index) {
-        <div class="empty-element"></div>
+        <div class="circle-space subdued-solid-border"></div>
       }
       </div>
     </mat-grid-tile>
