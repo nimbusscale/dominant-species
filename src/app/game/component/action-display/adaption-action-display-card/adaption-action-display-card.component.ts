@@ -5,6 +5,10 @@ import {EyeballComponent} from "../eyeball/eyeball.component";
 import {ActionPawnSpaceComponent} from "../action-pawn-space/action-pawn-space.component";
 import {AreaRegistryService} from "../../../../engine/service/game-element/area-registry.service";
 import {Area} from "../../../../engine/model/area.model";
+import {filter, first} from "rxjs";
+import {AreaIdEnum, SpaceKindEnum} from "../../../constant/area.constant";
+import {ElementPiece} from "../../../model/element.model";
+import {ActionPawnPiece} from "../../../model/action-pawn.model";
 
 @Component({
   selector: 'app-adaption-action-display-card',
@@ -20,13 +24,23 @@ import {Area} from "../../../../engine/model/area.model";
 })
 export class AdaptionActionDisplayCardComponent implements OnInit {
   area: Area | undefined = undefined
+  elements: ElementPiece[] = []
+  actionPawns: ActionPawnPiece[] = []
+
   constructor(
     private areaRegistryService: AreaRegistryService
   ) {
   }
 
   ngOnInit() {
-    console.log('')
+    this.areaRegistryService.registeredIds$.pipe(
+      filter((ids) => ids.has(AreaIdEnum.ACTION_DISPLAY_ADAPTION)),
+      first(),
+    ).subscribe(() => {
+      this.area = this.areaRegistryService.get(AreaIdEnum.ACTION_DISPLAY_ADAPTION)
+      this.elements = this.area.spaces.filter((space) => space.kind === SpaceKindEnum.ELEMENT).map((space) => space.piece) as ElementPiece[]
+      this.actionPawns = this.area.spaces.filter((space) => space.kind === SpaceKindEnum.ACTION_PAWN).map((space) => space.piece) as ActionPawnPiece[]
+    })
   }
 
 }
