@@ -18,6 +18,7 @@ import {PieceKindEnum} from "../../constant/piece.constant";
 import {defaultPieceFactory} from "../../../engine/model/piece.model";
 import {ActionPawnPiece} from "../../model/action-pawn.model";
 import {AnimalCardComponent} from "../animal-card/animal-card.component";
+import {PlayerService} from "../../../engine/service/player.service";
 
 @Component({
   selector: 'app-draw-pool-game',
@@ -37,6 +38,7 @@ export class DrawPoolGameComponent {
     private gameStateSvc: GameStateService,
     private elementDrawPoolSvc: ElementDrawPoolService,
     private factionRegistrySvc: FactionRegistryService,
+    private playerService: PlayerService,
   ) {
     this.initialize();
   }
@@ -59,9 +61,9 @@ export class DrawPoolGameComponent {
     this.gameManagementSvc.createGame();
     console.log('Create Game');
     // should be using factionAssignments$
-    this.factionRegistrySvc.registeredIds$.subscribe((ids) => {
-      this.currentPlayerFaction = this.factionRegistrySvc.get(Array.from(ids)[0]);
-      this.factions.push(this.currentPlayerFaction)
+    this.factionRegistrySvc.factionAssignment$.subscribe((factionAssignments) => {
+      this.factions = factionAssignments.map((factionAssignment) => this.factionRegistrySvc.get(factionAssignment.id));
+      this.currentPlayerFaction = this.factions.filter((faction) => faction.ownerId === this.playerService.currentPlayer.id)[0]
     });
   }
 

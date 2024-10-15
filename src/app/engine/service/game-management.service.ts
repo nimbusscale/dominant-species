@@ -52,8 +52,7 @@ export class GameManagementService {
     const piles: Pile[] = []
     const shuffledAnimals = shuffle(Object.values(AnimalEnum));
     this.playerService.players.forEach((player, index) => {
-      // const assignedAnimal = shuffledAnimals[index];
-      const assignedAnimal = AnimalEnum.BIRD
+      const assignedAnimal = shuffledAnimals[index];
       const elementConfig = getOrThrow(elementConfigByAnimal, assignedAnimal);
 
       factions.push(
