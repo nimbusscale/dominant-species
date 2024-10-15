@@ -14,11 +14,11 @@ import { ElementEnum } from '../../constant/element.constant';
 import { Faction } from '../../../engine/model/faction.model';
 import { ActionPawnComponent } from '../action-pawn/action-pawn.component';
 import { AnimalEnum } from '../../constant/animal.constant';
-import {PieceKindEnum} from "../../constant/piece.constant";
-import {defaultPieceFactory} from "../../../engine/model/piece.model";
-import {ActionPawnPiece} from "../../model/action-pawn.model";
-import {AnimalCardComponent} from "../animal-card/animal-card.component";
-import {PlayerService} from "../../../engine/service/player.service";
+import { PieceKindEnum } from '../../constant/piece.constant';
+import { defaultPieceFactory } from '../../../engine/model/piece.model';
+import { ActionPawnPiece } from '../../model/action-pawn.model';
+import { AnimalCardComponent } from '../animal-card/animal-card.component';
+import { PlayerService } from '../../../engine/service/player.service';
 
 @Component({
   selector: 'app-draw-pool-game',
@@ -29,7 +29,7 @@ import {PlayerService} from "../../../engine/service/player.service";
 })
 export class DrawPoolGameComponent {
   currentPlayerFaction: Faction | undefined = undefined;
-  factions: Faction[] = []
+  factions: Faction[] = [];
   drawPool: Pile | undefined = undefined;
   drawPoolLength = 0;
   log: string[] = [];
@@ -62,8 +62,12 @@ export class DrawPoolGameComponent {
     console.log('Create Game');
     // should be using factionAssignments$
     this.factionRegistrySvc.factionAssignment$.subscribe((factionAssignments) => {
-      this.factions = factionAssignments.map((factionAssignment) => this.factionRegistrySvc.get(factionAssignment.id));
-      this.currentPlayerFaction = this.factions.filter((faction) => faction.ownerId === this.playerService.currentPlayer.id)[0]
+      this.factions = factionAssignments.map((factionAssignment) =>
+        this.factionRegistrySvc.get(factionAssignment.id),
+      );
+      this.currentPlayerFaction = this.factions.find(
+        (faction) => faction.ownerId === this.playerService.currentPlayer.id,
+      );
     });
   }
 
@@ -104,9 +108,9 @@ export class DrawPoolGameComponent {
 
   get actionPawns(): ActionPawnPiece[] {
     const actionPawns: ActionPawnPiece[] = [];
-  for (const animal of Object.values(AnimalEnum) as AnimalEnum[]) {
-    actionPawns.push(defaultPieceFactory(PieceKindEnum.ACTION_PAWN, animal) as ActionPawnPiece);
-  }
+    for (const animal of Object.values(AnimalEnum) as AnimalEnum[]) {
+      actionPawns.push(defaultPieceFactory(PieceKindEnum.ACTION_PAWN, animal) as ActionPawnPiece);
+    }
     return actionPawns;
   }
 }

@@ -3,7 +3,7 @@ import { Pile } from '../../engine/model/pile.model';
 import { BehaviorSubject, filter, first, Observable } from 'rxjs';
 
 import { PileRegistryService } from '../../engine/service/game-element/pile-registry.service';
-import {PileIdEnum} from "../constant/pile.constant";
+import { PileIdEnum } from '../constant/pile.constant';
 
 @Injectable({
   providedIn: 'root',

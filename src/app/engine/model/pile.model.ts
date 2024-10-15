@@ -14,7 +14,7 @@ export interface PileState extends GameElementState {
  * A Pile is used to draw one or more random pieces for a defined pool of pieces.
  */
 export class Pile extends GameElement<PileState> {
-  private readonly owner: string | null
+  private readonly owner: string | null;
   private readonly pieceFactory: PieceFactory;
   private lengthSubject: BehaviorSubject<number>;
   length$: Observable<number>;
@@ -27,7 +27,7 @@ export class Pile extends GameElement<PileState> {
    */
   constructor(state: PileState, pieceFactory: PieceFactory = defaultPieceFactory) {
     super(state);
-    this.owner = state.owner
+    this.owner = state.owner;
     this.pieceFactory = pieceFactory;
     this.lengthSubject = new BehaviorSubject<number>(this.length);
     this.length$ = this.lengthSubject.asObservable().pipe(distinctUntilChanged());

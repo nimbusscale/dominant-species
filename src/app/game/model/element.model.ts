@@ -1,4 +1,4 @@
-import { defaultPieceFactory, Piece } from '../../engine/model/piece.model';
+import { Piece } from '../../engine/model/piece.model';
 
 import { ElementKind } from '../constant/element.constant';
 

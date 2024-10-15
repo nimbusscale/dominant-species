@@ -1,4 +1,4 @@
-import {AnimalEnum} from "./animal.constant";
+import { AnimalEnum } from './animal.constant';
 
 export enum AreaIdEnum {
   ACTION_DISPLAY_ABUNDANCE = 'actionDisplayAbundance',
@@ -20,7 +20,7 @@ export const elementAreaIdsByAnimal: ReadonlyMap<string, string> = new Map<strin
   [AnimalEnum.INSECT, AreaIdEnum.INSECT_ELEMENT],
   [AnimalEnum.MAMMAL, AreaIdEnum.MAMMAL_ELEMENT],
   [AnimalEnum.REPTILE, AreaIdEnum.REPTILE_ELEMENT],
-])
+]);
 
 export enum SpaceKindEnum {
   ACTION_PAWN = 'actionPawn',

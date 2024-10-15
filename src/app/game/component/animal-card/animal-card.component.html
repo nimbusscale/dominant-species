@@ -9,24 +9,25 @@
     </mat-grid-tile>
     <mat-grid-tile colspan="2">
       <div class="element-display">
-      @for (element of elements; track $index) {
-        <app-element [element]="element"></app-element>
-      }
-      @for (emptyElementSpace of emptyElementSpaces; track $index) {
-        <div class="circle-space subdued-solid-border"></div>
-      }
+        @for (element of elements; track $index) {
+          <app-element [element]="element"></app-element>
+        }
+        @for (emptyElementSpace of emptyElementSpaces; track $index) {
+          <div class="circle-space subdued-solid-border"></div>
+        }
       </div>
     </mat-grid-tile>
-          <div class="piece-counter">
-    <mat-grid-tile colspan="1">
+    <div class="piece-counter">
+      <mat-grid-tile colspan="1">
         <span class="piece-counter-header">Action Pawns</span>
-    </mat-grid-tile>
-    <mat-grid-tile colspan="1">Species</mat-grid-tile>
-    <mat-grid-tile colspan="1">
+      </mat-grid-tile>
+      <mat-grid-tile colspan="1">Species</mat-grid-tile>
+      <mat-grid-tile colspan="1">
         <span class="piece-counter-number">{{ actionPawnPile?.length }}</span>
-    </mat-grid-tile>
-    <mat-grid-tile colspan="1"><span class="piece-counter-number">{{ speciesPile?.length }}</span>
-    </mat-grid-tile>
-          </div>
+      </mat-grid-tile>
+      <mat-grid-tile colspan="1"
+        ><span class="piece-counter-number">{{ speciesPile?.length }}</span>
+      </mat-grid-tile>
+    </div>
   </mat-grid-list>
 </mat-card>

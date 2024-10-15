@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Pile, PileState} from '../model/pile.model';
+import { Pile, PileState } from '../model/pile.model';
 import { Space } from '../model/space.model';
 import { Area } from '../model/area.model';
 import { shuffle, startCase } from 'lodash';
@@ -13,9 +13,9 @@ import { baseGameState } from '../../game/constant/game-state.constant';
 import { AnimalEnum } from '../../game/constant/animal.constant';
 import { SpaceKindEnum } from '../../game/constant/area.constant';
 import { elementConfigByAnimal } from '../../game/constant/element-config.constant';
-import {pileIdsByAnimal} from "../../game/constant/pile.constant";
-import {PieceKindEnum} from "../../game/constant/piece.constant";
-import {defaultPieceFactory} from "../model/piece.model";
+import { pileIdsByAnimal } from '../../game/constant/pile.constant';
+import { PieceKindEnum } from '../../game/constant/piece.constant';
+import { defaultPieceFactory } from '../model/piece.model';
 
 @Injectable({
   providedIn: 'root',
@@ -49,7 +49,7 @@ export class GameManagementService {
   private createFactions() {
     const factions: Faction[] = [];
     const areas: Area[] = [];
-    const piles: Pile[] = []
+    const piles: Pile[] = [];
     const shuffledAnimals = shuffle(Object.values(AnimalEnum));
     this.playerService.players.forEach((player, index) => {
       const assignedAnimal = shuffledAnimals[index];
@@ -84,23 +84,23 @@ export class GameManagementService {
         id: getOrThrow(pileIdsByAnimal, assignedAnimal)['actionPawn'],
         owner: assignedAnimal,
         inventory: {
-          [PieceKindEnum.ACTION_PAWN]: 7
-        }
-      }
-      piles.push(new Pile(actionPawnPileState))
+          [PieceKindEnum.ACTION_PAWN]: 7,
+        },
+      };
+      piles.push(new Pile(actionPawnPileState));
 
       const speciesPileState: PileState = {
         id: getOrThrow(pileIdsByAnimal, assignedAnimal)['species'],
         owner: assignedAnimal,
         inventory: {
-          [PieceKindEnum.SPECIES]: 55
-        }
-      }
-      piles.push(new Pile(speciesPileState))
+          [PieceKindEnum.SPECIES]: 55,
+        },
+      };
+      piles.push(new Pile(speciesPileState));
     });
     this.factionRegistrySvc.register(factions);
     this.areaRegistrySvc.register(areas);
-    this.pileRegistrySvc.register(piles)
+    this.pileRegistrySvc.register(piles);
   }
 
   private createDrawPoolPile(): void {

@@ -13,8 +13,8 @@ import { testPlayerState1 } from '../../engine/game-state-test.constant';
 import { AnimalEnum } from '../../../app/game/constant/animal.constant';
 import { AreaIdEnum, SpaceKindEnum } from '../../../app/game/constant/area.constant';
 import { ElementEnum } from '../../../app/game/constant/element.constant';
-import {defaultPieceFactory} from "../../../app/engine/model/piece.model";
-import {ElementPiece} from "../../../app/game/model/element.model";
+import { defaultPieceFactory } from '../../../app/engine/model/piece.model';
+import { ElementPiece } from '../../../app/game/model/element.model';
 
 describe('AnimalService', () => {
   let animalService: AnimalService;
