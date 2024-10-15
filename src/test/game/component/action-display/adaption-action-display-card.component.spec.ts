@@ -8,9 +8,8 @@ describe('AdaptionActionDisplayCardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AdaptionActionDisplayCardComponent]
-    })
-    .compileComponents();
+      imports: [AdaptionActionDisplayCardComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(AdaptionActionDisplayCardComponent);
     component = fixture.componentInstance;

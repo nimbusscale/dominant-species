@@ -21,10 +21,10 @@ import { AnimalCardComponent } from '../animal-card/animal-card.component';
 import { PlayerService } from '../../../engine/service/player.service';
 import { EyeballComponent } from '../action-display/eyeball/eyeball.component';
 import { ElementSpaceComponent } from '../action-display/element-space/element-space.component';
-import {AdaptionActionDisplayCardComponent} from "../action-display/adaption-action-display-card/adaption-action-display-card.component";
-import {AreaRegistryService} from "../../../engine/service/game-element/area-registry.service";
-import {Area} from "../../../engine/model/area.model";
-import {AreaIdEnum, SpaceKindEnum} from "../../constant/area.constant";
+import { AdaptionActionDisplayCardComponent } from '../action-display/adaption-action-display-card/adaption-action-display-card.component';
+import { AreaRegistryService } from '../../../engine/service/game-element/area-registry.service';
+import { Area } from '../../../engine/model/area.model';
+import { AreaIdEnum, SpaceKindEnum } from '../../constant/area.constant';
 
 @Component({
   selector: 'app-draw-pool-game',
@@ -47,7 +47,7 @@ export class DrawPoolGameComponent {
   factions: Faction[] = [];
   drawPool: Pile | undefined = undefined;
   drawPoolLength = 0;
-  adaptionArea: Area | undefined = undefined
+  adaptionArea: Area | undefined = undefined;
   log: string[] = [];
   constructor(
     private gameManagementSvc: GameManagementService,
@@ -55,7 +55,7 @@ export class DrawPoolGameComponent {
     private elementDrawPoolSvc: ElementDrawPoolService,
     private factionRegistrySvc: FactionRegistryService,
     private playerService: PlayerService,
-    private areaRegistryService: AreaRegistryService
+    private areaRegistryService: AreaRegistryService,
   ) {
     this.initialize();
   }
@@ -72,12 +72,14 @@ export class DrawPoolGameComponent {
           this.drawPoolLength = length;
         });
       });
-    this.areaRegistryService.registeredIds$.pipe(
-      filter((ids) => ids.has(AreaIdEnum.ACTION_DISPLAY_ADAPTION)),
-      first(),
-    ).subscribe(() => {
-      this.adaptionArea = this.areaRegistryService.get(AreaIdEnum.ACTION_DISPLAY_ADAPTION)
-    })
+    this.areaRegistryService.registeredIds$
+      .pipe(
+        filter((ids) => ids.has(AreaIdEnum.ACTION_DISPLAY_ADAPTION)),
+        first(),
+      )
+      .subscribe(() => {
+        this.adaptionArea = this.areaRegistryService.get(AreaIdEnum.ACTION_DISPLAY_ADAPTION);
+      });
   }
 
   createGame(): void {
@@ -108,9 +110,9 @@ export class DrawPoolGameComponent {
     if (this.drawPool && this.adaptionArea) {
       const item = this.drawPool.pull();
       if (item[0]) {
-        const nextSpace = this.adaptionArea.nextAvailableSpace(SpaceKindEnum.ELEMENT)
+        const nextSpace = this.adaptionArea.nextAvailableSpace(SpaceKindEnum.ELEMENT);
         if (nextSpace) {
-          nextSpace.addPiece(item[0] as ElementPiece)
+          nextSpace.addPiece(item[0] as ElementPiece);
         }
         const element = this.formatElementName(item[0].kind);
         this.log.push(`You drew a ${element}`);

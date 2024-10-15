@@ -1,7 +1,7 @@
 import { GameState } from '../../engine/model/game-state.model';
 import { AreaIdEnum, SpaceKindEnum } from './area.constant';
 import { PileIdEnum } from './pile.constant';
-import {ElementEnum} from "./element.constant";
+import { ElementEnum } from './element.constant';
 
 /**
  * GameState defining the static elements of the DS game

@@ -1,7 +1,7 @@
-import {Area} from '../../../app/engine/model/area.model';
-import {Space} from '../../../app/engine/model/space.model';
-import {skip} from 'rxjs';
-import {defaultPieceFactory, Piece} from '../../../app/engine/model/piece.model';
+import { Area } from '../../../app/engine/model/area.model';
+import { Space } from '../../../app/engine/model/space.model';
+import { skip } from 'rxjs';
+import { defaultPieceFactory, Piece } from '../../../app/engine/model/piece.model';
 
 describe('Area', () => {
   let area: Area;
@@ -24,8 +24,8 @@ describe('Area', () => {
       expect(area.state).toEqual({
         id: 'testArea',
         space: [
-          {kind: 'testSpace', piece: testPiece1},
-          {kind: 'testSpace', piece: null},
+          { kind: 'testSpace', piece: testPiece1 },
+          { kind: 'testSpace', piece: null },
         ],
       });
     });
@@ -33,8 +33,8 @@ describe('Area', () => {
       const newState = {
         id: 'testArea',
         space: [
-          {kind: 'testSpace', piece: testPiece1},
-          {kind: 'testSpace', piece: null},
+          { kind: 'testSpace', piece: testPiece1 },
+          { kind: 'testSpace', piece: null },
         ],
       };
       area.setState(newState);
@@ -50,13 +50,13 @@ describe('Area', () => {
     it('should throw error if newState does not have same number of spaces', () => {
       const newState = {
         id: 'testArea',
-        space: [{kind: 'testSpace', piece: testPiece1}],
+        space: [{ kind: 'testSpace', piece: testPiece1 }],
       };
       expect(() => {
         area.setState(newState);
       }).toThrowError();
     });
-  })
+  });
   describe('spaces$', () => {
     it('Spaces should be emitted when space updated', (done) => {
       area.spaces$.pipe(skip(1)).subscribe((spaces) => {
@@ -73,14 +73,13 @@ describe('Area', () => {
       const newState = {
         id: 'testArea',
         space: [
-          {kind: 'testSpace', piece: testPiece1},
-          {kind: 'testSpace', piece: null},
+          { kind: 'testSpace', piece: testPiece1 },
+          { kind: 'testSpace', piece: null },
         ],
       };
       area.setState(newState);
     });
-
-  })
+  });
   describe('nextAvailableSpace', () => {
     it('returns next available space, when no kind is specified', () => {
       space1.addPiece(testPiece1);
