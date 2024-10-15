@@ -1,0 +1,44 @@
+.action-display-card {
+  width: 600px;
+  padding: 10px;
+}
+
+.mat-card {
+  padding: 0; /* Remove default padding if you need more control */
+}
+
+.action-display-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.action-display-title {
+  font-size: 24px;
+  width: 100% !important;
+  padding-left: 15px;
+}
+
+.action-display-area {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 15px;
+  width: 100% !important;
+}
+
+.action-display-area-element-spaces {
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+  margin-right: 25px;
+}
+
+.action-display-area-action-pawn-spaces {
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+}
+

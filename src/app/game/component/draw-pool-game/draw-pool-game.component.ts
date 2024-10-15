@@ -21,6 +21,7 @@ import { AnimalCardComponent } from '../animal-card/animal-card.component';
 import { PlayerService } from '../../../engine/service/player.service';
 import { EyeballComponent } from '../action-display/eyeball/eyeball.component';
 import { ElementSpaceComponent } from '../action-display/element-space/element-space.component';
+import {AdaptionActionDisplayCardComponent} from "../action-display/adaption-action-display-card/adaption-action-display-card.component";
 
 @Component({
   selector: 'app-draw-pool-game',
@@ -33,6 +34,7 @@ import { ElementSpaceComponent } from '../action-display/element-space/element-s
     AnimalCardComponent,
     EyeballComponent,
     ElementSpaceComponent,
+    AdaptionActionDisplayCardComponent,
   ],
   templateUrl: './draw-pool-game.component.html',
   styleUrl: './draw-pool-game.component.scss',
