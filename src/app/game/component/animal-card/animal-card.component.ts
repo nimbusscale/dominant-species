@@ -17,6 +17,7 @@ import { pileIdsByAnimal } from '../../constant/pile.constant';
 import { ElementPiece } from '../../model/element.model';
 import { ElementComponent } from '../element/element.component';
 
+// Todo: change to OnPush
 @Component({
   selector: 'app-animal-card',
   standalone: true,

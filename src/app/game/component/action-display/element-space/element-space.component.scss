@@ -1,0 +1,32 @@
+.element-space {
+  position: relative;
+  width: 42px;
+  height: 42px;
+  background-color: #faead9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+}
+
+.element-space-icon-box {
+  position: relative;
+  z-index: 1;
+}
+
+.element-space-icon-box img {
+  padding-left: 5px;
+  width: 65%;
+  height: auto;
+  display: block;
+  filter: grayscale(100%);
+  opacity: 0.4;
+}
+
+.element-piece {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}

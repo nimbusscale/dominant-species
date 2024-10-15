@@ -1,0 +1,9 @@
+<div class="element-space subdued-solid-border">
+  <div class="element-space-icon-box">
+    @if (element) {
+      <app-element [element]="element"></app-element>
+    } @else {
+      <img src="{{ imgPath }}" alt="Empty Element Space" />
+    }
+  </div>
+</div>
