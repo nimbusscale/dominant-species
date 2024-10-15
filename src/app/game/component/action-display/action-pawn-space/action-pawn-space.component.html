@@ -1,0 +1,9 @@
+<div class="square-space subdued-solid-border">
+  <div>
+    @if (actionPawn) {
+      <app-action-pawn [actionPawn]="actionPawn"></app-action-pawn>
+    } @else {
+      <app-eyeball></app-eyeball>
+    }
+  </div>
+</div>
