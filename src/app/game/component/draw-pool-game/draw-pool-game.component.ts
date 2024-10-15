@@ -19,11 +19,12 @@ import { defaultPieceFactory } from '../../../engine/model/piece.model';
 import { ActionPawnPiece } from '../../model/action-pawn.model';
 import { AnimalCardComponent } from '../animal-card/animal-card.component';
 import { PlayerService } from '../../../engine/service/player.service';
+import {EyeballComponent} from "../action-display/eyeball/eyeball.component";
 
 @Component({
   selector: 'app-draw-pool-game',
   standalone: true,
-  imports: [MatButton, MatTooltip, ElementComponent, ActionPawnComponent, AnimalCardComponent],
+  imports: [MatButton, MatTooltip, ElementComponent, ActionPawnComponent, AnimalCardComponent, EyeballComponent],
   templateUrl: './draw-pool-game.component.html',
   styleUrl: './draw-pool-game.component.scss',
 })
