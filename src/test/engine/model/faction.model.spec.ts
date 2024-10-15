@@ -1,5 +1,5 @@
 import { Faction, FactionState } from '../../../app/engine/model/faction.model';
-import { testFactionState1 } from '../service/game-state-test.constant';
+import { testFactionState1 } from '../game-state-test.constant';
 import { deepClone } from 'fast-json-patch';
 
 describe('Faction', () => {

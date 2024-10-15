@@ -4,7 +4,7 @@ import {
   testGameState1,
   testGameState1updated,
   testGameStatePatch1,
-} from '../game-state-test.constant';
+} from '../../game-state-test.constant';
 
 describe('GameStatePatchService', () => {
   let service: GameStatePatchService;

@@ -6,6 +6,7 @@ import { GameElement, GameElementState } from './game-element.model';
  * PileState is pretty simple as it just keeps tracks of what kinds of pieces are in the pile and how many of them.
  */
 export interface PileState extends GameElementState {
+  owner: string | null;
   inventory: Record<string, number>;
 }
 
@@ -13,6 +14,7 @@ export interface PileState extends GameElementState {
  * A Pile is used to draw one or more random pieces for a defined pool of pieces.
  */
 export class Pile extends GameElement<PileState> {
+  private readonly owner: string | null;
   private readonly pieceFactory: PieceFactory;
   private lengthSubject: BehaviorSubject<number>;
   length$: Observable<number>;
@@ -25,6 +27,7 @@ export class Pile extends GameElement<PileState> {
    */
   constructor(state: PileState, pieceFactory: PieceFactory = defaultPieceFactory) {
     super(state);
+    this.owner = state.owner;
     this.pieceFactory = pieceFactory;
     this.lengthSubject = new BehaviorSubject<number>(this.length);
     this.length$ = this.lengthSubject.asObservable().pipe(distinctUntilChanged());
@@ -62,7 +65,7 @@ export class Pile extends GameElement<PileState> {
       if (piecesWithCount.length) {
         const kind = piecesWithCount[Math.floor(Math.random() * piecesWithCount.length)];
         const currentCount = this._state.inventory[kind] ?? 0;
-        pieces.push(this.pieceFactory(kind));
+        pieces.push(this.pieceFactory(kind, this.owner));
         this._state.inventory[kind] = currentCount - 1;
       } else {
         pieces.push(null);

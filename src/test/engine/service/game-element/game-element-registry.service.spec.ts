@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { Pile, PileState } from '../../../../app/engine/model/pile.model';
 import { deepClone } from 'fast-json-patch';
-import { testPileState1, testPileState2 } from '../game-state-test.constant';
+import { testPileState1, testPileState2 } from '../../game-state-test.constant';
 import { skip } from 'rxjs';
 import { PileStateService } from '../../../../app/engine/service/game-element/pile-state.service';
 import { PileRegistryService } from '../../../../app/engine/service/game-element/pile-registry.service';

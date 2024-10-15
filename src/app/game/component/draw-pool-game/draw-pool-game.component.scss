@@ -1,5 +1,5 @@
 body {
-  background-color: #f8f9fa;
+  background-color: #fcf5f5;
 }
 
 .button-container {
@@ -46,4 +46,12 @@ button {
   display: flex;
   flex-direction: row;
   gap: 10px;
+}
+
+.animal-card-area {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 5px;
 }

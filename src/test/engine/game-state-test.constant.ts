@@ -1,9 +1,9 @@
-import { GameStatePatch } from '../../../app/engine/model/game-state-patch.model';
-import { GameState } from '../../../app/engine/model/game-state.model';
-import { PileState } from '../../../app/engine/model/pile.model';
-import { FactionState } from '../../../app/engine/model/faction.model';
-import { AreaState } from '../../../app/engine/model/area.model';
-import { PlayerState } from '../../../app/engine/model/player.model';
+import { GameStatePatch } from '../../app/engine/model/game-state-patch.model';
+import { GameState } from '../../app/engine/model/game-state.model';
+import { PileState } from '../../app/engine/model/pile.model';
+import { FactionState } from '../../app/engine/model/faction.model';
+import { AreaState } from '../../app/engine/model/area.model';
+import { PlayerState } from '../../app/engine/model/player.model';
 
 function deepFreeze<T>(obj: T): T {
   const propNames = Object.getOwnPropertyNames(obj) as (keyof T)[];
@@ -19,11 +19,13 @@ function deepFreeze<T>(obj: T): T {
 
 export const testPileState1: PileState = deepFreeze({
   id: 'pile1',
+  owner: 'test',
   inventory: { test1: 10, test2: 10 },
 });
 
 export const testPileState2: PileState = deepFreeze({
   id: 'pile2',
+  owner: 'test',
   inventory: { test3: 10 },
 });
 
@@ -63,10 +65,12 @@ export const testGameState1: GameState = deepFreeze({
   pile: [
     {
       id: 'pile1',
+      owner: 'test',
       inventory: { test1: 10, test2: 10 },
     },
     {
       id: 'pile2',
+      owner: 'test',
       inventory: { test3: 10 },
     },
   ],
@@ -82,6 +86,7 @@ export const testGameState1updated: GameState = deepFreeze({
   pile: [
     {
       id: 'pile1',
+      owner: 'test',
       // Updated with test1 = 20
       inventory: { test1: 20, test2: 10 },
     },

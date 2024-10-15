@@ -13,6 +13,7 @@ describe('Pile', () => {
   beforeEach(() => {
     pileState = {
       id: 'test',
+      owner: 'test',
       inventory: {
         grass: 10,
         grub: 10,
@@ -20,6 +21,7 @@ describe('Pile', () => {
     };
     emptyPileState = {
       id: 'empty',
+      owner: 'test',
       inventory: {
         grass: 0,
         grub: 0,
@@ -27,6 +29,7 @@ describe('Pile', () => {
     };
     noInventoryPileState = {
       id: 'noInventory',
+      owner: 'test',
       inventory: {},
     };
     pile = new Pile(pileState, defaultPieceFactory);
@@ -91,6 +94,7 @@ describe('Pile', () => {
     it('should return a null for each pull where there is not an item', () => {
       const testPileState = {
         id: 'test',
+        owner: 'test',
         inventory: {
           grass: 1,
           grub: 0,

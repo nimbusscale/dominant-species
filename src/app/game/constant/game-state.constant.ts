@@ -1,6 +1,6 @@
 import { GameState } from '../../engine/model/game-state.model';
 import { AreaIdEnum, SpaceKindEnum } from './area.constant';
-import { PieceKindEnum } from './piece.constant';
+import { PileIdEnum } from './pile.constant';
 
 /**
  * GameState defining the static elements of the DS game
@@ -19,7 +19,8 @@ export const baseGameState: GameState = {
   faction: [],
   pile: [
     {
-      id: PieceKindEnum.ELEMENT,
+      id: PileIdEnum.ELEMENT,
+      owner: null,
       inventory: {
         // 20 Elements each, with 2 being places on Earth, leaving 18 in the bag
         grassElement: 18,
