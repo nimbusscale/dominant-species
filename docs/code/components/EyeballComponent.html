@@ -246,7 +246,7 @@
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component } from &#x27;@angular/core&#x27;;
-import { getOrThrow } from &#x27;../../../../engine/util&#x27;;
+import { getOrThrow } from &#x27;../../../../engine/util/misc&#x27;;
 import { imgPathByKind } from &#x27;../../../constant/image.constant&#x27;;
 
 @Component({
@@ -266,7 +266,7 @@ export class EyeballComponent {
     </div>
 
     <div class="tab-pane fade " id="templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;circle-space thick-dotted-border eyeball-background&quot;&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;circle-piece thick-dotted-border eyeball-background&quot;&gt;
   &lt;img src&#x3D;&quot;{{ imgPath }}&quot; alt&#x3D;&quot;Empty Action Pawn Space&quot; class&#x3D;&quot;eyeball&quot; /&gt;
 &lt;/div&gt;
 </code></pre>
@@ -298,8 +298,8 @@ export class EyeballComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="circle-space thick-dotted-border eyeball-background">  <img src="{{ imgPath }}" alt="Empty Action Pawn Space" class="eyeball" /></div></div>'
-    var COMPONENTS = [{'name': 'ActionPawnComponent', 'selector': 'app-action-pawn'},{'name': 'AnimalCardComponent', 'selector': 'app-animal-card'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'DrawPoolGameComponent', 'selector': 'app-draw-pool-game'},{'name': 'ElementComponent', 'selector': 'app-element'},{'name': 'ElementSpaceComponent', 'selector': 'app-element-space'},{'name': 'EyeballComponent', 'selector': 'app-eyeball'}];
+        var COMPONENT_TEMPLATE = '<div><div class="circle-piece thick-dotted-border eyeball-background">  <img src="{{ imgPath }}" alt="Empty Action Pawn Space" class="eyeball" /></div></div>'
+    var COMPONENTS = [{'name': 'ActionPawnComponent', 'selector': 'app-action-pawn'},{'name': 'ActionPawnSpaceComponent', 'selector': 'app-action-pawn-space'},{'name': 'AdaptionActionDisplayCardComponent', 'selector': 'app-adaption-action-display-card'},{'name': 'AnimalCardComponent', 'selector': 'app-animal-card'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'DrawPoolGameComponent', 'selector': 'app-draw-pool-game'},{'name': 'ElementComponent', 'selector': 'app-element'},{'name': 'ElementSpaceComponent', 'selector': 'app-element-space'},{'name': 'EyeballComponent', 'selector': 'app-eyeball'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'EyeballComponent'};
 </script>
