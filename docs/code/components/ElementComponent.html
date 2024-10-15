@@ -374,7 +374,7 @@ export class ElementComponent {
     </div>
 
     <div class="tab-pane fade " id="templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;element-circle {{ kind }}&quot;&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;circle-space {{ kind }}&quot;&gt;
   &lt;img src&#x3D;&quot;{{ imgPath }}&quot; alt&#x3D;&quot;{{ name }} Element&quot; class&#x3D;&quot;element&quot; /&gt;
 &lt;/div&gt;
 </code></pre>
@@ -406,8 +406,8 @@ export class ElementComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="element-circle {{ kind }}">  <img src="{{ imgPath }}" alt="{{ name }} Element" class="element" /></div></div>'
-    var COMPONENTS = [{'name': 'ActionPawnComponent', 'selector': 'app-action-pawn'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'DrawPoolGameComponent', 'selector': 'app-draw-pool-game'},{'name': 'ElementComponent', 'selector': 'app-element'}];
+        var COMPONENT_TEMPLATE = '<div><div class="circle-space {{ kind }}">  <img src="{{ imgPath }}" alt="{{ name }} Element" class="element" /></div></div>'
+    var COMPONENTS = [{'name': 'ActionPawnComponent', 'selector': 'app-action-pawn'},{'name': 'AnimalCardComponent', 'selector': 'app-animal-card'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'DrawPoolGameComponent', 'selector': 'app-draw-pool-game'},{'name': 'ElementComponent', 'selector': 'app-element'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'ElementComponent'};
 </script>

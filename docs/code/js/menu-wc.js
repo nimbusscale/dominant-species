@@ -62,6 +62,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/ActionPawnComponent.html" data-type="entity-link" >ActionPawnComponent</a>
                             </li>
                             <li class="link">
+                                <a href="components/AnimalCardComponent.html" data-type="entity-link" >AnimalCardComponent</a>
+                            </li>
+                            <li class="link">
                                 <a href="components/AppComponent.html" data-type="entity-link" >AppComponent</a>
                             </li>
                             <li class="link">
@@ -207,6 +210,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="interfaces/SpaceState.html" data-type="entity-link" >SpaceState</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/SpeciesPiece.html" data-type="entity-link" >SpeciesPiece</a>
                             </li>
                         </ul>
                     </li>

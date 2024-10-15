@@ -422,7 +422,7 @@ import { Pile } from &#x27;../../engine/model/pile.model&#x27;;
 import { BehaviorSubject, filter, first, Observable } from &#x27;rxjs&#x27;;
 
 import { PileRegistryService } from &#x27;../../engine/service/game-element/pile-registry.service&#x27;;
-import { PieceKindEnum } from &#x27;../constant/piece.constant&#x27;;
+import { PileIdEnum } from &#x27;../constant/pile.constant&#x27;;
 
 @Injectable({
   providedIn: &#x27;root&#x27;,
@@ -441,11 +441,11 @@ export class ElementDrawPoolService {
   private initialize(): void {
     this.pileRegistrySvc.registeredIds$
       .pipe(
-        filter((registeredIds) &#x3D;&gt; registeredIds.has(PieceKindEnum.ELEMENT)),
+        filter((registeredIds) &#x3D;&gt; registeredIds.has(PileIdEnum.ELEMENT)),
         first(),
       )
       .subscribe(() &#x3D;&gt; {
-        this._drawPool &#x3D; this.pileRegistrySvc.get(PieceKindEnum.ELEMENT);
+        this._drawPool &#x3D; this.pileRegistrySvc.get(PileIdEnum.ELEMENT);
         this.drawPoolSubject.next(this._drawPool);
       });
   }

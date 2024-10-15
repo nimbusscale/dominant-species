@@ -212,7 +212,7 @@
                         <td class="col-md-4">
                             <ul class="index-list">
                                 <li>
-                                    <a href="#kind" >kind</a>
+                                    <a href="#owner" >owner</a>
                                 </li>
                                 <li>
                                     <a href="#name" >name</a>
@@ -270,14 +270,14 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="kind"></a>
-                        <span class="name"><b>kind</b><a href="#kind"><span class="icon ion-ios-link"></span></a></span>
+                        <a name="owner"></a>
+                        <span class="name"><b>owner</b><a href="#owner"><span class="icon ion-ios-link"></span></a></span>
                     </td>
                 </tr>
 
                 <tr>
                     <td class="col-md-4">
-                        <span class="accessor"><b>get</b><code>kind()</code></span>
+                        <span class="accessor"><b>get</b><code>owner()</code></span>
                     </td>
                 </tr>
                             <tr>
@@ -353,8 +353,8 @@ import { getOrThrow } from &#x27;../../../engine/util&#x27;;
 export class ActionPawnComponent {
   @Input() actionPawn: ActionPawnPiece | undefined &#x3D; undefined;
 
-  get kind(): string | undefined {
-    return this.actionPawn?.kind;
+  get owner(): string | null | undefined {
+    return this.actionPawn?.owner;
   }
 
   get name(): string | undefined {
@@ -362,8 +362,8 @@ export class ActionPawnComponent {
   }
 
   get imgPath(): string | undefined {
-    if (this.kind) {
-      return getOrThrow(imgPathByKind, this.kind);
+    if (this.owner) {
+      return getOrThrow(imgPathByKind, this.owner);
     } else {
       return undefined;
     }
@@ -373,7 +373,7 @@ export class ActionPawnComponent {
     </div>
 
     <div class="tab-pane fade " id="templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;action-pawn-circle {{ kind }}&quot;&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;circle-space thick-solid-boarder {{ owner }}&quot;&gt;
   &lt;img src&#x3D;&quot;{{ imgPath }}&quot; alt&#x3D;&quot;{{ name }} Action Pawn&quot; class&#x3D;&quot;action-pawn&quot; /&gt;
 &lt;/div&gt;
 </code></pre>
@@ -405,8 +405,8 @@ export class ActionPawnComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="action-pawn-circle {{ kind }}">  <img src="{{ imgPath }}" alt="{{ name }} Action Pawn" class="action-pawn" /></div></div>'
-    var COMPONENTS = [{'name': 'ActionPawnComponent', 'selector': 'app-action-pawn'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'DrawPoolGameComponent', 'selector': 'app-draw-pool-game'},{'name': 'ElementComponent', 'selector': 'app-element'}];
+        var COMPONENT_TEMPLATE = '<div><div class="circle-space thick-solid-boarder {{ owner }}">  <img src="{{ imgPath }}" alt="{{ name }} Action Pawn" class="action-pawn" /></div></div>'
+    var COMPONENTS = [{'name': 'ActionPawnComponent', 'selector': 'app-action-pawn'},{'name': 'AnimalCardComponent', 'selector': 'app-animal-card'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'DrawPoolGameComponent', 'selector': 'app-draw-pool-game'},{'name': 'ElementComponent', 'selector': 'app-element'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'ActionPawnComponent'};
 </script>
