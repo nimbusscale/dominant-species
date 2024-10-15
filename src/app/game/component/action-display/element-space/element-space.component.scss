@@ -1,8 +1,8 @@
 .element-space {
   position: relative;
-  width: 50px;
-  height: 50px;
-  background-color: #faf0e6;
+  width: 42px;
+  height: 42px;
+  background-color: #faead9;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -21,4 +21,12 @@
   display: block;
   filter: grayscale(100%);
   opacity: 0.4;
+}
+
+.element-piece {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
 }
