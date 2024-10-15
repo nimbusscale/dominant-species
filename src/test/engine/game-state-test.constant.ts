@@ -1,9 +1,9 @@
-import { GameStatePatch } from '../../../app/engine/model/game-state-patch.model';
-import { GameState } from '../../../app/engine/model/game-state.model';
-import { PileState } from '../../../app/engine/model/pile.model';
-import { FactionState } from '../../../app/engine/model/faction.model';
-import { AreaState } from '../../../app/engine/model/area.model';
-import { PlayerState } from '../../../app/engine/model/player.model';
+import { GameStatePatch } from '../../app/engine/model/game-state-patch.model';
+import { GameState } from '../../app/engine/model/game-state.model';
+import { PileState } from '../../app/engine/model/pile.model';
+import { FactionState } from '../../app/engine/model/faction.model';
+import { AreaState } from '../../app/engine/model/area.model';
+import { PlayerState } from '../../app/engine/model/player.model';
 
 function deepFreeze<T>(obj: T): T {
   const propNames = Object.getOwnPropertyNames(obj) as (keyof T)[];

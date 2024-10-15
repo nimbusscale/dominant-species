@@ -92,5 +92,4 @@ export class AnimalCardComponent implements OnInit {
   private setActionPawnForHeader(faction: Faction): void {
     this.actionPawnForHeader = defaultPieceFactory(PieceKindEnum.ACTION_PAWN, faction.id) as ActionPawnPiece
   }
-
 }

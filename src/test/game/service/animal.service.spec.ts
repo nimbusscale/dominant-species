@@ -9,7 +9,7 @@ import { of, skip } from 'rxjs';
 import { Area } from '../../../app/engine/model/area.model';
 import { Space } from '../../../app/engine/model/space.model';
 import { Player } from '../../../app/engine/model/player.model';
-import { testPlayerState1 } from '../../engine/service/game-state-test.constant';
+import { testPlayerState1 } from '../../engine/game-state-test.constant';
 import { AnimalEnum } from '../../../app/game/constant/animal.constant';
 import { AreaIdEnum, SpaceKindEnum } from '../../../app/game/constant/area.constant';
 import { ElementEnum } from '../../../app/game/constant/element.constant';
