@@ -1,4 +1,4 @@
-import { deepCompare, getOrThrow } from '../../app/engine/util';
+import { deepCompare, getOrThrow } from '../../app/engine/util/misc';
 
 describe('deepCompare', () => {
   it('returns true when two objects are equal', () => {

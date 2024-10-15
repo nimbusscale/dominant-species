@@ -11,7 +11,7 @@ import { Area } from '../../../engine/model/area.model';
 import { Pile } from '../../../engine/model/pile.model';
 import { PileRegistryService } from '../../../engine/service/game-element/pile-registry.service';
 import { filter, first } from 'rxjs';
-import { getOrThrow } from '../../../engine/util';
+import { getOrThrow } from '../../../engine/util/misc';
 import { elementAreaIdsByAnimal } from '../../constant/area.constant';
 import { pileIdsByAnimal } from '../../constant/pile.constant';
 import { ElementPiece } from '../../model/element.model';

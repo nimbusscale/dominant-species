@@ -8,8 +8,8 @@ import {
   FactionRegistryService,
 } from '../../engine/service/game-element/faction-registry.service';
 import { BehaviorSubject, filter, first, map } from 'rxjs';
-import { getOrThrow } from '../../engine/util';
-import { isNotNull, isNotUndefined } from '../../engine/predicate';
+import { getOrThrow } from '../../engine/util/misc';
+import { isNotNull, isNotUndefined } from '../../engine/util/predicate';
 import { Space } from '../../engine/model/space.model';
 import { ElementPiece } from '../model/element.model';
 import { ElementConfig, elementConfigByAnimal } from '../constant/element-config.constant';

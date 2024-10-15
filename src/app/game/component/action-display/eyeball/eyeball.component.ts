@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { getOrThrow } from '../../../../engine/util';
+import { getOrThrow } from '../../../../engine/util/misc';
 import { imgPathByKind } from '../../../constant/image.constant';
 
 @Component({

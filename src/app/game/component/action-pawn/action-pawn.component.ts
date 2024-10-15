@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { ActionPawnPiece } from '../../model/action-pawn.model';
 import { imgPathByKind } from '../../constant/image.constant';
-import { getOrThrow } from '../../../engine/util';
+import { getOrThrow } from '../../../engine/util/misc';
 
 @Component({
   selector: 'app-action-pawn',

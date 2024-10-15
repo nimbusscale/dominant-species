@@ -1,6 +1,7 @@
 import { GameState } from '../../engine/model/game-state.model';
 import { AreaIdEnum, SpaceKindEnum } from './area.constant';
 import { PileIdEnum } from './pile.constant';
+import { ElementEnum } from './element.constant';
 
 /**
  * GameState defining the static elements of the DS game
@@ -10,6 +11,10 @@ export const baseGameState: GameState = {
     {
       id: AreaIdEnum.ACTION_DISPLAY_ADAPTION,
       space: [
+        { kind: SpaceKindEnum.ELEMENT, piece: null },
+        { kind: SpaceKindEnum.ELEMENT, piece: null },
+        { kind: SpaceKindEnum.ELEMENT, piece: null },
+        { kind: SpaceKindEnum.ELEMENT, piece: null },
         { kind: SpaceKindEnum.ACTION_PAWN, piece: null },
         { kind: SpaceKindEnum.ACTION_PAWN, piece: null },
         { kind: SpaceKindEnum.ACTION_PAWN, piece: null },
@@ -23,12 +28,12 @@ export const baseGameState: GameState = {
       owner: null,
       inventory: {
         // 20 Elements each, with 2 being places on Earth, leaving 18 in the bag
-        grassElement: 18,
-        grubElement: 18,
-        meatElement: 18,
-        seedElement: 18,
-        sunElement: 18,
-        waterElement: 18,
+        [ElementEnum.GRASS]: 18,
+        [ElementEnum.GRUB]: 18,
+        [ElementEnum.MEAT]: 18,
+        [ElementEnum.SEED]: 18,
+        [ElementEnum.SUN]: 18,
+        [ElementEnum.WATER]: 18,
       },
     },
   ],
