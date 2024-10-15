@@ -38,8 +38,10 @@ export class AdaptionActionDisplayCardComponent implements OnInit {
       first(),
     ).subscribe(() => {
       this.area = this.areaRegistryService.get(AreaIdEnum.ACTION_DISPLAY_ADAPTION)
-      this.elements = this.area.spaces.filter((space) => space.kind === SpaceKindEnum.ELEMENT).map((space) => space.piece) as ElementPiece[]
-      this.actionPawns = this.area.spaces.filter((space) => space.kind === SpaceKindEnum.ACTION_PAWN).map((space) => space.piece) as ActionPawnPiece[]
+      this.area.spaces$.subscribe((spaces) => {
+        this.elements = spaces.filter((space) => space.kind === SpaceKindEnum.ELEMENT).map((space) => space.piece) as ElementPiece[]
+        this.actionPawns = spaces.filter((space) => space.kind === SpaceKindEnum.ACTION_PAWN).map((space) => space.piece) as ActionPawnPiece[]
+      })
     })
   }
 
