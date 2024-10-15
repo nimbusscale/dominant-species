@@ -211,7 +211,7 @@
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Space, SpaceState } from &#x27;./space.model&#x27;;
 import { GameElement, GameElementState } from &#x27;./game-element.model&#x27;;
-import { isNull } from &#x27;../predicate&#x27;;
+import { BehaviorSubject, Observable } from &#x27;rxjs&#x27;;
 
 /**
  * AreaState does not extend GameStateElement as each Area is unique with a unique ID
@@ -222,12 +222,16 @@ export interface AreaState extends GameElementState {
 
 export class Area extends GameElement&lt;AreaState&gt; {
   readonly spaces: Space[];
+  private spacesSubject: BehaviorSubject&lt;Space[]&gt;;
+  spaces$: Observable&lt;Space[]&gt;;
   private readonly spaceState: SpaceState[];
 
   constructor(id: string, spaces: Space[]) {
     const spaceState &#x3D; spaces.map((space) &#x3D;&gt; space.state);
     super({ id: id, space: spaceState });
     this.spaces &#x3D; spaces;
+    this.spacesSubject &#x3D; new BehaviorSubject&lt;Space[]&gt;(this.spaces);
+    this.spaces$ &#x3D; this.spacesSubject.asObservable();
     this.spaceState &#x3D; spaceState;
     this.initialize();
   }
@@ -237,6 +241,7 @@ export class Area extends GameElement&lt;AreaState&gt; {
       space.state$.subscribe((spaceState) &#x3D;&gt; {
         this.spaceState[index] &#x3D; spaceState;
         this.stateSubject.next(this.state);
+        this.spacesSubject.next(this.spaces);
       });
     });
   }
@@ -253,15 +258,16 @@ export class Area extends GameElement&lt;AreaState&gt; {
     newState.space.forEach((spaceState, index) &#x3D;&gt; {
       this.spaces[index].setState(spaceState);
     });
+
+    this.spacesSubject.next(this.spaces);
   }
 
-  nextAvailableSpace(): Space | null {
-    const availableSpaces &#x3D; this.spaces.filter((space) &#x3D;&gt; isNull(space.piece));
-    if (availableSpaces.length &gt; 0) {
-      return availableSpaces[0];
-    } else {
-      return null;
-    }
+  nextAvailableSpace(kind?: string): Space | null {
+    const availableSpaces &#x3D; this.spaces
+      .filter((space) &#x3D;&gt; !kind || space.kind &#x3D;&#x3D;&#x3D; kind)
+      .filter((space) &#x3D;&gt; space.piece &#x3D;&#x3D;&#x3D; null);
+
+    return availableSpaces.length &gt; 0 ? availableSpaces[0] : null;
   }
 }
 </code></pre>

@@ -151,6 +151,13 @@
                                 <a href="#spaces" >spaces</a>
                             </li>
                             <li>
+                                <a href="#spaces$" >spaces$</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#spacesSubject" >spacesSubject</a>
+                            </li>
+                            <li>
                                     <span class="modifier">Private</span>
                                     <span class="modifier">Readonly</span>
                                 <a href="#spaceState" >spaceState</a>
@@ -216,7 +223,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/engine/model/area.model.ts:14</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/engine/model/area.model.ts:16</a></div>
                             </td>
                         </tr>
 
@@ -302,6 +309,59 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="spaces$"></a>
+                    <span class="name">
+                        <span ><b>spaces$</b></span>
+                        <a href="#spaces$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/Space.html" target="_self" >Observable&lt;Space[]&gt;</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/engine/model/area.model.ts:15</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="spacesSubject"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>spacesSubject</b></span>
+                        <a href="#spacesSubject"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/Space.html" target="_self" >BehaviorSubject&lt;Space[]&gt;</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/engine/model/area.model.ts:14</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="spaceState"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
@@ -319,7 +379,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/engine/model/area.model.ts:14</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/engine/model/area.model.ts:16</a></div>
                         </td>
                     </tr>
 
@@ -456,8 +516,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="24"
-                                    class="link-to-prism">src/app/engine/model/area.model.ts:24</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="28"
+                                    class="link-to-prism">src/app/engine/model/area.model.ts:28</a></div>
                         </td>
                     </tr>
 
@@ -486,15 +546,15 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>nextAvailableSpace()</code>
+<code>nextAvailableSpace(kind?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="47"
-                                    class="link-to-prism">src/app/engine/model/area.model.ts:47</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="54"
+                                    class="link-to-prism">src/app/engine/model/area.model.ts:54</a></div>
                         </td>
                     </tr>
 
@@ -502,10 +562,40 @@
             <tr>
                 <td class="col-md-4">
 
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>kind</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="../classes/Space.html" target="_self" >Space | null</a></code>
 
                         </div>
+                            <div class="io-description">
+                                
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -538,7 +628,7 @@
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../classes/GameElement.html#source" target="_self" >GameElement:33</a></code>
+                                <div class="io-line">Defined in         <code><a href="../classes/GameElement.html#source" target="_self" >GameElement:38</a></code>
 </div>
                         </td>
                     </tr>
@@ -642,7 +732,7 @@
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Space, SpaceState } from &#x27;./space.model&#x27;;
 import { GameElement, GameElementState } from &#x27;./game-element.model&#x27;;
-import { isNull } from &#x27;../predicate&#x27;;
+import { BehaviorSubject, Observable } from &#x27;rxjs&#x27;;
 
 /**
  * AreaState does not extend GameStateElement as each Area is unique with a unique ID
@@ -653,12 +743,16 @@ export interface AreaState extends GameElementState {
 
 export class Area extends GameElement&lt;AreaState&gt; {
   readonly spaces: Space[];
+  private spacesSubject: BehaviorSubject&lt;Space[]&gt;;
+  spaces$: Observable&lt;Space[]&gt;;
   private readonly spaceState: SpaceState[];
 
   constructor(id: string, spaces: Space[]) {
     const spaceState &#x3D; spaces.map((space) &#x3D;&gt; space.state);
     super({ id: id, space: spaceState });
     this.spaces &#x3D; spaces;
+    this.spacesSubject &#x3D; new BehaviorSubject&lt;Space[]&gt;(this.spaces);
+    this.spaces$ &#x3D; this.spacesSubject.asObservable();
     this.spaceState &#x3D; spaceState;
     this.initialize();
   }
@@ -668,6 +762,7 @@ export class Area extends GameElement&lt;AreaState&gt; {
       space.state$.subscribe((spaceState) &#x3D;&gt; {
         this.spaceState[index] &#x3D; spaceState;
         this.stateSubject.next(this.state);
+        this.spacesSubject.next(this.spaces);
       });
     });
   }
@@ -684,15 +779,16 @@ export class Area extends GameElement&lt;AreaState&gt; {
     newState.space.forEach((spaceState, index) &#x3D;&gt; {
       this.spaces[index].setState(spaceState);
     });
+
+    this.spacesSubject.next(this.spaces);
   }
 
-  nextAvailableSpace(): Space | null {
-    const availableSpaces &#x3D; this.spaces.filter((space) &#x3D;&gt; isNull(space.piece));
-    if (availableSpaces.length &gt; 0) {
-      return availableSpaces[0];
-    } else {
-      return null;
-    }
+  nextAvailableSpace(kind?: string): Space | null {
+    const availableSpaces &#x3D; this.spaces
+      .filter((space) &#x3D;&gt; !kind || space.kind &#x3D;&#x3D;&#x3D; kind)
+      .filter((space) &#x3D;&gt; space.piece &#x3D;&#x3D;&#x3D; null);
+
+    return availableSpaces.length &gt; 0 ? availableSpaces[0] : null;
   }
 }
 </code></pre>

@@ -901,7 +901,7 @@ import { Area } from &#x27;../../../engine/model/area.model&#x27;;
 import { Pile } from &#x27;../../../engine/model/pile.model&#x27;;
 import { PileRegistryService } from &#x27;../../../engine/service/game-element/pile-registry.service&#x27;;
 import { filter, first } from &#x27;rxjs&#x27;;
-import { getOrThrow } from &#x27;../../../engine/util&#x27;;
+import { getOrThrow } from &#x27;../../../engine/util/misc&#x27;;
 import { elementAreaIdsByAnimal } from &#x27;../../constant/area.constant&#x27;;
 import { pileIdsByAnimal } from &#x27;../../constant/pile.constant&#x27;;
 import { ElementPiece } from &#x27;../../model/element.model&#x27;;
@@ -1007,7 +1007,7 @@ export class AnimalCardComponent implements OnInit {
           &lt;app-element [element]&#x3D;&quot;element&quot;&gt;&lt;/app-element&gt;
         }
         @for (emptyElementSpace of emptyElementSpaces; track $index) {
-          &lt;div class&#x3D;&quot;circle-space subdued-solid-border&quot;&gt;&lt;/div&gt;
+          &lt;div class&#x3D;&quot;circle-piece subdued-solid-border&quot;&gt;&lt;/div&gt;
         }
       &lt;/div&gt;
     &lt;/mat-grid-tile&gt;
@@ -1054,8 +1054,8 @@ export class AnimalCardComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><mat-card appearance="outlined" class="animal-card">  <mat-grid-list cols="2" rowHeight="45px">    <!-- Add a custom class to this tile -->    <mat-grid-tile colspan="2">      <div class="animal-card-title">        <app-action-pawn [actionPawn]="actionPawnForHeader"></app-action-pawn>        <span>{{ faction?.name }}</span>      </div>    </mat-grid-tile>    <mat-grid-tile colspan="2">      <div class="element-display">        @for (element of elements; track $index) {          <app-element [element]="element"></app-element>        }        @for (emptyElementSpace of emptyElementSpaces; track $index) {          <div class="circle-space subdued-solid-border"></div>        }      </div>    </mat-grid-tile>    <div class="piece-counter">      <mat-grid-tile colspan="1">        <span class="piece-counter-header">Action Pawns</span>      </mat-grid-tile>      <mat-grid-tile colspan="1">Species</mat-grid-tile>      <mat-grid-tile colspan="1">        <span class="piece-counter-number">{{ actionPawnPile?.length }}</span>      </mat-grid-tile>      <mat-grid-tile colspan="1"        ><span class="piece-counter-number">{{ speciesPile?.length }}</span>      </mat-grid-tile>    </div>  </mat-grid-list></mat-card></div>'
-    var COMPONENTS = [{'name': 'ActionPawnComponent', 'selector': 'app-action-pawn'},{'name': 'AnimalCardComponent', 'selector': 'app-animal-card'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'DrawPoolGameComponent', 'selector': 'app-draw-pool-game'},{'name': 'ElementComponent', 'selector': 'app-element'},{'name': 'ElementSpaceComponent', 'selector': 'app-element-space'},{'name': 'EyeballComponent', 'selector': 'app-eyeball'}];
+        var COMPONENT_TEMPLATE = '<div><mat-card appearance="outlined" class="animal-card">  <mat-grid-list cols="2" rowHeight="45px">    <!-- Add a custom class to this tile -->    <mat-grid-tile colspan="2">      <div class="animal-card-title">        <app-action-pawn [actionPawn]="actionPawnForHeader"></app-action-pawn>        <span>{{ faction?.name }}</span>      </div>    </mat-grid-tile>    <mat-grid-tile colspan="2">      <div class="element-display">        @for (element of elements; track $index) {          <app-element [element]="element"></app-element>        }        @for (emptyElementSpace of emptyElementSpaces; track $index) {          <div class="circle-piece subdued-solid-border"></div>        }      </div>    </mat-grid-tile>    <div class="piece-counter">      <mat-grid-tile colspan="1">        <span class="piece-counter-header">Action Pawns</span>      </mat-grid-tile>      <mat-grid-tile colspan="1">Species</mat-grid-tile>      <mat-grid-tile colspan="1">        <span class="piece-counter-number">{{ actionPawnPile?.length }}</span>      </mat-grid-tile>      <mat-grid-tile colspan="1"        ><span class="piece-counter-number">{{ speciesPile?.length }}</span>      </mat-grid-tile>    </div>  </mat-grid-list></mat-card></div>'
+    var COMPONENTS = [{'name': 'ActionPawnComponent', 'selector': 'app-action-pawn'},{'name': 'ActionPawnSpaceComponent', 'selector': 'app-action-pawn-space'},{'name': 'AdaptionActionDisplayCardComponent', 'selector': 'app-adaption-action-display-card'},{'name': 'AnimalCardComponent', 'selector': 'app-animal-card'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'DrawPoolGameComponent', 'selector': 'app-draw-pool-game'},{'name': 'ElementComponent', 'selector': 'app-element'},{'name': 'ElementSpaceComponent', 'selector': 'app-element-space'},{'name': 'EyeballComponent', 'selector': 'app-eyeball'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'AnimalCardComponent'};
 </script>

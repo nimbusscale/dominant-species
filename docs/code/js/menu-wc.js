@@ -62,6 +62,12 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/ActionPawnComponent.html" data-type="entity-link" >ActionPawnComponent</a>
                             </li>
                             <li class="link">
+                                <a href="components/ActionPawnSpaceComponent.html" data-type="entity-link" >ActionPawnSpaceComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/AdaptionActionDisplayCardComponent.html" data-type="entity-link" >AdaptionActionDisplayCardComponent</a>
+                            </li>
+                            <li class="link">
                                 <a href="components/AnimalCardComponent.html" data-type="entity-link" >AnimalCardComponent</a>
                             </li>
                             <li class="link">
