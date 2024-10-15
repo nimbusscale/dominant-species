@@ -235,17 +235,13 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { defaultPieceFactory, Piece } from &#x27;../../engine/model/piece.model&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Piece } from &#x27;../../engine/model/piece.model&#x27;;
 
 import { ElementKind } from &#x27;../constant/element.constant&#x27;;
 
 export interface ElementPiece extends Piece {
   kind: ElementKind;
   owner: null;
-}
-
-export function elementPieceFactory(kind: string): ElementPiece {
-  return defaultPieceFactory(kind, null) as ElementPiece;
 }
 </code></pre>
     </div>
