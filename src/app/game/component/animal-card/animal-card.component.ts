@@ -14,6 +14,8 @@ import {filter, first} from "rxjs";
 import {getOrThrow} from "../../../engine/util";
 import {elementAreaIdsByAnimal} from "../../constant/area.constant";
 import {pileIdsByAnimal} from "../../constant/pile.constant";
+import {ElementPiece} from "../../model/element.model";
+import {ElementComponent} from "../element/element.component";
 
 @Component({
   selector: 'app-animal-card',
@@ -23,7 +25,8 @@ import {pileIdsByAnimal} from "../../constant/pile.constant";
     MatCardTitle,
     ActionPawnComponent,
     MatGridList,
-    MatGridTile
+    MatGridTile,
+    ElementComponent
   ],
   templateUrl: './animal-card.component.html',
   styleUrl: './animal-card.component.scss'
@@ -31,6 +34,8 @@ import {pileIdsByAnimal} from "../../constant/pile.constant";
 export class AnimalCardComponent implements OnInit {
   @Input() faction: Faction | undefined = undefined
   elementArea: Area | undefined = undefined
+  elements: ElementPiece[] = []
+  emptyElementSpaces: null[] = []
   actionPawnPile: Pile | undefined = undefined
   speciesPile: Pile | undefined = undefined
   actionPawnForHeader: ActionPawnPiece | undefined = undefined
@@ -58,6 +63,8 @@ export class AnimalCardComponent implements OnInit {
       first()
     ).subscribe(() => {
       this.elementArea = this.areaRegistryService.get(elementAreaId)
+      this.elements = this.elementArea.spaces.filter((space) => space.piece).map((space) => space.piece) as ElementPiece[]
+      this.emptyElementSpaces = this.elementArea.spaces.filter((space) => space.piece === null).map(() => null)
     }
     )
   }

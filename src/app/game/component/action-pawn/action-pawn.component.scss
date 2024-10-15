@@ -1,8 +1,9 @@
 .action-pawn-circle {
-  width: 43px;
-  height: 43px;
+  width: 45px;
+  height: 45px;
   border: 2px solid #000000;
   border-radius: 50%;
+  box-sizing: border-box;
   display: flex;
   justify-content: center;
   align-items: center;

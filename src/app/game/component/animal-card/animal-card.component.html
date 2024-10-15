@@ -1,4 +1,4 @@
-<mat-card appearance="outlined">
+<mat-card appearance="outlined" class="animal-card">
   <mat-grid-list cols="2" rowHeight="50px">
     <!-- Add a custom class to this tile -->
     <mat-grid-tile colspan="2">
@@ -7,7 +7,16 @@
         <span>{{ faction?.name }}</span>
       </div>
     </mat-grid-tile>
-    <mat-grid-tile colspan="2">Elements</mat-grid-tile>
+    <mat-grid-tile colspan="2">
+      <div class="element-display">
+      @for (element of elements; track $index) {
+        <app-element [element]="element"></app-element>
+      }
+      @for (emptyElementSpace of emptyElementSpaces; track $index) {
+        <div class="empty-element"></div>
+      }
+      </div>
+    </mat-grid-tile>
           <div class="piece-counter">
     <mat-grid-tile colspan="1">
         <span class="piece-counter-header">Action Pawns</span>
