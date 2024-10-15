@@ -9,7 +9,7 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-.circle-space {
+.circle-piece {
   width: 35px;
   height: 35px;
   border-radius: 50%;
@@ -33,4 +33,15 @@ body {
 
 .thick-dotted-border {
   border: 2px dotted #000000;
+}
+
+.square-space {
+  position: relative;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  box-sizing: border-box;
 }
