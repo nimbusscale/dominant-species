@@ -5,7 +5,7 @@ import { Area } from '../model/area.model';
 import { shuffle, startCase } from 'lodash';
 import { Faction } from '../model/faction.model';
 import { PlayerService } from './player.service';
-import { getOrThrow } from '../util';
+import { getOrThrow } from '../util/misc';
 import { AreaRegistryService } from './game-element/area-registry.service';
 import { FactionRegistryService } from './game-element/faction-registry.service';
 import { PileRegistryService } from './game-element/pile-registry.service';

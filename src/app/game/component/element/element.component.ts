@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { ElementPiece } from '../../model/element.model';
 
 import { imgPathByKind } from '../../constant/image.constant';
-import { getOrThrow } from '../../../engine/util';
+import { getOrThrow } from '../../../engine/util/misc';
 
 @Component({
   selector: 'app-element',

@@ -1,6 +1,6 @@
 import { Space, SpaceState } from './space.model';
 import { GameElement, GameElementState } from './game-element.model';
-import { isNull } from '../predicate';
+import { isNull } from '../util/predicate';
 
 /**
  * AreaState does not extend GameStateElement as each Area is unique with a unique ID
