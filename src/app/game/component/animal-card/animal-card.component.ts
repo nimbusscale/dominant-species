@@ -33,7 +33,7 @@ export class AnimalCardComponent implements OnInit {
   elementArea: Area | undefined = undefined
   actionPawnPile: Pile | undefined = undefined
   speciesPile: Pile | undefined = undefined
-  actionPawn = defaultPieceFactory(PieceKindEnum.ACTION_PAWN, 'bird') as ActionPawnPiece
+  actionPawnForHeader: ActionPawnPiece | undefined = undefined
 
   constructor(
     private areaRegistryService: AreaRegistryService,
@@ -45,6 +45,7 @@ export class AnimalCardComponent implements OnInit {
     if (!this.faction) {
       throw new Error('faction not set')
     }
+    this.setActionPawnForHeader(this.faction)
     this.getElementArea(this.faction)
     this.getActionPawnPile(this.faction)
     this.getSpeciesPile(this.faction)
@@ -79,6 +80,10 @@ export class AnimalCardComponent implements OnInit {
     ).subscribe(() => {
       this.speciesPile = this.pileRegistryService.get(actionPawnPileId)
     })
+  }
+
+  private setActionPawnForHeader(faction: Faction): void {
+    this.actionPawnForHeader = defaultPieceFactory(PieceKindEnum.ACTION_PAWN, faction.id) as ActionPawnPiece
   }
 
 }

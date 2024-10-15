@@ -17,18 +17,18 @@
       </div>
     </section>
   </section>
-  <div class="icon-area">
-    <section class="icon-display">
-      @for (element of elements; track element.kind) {
-        <app-element [element]="element"></app-element>
-      }
-    </section>
-    <section class="icon-display">
-      @for (pawn of actionPawns; track pawn.owner) {
-        <app-action-pawn [actionPawn]="pawn"></app-action-pawn>
-      }
-    </section>
-  </div>
+<!--  <div class="icon-area">-->
+<!--    <section class="icon-display">-->
+<!--      @for (element of elements; track element.kind) {-->
+<!--        <app-element [element]="element"></app-element>-->
+<!--      }-->
+<!--    </section>-->
+<!--    <section class="icon-display">-->
+<!--      @for (pawn of actionPawns; track pawn.owner) {-->
+<!--        <app-action-pawn [actionPawn]="pawn"></app-action-pawn>-->
+<!--      }-->
+<!--    </section>-->
+<!--  </div>-->
   <div class="animal-card-area">
     @for (faction of factions; track faction.id) {
       <app-animal-card [faction]="faction"></app-animal-card>

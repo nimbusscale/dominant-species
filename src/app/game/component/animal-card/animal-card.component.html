@@ -1,15 +1,23 @@
 <mat-card appearance="outlined">
   <mat-grid-list cols="2" rowHeight="50px">
+    <!-- Add a custom class to this tile -->
     <mat-grid-tile colspan="2">
       <div class="animal-card-title">
-        <app-action-pawn [actionPawn]="actionPawn"></app-action-pawn>
-        <span>Bird</span>
+        <app-action-pawn [actionPawn]="actionPawnForHeader"></app-action-pawn>
+        <span>{{ faction?.name }}</span>
       </div>
     </mat-grid-tile>
     <mat-grid-tile colspan="2">Elements</mat-grid-tile>
-    <mat-grid-tile colspan="1">Action Pawns</mat-grid-tile>
+          <div class="piece-counter">
+    <mat-grid-tile colspan="1">
+        <span class="piece-counter-header">Action Pawns</span>
+    </mat-grid-tile>
     <mat-grid-tile colspan="1">Species</mat-grid-tile>
-    <mat-grid-tile colspan="1">Action Pawn Counter</mat-grid-tile>
-    <mat-grid-tile colspan="1">Species Counter</mat-grid-tile>
+    <mat-grid-tile colspan="1">
+        <span class="piece-counter-number">{{ actionPawnPile?.length }}</span>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="1"><span class="piece-counter-number">{{ speciesPile?.length }}</span>
+    </mat-grid-tile>
+          </div>
   </mat-grid-list>
 </mat-card>
