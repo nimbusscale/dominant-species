@@ -1,19 +1,20 @@
 import { Injectable } from '@angular/core';
 import { Pile } from '../../engine/model/pile.model';
-import { BehaviorSubject, filter, first, Observable } from 'rxjs';
+import {BehaviorSubject, filter, first, Observable, Subject} from 'rxjs';
 
 import { PileRegistryService } from '../../engine/service/game-element/pile-registry.service';
 import { PileIdEnum } from '../constant/pile.constant';
+import {ElementPiece} from "../model/element.model";
+import {Piece} from "../../engine/model/piece.model";
 
 @Injectable({
   providedIn: 'root',
 })
 export class ElementDrawPoolService {
-  private _drawPool: Pile | null = null;
-  private drawPoolSubject: BehaviorSubject<Pile | null> = new BehaviorSubject<Pile | null>(
-    this._drawPool,
-  );
-  drawPool$: Observable<Pile | null> = this.drawPoolSubject.asObservable();
+  private _drawPool: Pile | undefined = undefined;
+  private ready: boolean = false
+  private readySubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(this.ready)
+  ready$: Observable<boolean> = this.readySubject.asObservable()
 
   constructor(private pileRegistrySvc: PileRegistryService) {
     this.initialize();
@@ -27,11 +28,29 @@ export class ElementDrawPoolService {
       )
       .subscribe(() => {
         this._drawPool = this.pileRegistrySvc.get(PileIdEnum.ELEMENT);
-        this.drawPoolSubject.next(this._drawPool);
+        this.ready = true
+        this.readySubject.next(this.ready);
       });
   }
 
-  get drawPool(): Pile | null {
-    return this._drawPool;
+  private get drawPool(): Pile {
+    if (this._drawPool) {
+      return this._drawPool
+    } else {
+      throw new Error('Pile not ready')
+    }
   }
+
+  get length$(): Observable<number> {
+    return this.drawPool.length$
+  }
+
+  pull(count = 1): (ElementPiece | null)[] {
+    return this.drawPool.pull(count) as ElementPiece[]
+  }
+
+  put(pieces: ElementPiece[]): void {
+    this.drawPool.put(pieces as Piece[])
+  }
+
 }
