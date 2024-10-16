@@ -13,9 +13,9 @@ import { baseGameState } from '../../game/constant/game-state.constant';
 import { AnimalEnum } from '../../game/constant/animal.constant';
 import { SpaceKindEnum } from '../../game/constant/area.constant';
 import { elementConfigByAnimal } from '../../game/constant/element-config.constant';
-import { pileIdsByAnimal } from '../../game/constant/pile.constant';
 import { PieceKindEnum } from '../../game/constant/piece.constant';
 import { defaultPieceFactory } from '../model/piece.model';
+import {pileIdsByAnimal} from "../../game/constant/pile-config";
 
 @Injectable({
   providedIn: 'root',

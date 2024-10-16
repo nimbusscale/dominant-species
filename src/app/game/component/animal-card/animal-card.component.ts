@@ -13,9 +13,9 @@ import { PileRegistryService } from '../../../engine/service/game-element/pile-r
 import { filter, first } from 'rxjs';
 import { getOrThrow } from '../../../engine/util/misc';
 import { elementAreaIdsByAnimal } from '../../constant/area.constant';
-import { pileIdsByAnimal } from '../../constant/pile.constant';
 import { ElementPiece } from '../../model/element.model';
 import { ElementComponent } from '../element/element.component';
+import {pileIdsByAnimal} from "../../constant/pile-config";
 
 // Todo: change to OnPush
 @Component({
