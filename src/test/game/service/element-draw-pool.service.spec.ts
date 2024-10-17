@@ -40,16 +40,16 @@ describe('ElementDrawPoolService', () => {
 
   describe('ready$', () => {
     it('emits false when pile not ready yet', () => {
-        elementDrawPoolSvc.ready$.subscribe((isReady) => {
-        expect(isReady).toBeFalse()
-      })
-    })
+      elementDrawPoolSvc.ready$.subscribe((isReady) => {
+        expect(isReady).toBeFalse();
+      });
+    });
 
     it('emits true when pile is ready', () => {
       pileRegistrySvcSpy.get.and.returnValue(testPile1);
       elementDrawPoolSvc.ready$.pipe(skip(1)).subscribe((isReady) => {
-        expect(isReady).toBeTrue()
-      })
+        expect(isReady).toBeTrue();
+      });
 
       registeredPilesSubject.next(new Set([PileIdEnum.ELEMENT as string]));
     });

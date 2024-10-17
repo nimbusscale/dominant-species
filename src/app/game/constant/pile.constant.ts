@@ -13,7 +13,3 @@ export enum PileIdEnum {
   SPECIES_MAMMAL = 'speciesMammal',
   SPECIES_REPTILE = 'speciesReptile',
 }
-
-
-
-

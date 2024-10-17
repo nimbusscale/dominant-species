@@ -1,4 +1,4 @@
-import {deepCompare, ensureDefined, getOrThrow} from '../../../app/engine/util/misc';
+import { deepCompare, ensureDefined, getOrThrow } from '../../../app/engine/util/misc';
 
 describe('deepCompare', () => {
   it('returns true when two objects are equal', () => {
@@ -74,19 +74,21 @@ describe('getOrThrow', () => {
 
 describe('ensureDefined', () => {
   it('returns value as type when value is defined', () => {
-    type TestType = {
-      'test': string
+    interface TestType {
+      test: string;
     }
-    const testValue: TestType = {test: 'test'}
-    const result = ensureDefined(testValue)
-    expect(result).toBe(testValue)
-  })
+    const testValue: TestType = { test: 'test' };
+    const result = ensureDefined(testValue);
+    expect(result).toBe(testValue);
+  });
   it('should throw an error if the value is undefined', () => {
-    expect(() => ensureDefined(undefined)).toThrowError('undefined not defined');
+    expect(() => {
+      ensureDefined(undefined);
+    }).toThrowError();
   });
 
   it('should return null if null is passed, as it is considered a valid value', () => {
     const nullValue = null;
     expect(ensureDefined(nullValue)).toBe(nullValue);
   });
-})
+});

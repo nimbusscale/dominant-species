@@ -15,7 +15,7 @@ import { getOrThrow } from '../../../engine/util/misc';
 import { elementAreaIdsByAnimal } from '../../constant/area.constant';
 import { ElementPiece } from '../../model/element.model';
 import { ElementComponent } from '../element/element.component';
-import {pileIdsByAnimal} from "../../constant/pile-config";
+import { pileIdsByAnimal } from '../../constant/pile-config';
 
 // Todo: change to OnPush
 @Component({
@@ -68,7 +68,7 @@ export class AnimalCardComponent implements OnInit {
   }
 
   private getActionPawnPile(faction: Faction): void {
-    const actionPawnPileId = getOrThrow(pileIdsByAnimal, faction.id)['actionPawn'];
+    const actionPawnPileId = getOrThrow(pileIdsByAnimal, faction.id).actionPawn;
     this.pileRegistryService.registeredIds$
       .pipe(
         filter((ids) => ids.has(actionPawnPileId)),
@@ -80,7 +80,7 @@ export class AnimalCardComponent implements OnInit {
   }
 
   private getSpeciesPile(faction: Faction): void {
-    const actionPawnPileId = getOrThrow(pileIdsByAnimal, faction.id)['species'];
+    const actionPawnPileId = getOrThrow(pileIdsByAnimal, faction.id).species;
     this.pileRegistryService.registeredIds$
       .pipe(
         filter((ids) => ids.has(actionPawnPileId)),

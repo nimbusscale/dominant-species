@@ -15,7 +15,7 @@ import { SpaceKindEnum } from '../../game/constant/area.constant';
 import { elementConfigByAnimal } from '../../game/constant/element-config.constant';
 import { PieceKindEnum } from '../../game/constant/piece.constant';
 import { defaultPieceFactory } from '../model/piece.model';
-import {pileIdsByAnimal} from "../../game/constant/pile-config";
+import { pileIdsByAnimal } from '../../game/constant/pile-config';
 
 @Injectable({
   providedIn: 'root',
@@ -81,7 +81,7 @@ export class GameManagementService {
       areas.push(new Area(elementConfig.areaId, spaces));
 
       const actionPawnPileState: PileState = {
-        id: getOrThrow(pileIdsByAnimal, assignedAnimal)['actionPawn'],
+        id: getOrThrow(pileIdsByAnimal, assignedAnimal).actionPawn,
         owner: assignedAnimal,
         inventory: {
           [PieceKindEnum.ACTION_PAWN]: 7,
@@ -90,7 +90,7 @@ export class GameManagementService {
       piles.push(new Pile(actionPawnPileState));
 
       const speciesPileState: PileState = {
-        id: getOrThrow(pileIdsByAnimal, assignedAnimal)['species'],
+        id: getOrThrow(pileIdsByAnimal, assignedAnimal).species,
         owner: assignedAnimal,
         inventory: {
           [PieceKindEnum.SPECIES]: 55,
