@@ -514,7 +514,7 @@
                 <td class="col-md-4">
 
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                            <b>Returns : </b>        <code><a href="../interfaces/Piece.html" target="_self" >Piece</a></code>
 
                         </div>
                 </td>
@@ -541,8 +541,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="57"
-                                    class="link-to-prism">src/app/engine/model/space.model.ts:57</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="59"
+                                    class="link-to-prism">src/app/engine/model/space.model.ts:59</a></div>
                         </td>
                     </tr>
 
@@ -716,10 +716,12 @@ export class Space {
     }
   }
 
-  removePiece(): void {
+  removePiece(): Piece {
     if (this._piece) {
+      const removedPiece &#x3D; this._piece;
       this._piece &#x3D; null;
       this.stateSubject.next(this.state);
+      return removedPiece;
     } else {
       throw new Error(&#x27;no piece to remove from space&#x27;);
     }

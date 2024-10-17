@@ -133,6 +133,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </div>
                             <ul class="links collapse " ${ isNormalMode ? 'id="injectables-links"' : 'id="xs-injectables-links"' }>
                                 <li class="link">
+                                    <a href="injectables/AdaptionActionDisplayService.html" data-type="entity-link" >AdaptionActionDisplayService</a>
+                                </li>
+                                <li class="link">
                                     <a href="injectables/AnimalProviderService.html" data-type="entity-link" >AnimalProviderService</a>
                                 </li>
                                 <li class="link">
