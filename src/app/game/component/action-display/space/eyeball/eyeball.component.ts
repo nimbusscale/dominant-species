@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { getOrThrow } from '../../../../engine/util/misc';
-import { imgPathByKind } from '../../../constant/image.constant';
+import { getOrThrow } from '../../../../../engine/util/misc';
+import { imgPathByKind } from '../../../../constant/image.constant';
 
 @Component({
   selector: 'app-eyeball',

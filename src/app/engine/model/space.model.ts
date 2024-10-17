@@ -45,10 +45,12 @@ export class Space {
     }
   }
 
-  removePiece(): void {
+  removePiece(): Piece {
     if (this._piece) {
+      const removedPiece = this._piece;
       this._piece = null;
       this.stateSubject.next(this.state);
+      return removedPiece;
     } else {
       throw new Error('no piece to remove from space');
     }

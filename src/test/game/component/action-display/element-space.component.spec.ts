@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ElementSpaceComponent } from '../../../../app/game/component/action-display/element-space/element-space.component';
+import { ElementSpaceComponent } from '../../../../app/game/component/action-display/space/element-space/element-space.component';
 import { DebugElement } from '@angular/core';
 import { ElementComponent } from '../../../../app/game/component/element/element.component';
 import { ElementPiece } from '../../../../app/game/model/element.model';

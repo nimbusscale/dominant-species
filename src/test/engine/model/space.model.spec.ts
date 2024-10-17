@@ -41,7 +41,7 @@ describe('Space', () => {
       expect(state.piece).toBeNull();
       done();
     });
-    space.removePiece();
+    expect(space.removePiece()).toEqual(testPiece);
   });
   it('should throw error when removePiece and no piece in space', () => {
     expect(() => {
