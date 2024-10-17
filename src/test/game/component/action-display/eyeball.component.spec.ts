@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EyeballComponent } from '../../../../app/game/component/action-display/eyeball/eyeball.component';
+import { EyeballComponent } from '../../../../app/game/component/action-display/space/eyeball/eyeball.component';
 
 describe('EyeballComponent', () => {
   let component: EyeballComponent;

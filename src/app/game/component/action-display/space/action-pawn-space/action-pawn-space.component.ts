@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { ActionPawnPiece } from '../../../model/action-pawn.model';
-import { ElementComponent } from '../../element/element.component';
-import { ActionPawnComponent } from '../../action-pawn/action-pawn.component';
+import { ActionPawnPiece } from '../../../../model/action-pawn.model';
+import { ElementComponent } from '../../../element/element.component';
+import { ActionPawnComponent } from '../../../action-pawn/action-pawn.component';
 import { EyeballComponent } from '../eyeball/eyeball.component';
 
 @Component({

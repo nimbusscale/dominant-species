@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { ElementPiece } from '../../../model/element.model';
-import { getOrThrow } from '../../../../engine/util/misc';
-import { imgPathByKind } from '../../../constant/image.constant';
-import { ElementComponent } from '../../element/element.component';
+import { ElementPiece } from '../../../../model/element.model';
+import { getOrThrow } from '../../../../../engine/util/misc';
+import { imgPathByKind } from '../../../../constant/image.constant';
+import { ElementComponent } from '../../../element/element.component';
 
 @Component({
   selector: 'app-element-space',

@@ -1,9 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ActionPawnSpaceComponent } from '../../../../app/game/component/action-display/action-pawn-space/action-pawn-space.component';
+import { ActionPawnSpaceComponent } from '../../../../app/game/component/action-display/space/action-pawn-space/action-pawn-space.component';
 import { DebugElement } from '@angular/core';
 import { ActionPawnPiece } from '../../../../app/game/model/action-pawn.model';
-import { EyeballComponent } from '../../../../app/game/component/action-display/eyeball/eyeball.component';
+import { EyeballComponent } from '../../../../app/game/component/action-display/space/eyeball/eyeball.component';
 import { ActionPawnComponent } from '../../../../app/game/component/action-pawn/action-pawn.component';
 import { AnimalEnum } from '../../../../app/game/constant/animal.constant';
 import { By } from '@angular/platform-browser';

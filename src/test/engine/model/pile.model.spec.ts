@@ -154,6 +154,9 @@ describe('PileAdapter', () => {
   });
   it('should allow putting items with TestPiece type', () => {
     testPiece = defaultPieceFactory('test') as TestPiece;
-    pileAdapter.put([testPiece]);
+    expect(() => {
+      // eslint-disable-next-line @typescript-eslint/non-nullable-type-assertion-style
+      pileAdapter.put([testPiece as TestPiece]);
+    }).not.toThrow();
   });
 });

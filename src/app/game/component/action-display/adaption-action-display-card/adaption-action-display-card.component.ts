@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { MatCard } from '@angular/material/card';
-import { ElementSpaceComponent } from '../element-space/element-space.component';
-import { EyeballComponent } from '../eyeball/eyeball.component';
-import { ActionPawnSpaceComponent } from '../action-pawn-space/action-pawn-space.component';
-import { AreaRegistryService } from '../../../../engine/service/game-element/area-registry.service';
-import { Area } from '../../../../engine/model/area.model';
-import { filter, first } from 'rxjs';
-import { AreaIdEnum, SpaceKindEnum } from '../../../constant/area.constant';
+import { ElementSpaceComponent } from '../space/element-space/element-space.component';
+import { EyeballComponent } from '../space/eyeball/eyeball.component';
+import { ActionPawnSpaceComponent } from '../space/action-pawn-space/action-pawn-space.component';
 import { ElementPiece } from '../../../model/element.model';
 import { ActionPawnPiece } from '../../../model/action-pawn.model';
+import { AdaptionActionDisplayService } from '../../../service/action-display/adaption-action-display.service';
+import { filter, first } from 'rxjs';
+import { isTrue } from '../../../../engine/util/predicate';
 
 @Component({
   selector: 'app-adaption-action-display-card',
@@ -18,28 +17,20 @@ import { ActionPawnPiece } from '../../../model/action-pawn.model';
   styleUrl: './adaption-action-display-card.component.scss',
 })
 export class AdaptionActionDisplayCardComponent implements OnInit {
-  area: Area | undefined = undefined;
-  elements: ElementPiece[] = [];
-  actionPawns: ActionPawnPiece[] = [];
+  actionPawns: (ActionPawnPiece | null)[] = [];
+  elements: (ElementPiece | null)[] = [];
 
-  constructor(private areaRegistryService: AreaRegistryService) {}
+  constructor(private adaptionActionDisplayService: AdaptionActionDisplayService) {}
 
   ngOnInit() {
-    this.areaRegistryService.registeredIds$
-      .pipe(
-        filter((ids) => ids.has(AreaIdEnum.ACTION_DISPLAY_ADAPTION)),
-        first(),
-      )
-      .subscribe(() => {
-        this.area = this.areaRegistryService.get(AreaIdEnum.ACTION_DISPLAY_ADAPTION);
-        this.area.spaces$.subscribe((spaces) => {
-          this.elements = spaces
-            .filter((space) => (space.kind as SpaceKindEnum) === SpaceKindEnum.ELEMENT)
-            .map((space) => space.piece) as ElementPiece[];
-          this.actionPawns = spaces
-            .filter((space) => (space.kind as SpaceKindEnum) === SpaceKindEnum.ACTION_PAWN)
-            .map((space) => space.piece) as ActionPawnPiece[];
-        });
+    this.adaptionActionDisplayService.ready$.pipe(filter(isTrue), first()).subscribe(() => {
+      this.adaptionActionDisplayService.actionPawns$.subscribe((actionPawns) => {
+        this.actionPawns = actionPawns;
       });
+      this.adaptionActionDisplayService.elements$.subscribe((elements) => {
+        this.elements = elements;
+      });
+      this.adaptionActionDisplayService.setup();
+    });
   }
 }
