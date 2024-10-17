@@ -5,17 +5,13 @@ import { PieceKindEnum } from '../../constant/piece.constant';
 import { ActionPawnPiece } from '../../model/action-pawn.model';
 import { ActionPawnComponent } from '../action-pawn/action-pawn.component';
 import { MatGridList, MatGridTile } from '@angular/material/grid-list';
-import { AreaRegistryService } from '../../../engine/service/game-element/area-registry.service';
 import { Faction } from '../../../engine/model/faction.model';
-import { Area } from '../../../engine/model/area.model';
-import { Pile } from '../../../engine/model/pile.model';
-import { PileRegistryService } from '../../../engine/service/game-element/pile-registry.service';
-import { filter, first } from 'rxjs';
-import { getOrThrow } from '../../../engine/util/misc';
-import { elementAreaIdsByAnimal } from '../../constant/area.constant';
-import { pileIdsByAnimal } from '../../constant/pile.constant';
+import { filter, first, map } from 'rxjs';
 import { ElementPiece } from '../../model/element.model';
 import { ElementComponent } from '../element/element.component';
+import { AnimalProviderService } from '../../service/animal-provider.service';
+import { Animal } from '../../model/animal.model';
+import { isNotUndefined } from '../../../engine/util/predicate';
 
 // Todo: change to OnPush
 @Component({
@@ -27,67 +23,43 @@ import { ElementComponent } from '../element/element.component';
 })
 export class AnimalCardComponent implements OnInit {
   @Input() faction: Faction | undefined = undefined;
-  elementArea: Area | undefined = undefined;
+  animal: Animal | undefined = undefined;
   elements: ElementPiece[] = [];
   emptyElementSpaces: null[] = [];
-  actionPawnPile: Pile | undefined = undefined;
-  speciesPile: Pile | undefined = undefined;
+  actionPawnPileLength = 0;
+  speciesPileLength = 0;
   actionPawnForHeader: ActionPawnPiece | undefined = undefined;
 
-  constructor(
-    private areaRegistryService: AreaRegistryService,
-    private pileRegistryService: PileRegistryService,
-  ) {}
+  constructor(private animalProviderService: AnimalProviderService) {}
 
   ngOnInit() {
     if (!this.faction) {
       throw new Error('faction not set');
     }
     this.setActionPawnForHeader(this.faction);
-    this.getElementArea(this.faction);
-    this.getActionPawnPile(this.faction);
-    this.getSpeciesPile(this.faction);
+    this.getAnimal(this.faction);
   }
 
-  private getElementArea(faction: Faction): void {
-    const elementAreaId = getOrThrow(elementAreaIdsByAnimal, faction.id);
-    this.areaRegistryService.registeredIds$
+  private getAnimal(faction: Faction): void {
+    this.animalProviderService.animals$
       .pipe(
-        filter((ids) => ids.has(elementAreaId)),
+        // filter((animals) => animals.some((animal) => animal.id === faction.id)),
+        map((animals) => animals.find((animal) => animal.id === faction.id)),
+        filter(isNotUndefined),
         first(),
       )
-      .subscribe(() => {
-        this.elementArea = this.areaRegistryService.get(elementAreaId);
-        this.elements = this.elementArea.spaces
-          .filter((space) => space.piece)
-          .map((space) => space.piece) as ElementPiece[];
-        this.emptyElementSpaces = this.elementArea.spaces
-          .filter((space) => space.piece === null)
-          .map(() => null);
-      });
-  }
-
-  private getActionPawnPile(faction: Faction): void {
-    const actionPawnPileId = getOrThrow(pileIdsByAnimal, faction.id)['actionPawn'];
-    this.pileRegistryService.registeredIds$
-      .pipe(
-        filter((ids) => ids.has(actionPawnPileId)),
-        first(),
-      )
-      .subscribe(() => {
-        this.actionPawnPile = this.pileRegistryService.get(actionPawnPileId);
-      });
-  }
-
-  private getSpeciesPile(faction: Faction): void {
-    const actionPawnPileId = getOrThrow(pileIdsByAnimal, faction.id)['species'];
-    this.pileRegistryService.registeredIds$
-      .pipe(
-        filter((ids) => ids.has(actionPawnPileId)),
-        first(),
-      )
-      .subscribe(() => {
-        this.speciesPile = this.pileRegistryService.get(actionPawnPileId);
+      .subscribe((animal) => {
+        this.animal = animal;
+        animal.elements.elements$.subscribe((elements) => {
+          this.elements = elements;
+          this.emptyElementSpaces = Array(6 - this.elements.length).fill(null) as null[];
+        });
+        animal.actionPawn.length$.subscribe((length) => {
+          this.actionPawnPileLength = length;
+        });
+        animal.species.length$.subscribe((length) => {
+          this.speciesPileLength = length;
+        });
       });
   }
 

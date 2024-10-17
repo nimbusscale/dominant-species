@@ -1,4 +1,4 @@
-import { Pile, PileState } from '../../../app/engine/model/pile.model';
+import { Pile, PileAdapter, PileState } from '../../../app/engine/model/pile.model';
 import { defaultPieceFactory, Piece } from '../../../app/engine/model/piece.model';
 
 describe('Pile', () => {
@@ -124,5 +124,36 @@ describe('Pile', () => {
       expect(pile.state.inventory['grub']).toEqual(10);
       expect(pile.state.inventory['meat']).toEqual(1);
     });
+  });
+});
+
+interface TestPiece extends Piece {
+  kind: string;
+}
+
+describe('PileAdapter', () => {
+  let pileState: PileState;
+  let pile: Pile;
+  let pileAdapter: PileAdapter<TestPiece>;
+  let testPiece: TestPiece | null;
+
+  beforeEach(() => {
+    pileState = {
+      id: 'test',
+      owner: 'test',
+      inventory: {
+        test: 10,
+      },
+    };
+    pile = new Pile(pileState, defaultPieceFactory);
+    pileAdapter = new PileAdapter<TestPiece>(pile);
+  });
+  it('should return item with TestPiece type', () => {
+    testPiece = pileAdapter.pull()[0];
+    expect(testPiece).toBeTruthy();
+  });
+  it('should allow putting items with TestPiece type', () => {
+    testPiece = defaultPieceFactory('test') as TestPiece;
+    pileAdapter.put([testPiece]);
   });
 });

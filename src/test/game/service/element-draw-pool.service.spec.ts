@@ -38,22 +38,20 @@ describe('ElementDrawPoolService', () => {
     pileRegistrySvcSpy = TestBed.inject(PileRegistryService) as jasmine.SpyObj<PileRegistryService>;
   });
 
-  describe('initialize', () => {
-    it('gets pile from registry and can be retrieved', () => {
-      pileRegistrySvcSpy.get.and.returnValue(testPile1);
-      registeredPilesSubject.next(new Set([PileIdEnum.ELEMENT as string]));
-      expect(elementDrawPoolSvc.drawPool).toEqual(testPile1);
-    });
-    it('gets pile from registry and emits drawPool', (done) => {
-      elementDrawPoolSvc.drawPool$.pipe(skip(1)).subscribe((drawPool) => {
-        expect(drawPool).toEqual(testPile1);
-        done();
+  describe('ready$', () => {
+    it('emits false when pile not ready yet', () => {
+      elementDrawPoolSvc.ready$.subscribe((isReady) => {
+        expect(isReady).toBeFalse();
       });
-      pileRegistrySvcSpy.get.and.returnValue(testPile1);
-      registeredPilesSubject.next(new Set([PileIdEnum.ELEMENT as string]));
     });
-    it('drawPool returns null when not initialized', () => {
-      expect(elementDrawPoolSvc.drawPool).toBeNull();
+
+    it('emits true when pile is ready', () => {
+      pileRegistrySvcSpy.get.and.returnValue(testPile1);
+      elementDrawPoolSvc.ready$.pipe(skip(1)).subscribe((isReady) => {
+        expect(isReady).toBeTrue();
+      });
+
+      registeredPilesSubject.next(new Set([PileIdEnum.ELEMENT as string]));
     });
   });
 });

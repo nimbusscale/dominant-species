@@ -5,17 +5,14 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { By } from '@angular/platform-browser';
 import { Component, DebugElement, Input } from '@angular/core';
 import { Faction } from '../../../app/engine/model/faction.model';
-import { Pile } from '../../../app/engine/model/pile.model';
 import { ElementEnum } from '../../../app/game/constant/element.constant';
 import { ElementPiece } from '../../../app/game/model/element.model';
 import { AnimalEnum } from '../../../app/game/constant/animal.constant';
-import { AreaIdEnum } from '../../../app/game/constant/area.constant';
-import { PileIdEnum } from '../../../app/game/constant/pile.constant';
 import { ActionPawnPiece } from '../../../app/game/model/action-pawn.model';
-import { AreaRegistryService } from '../../../app/engine/service/game-element/area-registry.service';
-import { PileRegistryService } from '../../../app/engine/service/game-element/pile-registry.service';
-import { Subject } from 'rxjs';
-import { Area } from '../../../app/engine/model/area.model';
+import { of } from 'rxjs';
+import { Animal } from '../../../app/game/model/animal.model';
+import { AnimalProviderService } from '../../../app/game/service/animal-provider.service';
+import { defaultPieceFactory } from '../../../app/engine/model/piece.model';
 
 // Mock components for testing
 @Component({
@@ -39,13 +36,8 @@ describe('AnimalCardComponent', () => {
   let fixture: ComponentFixture<AnimalCardComponent>;
   let debugElement: DebugElement;
   let mockFaction: jasmine.SpyObj<Faction>;
-  let mockElementArea: jasmine.SpyObj<Area>;
-  let mockElement1: jasmine.SpyObj<ElementPiece>;
-  let mockElement2: jasmine.SpyObj<ElementPiece>;
-  let mockAreaRegistryService: jasmine.SpyObj<AreaRegistryService>;
-  let mockActionPawnPile: jasmine.SpyObj<Pile>;
-  let mockSpeciesPile: jasmine.SpyObj<Pile>;
-  let mockPileRegistryService: jasmine.SpyObj<PileRegistryService>;
+  let mockAnimal: jasmine.SpyObj<Animal>;
+  let mockAnimalProviderService: jasmine.SpyObj<AnimalProviderService>;
 
   beforeEach(async () => {
     mockFaction = jasmine.createSpyObj('Faction', [], {
@@ -53,104 +45,39 @@ describe('AnimalCardComponent', () => {
       name: AnimalEnum.REPTILE,
     });
 
-    mockElement1 = jasmine.createSpyObj('ElementPiece', [], {
-      kind: ElementEnum.SUN,
+    mockAnimal = jasmine.createSpyObj('Animal', ['id'], {
+      id: AnimalEnum.REPTILE,
+      elements: {
+        elements$: of([
+          defaultPieceFactory(ElementEnum.SUN),
+          defaultPieceFactory(ElementEnum.SUN),
+        ] as ElementPiece[]),
+      },
+      actionPawn: {
+        length$: of(7),
+      },
+      species: {
+        length$: of(55),
+      },
     });
-    mockElement2 = jasmine.createSpyObj('ElementPiece', [], {
-      kind: ElementEnum.SUN,
-    });
-
-    mockElementArea = jasmine.createSpyObj('Area', [], {
-      id: PileIdEnum.ACTION_PAWN_REPTILE,
-      spaces: [
-        { piece: mockElement1 },
-        { piece: mockElement2 },
-        { piece: null },
-        { piece: null },
-        { piece: null },
-        { piece: null },
-      ],
-    });
-    mockAreaRegistryService = jasmine.createSpyObj('AreaRegistryService', ['get'], {
-      registeredIds$: new Subject<Set<string>>(),
-    });
-    mockActionPawnPile = jasmine.createSpyObj('Pile', [], {
-      id: PileIdEnum.ACTION_PAWN_REPTILE,
-      length: 7,
-    });
-    mockSpeciesPile = jasmine.createSpyObj('Pile', [], {
-      id: PileIdEnum.SPECIES_REPTILE,
-      length: 55,
-    });
-    mockPileRegistryService = jasmine.createSpyObj('PileRegistryService', ['get'], {
-      registeredIds$: new Subject<Set<string>>(),
+    mockAnimalProviderService = jasmine.createSpyObj('AnimalProviderService', [], {
+      animals$: of([mockAnimal]),
     });
 
     await TestBed.configureTestingModule({
       declarations: [MockActionPawnComponent, MockElementComponent],
       imports: [AnimalCardComponent, MatCardModule, MatGridListModule],
-      providers: [
-        { provide: AreaRegistryService, useValue: mockAreaRegistryService },
-        { provide: PileRegistryService, useValue: mockPileRegistryService },
-      ],
+      providers: [{ provide: AnimalProviderService, useValue: mockAnimalProviderService }],
     }).compileComponents();
-  });
-
-  describe('ngOnInit', () => {
-    let mockAreaRegistryServiceRegisteredIds$: Subject<Set<string>>;
-    let mockPileRegistryServiceRegisteredIds$: Subject<Set<string>>;
-
-    beforeEach(() => {
-      fixture = TestBed.createComponent(AnimalCardComponent);
-      component = fixture.componentInstance;
-      component.faction = mockFaction;
-      mockAreaRegistryServiceRegisteredIds$ = mockAreaRegistryService.registeredIds$ as Subject<
-        Set<string>
-      >;
-      mockPileRegistryServiceRegisteredIds$ = mockPileRegistryService.registeredIds$ as Subject<
-        Set<string>
-      >;
-
-      component.ngOnInit();
-    });
-    it('should set actionPawnForHeader', () => {
-      expect(component.actionPawnForHeader).toBeTruthy();
-      if (component.actionPawnForHeader) {
-        expect(component.actionPawnForHeader.owner).toEqual(AnimalEnum.REPTILE);
-      }
-    });
-    it('should subscribe to areaRegistryService and set elements', () => {
-      mockAreaRegistryService.get.and.returnValue(mockElementArea);
-      mockAreaRegistryServiceRegisteredIds$.next(new Set([AreaIdEnum.REPTILE_ELEMENT]));
-
-      expect(component.elements).toEqual([mockElement1, mockElement2]);
-      expect(component.emptyElementSpaces.length).toBe(4);
-    });
-    it('should subscribe to pileRegistryService and set actionPawnPile', () => {
-      mockPileRegistryService.get.and.returnValue(mockActionPawnPile);
-      mockPileRegistryServiceRegisteredIds$.next(new Set([PileIdEnum.ACTION_PAWN_REPTILE]));
-
-      expect(component.actionPawnPile).toEqual(mockActionPawnPile);
-    });
-    it('should subscribe to pileRegistryService and set speciesPile', () => {
-      mockPileRegistryService.get.and.returnValue(mockSpeciesPile);
-      mockPileRegistryServiceRegisteredIds$.next(new Set([PileIdEnum.SPECIES_REPTILE]));
-
-      expect(component.speciesPile).toEqual(mockSpeciesPile);
-    });
   });
 
   describe('Render Template', () => {
     beforeEach(() => {
       fixture = TestBed.createComponent(AnimalCardComponent);
-      component = fixture.componentInstance;
       debugElement = fixture.debugElement;
-      component.actionPawnForHeader = jasmine.createSpyObj('ActionPawnPiece', ['kind']);
+      component = fixture.componentInstance;
       component.faction = mockFaction;
-      component.actionPawnPile = mockActionPawnPile;
-      component.speciesPile = mockSpeciesPile;
-      component.elements = [mockElement1, mockElement2];
-      component.emptyElementSpaces = [null, null];
+      component.ngOnInit();
       fixture.detectChanges();
     });
     it('should display the faction name', () => {
