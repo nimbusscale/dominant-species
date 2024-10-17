@@ -88,3 +88,25 @@ export class Pile extends GameElement<PileState> {
     this.emitPileState();
   }
 }
+
+export class PileAdapter<T>{
+  constructor(private pile: Pile) {}
+
+  get length(): number {
+    return this.pile.length
+  }
+
+  get length$(): Observable<number> {
+    return this.pile.length$
+  }
+
+  pull(count = 1): (T | null)[] {
+    return this.pile.pull(count) as T[]
+  }
+
+  put(pieces: T[]): void {
+    this.pile.put(pieces as Piece[])
+  }
+
+
+}
