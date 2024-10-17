@@ -9,6 +9,7 @@ import { Space } from '../../engine/model/space.model';
 import { ElementPiece } from './element.model';
 import { isNotNull } from '../../engine/util/predicate';
 import { SpaceKindEnum } from '../constant/area.constant';
+import { BehaviorSubject } from 'rxjs';
 
 export interface AnimalConfig {
   faction: Faction;
@@ -19,10 +20,15 @@ export interface AnimalConfig {
 }
 
 export class AnimalElements {
+  private elementsSubject = new BehaviorSubject<ElementPiece[]>([]);
+  elements$ = this.elementsSubject.asObservable();
+
   constructor(
     private elementArea: Area,
     private elementConfig: ElementConfig,
-  ) {}
+  ) {
+    this.elementsSubject.next(this.allElements);
+  }
 
   private get addedElementSpaces(): Space[] {
     const elementSpaces = ensureDefined(this.elementArea).spaces;
@@ -40,6 +46,7 @@ export class AnimalElements {
     );
     if (availableSpace) {
       availableSpace.addPiece(element);
+      this.elementsSubject.next(this.allElements);
     } else {
       throw new Error('No available element spaces');
     }
@@ -51,9 +58,16 @@ export class AnimalElements {
     );
     if (elementSpace) {
       elementSpace.removePiece();
+      this.elementsSubject.next(this.allElements);
     } else {
       throw new Error(`Animal does not have added element ${JSON.stringify(element)}`);
     }
+  }
+
+  get allElements(): ElementPiece[] {
+    return ensureDefined(this.elementArea)
+      .spaces.filter((space) => space.piece)
+      .map((space) => space.piece) as ElementPiece[];
   }
 
   get addedElements(): ElementPiece[] {

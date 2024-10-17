@@ -61,17 +61,17 @@ export class DrawPoolGameComponent {
   }
 
   private initialize(): void {
-    this.elementDrawPoolSvc.drawPool$
-      .pipe(
-        filter((drawPool) => drawPool != null),
-        first(),
-      )
-      .subscribe((drawPool) => {
-        this.drawPool = drawPool;
-        drawPool.length$.subscribe((length) => {
-          this.drawPoolLength = length;
-        });
-      });
+    // this.elementDrawPoolSvc.drawPool$
+    //   .pipe(
+    //     filter((drawPool) => drawPool != null),
+    //     first(),
+    //   )
+    //   .subscribe((drawPool) => {
+    //     this.drawPool = drawPool;
+    //     drawPool.length$.subscribe((length) => {
+    //       this.drawPoolLength = length;
+    //     });
+    //   });
     this.areaRegistryService.registeredIds$
       .pipe(
         filter((ids) => ids.has(AreaIdEnum.ACTION_DISPLAY_ADAPTION)),
@@ -87,9 +87,12 @@ export class DrawPoolGameComponent {
     console.log('Create Game');
     // should be using factionAssignments$
     this.factionRegistrySvc.factionAssignment$.subscribe((factionAssignments) => {
-      this.factions = factionAssignments.map((factionAssignment) =>
-        this.factionRegistrySvc.get(factionAssignment.id),
-      );
+      const factionAssignment = factionAssignments[0];
+      this.factions = [this.factionRegistrySvc.get(factionAssignment.id)];
+
+      // this.factions = factionAssignments.map((factionAssignment) =>
+      //   this.factionRegistrySvc.get(factionAssignment.id),
+      // );
       this.currentPlayerFaction = this.factions.find(
         (faction) => faction.ownerId === this.playerService.currentPlayer.id,
       );
