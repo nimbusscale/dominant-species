@@ -80,7 +80,7 @@
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content injectable">
+               <div class="content class">
                    <div class="content-data">
 
 
@@ -90,9 +90,13 @@
 
 
 
+
+
+
+
 <ol class="breadcrumb">
-  <li class="breadcrumb-item">Injectables</li>
-  <li class="breadcrumb-item" >ElementDrawPoolService</li>
+  <li class="breadcrumb-item">Classes</li>
+  <li class="breadcrumb-item" >AnimalElements</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -116,8 +120,9 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/game/service/element-draw-pool.service.ts</code>
+            <code>src/app/game/model/animal.model.ts</code>
         </p>
+
 
 
 
@@ -136,19 +141,11 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#_drawPool" >_drawPool</a>
+                                <a href="#elements$" >elements$</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#ready" >ready</a>
-                            </li>
-                            <li>
-                                <a href="#ready$" >ready$</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#readySubject" >readySubject</a>
+                                <a href="#elementsSubject" >elementsSubject</a>
                             </li>
                         </ul>
                     </td>
@@ -163,14 +160,10 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#initialize" >initialize</a>
+                                <a href="#addElement" >addElement</a>
                             </li>
                             <li>
-                                <a href="#pull" >pull</a>
-                            </li>
-                            <li>
-                                <a href="#put" >put</a>
+                                <a href="#removeElement" >removeElement</a>
                             </li>
                         </ul>
                     </td>
@@ -189,10 +182,13 @@
                         <td class="col-md-4">
                             <ul class="index-list">
                                 <li>
-                                    <a href="#drawPool" >drawPool</a>
+                                    <a href="#addedElementSpaces" >addedElementSpaces</a>
                                 </li>
                                 <li>
-                                    <a href="#length$" >length$</a>
+                                    <a href="#allElements" >allElements</a>
+                                </li>
+                                <li>
+                                    <a href="#addedElements" >addedElements</a>
                                 </li>
                             </ul>
                         </td>
@@ -207,12 +203,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(pileRegistrySvc: <a href="../injectables/PileRegistryService.html" target="_self">PileRegistryService</a>)</code>
+<code>constructor(elementArea: <a href="../classes/Area.html" target="_self">Area</a>, elementConfig: <a href="../interfaces/ElementConfig.html" target="_self">ElementConfig</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/game/service/element-draw-pool.service.ts:17</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/game/model/animal.model.ts:24</a></div>
                             </td>
                         </tr>
 
@@ -230,10 +226,22 @@
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>pileRegistrySvc</td>
+                                                        <td>elementArea</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../injectables/PileRegistryService.html" target="_self" >PileRegistryService</a></code>
+                                                                        <code><a href="../classes/Area.html" target="_self" >Area</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>elementConfig</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../interfaces/ElementConfig.html" target="_self" >ElementConfig</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -250,189 +258,6 @@
         </table>
 </section>
 
-            <section data-compodoc="block-methods">
-    
-    <h3 id="methods">
-        Methods
-    </h3>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="initialize"></a>
-                    <span class="name">
-                            <span class="modifier">Private</span>
-                        <span ><b>initialize</b></span>
-                        <a href="#initialize"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                        <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>initialize()</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="23"
-                                    class="link-to-prism">src/app/game/service/element-draw-pool.service.ts:23</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                        </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="pull"></a>
-                    <span class="name">
-                        <span ><b>pull</b></span>
-                        <a href="#pull"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>pull(count: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="48"
-                                    class="link-to-prism">src/app/game/service/element-draw-pool.service.ts:48</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                                <td>Default value</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>count</td>
-                                            <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-                                            <td>
-                                                    <code>1</code>
-                                            </td>
-
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <div class="io-description">
-                            <b>Returns : </b>    <code>[]</code>
-
-                        </div>
-                            <div class="io-description">
-                                
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="put"></a>
-                    <span class="name">
-                        <span ><b>put</b></span>
-                        <a href="#put"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>put(pieces: ElementPiece[])</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="52"
-                                    class="link-to-prism">src/app/game/service/element-draw-pool.service.ts:52</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>pieces</td>
-                                            <td>
-                                                        <code>ElementPiece[]</code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                        </div>
-                            <div class="io-description">
-                                
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</section>
             <section data-compodoc="block-properties">
     
     <h3 id="inputs">
@@ -442,28 +267,21 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="_drawPool"></a>
+                    <a name="elements$"></a>
                     <span class="name">
-                            <span class="modifier">Private</span>
-                        <span ><b>_drawPool</b></span>
-                        <a href="#_drawPool"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>elements$</b></span>
+                        <a href="#elements$"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../classes/Pile.html" target="_self" >Pile | undefined</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>undefined</code>
+                        <i>Default value : </i><code>this.elementsSubject.asObservable()</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/game/service/element-draw-pool.service.ts:14</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/game/model/animal.model.ts:24</a></div>
                         </td>
                     </tr>
 
@@ -474,85 +292,22 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="ready"></a>
+                    <a name="elementsSubject"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
-                        <span ><b>ready</b></span>
-                        <a href="#ready"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>elementsSubject</b></span>
+                        <a href="#elementsSubject"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>false</code>
+                        <i>Default value : </i><code>new BehaviorSubject&lt;ElementPiece[]&gt;([])</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/game/service/element-draw-pool.service.ts:15</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="ready$"></a>
-                    <span class="name">
-                        <span ><b>ready$</b></span>
-                        <a href="#ready$"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>    <code>Observable&lt;boolean&gt;</code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>this.readySubject.asObservable()</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/game/service/element-draw-pool.service.ts:17</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="readySubject"></a>
-                    <span class="name">
-                            <span class="modifier">Private</span>
-                        <span ><b>readySubject</b></span>
-                        <a href="#readySubject"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>    <code>BehaviorSubject&lt;boolean&gt;</code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>new BehaviorSubject&lt;boolean&gt;(this.ready)</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/game/service/element-draw-pool.service.ts:16</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/game/model/animal.model.ts:23</a></div>
                         </td>
                     </tr>
 
@@ -560,6 +315,151 @@
         </tbody>
     </table>
 </section>
+
+            <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addElement"></a>
+                    <span class="name">
+                        <span ><b>addElement</b></span>
+                        <a href="#addElement"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>addElement(element: <a href="../interfaces/ElementPiece.html" target="_self">ElementPiece</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="43"
+                                    class="link-to-prism">src/app/game/model/animal.model.ts:43</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>element</td>
+                                            <td>
+                                                            <code><a href="../interfaces/ElementPiece.html" target="_self" >ElementPiece</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="removeElement"></a>
+                    <span class="name">
+                        <span ><b>removeElement</b></span>
+                        <a href="#removeElement"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>removeElement(element: <a href="../interfaces/ElementPiece.html" target="_self">ElementPiece</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="55"
+                                    class="link-to-prism">src/app/game/model/animal.model.ts:55</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>element</td>
+                                            <td>
+                                                            <code><a href="../interfaces/ElementPiece.html" target="_self" >ElementPiece</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+
+
+
 
             <section data-compodoc="block-accessors">
     <h3 id="accessors">
@@ -569,19 +469,19 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="drawPool"></a>
-                        <span class="name"><b>drawPool</b><a href="#drawPool"><span class="icon ion-ios-link"></span></a></span>
+                        <a name="addedElementSpaces"></a>
+                        <span class="name"><b>addedElementSpaces</b><a href="#addedElementSpaces"><span class="icon ion-ios-link"></span></a></span>
                     </td>
                 </tr>
 
                 <tr>
                     <td class="col-md-4">
-                        <span class="accessor"><b>get</b><code>drawPool()</code></span>
+                        <span class="accessor"><b>get</b><code>addedElementSpaces()</code></span>
                     </td>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/game/service/element-draw-pool.service.ts:36</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/game/model/animal.model.ts:33</a></div>
                                 </td>
                             </tr>
 
@@ -591,19 +491,41 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="length$"></a>
-                        <span class="name"><b>length$</b><a href="#length$"><span class="icon ion-ios-link"></span></a></span>
+                        <a name="allElements"></a>
+                        <span class="name"><b>allElements</b><a href="#allElements"><span class="icon ion-ios-link"></span></a></span>
                     </td>
                 </tr>
 
                 <tr>
                     <td class="col-md-4">
-                        <span class="accessor"><b>get</b><code>length$()</code></span>
+                        <span class="accessor"><b>get</b><code>allElements()</code></span>
                     </td>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/game/service/element-draw-pool.service.ts:44</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/app/game/model/animal.model.ts:67</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="addedElements"></a>
+                        <span class="name"><b>addedElements</b><a href="#addedElements"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>addedElements()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/app/game/model/animal.model.ts:73</a></div>
                                 </td>
                             </tr>
 
@@ -614,69 +536,119 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
-import { Pile } from &#x27;../../engine/model/pile.model&#x27;;
-import { BehaviorSubject, filter, first, Observable } from &#x27;rxjs&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Faction } from &#x27;../../engine/model/faction.model&#x27;;
+import { Pile, PileAdapter } from &#x27;../../engine/model/pile.model&#x27;;
+import { ElementConfig } from &#x27;../constant/element-config.constant&#x27;;
+import { Area } from &#x27;../../engine/model/area.model&#x27;;
+import { ensureDefined } from &#x27;../../engine/util/misc&#x27;;
+import { ActionPawnPiece } from &#x27;./action-pawn.model&#x27;;
+import { SpeciesPiece } from &#x27;./species.model&#x27;;
+import { Space } from &#x27;../../engine/model/space.model&#x27;;
+import { ElementPiece } from &#x27;./element.model&#x27;;
+import { isNotNull } from &#x27;../../engine/util/predicate&#x27;;
+import { SpaceKindEnum } from &#x27;../constant/area.constant&#x27;;
+import { BehaviorSubject } from &#x27;rxjs&#x27;;
 
-import { PileRegistryService } from &#x27;../../engine/service/game-element/pile-registry.service&#x27;;
-import { PileIdEnum } from &#x27;../constant/pile.constant&#x27;;
-import { ElementPiece } from &#x27;../model/element.model&#x27;;
-import { Piece } from &#x27;../../engine/model/piece.model&#x27;;
+export interface AnimalConfig {
+  faction: Faction;
+  actionPawnPile: Pile;
+  elementArea: Area;
+  elementConfig: ElementConfig;
+  speciesPile: Pile;
+}
 
-@Injectable({
-  providedIn: &#x27;root&#x27;,
-})
-export class ElementDrawPoolService {
-  private _drawPool: Pile | undefined &#x3D; undefined;
-  private ready &#x3D; false;
-  private readySubject: BehaviorSubject&lt;boolean&gt; &#x3D; new BehaviorSubject&lt;boolean&gt;(this.ready);
-  ready$: Observable&lt;boolean&gt; &#x3D; this.readySubject.asObservable();
+export class AnimalElements {
+  private elementsSubject &#x3D; new BehaviorSubject&lt;ElementPiece[]&gt;([]);
+  elements$ &#x3D; this.elementsSubject.asObservable();
 
-  constructor(private pileRegistrySvc: PileRegistryService) {
-    this.initialize();
+  constructor(
+    private elementArea: Area,
+    private elementConfig: ElementConfig,
+  ) {
+    this.elementsSubject.next(this.allElements);
   }
 
-  private initialize(): void {
-    this.pileRegistrySvc.registeredIds$
-      .pipe(
-        filter((registeredIds) &#x3D;&gt; registeredIds.has(PileIdEnum.ELEMENT)),
-        first(),
-      )
-      .subscribe(() &#x3D;&gt; {
-        this._drawPool &#x3D; this.pileRegistrySvc.get(PileIdEnum.ELEMENT);
-        this.ready &#x3D; true;
-        this.readySubject.next(this.ready);
-      });
-  }
-
-  private get drawPool(): Pile {
-    if (this._drawPool) {
-      return this._drawPool;
+  private get addedElementSpaces(): Space[] {
+    const elementSpaces &#x3D; ensureDefined(this.elementArea).spaces;
+    const elementConfig &#x3D; ensureDefined(this.elementConfig);
+    if (elementSpaces.length &gt; elementConfig.inherentCount) {
+      return elementSpaces.slice(elementConfig.inherentCount);
     } else {
-      throw new Error(&#x27;Pile not ready&#x27;);
+      return [];
     }
   }
 
-  get length$(): Observable&lt;number&gt; {
-    return this.drawPool.length$;
+  addElement(element: ElementPiece): void {
+    const availableSpace &#x3D; ensureDefined(this.elementArea).nextAvailableSpace(
+      SpaceKindEnum.ELEMENT,
+    );
+    if (availableSpace) {
+      availableSpace.addPiece(element);
+      this.elementsSubject.next(this.allElements);
+    } else {
+      throw new Error(&#x27;No available element spaces&#x27;);
+    }
   }
 
-  pull(count &#x3D; 1): (ElementPiece | null)[] {
-    return this.drawPool.pull(count) as ElementPiece[];
+  removeElement(element: ElementPiece): void {
+    const elementSpace &#x3D; this.addedElementSpaces.find(
+      (space) &#x3D;&gt; space.piece &amp;&amp; space.piece.kind &#x3D;&#x3D;&#x3D; element.kind,
+    );
+    if (elementSpace) {
+      elementSpace.removePiece();
+      this.elementsSubject.next(this.allElements);
+    } else {
+      throw new Error(&#x60;Animal does not have added element ${JSON.stringify(element)}&#x60;);
+    }
   }
 
-  put(pieces: ElementPiece[]): void {
-    this.drawPool.put(pieces as Piece[]);
+  get allElements(): ElementPiece[] {
+    return ensureDefined(this.elementArea)
+      .spaces.filter((space) &#x3D;&gt; space.piece)
+      .map((space) &#x3D;&gt; space.piece) as ElementPiece[];
+  }
+
+  get addedElements(): ElementPiece[] {
+    return this.addedElementSpaces.map((space) &#x3D;&gt; space.piece as ElementPiece).filter(isNotNull);
+  }
+}
+
+export class Animal {
+  private readonly faction: Faction;
+  private readonly actionPawnPile: PileAdapter&lt;ActionPawnPiece&gt;;
+  private readonly speciesPile: PileAdapter&lt;SpeciesPiece&gt;;
+  private readonly animalElements: AnimalElements;
+
+  constructor(config: AnimalConfig) {
+    this.faction &#x3D; config.faction;
+    this.actionPawnPile &#x3D; new PileAdapter&lt;ActionPawnPiece&gt;(config.actionPawnPile);
+    this.speciesPile &#x3D; new PileAdapter&lt;SpeciesPiece&gt;(config.speciesPile);
+    this.animalElements &#x3D; new AnimalElements(config.elementArea, config.elementConfig);
+  }
+
+  get id(): string {
+    return this.faction.id;
+  }
+
+  get name(): string {
+    return this.faction.name;
+  }
+
+  get actionPawn(): PileAdapter&lt;ActionPawnPiece&gt; {
+    return this.actionPawnPile;
+  }
+
+  get elements(): AnimalElements {
+    return this.animalElements;
+  }
+
+  get species(): PileAdapter&lt;SpeciesPiece&gt; {
+    return this.speciesPile;
   }
 }
 </code></pre>
     </div>
-
 </div>
-
-
-
-
 
 
 
@@ -711,8 +683,8 @@ export class ElementDrawPoolService {
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
-            var COMPODOC_CURRENT_PAGE_URL = 'ElementDrawPoolService.html';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
+            var COMPODOC_CURRENT_PAGE_URL = 'AnimalElements.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

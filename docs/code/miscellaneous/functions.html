@@ -119,7 +119,13 @@
                             <a href="#defaultPieceFactory" title="src/app/engine/model/piece.model.ts" ><b>defaultPieceFactory</b>&nbsp;&nbsp;&nbsp;(src/.../piece.model.ts)</a>
                         </li>
                         <li>
+                            <a href="#ensureDefined" title="src/app/engine/util/misc.ts" ><b>ensureDefined</b>&nbsp;&nbsp;&nbsp;(src/.../misc.ts)</a>
+                        </li>
+                        <li>
                             <a href="#getOrThrow" title="src/app/engine/util/misc.ts" ><b>getOrThrow</b>&nbsp;&nbsp;&nbsp;(src/.../misc.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#isFalse" title="src/app/engine/util/predicate.ts" ><b>isFalse</b>&nbsp;&nbsp;&nbsp;(src/.../predicate.ts)</a>
                         </li>
                         <li>
                             <a href="#isNotNull" title="src/app/engine/util/predicate.ts" ><b>isNotNull</b>&nbsp;&nbsp;&nbsp;(src/.../predicate.ts)</a>
@@ -129,6 +135,12 @@
                         </li>
                         <li>
                             <a href="#isNull" title="src/app/engine/util/predicate.ts" ><b>isNull</b>&nbsp;&nbsp;&nbsp;(src/.../predicate.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#isTrue" title="src/app/engine/util/predicate.ts" ><b>isTrue</b>&nbsp;&nbsp;&nbsp;(src/.../predicate.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#setDifference" title="src/app/engine/util/misc.ts" ><b>setDifference</b>&nbsp;&nbsp;&nbsp;(src/.../misc.ts)</a>
                         </li>
                     </ul>
                 </td>
@@ -202,6 +214,79 @@
                         </div>
                             <div class="io-description">
                                 
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ensureDefined"></a>
+                    <span class="name">
+                        <span ><b>ensureDefined</b></span>
+                        <a href="#ensureDefined"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ensureDefined(value)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Ensures that a given value is defined (i.e., not undefined).</p>
+<p>Typically used for values that start as undefined and then are set during initialization by a subscription.</p>
+<p>If the value is undefined, this function throws an error with a message
+indicating that the value is not defined. If the value is defined, it is
+returned unchanged.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>value</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>The value to be checked.</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>T</code>
+
+                        </div>
+                            <div class="io-description">
+                                <ul>
+<li>The value itself if it is defined.</li>
+</ul>
+
                             </div>
                 </td>
             </tr>
@@ -308,6 +393,81 @@
             </tr>
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setDifference"></a>
+                    <span class="name">
+                        <span ><b>setDifference</b></span>
+                        <a href="#setDifference"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>setDifference(setA: Set, setB: Set)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Returns the items that are in setA, but not in setB</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>setA</td>
+                                            <td>
+                                                        <code>Set</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>setB</td>
+                                            <td>
+                                                        <code>Set</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Set&lt;T&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </section>    <h3>src/app/engine/model/piece.model.ts</h3>
     <section data-compodoc="block-methods">
     <h3></h3>    <table class="table table-sm table-bordered">
@@ -405,6 +565,63 @@
 </section>    <h3>src/app/engine/util/predicate.ts</h3>
     <section data-compodoc="block-methods">
     <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isFalse"></a>
+                    <span class="name">
+                        <span ><b>isFalse</b></span>
+                        <a href="#isFalse"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>isFalse(value)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>value</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>T</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
         <tbody>
             <tr>
                 <td class="col-md-4">
@@ -532,6 +749,63 @@
             <tr>
                 <td class="col-md-4">
 <code>isNull(value)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>value</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>T</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isTrue"></a>
+                    <span class="name">
+                        <span ><b>isTrue</b></span>
+                        <a href="#isTrue"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>isTrue(value)</code>
                 </td>
             </tr>
 

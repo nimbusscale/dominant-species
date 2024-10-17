@@ -454,8 +454,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="109"
-                                    class="link-to-prism">src/app/game/component/draw-pool-game/draw-pool-game.component.ts:109</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="112"
+                                    class="link-to-prism">src/app/game/component/draw-pool-game/draw-pool-game.component.ts:112</a></div>
                         </td>
                     </tr>
 
@@ -491,8 +491,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="125"
-                                    class="link-to-prism">src/app/game/component/draw-pool-game/draw-pool-game.component.ts:125</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="128"
+                                    class="link-to-prism">src/app/game/component/draw-pool-game/draw-pool-game.component.ts:128</a></div>
                         </td>
                     </tr>
 
@@ -530,8 +530,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="104"
-                                    class="link-to-prism">src/app/game/component/draw-pool-game/draw-pool-game.component.ts:104</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="107"
+                                    class="link-to-prism">src/app/game/component/draw-pool-game/draw-pool-game.component.ts:107</a></div>
                         </td>
                     </tr>
 
@@ -636,8 +636,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="99"
-                                    class="link-to-prism">src/app/game/component/draw-pool-game/draw-pool-game.component.ts:99</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="102"
+                                    class="link-to-prism">src/app/game/component/draw-pool-game/draw-pool-game.component.ts:102</a></div>
                         </td>
                     </tr>
 
@@ -867,7 +867,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="130" class="link-to-prism">src/app/game/component/draw-pool-game/draw-pool-game.component.ts:130</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="133" class="link-to-prism">src/app/game/component/draw-pool-game/draw-pool-game.component.ts:133</a></div>
                                 </td>
                             </tr>
 
@@ -889,7 +889,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="138" class="link-to-prism">src/app/game/component/draw-pool-game/draw-pool-game.component.ts:138</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="141" class="link-to-prism">src/app/game/component/draw-pool-game/draw-pool-game.component.ts:141</a></div>
                                 </td>
                             </tr>
 
@@ -963,17 +963,17 @@ export class DrawPoolGameComponent {
   }
 
   private initialize(): void {
-    this.elementDrawPoolSvc.drawPool$
-      .pipe(
-        filter((drawPool) &#x3D;&gt; drawPool !&#x3D; null),
-        first(),
-      )
-      .subscribe((drawPool) &#x3D;&gt; {
-        this.drawPool &#x3D; drawPool;
-        drawPool.length$.subscribe((length) &#x3D;&gt; {
-          this.drawPoolLength &#x3D; length;
-        });
-      });
+    // this.elementDrawPoolSvc.drawPool$
+    //   .pipe(
+    //     filter((drawPool) &#x3D;&gt; drawPool !&#x3D; null),
+    //     first(),
+    //   )
+    //   .subscribe((drawPool) &#x3D;&gt; {
+    //     this.drawPool &#x3D; drawPool;
+    //     drawPool.length$.subscribe((length) &#x3D;&gt; {
+    //       this.drawPoolLength &#x3D; length;
+    //     });
+    //   });
     this.areaRegistryService.registeredIds$
       .pipe(
         filter((ids) &#x3D;&gt; ids.has(AreaIdEnum.ACTION_DISPLAY_ADAPTION)),
@@ -989,9 +989,12 @@ export class DrawPoolGameComponent {
     console.log(&#x27;Create Game&#x27;);
     // should be using factionAssignments$
     this.factionRegistrySvc.factionAssignment$.subscribe((factionAssignments) &#x3D;&gt; {
-      this.factions &#x3D; factionAssignments.map((factionAssignment) &#x3D;&gt;
-        this.factionRegistrySvc.get(factionAssignment.id),
-      );
+      const factionAssignment &#x3D; factionAssignments[0];
+      this.factions &#x3D; [this.factionRegistrySvc.get(factionAssignment.id)];
+
+      // this.factions &#x3D; factionAssignments.map((factionAssignment) &#x3D;&gt;
+      //   this.factionRegistrySvc.get(factionAssignment.id),
+      // );
       this.currentPlayerFaction &#x3D; this.factions.find(
         (faction) &#x3D;&gt; faction.ownerId &#x3D;&#x3D;&#x3D; this.playerService.currentPlayer.id,
       );
