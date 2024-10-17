@@ -50,3 +50,11 @@ export function ensureDefined<T>(value: T | undefined): T {
   }
   return value;
 }
+
+
+/**
+ * Returns the items that are in setA, but not in setB
+ */
+export function setDifference<T>(setA: Set<T>, setB: Set<T>): Set<T> {
+  return new Set(Array.from(setA).filter(element => !setB.has(element)));
+}
