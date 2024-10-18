@@ -198,7 +198,10 @@
                                 <a href="#emitPileState" >emitPileState</a>
                             </li>
                             <li>
-                                <a href="#pull" >pull</a>
+                                <a href="#pullMany" >pullMany</a>
+                            </li>
+                            <li>
+                                <a href="#pullOne" >pullOne</a>
                             </li>
                             <li>
                                 <a href="#put" >put</a>
@@ -576,16 +579,16 @@ the pile.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="pull"></a>
+                    <a name="pullMany"></a>
                     <span class="name">
-                        <span ><b>pull</b></span>
-                        <a href="#pull"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>pullMany</b></span>
+                        <a href="#pullMany"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>pull(count: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+<code>pullMany(count: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
@@ -655,6 +658,43 @@ the pile.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="pullOne"></a>
+                    <span class="name">
+                        <span ><b>pullOne</b></span>
+                        <a href="#pullOne"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>pullOne()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="78"
+                                    class="link-to-prism">src/app/engine/model/pile.model.ts:78</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/Piece.html" target="_self" >Piece | null</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="put"></a>
                     <span class="name">
                         <span ><b>put</b></span>
@@ -671,8 +711,8 @@ the pile.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="82"
-                                    class="link-to-prism">src/app/engine/model/pile.model.ts:82</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="86"
+                                    class="link-to-prism">src/app/engine/model/pile.model.ts:86</a></div>
                         </td>
                     </tr>
 
@@ -948,7 +988,7 @@ export class Pile extends GameElement&lt;PileState&gt; {
    * @param count The number of pieces to pull. Defaults to 1.
    * @returns An array of pieces pulled from the pile, or null values if the pile is empty.
    */
-  pull(count &#x3D; 1): (Piece | null)[] {
+  pullMany(count &#x3D; 1): (Piece | null)[] {
     const pieces: (Piece | null)[] &#x3D; [];
     for (let i &#x3D; 0; i &lt; count; i++) {
       const piecesWithCount &#x3D; Object.keys(this._state.inventory).filter((key) &#x3D;&gt; {
@@ -968,6 +1008,10 @@ export class Pile extends GameElement&lt;PileState&gt; {
     }
     this.emitPileState();
     return pieces;
+  }
+
+  pullOne(): Piece | null {
+    return this.pullMany(1)[0];
   }
 
   /**
@@ -995,8 +1039,12 @@ export class PileAdapter&lt;T&gt; {
     return this.pile.length$;
   }
 
-  pull(count &#x3D; 1): (T | null)[] {
-    return this.pile.pull(count) as T[];
+  pullMany(count &#x3D; 1): (T | null)[] {
+    return this.pile.pullMany(count) as T[];
+  }
+
+  pullOne(): T | null {
+    return this.pullMany(1)[0] as T;
   }
 
   put(pieces: T[]): void {

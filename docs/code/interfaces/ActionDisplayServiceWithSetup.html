@@ -99,7 +99,7 @@
   <li class="breadcrumb-item">Interfaces</li>
   <li class="breadcrumb-item"
   >
-  PileState</li>
+  ActionDisplayServiceWithSetup</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -123,24 +123,11 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/engine/model/pile.model.ts</code>
+            <code>src/app/game/model/action-display.model.ts</code>
         </p>
 
 
-            <p class="comment">
-                <h3>Description</h3>
-            </p>
-            <p class="comment">
-                <p>PileState is pretty simple as it just keeps tracks of what kinds of pieces are in the pile and how many of them.</p>
 
-            </p>
-
-            <p class="comment">
-                <h3>Extends</h3>
-            </p>
-            <p class="comment">
-                            <code><a href="../interfaces/GameElementState.html" target="_self" >GameElementState</a></code>
-            </p>
 
         <section data-compodoc="block-index">
             <h3 id="index">Index</h3>
@@ -155,15 +142,15 @@
                         <td class="col-md-4">
                             <ul class="index-list">
                                 <li>
-                                        <a href="#inventory" 
+                                        <a href="#ready$" 
 >
-                                            inventory
+                                            ready$
                                         </a>
                                 </li>
                                 <li>
-                                        <a href="#owner" 
+                                        <a href="#setup" 
 >
-                                            owner
+                                            setup
                                         </a>
                                 </li>
                             </ul>
@@ -181,9 +168,9 @@
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
-                                        <a name="inventory"></a>
-                                        <span class="name "><b>inventory</b>
-                                            <a href="#inventory">
+                                        <a name="ready$"></a>
+                                        <span class="name "><b>ready$</b>
+                                            <a href="#ready$">
                                                 <span class="icon ion-ios-link"></span>
                                             </a>
                                         </span>
@@ -191,7 +178,7 @@
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>inventory:     <code>Record&lt;string | number&gt;</code>
+                                        <code>ready$:     <code>Observable&lt;boolean&gt;</code>
 </code>
                                     </td>
                                 </tr>
@@ -199,7 +186,7 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <i>Type : </i>    <code>Record&lt;string | number&gt;</code>
+                                            <i>Type : </i>    <code>Observable&lt;boolean&gt;</code>
 
                                         </td>
                                     </tr>
@@ -214,9 +201,9 @@
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
-                                        <a name="owner"></a>
-                                        <span class="name "><b>owner</b>
-                                            <a href="#owner">
+                                        <a name="setup"></a>
+                                        <span class="name "><b>setup</b>
+                                            <a href="#setup">
                                                 <span class="icon ion-ios-link"></span>
                                             </a>
                                         </span>
@@ -224,7 +211,7 @@
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>owner:     <code>string | null</code>
+                                        <code>setup:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
 </code>
                                     </td>
                                 </tr>
@@ -232,7 +219,7 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <i>Type : </i>    <code>string | null</code>
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
 
                                         </td>
                                     </tr>
@@ -248,123 +235,11 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { defaultPieceFactory, Piece, PieceFactory } from &#x27;./piece.model&#x27;;
-import { BehaviorSubject, distinctUntilChanged, Observable } from &#x27;rxjs&#x27;;
-import { GameElement, GameElementState } from &#x27;./game-element.model&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Observable } from &#x27;rxjs&#x27;;
 
-/**
- * PileState is pretty simple as it just keeps tracks of what kinds of pieces are in the pile and how many of them.
- */
-export interface PileState extends GameElementState {
-  owner: string | null;
-  inventory: Record&lt;string, number&gt;;
-}
-
-/**
- * A Pile is used to draw one or more random pieces for a defined pool of pieces.
- */
-export class Pile extends GameElement&lt;PileState&gt; {
-  private readonly owner: string | null;
-  private readonly pieceFactory: PieceFactory;
-  private lengthSubject: BehaviorSubject&lt;number&gt;;
-  length$: Observable&lt;number&gt;;
-
-  /**
-   * @param state An object that acts as the definition for the pool of pieces the Pile represents.
-   * Each key is the kind of pieces included in the Pile, and the values are the count of that kind of piece in
-   * the pile.
-   * @param pieceFactory A factory function use to build the random selected piece.
-   */
-  constructor(state: PileState, pieceFactory: PieceFactory &#x3D; defaultPieceFactory) {
-    super(state);
-    this.owner &#x3D; state.owner;
-    this.pieceFactory &#x3D; pieceFactory;
-    this.lengthSubject &#x3D; new BehaviorSubject&lt;number&gt;(this.length);
-    this.length$ &#x3D; this.lengthSubject.asObservable().pipe(distinctUntilChanged());
-  }
-
-  /**
-   * Returns the total number of pieces in the pile.
-   */
-  get length(): number {
-    return Object.keys(this._state.inventory).reduce(
-      (sum, key) &#x3D;&gt; sum + (this._state.inventory[key] ?? 0),
-      0,
-    );
-  }
-
-  private emitPileState(): void {
-    this.emitState();
-    this.lengthSubject.next(this.length);
-  }
-
-  /**
-   * Pulls a specified number of pieces from the pile of the given kind.
-   * @param count The number of pieces to pull. Defaults to 1.
-   * @returns An array of pieces pulled from the pile, or null values if the pile is empty.
-   */
-  pullMany(count &#x3D; 1): (Piece | null)[] {
-    const pieces: (Piece | null)[] &#x3D; [];
-    for (let i &#x3D; 0; i &lt; count; i++) {
-      const piecesWithCount &#x3D; Object.keys(this._state.inventory).filter((key) &#x3D;&gt; {
-        /** this.pieceCounts.get(key) will always return a value, but TSC complains it could be unknown. */
-        const pieceCount &#x3D; this._state.inventory[key] ?? 0;
-        return pieceCount &gt; 0;
-      });
-
-      if (piecesWithCount.length) {
-        const kind &#x3D; piecesWithCount[Math.floor(Math.random() * piecesWithCount.length)];
-        const currentCount &#x3D; this._state.inventory[kind] ?? 0;
-        pieces.push(this.pieceFactory(kind, this.owner));
-        this._state.inventory[kind] &#x3D; currentCount - 1;
-      } else {
-        pieces.push(null);
-      }
-    }
-    this.emitPileState();
-    return pieces;
-  }
-
-  pullOne(): Piece | null {
-    return this.pullMany(1)[0];
-  }
-
-  /**
-   * Puts the specified pieces into the pile of the given kind.
-   * @param pieces The pieces to put into the pile.
-   */
-  put(pieces: Piece[]): void {
-    for (const piece of pieces) {
-      // Assume the current count is 0 if the piece is not yet in the inventory
-      const currentItemCount &#x3D; this._state.inventory[piece.kind] || 0;
-      this._state.inventory[piece.kind] &#x3D; currentItemCount + 1;
-    }
-    this.emitPileState();
-  }
-}
-
-export class PileAdapter&lt;T&gt; {
-  constructor(private pile: Pile) {}
-
-  get length(): number {
-    return this.pile.length;
-  }
-
-  get length$(): Observable&lt;number&gt; {
-    return this.pile.length$;
-  }
-
-  pullMany(count &#x3D; 1): (T | null)[] {
-    return this.pile.pullMany(count) as T[];
-  }
-
-  pullOne(): T | null {
-    return this.pullMany(1)[0] as T;
-  }
-
-  put(pieces: T[]): void {
-    this.pile.put(pieces as Piece[]);
-  }
+export interface ActionDisplayServiceWithSetup {
+  ready$: Observable&lt;boolean&gt;;
+  setup: () &#x3D;&gt; void;
 }
 </code></pre>
     </div>
@@ -403,7 +278,7 @@ export class PileAdapter&lt;T&gt; {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
-            var COMPODOC_CURRENT_PAGE_URL = 'PileState.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'ActionDisplayServiceWithSetup.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 
