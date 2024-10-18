@@ -53,7 +53,7 @@ export class Pile extends GameElement<PileState> {
    * @param count The number of pieces to pull. Defaults to 1.
    * @returns An array of pieces pulled from the pile, or null values if the pile is empty.
    */
-  pull(count = 1): (Piece | null)[] {
+  pullMany(count = 1): (Piece | null)[] {
     const pieces: (Piece | null)[] = [];
     for (let i = 0; i < count; i++) {
       const piecesWithCount = Object.keys(this._state.inventory).filter((key) => {
@@ -73,6 +73,10 @@ export class Pile extends GameElement<PileState> {
     }
     this.emitPileState();
     return pieces;
+  }
+
+  pullOne(): Piece | null {
+    return this.pullMany(1)[0]
   }
 
   /**
@@ -100,8 +104,12 @@ export class PileAdapter<T> {
     return this.pile.length$;
   }
 
-  pull(count = 1): (T | null)[] {
-    return this.pile.pull(count) as T[];
+  pullMany(count = 1): (T | null)[] {
+    return this.pile.pullMany(count) as T[];
+  }
+
+  pullOne(): (T | null) {
+    return this.pullMany(1) as T;
   }
 
   put(pieces: T[]): void {

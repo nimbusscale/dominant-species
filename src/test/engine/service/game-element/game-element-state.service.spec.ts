@@ -59,7 +59,7 @@ describe('PileStateService', () => {
       pileStateSvc.register([testPile1]);
     });
     it('should update GameState when PileState Updated', () => {
-      testPile1.pull();
+      testPile1.pullMany();
       expect(gameStateSvcSpy.setPile).toHaveBeenCalledWith(testPile1.state);
     });
     it('should update PileState when GameState Updated', () => {

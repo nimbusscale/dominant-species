@@ -51,7 +51,7 @@ export class ElementDrawPoolService {
   }
 
   pull(count = 1): (ElementPiece | null)[] {
-    return this.drawPool.pull(count) as ElementPiece[];
+    return this.drawPool.pullMany(count) as ElementPiece[];
   }
 
   put(pieces: ElementPiece[]): void {

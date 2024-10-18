@@ -25,6 +25,9 @@ import {AdaptionActionDisplayCardComponent} from '../action-display/adaption-act
 import {AreaRegistryService} from '../../../engine/service/game-element/area-registry.service';
 import {Area} from '../../../engine/model/area.model';
 import {AreaIdEnum, SpaceKindEnum} from '../../constant/area.constant';
+import {AnimalProviderService} from "../../service/animal-provider.service";
+import {ensureDefined} from "../../../engine/util/misc";
+import {AdaptionActionDisplayService} from "../../service/action-display/adaption-action-display.service";
 
 @Component({
   selector: 'app-draw-pool-game',
@@ -58,6 +61,8 @@ export class DrawPoolGameComponent {
     private factionRegistrySvc: FactionRegistryService,
     private playerService: PlayerService,
     private areaRegistryService: AreaRegistryService,
+    private animalProviderService: AnimalProviderService,
+    private adaptionActionDisplayService: AdaptionActionDisplayService
   ) {
     this.initialize();
   }
@@ -76,7 +81,7 @@ export class DrawPoolGameComponent {
       });
   }
 
-  createGame(): void {
+  startGame(): void {
     this.gameManagementSvc.createGame();
     console.log('Create Game');
     this.factionRegistrySvc.factionAssignment$.subscribe((factionAssignments) => {
@@ -93,50 +98,17 @@ export class DrawPoolGameComponent {
     this.gameStarted = true
   }
 
-  startTurn(): void {
-    console.log('Start Turn');
-    this.gameStateSvc.startTransaction();
-  }
-
-  private formatElementName(kind: string): string {
-    const elementName = kind.replace('Element', '');
-    return elementName.charAt(0).toUpperCase() + elementName.slice(1);
-  }
-
-  draw(): void {
-    if (this.drawPool && this.adaptionArea) {
-      const item = this.drawPool.pull();
-      if (item[0]) {
-        const nextSpace = this.adaptionArea.nextAvailableSpace(SpaceKindEnum.ELEMENT);
-        if (nextSpace) {
-          nextSpace.addPiece(item[0] as ElementPiece);
-        }
-        const element = this.formatElementName(item[0].kind);
-        this.log.push(`You drew a ${element}`);
-      } else {
-        this.log.push('Pile is empty!');
-      }
+  takeAction(): void {
+    this.gameStateSvc.startTransaction()
+    const animal = this.animalProviderService.get(ensureDefined(this.currentPlayerFaction).id)
+    const actionPawn = animal.actionPawn.pullOne()
+    if (actionPawn) {
+      const nextActionPawnSpaceIndex = this.adaptionActionDisplayService.actionPawns.findIndex((value) => value === null);
+      const nextElementSpaceIndex = this.adaptionActionDisplayService.elements.findIndex(value => value !== null);
+      this.adaptionActionDisplayService.addActionPawn(nextActionPawnSpaceIndex, actionPawn)
+      const element = this.adaptionActionDisplayService.removeElement(nextActionPawnSpaceIndex)
+      animal.elements.addElement(element)
     }
-  }
-
-  endTurn(): void {
-    console.log('End Turn');
-    this.gameStateSvc.commitTransaction();
-  }
-
-  get elements(): ElementPiece[] {
-    const elements: ElementPiece[] = [];
-    for (const elementKind of Object.values(ElementEnum) as ElementEnum[]) {
-      elements.push(defaultPieceFactory(elementKind) as ElementPiece);
-    }
-    return elements;
-  }
-
-  get actionPawns(): ActionPawnPiece[] {
-    const actionPawns: ActionPawnPiece[] = [];
-    for (const animal of Object.values(AnimalEnum) as AnimalEnum[]) {
-      actionPawns.push(defaultPieceFactory(PieceKindEnum.ACTION_PAWN, animal) as ActionPawnPiece);
-    }
-    return actionPawns;
+    this.gameStateSvc.commitTransaction()
   }
 }
