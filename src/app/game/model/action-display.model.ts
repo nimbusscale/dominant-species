@@ -1,6 +1,6 @@
-import {Observable} from "rxjs";
+import { Observable } from 'rxjs';
 
 export interface ActionDisplayServiceWithSetup {
   ready$: Observable<boolean>;
-  setup: () => void
+  setup: () => void;
 }

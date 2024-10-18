@@ -76,7 +76,7 @@ export class Pile extends GameElement<PileState> {
   }
 
   pullOne(): Piece | null {
-    return this.pullMany(1)[0]
+    return this.pullMany(1)[0];
   }
 
   /**
@@ -108,8 +108,8 @@ export class PileAdapter<T> {
     return this.pile.pullMany(count) as T[];
   }
 
-  pullOne(): (T | null) {
-    return this.pullMany(1) as T;
+  pullOne(): T | null {
+    return this.pullMany(1)[0] as T;
   }
 
   put(pieces: T[]): void {

@@ -1,33 +1,24 @@
-import {Component} from '@angular/core';
-import {GameManagementService} from '../../../engine/service/game-management.service';
-import {MatButton} from '@angular/material/button';
-import {MatTooltip} from '@angular/material/tooltip';
-import {GameStateService} from '../../../engine/service/game-state/game-state.service';
-import {combineLatestWith, filter, first} from 'rxjs';
-import {Pile} from '../../../engine/model/pile.model';
-import {ElementDrawPoolService} from '../../service/element-draw-pool.service';
-
-import {FactionRegistryService} from '../../../engine/service/game-element/faction-registry.service';
-import {ElementComponent} from '../element/element.component';
-import {ElementPiece} from '../../model/element.model';
-import {ElementEnum} from '../../constant/element.constant';
-import {Faction} from '../../../engine/model/faction.model';
-import {ActionPawnComponent} from '../action-pawn/action-pawn.component';
-import {AnimalEnum} from '../../constant/animal.constant';
-import {PieceKindEnum} from '../../constant/piece.constant';
-import {defaultPieceFactory} from '../../../engine/model/piece.model';
-import {ActionPawnPiece} from '../../model/action-pawn.model';
-import {AnimalCardComponent} from '../animal-card/animal-card.component';
-import {PlayerService} from '../../../engine/service/player.service';
-import {EyeballComponent} from '../action-display/space/eyeball/eyeball.component';
-import {ElementSpaceComponent} from '../action-display/space/element-space/element-space.component';
-import {AdaptionActionDisplayCardComponent} from '../action-display/adaption-action-display-card/adaption-action-display-card.component';
-import {AreaRegistryService} from '../../../engine/service/game-element/area-registry.service';
-import {Area} from '../../../engine/model/area.model';
-import {AreaIdEnum, SpaceKindEnum} from '../../constant/area.constant';
-import {AnimalProviderService} from "../../service/animal-provider.service";
-import {ensureDefined} from "../../../engine/util/misc";
-import {AdaptionActionDisplayService} from "../../service/action-display/adaption-action-display.service";
+import { Component } from '@angular/core';
+import { GameManagementService } from '../../../engine/service/game-management.service';
+import { MatButton } from '@angular/material/button';
+import { MatTooltip } from '@angular/material/tooltip';
+import { GameStateService } from '../../../engine/service/game-state/game-state.service';
+import { filter, first } from 'rxjs';
+import { FactionRegistryService } from '../../../engine/service/game-element/faction-registry.service';
+import { ElementComponent } from '../element/element.component';
+import { Faction } from '../../../engine/model/faction.model';
+import { ActionPawnComponent } from '../action-pawn/action-pawn.component';
+import { AnimalCardComponent } from '../animal-card/animal-card.component';
+import { PlayerService } from '../../../engine/service/player.service';
+import { EyeballComponent } from '../action-display/space/eyeball/eyeball.component';
+import { ElementSpaceComponent } from '../action-display/space/element-space/element-space.component';
+import { AdaptionActionDisplayCardComponent } from '../action-display/adaption-action-display-card/adaption-action-display-card.component';
+import { AreaRegistryService } from '../../../engine/service/game-element/area-registry.service';
+import { Area } from '../../../engine/model/area.model';
+import { AreaIdEnum } from '../../constant/area.constant';
+import { AnimalProviderService } from '../../service/animal-provider.service';
+import { ensureDefined } from '../../../engine/util/misc';
+import { AdaptionActionDisplayService } from '../../service/action-display/adaption-action-display.service';
 
 @Component({
   selector: 'app-draw-pool-game',
@@ -46,31 +37,25 @@ import {AdaptionActionDisplayService} from "../../service/action-display/adaptio
   styleUrl: './draw-pool-game.component.scss',
 })
 export class DrawPoolGameComponent {
-  gameStarted = false
+  gameStarted = false;
   currentPlayerFaction: Faction | undefined = undefined;
   factions: Faction[] = [];
-  drawPool: Pile | undefined = undefined;
-  drawPoolLength = 0;
   adaptionArea: Area | undefined = undefined;
   log: string[] = [];
 
   constructor(
     private gameManagementSvc: GameManagementService,
     private gameStateSvc: GameStateService,
-    private elementDrawPoolSvc: ElementDrawPoolService,
     private factionRegistrySvc: FactionRegistryService,
     private playerService: PlayerService,
     private areaRegistryService: AreaRegistryService,
     private animalProviderService: AnimalProviderService,
-    private adaptionActionDisplayService: AdaptionActionDisplayService
+    private adaptionActionDisplayService: AdaptionActionDisplayService,
   ) {
     this.initialize();
   }
 
   private initialize(): void {
-    this.elementDrawPoolSvc.length$.subscribe((length) => {
-      this.drawPoolLength = length
-    })
     this.areaRegistryService.registeredIds$
       .pipe(
         filter((ids) => ids.has(AreaIdEnum.ACTION_DISPLAY_ADAPTION)),
@@ -95,20 +80,24 @@ export class DrawPoolGameComponent {
         (faction) => faction.ownerId === this.playerService.currentPlayer.id,
       );
     });
-    this.gameStarted = true
+    this.gameStarted = true;
   }
 
   takeAction(): void {
-    this.gameStateSvc.startTransaction()
-    const animal = this.animalProviderService.get(ensureDefined(this.currentPlayerFaction).id)
-    const actionPawn = animal.actionPawn.pullOne()
+    this.gameStateSvc.startTransaction();
+    const animal = this.animalProviderService.get(ensureDefined(this.currentPlayerFaction).id);
+    const actionPawn = animal.actionPawn.pullOne();
     if (actionPawn) {
-      const nextActionPawnSpaceIndex = this.adaptionActionDisplayService.actionPawns.findIndex((value) => value === null);
-      const nextElementSpaceIndex = this.adaptionActionDisplayService.elements.findIndex(value => value !== null);
-      this.adaptionActionDisplayService.addActionPawn(nextActionPawnSpaceIndex, actionPawn)
-      const element = this.adaptionActionDisplayService.removeElement(nextActionPawnSpaceIndex)
-      animal.elements.addElement(element)
+      const nextActionPawnSpaceIndex = this.adaptionActionDisplayService.actionPawns.findIndex(
+        (value) => value === null,
+      );
+      const nextElementSpaceIndex = this.adaptionActionDisplayService.elements.findIndex(
+        (value) => value !== null,
+      );
+      this.adaptionActionDisplayService.addActionPawn(nextActionPawnSpaceIndex, actionPawn);
+      const element = this.adaptionActionDisplayService.removeElement(nextElementSpaceIndex);
+      animal.elements.addElement(element);
     }
-    this.gameStateSvc.commitTransaction()
+    this.gameStateSvc.commitTransaction();
   }
 }

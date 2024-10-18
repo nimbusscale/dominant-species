@@ -4,7 +4,7 @@ import { ElementDrawPoolService } from '../element-draw-pool.service';
 import { Area } from '../../../engine/model/area.model';
 import { ElementPiece } from '../../model/element.model';
 import { ActionPawnPiece } from '../../model/action-pawn.model';
-import {BehaviorSubject, combineLatestWith, filter, first} from 'rxjs';
+import { BehaviorSubject, combineLatestWith, filter, first } from 'rxjs';
 import { AreaIdEnum, SpaceKindEnum } from '../../constant/area.constant';
 import { ensureDefined } from '../../../engine/util/misc';
 import { Piece } from '../../../engine/model/piece.model';

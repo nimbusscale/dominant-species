@@ -6,7 +6,7 @@ import { BehaviorSubject, combineLatestWith, filter, first } from 'rxjs';
 import { AreaRegistryService } from '../../engine/service/game-element/area-registry.service';
 import { FactionRegistryService } from '../../engine/service/game-element/faction-registry.service';
 import { PileRegistryService } from '../../engine/service/game-element/pile-registry.service';
-import {ensureDefined, getOrThrow, setDifference} from '../../engine/util/misc';
+import { getOrThrow, setDifference } from '../../engine/util/misc';
 import { Animal, AnimalConfig } from '../model/animal.model';
 
 @Injectable({
@@ -76,7 +76,6 @@ export class AnimalProviderService {
   }
 
   get(id: string): Animal {
-    return getOrThrow(this.animalById, id)
+    return getOrThrow(this.animalById, id);
   }
-
 }
