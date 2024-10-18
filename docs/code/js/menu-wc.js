@@ -96,6 +96,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         </div>
                         <ul class="links collapse " ${ isNormalMode ? 'id="classes-links"' : 'id="xs-classes-links"' }>
                             <li class="link">
+                                <a href="classes/ActionDisplaySetupManager.html" data-type="entity-link" >ActionDisplaySetupManager</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/Animal.html" data-type="entity-link" >Animal</a>
                             </li>
                             <li class="link">
@@ -132,6 +135,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <span class="icon ion-ios-arrow-down"></span>
                             </div>
                             <ul class="links collapse " ${ isNormalMode ? 'id="injectables-links"' : 'id="xs-injectables-links"' }>
+                                <li class="link">
+                                    <a href="injectables/ActionDisplayManagerService.html" data-type="entity-link" >ActionDisplayManagerService</a>
+                                </li>
                                 <li class="link">
                                     <a href="injectables/AdaptionActionDisplayService.html" data-type="entity-link" >AdaptionActionDisplayService</a>
                                 </li>
@@ -195,6 +201,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         <ul class="links collapse " ${ isNormalMode ? ' id="interfaces-links"' : 'id="xs-interfaces-links"' }>
                             <li class="link">
                                 <a href="interfaces/Action.html" data-type="entity-link" >Action</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ActionDisplayServiceWithSetup.html" data-type="entity-link" >ActionDisplayServiceWithSetup</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/ActionPawnPiece.html" data-type="entity-link" >ActionPawnPiece</a>

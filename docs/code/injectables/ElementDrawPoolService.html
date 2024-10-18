@@ -314,8 +314,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="48"
-                                    class="link-to-prism">src/app/game/service/element-draw-pool.service.ts:48</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="52"
+                                    class="link-to-prism">src/app/game/service/element-draw-pool.service.ts:52</a></div>
                         </td>
                     </tr>
 
@@ -385,8 +385,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="52"
-                                    class="link-to-prism">src/app/game/service/element-draw-pool.service.ts:52</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="56"
+                                    class="link-to-prism">src/app/game/service/element-draw-pool.service.ts:56</a></div>
                         </td>
                     </tr>
 
@@ -616,7 +616,7 @@
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
 import { Pile } from &#x27;../../engine/model/pile.model&#x27;;
-import { BehaviorSubject, filter, first, Observable } from &#x27;rxjs&#x27;;
+import { BehaviorSubject, filter, first, Observable, of } from &#x27;rxjs&#x27;;
 
 import { PileRegistryService } from &#x27;../../engine/service/game-element/pile-registry.service&#x27;;
 import { PileIdEnum } from &#x27;../constant/pile.constant&#x27;;
@@ -658,11 +658,15 @@ export class ElementDrawPoolService {
   }
 
   get length$(): Observable&lt;number&gt; {
-    return this.drawPool.length$;
+    if (this._drawPool) {
+      return this.drawPool.length$;
+    } else {
+      return of(0);
+    }
   }
 
   pull(count &#x3D; 1): (ElementPiece | null)[] {
-    return this.drawPool.pull(count) as ElementPiece[];
+    return this.drawPool.pullMany(count) as ElementPiece[];
   }
 
   put(pieces: ElementPiece[]): void {
