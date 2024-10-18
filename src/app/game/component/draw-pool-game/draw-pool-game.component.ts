@@ -1,30 +1,30 @@
-import { Component } from '@angular/core';
-import { GameManagementService } from '../../../engine/service/game-management.service';
-import { MatButton } from '@angular/material/button';
-import { MatTooltip } from '@angular/material/tooltip';
-import { GameStateService } from '../../../engine/service/game-state/game-state.service';
-import { filter, first } from 'rxjs';
-import { Pile } from '../../../engine/model/pile.model';
-import { ElementDrawPoolService } from '../../service/element-draw-pool.service';
+import {Component} from '@angular/core';
+import {GameManagementService} from '../../../engine/service/game-management.service';
+import {MatButton} from '@angular/material/button';
+import {MatTooltip} from '@angular/material/tooltip';
+import {GameStateService} from '../../../engine/service/game-state/game-state.service';
+import {combineLatestWith, filter, first} from 'rxjs';
+import {Pile} from '../../../engine/model/pile.model';
+import {ElementDrawPoolService} from '../../service/element-draw-pool.service';
 
-import { FactionRegistryService } from '../../../engine/service/game-element/faction-registry.service';
-import { ElementComponent } from '../element/element.component';
-import { ElementPiece } from '../../model/element.model';
-import { ElementEnum } from '../../constant/element.constant';
-import { Faction } from '../../../engine/model/faction.model';
-import { ActionPawnComponent } from '../action-pawn/action-pawn.component';
-import { AnimalEnum } from '../../constant/animal.constant';
-import { PieceKindEnum } from '../../constant/piece.constant';
-import { defaultPieceFactory } from '../../../engine/model/piece.model';
-import { ActionPawnPiece } from '../../model/action-pawn.model';
-import { AnimalCardComponent } from '../animal-card/animal-card.component';
-import { PlayerService } from '../../../engine/service/player.service';
-import { EyeballComponent } from '../action-display/space/eyeball/eyeball.component';
-import { ElementSpaceComponent } from '../action-display/space/element-space/element-space.component';
-import { AdaptionActionDisplayCardComponent } from '../action-display/adaption-action-display-card/adaption-action-display-card.component';
-import { AreaRegistryService } from '../../../engine/service/game-element/area-registry.service';
-import { Area } from '../../../engine/model/area.model';
-import { AreaIdEnum, SpaceKindEnum } from '../../constant/area.constant';
+import {FactionRegistryService} from '../../../engine/service/game-element/faction-registry.service';
+import {ElementComponent} from '../element/element.component';
+import {ElementPiece} from '../../model/element.model';
+import {ElementEnum} from '../../constant/element.constant';
+import {Faction} from '../../../engine/model/faction.model';
+import {ActionPawnComponent} from '../action-pawn/action-pawn.component';
+import {AnimalEnum} from '../../constant/animal.constant';
+import {PieceKindEnum} from '../../constant/piece.constant';
+import {defaultPieceFactory} from '../../../engine/model/piece.model';
+import {ActionPawnPiece} from '../../model/action-pawn.model';
+import {AnimalCardComponent} from '../animal-card/animal-card.component';
+import {PlayerService} from '../../../engine/service/player.service';
+import {EyeballComponent} from '../action-display/space/eyeball/eyeball.component';
+import {ElementSpaceComponent} from '../action-display/space/element-space/element-space.component';
+import {AdaptionActionDisplayCardComponent} from '../action-display/adaption-action-display-card/adaption-action-display-card.component';
+import {AreaRegistryService} from '../../../engine/service/game-element/area-registry.service';
+import {Area} from '../../../engine/model/area.model';
+import {AreaIdEnum, SpaceKindEnum} from '../../constant/area.constant';
 
 @Component({
   selector: 'app-draw-pool-game',
@@ -43,12 +43,14 @@ import { AreaIdEnum, SpaceKindEnum } from '../../constant/area.constant';
   styleUrl: './draw-pool-game.component.scss',
 })
 export class DrawPoolGameComponent {
+  gameStarted = false
   currentPlayerFaction: Faction | undefined = undefined;
   factions: Faction[] = [];
   drawPool: Pile | undefined = undefined;
   drawPoolLength = 0;
   adaptionArea: Area | undefined = undefined;
   log: string[] = [];
+
   constructor(
     private gameManagementSvc: GameManagementService,
     private gameStateSvc: GameStateService,
@@ -61,17 +63,9 @@ export class DrawPoolGameComponent {
   }
 
   private initialize(): void {
-    // this.elementDrawPoolSvc.drawPool$
-    //   .pipe(
-    //     filter((drawPool) => drawPool != null),
-    //     first(),
-    //   )
-    //   .subscribe((drawPool) => {
-    //     this.drawPool = drawPool;
-    //     drawPool.length$.subscribe((length) => {
-    //       this.drawPoolLength = length;
-    //     });
-    //   });
+    this.elementDrawPoolSvc.length$.subscribe((length) => {
+      this.drawPoolLength = length
+    })
     this.areaRegistryService.registeredIds$
       .pipe(
         filter((ids) => ids.has(AreaIdEnum.ACTION_DISPLAY_ADAPTION)),
@@ -85,7 +79,6 @@ export class DrawPoolGameComponent {
   createGame(): void {
     this.gameManagementSvc.createGame();
     console.log('Create Game');
-    // should be using factionAssignments$
     this.factionRegistrySvc.factionAssignment$.subscribe((factionAssignments) => {
       const factionAssignment = factionAssignments[0];
       this.factions = [this.factionRegistrySvc.get(factionAssignment.id)];
@@ -97,6 +90,7 @@ export class DrawPoolGameComponent {
         (faction) => faction.ownerId === this.playerService.currentPlayer.id,
       );
     });
+    this.gameStarted = true
   }
 
   startTurn(): void {

@@ -18,9 +18,11 @@ button {
   flex-direction: row;
 }
 
-.draw-pool-display {
-  margin-left: 100px;
+.card-display {
+  display: flex;
+  margin-left: 80px;
   flex-direction: column;
+  gap: 15px;
 }
 
 .draw-pool-log {
@@ -30,22 +32,6 @@ button {
   border: 1px solid #ccc;
   padding: 5px;
   white-space: pre-wrap;
-}
-
-.log-line {
-  padding: 2px 0; /* Optional: Space between lines */
-}
-
-.icon-area {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.icon-display {
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
 }
 
 .animal-card-area {
