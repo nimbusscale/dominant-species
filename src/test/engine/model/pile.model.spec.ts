@@ -52,7 +52,7 @@ describe('Pile', () => {
   });
   describe('pull', () => {
     it('should pull one by default and reduce count by one', () => {
-      const result = pile.pull();
+      const result = pile.pullMany();
       expect(result.length).toEqual(1);
       if (result[0] !== null) {
         expect(result[0]).toBeTruthy();
@@ -62,7 +62,7 @@ describe('Pile', () => {
       }
     });
     it('should can pull more than one and reduce count by that many', () => {
-      const result = pile.pull(3);
+      const result = pile.pullMany(3);
       expect(result.length).toEqual(3);
       expect(result.every((item) => Boolean(item))).toBeTrue();
       const kindPulledCount = new Map<string, number>();
@@ -78,13 +78,13 @@ describe('Pile', () => {
     });
     it('should return a null when drawing from a pile with no items', () => {
       const pile = new Pile(noInventoryPileState, defaultPieceFactory);
-      const result = pile.pull();
+      const result = pile.pullMany();
       expect(result.length).toEqual(1);
       expect(result[0]).toBeNull();
     });
     it('should return a null when drawing from an empty pile', () => {
       const pile = new Pile(emptyPileState, defaultPieceFactory);
-      const result = pile.pull();
+      const result = pile.pullMany();
       expect(result.length).toEqual(1);
       expect(result[0]).toBeNull();
       Object.keys(emptyPileState.inventory).forEach((key) => {
@@ -101,7 +101,7 @@ describe('Pile', () => {
         },
       };
       const pile = new Pile(testPileState, defaultPieceFactory);
-      const result = pile.pull(3);
+      const result = pile.pullMany(3);
       expect(result[0]).toBeTruthy();
       expect(result[1]).toBeNull();
       expect(result[2]).toBeNull();
@@ -149,7 +149,7 @@ describe('PileAdapter', () => {
     pileAdapter = new PileAdapter<TestPiece>(pile);
   });
   it('should return item with TestPiece type', () => {
-    testPiece = pileAdapter.pull()[0];
+    testPiece = pileAdapter.pullOne();
     expect(testPiece).toBeTruthy();
   });
   it('should allow putting items with TestPiece type', () => {

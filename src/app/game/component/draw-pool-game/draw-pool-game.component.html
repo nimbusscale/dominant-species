@@ -1,28 +1,18 @@
 <body>
   <section class="draw-pool-play-area">
     <section class="button-container">
-      <button mat-raised-button (click)="createGame()">Initialize</button>
-      <button mat-raised-button (click)="startTurn()">Start Turn</button>
-      <button mat-raised-button (click)="draw()">Draw!</button>
-      <button mat-raised-button (click)="endTurn()">End Turn</button>
+      <button mat-raised-button (click)="startGame()">Start Game</button>
+      <button mat-raised-button (click)="takeAction()">Take Action</button>
     </section>
-    <section class="draw-pool-display">
-      <div class="draw-pool-counter">Draw Pool: {{ drawPoolLength }}</div>
-      <div class="draw-pool-log">
-        <div class="log-line">
-          @for (line of log; track $index) {
-            <p>{{ line }}</p>
+    @if (gameStarted) {
+      <section class="card-display">
+        <app-adaption-action-display-card></app-adaption-action-display-card>
+        <div class="animal-card-area">
+          @for (faction of factions; track faction.id) {
+            <app-animal-card [faction]="faction"></app-animal-card>
           }
         </div>
-      </div>
-    </section>
-  </section>
-  <div class="icon-area">
-    <app-adaption-action-display-card></app-adaption-action-display-card>
-  </div>
-  <div class="animal-card-area">
-    @for (faction of factions; track faction.id) {
-      <app-animal-card [faction]="faction"></app-animal-card>
+      </section>
     }
-  </div>
+  </section>
 </body>

@@ -16,6 +16,10 @@ import { elementConfigByAnimal } from '../../game/constant/element-config.consta
 import { PieceKindEnum } from '../../game/constant/piece.constant';
 import { defaultPieceFactory } from '../model/piece.model';
 import { pileIdsByAnimal } from '../../game/constant/pile-config';
+import { GameStateService } from './game-state/game-state.service';
+import { ActionDisplayManagerService } from '../../game/service/action-display/action-display-manager.service';
+import { filter } from 'rxjs';
+import { isTrue } from '../util/predicate';
 
 @Injectable({
   providedIn: 'root',
@@ -26,12 +30,17 @@ export class GameManagementService {
     private factionRegistrySvc: FactionRegistryService,
     private playerService: PlayerService,
     private pileRegistrySvc: PileRegistryService,
+    private gameStateService: GameStateService,
+    private actionDisplayManagerService: ActionDisplayManagerService,
   ) {}
 
   createGame(): void {
     this.createArea();
     this.createFactions();
     this.createDrawPoolPile();
+    this.gameStateService.startTransaction();
+    this.setup();
+    this.gameStateService.commitTransaction();
   }
 
   private createArea(): void {
@@ -109,5 +118,11 @@ export class GameManagementService {
       piles.push(new Pile(pileState));
     });
     this.pileRegistrySvc.register(piles);
+  }
+
+  private setup(): void {
+    this.actionDisplayManagerService.ready$.pipe(filter(isTrue)).subscribe(() => {
+      this.actionDisplayManagerService.setup();
+    });
   }
 }

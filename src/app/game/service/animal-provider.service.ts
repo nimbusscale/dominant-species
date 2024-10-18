@@ -74,4 +74,8 @@ export class AnimalProviderService {
         this.animalsSubject.next(Array.from(this.animalById.values()));
       });
   }
+
+  get(id: string): Animal {
+    return getOrThrow(this.animalById, id);
+  }
 }

@@ -30,7 +30,6 @@ export class AdaptionActionDisplayCardComponent implements OnInit {
       this.adaptionActionDisplayService.elements$.subscribe((elements) => {
         this.elements = elements;
       });
-      this.adaptionActionDisplayService.setup();
     });
   }
 }
