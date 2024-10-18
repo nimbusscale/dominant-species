@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
-import {CognitoClientService} from "./cognito-client.service";
+import { CognitoClientService } from './cognito-client.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SignUpService {
   constructor(private cognitoClientService: CognitoClientService) {}
 
   signUp(username: string, email: string, password: string): void {
-    this.cognitoClientService.signUp(username, email,password)
+    void this.cognitoClientService.signUp(username, email, password);
   }
 }

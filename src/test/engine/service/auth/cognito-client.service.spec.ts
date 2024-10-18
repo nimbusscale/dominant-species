@@ -1,7 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import {CognitoClientService} from "../../../../app/engine/service/auth/cognito-client.service";
-
-
+import { CognitoClientService } from '../../../../app/engine/service/auth/cognito-client.service';
 
 describe('CognitoClientService', () => {
   let service: CognitoClientService;

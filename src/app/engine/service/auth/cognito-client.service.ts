@@ -3,34 +3,34 @@ import {
   CognitoIdentityProviderClient,
   ConfirmSignUpCommand,
   SignUpCommand,
-  SignUpCommandOutput
-} from "@aws-sdk/client-cognito-identity-provider";
-import {environment} from "../../../../environments/environment";
+  SignUpCommandOutput,
+} from '@aws-sdk/client-cognito-identity-provider';
+import { environment } from '../../../../environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CognitoClientService {
-  private cognitoClient: CognitoIdentityProviderClient
+  private cognitoClient: CognitoIdentityProviderClient;
 
   constructor() {
     this.cognitoClient = new CognitoIdentityProviderClient({
-      region: environment.cognito.region
-    })
+      region: environment.cognito.region,
+    });
   }
 
   async signUp(username: string, email: string, password: string): Promise<SignUpCommandOutput> {
     const params = {
-    ClientId: environment.cognito.clientId,
-    Username: username,
-    Password: password,
-    UserAttributes: [
-      {
-        Name: "email",
-        Value: email,
-      },
-    ],
-  };
+      ClientId: environment.cognito.clientId,
+      Username: username,
+      Password: password,
+      UserAttributes: [
+        {
+          Name: 'email',
+          Value: email,
+        },
+      ],
+    };
     const command = new SignUpCommand(params);
     return await this.cognitoClient.send(command);
   }
@@ -46,7 +46,7 @@ export class CognitoClientService {
       await this.cognitoClient.send(command);
       return true;
     } catch (error) {
-      console.error("Error confirming sign up: ", error);
+      console.error('Error confirming sign up: ', error);
       return false;
     }
   }

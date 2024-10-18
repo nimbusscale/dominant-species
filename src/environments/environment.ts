@@ -1,6 +1,6 @@
-import {cognitoConfig} from "./cognito-config";
+import { cognitoConfig } from './cognito-config';
 
 export const environment = {
   production: true,
-  cognito: cognitoConfig
+  cognito: cognitoConfig,
 };

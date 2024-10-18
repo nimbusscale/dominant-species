@@ -5,7 +5,6 @@ import { Player } from '../model/player.model';
   providedIn: 'root',
 })
 export class PlayerService {
-
   readonly players: Player[] = [
     new Player({ id: 'test1', name: 'Test Player1' }),
     new Player({ id: 'test2', name: 'Test Player2' }),
