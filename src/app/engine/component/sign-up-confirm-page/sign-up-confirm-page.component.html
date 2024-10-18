@@ -1,0 +1,24 @@
+<body>
+  <mat-card appearance="outlined" class="sign-up-card">
+    <div class="card-header">Confirm Sign Up</div>
+    <mat-card-content>
+      <form [formGroup]="signUpConfirmForm" (ngSubmit)="onSubmit()" class="form-container">
+        <div class="form-row">
+          <label for="username">Username:</label>
+          <input id="username" formControlName="username" type="text" />
+        </div>
+
+        <div class="form-row">
+          <label for="code">Code:</label>
+          <input id="code" formControlName="code" type="text" />
+        </div>
+.
+        <div class="form-row">
+          <div class="spacer"></div>
+          <button mat-raised-button type="submit" [disabled]="signUpConfirmForm.invalid">Confirm</button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</body>
+

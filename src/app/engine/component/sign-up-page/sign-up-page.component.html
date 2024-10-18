@@ -17,15 +17,16 @@
           <label for="password">Password:</label>
           <input id="password" formControlName="password" type="password" />
         </div>
-
+.
         <!-- Submit Button Row -->
         <div class="form-row">
           <div class="spacer"></div>
-          <button type="submit" [disabled]="signUpForm.invalid">Sign Up</button>
+          <button mat-raised-button type="submit" [disabled]="signUpForm.invalid">Sign Up</button>
         </div>
 
         <!-- Error Message Row -->
-        <div class="form-row" *ngIf="signUpForm.invalid && signUpForm.dirty">
+        @if (signUpForm.invalid && signUpForm.dirty) {
+        <div class="form-row">
           <div class="spacer"></div>
           <div class="error-messages">
             @if (signUpForm.get('email')?.errors?.['email']) {
@@ -36,6 +37,8 @@
             }
           </div>
         </div>
+        }
+
       </form>
     </mat-card-content>
   </mat-card>

@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { SignUpService } from '../../service/auth/sign-up.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatCard, MatCardContent, MatCardHeader } from '@angular/material/card';
+import {MatButton} from "@angular/material/button";
+import {Router} from "@angular/router";
 
 interface SignUpFormData {
   username: string;
@@ -12,7 +14,7 @@ interface SignUpFormData {
 @Component({
   selector: 'app-sign-up-page',
   standalone: true,
-  imports: [ReactiveFormsModule, MatCard, MatCardHeader, MatCardContent],
+  imports: [ReactiveFormsModule, MatCard, MatCardHeader, MatCardContent, MatButton],
   templateUrl: './sign-up-page.component.html',
   styleUrl: './sign-up-page.component.scss',
 })
@@ -22,6 +24,7 @@ export class SignUpPageComponent {
   constructor(
     private formBuilder: FormBuilder,
     private signUpService: SignUpService,
+    private router: Router
   ) {
     this.signUpForm = this.formBuilder.group(
       {
@@ -37,6 +40,7 @@ export class SignUpPageComponent {
     if (this.signUpForm.valid) {
       const { username, email, password } = this.signUpForm.value as SignUpFormData;
       this.signUpService.signUp(username, email, password);
+      void this.router.navigate(['/sign-up-confirm']);
     }
   }
 }
