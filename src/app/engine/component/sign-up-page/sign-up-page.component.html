@@ -28,12 +28,12 @@
         <div class="form-row" *ngIf="signUpForm.invalid && signUpForm.dirty">
           <div class="spacer"></div>
           <div class="error-messages">
-            <div *ngIf="signUpForm.get('email')?.errors?.['email']">
-              Please enter a valid email.
-            </div>
-            <div *ngIf="signUpForm.get('password')?.errors?.['minlength']">
-              Password must be at least 6 characters long.
-            </div>
+            @if (signUpForm.get('email')?.errors?.['email']) {
+            <div>Please enter a valid email.</div>
+            }
+            @if (signUpForm.get('password')?.errors?.['minlength']) {
+              <div>Password must be at least 6 characters long.</div>
+            }
           </div>
         </div>
       </form>

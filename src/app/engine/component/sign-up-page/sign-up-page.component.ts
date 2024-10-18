@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { SignUpService } from '../../service/auth/sign-up.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { NgIf } from '@angular/common';
 import { MatCard, MatCardContent, MatCardHeader } from '@angular/material/card';
 
 interface SignUpFormData {
@@ -13,7 +12,7 @@ interface SignUpFormData {
 @Component({
   selector: 'app-sign-up-page',
   standalone: true,
-  imports: [NgIf, ReactiveFormsModule, MatCard, MatCardHeader, MatCardContent],
+  imports: [ReactiveFormsModule, MatCard, MatCardHeader, MatCardContent],
   templateUrl: './sign-up-page.component.html',
   styleUrl: './sign-up-page.component.scss',
 })
