@@ -32,6 +32,11 @@ export class UserPool extends cdk.Stack {
     selfSignUpEnabled: true,
     signInCaseSensitive: false,
     userPoolName: 'vpaPlayers',
+    userVerification: {
+      emailSubject: 'VPA Games Sign Up Confirmation',
+      emailBody: 'Your verification code is {####}<P>http://vpa-games.com/sign-up-confirm',
+      emailStyle: cognito.VerificationEmailStyle.CODE,
+    },
   })
 
   client = this.pool.addClient('vpaWebClient', {
