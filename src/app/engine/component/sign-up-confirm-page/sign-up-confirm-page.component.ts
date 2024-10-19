@@ -25,6 +25,7 @@ interface SignUpConfirmFormData {
 })
 export class SignUpConfirmPageComponent {
   signUpConfirmForm: FormGroup;
+  errorMessage: string | undefined = undefined;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -42,8 +43,14 @@ export class SignUpConfirmPageComponent {
   onSubmit(): void {
     if (this.signUpConfirmForm.valid) {
       const { username, code } = this.signUpConfirmForm.value as SignUpConfirmFormData
-      this.signUpService.confirmSignUp(username, code)
-      void this.router.navigate(['/login']);
+      this.signUpService.confirmSignUp(username, code).then((success) => {
+        if (success) {
+          void this.router.navigate(['/login']);
+        } else {
+          this.errorMessage = 'Sign up confirmation failed. See console for more information.';
+        }
+      })
+
     }
   }
 

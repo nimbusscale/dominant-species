@@ -8,10 +8,13 @@ export class LoginService {
 
   constructor(private cognitoClientService: CognitoClientService) { }
 
-  login(username: string, password: string): void {
-    this.cognitoClientService.login(username, password).then((authResult) => {
+  async login(username: string, password: string): Promise<boolean> {
+    const authResult = await  this.cognitoClientService.login(username, password)
+    if (authResult) {
       console.log(JSON.stringify(authResult))
+      return true
+    } else {
+      return false
     }
-    )
   }
 }

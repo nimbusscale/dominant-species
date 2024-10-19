@@ -26,6 +26,7 @@ interface LoginFormData {
 })
 export class LoginPageComponent {
   loginForm: FormGroup;
+  errorMessage: string | undefined = undefined;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -43,7 +44,13 @@ export class LoginPageComponent {
   onSubmit(): void {
     if (this.loginForm.valid) {
       const { username, password } = this.loginForm.value as LoginFormData
-      this.loginService.login(username, password)
+      this.loginService.login(username, password).then((success) => {
+        if (success) {
+          void this.router.navigate(['/game']);
+        } else {
+          this.errorMessage = 'Login failed. See console for more information.';
+        }
+      })
     }
   }
 
