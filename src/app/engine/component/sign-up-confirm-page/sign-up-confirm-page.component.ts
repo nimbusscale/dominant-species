@@ -43,6 +43,7 @@ export class SignUpConfirmPageComponent {
     if (this.signUpConfirmForm.valid) {
       const { username, code } = this.signUpConfirmForm.value as SignUpConfirmFormData
       this.signUpService.confirmSignUp(username, code)
+      void this.router.navigate(['/login']);
     }
   }
 
