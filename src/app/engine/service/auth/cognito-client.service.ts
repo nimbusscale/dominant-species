@@ -4,7 +4,6 @@ import {
   CognitoIdentityProviderClient,
   ConfirmSignUpCommand, InitiateAuthCommand, InitiateAuthCommandInput,
   SignUpCommand,
-  SignUpCommandOutput,
 } from '@aws-sdk/client-cognito-identity-provider';
 import { environment } from '../../../../environments/environment';
 

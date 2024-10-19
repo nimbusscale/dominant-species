@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component} from '@angular/core';
+import {Component} from '@angular/core';
 import { SignUpService } from '../../service/auth/sign-up.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatCard, MatCardContent, MatCardHeader } from '@angular/material/card';
@@ -40,7 +40,7 @@ export class SignUpPageComponent {
   onSubmit(): void {
     if (this.signUpForm.valid) {
       const { username, email, password } = this.signUpForm.value as SignUpFormData;
-      this.signUpService.signUp(username, email, password).then((success) => {
+      void this.signUpService.signUp(username, email, password).then((success) => {
         if (success) {
           void this.router.navigate(['/sign-up-confirm']);
         } else {

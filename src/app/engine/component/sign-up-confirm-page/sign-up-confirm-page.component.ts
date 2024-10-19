@@ -43,7 +43,7 @@ export class SignUpConfirmPageComponent {
   onSubmit(): void {
     if (this.signUpConfirmForm.valid) {
       const { username, code } = this.signUpConfirmForm.value as SignUpConfirmFormData
-      this.signUpService.confirmSignUp(username, code).then((success) => {
+      void this.signUpService.confirmSignUp(username, code).then((success) => {
         if (success) {
           void this.router.navigate(['/login']);
         } else {

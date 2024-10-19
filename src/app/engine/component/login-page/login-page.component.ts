@@ -44,7 +44,7 @@ export class LoginPageComponent {
   onSubmit(): void {
     if (this.loginForm.valid) {
       const { username, password } = this.loginForm.value as LoginFormData
-      this.loginService.login(username, password).then((success) => {
+      void this.loginService.login(username, password).then((success) => {
         if (success) {
           void this.router.navigate(['/game']);
         } else {
