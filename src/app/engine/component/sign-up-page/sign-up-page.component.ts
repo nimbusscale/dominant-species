@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {ChangeDetectorRef, Component} from '@angular/core';
 import { SignUpService } from '../../service/auth/sign-up.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatCard, MatCardContent, MatCardHeader } from '@angular/material/card';
@@ -20,11 +20,12 @@ interface SignUpFormData {
 })
 export class SignUpPageComponent {
   signUpForm: FormGroup;
+  errorMessage: string | undefined = undefined;
 
   constructor(
     private formBuilder: FormBuilder,
     private signUpService: SignUpService,
-    private router: Router
+    private router: Router,
   ) {
     this.signUpForm = this.formBuilder.group(
       {
@@ -39,8 +40,14 @@ export class SignUpPageComponent {
   onSubmit(): void {
     if (this.signUpForm.valid) {
       const { username, email, password } = this.signUpForm.value as SignUpFormData;
-      this.signUpService.signUp(username, email, password);
-      void this.router.navigate(['/sign-up-confirm']);
+      this.signUpService.signUp(username, email, password).then((success) => {
+        if (success) {
+          void this.router.navigate(['/sign-up-confirm']);
+        } else {
+          this.errorMessage = 'Sign up failed. See console for more information.';
+        }
+      });
+
     }
   }
 }

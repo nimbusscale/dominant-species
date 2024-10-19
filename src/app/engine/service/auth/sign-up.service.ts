@@ -7,12 +7,11 @@ import { CognitoClientService } from './cognito-client.service';
 export class SignUpService {
   constructor(private cognitoClientService: CognitoClientService) {}
 
-  // Todo: add signalling to the calling components if there was an error so something can be displayed to the end user
-  signUp(username: string, email: string, password: string): void {
-    void this.cognitoClientService.signUp(username, email, password);
+  async signUp(username: string, email: string, password: string): Promise<boolean> {
+    return this.cognitoClientService.signUp(username, email, password);
   }
 
-  confirmSignUp(username: string, code: string): void {
-    void this.cognitoClientService.confirmSignUp(username, code);
+  async confirmSignUp(username: string, code: string): Promise<boolean> {
+    return  this.cognitoClientService.confirmSignUp(username, code);
   }
 }

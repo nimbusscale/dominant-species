@@ -25,19 +25,24 @@
         </div>
 
         <!-- Error Message Row -->
-        @if (signUpForm.invalid && signUpForm.dirty) {
+
         <div class="form-row">
           <div class="spacer-text"></div>
           <div class="error-messages">
-            @if (signUpForm.get('email')?.errors?.['email']) {
-            <div>Please enter a valid email.</div>
+            @if (errorMessage) {
+              <div>{{errorMessage}}</div>
             }
-            @if (signUpForm.get('password')?.errors?.['minlength']) {
-              <div>Password must be at least 6 characters long.</div>
+            @if (signUpForm.invalid && signUpForm.dirty) {
+              @if (signUpForm.get('email')?.errors?.['email']) {
+              <div>Please enter a valid email.</div>
+              }
+              @if (signUpForm.get('password')?.errors?.['minlength']) {
+                <div>Password must be at least 6 characters long.</div>
+              }
             }
           </div>
         </div>
-        }
+
 
       </form>
     </mat-card-content>
