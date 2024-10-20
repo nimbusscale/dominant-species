@@ -1,7 +1,6 @@
-import { GameElement } from './game-element.model';
+import {GameElement, GameElementState} from './game-element.model';
 
-export interface PlayerState {
-  id: string;
+export interface PlayerState extends GameElementState{
   name: string;
 }
 
@@ -9,4 +8,10 @@ export class Player extends GameElement<PlayerState> {
   get name(): string {
     return this._state.name;
   }
+}
+
+export interface PlayerAuthData {
+  id: string;
+  accessToken: string;
+  refreshToken: string;
 }
