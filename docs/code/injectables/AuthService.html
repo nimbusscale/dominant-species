@@ -92,7 +92,7 @@
 
 <ol class="breadcrumb">
   <li class="breadcrumb-item">Injectables</li>
-  <li class="breadcrumb-item" >CognitoClientService</li>
+  <li class="breadcrumb-item" >AuthService</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -116,7 +116,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/engine/service/auth/cognito-client.service.ts</code>
+            <code>src/app/engine/service/auth/auth.service.ts</code>
         </p>
 
 
@@ -127,21 +127,6 @@
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <h6><b>Properties</b></h6>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <ul class="index-list">
-                            <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#cognitoClient" >cognitoClient</a>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
 
                 <tr>
                     <td class="col-md-4">
@@ -152,19 +137,19 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                    <span class="modifier">Async</span>
-                                <a href="#confirmSignUp" >confirmSignUp</a>
-                            </li>
-                            <li>
-                                <a href="#decodeJwtToken" >decodeJwtToken</a>
+                                    <span class="modifier">Private</span>
+                                <a href="#authResultToPlayerAuth" >authResultToPlayerAuth</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
                                 <a href="#login" >login</a>
                             </li>
                             <li>
-                                    <span class="modifier">Async</span>
-                                <a href="#signUp" >signUp</a>
+                                <a href="#logout" >logout</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#validatePlayerAuthData" >validatePlayerAuthData</a>
                             </li>
                         </ul>
                     </td>
@@ -174,6 +159,23 @@
 
 
 
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#playerAuthData" >playerAuthData</a>
+                                </li>
+                                <li>
+                                    <a href="#isLoggedIn" >isLoggedIn</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
         </tbody>
     </table>
 </section>
@@ -184,15 +186,57 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor()</code>
+<code>constructor(cognitoClientService: <a href="../injectables/CognitoClientService.html" target="_self">CognitoClientService</a>, localStorageService: <a href="../injectables/LocalStorageService.html" target="_self">LocalStorageService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/engine/service/auth/cognito-client.service.ts:27</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/engine/service/auth/auth.service.ts:12</a></div>
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>cognitoClientService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/CognitoClientService.html" target="_self" >CognitoClientService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>localStorageService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/LocalStorageService.html" target="_self" >LocalStorageService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
             </tbody>
         </table>
 </section>
@@ -206,26 +250,26 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="confirmSignUp"></a>
+                    <a name="authResultToPlayerAuth"></a>
                     <span class="name">
-                            <span class="modifier">Async</span>
-                        <span ><b>confirmSignUp</b></span>
-                        <a href="#confirmSignUp"><span class="icon ion-ios-link"></span></a>
+                            <span class="modifier">Private</span>
+                        <span ><b>authResultToPlayerAuth</b></span>
+                        <a href="#authResultToPlayerAuth"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>confirmSignUp(username: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, code: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <code>authResultToPlayerAuth(authResult: AuthenticationResultType)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="85"
-                                    class="link-to-prism">src/app/engine/service/auth/cognito-client.service.ts:85</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="18"
+                                    class="link-to-prism">src/app/engine/service/auth/auth.service.ts:18</a></div>
                         </td>
                     </tr>
 
@@ -246,21 +290,9 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                                <td>username</td>
+                                                <td>authResult</td>
                                             <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                        </tr>
-                                        <tr>
-                                                <td>code</td>
-                                            <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        <code>AuthenticationResultType</code>
                                             </td>
 
                                             <td>
@@ -273,74 +305,7 @@
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>    <code>Promise&lt;boolean&gt;</code>
-
-                        </div>
-                            <div class="io-description">
-                                
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="decodeJwtToken"></a>
-                    <span class="name">
-                        <span ><b>decodeJwtToken</b></span>
-                        <a href="#decodeJwtToken"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>decodeJwtToken(token: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="59"
-                                    class="link-to-prism">src/app/engine/service/auth/cognito-client.service.ts:59</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>token</td>
-                                            <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="../interfaces/CognitoJwtPayload.html" target="_self" >CognitoJwtPayload</a></code>
+                            <b>Returns : </b>        <code><a href="../interfaces/PlayerAuthData.html" target="_self" >PlayerAuthData</a></code>
 
                         </div>
                             <div class="io-description">
@@ -372,8 +337,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="35"
-                                    class="link-to-prism">src/app/engine/service/auth/cognito-client.service.ts:35</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="28"
+                                    class="link-to-prism">src/app/engine/service/auth/auth.service.ts:28</a></div>
                         </td>
                     </tr>
 
@@ -395,99 +360,6 @@
                                     <tbody>
                                         <tr>
                                                 <td>username</td>
-                                            <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                        </tr>
-                                        <tr>
-                                                <td>password</td>
-                                            <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <div class="io-description">
-                            <b>Returns : </b>    <code>Promise&lt;AuthenticationResultType | null&gt;</code>
-
-                        </div>
-                            <div class="io-description">
-                                
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="signUp"></a>
-                    <span class="name">
-                            <span class="modifier">Async</span>
-                        <span ><b>signUp</b></span>
-                        <a href="#signUp"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                        <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>signUp(username: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, email: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, password: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="63"
-                                    class="link-to-prism">src/app/engine/service/auth/cognito-client.service.ts:63</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>username</td>
-                                            <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                        </tr>
-                                        <tr>
-                                                <td>email</td>
                                             <td>
                                                             <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                             </td>
@@ -524,143 +396,228 @@
             </tr>
         </tbody>
     </table>
-</section>
-            <section data-compodoc="block-properties">
-    
-    <h3 id="inputs">
-        Properties
-    </h3>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="cognitoClient"></a>
+                    <a name="logout"></a>
                     <span class="name">
-                            <span class="modifier">Private</span>
-                        <span ><b>cognitoClient</b></span>
-                        <a href="#cognitoClient"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>logout</b></span>
+                        <a href="#logout"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>    <code>CognitoIdentityProviderClient</code>
+            <tr>
+                <td class="col-md-4">
+<code>logout()</code>
+                </td>
+            </tr>
 
-                    </td>
-                </tr>
+
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/engine/service/auth/cognito-client.service.ts:27</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="41"
+                                    class="link-to-prism">src/app/engine/service/auth/auth.service.ts:41</a></div>
                         </td>
                     </tr>
 
 
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="validatePlayerAuthData"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>validatePlayerAuthData</b></span>
+                        <a href="#validatePlayerAuthData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>validatePlayerAuthData(playerAuthData: <a href="../interfaces/PlayerAuthData.html" target="_self">PlayerAuthData</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="56"
+                                    class="link-to-prism">src/app/engine/service/auth/auth.service.ts:56</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>playerAuthData</td>
+                                            <td>
+                                                            <code><a href="../interfaces/PlayerAuthData.html" target="_self" >PlayerAuthData</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
         </tbody>
     </table>
 </section>
 
+            <section data-compodoc="block-accessors">
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="playerAuthData"></a>
+                        <span class="name"><b>playerAuthData</b><a href="#playerAuthData"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>playerAuthData()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/engine/service/auth/auth.service.ts:47</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="isLoggedIn"></a>
+                        <span class="name"><b>isLoggedIn</b><a href="#isLoggedIn"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>isLoggedIn()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/engine/service/auth/auth.service.ts:60</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+</section>
     </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
-import {
-  AuthenticationResultType,
-  CognitoIdentityProviderClient,
-  ConfirmSignUpCommand,
-  InitiateAuthCommand,
-  InitiateAuthCommandInput,
-  SignUpCommand,
-} from &#x27;@aws-sdk/client-cognito-identity-provider&#x27;;
-import { environment } from &#x27;../../../../environments/environment&#x27;;
-import { jwtDecode, JwtPayload } from &#x27;jwt-decode&#x27;;
-
-export interface CognitoJwtPayload extends JwtPayload {
-  client_id: string;
-  origin_jti: string;
-  event_id: string;
-  token_use: string;
-  scope: string;
-  auth_time: number;
-  username: string;
-}
+import { CognitoClientService } from &#x27;./cognito-client.service&#x27;;
+import { LocalStorageService } from &#x27;../local-storage.service&#x27;;
+import { AuthenticationResultType } from &#x27;@aws-sdk/client-cognito-identity-provider&#x27;;
+import { PlayerAuthData } from &#x27;../../model/player.model&#x27;;
+import { ensureDefined } from &#x27;../../util/misc&#x27;;
+import { LocalStorageKey } from &#x27;../../constant/local-storage&#x27;;
 
 @Injectable({
   providedIn: &#x27;root&#x27;,
 })
-export class CognitoClientService {
-  private cognitoClient: CognitoIdentityProviderClient;
+export class AuthService {
+  constructor(
+    private cognitoClientService: CognitoClientService,
+    private localStorageService: LocalStorageService,
+  ) {}
 
-  constructor() {
-    this.cognitoClient &#x3D; new CognitoIdentityProviderClient({
-      region: environment.cognito.region,
-    });
+  private authResultToPlayerAuth(authResult: AuthenticationResultType): PlayerAuthData {
+    const jwt &#x3D; this.cognitoClientService.decodeJwtToken(ensureDefined(authResult.AccessToken));
+    return {
+      id: ensureDefined(jwt.username),
+      accessToken: ensureDefined(authResult.AccessToken),
+      accessTokenExpire: ensureDefined(jwt.exp),
+      refreshToken: ensureDefined(authResult.RefreshToken),
+    };
   }
 
-  async login(username: string, password: string): Promise&lt;AuthenticationResultType | null&gt; {
-    const input &#x3D; {
-      AuthFlow: &#x27;USER_PASSWORD_AUTH&#x27;,
-      ClientId: environment.cognito.clientId,
-      AuthParameters: {
-        USERNAME: username,
-        PASSWORD: password,
-      },
-    } as InitiateAuthCommandInput;
-    const command &#x3D; new InitiateAuthCommand(input);
-    try {
-      const { AuthenticationResult } &#x3D; await this.cognitoClient.send(command);
-      if (AuthenticationResult) {
-        return AuthenticationResult;
-      } else {
-        console.error(&#x27;Unexpected AuthenticationResult&#x27;);
-        return null;
-      }
-    } catch (e) {
-      console.error(e);
+  async login(username: string, password: string): Promise&lt;boolean&gt; {
+    const authResult &#x3D; await this.cognitoClientService.login(username, password);
+    if (authResult) {
+      this.localStorageService.setStorageKey(
+        LocalStorageKey.PLAYER_AUTH_DATA,
+        JSON.stringify(this.authResultToPlayerAuth(authResult)),
+      );
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  logout(): void {
+    if (this.playerAuthData) {
+      this.localStorageService.deletedStorageKey(LocalStorageKey.PLAYER_AUTH_DATA);
+    }
+  }
+
+  get playerAuthData(): PlayerAuthData | null {
+    const playerAuthData &#x3D; this.localStorageService.getStorageKey(LocalStorageKey.PLAYER_AUTH_DATA);
+    if (playerAuthData) {
+      return JSON.parse(playerAuthData) as PlayerAuthData;
+    } else {
       return null;
     }
   }
 
-  decodeJwtToken(token: string): CognitoJwtPayload {
-    return jwtDecode(token);
+  private validatePlayerAuthData(playerAuthData: PlayerAuthData): boolean {
+    return Date.now() &lt; playerAuthData.accessTokenExpire * 1000;
   }
 
-  async signUp(username: string, email: string, password: string): Promise&lt;boolean&gt; {
-    const input &#x3D; {
-      ClientId: environment.cognito.clientId,
-      Username: username,
-      Password: password,
-      UserAttributes: [
-        {
-          Name: &#x27;email&#x27;,
-          Value: email,
-        },
-      ],
-    };
-    try {
-      const command &#x3D; new SignUpCommand(input);
-      void (await this.cognitoClient.send(command));
-      return true;
-    } catch (e) {
-      console.error(e);
-      return false;
-    }
-  }
-
-  async confirmSignUp(username: string, code: string): Promise&lt;boolean&gt; {
-    const input &#x3D; {
-      ClientId: environment.cognito.clientId,
-      Username: username,
-      ConfirmationCode: code,
-    };
-    try {
-      const command &#x3D; new ConfirmSignUpCommand(input);
-      void (await this.cognitoClient.send(command));
-      return true;
-    } catch (error) {
-      console.error(&#x27;Error confirming sign up: &#x27;, error);
-      return false;
-    }
+  get isLoggedIn(): boolean {
+    return !!(this.playerAuthData &amp;&amp; this.validatePlayerAuthData(this.playerAuthData));
   }
 }
 </code></pre>
@@ -706,7 +663,7 @@ export class CognitoClientService {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
-            var COMPODOC_CURRENT_PAGE_URL = 'CognitoClientService.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'AuthService.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 
