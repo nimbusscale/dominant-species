@@ -3,16 +3,16 @@
     <!-- Add a custom class to this tile -->
     <mat-grid-tile colspan="2">
       <div class="animal-card-title">
-        <app-action-pawn [actionPawn]="actionPawnForHeader"></app-action-pawn>
-        <span class="faction-name">{{ faction?.name }}</span>
+        <app-action-pawn [actionPawn]="actionPawnForHeader()"></app-action-pawn>
+        <span class="faction-name">{{ faction().name }}</span>
       </div>
     </mat-grid-tile>
     <mat-grid-tile colspan="2">
       <div class="element-display">
-        @for (element of elements; track $index) {
+        @for (element of elements(); track $index) {
           <app-element [element]="element"></app-element>
         }
-        @for (emptyElementSpace of emptyElementSpaces; track $index) {
+        @for (emptyElementSpace of emptyElementSpaces(); track $index) {
           <div class="circle-piece subdued-solid-border"></div>
         }
       </div>
@@ -23,10 +23,10 @@
       </mat-grid-tile>
       <mat-grid-tile colspan="1">Species</mat-grid-tile>
       <mat-grid-tile colspan="1">
-        <span class="piece-counter-number">{{ actionPawnPileLength }}</span>
+        <span class="piece-counter-number">{{ actionPawnPileLength() }}</span>
       </mat-grid-tile>
       <mat-grid-tile colspan="1"
-        ><span class="piece-counter-number">{{ speciesPileLength }}</span>
+        ><span class="piece-counter-number">{{ speciesPileLength() }}</span>
       </mat-grid-tile>
     </div>
   </mat-grid-list>

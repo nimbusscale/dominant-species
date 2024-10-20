@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {ChangeDetectionStrategy, Component, computed, input, Input, OnInit, signal} from '@angular/core';
 import { MatCard, MatCardTitle } from '@angular/material/card';
 import { defaultPieceFactory } from '../../../engine/model/piece.model';
 import { PieceKindEnum } from '../../constant/piece.constant';
@@ -17,56 +17,52 @@ import { isNotUndefined } from '../../../engine/util/predicate';
 @Component({
   selector: 'app-animal-card',
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [MatCard, MatCardTitle, ActionPawnComponent, MatGridList, MatGridTile, ElementComponent],
   templateUrl: './animal-card.component.html',
   styleUrl: './animal-card.component.scss',
 })
 export class AnimalCardComponent implements OnInit {
-  @Input() faction: Faction | undefined = undefined;
-  animal: Animal | undefined = undefined;
-  elements: ElementPiece[] = [];
-  emptyElementSpaces: null[] = [];
-  actionPawnPileLength = 0;
-  speciesPileLength = 0;
-  actionPawnForHeader: ActionPawnPiece | undefined = undefined;
+  faction = input.required<Faction>();
+  elements= signal<ElementPiece[]>([]);
+  emptyElementSpaces = signal<null[]>([])
+  actionPawnPileLength = signal(0);
+  speciesPileLength = signal(0);
+  actionPawnForHeader = computed(() => this.getActionPawnForHeader())
 
-  constructor(private animalProviderService: AnimalProviderService) {}
-
-  ngOnInit() {
-    if (!this.faction) {
-      throw new Error('faction not set');
-    }
-    this.setActionPawnForHeader(this.faction);
-    this.getAnimal(this.faction);
+  constructor(private animalProviderService: AnimalProviderService) {
   }
 
-  private getAnimal(faction: Faction): void {
+  ngOnInit() {
+    this.getAnimal();
+  }
+
+  private getAnimal(): void {
     this.animalProviderService.animals$
       .pipe(
         // filter((animals) => animals.some((animal) => animal.id === faction.id)),
-        map((animals) => animals.find((animal) => animal.id === faction.id)),
+        map((animals) => animals.find((animal) => animal.id === this.faction().id)),
         filter(isNotUndefined),
         first(),
       )
       .subscribe((animal) => {
-        this.animal = animal;
         animal.elements.elements$.subscribe((elements) => {
-          this.elements = elements;
-          this.emptyElementSpaces = Array(6 - this.elements.length).fill(null) as null[];
+          this.elements.set(elements);
+          this.emptyElementSpaces.set(Array(6 - elements.length).fill(null) as null[]);
         });
         animal.actionPawn.length$.subscribe((length) => {
-          this.actionPawnPileLength = length;
+          this.actionPawnPileLength.set(length) ;
         });
         animal.species.length$.subscribe((length) => {
-          this.speciesPileLength = length;
+          this.speciesPileLength.set(length);
         });
       });
   }
 
-  private setActionPawnForHeader(faction: Faction): void {
-    this.actionPawnForHeader = defaultPieceFactory(
+  private getActionPawnForHeader(): ActionPawnPiece {
+    return  defaultPieceFactory(
       PieceKindEnum.ACTION_PAWN,
-      faction.id,
+      this.faction().id,
     ) as ActionPawnPiece;
   }
 }
