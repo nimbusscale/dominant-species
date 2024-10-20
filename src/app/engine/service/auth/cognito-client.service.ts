@@ -8,6 +8,11 @@ import {
   SignUpCommand,
 } from '@aws-sdk/client-cognito-identity-provider';
 import { environment } from '../../../../environments/environment';
+import { jwtDecode, JwtPayload } from 'jwt-decode';
+
+interface CognitoJwtPayload extends JwtPayload {
+  'cognito:username': string;
+}
 
 @Injectable({
   providedIn: 'root',
@@ -43,6 +48,10 @@ export class CognitoClientService {
       console.error(e);
       return null;
     }
+  }
+
+  decodeJwtToken(token: string): CognitoJwtPayload {
+    return jwtDecode(token);
   }
 
   async signUp(username: string, email: string, password: string): Promise<boolean> {
