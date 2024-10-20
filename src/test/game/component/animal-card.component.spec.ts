@@ -13,7 +13,7 @@ import { of } from 'rxjs';
 import { Animal } from '../../../app/game/model/animal.model';
 import { AnimalProviderService } from '../../../app/game/service/animal-provider.service';
 import { defaultPieceFactory } from '../../../app/engine/model/piece.model';
-import {PlayerService} from "../../../app/engine/service/player.service";
+import { PlayerService } from '../../../app/engine/service/player.service';
 
 // Mock components for testing
 @Component({
@@ -36,25 +36,25 @@ describe('AnimalCardComponent', () => {
   let component: AnimalCardComponent;
   let fixture: ComponentFixture<AnimalCardComponent>;
   let debugElement: DebugElement;
-  let componentRef
+  let componentRef;
   let mockCurrentPlayerFaction: jasmine.SpyObj<Faction>;
   let mockOtherPlayerFaction: jasmine.SpyObj<Faction>;
   let mockReptile: jasmine.SpyObj<Animal>;
   let mockBird: jasmine.SpyObj<Animal>;
   let mockAnimalProviderService: jasmine.SpyObj<AnimalProviderService>;
-  let mockPlayerService: jasmine.SpyObj<PlayerService>
+  let mockPlayerService: jasmine.SpyObj<PlayerService>;
 
   beforeEach(async () => {
     mockCurrentPlayerFaction = jasmine.createSpyObj('Faction', [], {
       id: AnimalEnum.REPTILE,
       name: AnimalEnum.REPTILE,
-      ownerId: 'currentPlayer'
+      ownerId: 'currentPlayer',
     });
 
     mockOtherPlayerFaction = jasmine.createSpyObj('Faction', [], {
       id: AnimalEnum.BIRD,
       name: AnimalEnum.BIRD,
-      ownerId: 'otherPlayer'
+      ownerId: 'otherPlayer',
     });
 
     mockReptile = jasmine.createSpyObj('Animal', ['id'], {
@@ -93,16 +93,18 @@ describe('AnimalCardComponent', () => {
     });
 
     mockPlayerService = jasmine.createSpyObj('PlayerService', [], {
-      'currentPlayer': {
-        id: 'currentPlayer'
-      }
-    })
+      currentPlayer: {
+        id: 'currentPlayer',
+      },
+    });
 
     await TestBed.configureTestingModule({
       declarations: [MockActionPawnComponent, MockElementComponent],
       imports: [AnimalCardComponent, MatCardModule, MatGridListModule],
-      providers: [{ provide: AnimalProviderService, useValue: mockAnimalProviderService },
-        {provide: PlayerService, useValue: mockPlayerService }],
+      providers: [
+        { provide: AnimalProviderService, useValue: mockAnimalProviderService },
+        { provide: PlayerService, useValue: mockPlayerService },
+      ],
     }).compileComponents();
   });
 
@@ -111,8 +113,8 @@ describe('AnimalCardComponent', () => {
       fixture = TestBed.createComponent(AnimalCardComponent);
       debugElement = fixture.debugElement;
       component = fixture.componentInstance;
-      componentRef = fixture.componentRef
-      componentRef.setInput('faction', mockCurrentPlayerFaction)
+      componentRef = fixture.componentRef;
+      componentRef.setInput('faction', mockCurrentPlayerFaction);
       component.ngOnInit();
       fixture.detectChanges();
     });
@@ -122,7 +124,7 @@ describe('AnimalCardComponent', () => {
       expect(factionName.textContent).toContain(AnimalEnum.REPTILE);
     });
     it('should bold faction name', () => {
-      const factionName = debugElement.query(By.css('.animal-card-title span'))
+      const factionName = debugElement.query(By.css('.animal-card-title span'));
       expect(factionName.classes['current-player-animal']).toBeTrue();
     });
     it('should display the correct number of action pawns', () => {
@@ -162,14 +164,14 @@ describe('AnimalCardComponent', () => {
       fixture = TestBed.createComponent(AnimalCardComponent);
       debugElement = fixture.debugElement;
       component = fixture.componentInstance;
-      componentRef = fixture.componentRef
-      componentRef.setInput('faction', mockOtherPlayerFaction)
+      componentRef = fixture.componentRef;
+      componentRef.setInput('faction', mockOtherPlayerFaction);
       component.ngOnInit();
       fixture.detectChanges();
     });
     it('should not bold faction name', () => {
-      const factionName = debugElement.query(By.css('.animal-card-title span'))
+      const factionName = debugElement.query(By.css('.animal-card-title span'));
       expect(factionName.classes['current-player-animal']).not.toBeTrue();
     });
-  })
+  });
 });

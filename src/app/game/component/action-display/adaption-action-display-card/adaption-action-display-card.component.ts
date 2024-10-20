@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, OnInit, signal} from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, signal } from '@angular/core';
 import { MatCard } from '@angular/material/card';
 import { ElementSpaceComponent } from '../space/element-space/element-space.component';
 import { EyeballComponent } from '../space/eyeball/eyeball.component';

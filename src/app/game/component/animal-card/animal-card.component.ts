@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, computed, input, Input, OnInit, signal} from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, OnInit, signal } from '@angular/core';
 import { MatCard, MatCardTitle } from '@angular/material/card';
 import { defaultPieceFactory } from '../../../engine/model/piece.model';
 import { PieceKindEnum } from '../../constant/piece.constant';
@@ -11,31 +11,41 @@ import { ElementPiece } from '../../model/element.model';
 import { ElementComponent } from '../element/element.component';
 import { AnimalProviderService } from '../../service/animal-provider.service';
 import { isNotUndefined } from '../../../engine/util/predicate';
-import {PlayerService} from "../../../engine/service/player.service";
-import {NgClass} from "@angular/common";
+import { PlayerService } from '../../../engine/service/player.service';
+import { NgClass } from '@angular/common';
 
 // Todo: change to OnPush
 @Component({
   selector: 'app-animal-card',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [MatCard, MatCardTitle, ActionPawnComponent, MatGridList, MatGridTile, ElementComponent, NgClass],
+  imports: [
+    MatCard,
+    MatCardTitle,
+    ActionPawnComponent,
+    MatGridList,
+    MatGridTile,
+    ElementComponent,
+    NgClass,
+  ],
   templateUrl: './animal-card.component.html',
   styleUrl: './animal-card.component.scss',
 })
 export class AnimalCardComponent implements OnInit {
   faction = input.required<Faction>();
-  elements= signal<ElementPiece[]>([]);
-  emptyElementSpaces = signal<null[]>([])
+  elements = signal<ElementPiece[]>([]);
+  emptyElementSpaces = signal<null[]>([]);
   actionPawnPileLength = signal(0);
   speciesPileLength = signal(0);
-  actionPawnForHeader = computed(() => this.getActionPawnForHeader())
-  currentPlayerAnimal = computed(() => this.faction().ownerId === this.playerService.currentPlayer.id)
+  actionPawnForHeader = computed(() => this.getActionPawnForHeader());
+  currentPlayerAnimal = computed(
+    () => this.faction().ownerId === this.playerService.currentPlayer.id,
+  );
 
   constructor(
     private animalProviderService: AnimalProviderService,
-    private playerService: PlayerService) {
-  }
+    private playerService: PlayerService,
+  ) {}
 
   ngOnInit() {
     this.getAnimal();
@@ -54,7 +64,7 @@ export class AnimalCardComponent implements OnInit {
           this.emptyElementSpaces.set(Array(6 - elements.length).fill(null) as null[]);
         });
         animal.actionPawn.length$.subscribe((length) => {
-          this.actionPawnPileLength.set(length) ;
+          this.actionPawnPileLength.set(length);
         });
         animal.species.length$.subscribe((length) => {
           this.speciesPileLength.set(length);
@@ -63,9 +73,6 @@ export class AnimalCardComponent implements OnInit {
   }
 
   private getActionPawnForHeader(): ActionPawnPiece {
-    return  defaultPieceFactory(
-      PieceKindEnum.ACTION_PAWN,
-      this.faction().id,
-    ) as ActionPawnPiece;
+    return defaultPieceFactory(PieceKindEnum.ACTION_PAWN, this.faction().id) as ActionPawnPiece;
   }
 }
