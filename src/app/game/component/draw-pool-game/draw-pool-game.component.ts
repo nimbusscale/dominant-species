@@ -76,9 +76,9 @@ export class DrawPoolGameComponent {
       this.factions = factionAssignments.map((factionAssignment) =>
         this.factionRegistrySvc.get(factionAssignment.id),
       );
-      // this.currentPlayerFaction = this.factions.find(
-      //   (faction) => faction.ownerId === this.playerService.currentPlayer.id,
-      // );
+      this.currentPlayerFaction = this.factions.find(
+        (faction) => faction.ownerId === this.playerService.currentPlayer.id,
+      );
     });
     this.gameStarted = true;
   }
