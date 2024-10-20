@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { LoginService } from '../../service/auth/login.service';
+import { AuthService } from '../../service/auth/auth.service';
 import { MatButton } from '@angular/material/button';
 import { MatCard, MatCardContent } from '@angular/material/card';
 
@@ -24,7 +24,7 @@ export class LoginPageComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    private loginService: LoginService,
+    private loginService: AuthService,
     private router: Router,
   ) {
     this.loginForm = this.formBuilder.group({

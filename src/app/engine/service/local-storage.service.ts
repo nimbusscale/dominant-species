@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
@@ -8,12 +8,8 @@ export class LocalStorageService {
     localStorage.removeItem(key);
   }
 
-  getStorageKey(key: string): string {
-    const item = localStorage.getItem(key);
-    if (item === null) {
-      throw new Error(`Could not get storage key: ${key}`);
-    }
-    return item;
+  getStorageKey(key: string): string | null {
+    return localStorage.getItem(key);
   }
 
   setStorageKey(key: string, value: string): void {
