@@ -1,16 +1,31 @@
 import { TestBed } from '@angular/core/testing';
 
 import { PlayerService } from '../../../app/engine/service/player.service';
+import { AuthService } from '../../../app/engine/service/auth/auth.service';
 
 describe('PlayerService', () => {
-  let service: PlayerService;
+  let playerService: PlayerService;
+  let mockAuthService: jasmine.SpyObj<AuthService>;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(PlayerService);
+    mockAuthService = jasmine.createSpyObj<AuthService>('AuthService', [], {
+      playerAuthData: {
+        id: 'tester1',
+        accessToken: 'test',
+        accessTokenExpire: 100,
+        refreshToken: 'test',
+      },
+    });
+
+    TestBed.configureTestingModule({
+      providers: [{ provide: AuthService, useValue: mockAuthService }],
+    });
+    playerService = TestBed.inject(PlayerService);
   });
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
+  describe('currentPlayer', () => {
+    it('should return the current player', () => {
+      expect(playerService.currentPlayer.id).toEqual('tester1');
+    });
   });
 });

@@ -13,6 +13,7 @@ import { of } from 'rxjs';
 import { Animal } from '../../../app/game/model/animal.model';
 import { AnimalProviderService } from '../../../app/game/service/animal-provider.service';
 import { defaultPieceFactory } from '../../../app/engine/model/piece.model';
+import { PlayerService } from '../../../app/engine/service/player.service';
 
 // Mock components for testing
 @Component({
@@ -35,17 +36,28 @@ describe('AnimalCardComponent', () => {
   let component: AnimalCardComponent;
   let fixture: ComponentFixture<AnimalCardComponent>;
   let debugElement: DebugElement;
-  let mockFaction: jasmine.SpyObj<Faction>;
-  let mockAnimal: jasmine.SpyObj<Animal>;
+  let componentRef;
+  let mockCurrentPlayerFaction: jasmine.SpyObj<Faction>;
+  let mockOtherPlayerFaction: jasmine.SpyObj<Faction>;
+  let mockReptile: jasmine.SpyObj<Animal>;
+  let mockBird: jasmine.SpyObj<Animal>;
   let mockAnimalProviderService: jasmine.SpyObj<AnimalProviderService>;
+  let mockPlayerService: jasmine.SpyObj<PlayerService>;
 
   beforeEach(async () => {
-    mockFaction = jasmine.createSpyObj('Faction', [], {
+    mockCurrentPlayerFaction = jasmine.createSpyObj('Faction', [], {
       id: AnimalEnum.REPTILE,
       name: AnimalEnum.REPTILE,
+      ownerId: 'currentPlayer',
     });
 
-    mockAnimal = jasmine.createSpyObj('Animal', ['id'], {
+    mockOtherPlayerFaction = jasmine.createSpyObj('Faction', [], {
+      id: AnimalEnum.BIRD,
+      name: AnimalEnum.BIRD,
+      ownerId: 'otherPlayer',
+    });
+
+    mockReptile = jasmine.createSpyObj('Animal', ['id'], {
       id: AnimalEnum.REPTILE,
       elements: {
         elements$: of([
@@ -60,23 +72,49 @@ describe('AnimalCardComponent', () => {
         length$: of(55),
       },
     });
+    mockBird = jasmine.createSpyObj('Animal', ['id'], {
+      id: AnimalEnum.BIRD,
+      elements: {
+        elements$: of([
+          defaultPieceFactory(ElementEnum.SEED),
+          defaultPieceFactory(ElementEnum.SEED),
+        ] as ElementPiece[]),
+      },
+      actionPawn: {
+        length$: of(7),
+      },
+      species: {
+        length$: of(55),
+      },
+    });
+
     mockAnimalProviderService = jasmine.createSpyObj('AnimalProviderService', [], {
-      animals$: of([mockAnimal]),
+      animals$: of([mockReptile, mockBird]),
+    });
+
+    mockPlayerService = jasmine.createSpyObj('PlayerService', [], {
+      currentPlayer: {
+        id: 'currentPlayer',
+      },
     });
 
     await TestBed.configureTestingModule({
       declarations: [MockActionPawnComponent, MockElementComponent],
       imports: [AnimalCardComponent, MatCardModule, MatGridListModule],
-      providers: [{ provide: AnimalProviderService, useValue: mockAnimalProviderService }],
+      providers: [
+        { provide: AnimalProviderService, useValue: mockAnimalProviderService },
+        { provide: PlayerService, useValue: mockPlayerService },
+      ],
     }).compileComponents();
   });
 
-  describe('Render Template', () => {
+  describe('Render Template for Current Player', () => {
     beforeEach(() => {
       fixture = TestBed.createComponent(AnimalCardComponent);
       debugElement = fixture.debugElement;
       component = fixture.componentInstance;
-      component.faction = mockFaction;
+      componentRef = fixture.componentRef;
+      componentRef.setInput('faction', mockCurrentPlayerFaction);
       component.ngOnInit();
       fixture.detectChanges();
     });
@@ -84,6 +122,10 @@ describe('AnimalCardComponent', () => {
       const factionName = debugElement.query(By.css('.animal-card-title span'))
         .nativeElement as HTMLElement;
       expect(factionName.textContent).toContain(AnimalEnum.REPTILE);
+    });
+    it('should bold faction name', () => {
+      const factionName = debugElement.query(By.css('.animal-card-title span'));
+      expect(factionName.classes['current-player-animal']).toBeTrue();
     });
     it('should display the correct number of action pawns', () => {
       const actionPawnCount = debugElement.query(By.css('.piece-counter-number'))
@@ -103,7 +145,7 @@ describe('AnimalCardComponent', () => {
       const actionPawnDebugElement = debugElement.query(By.css('app-action-pawn'));
       const actionPawnComponent =
         actionPawnDebugElement.componentInstance as MockActionPawnComponent;
-      expect(actionPawnComponent.actionPawn).toBe(component.actionPawnForHeader);
+      expect(actionPawnComponent.actionPawn).toBe(component.actionPawnForHeader());
     });
     it('should pass the correct elements to the app-element components', () => {
       const elementComponents = debugElement.queryAll(By.css('app-element'));
@@ -115,6 +157,21 @@ describe('AnimalCardComponent', () => {
         expect(firstElementComponent.element.kind).toEqual(ElementEnum.SUN);
         expect(secondElementComponent.element.kind).toEqual(ElementEnum.SUN);
       }
+    });
+  });
+  describe('Render Template for Other Player', () => {
+    beforeEach(() => {
+      fixture = TestBed.createComponent(AnimalCardComponent);
+      debugElement = fixture.debugElement;
+      component = fixture.componentInstance;
+      componentRef = fixture.componentRef;
+      componentRef.setInput('faction', mockOtherPlayerFaction);
+      component.ngOnInit();
+      fixture.detectChanges();
+    });
+    it('should not bold faction name', () => {
+      const factionName = debugElement.query(By.css('.animal-card-title span'));
+      expect(factionName.classes['current-player-animal']).not.toBeTrue();
     });
   });
 });

@@ -3,15 +3,18 @@
 }
 
 .animal-card-title {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: flex-start;
   text-align: left;
-  font-size: 32px;
-  font-weight: bold;
   gap: 10px;
   width: 100% !important;
   padding-left: 10px;
+  font-size: 32px;
+}
+
+.current-player-animal {
+  font-weight: bold;
 }
 
 .element-display {
