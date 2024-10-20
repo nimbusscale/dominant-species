@@ -35,6 +35,7 @@ module.exports = tseslint.config(
           style: "kebab-case",
         },
       ],
+      "@typescript-eslint/unbound-method": "off"
     },
   },
   {
