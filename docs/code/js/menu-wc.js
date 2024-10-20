@@ -85,6 +85,15 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             <li class="link">
                                 <a href="components/EyeballComponent.html" data-type="entity-link" >EyeballComponent</a>
                             </li>
+                            <li class="link">
+                                <a href="components/LoginPageComponent.html" data-type="entity-link" >LoginPageComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/SignUpConfirmPageComponent.html" data-type="entity-link" >SignUpConfirmPageComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/SignUpPageComponent.html" data-type="entity-link" >SignUpPageComponent</a>
+                            </li>
                         </ul>
                     </li>
                     <li class="chapter">
@@ -151,6 +160,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     <a href="injectables/AreaStateService.html" data-type="entity-link" >AreaStateService</a>
                                 </li>
                                 <li class="link">
+                                    <a href="injectables/CognitoClientService.html" data-type="entity-link" >CognitoClientService</a>
+                                </li>
+                                <li class="link">
                                     <a href="injectables/ElementDrawPoolService.html" data-type="entity-link" >ElementDrawPoolService</a>
                                 </li>
                                 <li class="link">
@@ -181,6 +193,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     <a href="injectables/GameStateStoreService.html" data-type="entity-link" >GameStateStoreService</a>
                                 </li>
                                 <li class="link">
+                                    <a href="injectables/LoginService.html" data-type="entity-link" >LoginService</a>
+                                </li>
+                                <li class="link">
                                     <a href="injectables/PileRegistryService.html" data-type="entity-link" >PileRegistryService</a>
                                 </li>
                                 <li class="link">
@@ -188,6 +203,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 </li>
                                 <li class="link">
                                     <a href="injectables/PlayerService.html" data-type="entity-link" >PlayerService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="injectables/SignUpService.html" data-type="entity-link" >SignUpService</a>
                                 </li>
                             </ul>
                         </li>
@@ -236,6 +254,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/GameStatePatch.html" data-type="entity-link" >GameStatePatch</a>
                             </li>
                             <li class="link">
+                                <a href="interfaces/LoginFormData.html" data-type="entity-link" >LoginFormData</a>
+                            </li>
+                            <li class="link">
                                 <a href="interfaces/Piece.html" data-type="entity-link" >Piece</a>
                             </li>
                             <li class="link">
@@ -246,6 +267,12 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="interfaces/PlayerState.html" data-type="entity-link" >PlayerState</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/SignUpConfirmFormData.html" data-type="entity-link" >SignUpConfirmFormData</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/SignUpFormData.html" data-type="entity-link" >SignUpFormData</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/SpaceState.html" data-type="entity-link" >SpaceState</a>
