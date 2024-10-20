@@ -728,9 +728,9 @@ export class DrawPoolGameComponent {
       const factionAssignment &#x3D; factionAssignments[0];
       this.factions &#x3D; [this.factionRegistrySvc.get(factionAssignment.id)];
 
-      // this.factions &#x3D; factionAssignments.map((factionAssignment) &#x3D;&gt;
-      //   this.factionRegistrySvc.get(factionAssignment.id),
-      // );
+      this.factions &#x3D; factionAssignments.map((factionAssignment) &#x3D;&gt;
+        this.factionRegistrySvc.get(factionAssignment.id),
+      );
       this.currentPlayerFaction &#x3D; this.factions.find(
         (faction) &#x3D;&gt; faction.ownerId &#x3D;&#x3D;&#x3D; this.playerService.currentPlayer.id,
       );
