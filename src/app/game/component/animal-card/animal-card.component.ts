@@ -10,7 +10,6 @@ import { filter, first, map } from 'rxjs';
 import { ElementPiece } from '../../model/element.model';
 import { ElementComponent } from '../element/element.component';
 import { AnimalProviderService } from '../../service/animal-provider.service';
-import { Animal } from '../../model/animal.model';
 import { isNotUndefined } from '../../../engine/util/predicate';
 
 // Todo: change to OnPush

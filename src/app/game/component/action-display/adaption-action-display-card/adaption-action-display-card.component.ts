@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit, signal} from '@angular/core';
 import { MatCard } from '@angular/material/card';
 import { ElementSpaceComponent } from '../space/element-space/element-space.component';
 import { EyeballComponent } from '../space/eyeball/eyeball.component';
@@ -12,23 +12,24 @@ import { isTrue } from '../../../../engine/util/predicate';
 @Component({
   selector: 'app-adaption-action-display-card',
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [MatCard, ElementSpaceComponent, EyeballComponent, ActionPawnSpaceComponent],
   templateUrl: './adaption-action-display-card.component.html',
   styleUrl: './adaption-action-display-card.component.scss',
 })
 export class AdaptionActionDisplayCardComponent implements OnInit {
-  actionPawns: (ActionPawnPiece | null)[] = [];
-  elements: (ElementPiece | null)[] = [];
+  actionPawns = signal<(ActionPawnPiece | null)[]>([]);
+  elements = signal<(ElementPiece | null)[]>([]);
 
   constructor(private adaptionActionDisplayService: AdaptionActionDisplayService) {}
 
   ngOnInit() {
     this.adaptionActionDisplayService.ready$.pipe(filter(isTrue), first()).subscribe(() => {
       this.adaptionActionDisplayService.actionPawns$.subscribe((actionPawns) => {
-        this.actionPawns = actionPawns;
+        this.actionPawns.set(actionPawns);
       });
       this.adaptionActionDisplayService.elements$.subscribe((elements) => {
-        this.elements = elements;
+        this.elements.set(elements);
       });
     });
   }
