@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { LoginService } from '../../service/auth/login.service';
@@ -13,13 +13,14 @@ interface LoginFormData {
 @Component({
   selector: 'app-login-page',
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [MatButton, MatCard, MatCardContent, ReactiveFormsModule, RouterLink],
   templateUrl: './login-page.component.html',
   styleUrl: './login-page.component.scss',
 })
 export class LoginPageComponent {
   loginForm: FormGroup;
-  errorMessage: string | undefined = undefined;
+  errorMessage = signal('');
 
   constructor(
     private formBuilder: FormBuilder,
@@ -39,7 +40,7 @@ export class LoginPageComponent {
         if (success) {
           void this.router.navigate(['/game']);
         } else {
-          this.errorMessage = 'Login failed. See console for more information.';
+          this.errorMessage.set('Login failed. See console for more information.');
         }
       });
     }

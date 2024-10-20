@@ -22,8 +22,8 @@
         <div class="form-row">
           <div class="spacer-text"></div>
           <div class="error-messages">
-            @if (errorMessage) {
-              <div>{{ errorMessage }}</div>
+            @if (errorMessage()) {
+              <div>{{ errorMessage() }}</div>
             }
           </div>
         </div>

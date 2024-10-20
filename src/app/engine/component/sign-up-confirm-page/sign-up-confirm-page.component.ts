@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SignUpService } from '../../service/auth/sign-up.service';
 import { MatCard, MatCardContent } from '@angular/material/card';
@@ -13,13 +13,14 @@ interface SignUpConfirmFormData {
 @Component({
   selector: 'app-sign-up-confirm-page',
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [ReactiveFormsModule, MatCard, MatCardContent, MatButton],
   templateUrl: './sign-up-confirm-page.component.html',
   styleUrl: './sign-up-confirm-page.component.scss',
 })
 export class SignUpConfirmPageComponent {
   signUpConfirmForm: FormGroup;
-  errorMessage: string | undefined = undefined;
+  errorMessage = signal('');
 
   constructor(
     private formBuilder: FormBuilder,
@@ -39,7 +40,7 @@ export class SignUpConfirmPageComponent {
         if (success) {
           void this.router.navigate(['/login']);
         } else {
-          this.errorMessage = 'Sign up confirmation failed. See console for more information.';
+          this.errorMessage.set('Sign up confirmation failed. See console for more information.');
         }
       });
     }
