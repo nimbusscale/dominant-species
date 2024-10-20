@@ -4,7 +4,7 @@
     <mat-grid-tile colspan="2">
       <div class="animal-card-title">
         <app-action-pawn [actionPawn]="actionPawnForHeader()"></app-action-pawn>
-        <span class="faction-name">{{ faction().name }}</span>
+        <span [ngClass]="{ 'current-player-animal': currentPlayerAnimal() }">{{ faction().name }}</span>
       </div>
     </mat-grid-tile>
     <mat-grid-tile colspan="2">

@@ -73,12 +73,12 @@ export class DrawPoolGameComponent {
       const factionAssignment = factionAssignments[0];
       this.factions = [this.factionRegistrySvc.get(factionAssignment.id)];
 
-      // this.factions = factionAssignments.map((factionAssignment) =>
-      //   this.factionRegistrySvc.get(factionAssignment.id),
-      // );
-      this.currentPlayerFaction = this.factions.find(
-        (faction) => faction.ownerId === this.playerService.currentPlayer.id,
+      this.factions = factionAssignments.map((factionAssignment) =>
+        this.factionRegistrySvc.get(factionAssignment.id),
       );
+      // this.currentPlayerFaction = this.factions.find(
+      //   (faction) => faction.ownerId === this.playerService.currentPlayer.id,
+      // );
     });
     this.gameStarted = true;
   }

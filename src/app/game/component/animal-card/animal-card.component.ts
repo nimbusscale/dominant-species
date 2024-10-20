@@ -11,13 +11,15 @@ import { ElementPiece } from '../../model/element.model';
 import { ElementComponent } from '../element/element.component';
 import { AnimalProviderService } from '../../service/animal-provider.service';
 import { isNotUndefined } from '../../../engine/util/predicate';
+import {PlayerService} from "../../../engine/service/player.service";
+import {NgClass} from "@angular/common";
 
 // Todo: change to OnPush
 @Component({
   selector: 'app-animal-card',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [MatCard, MatCardTitle, ActionPawnComponent, MatGridList, MatGridTile, ElementComponent],
+  imports: [MatCard, MatCardTitle, ActionPawnComponent, MatGridList, MatGridTile, ElementComponent, NgClass],
   templateUrl: './animal-card.component.html',
   styleUrl: './animal-card.component.scss',
 })
@@ -28,8 +30,11 @@ export class AnimalCardComponent implements OnInit {
   actionPawnPileLength = signal(0);
   speciesPileLength = signal(0);
   actionPawnForHeader = computed(() => this.getActionPawnForHeader())
+  currentPlayerAnimal = computed(() => this.faction().ownerId === this.playerService.currentPlayer.id)
 
-  constructor(private animalProviderService: AnimalProviderService) {
+  constructor(
+    private animalProviderService: AnimalProviderService,
+    private playerService: PlayerService) {
   }
 
   ngOnInit() {
@@ -39,7 +44,6 @@ export class AnimalCardComponent implements OnInit {
   private getAnimal(): void {
     this.animalProviderService.animals$
       .pipe(
-        // filter((animals) => animals.some((animal) => animal.id === faction.id)),
         map((animals) => animals.find((animal) => animal.id === this.faction().id)),
         filter(isNotUndefined),
         first(),
