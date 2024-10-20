@@ -10,8 +10,14 @@ import {
 import { environment } from '../../../../environments/environment';
 import { jwtDecode, JwtPayload } from 'jwt-decode';
 
-interface CognitoJwtPayload extends JwtPayload {
-  'cognito:username': string;
+export interface CognitoJwtPayload extends JwtPayload {
+  client_id: string;
+  origin_jti: string;
+  event_id: string;
+  token_use: string;
+  scope: string;
+  auth_time: number;
+  username: string;
 }
 
 @Injectable({
