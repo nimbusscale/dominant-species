@@ -17,7 +17,7 @@
           <label for="password">Password:</label>
           <input id="password" formControlName="password" type="password" />
         </div>
-.
+        .
         <!-- Submit Button Row -->
         <div class="form-row">
           <div class="spacer-text"></div>
@@ -30,20 +30,18 @@
           <div class="spacer-text"></div>
           <div class="error-messages">
             @if (errorMessage) {
-              <div>{{errorMessage}}</div>
+              <div>{{ errorMessage }}</div>
             }
             @if (signUpForm.invalid && signUpForm.dirty) {
-              @if (signUpForm.get('email')?.errors?.['email']) {
-              <div>Please enter a valid email.</div>
+              @if (signUpForm.get("email")?.errors?.["email"]) {
+                <div>Please enter a valid email.</div>
               }
-              @if (signUpForm.get('password')?.errors?.['minlength']) {
+              @if (signUpForm.get("password")?.errors?.["minlength"]) {
                 <div>Password must be at least 6 characters long.</div>
               }
             }
           </div>
         </div>
-
-
       </form>
     </mat-card-content>
   </mat-card>

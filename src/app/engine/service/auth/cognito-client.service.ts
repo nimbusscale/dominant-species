@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import {
   AuthenticationResultType,
   CognitoIdentityProviderClient,
-  ConfirmSignUpCommand, InitiateAuthCommand, InitiateAuthCommandInput,
+  ConfirmSignUpCommand,
+  InitiateAuthCommand,
+  InitiateAuthCommandInput,
   SignUpCommand,
 } from '@aws-sdk/client-cognito-identity-provider';
 import { environment } from '../../../../environments/environment';
@@ -21,7 +23,7 @@ export class CognitoClientService {
 
   async login(username: string, password: string): Promise<AuthenticationResultType | null> {
     const input = {
-      AuthFlow: "USER_PASSWORD_AUTH",
+      AuthFlow: 'USER_PASSWORD_AUTH',
       ClientId: environment.cognito.clientId,
       AuthParameters: {
         USERNAME: username,
@@ -32,14 +34,14 @@ export class CognitoClientService {
     try {
       const { AuthenticationResult } = await this.cognitoClient.send(command);
       if (AuthenticationResult) {
-        return AuthenticationResult
+        return AuthenticationResult;
       } else {
         console.error('Unexpected AuthenticationResult');
-        return null
+        return null;
       }
     } catch (e) {
       console.error(e);
-      return null
+      return null;
     }
   }
 
@@ -57,13 +59,12 @@ export class CognitoClientService {
     };
     try {
       const command = new SignUpCommand(input);
-      void await this.cognitoClient.send(command);
-      return true
+      void (await this.cognitoClient.send(command));
+      return true;
     } catch (e) {
       console.error(e);
-      return false
+      return false;
     }
-
   }
 
   async confirmSignUp(username: string, code: string): Promise<boolean> {
@@ -74,7 +75,7 @@ export class CognitoClientService {
     };
     try {
       const command = new ConfirmSignUpCommand(input);
-      void await this.cognitoClient.send(command);
+      void (await this.cognitoClient.send(command));
       return true;
     } catch (error) {
       console.error('Error confirming sign up: ', error);

@@ -12,6 +12,6 @@ export class SignUpService {
   }
 
   async confirmSignUp(username: string, code: string): Promise<boolean> {
-    return  this.cognitoClientService.confirmSignUp(username, code);
+    return this.cognitoClientService.confirmSignUp(username, code);
   }
 }

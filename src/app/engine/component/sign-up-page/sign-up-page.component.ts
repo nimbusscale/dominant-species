@@ -1,9 +1,9 @@
-import {Component} from '@angular/core';
+import { Component } from '@angular/core';
 import { SignUpService } from '../../service/auth/sign-up.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatCard, MatCardContent, MatCardHeader } from '@angular/material/card';
-import {MatButton} from "@angular/material/button";
-import {Router} from "@angular/router";
+import { MatButton } from '@angular/material/button';
+import { Router } from '@angular/router';
 
 interface SignUpFormData {
   username: string;
@@ -47,7 +47,6 @@ export class SignUpPageComponent {
           this.errorMessage = 'Sign up failed. See console for more information.';
         }
       });
-
     }
   }
 }
