@@ -42,6 +42,7 @@ export class UserPool extends cdk.Stack {
   client = this.pool.addClient('vpaWebClient', {
     authFlows: {userPassword: true},
     userPoolClientName: 'vpaWebClient',
+    accessTokenValidity: Duration.hours(12)
   })
 
 }
