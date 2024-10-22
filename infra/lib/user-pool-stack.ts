@@ -1,14 +1,16 @@
 import * as cdk from 'aws-cdk-lib';
 import {Construct} from 'constructs';
-import {aws_cognito as cognito, Duration} from 'aws-cdk-lib'
+import {aws_cognito, aws_cognito as cognito, Duration} from 'aws-cdk-lib'
 
 
-export class UserPool extends cdk.Stack {
-  constructor(scope: Construct, id: string, props?: cdk.StackProps) {
+export class UserPoolStack extends cdk.Stack {
+  readonly userPool: aws_cognito.UserPool
+  readonly vpaWebClient: aws_cognito.UserPoolClient
+
+  constructor(scope: Construct, id: string, props: cdk.StackProps) {
     super(scope, id, props);
-  }
 
-  pool = new cognito.UserPool(this, 'vpaUserPool', {
+    this.userPool = new cognito.UserPool(this, 'vpaUserPool', {
     accountRecovery: cognito.AccountRecovery.EMAIL_ONLY,
     autoVerify: {email: true},
     email: cognito.UserPoolEmail.withCognito(),
@@ -39,12 +41,13 @@ export class UserPool extends cdk.Stack {
     },
   })
 
-  client = this.pool.addClient('vpaWebClient', {
+  this.vpaWebClient = this.userPool.addClient('vpaWebClient', {
     authFlows: {userPassword: true},
     userPoolClientName: 'vpaWebClient',
     accessTokenValidity: Duration.hours(12)
   })
 
+  }
 }
 
 
