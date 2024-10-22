@@ -1,15 +1,17 @@
 #!/usr/bin/env node
 import 'source-map-support/register';
 import * as cdk from 'aws-cdk-lib';
-import { WebsiteBucket } from '../lib/website-bucket';
-import {UserPool} from "../lib/user-pool";
-import {VpaGamesTable} from "../lib/vpa-game-table";
+import { WebsiteBucketStack } from '../lib/website-bucket-stack';
+import {UserPoolStack} from "../lib/user-pool-stack";
+import {VpaGamesTableStack} from "../lib/vpa-game-table";
+import {GameMgmtStack} from "../lib/game-mgmt-stack";
 
 const stackProps = {
   env: {account: '011528296709', region: 'us-east-2'}
 }
 
 const app = new cdk.App();
-new WebsiteBucket(app, 'WebsiteBucket', stackProps);
-new UserPool(app, 'UserPool', stackProps);
-new VpaGamesTable(app, 'vpaGameTable', stackProps);
+const vpaWebsiteBucket = new WebsiteBucketStack(app, 'vpaWebsiteBucket', stackProps);
+const vpaGameTable = new VpaGamesTableStack(app, 'vpaGameTable', stackProps);
+const vpaGameMgmt = new GameMgmtStack(app, 'vpaGameMgmt', stackProps, vpaGameTable.table)
+const vpaUserPool = new UserPoolStack(app, 'vpaUserPool', stackProps, vpaGameMgmt.addUserToTableFromSignUpFunction);
