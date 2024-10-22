@@ -2,6 +2,7 @@ import * as cdk from 'aws-cdk-lib';
 import {Construct} from 'constructs';
 import {aws_lambda, aws_lambda_nodejs, aws_iam, aws_dynamodb} from "aws-cdk-lib";
 import * as path from "node:path";
+import {EnvVarNames} from "../backend/src/lib/enum";
 
 export class GameMgmtStack extends cdk.Stack {
   readonly gameMgmtRole: aws_iam.Role
@@ -19,8 +20,11 @@ export class GameMgmtStack extends cdk.Stack {
     this.addUserToTableFromSignUpFunction = new aws_lambda_nodejs.NodejsFunction(this, 'addUserToTableFromSignUp', {
       runtime: aws_lambda.Runtime.NODEJS_20_X,
       entry: path.join(__dirname, '../backend/src/index.ts'),
-      handler: 'logEvent',
-      role: this.gameMgmtRole
+      handler: 'addUserToTableFromSignUp',
+      role: this.gameMgmtRole,
+      environment: {
+        [EnvVarNames.VPA_GAME_TABLE_NAME]: gameTable.tableName
+      }
     })
   }
 }
