@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "lint": "npx eslint ./src",
+    "format": "npx prettier ./src --write"
   },
   "keywords": [],
   "author": "",
