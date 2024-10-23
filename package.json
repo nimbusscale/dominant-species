@@ -6,7 +6,7 @@
     "packages/infra"
   ],
   "scripts": {
-    "start": "npm run start -w frontend",
+    "serve": "npm run start -w frontend",
     "build:backend": "npm run build -w backend",
     "build:frontned": "npm run build -w frontend",
     "build:doc": "npm run compodoc:build -w frontend && npm run tsuml2 -w frontend",

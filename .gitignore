@@ -2,9 +2,9 @@
 
 # Compiled output
 dist/
-/tmp
-/out-tsc
-/bazel-out
+tmp/
+out-tsc/
+bazel-out/
 
 # Node
 node_modules/
@@ -29,13 +29,13 @@ yarn-error.log
 .history/*
 
 # Miscellaneous
-/.angular/cache
+.angular/
 .sass-cache/
-/connect.lock
-/coverage
-/libpeerconnection.log
+connect.lock
+coverage
+libpeerconnection.log
 testem.log
-/typings
+typings
 
 # System files
 .DS_Store
@@ -46,3 +46,7 @@ scratch/
 # CDK asset staging directory
 .cdk.staging/
 cdk.out/
+
+# any compiled JS
+**/src/**/*.js
+**/src/**/*.js.map
