@@ -7,12 +7,18 @@
   ],
   "scripts": {
     "start": "npm run start -w frontend",
+    "build:backend": "npm run build -w backend",
     "build:frontned": "npm run build -w frontend",
     "build:doc": "npm run compodoc:build -w frontend && npm run tsuml2 -w frontend",
-    "test:frontend": "npm run testCI -w frontend",
-    "lint:frontend": "npm run lint -w frontend",
+    "deploy:infra": "npm run deploy -w infra",
+    "format:backend": "npm run format -w backend",
     "format:frontend": "npm run format -w frontend",
-    "deploy": "cd ../../infra && npx cdk deploy --all --require-approval never"
+    "format:infra": "npm run format -w infra",
+    "lint:backend": "npm run lint -w backend",
+    "lint:frontend": "npm run lint -w frontend",
+    "test:backend": "npm run test -w backend",
+    "test:frontend": "npm run testCI -w frontend",
+    "test:infra": "npm run synth -w infra"
   },
   "private": true,
   "devDependencies": {

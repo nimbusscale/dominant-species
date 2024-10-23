@@ -2,13 +2,16 @@
   "name": "infra",
   "version": "0.1.0",
   "bin": {
-    "infra": "bin/infra.js"
+    "infra": "src/bin/infra.js"
   },
   "scripts": {
     "build": "tsc",
     "watch": "tsc -w",
     "test": "jest",
-    "cdk": "cdk"
+    "cdk": "cdk",
+    "deploy": "npx cdk deploy --all --require-approval never",
+    "synth": "npx cdk synth \"*\" --quiet",
+    "format": "npx prettier src --write"
   },
   "dependencies": {
     "aws-cdk-lib": "2.161.1",
