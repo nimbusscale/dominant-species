@@ -2,5 +2,38 @@
   "name": "dominant-species",
   "workspaces": [
     "packages/frontend"
-  ]
+  ],
+  "scripts": {
+    "start": "npm run start -w frontend",
+    "build:frontned": "npm run build -w frontend",
+    "build:doc": "npm run compodoc:build -w frontend && npm run tsuml2 -w frontend",
+    "test:frontend": "npm run testCI -w frontend",
+    "lint:frontend": "npm run lint -w frontend",
+    "format:frontend": "npm run format -w frontend",
+    "deploy": "cd ../../infra && npx cdk deploy --all --require-approval never"
+  },
+  "private": true,
+  "devDependencies": {
+    "@angular-devkit/build-angular": "^18.2.5",
+    "@angular/cli": "^18.2.5",
+    "@angular/compiler-cli": "^18.2.0",
+    "@compodoc/compodoc": "^1.1.25",
+    "@types/jasmine": "~5.1.0",
+    "@types/lodash": "^4.17.10",
+    "angular-eslint": "18.3.1",
+    "eslint": "^9.9.1",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "jasmine-core": "~5.2.0",
+    "karma": "~6.4.0",
+    "karma-chrome-launcher": "~3.2.0",
+    "karma-coverage": "~2.2.0",
+    "karma-jasmine": "~5.1.0",
+    "karma-jasmine-html-reporter": "~2.1.0",
+    "prettier": "^3.3.3",
+    "prettier-eslint": "^16.3.0",
+    "tsuml2": "^0.17.0",
+    "typescript": "~5.5.2",
+    "typescript-eslint": "8.2.0"
+  }
 }
