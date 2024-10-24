@@ -19,6 +19,12 @@ export class VpaGamesTableStack extends cdk.Stack {
           sortKey: { name: 'startTS', type: aws_dynamodb.AttributeType.NUMBER },
         },
       ],
+      globalSecondaryIndexes: [
+        {
+          indexName: 'gameByGameId',
+          partitionKey: { name: 'gameId', type: aws_dynamodb.AttributeType.STRING },
+        }
+      ],
       timeToLiveAttribute: 'ttl',
     });
   }
