@@ -4,7 +4,7 @@ import { dynamoDBDocumentClient } from './client';
 
 export enum GameTableIndex {
   BY_GAME_ID = 'gameByGameId',
-  BY_PLAYER_START = 'gameByPlayerStart'
+  BY_PLAYER_START = 'gameByPlayerStart',
 }
 
 export const GameTable = new Table({
