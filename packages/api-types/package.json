@@ -1,0 +1,16 @@
+{
+  "name": "api-types",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "lint": "npx eslint ./src",
+    "checkFormat": "npx prettier src --check",
+    "format": "npx prettier ./src --write"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {}
+}
