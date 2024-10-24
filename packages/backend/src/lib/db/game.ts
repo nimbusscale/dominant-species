@@ -10,6 +10,7 @@ import {
   string,
   UpdateItemCommand
 } from 'dynamodb-toolbox';
+import type { Condition } from 'dynamodb-toolbox/entity/actions/parseCondition'
 import {GameTable, GameTableIndex} from './table';
 import {Game} from '../../../../api-types/src/game'
 
@@ -44,14 +45,16 @@ export async function addGameEntity(game: Game): Promise<void> {
   void await Promise.all(putPromises)
 }
 
-export async function getGameEntitiesForPlayer(username: string): Promise<GameEntityType[]> {
+export async function getGameEntitiesForPlayer(username: string, includeCompleted: boolean = false): Promise<GameEntityType[]> {
   const result = await GameTable.build(QueryCommand).query({
     index: GameTableIndex.BY_PLAYER_START,
     partition: username,
-  }).options({
+  }).entities(GameEntity)
+    .options({
     limit: 10,
-    reverse: true
-  }).entities(GameEntity).send()
+    reverse: true,
+      ...(includeCompleted ? {} : { filters: {GAME: { attr: 'complete', eq: false }} })
+  }).send()
 
   if (result.Items) {
     return result.Items
