@@ -10,7 +10,7 @@ describe('placeholder', () => {
 describe('game', () => {
   it('adds game records', async () => {
     const game: Game = {
-      gameId: 'testGame1',
+      gameId: 'testGame2',
       host: 'tester1',
       players: ['tester1', 'tester2', 'tester3']
     }

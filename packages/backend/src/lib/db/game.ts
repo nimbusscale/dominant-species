@@ -54,7 +54,7 @@ export async function getGameEntitiesForPlayer(username: string): Promise<GameEn
   }).entities(GameEntity).send()
 
   if (result.Items) {
-    return result.Items as unknown as GameEntityType[]
+    return result.Items
   } else {
     throw new Error(`Unexpected result: ${JSON.stringify(result)}`)
   }
@@ -67,14 +67,14 @@ export async function getGameEntitiesByGameId(gameId: string): Promise<GameEntit
   }).entities(GameEntity).send()
 
   if (result.Items && result.Items.length) {
-    return result.Items as unknown as GameEntityType[]
+    return result.Items
   } else {
     throw new Error(`No GameEntities returned for game ${gameId}: ${JSON.stringify(result)}`);
   }
 }
 
 export async function completeGame(gameId: string): Promise<void> {
-  const gameEntities: GameEntityType[] = await getGameEntitiesByGameId(gameId)
+  const gameEntities = await getGameEntitiesByGameId(gameId)
   const updatePromises = gameEntities.map((gameEntity: GameEntityType) => {
     return GameEntity.build(UpdateItemCommand).item(
       {
