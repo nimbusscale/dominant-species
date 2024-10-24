@@ -14,9 +14,4 @@ const app = new cdk.App();
 new WebsiteBucketStack(app, 'vpaWebsiteBucket', stackProps);
 const vpaGameTable = new VpaGamesTableStack(app, 'vpaGameTable', stackProps);
 const vpaGameMgmt = new GameMgmtStack(app, 'vpaGameMgmt', stackProps, vpaGameTable.table);
-new UserPoolStack(
-  app,
-  'vpaUserPool',
-  stackProps,
-  vpaGameMgmt.addUserToTableFromSignUpFunction,
-);
+new UserPoolStack(app, 'vpaUserPool', stackProps, vpaGameMgmt.addUserToTableFromSignUpFunction);
