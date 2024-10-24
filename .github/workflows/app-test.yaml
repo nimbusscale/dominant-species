@@ -3,9 +3,9 @@ name: app-test
 on:
   pull_request:
     paths:
-      - packages/frontend/**
-      - !packages/frontend/docs/**
-      - !packages/frontend/public/**
+      - 'packages/frontend/**'
+      - '!packages/frontend/docs/**'
+      - '!packages/frontend/public/**'
 
 jobs:
   test-and-lint:
