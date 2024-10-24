@@ -11,10 +11,10 @@ const stackProps = {
 };
 
 const app = new cdk.App();
-const vpaWebsiteBucket = new WebsiteBucketStack(app, 'vpaWebsiteBucket', stackProps);
+new WebsiteBucketStack(app, 'vpaWebsiteBucket', stackProps);
 const vpaGameTable = new VpaGamesTableStack(app, 'vpaGameTable', stackProps);
 const vpaGameMgmt = new GameMgmtStack(app, 'vpaGameMgmt', stackProps, vpaGameTable.table);
-const vpaUserPool = new UserPoolStack(
+new UserPoolStack(
   app,
   'vpaUserPool',
   stackProps,

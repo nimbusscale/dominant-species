@@ -16,6 +16,7 @@
     "format:infra": "npm run format -w infra",
     "lint:backend": "npm run lint -w backend",
     "lint:frontend": "npm run lint -w frontend",
+    "lint:infra": "npm run lint -w infra",
     "test:backend": "npm run test -w backend",
     "test:frontend": "npm run testCI -w frontend",
     "test:infra": "npm run synth -w infra"
