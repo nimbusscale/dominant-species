@@ -1,13 +1,11 @@
-name: app-deploy
+name: infra-deploy
 
 on:
   push:
     branches:
       - main
-    paths-ignore:
-      - '.github/workflows/**'
-      - 'docs/**'
-      - 'infra/**'
+    paths:
+      - 'packages/infra/**'
 
 jobs:
   deploy:
@@ -18,12 +16,9 @@ jobs:
         with:
           node-version: 20.x
           cache: 'npm'
-      - run: npm ci
-      - run: npm run build
-      - run: aws s3 sync ./dist/dominant-species/browser/ s3://www.vpa-games.com
+      - run: npm ci -include-workspace-root -w infra
+      - run: npm run deploy:infra
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
-
-

@@ -1,5 +1,5 @@
 describe('placeholder', () => {
   it('log', () => {
-    console.log('test')
-  })
-})
+    console.log('test');
+  });
+});
