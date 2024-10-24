@@ -11,6 +11,7 @@ export class WebsiteBucketStack extends cdk.Stack {
     this.bucket = new aws_s3.Bucket(this, 'vpaWebsiteBucket', {
       bucketName: 'www.vpa-games.com',
       websiteIndexDocument: 'index.html',
+      websiteErrorDocument: 'index.html',
       publicReadAccess: true,
       blockPublicAccess: {
         blockPublicPolicy: false,
