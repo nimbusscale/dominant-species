@@ -2,21 +2,15 @@
 const eslint = require("@eslint/js");
 const tseslint = require("typescript-eslint");
 const angular = require("angular-eslint");
+const baseConfig = require("../../eslint.config.base")
 
 module.exports = tseslint.config(
+  ...baseConfig,
   {
     files: ["**/*.ts"],
     extends: [
-      eslint.configs.recommended,
-      ...tseslint.configs.strictTypeChecked,
-      ...tseslint.configs.stylisticTypeChecked,
       ...angular.configs.tsRecommended,
     ],
-    languageOptions: {
-      parserOptions: {
-        projectService: true,
-      },
-    },
     processor: angular.processInlineTemplates,
     rules: {
       "@angular-eslint/directive-selector": [
@@ -35,13 +29,6 @@ module.exports = tseslint.config(
           style: "kebab-case",
         },
       ],
-      "@typescript-eslint/unbound-method": "off"
-    },
-  },
-  {
-    files: ["src/test/**/*.ts"],
-    rules: {
-      "@typescript-eslint/no-unsafe-assignment": "off",
       "@typescript-eslint/unbound-method": "off"
     },
   },

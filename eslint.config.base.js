@@ -5,7 +5,7 @@ const angular = require("angular-eslint");
 
 module.exports = tseslint.config(
   {
-    files: ["**/*.ts"],
+    files: ["src/**/*.ts"],
     extends: [
       eslint.configs.recommended,
       ...tseslint.configs.strictTypeChecked,
@@ -16,14 +16,12 @@ module.exports = tseslint.config(
         projectService: true,
       },
     },
-    processor: angular.processInlineTemplates,
-    rules: {},
   },
-  {
+    {
     files: ["src/test/**/*.ts"],
     rules: {
       "@typescript-eslint/no-unsafe-assignment": "off",
       "@typescript-eslint/unbound-method": "off"
     },
-  }
+  },
 );

@@ -1,0 +1,40 @@
+{
+  "name": "frontend",
+  "version": "0.0.0",
+  "scripts": {
+    "ng": "npx ng",
+    "start": "npx ng serve",
+    "build": "npx ng build",
+    "watch": "npx ng build --watch --configuration development",
+    "test": "npx ng test",
+    "testCI": "npx ng test --browsers ChromeHeadless --no-watch",
+    "lint": "npx ng lint",
+    "deploy": "aws s3 sync ./dist/dominant-species/browser/ s3://www.vpa-games.com",
+    "format": "npx prettier src --write",
+    "checkFormat": "npx prettier src --check",
+    "compodoc:build": "npx compodoc -p tsconfig.doc.json --theme vagrant -d docs/code",
+    "compodoc:build-and-serve": "npx compodoc -p tsconfig.doc.json -s --theme vagrant -d docs/code",
+    "compodoc:serve": "npx compodoc -s",
+    "tsuml2": "npx tsuml2 --glob \"./src/app/{engine,game}/**/*.{component,service}.ts\" --memberAssociations --outFile docs/service-component-uml.svg"
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/animations": "^18.2.0",
+    "@angular/cdk": "^18.2.7",
+    "@angular/common": "^18.2.0",
+    "@angular/compiler": "^18.2.0",
+    "@angular/core": "^18.2.0",
+    "@angular/forms": "^18.2.0",
+    "@angular/material": "^18.2.7",
+    "@angular/platform-browser": "^18.2.0",
+    "@angular/platform-browser-dynamic": "^18.2.0",
+    "@angular/router": "^18.2.0",
+    "@aws-sdk/client-cognito-identity-provider": "^3.670.0",
+    "fast-json-patch": "^3.1.1",
+    "jwt-decode": "^4.0.0",
+    "lodash": "^4.17.21",
+    "rxjs": "~7.8.0",
+    "tslib": "^2.3.0",
+    "zone.js": "~0.14.10"
+  }
+}
