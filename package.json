@@ -10,6 +10,8 @@
     "build:backend": "npm run build -w backend",
     "build:frontend": "npm run build -w frontend",
     "build:doc": "npm run compodoc:build -w frontend && npm run tsuml2 -w frontend",
+    "checkFormat:frontend": "npm run checkFormat -w frontend",
+    "deploy:frontend": "npm run deploy -w frontend",
     "deploy:infra": "npm run deploy -w infra",
     "format:backend": "npm run format -w backend",
     "format:frontend": "npm run format -w frontend",

@@ -11,6 +11,7 @@
     "cdk": "cdk",
     "deploy": "npx cdk deploy --all --require-approval never",
     "synth": "npx cdk synth \"*\" --quiet",
+    "checkFormat": "npx prettier src --check",
     "format": "npx prettier src --write",
     "lint": "npx eslint ./src"
   },

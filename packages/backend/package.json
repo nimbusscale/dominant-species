@@ -6,6 +6,7 @@
     "build": "tsc",
     "test": "jest",
     "lint": "npx eslint ./src",
+    "checkFormat": "npx prettier src --check",
     "format": "npx prettier ./src --write"
   },
   "keywords": [],
