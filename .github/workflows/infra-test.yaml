@@ -4,6 +4,7 @@ on:
   pull_request:
     paths:
       - 'packages/infra/**'
+      - 'packages/backend/**'
 
 jobs:
   test-and-lint:
