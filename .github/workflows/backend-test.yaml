@@ -1,11 +1,9 @@
-name: frontend-test
+name: backend-test
 
 on:
   pull_request:
     paths:
-      - 'packages/frontend/**'
-      - '!packages/frontend/docs/**'
-      - '!packages/frontend/public/**'
+      - 'packages/backend/**'
 
 jobs:
   test-and-lint:
@@ -16,10 +14,8 @@ jobs:
         with:
           node-version: 20.x
           cache: 'npm'
-      - run: npm ci -include-workspace-root -w frontend
-      - run: npm run build:frontend
-      - run: npm run lint:frontend
-      - run: npm run test:frontend
+      - run: npm ci -include-workspace-root -w backend
+      - run: npm run test:backend
   check-prettier:
     runs-on: ubuntu-latest
     steps:
@@ -28,6 +24,5 @@ jobs:
         with:
           node-version: 20.x
           cache: 'npm'
-      - run: npm ci -include-workspace-root -w frontend
-      - run: npm run checkFormat:frontend
-
+      - run: npm ci -include-workspace-root -w backend
+      - run: npm run checkFormat:backend

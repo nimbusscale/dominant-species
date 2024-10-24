@@ -1,11 +1,9 @@
-name: app-test
+name: infra-test
 
 on:
   pull_request:
     paths:
-      - packages/frontend/**
-      - !packages/frontend/docs/**
-      - !packages/frontend/public/**
+      - 'packages/infra/**'
 
 jobs:
   test-and-lint:
@@ -16,10 +14,8 @@ jobs:
         with:
           node-version: 20.x
           cache: 'npm'
-      - run: npm ci -w frontend
-      - run: npm run build:frontend
-      - run: npm run lint:frontend
-      - run: npm run test:frontend
+      - run: npm ci -include-workspace-root -w infra
+      - run: npm run test:infra
   check-prettier:
     runs-on: ubuntu-latest
     steps:
@@ -28,6 +24,5 @@ jobs:
         with:
           node-version: 20.x
           cache: 'npm'
-      - run: npm ci -w frontend
-      - run: npm run checkFormat:frontend
-
+      - run: npm ci -include-workspace-root -w infra
+      - run: npm run checkFormat:infra
