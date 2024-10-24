@@ -8,13 +8,6 @@
       "dom"
     ],
     "declaration": true,
-    "noUnusedLocals": false,
-    "noUnusedParameters": false,
-    "noFallthroughCasesInSwitch": false,
-    "inlineSourceMap": true,
-    "inlineSources": true,
-    "experimentalDecorators": true,
-    "strictPropertyInitialization": false,
     "types": ["node"]
   },
   "exclude": [
