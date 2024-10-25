@@ -38,13 +38,7 @@ export class GameRecordManager {
     this.gameTable = gameEntity.table;
   }
 
-  private gameEntityToGame({
-    gameId,
-    host,
-    players,
-    startTS,
-    complete,
-  }: GameEntityType): Game {
+  private gameEntityToGame({ gameId, host, players, startTS, complete }: GameEntityType): Game {
     return { gameId, host, players, startTS, complete };
   }
 

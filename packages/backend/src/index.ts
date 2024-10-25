@@ -15,12 +15,3 @@ export const addUserToTableFromSignUp: Handler = async (
     throw e;
   }
 };
-
-export const helloWorld: Handler = async (
-  event: PreSignUpTriggerEvent,
-  context: Context,
-  callback: Callback,
-) => {
-  console.log(event);
-  callback(null, { statusCode: 200, body: 'Hello World!' });
-};
