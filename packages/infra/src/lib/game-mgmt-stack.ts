@@ -14,7 +14,6 @@ import * as path from 'node:path';
 export class GameMgmtStack extends cdk.Stack {
   readonly gameMgmtRole: aws_iam.Role;
   readonly addUserToTableFromSignUpFunction: aws_lambda_nodejs.NodejsFunction;
-  readonly helloWorldFunction: aws_lambda_nodejs.NodejsFunction;
   readonly apiHandlerFunction: aws_lambda_nodejs.NodejsFunction;
   readonly gameMgmtApiGw: aws_apigateway.LambdaRestApi;
 
@@ -46,16 +45,6 @@ export class GameMgmtStack extends cdk.Stack {
         },
       },
     );
-
-    this.helloWorldFunction = new aws_lambda_nodejs.NodejsFunction(this, 'helloWorld', {
-      runtime: aws_lambda.Runtime.NODEJS_20_X,
-      entry: path.join(__dirname, '../../../backend/src/index.ts'),
-      handler: 'helloWorld',
-      role: this.gameMgmtRole,
-      environment: {
-        [EnvVarNames.VPA_GAME_TABLE_NAME]: gameTable.tableName,
-      },
-    });
 
     this.apiHandlerFunction = new aws_lambda_nodejs.NodejsFunction(this, 'apiHandler', {
       runtime: aws_lambda.Runtime.NODEJS_20_X,

@@ -42,10 +42,10 @@ export class GameRecordManager {
     gameId,
     host,
     players,
-    startTS: startTs,
+    startTS,
     complete,
   }: GameEntityType): Game {
-    return { gameId, host, players, startTs, complete };
+    return { gameId, host, players, startTS, complete };
   }
 
   async addGame(game: Game): Promise<void> {
