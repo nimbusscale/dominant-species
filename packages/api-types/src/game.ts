@@ -2,6 +2,6 @@ export interface Game {
   gameId: string,
   host: string,
   players: string[],
-  startTs?: number,
+  startTS?: number,
   complete?: boolean
 }
