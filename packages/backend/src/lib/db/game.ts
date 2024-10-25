@@ -8,12 +8,13 @@ import {
   QueryCommand,
   schema,
   string,
+  Table,
   UpdateItemCommand,
 } from 'dynamodb-toolbox';
 import { GameTable, GameTableIndex } from './table';
 import { Game } from '../../../../api-types/src/game';
 
-const GameEntity = new Entity({
+export const GameEntity = new Entity({
   table: GameTable,
   name: 'GAME',
   schema: schema({
@@ -29,71 +30,91 @@ const GameEntity = new Entity({
 
 type GameEntityType = FormattedItem<typeof GameEntity>;
 
-export async function addGameEntity(game: Game): Promise<void> {
-  const putPromises = game.players.map((player) => {
-    return GameEntity.build(PutItemCommand)
-      .item({
-        username: player,
-        record: `game:${game.gameId}`,
-        gameId: game.gameId,
-        host: game.host,
-        players: game.players,
+export class GameRecordManager {
+  private readonly gameEntity: Entity;
+  private readonly gameTable: Table;
+  constructor(gameEntity: Entity) {
+    this.gameEntity = gameEntity;
+    this.gameTable = gameEntity.table;
+  }
+
+  private gameEntityToGame({
+    gameId,
+    host,
+    players,
+    startTS: startTs,
+    complete,
+  }: GameEntityType): Game {
+    return { gameId, host, players, startTs, complete };
+  }
+
+  async addGame(game: Game): Promise<void> {
+    const putPromises = game.players.map((player) => {
+      return this.gameEntity
+        .build(PutItemCommand)
+        .item({
+          username: player,
+          record: `game:${game.gameId}`,
+          gameId: game.gameId,
+          host: game.host,
+          players: game.players,
+        })
+        .send();
+    });
+    void (await Promise.all(putPromises));
+  }
+
+  async getGamesForPlayer(username: string, includeCompleted = false): Promise<Game[]> {
+    const result = await this.gameTable
+      .build(QueryCommand)
+      .query({
+        index: GameTableIndex.BY_PLAYER_START,
+        partition: username,
+      })
+      .entities(this.gameEntity)
+      .options({
+        limit: 10,
+        reverse: true,
+        ...(includeCompleted ? {} : { filters: { GAME: { attr: 'complete', eq: false } } }),
       })
       .send();
-  });
-  void (await Promise.all(putPromises));
-}
 
-export async function getGameEntitiesForPlayer(
-  username: string,
-  includeCompleted = false,
-): Promise<GameEntityType[]> {
-  const result = await GameTable.build(QueryCommand)
-    .query({
-      index: GameTableIndex.BY_PLAYER_START,
-      partition: username,
-    })
-    .entities(GameEntity)
-    .options({
-      limit: 10,
-      reverse: true,
-      ...(includeCompleted ? {} : { filters: { GAME: { attr: 'complete', eq: false } } }),
-    })
-    .send();
-
-  if (result.Items) {
-    return result.Items;
-  } else {
-    throw new Error(`Unexpected result: ${JSON.stringify(result)}`);
+    if (result.Items) {
+      return result.Items.map((gameEntity) => this.gameEntityToGame(gameEntity as GameEntityType));
+    } else {
+      throw new Error(`Unexpected result: ${JSON.stringify(result)}`);
+    }
   }
-}
 
-export async function getGameEntitiesByGameId(gameId: string): Promise<GameEntityType[]> {
-  const result = await GameTable.build(QueryCommand)
-    .query({
-      index: GameTableIndex.BY_GAME_ID,
-      partition: gameId,
-    })
-    .entities(GameEntity)
-    .send();
-
-  if (result.Items?.length) {
-    return result.Items;
-  } else {
-    throw new Error(`No GameEntities returned for game ${gameId}: ${JSON.stringify(result)}`);
-  }
-}
-
-export async function completeGame(gameId: string): Promise<void> {
-  const gameEntities = await getGameEntitiesByGameId(gameId);
-  const updatePromises = gameEntities.map((gameEntity: GameEntityType) => {
-    return GameEntity.build(UpdateItemCommand)
-      .item({
-        username: gameEntity.username,
-        record: `game:${gameEntity.gameId}`,
-        complete: true,
+  private async getGameEntitiesByGameId(gameId: string): Promise<GameEntityType[]> {
+    const result = await this.gameTable
+      .build(QueryCommand)
+      .query({
+        index: GameTableIndex.BY_GAME_ID,
+        partition: gameId,
       })
+      .entities(this.gameEntity)
       .send();
-  });
-  void (await Promise.all(updatePromises));
+
+    if (result.Items?.length) {
+      return result.Items as GameEntityType[];
+    } else {
+      throw new Error(`No GameEntities returned for game ${gameId}: ${JSON.stringify(result)}`);
+    }
+  }
+
+  async completeGame(gameId: string): Promise<void> {
+    const gameEntities = await this.getGameEntitiesByGameId(gameId);
+    const updatePromises = gameEntities.map((gameEntity: GameEntityType) => {
+      return this.gameEntity
+        .build(UpdateItemCommand)
+        .item({
+          username: gameEntity.username,
+          record: `game:${gameEntity.gameId}`,
+          complete: true,
+        })
+        .send();
+    });
+    void (await Promise.all(updatePromises));
+  }
 }

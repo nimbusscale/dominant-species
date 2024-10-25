@@ -21,6 +21,6 @@ export const helloWorld: Handler = async (
   context: Context,
   callback: Callback,
 ) => {
-  console.log(event)
-  callback(null, {"statusCode": 200, "body": "Hello World!"})
-}
+  console.log(event);
+  callback(null, { statusCode: 200, body: 'Hello World!' });
+};
