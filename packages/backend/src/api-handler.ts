@@ -2,8 +2,8 @@ import { APIGatewayProxyEvent, Callback, Context, Handler } from 'aws-lambda';
 import { GameApiController } from './lib/api/game';
 import { GameEntity, GameRecordManager } from './lib/db/game';
 import { BaseApiEvent } from './lib/api/schema/api-event';
-import {getUsernameFromIdToken} from "./lib/api/auth/auth";
-import {ensureDefined} from "./lib/util";
+import { getUsernameFromIdToken } from './lib/api/auth/auth';
+import { ensureDefined } from './lib/util';
 
 const gameRecordManager = new GameRecordManager(GameEntity);
 const gameApiController = new GameApiController(gameRecordManager);

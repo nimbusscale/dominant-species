@@ -1,6 +1,6 @@
 import * as cdk from 'aws-cdk-lib';
 import { Construct } from 'constructs';
-import {aws_dynamodb, aws_iam} from 'aws-cdk-lib';
+import { aws_dynamodb, aws_iam } from 'aws-cdk-lib';
 
 export class VpaGamesTableStack extends cdk.Stack {
   readonly table: aws_dynamodb.TableV2;

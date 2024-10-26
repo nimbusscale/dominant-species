@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 import {
   AuthenticationResultType,
   CognitoIdentityProviderClient,
@@ -7,9 +7,9 @@ import {
   InitiateAuthCommandInput,
   SignUpCommand,
 } from '@aws-sdk/client-cognito-identity-provider';
-import {environment} from '../../../../environments/environment';
-import {jwtDecode} from 'jwt-decode';
-import {CognitoIdTokenJwt} from "api-types/src/auth";
+import { environment } from '../../../../environments/environment';
+import { jwtDecode } from 'jwt-decode';
+import { CognitoIdTokenJwt } from 'api-types/src/auth';
 
 @Injectable({
   providedIn: 'root',

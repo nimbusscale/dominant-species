@@ -1,8 +1,15 @@
 import * as cdk from 'aws-cdk-lib';
 import { Construct } from 'constructs';
-import {aws_cognito, aws_dynamodb, aws_iam, aws_lambda, aws_lambda_nodejs, Duration} from 'aws-cdk-lib';
-import path from "node:path";
-import {EnvVarNames} from "../../../backend/src/lib/enum";
+import {
+  aws_cognito,
+  aws_dynamodb,
+  aws_iam,
+  aws_lambda,
+  aws_lambda_nodejs,
+  Duration,
+} from 'aws-cdk-lib';
+import path from 'node:path';
+import { EnvVarNames } from '../../../backend/src/lib/enum';
 
 export class UserPoolStack extends cdk.Stack {
   readonly userPool: aws_cognito.UserPool;
@@ -62,13 +69,16 @@ export class UserPoolStack extends cdk.Stack {
       },
     });
 
-    this.userPool.addTrigger(aws_cognito.UserPoolOperation.PRE_SIGN_UP, addUserToTableFromSignUpFunction);
+    this.userPool.addTrigger(
+      aws_cognito.UserPoolOperation.PRE_SIGN_UP,
+      addUserToTableFromSignUpFunction,
+    );
 
     this.vpaWebClient = this.userPool.addClient('vpaWebClient', {
       authFlows: { userPassword: true },
       userPoolClientName: 'vpaWebClient',
       accessTokenValidity: Duration.hours(12),
-      idTokenValidity: Duration.hours(12)
+      idTokenValidity: Duration.hours(12),
     });
   }
 }
