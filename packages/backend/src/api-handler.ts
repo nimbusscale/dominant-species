@@ -12,6 +12,16 @@ const routes: ApiRoute[] = [
     pattern: /^\/v1\/game$/,
     handler: (apiRequest) => gameApiController.getGamesForUser(apiRequest),
   },
+  {
+    method: 'POST',
+    pattern: /^\/v1\/game$/,
+    handler: (apiRequest) => gameApiController.addGame(apiRequest),
+  },
+    {
+    method: 'PATCH',
+    pattern: /^\/v1\/\/game\/([^/]+)$/,
+    handler: (apiRequest) => gameApiController.completeGame(apiRequest),
+  },
 ];
 
 const apiRequestHandler = new ApiRequestHandler(routes);

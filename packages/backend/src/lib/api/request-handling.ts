@@ -26,7 +26,7 @@ export interface ApiResponse {
 export interface ApiRoute {
   method: 'GET' | 'POST' | 'PATCH';
   pattern: RegExp;
-  handler: (apiRequest: ApiRequest) => Promise<ApiResponseType>;
+  handler: (apiRequest: ApiRequest) => Promise<ApiResponseType | void>;
 }
 
 export class ApiRequestHandler {
@@ -78,7 +78,7 @@ export class ApiRequestHandler {
       if (route) {
         apiResponse = {
           statusCode: StatusCodes.OK,
-          body: JSON.stringify(await route.handler(apiRequest)),
+          body: JSON.stringify(await route.handler(apiRequest) || {}),
         };
       } else {
         throw new NotFoundError();

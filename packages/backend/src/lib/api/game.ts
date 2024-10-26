@@ -1,5 +1,5 @@
 import { GameRecordManager } from '../db/game';
-import { GameCollection } from 'api-types/src/game';
+import {Game, GameCollection} from 'api-types/src/game';
 import { BadRequestError } from '../error';
 import { ApiRequest } from './request-handling';
 
@@ -11,7 +11,11 @@ export class GameApiController {
   }
 
   async addGame(apiRequest: ApiRequest): Promise<void> {
-
+    if (apiRequest.body) {
+      await this.gameRecordManager.addGame(JSON.parse(apiRequest.body) as Game)
+    } else {
+      throw new BadRequestError('Missing Body')
+    }
   }
 
   async getGamesForUser(apiRequest: ApiRequest): Promise<GameCollection> {
@@ -22,6 +26,22 @@ export class GameApiController {
       };
     } else {
       throw new BadRequestError('must include username query param');
+    }
+  }
+
+  async completeGame(apiRequest: ApiRequest): Promise<void> {
+    // path should be in the format of 'v1/game/{gameId}'
+    const gameId = apiRequest.path.split('/')[2]
+    if (apiRequest.body) {
+      const body: Game = JSON.parse(apiRequest.body);
+      if (body.complete === true) {
+        // This means that anyone can complete a game, regardless if they are the host.
+        await this.gameRecordManager.completeGame(gameId);
+      } else {
+        throw new BadRequestError('complete must be set to true');
+      }
+    } else {
+      throw new BadRequestError('Missing Body')
     }
   }
 }
