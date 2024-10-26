@@ -57,7 +57,7 @@ export class UserPoolStack extends cdk.Stack {
       userPoolName: 'vpaPlayers',
       userVerification: {
         emailSubject: 'VPA Games Sign Up Confirmation',
-        emailBody: 'Your verification code is {####}<P>http://vpa-games.com/sign-up-confirm',
+        emailBody: 'Your verification code is {####}<P>http://www.vpa-games.com/sign-up-confirm',
         emailStyle: aws_cognito.VerificationEmailStyle.CODE,
       },
     });
