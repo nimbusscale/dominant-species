@@ -63,7 +63,7 @@ export class ApiRequestHandler {
     } else {
       return {
         statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
-        body: this.formatErrorResponseBody(error as Error),
+        body: this.formatErrorResponseBody(error),
       };
     }
   }

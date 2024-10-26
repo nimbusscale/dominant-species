@@ -1,7 +1,7 @@
 import {expect, jest, it, describe} from '@jest/globals';
-import {ApiRequest, ApiRequestHandler, ApiResponse, ApiRoute} from "../../../lib/api/request-handling";
+import {ApiRequest, ApiRequestHandler, ApiRoute} from "../../../lib/api/request-handling";
 import {ApiResponseType} from "api-types/src/request-response";
-import {Game, GameCollection} from "api-types/src/game";
+import {GameCollection} from "api-types/src/game";
 import {APIGatewayProxyEvent} from "aws-lambda";
 import {StatusCodes} from "http-status-codes";
 import {BadRequestError} from "../../../error";
@@ -16,8 +16,8 @@ describe('ApiRequestHandler', () => {
 
   it('Should return OK if known route', async() => {
     const testResponse: GameCollection = {games: []}
-    const mockHandler = jest.fn(async (apiRequest: ApiRequest): Promise<ApiResponseType> => {
-      return testResponse
+    const mockHandler = jest.fn(async (): Promise<ApiResponseType> => {
+      return Promise.resolve(testResponse)
     }) as (apiRequest: ApiRequest) => Promise<ApiResponseType>;
 
     const routes: ApiRoute[] = [
@@ -40,8 +40,8 @@ describe('ApiRequestHandler', () => {
   });
   it('Should return Not Found if unknown route', async() => {
     const testResponse: GameCollection = {games: []}
-    const mockHandler = jest.fn(async (apiRequest: ApiRequest): Promise<ApiResponseType> => {
-      return testResponse
+    const mockHandler = jest.fn(async (): Promise<ApiResponseType> => {
+      return Promise.resolve(testResponse)
     }) as (apiRequest: ApiRequest) => Promise<ApiResponseType>;
 
     const routes: ApiRoute[] = [
@@ -64,7 +64,7 @@ describe('ApiRequestHandler', () => {
     expect(console.error).toBeCalled()
   })
   it('Should return Bad Request if invalid request', async () => {
-    const mockHandler = jest.fn(async (apiRequest: ApiRequest): Promise<ApiResponseType> => {
+    const mockHandler = jest.fn((): Promise<ApiResponseType> => {
       throw new BadRequestError()
     }) as (apiRequest: ApiRequest) => Promise<ApiResponseType>;
 
@@ -88,7 +88,7 @@ describe('ApiRequestHandler', () => {
     expect(console.error).toBeCalled()
   })
   it('Should return Server Error if unhandled error encountered', async () => {
-    const mockHandler = jest.fn(async (apiRequest: ApiRequest): Promise<ApiResponseType> => {
+    const mockHandler = jest.fn((): Promise<ApiResponseType> => {
       throw new Error()
     }) as (apiRequest: ApiRequest) => Promise<ApiResponseType>;
 
