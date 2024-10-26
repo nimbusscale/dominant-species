@@ -16,10 +16,10 @@ export class AuthService {
   ) {}
 
   private authResultToPlayerAuth(authResult: AuthenticationResultType): PlayerAuthData {
-    const jwt = this.cognitoClientService.decodeJwtToken(ensureDefined(authResult.AccessToken));
+    const jwt = this.cognitoClientService.decodeJwtToken(ensureDefined(authResult.IdToken));
     return {
-      id: ensureDefined(jwt.username),
-      accessToken: ensureDefined(authResult.AccessToken),
+      id: ensureDefined(jwt['cognito:username']),
+      accessToken: ensureDefined(authResult.IdToken),
       accessTokenExpire: ensureDefined(jwt.exp),
       refreshToken: ensureDefined(authResult.RefreshToken),
     };

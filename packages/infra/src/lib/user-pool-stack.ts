@@ -1,6 +1,15 @@
 import * as cdk from 'aws-cdk-lib';
 import { Construct } from 'constructs';
-import { aws_cognito, aws_lambda, Duration } from 'aws-cdk-lib';
+import {
+  aws_cognito,
+  aws_dynamodb,
+  aws_iam,
+  aws_lambda,
+  aws_lambda_nodejs,
+  Duration,
+} from 'aws-cdk-lib';
+import path from 'node:path';
+import { EnvVarNames } from '../../../backend/src/lib/enum';
 
 export class UserPoolStack extends cdk.Stack {
   readonly userPool: aws_cognito.UserPool;
@@ -10,9 +19,24 @@ export class UserPoolStack extends cdk.Stack {
     scope: Construct,
     id: string,
     props: cdk.StackProps,
-    addUserFunction: aws_lambda.Function,
+    gameMgmtRole: aws_iam.Role,
+    gameTable: aws_dynamodb.TableV2,
   ) {
     super(scope, id, props);
+
+    const addUserToTableFromSignUpFunction = new aws_lambda_nodejs.NodejsFunction(
+      this,
+      'addUserToTableFromSignUp',
+      {
+        runtime: aws_lambda.Runtime.NODEJS_20_X,
+        entry: path.join(__dirname, '../../../backend/src/index.ts'),
+        handler: 'addUserToTableFromSignUp',
+        role: gameMgmtRole,
+        environment: {
+          [EnvVarNames.VPA_GAME_TABLE_NAME]: gameTable.tableName,
+        },
+      },
+    );
 
     this.userPool = new aws_cognito.UserPool(this, 'vpaUserPool', {
       accountRecovery: aws_cognito.AccountRecovery.EMAIL_ONLY,
@@ -40,17 +64,21 @@ export class UserPoolStack extends cdk.Stack {
       userPoolName: 'vpaPlayers',
       userVerification: {
         emailSubject: 'VPA Games Sign Up Confirmation',
-        emailBody: 'Your verification code is {####}<P>http://vpa-games.com/sign-up-confirm',
+        emailBody: 'Your verification code is {####}<P>http://www.vpa-games.com/sign-up-confirm',
         emailStyle: aws_cognito.VerificationEmailStyle.CODE,
       },
     });
 
-    this.userPool.addTrigger(aws_cognito.UserPoolOperation.PRE_SIGN_UP, addUserFunction);
+    this.userPool.addTrigger(
+      aws_cognito.UserPoolOperation.PRE_SIGN_UP,
+      addUserToTableFromSignUpFunction,
+    );
 
     this.vpaWebClient = this.userPool.addClient('vpaWebClient', {
       authFlows: { userPassword: true },
       userPoolClientName: 'vpaWebClient',
       accessTokenValidity: Duration.hours(12),
+      idTokenValidity: Duration.hours(12),
     });
   }
 }

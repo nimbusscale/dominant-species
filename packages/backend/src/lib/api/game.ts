@@ -1,7 +1,7 @@
 import { GameRecordManager } from '../db/game';
 import { StatusCodes } from 'http-status-codes';
-import { BaseApiEvent } from './api-event';
-import { ApiResponse } from './api-response';
+import { BaseApiEvent } from './schema/api-event';
+import { ApiResponse } from './schema/api-response';
 
 export class GameApiController {
   private readonly gameRecordManager: GameRecordManager;
