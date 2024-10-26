@@ -16,7 +16,7 @@ jobs:
         with:
           node-version: 20.x
           cache: 'npm'
-      - run: npm ci -include-workspace-root -w frontend
+      - run: npm ci -include-workspace-root -w frontend -w api-types
       - run: npm run build:frontend
       - run: npm run lint:frontend
       - run: npm run test:frontend
