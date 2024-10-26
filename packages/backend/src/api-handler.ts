@@ -1,7 +1,7 @@
-import { APIGatewayProxyEvent, Callback, Context, Handler } from 'aws-lambda';
-import { GameApiController } from './lib/api/game';
-import { GameEntity, GameRecordManager } from './lib/db/game';
-import { ApiRoute, ApiRequestHandler } from './lib/api/request-handling';
+import {APIGatewayProxyEvent, Callback, Context, Handler} from 'aws-lambda';
+import {GameApiController} from './lib/api/game';
+import {GameEntity, GameRecordManager} from './lib/db/game';
+import {ApiRoute, ApiRequestHandler} from './lib/api/request-handling';
 
 const gameRecordManager = new GameRecordManager(GameEntity);
 const gameApiController = new GameApiController(gameRecordManager);
@@ -17,9 +17,9 @@ const routes: ApiRoute[] = [
     pattern: /^\/v1\/game$/,
     handler: (apiRequest) => gameApiController.addGame(apiRequest),
   },
-    {
+  {
     method: 'PATCH',
-    pattern: /^\/v1\/\/game\/([^/]+)$/,
+    pattern: /^\/v1\/game\/[a-zA-Z0-9]+$/,
     handler: (apiRequest) => gameApiController.completeGame(apiRequest),
   },
 ];
