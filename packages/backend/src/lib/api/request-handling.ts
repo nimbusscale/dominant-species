@@ -39,7 +39,7 @@ export function apiGwEventToApiRequest(apiGwEvent: APIGatewayProxyEvent): ApiReq
 export interface ApiRoute {
   method: 'GET' | 'POST' | 'PATCH',
   pattern: RegExp,
-  handler: (apiEvent: ApiRequest) => Promise<ApiResponseType>;
+  handler: (apiRequest: ApiRequest) => Promise<ApiResponseType>;
 }
 
 export function findRoute(apiRequest: ApiRequest, routes: ApiRoute[]): ApiRoute | undefined {
