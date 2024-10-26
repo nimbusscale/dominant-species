@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {
   AuthenticationResultType,
   CognitoIdentityProviderClient,
@@ -7,18 +7,9 @@ import {
   InitiateAuthCommandInput,
   SignUpCommand,
 } from '@aws-sdk/client-cognito-identity-provider';
-import { environment } from '../../../../environments/environment';
-import { jwtDecode, JwtPayload } from 'jwt-decode';
-
-export interface CognitoJwtPayload extends JwtPayload {
-  client_id: string;
-  origin_jti: string;
-  event_id: string;
-  token_use: string;
-  scope: string;
-  auth_time: number;
-  username: string;
-}
+import {environment} from '../../../../environments/environment';
+import {jwtDecode} from 'jwt-decode';
+import {CognitoIdTokenJwt} from "api-types/src/auth";
 
 @Injectable({
   providedIn: 'root',
@@ -56,7 +47,7 @@ export class CognitoClientService {
     }
   }
 
-  decodeJwtToken(token: string): CognitoJwtPayload {
+  decodeJwtToken(token: string): CognitoIdTokenJwt {
     return jwtDecode(token);
   }
 

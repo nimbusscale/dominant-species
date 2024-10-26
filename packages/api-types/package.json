@@ -12,5 +12,7 @@
   "author": "",
   "license": "ISC",
   "description": "",
-  "dependencies": {}
+  "dependencies": {
+    "jwt-decode": "^4.0.0"
+  }
 }

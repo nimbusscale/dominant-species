@@ -1,6 +1,7 @@
 {
   "name": "dominant-species",
   "workspaces": [
+    "packages/api-types",
     "packages/backend",
     "packages/frontend",
     "packages/infra"
