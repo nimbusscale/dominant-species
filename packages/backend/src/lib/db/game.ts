@@ -80,7 +80,7 @@ export class GameRecordManager {
     }
   }
 
-  private async getGameEntitiesByGameId(gameId: string): Promise<GameEntityType[]> {
+  async getGameEntitiesByGameId(gameId: string): Promise<GameEntityType[]> {
     const result = await this.gameTable
       .build(QueryCommand)
       .query({
