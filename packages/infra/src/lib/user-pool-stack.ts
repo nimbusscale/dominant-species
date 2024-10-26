@@ -51,6 +51,7 @@ export class UserPoolStack extends cdk.Stack {
       authFlows: { userPassword: true },
       userPoolClientName: 'vpaWebClient',
       accessTokenValidity: Duration.hours(12),
+      idTokenValidity: Duration.hours(12)
     });
   }
 }
