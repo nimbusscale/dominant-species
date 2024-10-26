@@ -26,7 +26,7 @@ export interface ApiResponse {
 export interface ApiRoute {
   method: 'GET' | 'POST' | 'PATCH';
   pattern: RegExp;
-  handler: (apiRequest: ApiRequest) => Promise<ApiResponseType | void>;
+  handler: (apiRequest: ApiRequest) => Promise<ApiResponseType | undefined>;
 }
 
 export class ApiRequestHandler {
@@ -43,7 +43,7 @@ export class ApiRequestHandler {
       path: apiGwEvent.path,
       queryStringParameters: apiGwEvent.queryStringParameters,
       username: this.getUsernameFromIdToken(ensureDefined(apiGwEvent.headers['Authorization'])),
-      body: apiGwEvent.body
+      body: apiGwEvent.body,
     };
   }
 
@@ -78,7 +78,7 @@ export class ApiRequestHandler {
       if (route) {
         apiResponse = {
           statusCode: StatusCodes.OK,
-          body: JSON.stringify(await route.handler(apiRequest) || {}),
+          body: JSON.stringify((await route.handler(apiRequest)) ?? {}),
         };
       } else {
         throw new NotFoundError();
