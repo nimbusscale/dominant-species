@@ -10,7 +10,6 @@ import {
 } from 'aws-cdk-lib';
 import path from 'node:path';
 import { EnvVarNames } from '../../../backend/src/lib/enum';
-import {signupHandler} from "../../../backend/src/signup-handler";
 
 export class UserPoolStack extends cdk.Stack {
   readonly userPool: aws_cognito.UserPool;
