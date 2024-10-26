@@ -229,9 +229,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/AreaState.html" data-type="entity-link" >AreaState</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/CognitoJwtPayload.html" data-type="entity-link" >CognitoJwtPayload</a>
-                            </li>
-                            <li class="link">
                                 <a href="interfaces/ElementConfig.html" data-type="entity-link" >ElementConfig</a>
                             </li>
                             <li class="link">
