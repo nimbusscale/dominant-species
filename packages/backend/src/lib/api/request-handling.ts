@@ -3,7 +3,7 @@ import { ensureDefined } from '../util';
 import { CognitoIdTokenJwt } from 'api-types/src/auth';
 import { jwtDecode } from 'jwt-decode';
 import { ApiResponseType } from 'api-types/src/request-response';
-import { BadRequestError, NotFoundError } from '../../error';
+import { BadRequestError, NotFoundError } from '../error';
 import { StatusCodes } from 'http-status-codes';
 
 interface QueryParameters {

@@ -1,6 +1,6 @@
 import { GameRecordManager } from '../db/game';
 import { GameCollection } from 'api-types/src/game';
-import { BadRequestError } from '../../error';
+import { BadRequestError } from '../error';
 import { ApiRequest } from './request-handling';
 
 export class GameApiController {
