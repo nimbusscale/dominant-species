@@ -1,10 +1,10 @@
-import {APIGatewayProxyEvent} from 'aws-lambda';
-import {ensureDefined} from '../util';
-import {CognitoIdTokenJwt} from 'api-types/src/auth';
-import {jwtDecode} from 'jwt-decode';
-import {ApiResponseType} from 'api-types/src/request-response';
-import {BadRequestError, NotFoundError} from '../../error';
-import {StatusCodes} from 'http-status-codes';
+import { APIGatewayProxyEvent } from 'aws-lambda';
+import { ensureDefined } from '../util';
+import { CognitoIdTokenJwt } from 'api-types/src/auth';
+import { jwtDecode } from 'jwt-decode';
+import { ApiResponseType } from 'api-types/src/request-response';
+import { BadRequestError, NotFoundError } from '../../error';
+import { StatusCodes } from 'http-status-codes';
 
 interface QueryParameters {
   username?: string;
@@ -29,10 +29,7 @@ export interface ApiRoute {
 }
 
 export class ApiRequestHandler {
-  constructor(
-    private routes: ApiRoute[]
-  ) {
-  }
+  constructor(private routes: ApiRoute[]) {}
 
   private getUsernameFromIdToken(token: string): string {
     const decodedToken: CognitoIdTokenJwt = jwtDecode(token);
@@ -55,14 +52,14 @@ export class ApiRequestHandler {
   }
 
   private formatErrorResponseBody(error: Error): string {
-    return JSON.stringify({message: error.message});
+    return JSON.stringify({ message: error.message });
   }
 
   private createResponseFromError(error: Error): ApiResponse {
     if (error instanceof BadRequestError) {
-      return {statusCode: StatusCodes.BAD_REQUEST, body: this.formatErrorResponseBody(error)};
+      return { statusCode: StatusCodes.BAD_REQUEST, body: this.formatErrorResponseBody(error) };
     } else if (error instanceof NotFoundError) {
-      return {statusCode: StatusCodes.NOT_FOUND, body: this.formatErrorResponseBody(error)};
+      return { statusCode: StatusCodes.NOT_FOUND, body: this.formatErrorResponseBody(error) };
     } else {
       return {
         statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
@@ -71,9 +68,7 @@ export class ApiRequestHandler {
     }
   }
 
-  async handleApiEvent(
-    apiGwEvent: APIGatewayProxyEvent
-  ): Promise<ApiResponse> {
+  async handleApiEvent(apiGwEvent: APIGatewayProxyEvent): Promise<ApiResponse> {
     let apiResponse: ApiResponse;
     try {
       const apiRequest = this.apiGwEventToApiRequest(apiGwEvent);
@@ -92,5 +87,4 @@ export class ApiRequestHandler {
     }
     return apiResponse;
   }
-
 }
