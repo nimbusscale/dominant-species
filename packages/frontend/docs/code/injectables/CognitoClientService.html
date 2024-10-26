@@ -189,7 +189,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/engine/service/auth/cognito-client.service.ts:27</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/engine/service/auth/cognito-client.service.ts:18</a></div>
                             </td>
                         </tr>
 
@@ -224,8 +224,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="85"
-                                    class="link-to-prism">src/app/engine/service/auth/cognito-client.service.ts:85</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="76"
+                                    class="link-to-prism">src/app/engine/service/auth/cognito-client.service.ts:76</a></div>
                         </td>
                     </tr>
 
@@ -303,8 +303,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="59"
-                                    class="link-to-prism">src/app/engine/service/auth/cognito-client.service.ts:59</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="50"
+                                    class="link-to-prism">src/app/engine/service/auth/cognito-client.service.ts:50</a></div>
                         </td>
                     </tr>
 
@@ -340,7 +340,7 @@
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="../interfaces/CognitoJwtPayload.html" target="_self" >CognitoJwtPayload</a></code>
+                            <b>Returns : </b>    <code>CognitoIdTokenJwt</code>
 
                         </div>
                             <div class="io-description">
@@ -372,8 +372,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="35"
-                                    class="link-to-prism">src/app/engine/service/auth/cognito-client.service.ts:35</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="26"
+                                    class="link-to-prism">src/app/engine/service/auth/cognito-client.service.ts:26</a></div>
                         </td>
                     </tr>
 
@@ -453,8 +453,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="63"
-                                    class="link-to-prism">src/app/engine/service/auth/cognito-client.service.ts:63</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="54"
+                                    class="link-to-prism">src/app/engine/service/auth/cognito-client.service.ts:54</a></div>
                         </td>
                     </tr>
 
@@ -550,7 +550,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/engine/service/auth/cognito-client.service.ts:27</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/engine/service/auth/cognito-client.service.ts:18</a></div>
                         </td>
                     </tr>
 
@@ -573,17 +573,8 @@ import {
   SignUpCommand,
 } from &#x27;@aws-sdk/client-cognito-identity-provider&#x27;;
 import { environment } from &#x27;../../../../environments/environment&#x27;;
-import { jwtDecode, JwtPayload } from &#x27;jwt-decode&#x27;;
-
-export interface CognitoJwtPayload extends JwtPayload {
-  client_id: string;
-  origin_jti: string;
-  event_id: string;
-  token_use: string;
-  scope: string;
-  auth_time: number;
-  username: string;
-}
+import { jwtDecode } from &#x27;jwt-decode&#x27;;
+import { CognitoIdTokenJwt } from &#x27;api-types/src/auth&#x27;;
 
 @Injectable({
   providedIn: &#x27;root&#x27;,
@@ -621,7 +612,7 @@ export class CognitoClientService {
     }
   }
 
-  decodeJwtToken(token: string): CognitoJwtPayload {
+  decodeJwtToken(token: string): CognitoIdTokenJwt {
     return jwtDecode(token);
   }
 
