@@ -10,8 +10,12 @@ export class GameApiController {
     this.gameRecordManager = gameRecordManager;
   }
 
-  async getGameForUser(getEvent: ApiRequest): Promise<GameCollection> {
-    const usernameQueryParam = getEvent.queryStringParameters?.username;
+  async addGame(apiRequest: ApiRequest): Promise<void> {
+
+  }
+
+  async getGamesForUser(apiRequest: ApiRequest): Promise<GameCollection> {
+    const usernameQueryParam = apiRequest.queryStringParameters?.username;
     if (usernameQueryParam) {
       return {
         games: await this.gameRecordManager.getGamesForPlayer(usernameQueryParam),

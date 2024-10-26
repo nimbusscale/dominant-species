@@ -10,7 +10,7 @@ const routes: ApiRoute[] = [
   {
     method: 'GET',
     pattern: /^\/v1\/game$/,
-    handler: (apiRequest) => gameApiController.getGameForUser(apiRequest),
+    handler: (apiRequest) => gameApiController.getGamesForUser(apiRequest),
   },
 ];
 

@@ -15,6 +15,7 @@ export interface ApiRequest {
   httpMethod: string;
   queryStringParameters: QueryParameters | null;
   username: string | null;
+  body: string | null;
 }
 
 export interface ApiResponse {
@@ -42,6 +43,7 @@ export class ApiRequestHandler {
       path: apiGwEvent.path,
       queryStringParameters: apiGwEvent.queryStringParameters,
       username: this.getUsernameFromIdToken(ensureDefined(apiGwEvent.headers['Authorization'])),
+      body: apiGwEvent.body
     };
   }
 
