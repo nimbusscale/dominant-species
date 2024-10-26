@@ -10,6 +10,7 @@ import {
 } from 'aws-cdk-lib';
 import path from 'node:path';
 import { EnvVarNames } from '../../../backend/src/lib/enum';
+import {signupHandler} from "../../../backend/src/signup-handler";
 
 export class UserPoolStack extends cdk.Stack {
   readonly userPool: aws_cognito.UserPool;
@@ -29,8 +30,8 @@ export class UserPoolStack extends cdk.Stack {
       'addUserToTableFromSignUp',
       {
         runtime: aws_lambda.Runtime.NODEJS_20_X,
-        entry: path.join(__dirname, '../../../backend/src/index.ts'),
-        handler: 'addUserToTableFromSignUp',
+        entry: path.join(__dirname, '../../../backend/src/signup-handler.ts'),
+        handler: 'signupHandler',
         role: gameMgmtRole,
         environment: {
           [EnvVarNames.VPA_GAME_TABLE_NAME]: gameTable.tableName,
