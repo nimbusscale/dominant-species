@@ -10,7 +10,7 @@ interface QueryParameters {
   username?: string;
 }
 
-export interface ApiEvent {
+export interface ApiRequest {
   path: string;
   httpMethod: string;
   queryStringParameters: QueryParameters | null;
@@ -27,7 +27,7 @@ function getUsernameFromIdToken(token: string): string {
   return ensureDefined(decodedToken['cognito:username']);
 }
 
-export function apiGwEventToApiEvent(apiGwEvent: APIGatewayProxyEvent): ApiEvent {
+export function apiGwEventToApiRequest(apiGwEvent: APIGatewayProxyEvent): ApiRequest {
   return {
     httpMethod: apiGwEvent.httpMethod,
     path: apiGwEvent.path,
@@ -39,12 +39,12 @@ export function apiGwEventToApiEvent(apiGwEvent: APIGatewayProxyEvent): ApiEvent
 export interface ApiRoute {
   method: 'GET' | 'POST' | 'PATCH',
   pattern: RegExp,
-  handler: (apiEvent: ApiEvent) => Promise<ApiResponseType>;
+  handler: (apiEvent: ApiRequest) => Promise<ApiResponseType>;
 }
 
-export function findRoute(apiEvent: ApiEvent, routes: ApiRoute[]): ApiRoute | undefined {
+export function findRoute(apiRequest: ApiRequest, routes: ApiRoute[]): ApiRoute | undefined {
   return routes.find(
-    (route) => route.method === apiEvent.httpMethod && route.pattern.test(apiEvent.path),
+    (route) => route.method === apiRequest.httpMethod && route.pattern.test(apiRequest.path),
   )
 }
 
@@ -68,12 +68,12 @@ export function createResponseFromError(error: Error): ApiResponse {
 export async function handleApiEvent(apiGwEvent: APIGatewayProxyEvent, routes: ApiRoute[]): Promise<ApiResponse> {
   let apiResponse: ApiResponse;
   try {
-    const apiEvent = apiGwEventToApiEvent(apiGwEvent)
-    const route = findRoute(apiEvent, routes)
+    const apiRequest = apiGwEventToApiRequest(apiGwEvent)
+    const route = findRoute(apiRequest, routes)
     if (route) {
       apiResponse = {
         statusCode: StatusCodes.OK,
-        body: JSON.stringify(await route.handler(apiEvent)),
+        body: JSON.stringify(await route.handler(apiRequest)),
       };
     } else {
       throw new NotFoundError();
