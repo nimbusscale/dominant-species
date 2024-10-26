@@ -29,8 +29,8 @@ export class UserPoolStack extends cdk.Stack {
       'addUserToTableFromSignUp',
       {
         runtime: aws_lambda.Runtime.NODEJS_20_X,
-        entry: path.join(__dirname, '../../../backend/src/index.ts'),
-        handler: 'addUserToTableFromSignUp',
+        entry: path.join(__dirname, '../../../backend/src/signup-handler.ts'),
+        handler: 'signupHandler',
         role: gameMgmtRole,
         environment: {
           [EnvVarNames.VPA_GAME_TABLE_NAME]: gameTable.tableName,

@@ -5,3 +5,7 @@ export interface Game {
   startTS?: number,
   complete?: boolean
 }
+
+export interface GameCollection {
+  games: Game[]
+}
