@@ -10,7 +10,7 @@ describe('PlayerService', () => {
   beforeEach(() => {
     mockAuthService = jasmine.createSpyObj<AuthService>('AuthService', [], {
       playerAuthData: {
-        id: 'tester1',
+        username: 'tester1',
         accessToken: 'test',
         accessTokenExpire: 100,
         refreshToken: 'test',

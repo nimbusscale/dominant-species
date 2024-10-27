@@ -11,7 +11,7 @@ export class Player extends GameElement<PlayerState> {
 }
 
 export interface PlayerAuthData {
-  id: string;
+  username: string;
   accessToken: string;
   accessTokenExpire: number;
   refreshToken: string;

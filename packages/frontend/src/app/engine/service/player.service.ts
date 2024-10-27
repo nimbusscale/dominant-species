@@ -12,8 +12,8 @@ export class PlayerService {
     const playerAuthData = this.authService.playerAuthData;
     if (playerAuthData) {
       this.currentPlayer = new Player({
-        id: playerAuthData.id,
-        name: playerAuthData.id,
+        id: playerAuthData.username,
+        name: playerAuthData.username,
       });
     } else {
       throw new Error('No Auth Data to build Player');
