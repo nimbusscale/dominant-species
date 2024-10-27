@@ -1,6 +1,6 @@
 export interface Player {
   username: string,
-  friends: Set<string>
+  friends: string[]
 }
 
 export interface PlayerCollection {

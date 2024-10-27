@@ -1,7 +1,6 @@
 import * as cdk from 'aws-cdk-lib';
-import {aws_dynamodb, aws_iam} from 'aws-cdk-lib';
-import {Construct} from 'constructs';
-import {ProjectionType} from "aws-cdk-lib/aws-dynamodb";
+import { aws_dynamodb, aws_iam } from 'aws-cdk-lib';
+import { Construct } from 'constructs';
 
 export class VpaGamesTableStack extends cdk.Stack {
   readonly table: aws_dynamodb.TableV2;
@@ -28,7 +27,7 @@ export class VpaGamesTableStack extends cdk.Stack {
         {
           indexName: 'byRecord',
           partitionKey: { name: 'record', type: aws_dynamodb.AttributeType.STRING },
-          sortKey: {name: 'id', type: aws_dynamodb.AttributeType.STRING }
+          sortKey: { name: 'id', type: aws_dynamodb.AttributeType.STRING },
         },
       ],
       timeToLiveAttribute: 'ttl',

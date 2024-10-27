@@ -5,7 +5,7 @@ import { dynamoDBDocumentClient } from './client';
 export enum GameTableIndex {
   BY_GAME_ID = 'gameByGameId',
   BY_PLAYER_START = 'gameByPlayerStart',
-  BY_RECORD = 'byRecord'
+  BY_RECORD = 'byRecord',
 }
 
 export const GameTable = new Table({
@@ -31,7 +31,7 @@ export const GameTable = new Table({
     byRecord: {
       type: 'global',
       partitionKey: { name: 'record', type: 'string' },
-      sortKey: {name: 'id', type: 'string'}
+      sortKey: { name: 'id', type: 'string' },
     },
   },
 });

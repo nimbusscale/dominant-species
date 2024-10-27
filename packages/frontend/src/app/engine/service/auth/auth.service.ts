@@ -27,6 +27,7 @@ export class AuthService {
 
   async login(username: string, password: string): Promise<boolean> {
     const authResult = await this.cognitoClientService.login(username, password);
+    console.log(authResult)
     if (authResult) {
       this.localStorageService.setStorageKey(
         LocalStorageKey.PLAYER_AUTH_DATA,

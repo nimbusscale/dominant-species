@@ -30,9 +30,8 @@ export class GameApiController {
   }
 
   async completeGame(apiRequest: ApiRequest): Promise<undefined> {
-    // path should be in the format of 'v1/game/{gameId}'
+    // path should be in the format of '/v1/game/{gameId}'
     const gameId = apiRequest.path.split('/')[3];
-    console.log(gameId);
     if (apiRequest.body) {
       const body = JSON.parse(apiRequest.body) as Game;
       if (body.complete === true) {
