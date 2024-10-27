@@ -7,7 +7,6 @@ export function authInterceptor(req: HttpRequest<unknown>, next: HttpHandlerFn) 
   if (!playerAuthData) {
     throw new Error('No playerAuthData')
   }
-
   const newReq = req.clone({
     headers: req.headers.append('Authorization', playerAuthData.accessToken),
   });
