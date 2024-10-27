@@ -5,12 +5,13 @@ import {routes} from './app.routes';
 import {provideAnimationsAsync} from '@angular/platform-browser/animations/async';
 import {provideHttpClient, withFetch, withInterceptors} from "@angular/common/http";
 import {authInterceptor} from "./engine/interceptor/auth";
+import {apiUrlInterceptor} from "./engine/interceptor/api-url";
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideHttpClient(
       withFetch(),
-      withInterceptors([authInterceptor])
+      withInterceptors([apiUrlInterceptor, authInterceptor])
     ),
     provideZoneChangeDetection({eventCoalescing: true}),
     provideRouter(routes),
