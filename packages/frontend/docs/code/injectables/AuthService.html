@@ -416,8 +416,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="41"
-                                    class="link-to-prism">src/app/engine/service/auth/auth.service.ts:41</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="42"
+                                    class="link-to-prism">src/app/engine/service/auth/auth.service.ts:42</a></div>
                         </td>
                     </tr>
 
@@ -455,8 +455,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="56"
-                                    class="link-to-prism">src/app/engine/service/auth/auth.service.ts:56</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="57"
+                                    class="link-to-prism">src/app/engine/service/auth/auth.service.ts:57</a></div>
                         </td>
                     </tr>
 
@@ -524,7 +524,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/engine/service/auth/auth.service.ts:47</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/engine/service/auth/auth.service.ts:48</a></div>
                                 </td>
                             </tr>
 
@@ -546,7 +546,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/engine/service/auth/auth.service.ts:60</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/engine/service/auth/auth.service.ts:61</a></div>
                                 </td>
                             </tr>
 
@@ -586,6 +586,7 @@ export class AuthService {
 
   async login(username: string, password: string): Promise&lt;boolean&gt; {
     const authResult &#x3D; await this.cognitoClientService.login(username, password);
+    console.log(authResult);
     if (authResult) {
       this.localStorageService.setStorageKey(
         LocalStorageKey.PLAYER_AUTH_DATA,
