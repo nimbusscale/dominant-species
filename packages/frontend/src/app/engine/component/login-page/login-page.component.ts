@@ -24,7 +24,7 @@ export class LoginPageComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    private loginService: AuthService,
+    private authService: AuthService,
     private router: Router,
   ) {
     this.loginForm = this.formBuilder.group({
@@ -36,7 +36,7 @@ export class LoginPageComponent {
   onSubmit(): void {
     if (this.loginForm.valid) {
       const { username, password } = this.loginForm.value as LoginFormData;
-      void this.loginService.login(username, password).then((success) => {
+      void this.authService.login(username, password).then((success) => {
         if (success) {
           void this.router.navigate(['/game']);
         } else {
