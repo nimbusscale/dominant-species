@@ -1,0 +1,27 @@
+// import { expect, jest, it, describe, beforeEach } from '@jest/globals';
+// import {PlayerEntity, PlayerRecordManager} from "../../lib/db/player";
+//
+//
+// describe('db', () => {
+//   let playerRecordManager: PlayerRecordManager;
+//
+//   beforeEach(() => {
+//     playerRecordManager = new PlayerRecordManager(PlayerEntity)
+//   })
+//
+//   it('adds user', async () => {
+//     await playerRecordManager.addPlayer('humannumber1')
+//   })
+//   it('gets valid player', async () => {
+//     console.log(await playerRecordManager.getPlayer('humannumber1'))
+//   })
+//   it('gets invalid player', async () => {
+//     console.log(await playerRecordManager.getPlayer('humannumber1'))
+//   })
+//   it('finds players', async() => {
+//     console.log(await playerRecordManager.findPlayers('humannumber1'))
+//   })
+//   it('set friends', async() => {
+//     console.log(await playerRecordManager.setFriends('tester3', ['tester1', 'tester2']))
+//   })
+// })

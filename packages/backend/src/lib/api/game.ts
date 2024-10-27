@@ -10,7 +10,7 @@ export class GameApiController {
     this.gameRecordManager = gameRecordManager;
   }
 
-  async addGame(apiRequest: ApiRequest): Promise<void> {
+  async addGame(apiRequest: ApiRequest): Promise<undefined> {
     if (apiRequest.body) {
       await this.gameRecordManager.addGame(JSON.parse(apiRequest.body) as Game);
     } else {
@@ -29,10 +29,9 @@ export class GameApiController {
     }
   }
 
-  async completeGame(apiRequest: ApiRequest): Promise<void> {
-    // path should be in the format of 'v1/game/{gameId}'
+  async completeGame(apiRequest: ApiRequest): Promise<undefined> {
+    // path should be in the format of '/v1/game/{gameId}'
     const gameId = apiRequest.path.split('/')[3];
-    console.log(gameId);
     if (apiRequest.body) {
       const body = JSON.parse(apiRequest.body) as Game;
       if (body.complete === true) {
