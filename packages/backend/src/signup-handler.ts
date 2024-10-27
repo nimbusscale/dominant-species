@@ -1,6 +1,8 @@
 import { Callback, Context, Handler, PreSignUpTriggerEvent } from 'aws-lambda';
 
-import { addPlayer } from './lib/db/player';
+import {PlayerEntity, PlayerRecordManager} from './lib/db/player';
+
+const playerRecordManager = new PlayerRecordManager(PlayerEntity);
 
 export const signupHandler: Handler = async (
   event: PreSignUpTriggerEvent,
@@ -8,7 +10,7 @@ export const signupHandler: Handler = async (
   callback: Callback,
 ) => {
   try {
-    await addPlayer(event.userName);
+    await playerRecordManager.addPlayer(event.userName);
     callback(null, event);
   } catch (e) {
     console.error(`failed on event ${JSON.stringify(event)}`);
