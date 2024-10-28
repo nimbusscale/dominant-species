@@ -62,8 +62,8 @@ export class GameMgmtStack extends cdk.Stack {
         authorizer: gameMgmtApiGwAuthorizer,
       },
       defaultCorsPreflightOptions: {
-        allowOrigins: aws_apigateway.Cors.ALL_ORIGINS
-      }
+        allowOrigins: aws_apigateway.Cors.ALL_ORIGINS,
+      },
     });
   }
 }

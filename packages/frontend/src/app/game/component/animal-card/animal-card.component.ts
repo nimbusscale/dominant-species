@@ -13,7 +13,7 @@ import { AnimalProviderService } from '../../service/animal-provider.service';
 import { isNotUndefined } from '../../../engine/util/predicate';
 import { PlayerService } from '../../../engine/service/game-management/player.service';
 import { NgClass } from '@angular/common';
-import {ensureDefined} from "../../../engine/util/misc";
+import { ensureDefined } from '../../../engine/util/misc';
 
 // Todo: change to OnPush
 @Component({

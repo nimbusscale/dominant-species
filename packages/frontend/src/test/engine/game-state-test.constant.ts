@@ -3,7 +3,7 @@ import { GameState } from '../../app/engine/model/game-state.model';
 import { PileState } from '../../app/engine/model/pile.model';
 import { FactionState } from '../../app/engine/model/faction.model';
 import { AreaState } from '../../app/engine/model/area.model';
-import {Player} from "api-types/src/player";
+import { Player } from 'api-types/src/player';
 
 function deepFreeze<T>(obj: T): T {
   const propNames = Object.getOwnPropertyNames(obj) as (keyof T)[];
@@ -39,12 +39,12 @@ export const testGameStatePatch1: GameStatePatch = deepFreeze({
 
 export const testPlayer1: Player = deepFreeze({
   username: 'tester1',
-  friends: []
+  friends: [],
 });
 
 export const testPlayer2: Player = deepFreeze({
   username: 'tester2',
-  friends: ['tester1']
+  friends: ['tester1'],
 });
 
 export const testFactionState1: FactionState = deepFreeze({

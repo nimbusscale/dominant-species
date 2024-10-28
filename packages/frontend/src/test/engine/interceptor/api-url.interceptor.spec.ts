@@ -1,7 +1,13 @@
-import {HTTP_INTERCEPTORS, HttpClient, provideHttpClient, withFetch, withInterceptors} from "@angular/common/http";
-import {HttpTestingController, provideHttpClientTesting} from "@angular/common/http/testing";
-import {TestBed} from "@angular/core/testing";
-import {apiUrlInterceptor} from "../../../app/engine/interceptor/api-url.interceptor";
+import {
+  HTTP_INTERCEPTORS,
+  HttpClient,
+  provideHttpClient,
+  withFetch,
+  withInterceptors,
+} from '@angular/common/http';
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
+import { TestBed } from '@angular/core/testing';
+import { apiUrlInterceptor } from '../../../app/engine/interceptor/api-url.interceptor';
 
 describe('apiUrlInterceptor', () => {
   let httpClient: HttpClient;
@@ -10,12 +16,9 @@ describe('apiUrlInterceptor', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        provideHttpClient(
-          withFetch(),
-          withInterceptors([apiUrlInterceptor])
-        ),
+        provideHttpClient(withFetch(), withInterceptors([apiUrlInterceptor])),
         provideHttpClientTesting(),
-        {provide: HTTP_INTERCEPTORS, useValue: apiUrlInterceptor, multi: true},
+        { provide: HTTP_INTERCEPTORS, useValue: apiUrlInterceptor, multi: true },
       ],
     });
 
@@ -30,5 +33,5 @@ describe('apiUrlInterceptor', () => {
   it('should add site to URL', () => {
     httpClient.get('/test').subscribe();
     httpTestingController.expectOne('https://api.vpa-games.com/v1/test');
-  })
-})
+  });
+});

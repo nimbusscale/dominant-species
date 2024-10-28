@@ -5,22 +5,21 @@ import { AuthenticationResultType } from '@aws-sdk/client-cognito-identity-provi
 import { PlayerAuthData } from '../../model/player.model';
 import { ensureDefined } from '../../util/misc';
 import { LocalStorageKey } from '../../constant/local-storage';
-import {BehaviorSubject, Observable} from "rxjs";
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private readonly isLoggedInSubject: BehaviorSubject<boolean>
-  readonly isLoggedIn$: Observable<boolean>
+  private readonly isLoggedInSubject: BehaviorSubject<boolean>;
+  readonly isLoggedIn$: Observable<boolean>;
 
   constructor(
     private cognitoClientService: CognitoClientService,
     private localStorageService: LocalStorageService,
   ) {
     this.isLoggedInSubject = new BehaviorSubject<boolean>(this.checkIsLoggedIn());
-    this.isLoggedIn$ = this.isLoggedInSubject.asObservable()
-
+    this.isLoggedIn$ = this.isLoggedInSubject.asObservable();
   }
 
   private authResultToPlayerAuth(authResult: AuthenticationResultType): PlayerAuthData {
@@ -66,9 +65,9 @@ export class AuthService {
 
   get loggedInUsername(): string {
     if (this.playerAuthData) {
-      return this.playerAuthData.username
+      return this.playerAuthData.username;
     } else {
-      throw new Error('No user logged in')
+      throw new Error('No user logged in');
     }
   }
 

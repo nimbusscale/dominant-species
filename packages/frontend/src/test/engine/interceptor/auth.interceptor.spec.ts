@@ -1,10 +1,14 @@
-import {TestBed} from '@angular/core/testing';
-import {HTTP_INTERCEPTORS, HttpClient, provideHttpClient, withFetch, withInterceptors} from '@angular/common/http';
-import {HttpTestingController, provideHttpClientTesting} from '@angular/common/http/testing';
-import {AuthService} from "../../../app/engine/service/auth/auth.service";
-import {authInterceptor} from "../../../app/engine/interceptor/auth.interceptor";
-
-
+import { TestBed } from '@angular/core/testing';
+import {
+  HTTP_INTERCEPTORS,
+  HttpClient,
+  provideHttpClient,
+  withFetch,
+  withInterceptors,
+} from '@angular/common/http';
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
+import { AuthService } from '../../../app/engine/service/auth/auth.service';
+import { authInterceptor } from '../../../app/engine/interceptor/auth.interceptor';
 
 describe('authInterceptor', () => {
   let httpClient: HttpClient;
@@ -18,18 +22,15 @@ describe('authInterceptor', () => {
         accessToken: 'accessToken',
         accessTokenExpire: 100,
         refreshToken: 'refreshToken',
-      }
-    })
+      },
+    });
 
     TestBed.configureTestingModule({
       providers: [
-        provideHttpClient(
-          withFetch(),
-          withInterceptors([authInterceptor])
-        ),
+        provideHttpClient(withFetch(), withInterceptors([authInterceptor])),
         provideHttpClientTesting(),
-        {provide: AuthService, useValue: authServiceMock},
-        {provide: HTTP_INTERCEPTORS, useValue: authInterceptor, multi: true},
+        { provide: AuthService, useValue: authServiceMock },
+        { provide: HTTP_INTERCEPTORS, useValue: authInterceptor, multi: true },
       ],
     });
 
@@ -52,19 +53,16 @@ describe('authInterceptor', () => {
   it('should throw an error if no playerAuthData', (done) => {
     // Reconfigure TestBed for this specific test
     const authServiceMockWithoutAuthData = jasmine.createSpyObj<AuthService>('AuthService', [], {
-      playerAuthData: undefined
+      playerAuthData: undefined,
     });
 
     TestBed.resetTestingModule();
     TestBed.configureTestingModule({
       providers: [
-        provideHttpClient(
-          withFetch(),
-          withInterceptors([authInterceptor])
-        ),
+        provideHttpClient(withFetch(), withInterceptors([authInterceptor])),
         provideHttpClientTesting(),
-        {provide: AuthService, useValue: authServiceMockWithoutAuthData},
-        {provide: HTTP_INTERCEPTORS, useValue: authInterceptor, multi: true},
+        { provide: AuthService, useValue: authServiceMockWithoutAuthData },
+        { provide: HTTP_INTERCEPTORS, useValue: authInterceptor, multi: true },
       ],
     });
 
@@ -75,7 +73,7 @@ describe('authInterceptor', () => {
       error: (err) => {
         expect(err.message).toBe('No playerAuthData');
         done();
-      }
+      },
     });
   });
 });

@@ -1,5 +1,11 @@
 import { TestBed } from '@angular/core/testing';
-import {HTTP_INTERCEPTORS, HttpClient, provideHttpClient, withFetch, withInterceptors} from '@angular/common/http';
+import {
+  HTTP_INTERCEPTORS,
+  HttpClient,
+  provideHttpClient,
+  withFetch,
+  withInterceptors,
+} from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { errorHandlerInterceptor } from '../../../app/engine/interceptor/error-handler.interceptor';
 
@@ -10,11 +16,9 @@ describe('errorHandlerInterceptor', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        provideHttpClient(
-          withFetch(),
-          withInterceptors([errorHandlerInterceptor])),
+        provideHttpClient(withFetch(), withInterceptors([errorHandlerInterceptor])),
         provideHttpClientTesting(),
-        {provide: HTTP_INTERCEPTORS, useValue: errorHandlerInterceptor, multi: true},
+        { provide: HTTP_INTERCEPTORS, useValue: errorHandlerInterceptor, multi: true },
       ],
     });
 
@@ -35,7 +39,7 @@ describe('errorHandlerInterceptor', () => {
         expect(error.message).toContain('404 Not Found');
         expect(consoleSpy).toHaveBeenCalled();
         done();
-      }
+      },
     });
 
     const req = httpTestingController.expectOne('/test');

@@ -19,10 +19,10 @@ export interface ApiRequest {
 }
 
 export interface ApiResponseHeaders {
-  'Content-Type': string,
-  'Access-Control-Allow-Origin': string,
-  'Access-Control-Allow-Methods': string,
-  'Access-Control-Allow-Headers': string,
+  'Content-Type': string;
+  'Access-Control-Allow-Origin': string;
+  'Access-Control-Allow-Methods': string;
+  'Access-Control-Allow-Headers': string;
 }
 
 export interface ApiResponse {
@@ -93,7 +93,7 @@ export class ApiRequestHandler {
             'Access-Control-Allow-Origin': '*',
             'Access-Control-Allow-Methods': '*',
             'Access-Control-Allow-Headers': '*',
-          }
+          },
         };
       } else {
         throw new NotFoundError();

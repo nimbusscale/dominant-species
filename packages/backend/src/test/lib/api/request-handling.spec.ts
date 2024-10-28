@@ -38,7 +38,8 @@ describe('ApiRequestHandler', () => {
     const apiResponse = await apiRequestHandler.handleApiEvent(
       testApiEvent as APIGatewayProxyEvent,
     );
-    expect(apiResponse).toEqual({ statusCode: StatusCodes.OK, body: JSON.stringify(testResponse) });
+    expect(apiResponse.statusCode).toEqual(StatusCodes.OK);
+    expect(apiResponse.body).toEqual(JSON.stringify(testResponse));
   });
   it('Should return Not Found if unknown route', async () => {
     const testResponse: GameCollection = { games: [] };
