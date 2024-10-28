@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import {humanId} from 'human-id'
 import {GameManagementClientService} from "./game-management-client.service";
 import {AuthService} from "../auth/auth.service";
-import {lastValueFrom} from "rxjs";
 import {Game} from "api-types/src/game";
 
 @Injectable({
@@ -16,7 +15,7 @@ export class GameService {
   ) { }
 
 
-  async createGame(otherPlayers: string[]): Promise<string> {
+  async createGame(otherPlayers: string[]): Promise<void> {
     const gameId = humanId()
     await this.gameManagementClientService.createGame({
         gameId,
@@ -26,7 +25,6 @@ export class GameService {
 
     )
     console.log(`created game: ${gameId}`);
-    return gameId
   }
 
   async getGamesForLoggedInPlayer(): Promise<Game[]> {

@@ -101,7 +101,7 @@ describe('AuthService', () => {
       expect(mockLocalStorageService.setStorageKey).not.toHaveBeenCalled();
     });
   });
-  describe('isLoggedIn', () => {
+  describe('checkIsLoggedIn', () => {
     it('should return true when valid auth in local storage', () => {
       mockLocalStorageService.getStorageKey.and.returnValue(JSON.stringify(testPlayerAuthData));
       spyOn(Date, 'now').and.returnValue(1729367000000);
@@ -143,6 +143,5 @@ describe('AuthService', () => {
       const isLoggedIn = await firstValueFrom(authService.isLoggedIn$);
       expect(isLoggedIn).toBeFalse();
     });
-
   })
 });
