@@ -78,4 +78,8 @@ export class LobbyPageComponent {
     await this.fetchGames()
   }
 
+  joinGame(gameId: string): void {
+    console.log(`Joining game ${gameId}`)
+  }
+
 }

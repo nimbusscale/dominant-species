@@ -1,3 +1,27 @@
-.games-table {
-  width: 100%;
+.lobby-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  gap: 10px;
+}
+
+.button-area {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  gap: 10px;
+  padding: 10px;
+}
+
+.table-area {
+  display: flex;
+  padding: 10px;
+  max-width: 1000px;
+}
+
+.action-button-area {
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+  gap: 8px;
 }
