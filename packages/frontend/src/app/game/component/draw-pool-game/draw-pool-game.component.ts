@@ -9,7 +9,7 @@ import { ElementComponent } from '../element/element.component';
 import { Faction } from '../../../engine/model/faction.model';
 import { ActionPawnComponent } from '../action-pawn/action-pawn.component';
 import { AnimalCardComponent } from '../animal-card/animal-card.component';
-import { PlayerService } from '../../../engine/service/player.service';
+import { PlayerService } from '../../../engine/service/game-management/player.service';
 import { EyeballComponent } from '../action-display/space/eyeball/eyeball.component';
 import { ElementSpaceComponent } from '../action-display/space/element-space/element-space.component';
 import { AdaptionActionDisplayCardComponent } from '../action-display/adaption-action-display-card/adaption-action-display-card.component';

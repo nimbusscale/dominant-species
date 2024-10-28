@@ -104,16 +104,16 @@ describe('AuthService', () => {
     it('should return true when valid auth in local storage', () => {
       mockLocalStorageService.getStorageKey.and.returnValue(JSON.stringify(testPlayerAuthData));
       spyOn(Date, 'now').and.returnValue(1729367000000);
-      expect(authService.isLoggedIn).toBeTrue();
+      expect(authService.checkIsLoggedIn()).toBeTrue();
     });
     it('should return true when auth not in local storage', () => {
       mockLocalStorageService.getStorageKey.and.returnValue(null);
-      expect(authService.isLoggedIn).toBeFalse();
+      expect(authService.checkIsLoggedIn()).toBeFalse();
     });
     it('should return true when auth expired', () => {
       mockLocalStorageService.getStorageKey.and.returnValue(JSON.stringify(testPlayerAuthData));
       spyOn(Date, 'now').and.returnValue(1739368000000);
-      expect(authService.isLoggedIn).toBeFalse();
+      expect(authService.checkIsLoggedIn()).toBeFalse();
     });
   });
 });

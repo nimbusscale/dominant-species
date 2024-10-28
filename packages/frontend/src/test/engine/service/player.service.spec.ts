@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { PlayerService } from '../../../app/engine/service/player.service';
+import { PlayerService } from '../../../app/engine/service/game-management/player.service';
 import { AuthService } from '../../../app/engine/service/auth/auth.service';
 
 describe('PlayerService', () => {

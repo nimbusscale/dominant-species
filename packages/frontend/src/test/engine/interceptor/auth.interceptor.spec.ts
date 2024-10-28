@@ -52,7 +52,7 @@ describe('authInterceptor', () => {
   it('should throw an error if no playerAuthData', (done) => {
     // Reconfigure TestBed for this specific test
     const authServiceMockWithoutAuthData = jasmine.createSpyObj<AuthService>('AuthService', [], {
-      playerAuthData: null
+      playerAuthData: undefined
     });
 
     TestBed.resetTestingModule();

@@ -11,7 +11,7 @@ import { ElementPiece } from '../../model/element.model';
 import { ElementComponent } from '../element/element.component';
 import { AnimalProviderService } from '../../service/animal-provider.service';
 import { isNotUndefined } from '../../../engine/util/predicate';
-import { PlayerService } from '../../../engine/service/player.service';
+import { PlayerService } from '../../../engine/service/game-management/player.service';
 import { NgClass } from '@angular/common';
 
 // Todo: change to OnPush
