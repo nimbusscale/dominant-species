@@ -1,0 +1,20 @@
+
+<button mat-raised-button (click)="createGame()">Create Game</button>
+<table mat-table [dataSource]="games()" class="mat-elevation-z8">
+  <ng-container matColumnDef="gameId">
+    <th mat-header-cell *matHeaderCellDef> Id </th>
+    <td *matCellDef="let game" mat-cell> {{game.gameId}} </td>
+  </ng-container>
+  <ng-container matColumnDef="host">
+    <th mat-header-cell *matHeaderCellDef> Host </th>
+    <td mat-cell *matCellDef="let game"> {{game.host}} </td>
+  </ng-container>
+  <ng-container matColumnDef="players">
+  <th mat-header-cell *matHeaderCellDef> Players </th>
+  <td mat-cell *matCellDef="let game"> {{game.players}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="gameTableColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: gameTableColumns;"></tr>
+</table>
+

@@ -38,7 +38,7 @@ export class LoginPageComponent {
       const { username, password } = this.loginForm.value as LoginFormData;
       void this.authService.login(username, password).then((success) => {
         if (success) {
-          void this.router.navigate(['/game']);
+          void this.router.navigate(['/lobby']);
         } else {
           this.errorMessage.set('Login failed. See console for more information.');
         }

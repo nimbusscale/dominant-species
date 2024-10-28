@@ -61,6 +61,9 @@ export class GameMgmtStack extends cdk.Stack {
         authorizationType: aws_apigateway.AuthorizationType.COGNITO,
         authorizer: gameMgmtApiGwAuthorizer,
       },
+      defaultCorsPreflightOptions: {
+        allowOrigins: aws_apigateway.Cors.ALL_ORIGINS
+      }
     });
   }
 }
