@@ -94,7 +94,7 @@ describe('AnimalCardComponent', () => {
 
     mockPlayerService = jasmine.createSpyObj('PlayerService', [], {
       currentPlayer: {
-        id: 'currentPlayer',
+        username: 'currentPlayer',
       },
     });
 
