@@ -12,7 +12,9 @@ import {
   MatRowDef,
   MatTable
 } from "@angular/material/table";
-import {MatButton} from "@angular/material/button";
+import {MatButton, MatMiniFabButton} from "@angular/material/button";
+import {MatIcon} from "@angular/material/icon";
+import {MatChip, MatChipSet} from "@angular/material/chips";
 
 @Component({
   selector: 'app-lobby-page',
@@ -28,19 +30,27 @@ import {MatButton} from "@angular/material/button";
     MatRowDef,
     MatHeaderCellDef,
     MatCellDef,
-    MatButton
+    MatButton,
+    MatIcon,
+    MatMiniFabButton,
+    MatChipSet,
+    MatChip
   ],
   templateUrl: './lobby-page.component.html',
   styleUrl: './lobby-page.component.scss'
 })
 export class LobbyPageComponent {
   games = signal<Game[]>([])
-  gameTableColumns: string[] = ['gameId', 'host', 'players'];
+  gameTableColumns: string[] = ['gameId', 'host', 'players', 'actions'];
 
   constructor(
     private gameService: GameService,
   ) {
     void this.fetchGames()
+  }
+
+  filterPlayers(game: Game): string[] {
+    return game.players.filter(player => player !== game.host).slice().sort();
   }
 
   async fetchGames(): Promise<void> {
@@ -49,6 +59,11 @@ export class LobbyPageComponent {
 
   async createGame(): Promise<void> {
     await this.gameService.createGame(['tester1', 'tester2', 'tester3'])
+    await this.fetchGames()
+  }
+
+  async completeGame(gameId: string): Promise<void> {
+    await this.gameService.completeGame(gameId)
     await this.fetchGames()
   }
 
