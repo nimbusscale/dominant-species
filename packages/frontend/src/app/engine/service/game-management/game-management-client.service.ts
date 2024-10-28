@@ -36,12 +36,13 @@ export class GameManagementClientService {
     return await lastValueFrom(this.http.get<Player>(`/game/${this.authService.loggedInUsername}`));
   }
 
-  async findPlayers(username: string): Promise<PlayerCollection> {
-    return await lastValueFrom(
+  async findPlayers(username: string): Promise<Player[]> {
+    const playerCollection = await lastValueFrom(
       this.http.get<PlayerCollection>('/player', {
         params: { username: username },
       })
     );
+    return playerCollection.players
   }
 
   async setFriends(player: Player): Promise<void> {

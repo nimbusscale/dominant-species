@@ -34,95 +34,95 @@ export class GameManagementService {
     private actionDisplayManagerService: ActionDisplayManagerService,
   ) {}
 
-  createGame(): void {
-    this.createArea();
-    this.createFactions();
-    this.createDrawPoolPile();
-    this.gameStateService.startTransaction();
-    this.setup();
-    this.gameStateService.commitTransaction();
-  }
-
-  private createArea(): void {
-    const areas: Area[] = [];
-    baseGameState.area.forEach((areaState) => {
-      const spaces: Space[] = [];
-      areaState.space.forEach((spaceState) => {
-        spaces.push(new Space(spaceState.kind));
-      });
-      areas.push(new Area(areaState.id, spaces));
-    });
-    this.areaRegistrySvc.register(areas);
-  }
-
-  private createFactions() {
-    const factions: Faction[] = [];
-    const areas: Area[] = [];
-    const piles: Pile[] = [];
-    const shuffledAnimals = shuffle(Object.values(AnimalEnum));
-    this.playerService.players.forEach((player, index) => {
-      const assignedAnimal = shuffledAnimals[index];
-      const elementConfig = getOrThrow(elementConfigByAnimal, assignedAnimal);
-
-      factions.push(
-        new Faction({
-          id: assignedAnimal,
-          name: startCase(assignedAnimal),
-          ownerId: player.id,
-          score: 0,
-        }),
-      );
-
-      const spaces: Space[] = [];
-      // inherent element spaces
-      for (let i = 0; i < elementConfig.inherentCount; i++) {
-        const space = new Space(SpaceKindEnum.ELEMENT);
-        space.addPiece(defaultPieceFactory(elementConfig.kind));
-        spaces.push(space);
-      }
-
-      // added element spaces
-      for (let i = 0; i < 6 - elementConfig.inherentCount; i++) {
-        const space = new Space(SpaceKindEnum.ELEMENT);
-        spaces.push(space);
-      }
-
-      areas.push(new Area(elementConfig.areaId, spaces));
-
-      const actionPawnPileState: PileState = {
-        id: getOrThrow(pileIdsByAnimal, assignedAnimal).actionPawn,
-        owner: assignedAnimal,
-        inventory: {
-          [PieceKindEnum.ACTION_PAWN]: 7,
-        },
-      };
-      piles.push(new Pile(actionPawnPileState));
-
-      const speciesPileState: PileState = {
-        id: getOrThrow(pileIdsByAnimal, assignedAnimal).species,
-        owner: assignedAnimal,
-        inventory: {
-          [PieceKindEnum.SPECIES]: 55,
-        },
-      };
-      piles.push(new Pile(speciesPileState));
-    });
-    this.factionRegistrySvc.register(factions);
-    this.areaRegistrySvc.register(areas);
-    this.pileRegistrySvc.register(piles);
-  }
-
-  private createDrawPoolPile(): void {
-    const piles: Pile[] = [];
-    baseGameState.pile.forEach((pileState) => {
-      piles.push(new Pile(pileState));
-    });
-    this.pileRegistrySvc.register(piles);
-  }
-
-  private setup(): void {
-    this.actionDisplayManagerService.ready$.pipe(filter(isTrue)).subscribe(() => {
-      this.actionDisplayManagerService.setup();
-    });
-  }
+  // createGame(): void {
+  //   this.createArea();
+  //   this.createFactions();
+  //   this.createDrawPoolPile();
+  //   this.gameStateService.startTransaction();
+  //   this.setup();
+  //   this.gameStateService.commitTransaction();
+  // }
+  //
+  // private createArea(): void {
+  //   const areas: Area[] = [];
+  //   baseGameState.area.forEach((areaState) => {
+  //     const spaces: Space[] = [];
+  //     areaState.space.forEach((spaceState) => {
+  //       spaces.push(new Space(spaceState.kind));
+  //     });
+  //     areas.push(new Area(areaState.id, spaces));
+  //   });
+  //   this.areaRegistrySvc.register(areas);
+  // }
+  //
+  // private createFactions() {
+  //   const factions: Faction[] = [];
+  //   const areas: Area[] = [];
+  //   const piles: Pile[] = [];
+  //   const shuffledAnimals = shuffle(Object.values(AnimalEnum));
+  //   this.playerService.players.forEach((player, index) => {
+  //     const assignedAnimal = shuffledAnimals[index];
+  //     const elementConfig = getOrThrow(elementConfigByAnimal, assignedAnimal);
+  //
+  //     factions.push(
+  //       new Faction({
+  //         id: assignedAnimal,
+  //         name: startCase(assignedAnimal),
+  //         ownerId: player.id,
+  //         score: 0,
+  //       }),
+  //     );
+  //
+  //     const spaces: Space[] = [];
+  //     // inherent element spaces
+  //     for (let i = 0; i < elementConfig.inherentCount; i++) {
+  //       const space = new Space(SpaceKindEnum.ELEMENT);
+  //       space.addPiece(defaultPieceFactory(elementConfig.kind));
+  //       spaces.push(space);
+  //     }
+  //
+  //     // added element spaces
+  //     for (let i = 0; i < 6 - elementConfig.inherentCount; i++) {
+  //       const space = new Space(SpaceKindEnum.ELEMENT);
+  //       spaces.push(space);
+  //     }
+  //
+  //     areas.push(new Area(elementConfig.areaId, spaces));
+  //
+  //     const actionPawnPileState: PileState = {
+  //       id: getOrThrow(pileIdsByAnimal, assignedAnimal).actionPawn,
+  //       owner: assignedAnimal,
+  //       inventory: {
+  //         [PieceKindEnum.ACTION_PAWN]: 7,
+  //       },
+  //     };
+  //     piles.push(new Pile(actionPawnPileState));
+  //
+  //     const speciesPileState: PileState = {
+  //       id: getOrThrow(pileIdsByAnimal, assignedAnimal).species,
+  //       owner: assignedAnimal,
+  //       inventory: {
+  //         [PieceKindEnum.SPECIES]: 55,
+  //       },
+  //     };
+  //     piles.push(new Pile(speciesPileState));
+  //   });
+  //   this.factionRegistrySvc.register(factions);
+  //   this.areaRegistrySvc.register(areas);
+  //   this.pileRegistrySvc.register(piles);
+  // }
+  //
+  // private createDrawPoolPile(): void {
+  //   const piles: Pile[] = [];
+  //   baseGameState.pile.forEach((pileState) => {
+  //     piles.push(new Pile(pileState));
+  //   });
+  //   this.pileRegistrySvc.register(piles);
+  // }
+  //
+  // private setup(): void {
+  //   this.actionDisplayManagerService.ready$.pipe(filter(isTrue)).subscribe(() => {
+  //     this.actionDisplayManagerService.setup();
+  //   });
+  // }
 }

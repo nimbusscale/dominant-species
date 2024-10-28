@@ -67,37 +67,37 @@ export class DrawPoolGameComponent {
   }
 
   startGame(): void {
-    this.gameManagementSvc.createGame();
-    console.log('Create Game');
-    this.factionRegistrySvc.factionAssignment$.subscribe((factionAssignments) => {
-      const factionAssignment = factionAssignments[0];
-      this.factions = [this.factionRegistrySvc.get(factionAssignment.id)];
-
-      this.factions = factionAssignments.map((factionAssignment) =>
-        this.factionRegistrySvc.get(factionAssignment.id),
-      );
-      this.currentPlayerFaction = this.factions.find(
-        (faction) => faction.ownerId === this.playerService.currentPlayer.id,
-      );
-    });
-    this.gameStarted = true;
+    // this.gameManagementSvc.createGame();
+    // console.log('Create Game');
+    // this.factionRegistrySvc.factionAssignment$.subscribe((factionAssignments) => {
+    //   const factionAssignment = factionAssignments[0];
+    //   this.factions = [this.factionRegistrySvc.get(factionAssignment.id)];
+    //
+    //   this.factions = factionAssignments.map((factionAssignment) =>
+    //     this.factionRegistrySvc.get(factionAssignment.id),
+    //   );
+    //   this.currentPlayerFaction = this.factions.find(
+    //     (faction) => faction.ownerId === this.playerService.currentPlayer.id,
+    //   );
+    // });
+    // this.gameStarted = true;
   }
 
   takeAction(): void {
-    this.gameStateSvc.startTransaction();
-    const animal = this.animalProviderService.get(ensureDefined(this.currentPlayerFaction).id);
-    const actionPawn = animal.actionPawn.pullOne();
-    if (actionPawn) {
-      const nextActionPawnSpaceIndex = this.adaptionActionDisplayService.actionPawns.findIndex(
-        (value) => value === null,
-      );
-      const nextElementSpaceIndex = this.adaptionActionDisplayService.elements.findIndex(
-        (value) => value !== null,
-      );
-      this.adaptionActionDisplayService.addActionPawn(nextActionPawnSpaceIndex, actionPawn);
-      const element = this.adaptionActionDisplayService.removeElement(nextElementSpaceIndex);
-      animal.elements.addElement(element);
-    }
-    this.gameStateSvc.commitTransaction();
+    // this.gameStateSvc.startTransaction();
+    // const animal = this.animalProviderService.get(ensureDefined(this.currentPlayerFaction).id);
+    // const actionPawn = animal.actionPawn.pullOne();
+    // if (actionPawn) {
+    //   const nextActionPawnSpaceIndex = this.adaptionActionDisplayService.actionPawns.findIndex(
+    //     (value) => value === null,
+    //   );
+    //   const nextElementSpaceIndex = this.adaptionActionDisplayService.elements.findIndex(
+    //     (value) => value !== null,
+    //   );
+    //   this.adaptionActionDisplayService.addActionPawn(nextActionPawnSpaceIndex, actionPawn);
+    //   const element = this.adaptionActionDisplayService.removeElement(nextElementSpaceIndex);
+    //   animal.elements.addElement(element);
+    // }
+    // this.gameStateSvc.commitTransaction();
   }
 }

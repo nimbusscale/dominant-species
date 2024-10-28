@@ -25,7 +25,7 @@ export class PlayerService {
 
   async findPlayers(username: string): Promise<string[]> {
     const playerCollection = await this.gameManagementClientService.findPlayers(username);
-    return playerCollection.players.map((player) => player.username);
+    return playerCollection.map((player) => player.username);
   }
 
   async addfriend(username: string): Promise<void> {
