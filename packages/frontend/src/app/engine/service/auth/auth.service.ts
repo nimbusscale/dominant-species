@@ -5,19 +5,23 @@ import { AuthenticationResultType } from '@aws-sdk/client-cognito-identity-provi
 import { PlayerAuthData } from '../../model/player.model';
 import { ensureDefined } from '../../util/misc';
 import { LocalStorageKey } from '../../constant/local-storage';
-import {BehaviorSubject} from "rxjs";
+import {BehaviorSubject, Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private readonly isLoggedInSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  readonly isLoggedIn$ = this.isLoggedInSubject.asObservable()
+  private readonly isLoggedInSubject: BehaviorSubject<boolean>
+  readonly isLoggedIn$: Observable<boolean>
 
   constructor(
     private cognitoClientService: CognitoClientService,
     private localStorageService: LocalStorageService,
-  ) {}
+  ) {
+    this.isLoggedInSubject = new BehaviorSubject<boolean>(this.checkIsLoggedIn());
+    this.isLoggedIn$ = this.isLoggedInSubject.asObservable()
+
+  }
 
   private authResultToPlayerAuth(authResult: AuthenticationResultType): PlayerAuthData {
     const jwt = this.cognitoClientService.decodeJwtToken(ensureDefined(authResult.IdToken));

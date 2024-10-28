@@ -19,6 +19,7 @@ import {GameManagementClientService} from "../../service/game-management/game-ma
 import {PlayerService} from "../../service/game-management/player.service";
 import {ensureDefined} from "../../util/misc";
 import {Player} from "api-types/src/player";
+import {MatTooltip} from "@angular/material/tooltip";
 
 @Component({
   selector: 'app-lobby-page',
@@ -38,7 +39,8 @@ import {Player} from "api-types/src/player";
     MatIcon,
     MatMiniFabButton,
     MatChipSet,
-    MatChip
+    MatChip,
+    MatTooltip
   ],
   templateUrl: './lobby-page.component.html',
   styleUrl: './lobby-page.component.scss'
