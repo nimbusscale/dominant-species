@@ -7,6 +7,7 @@ import { AuthenticationResultType } from '@aws-sdk/client-cognito-identity-provi
 import { LocalStorageKey } from '../../../../app/engine/constant/local-storage';
 import { PlayerAuthData } from '../../../../app/engine/model/player.model';
 import { CognitoIdTokenJwt } from 'api-types/src/auth';
+import {firstValueFrom, skip} from "rxjs";
 
 describe('AuthService', () => {
   let authService: AuthService;
@@ -116,4 +117,32 @@ describe('AuthService', () => {
       expect(authService.checkIsLoggedIn()).toBeFalse();
     });
   });
+  describe('isLoggedIn$', () => {
+    it('Should be false before login', (done) => {
+      authService.isLoggedIn$.subscribe((isLoggedIn) => {
+        expect(isLoggedIn).toBeFalse()
+        done()
+      })
+    })
+    it('Should be true after login', async () => {
+      mockCognitoClientService.login.and.returnValue(Promise.resolve(testAuthResultType));
+      mockCognitoClientService.decodeJwtToken.and.returnValue(testJwt);
+
+      await authService.login('username', 'password');
+
+      const isLoggedIn = await firstValueFrom(authService.isLoggedIn$);
+      expect(isLoggedIn).toBeTrue();
+    });
+    it('Should be false after login out', async () => {
+      mockCognitoClientService.login.and.returnValue(Promise.resolve(testAuthResultType));
+      mockCognitoClientService.decodeJwtToken.and.returnValue(testJwt);
+
+      await authService.login('username', 'password');
+      authService.logout()
+
+      const isLoggedIn = await firstValueFrom(authService.isLoggedIn$);
+      expect(isLoggedIn).toBeFalse();
+    });
+
+  })
 });

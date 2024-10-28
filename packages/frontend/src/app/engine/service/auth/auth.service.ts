@@ -11,7 +11,7 @@ import {BehaviorSubject} from "rxjs";
   providedIn: 'root',
 })
 export class AuthService {
-  private readonly isLoggedInSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(this.checkIsLoggedIn());
+  private readonly isLoggedInSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   readonly isLoggedIn$ = this.isLoggedInSubject.asObservable()
 
   constructor(
@@ -37,7 +37,7 @@ export class AuthService {
         LocalStorageKey.PLAYER_AUTH_DATA,
         JSON.stringify(this.authResultToPlayerAuth(authResult)),
       );
-      this.isLoggedInSubject.next(this.checkIsLoggedIn());
+      this.isLoggedInSubject.next(true);
       return true;
     } else {
       return false;
@@ -47,8 +47,8 @@ export class AuthService {
   logout(): void {
     if (this.playerAuthData) {
       this.localStorageService.deletedStorageKey(LocalStorageKey.PLAYER_AUTH_DATA);
-      this.isLoggedInSubject.next(this.checkIsLoggedIn());
     }
+    this.isLoggedInSubject.next(false);
   }
 
   get playerAuthData(): PlayerAuthData | undefined {
