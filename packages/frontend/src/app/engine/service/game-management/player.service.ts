@@ -3,12 +3,15 @@ import {Player} from 'api-types/src/player';
 import {AuthService} from '../auth/auth.service';
 import {GameManagementClientService} from "./game-management-client.service";
 import {ensureDefined} from "../../util/misc";
+import {BehaviorSubject} from "rxjs";
 
 @Injectable({
   providedIn: 'root',
 })
 export class PlayerService {
-  currentPlayer: Player | undefined;
+  currentPlayer: Player| undefined = undefined;
+  private currentPlayerSubject: BehaviorSubject<Player | undefined> = new BehaviorSubject<Player | undefined>(this.currentPlayer);
+  currentPlayer$ = this.currentPlayerSubject.asObservable()
 
   constructor(
     private authService: AuthService,
@@ -17,8 +20,10 @@ export class PlayerService {
     this.authService.isLoggedIn$.pipe().subscribe(async (isLoggedIn) => {
       if (isLoggedIn) {
         this.currentPlayer = await this.gameManagementClientService.getLoggedInPlayer()
+        this.currentPlayerSubject.next(this.currentPlayer)
         } else {
         this.currentPlayer = undefined
+        this.currentPlayerSubject.next(this.currentPlayer)
       }
     })
   }

@@ -33,7 +33,7 @@ export class GameManagementClientService {
   }
 
   async getLoggedInPlayer(): Promise<Player> {
-    return await lastValueFrom(this.http.get<Player>(`/game/${this.authService.loggedInUsername}`));
+    return await this.getPlayer(this.authService.loggedInUsername)
   }
 
   async findPlayers(username: string): Promise<Player[]> {

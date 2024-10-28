@@ -15,6 +15,10 @@ import {
 import {MatButton, MatMiniFabButton} from "@angular/material/button";
 import {MatIcon} from "@angular/material/icon";
 import {MatChip, MatChipSet} from "@angular/material/chips";
+import {GameManagementClientService} from "../../service/game-management/game-management-client.service";
+import {PlayerService} from "../../service/game-management/player.service";
+import {ensureDefined} from "../../util/misc";
+import {Player} from "api-types/src/player";
 
 @Component({
   selector: 'app-lobby-page',
@@ -42,11 +46,16 @@ import {MatChip, MatChipSet} from "@angular/material/chips";
 export class LobbyPageComponent {
   games = signal<Game[]>([])
   gameTableColumns: string[] = ['gameId', 'host', 'players', 'actions'];
+  readonly currentPlayer = signal<Player | undefined>(undefined)
 
   constructor(
     private gameService: GameService,
+    private playerService: PlayerService,
   ) {
-    void this.fetchGames()
+    this.playerService.currentPlayer$.subscribe((player) => {
+      this.currentPlayer.set(player)
+      void this.fetchGames()
+    })
   }
 
   filterPlayers(game: Game): string[] {
