@@ -28,8 +28,15 @@ export interface AreaState extends GameElementState {
   space: SpaceState[];
 }
 
-export interface GameState {
+export interface GameElementStates {
   area: AreaState[];
   faction: FactionState[];
   pile: PileState[];
+}
+
+export interface GameState {
+  id: string,
+  patch: number,
+  playerIds: string[],
+  gameElements: GameElementStates,
 }
