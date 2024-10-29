@@ -1,7 +1,8 @@
 import { Area } from '../../../app/engine/model/area.model';
 import { Space } from '../../../app/engine/model/space.model';
 import { skip } from 'rxjs';
-import { defaultPieceFactory, Piece } from '../../../app/engine/model/piece.model';
+import { defaultPieceFactory } from '../../../app/engine/model/piece.model';
+import { Piece } from 'api-types/src/game-state';
 
 describe('Area', () => {
   let area: Area;

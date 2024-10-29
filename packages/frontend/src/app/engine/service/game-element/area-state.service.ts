@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Area, AreaState } from '../../model/area.model';
+import { Area } from '../../model/area.model';
 import { GameElementStateService } from './game-element-state.service';
+import { AreaState } from 'api-types/src/game-state';
 
 @Injectable({
   providedIn: 'root',

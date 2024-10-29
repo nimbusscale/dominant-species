@@ -1,18 +1,12 @@
-import { FactionState } from './faction.model';
-import { PileState } from './pile.model';
-import { AreaState } from './area.model';
-
-/**
- * Defining the GameState object managed by GameStateStoreService
- */
-export interface GameState {
-  area: AreaState[];
-  faction: FactionState[];
-  pile: PileState[];
-}
+import { GameState } from 'api-types/src/game-state';
 
 export const emptyGameState: GameState = {
-  area: [],
-  faction: [],
-  pile: [],
+  id: 'placeholder',
+  patchId: 0,
+  playerIds: [],
+  gameElements: {
+    area: [],
+    faction: [],
+    pile: [],
+  },
 };

@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Faction, FactionState } from '../../model/faction.model';
+import { Faction } from '../../model/faction.model';
 import { GameElementRegistryService } from './game-element-registry.service';
 import { FactionStateService } from './faction-state.service';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { FactionState } from 'api-types/src/game-state';
 
 export interface FactionAssignment {
   id: string;

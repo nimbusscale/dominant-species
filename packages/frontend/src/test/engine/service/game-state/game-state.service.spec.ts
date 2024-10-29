@@ -4,7 +4,7 @@ import { of } from 'rxjs';
 import { GameStateStoreService } from '../../../../app/engine/service/game-state/game-state-store.service';
 import { GameStatePatchService } from '../../../../app/engine/service/game-state/game-state-patch.service';
 import { GameStateClientService } from '../../../../app/engine/service/game-state/game-state-client.service';
-import { testGameStatePatch1 } from '../../game-state-test.constant';
+import { testGameStatePatch1 } from '../../../game-state-test.constant';
 
 describe('GameStateService', () => {
   let gameStateService: GameStateService;

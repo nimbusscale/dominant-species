@@ -1,11 +1,16 @@
-import { PileState } from '../../model/pile.model';
 import { BehaviorSubject, map, Observable } from 'rxjs';
-import { FactionState } from '../../model/faction.model';
-import { emptyGameState, GameState } from '../../model/game-state.model';
+import { emptyGameState } from '../../model/game-state.model';
 import { Injectable } from '@angular/core';
 import { deepClone } from 'fast-json-patch';
-import { AreaState } from '../../model/area.model';
-import { GameElementState } from '../../model/game-element.model';
+
+import {
+  AreaState,
+  FactionState,
+  GameElementState,
+  GameElementStates,
+  GameState,
+  PileState,
+} from 'api-types/src/game-state';
 
 /**
  * GameStateStoreService is responsible for maintain the GameState and making it accessible to others.
@@ -56,13 +61,15 @@ export class GameStateStoreService {
    * @private
    */
   private setTransactionStateElement(
-    key: keyof GameState,
+    key: keyof GameElementStates,
     newGameStateElement: GameElementState,
   ): void {
     if (!this._transactionState) {
       throw new Error('Must start transaction before updating GameState.');
     }
-    const subStateArray = this._transactionState[key] as (typeof newGameStateElement)[];
+    const subStateArray = this._transactionState.gameElements[
+      key
+    ] as (typeof newGameStateElement)[];
     const index = subStateArray.findIndex((item) => item.id === newGameStateElement.id);
 
     if (index > -1) {
@@ -80,13 +87,13 @@ export class GameStateStoreService {
    * @private
    */
   private registerTransactionStateElement(
-    key: keyof GameState,
+    key: keyof GameElementStates,
     newGameStateElement: GameElementState,
   ): void {
     if (this.transactionState) {
       throw new Error('Can not register new State Elements while a transaction is in progress.');
     }
-    const subStateArray = this._gameState[key] as (typeof newGameStateElement)[];
+    const subStateArray = this._gameState.gameElements[key] as (typeof newGameStateElement)[];
     const index = subStateArray.findIndex((item) => item.id === newGameStateElement.id);
 
     if (index > -1) {
@@ -149,7 +156,7 @@ export class GameStateStoreService {
   }
 
   get area$(): Observable<AreaState[]> {
-    return this.getObservableForKey((gameState) => gameState.area);
+    return this.getObservableForKey((gameState) => gameState.gameElements.area);
   }
 
   setArea(newState: AreaState): void {
@@ -161,7 +168,7 @@ export class GameStateStoreService {
   }
 
   get faction$(): Observable<FactionState[]> {
-    return this.getObservableForKey((gameState) => gameState.faction);
+    return this.getObservableForKey((gameState) => gameState.gameElements.faction);
   }
 
   setFaction(newState: FactionState): void {
@@ -173,7 +180,7 @@ export class GameStateStoreService {
   }
 
   get pile$(): Observable<PileState[]> {
-    return this.getObservableForKey((gameState) => gameState.pile);
+    return this.getObservableForKey((gameState) => gameState.gameElements.pile);
   }
 
   setPile(newState: PileState): void {

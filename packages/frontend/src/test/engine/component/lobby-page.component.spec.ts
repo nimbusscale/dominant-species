@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { LobbyPageComponent } from '../../../app/engine/component/lobby-page/lobby-page.component';
 import { GameService } from '../../../app/engine/service/game-management/game.service';
 import { PlayerService } from '../../../app/engine/service/game-management/player.service';
-import { testPlayer1 } from '../game-state-test.constant';
+import { testPlayer1 } from '../../game-state-test.constant';
 import { of } from 'rxjs';
 
 describe('LobbyPageComponent', () => {

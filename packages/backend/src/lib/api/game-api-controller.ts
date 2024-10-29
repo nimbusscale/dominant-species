@@ -1,18 +1,26 @@
-import { GameRecordManager } from '../db/game';
+import { GameRecordManager } from '../db/game-record-manager';
 import { Game, GameCollection } from 'api-types/src/game';
 import { BadRequestError } from '../error';
 import { ApiRequest } from './request-handling';
+import { GameStateRecordManager } from '../db/game-state-record-manager';
 
 export class GameApiController {
   private readonly gameRecordManager: GameRecordManager;
+  private readonly gameStateRecordManager: GameStateRecordManager;
 
-  constructor(gameRecordManager: GameRecordManager) {
+  constructor(
+    gameRecordManager: GameRecordManager,
+    gameStateRecordManager: GameStateRecordManager,
+  ) {
     this.gameRecordManager = gameRecordManager;
+    this.gameStateRecordManager = gameStateRecordManager;
   }
 
   async addGame(apiRequest: ApiRequest): Promise<undefined> {
     if (apiRequest.body) {
-      await this.gameRecordManager.addGame(JSON.parse(apiRequest.body) as Game);
+      const game = JSON.parse(apiRequest.body) as Game;
+      await this.gameRecordManager.addGame(game);
+      await this.gameStateRecordManager.addInitialGameState(game);
     } else {
       throw new BadRequestError('Missing Body');
     }

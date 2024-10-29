@@ -32,6 +32,8 @@ describe('apiUrlInterceptor', () => {
 
   it('should add site to URL', () => {
     httpClient.get('/test').subscribe();
-    httpTestingController.expectOne('https://api.vpa-games.com/v1/test');
+    expect(() => {
+      httpTestingController.expectOne('https://api.vpa-games.com/v1/test');
+    }).not.toThrowError();
   });
 });

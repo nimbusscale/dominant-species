@@ -1,14 +1,7 @@
-import { defaultPieceFactory, Piece, PieceFactory } from './piece.model';
+import { defaultPieceFactory, PieceFactory } from './piece.model';
 import { BehaviorSubject, distinctUntilChanged, Observable } from 'rxjs';
-import { GameElement, GameElementState } from './game-element.model';
-
-/**
- * PileState is pretty simple as it just keeps tracks of what kinds of pieces are in the pile and how many of them.
- */
-export interface PileState extends GameElementState {
-  owner: string | null;
-  inventory: Record<string, number>;
-}
+import { GameElement } from './game-element.model';
+import { Piece, PileState } from 'api-types/src/game-state';
 
 /**
  * A Pile is used to draw one or more random pieces for a defined pool of pieces.

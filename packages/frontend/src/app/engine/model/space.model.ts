@@ -1,12 +1,7 @@
 import { Action } from './action.model';
-import { Piece } from './piece.model';
 import { deepClone } from 'fast-json-patch';
 import { Observable, Subject } from 'rxjs';
-
-export interface SpaceState {
-  kind: string;
-  piece: Piece | null;
-}
+import { Piece, SpaceState } from 'api-types/src/game-state';
 
 export class Space {
   readonly kind: string;

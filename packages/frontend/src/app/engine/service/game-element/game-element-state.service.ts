@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { GameStateService } from '../game-state/game-state.service';
 import { Observable, skip } from 'rxjs';
-import { GameElement, GameElementState } from '../../model/game-element.model';
+import { GameElement } from '../../model/game-element.model';
 import { getOrThrow } from '../../util/misc';
+import { GameElementState } from 'api-types/src/game-state';
 
 @Injectable({
   providedIn: 'root',

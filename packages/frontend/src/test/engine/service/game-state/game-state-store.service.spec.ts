@@ -1,6 +1,6 @@
 import { GameStateStoreService } from '../../../../app/engine/service/game-state/game-state-store.service';
 import { skip } from 'rxjs';
-import { testGameState1, testGameState1updated } from '../../game-state-test.constant';
+import { testGameState1, testGameState1updated } from '../../../game-state-test.constant';
 
 describe('GameStateStore', () => {
   let gameStateStore: GameStateStoreService;
@@ -10,26 +10,30 @@ describe('GameStateStore', () => {
   });
   describe('when blank', () => {
     it('can register new game state elements', () => {
-      gameStateStore.registerPile(testGameState1.pile[0]);
-      expect(gameStateStore.gameState.pile[0]).toEqual(testGameState1.pile[0]);
-      expect(gameStateStore.gameState.pile[0]).not.toBe(testGameState1.pile[0]);
+      gameStateStore.registerPile(testGameState1.gameElements.pile[0]);
+      expect(gameStateStore.gameState.gameElements.pile[0]).toEqual(
+        testGameState1.gameElements.pile[0],
+      );
+      expect(gameStateStore.gameState.gameElements.pile[0]).not.toBe(
+        testGameState1.gameElements.pile[0],
+      );
     });
     it('throws error if transaction started with trying to register', () => {
       gameStateStore.startTransaction();
       expect(() => {
-        gameStateStore.registerPile(testGameState1.pile[0]);
+        gameStateStore.registerPile(testGameState1.gameElements.pile[0]);
       }).toThrowError();
     });
     it('throws error if trying to register already registered element', () => {
-      gameStateStore.registerPile(testGameState1.pile[0]);
+      gameStateStore.registerPile(testGameState1.gameElements.pile[0]);
       expect(() => {
-        gameStateStore.registerPile(testGameState1.pile[0]);
+        gameStateStore.registerPile(testGameState1.gameElements.pile[0]);
       }).toThrowError();
     });
     it('throws error if trying to update an unregistered state element', () => {
       gameStateStore.startTransaction();
       expect(() => {
-        gameStateStore.setPile(testGameState1.pile[0]);
+        gameStateStore.setPile(testGameState1.gameElements.pile[0]);
       }).toThrowError();
     });
   });
@@ -41,8 +45,8 @@ describe('GameStateStore', () => {
       // All state observables are wrappers around the same code path so just testing one should be sufficient for unit test.
       it('$pile should emit a copy of state', (done) => {
         gameStateStore.pile$.subscribe((emittedState) => {
-          expect(emittedState).toEqual(testGameState1.pile);
-          expect(emittedState).not.toBe(testGameState1.pile);
+          expect(emittedState).toEqual(testGameState1.gameElements.pile);
+          expect(emittedState).not.toBe(testGameState1.gameElements.pile);
           done();
         });
       });
@@ -82,29 +86,29 @@ describe('GameStateStore', () => {
         gameStateStore.pile$
           .pipe(skip(1)) // Skip the initial state
           .subscribe((emittedState) => {
-            expect(emittedState[0]).toEqual(testGameState1updated.pile[0]);
+            expect(emittedState[0]).toEqual(testGameState1updated.gameElements.pile[0]);
             done();
           });
 
         gameStateStore.startTransaction();
-        gameStateStore.setPile(testGameState1updated.pile[0]);
+        gameStateStore.setPile(testGameState1updated.gameElements.pile[0]);
         gameStateStore.commitTransaction();
       });
       it('emits original state when rollback', (done) => {
         gameStateStore.pile$
           .pipe(skip(1)) // Skip the initial state
           .subscribe((emittedState) => {
-            expect(emittedState[0]).toEqual(testGameState1.pile[0]);
+            expect(emittedState[0]).toEqual(testGameState1.gameElements.pile[0]);
             done();
           });
 
         gameStateStore.startTransaction();
-        gameStateStore.setPile(testGameState1updated.pile[0]);
+        gameStateStore.setPile(testGameState1updated.gameElements.pile[0]);
         gameStateStore.rollbackTransaction();
       });
       it('throws error if update without transaction', () => {
         expect(() => {
-          gameStateStore.setPile(testGameState1updated.pile[0]);
+          gameStateStore.setPile(testGameState1updated.gameElements.pile[0]);
         }).toThrowError();
       });
       it('throws error if start transaction, when one is already started', () => {

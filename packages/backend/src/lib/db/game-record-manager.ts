@@ -12,7 +12,7 @@ import {
   UpdateItemCommand,
 } from 'dynamodb-toolbox';
 import { GameTable, GameTableIndex } from './table';
-import { Game } from '../../../../api-types/src/game';
+import { Game } from 'api-types/src/game';
 
 export const GameEntity = new Entity({
   table: GameTable,

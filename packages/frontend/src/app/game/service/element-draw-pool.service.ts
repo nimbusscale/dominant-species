@@ -5,7 +5,8 @@ import { BehaviorSubject, filter, first, Observable, of } from 'rxjs';
 import { PileRegistryService } from '../../engine/service/game-element/pile-registry.service';
 import { PileIdEnum } from '../constant/pile.constant';
 import { ElementPiece } from '../model/element.model';
-import { Piece } from '../../engine/model/piece.model';
+
+import { Piece } from 'api-types/src/game-state';
 
 @Injectable({
   providedIn: 'root',
