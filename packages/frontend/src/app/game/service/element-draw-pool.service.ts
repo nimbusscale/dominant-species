@@ -6,7 +6,7 @@ import { PileRegistryService } from '../../engine/service/game-element/pile-regi
 import { PileIdEnum } from '../constant/pile.constant';
 import { ElementPiece } from '../model/element.model';
 
-import {Piece} from "api-types/src/game-state";
+import { Piece } from 'api-types/src/game-state';
 
 @Injectable({
   providedIn: 'root',

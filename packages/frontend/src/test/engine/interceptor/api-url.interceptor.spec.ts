@@ -34,7 +34,6 @@ describe('apiUrlInterceptor', () => {
     httpClient.get('/test').subscribe();
     expect(() => {
       httpTestingController.expectOne('https://api.vpa-games.com/v1/test');
-    }).not.toThrowError()
-
+    }).not.toThrowError();
   });
 });

@@ -1,5 +1,5 @@
-import {startCase} from 'lodash';
-import {Piece} from "api-types/src/game-state";
+import { startCase } from 'lodash';
+import { Piece } from 'api-types/src/game-state';
 
 export type PieceFactory = (kind: string, owner?: string | null, name?: string | null) => Piece;
 

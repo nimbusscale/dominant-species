@@ -1,6 +1,6 @@
-import {BehaviorSubject, Observable} from 'rxjs';
-import {deepClone} from 'fast-json-patch';
-import {GameElementState} from "api-types/src/game-state";
+import { BehaviorSubject, Observable } from 'rxjs';
+import { deepClone } from 'fast-json-patch';
+import { GameElementState } from 'api-types/src/game-state';
 
 export class GameElement<T extends GameElementState> {
   protected _state: T;

@@ -9,7 +9,7 @@ import { AreaIdEnum, SpaceKindEnum } from '../../constant/area.constant';
 import { ensureDefined } from '../../../engine/util/misc';
 import { Space } from '../../../engine/model/space.model';
 import { isNotNull } from '../../../engine/util/predicate';
-import {Piece} from "api-types/src/game-state";
+import { Piece } from 'api-types/src/game-state';
 
 @Injectable({
   providedIn: 'root',

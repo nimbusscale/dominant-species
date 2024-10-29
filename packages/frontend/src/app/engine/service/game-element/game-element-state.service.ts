@@ -3,7 +3,7 @@ import { GameStateService } from '../game-state/game-state.service';
 import { Observable, skip } from 'rxjs';
 import { GameElement } from '../../model/game-element.model';
 import { getOrThrow } from '../../util/misc';
-import {GameElementState} from "api-types/src/game-state";
+import { GameElementState } from 'api-types/src/game-state';
 
 @Injectable({
   providedIn: 'root',

@@ -3,7 +3,14 @@ import { emptyGameState } from '../../model/game-state.model';
 import { Injectable } from '@angular/core';
 import { deepClone } from 'fast-json-patch';
 
-import {AreaState, FactionState, GameElementState, GameElementStates, GameState, PileState} from "api-types/src/game-state";
+import {
+  AreaState,
+  FactionState,
+  GameElementState,
+  GameElementStates,
+  GameState,
+  PileState,
+} from 'api-types/src/game-state';
 
 /**
  * GameStateStoreService is responsible for maintain the GameState and making it accessible to others.
@@ -60,7 +67,9 @@ export class GameStateStoreService {
     if (!this._transactionState) {
       throw new Error('Must start transaction before updating GameState.');
     }
-    const subStateArray = this._transactionState.gameElements[key] as (typeof newGameStateElement)[];
+    const subStateArray = this._transactionState.gameElements[
+      key
+    ] as (typeof newGameStateElement)[];
     const index = subStateArray.findIndex((item) => item.id === newGameStateElement.id);
 
     if (index > -1) {

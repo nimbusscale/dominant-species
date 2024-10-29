@@ -3,8 +3,7 @@ import { GameStateStoreService } from './game-state-store.service';
 import { GameStatePatchService } from './game-state-patch.service';
 import { GameStateClientService } from './game-state-client.service';
 import { filter, Observable } from 'rxjs';
-import {AreaState, FactionState, GameStatePatch, PileState} from "api-types/src/game-state";
-import {deepClone} from "fast-json-patch";
+import { AreaState, FactionState, GameStatePatch, PileState } from 'api-types/src/game-state';
 
 /**
  * The GameStateService provides an interface for the rest of the system to interact with state.

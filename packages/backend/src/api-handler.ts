@@ -4,7 +4,7 @@ import { GameEntity, GameRecordManager } from './lib/db/game-record-manager';
 import { ApiRoute, ApiRequestHandler } from './lib/api/request-handling';
 import { PlayerEntity, PlayerRecordManager } from './lib/db/player-record-manager';
 import { PlayerApiController } from './lib/api/player-api-controller';
-import {GameStateEntity, GameStateRecordManager} from "./lib/db/game-state-record-manager";
+import { GameStateEntity, GameStateRecordManager } from './lib/db/game-state-record-manager';
 
 const gameRecordManager = new GameRecordManager(GameEntity);
 const gameStateRecordManager = new GameStateRecordManager(GameStateEntity);

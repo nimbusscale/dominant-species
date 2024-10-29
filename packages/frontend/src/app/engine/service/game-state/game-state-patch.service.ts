@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import {applyPatch, compare, deepClone} from 'fast-json-patch';
-import {GameState, GameStatePatch} from "api-types/src/game-state";
+import { applyPatch, compare, deepClone } from 'fast-json-patch';
+import { GameState, GameStatePatch } from 'api-types/src/game-state';
 
 /**
  * Creates and applies GameStatePatches
@@ -18,9 +18,14 @@ export class GameStatePatchService {
   }
 
   apply(oldState: GameState, gsp: GameStatePatch): GameState {
-    const newState = deepClone(oldState) as GameState
-    newState.gameElements = applyPatch(oldState.gameElements, gsp.patch, undefined, false).newDocument
-    newState.patchId = gsp.patchId
+    const newState = deepClone(oldState) as GameState;
+    newState.gameElements = applyPatch(
+      oldState.gameElements,
+      gsp.patch,
+      undefined,
+      false,
+    ).newDocument;
+    newState.patchId = gsp.patchId;
     return newState;
   }
 }

@@ -1,6 +1,6 @@
 import { Pile, PileAdapter } from '../../../app/engine/model/pile.model';
 import { defaultPieceFactory } from '../../../app/engine/model/piece.model';
-import {Piece, PileState} from "api-types/src/game-state";
+import { Piece, PileState } from 'api-types/src/game-state';
 
 describe('Pile', () => {
   let pileState: PileState;

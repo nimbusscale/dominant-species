@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { of, Observable } from 'rxjs';
-import {GameStatePatch} from "api-types/src/game-state";
+import { GameStatePatch } from 'api-types/src/game-state';
 
 @Injectable({
   providedIn: 'root',

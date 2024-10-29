@@ -1,6 +1,6 @@
 import * as cdk from 'aws-cdk-lib';
 import { Construct } from 'constructs';
-import {aws_iam, aws_s3} from 'aws-cdk-lib';
+import { aws_iam, aws_s3 } from 'aws-cdk-lib';
 
 export class IamStack extends cdk.Stack {
   readonly gameMgmtRole: aws_iam.Role;
@@ -22,6 +22,6 @@ export class IamStack extends cdk.Stack {
     this.stateMgmtRole.addManagedPolicy(
       aws_iam.ManagedPolicy.fromAwsManagedPolicyName('service-role/AWSLambdaBasicExecutionRole'),
     );
-    stateBucket.grantReadWrite(this.stateMgmtRole)
+    stateBucket.grantReadWrite(this.stateMgmtRole);
   }
 }

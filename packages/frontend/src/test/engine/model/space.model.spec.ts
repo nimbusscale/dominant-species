@@ -1,6 +1,6 @@
 import { Space } from '../../../app/engine/model/space.model';
 import { defaultPieceFactory } from '../../../app/engine/model/piece.model';
-import {Piece} from "api-types/src/game-state";
+import { Piece } from 'api-types/src/game-state';
 
 describe('Space', () => {
   let space: Space;

@@ -1,7 +1,7 @@
-import {defaultPieceFactory, PieceFactory} from './piece.model';
-import {BehaviorSubject, distinctUntilChanged, Observable} from 'rxjs';
-import {GameElement} from './game-element.model';
-import {Piece, PileState} from "api-types/src/game-state";
+import { defaultPieceFactory, PieceFactory } from './piece.model';
+import { BehaviorSubject, distinctUntilChanged, Observable } from 'rxjs';
+import { GameElement } from './game-element.model';
+import { Piece, PileState } from 'api-types/src/game-state';
 
 /**
  * A Pile is used to draw one or more random pieces for a defined pool of pieces.

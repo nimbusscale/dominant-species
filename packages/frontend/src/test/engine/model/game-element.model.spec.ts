@@ -1,5 +1,5 @@
 import { GameElement } from '../../../app/engine/model/game-element.model';
-import {GameElementState} from "api-types/src/game-state";
+import { GameElementState } from 'api-types/src/game-state';
 
 export interface TestState extends GameElementState {
   score: number;

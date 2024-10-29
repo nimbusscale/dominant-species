@@ -1,4 +1,4 @@
-import {GameState} from "api-types/src/game-state";
+import { GameState } from 'api-types/src/game-state';
 
 export const emptyGameState: GameState = {
   id: 'placeholder',
@@ -8,5 +8,5 @@ export const emptyGameState: GameState = {
     area: [],
     faction: [],
     pile: [],
-  }
+  },
 };

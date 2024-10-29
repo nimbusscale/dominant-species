@@ -1,7 +1,7 @@
-import {Space} from './space.model';
-import {GameElement} from './game-element.model';
-import {BehaviorSubject, Observable} from 'rxjs';
-import {AreaState, SpaceState} from "api-types/src/game-state";
+import { Space } from './space.model';
+import { GameElement } from './game-element.model';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { AreaState, SpaceState } from 'api-types/src/game-state';
 
 export class Area extends GameElement<AreaState> {
   readonly spaces: Space[];

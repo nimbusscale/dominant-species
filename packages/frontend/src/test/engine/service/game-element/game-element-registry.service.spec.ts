@@ -5,8 +5,8 @@ import { deepClone } from 'fast-json-patch';
 import { skip } from 'rxjs';
 import { PileStateService } from '../../../../app/engine/service/game-element/pile-state.service';
 import { PileRegistryService } from '../../../../app/engine/service/game-element/pile-registry.service';
-import {PileState} from "api-types/src/game-state";
-import {testPileState1, testPileState2} from "../../../game-state-test.constant";
+import { PileState } from 'api-types/src/game-state';
+import { testPileState1, testPileState2 } from '../../../game-state-test.constant';
 
 /**
  * PileRegistryService is an implementation of GameElementRegistryService and provides sufficient testing of GameElementRegistryService

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Pile } from '../../model/pile.model';
 import { GameElementStateService } from './game-element-state.service';
-import {PileState} from "api-types/src/game-state";
+import { PileState } from 'api-types/src/game-state';
 
 @Injectable({
   providedIn: 'root',

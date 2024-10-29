@@ -1,7 +1,6 @@
 import { GameStateStoreService } from '../../../../app/engine/service/game-state/game-state-store.service';
 import { skip } from 'rxjs';
-import {testGameState1, testGameState1updated} from "../../../game-state-test.constant";
-
+import { testGameState1, testGameState1updated } from '../../../game-state-test.constant';
 
 describe('GameStateStore', () => {
   let gameStateStore: GameStateStoreService;
@@ -12,8 +11,12 @@ describe('GameStateStore', () => {
   describe('when blank', () => {
     it('can register new game state elements', () => {
       gameStateStore.registerPile(testGameState1.gameElements.pile[0]);
-      expect(gameStateStore.gameState.gameElements.pile[0]).toEqual(testGameState1.gameElements.pile[0]);
-      expect(gameStateStore.gameState.gameElements.pile[0]).not.toBe(testGameState1.gameElements.pile[0]);
+      expect(gameStateStore.gameState.gameElements.pile[0]).toEqual(
+        testGameState1.gameElements.pile[0],
+      );
+      expect(gameStateStore.gameState.gameElements.pile[0]).not.toBe(
+        testGameState1.gameElements.pile[0],
+      );
     });
     it('throws error if transaction started with trying to register', () => {
       gameStateStore.startTransaction();

@@ -7,8 +7,8 @@ import { Pile } from '../../../app/engine/model/pile.model';
 
 import { PileRegistryService } from '../../../app/engine/service/game-element/pile-registry.service';
 import { PileIdEnum } from '../../../app/game/constant/pile.constant';
-import {PileState} from "api-types/src/game-state";
-import {testPileState1} from "../../game-state-test.constant";
+import { PileState } from 'api-types/src/game-state';
+import { testPileState1 } from '../../game-state-test.constant';
 
 describe('ElementDrawPoolService', () => {
   let elementDrawPoolSvc: ElementDrawPoolService;
