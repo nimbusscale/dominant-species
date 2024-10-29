@@ -11,8 +11,9 @@ import { ElementPiece } from '../../model/element.model';
 import { ElementComponent } from '../element/element.component';
 import { AnimalProviderService } from '../../service/animal-provider.service';
 import { isNotUndefined } from '../../../engine/util/predicate';
-import { PlayerService } from '../../../engine/service/player.service';
+import { PlayerService } from '../../../engine/service/game-management/player.service';
 import { NgClass } from '@angular/common';
+import { ensureDefined } from '../../../engine/util/misc';
 
 // Todo: change to OnPush
 @Component({
@@ -39,7 +40,7 @@ export class AnimalCardComponent implements OnInit {
   speciesPileLength = signal(0);
   actionPawnForHeader = computed(() => this.getActionPawnForHeader());
   currentPlayerAnimal = computed(
-    () => this.faction().ownerId === this.playerService.currentPlayer.id,
+    () => this.faction().ownerId === ensureDefined(this.playerService.currentPlayer).username,
   );
 
   constructor(

@@ -7,6 +7,7 @@ import { AuthenticationResultType } from '@aws-sdk/client-cognito-identity-provi
 import { LocalStorageKey } from '../../../../app/engine/constant/local-storage';
 import { PlayerAuthData } from '../../../../app/engine/model/player.model';
 import { CognitoIdTokenJwt } from 'api-types/src/auth';
+import { firstValueFrom } from 'rxjs';
 
 describe('AuthService', () => {
   let authService: AuthService;
@@ -53,7 +54,7 @@ describe('AuthService', () => {
       email: 'joe@jjk3.com',
     };
     testPlayerAuthData = {
-      id: 'jjk3',
+      username: 'jjk3',
       accessToken:
         'eyJraWQiOiIxdU1KcXN4SzBoV1FMNGN4OFVWZ2hCUnQybzJ6alhpSmhOcEhLeGdhZ0VjPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJhMWJiYTUzMC0yMDIxLTcwYmUtNDk1Yy1iYzk5NzAyZTBhY2QiLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiaXNzIjoiaHR0cHM6XC9cL2NvZ25pdG8taWRwLnVzLWVhc3QtMi5hbWF6b25hd3MuY29tXC91cy1lYXN0LTJfTlM5Z3lyS3dnIiwiY29nbml0bzp1c2VybmFtZSI6Imh1bWFubnVtYmVyMSIsIm9yaWdpbl9qdGkiOiIzNjg1YzI4Mi1hNGY5LTRmOTMtOGU1NC1hYjIxYWNmNTcwMzEiLCJhdWQiOiI1YnA0OHE3N3Y3azJzMHBla3JtbzJxdjVhYyIsImV2ZW50X2lkIjoiNGJmNmY1N2MtOTU5MC00MjQ1LTk3MDgtYTA0OWUyMDQxYWVhIiwidG9rZW5fdXNlIjoiaWQiLCJhdXRoX3RpbWUiOjE3Mjk5NDY1NDYsImV4cCI6MTcyOTk4OTc0NiwiaWF0IjoxNzI5OTQ2NTQ2LCJqdGkiOiI2OWVlMzc0Ny04MDhjLTQzYTEtYjE2ZS1kNTZhODY4MGZiZWIiLCJlbWFpbCI6ImpvZUBqamszLmNvbSJ9.doukf7I5TSuysPRYsEFNEj7N8TXKZoVT7JyJWvgSzkyaZJCEmQlVue6WnVqwQawvmUijyeDFGCf-aIs5kY1PxG9cpVv-KvXVWj6YzcQqKlW3pcLkxx0IbJQ4B2rDRuMlVf2UUaAcxfqel-VbztwRhQy0mjwVkLvfMMmtJB3IS1cxZgEHsd_msoNpN4_H9p7oU3d7FwdWDAlSWd1nE-KqqRZbpWfyE9drU8ix8IFJyaRCjpQL0S-D_cj7672NI4tPFjcRFgj2vlfJ8KWO1vu9irCzydNzqJHVhXKEZrn_AKg-te-Prs9aTezIZPdzAEH09hyT7UMfRfPauWDAhCTQ9Q',
       accessTokenExpire: 1729989746,
@@ -100,20 +101,47 @@ describe('AuthService', () => {
       expect(mockLocalStorageService.setStorageKey).not.toHaveBeenCalled();
     });
   });
-  describe('isLoggedIn', () => {
+  describe('checkIsLoggedIn', () => {
     it('should return true when valid auth in local storage', () => {
       mockLocalStorageService.getStorageKey.and.returnValue(JSON.stringify(testPlayerAuthData));
       spyOn(Date, 'now').and.returnValue(1729367000000);
-      expect(authService.isLoggedIn).toBeTrue();
+      expect(authService.checkIsLoggedIn()).toBeTrue();
     });
     it('should return true when auth not in local storage', () => {
       mockLocalStorageService.getStorageKey.and.returnValue(null);
-      expect(authService.isLoggedIn).toBeFalse();
+      expect(authService.checkIsLoggedIn()).toBeFalse();
     });
     it('should return true when auth expired', () => {
       mockLocalStorageService.getStorageKey.and.returnValue(JSON.stringify(testPlayerAuthData));
       spyOn(Date, 'now').and.returnValue(1739368000000);
-      expect(authService.isLoggedIn).toBeFalse();
+      expect(authService.checkIsLoggedIn()).toBeFalse();
+    });
+  });
+  describe('isLoggedIn$', () => {
+    it('Should be false before login', (done) => {
+      authService.isLoggedIn$.subscribe((isLoggedIn) => {
+        expect(isLoggedIn).toBeFalse();
+        done();
+      });
+    });
+    it('Should be true after login', async () => {
+      mockCognitoClientService.login.and.returnValue(Promise.resolve(testAuthResultType));
+      mockCognitoClientService.decodeJwtToken.and.returnValue(testJwt);
+
+      await authService.login('username', 'password');
+
+      const isLoggedIn = await firstValueFrom(authService.isLoggedIn$);
+      expect(isLoggedIn).toBeTrue();
+    });
+    it('Should be false after login out', async () => {
+      mockCognitoClientService.login.and.returnValue(Promise.resolve(testAuthResultType));
+      mockCognitoClientService.decodeJwtToken.and.returnValue(testJwt);
+
+      await authService.login('username', 'password');
+      authService.logout();
+
+      const isLoggedIn = await firstValueFrom(authService.isLoggedIn$);
+      expect(isLoggedIn).toBeFalse();
     });
   });
 });

@@ -13,7 +13,7 @@ import { of } from 'rxjs';
 import { Animal } from '../../../app/game/model/animal.model';
 import { AnimalProviderService } from '../../../app/game/service/animal-provider.service';
 import { defaultPieceFactory } from '../../../app/engine/model/piece.model';
-import { PlayerService } from '../../../app/engine/service/player.service';
+import { PlayerService } from '../../../app/engine/service/game-management/player.service';
 
 // Mock components for testing
 @Component({
@@ -94,7 +94,7 @@ describe('AnimalCardComponent', () => {
 
     mockPlayerService = jasmine.createSpyObj('PlayerService', [], {
       currentPlayer: {
-        id: 'currentPlayer',
+        username: 'currentPlayer',
       },
     });
 

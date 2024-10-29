@@ -18,9 +18,17 @@ export interface ApiRequest {
   body: string | null;
 }
 
+export interface ApiResponseHeaders {
+  'Content-Type': string;
+  'Access-Control-Allow-Origin': string;
+  'Access-Control-Allow-Methods': string;
+  'Access-Control-Allow-Headers': string;
+}
+
 export interface ApiResponse {
   statusCode: number;
   body: string;
+  headers?: ApiResponseHeaders;
 }
 
 export interface ApiRoute {
@@ -79,6 +87,13 @@ export class ApiRequestHandler {
         apiResponse = {
           statusCode: StatusCodes.OK,
           body: JSON.stringify((await route.handler(apiRequest)) ?? {}),
+          headers: {
+            'Content-Type': 'application/json',
+            // not the best around, but since I don't have a dev env, and I'd be allowing localhost, not a big difference.
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': '*',
+            'Access-Control-Allow-Headers': '*',
+          },
         };
       } else {
         throw new NotFoundError();
