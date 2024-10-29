@@ -16,9 +16,7 @@ import {
 import { MatButton, MatMiniFabButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { MatChip, MatChipSet } from '@angular/material/chips';
-import { GameManagementClientService } from '../../service/game-management/game-management-client.service';
 import { PlayerService } from '../../service/game-management/player.service';
-import { ensureDefined } from '../../util/misc';
 import { Player } from 'api-types/src/player';
 import { MatTooltip } from '@angular/material/tooltip';
 

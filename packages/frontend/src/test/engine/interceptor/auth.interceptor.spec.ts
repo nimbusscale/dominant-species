@@ -69,9 +69,11 @@ describe('authInterceptor', () => {
     const httpClient = TestBed.inject(HttpClient);
 
     httpClient.get('/test').subscribe({
-      next: () => done.fail('Expected an error, but request succeeded.'),
-      error: (err) => {
-        expect(err.message).toBe('No playerAuthData');
+      next: () => {
+        done.fail('Expected an error, but request succeeded.');
+      },
+      error: (error: Error) => {
+        expect(error.message).toBe('No playerAuthData');
         done();
       },
     });

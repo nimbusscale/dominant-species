@@ -8,12 +8,12 @@ export function errorHandlerInterceptor(
   return next(req).pipe(
     tap((event) => {
       if (event.type === HttpEventType.Response && !event.ok) {
-        throw new Error(`HTTP ${event.status} error: "${event.body}"`);
+        throw new Error(`HTTP ${String(event.status)} error: "${String(event.body ?? '')}"`);
       }
     }),
     catchError((error) => {
       console.error(error);
-      return throwError(() => error);
+      return throwError(() => error as Error);
     }),
   );
 }

@@ -34,8 +34,10 @@ describe('errorHandlerInterceptor', () => {
     const consoleSpy = spyOn(console, 'error');
 
     httpClient.get('/test').subscribe({
-      next: () => done.fail('Expected an error, but got a response.'),
-      error: (error) => {
+      next: () => {
+        done.fail('Expected an error, but got a response.');
+      },
+      error: (error: Error) => {
         expect(error.message).toContain('404 Not Found');
         expect(consoleSpy).toHaveBeenCalled();
         done();

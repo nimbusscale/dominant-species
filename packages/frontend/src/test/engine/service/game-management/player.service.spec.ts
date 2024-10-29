@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { PlayerService } from '../../../../app/engine/service/game-management/player.service';
 import { AuthService } from '../../../../app/engine/service/auth/auth.service';
 import { GameManagementClientService } from '../../../../app/engine/service/game-management/game-management-client.service';
-import { BehaviorSubject, of, skip } from 'rxjs';
+import { BehaviorSubject, skip } from 'rxjs';
 
 describe('PlayerService', () => {
   let playerService: PlayerService;

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { GameManagementService } from '../../../engine/service/game-management.service';
+// import { GameManagementService } from '../../../engine/service/game-management.service';
 import { MatButton } from '@angular/material/button';
 import { MatTooltip } from '@angular/material/tooltip';
 import { GameStateService } from '../../../engine/service/game-state/game-state.service';
@@ -17,7 +17,6 @@ import { AreaRegistryService } from '../../../engine/service/game-element/area-r
 import { Area } from '../../../engine/model/area.model';
 import { AreaIdEnum } from '../../constant/area.constant';
 import { AnimalProviderService } from '../../service/animal-provider.service';
-import { ensureDefined } from '../../../engine/util/misc';
 import { AdaptionActionDisplayService } from '../../service/action-display/adaption-action-display.service';
 
 @Component({
@@ -44,7 +43,7 @@ export class DrawPoolGameComponent {
   log: string[] = [];
 
   constructor(
-    private gameManagementSvc: GameManagementService,
+    // private gameManagementSvc: GameManagementService,
     private gameStateSvc: GameStateService,
     private factionRegistrySvc: FactionRegistryService,
     private playerService: PlayerService,

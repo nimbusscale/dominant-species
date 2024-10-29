@@ -28,6 +28,6 @@ export class GameService {
   }
 
   async completeGame(gameId: string): Promise<void> {
-    return await this.gameManagementClientService.completeGame(gameId);
+    await this.gameManagementClientService.completeGame(gameId);
   }
 }

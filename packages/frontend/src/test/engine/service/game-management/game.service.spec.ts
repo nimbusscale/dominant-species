@@ -3,6 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { GameService } from '../../../../app/engine/service/game-management/game.service';
 import { AuthService } from '../../../../app/engine/service/auth/auth.service';
 import { GameManagementClientService } from '../../../../app/engine/service/game-management/game-management-client.service';
+import { Game } from 'api-types/src/game';
 
 describe('GameService', () => {
   let gameService: GameService;
@@ -29,12 +30,12 @@ describe('GameService', () => {
 
   describe('createGame', () => {
     it('should create game', async () => {
-      void (await gameService.createGame(['tester2', 'tester3']));
+      await gameService.createGame(['tester2', 'tester3']);
       expect(mockGameManagementClientService.createGame).toHaveBeenCalledWith(
         jasmine.objectContaining({
           host: 'tester1',
           players: ['tester1', 'tester2', 'tester3'],
-        }),
+        }) as unknown as Game,
       );
     });
   });

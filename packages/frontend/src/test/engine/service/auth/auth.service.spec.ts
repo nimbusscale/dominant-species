@@ -7,7 +7,7 @@ import { AuthenticationResultType } from '@aws-sdk/client-cognito-identity-provi
 import { LocalStorageKey } from '../../../../app/engine/constant/local-storage';
 import { PlayerAuthData } from '../../../../app/engine/model/player.model';
 import { CognitoIdTokenJwt } from 'api-types/src/auth';
-import { firstValueFrom, skip } from 'rxjs';
+import { firstValueFrom } from 'rxjs';
 
 describe('AuthService', () => {
   let authService: AuthService;

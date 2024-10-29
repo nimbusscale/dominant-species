@@ -5,7 +5,6 @@ import { GameService } from '../../../app/engine/service/game-management/game.se
 import { PlayerService } from '../../../app/engine/service/game-management/player.service';
 import { testPlayer1 } from '../game-state-test.constant';
 import { of } from 'rxjs';
-import { G } from '@angular/cdk/keycodes';
 
 describe('LobbyPageComponent', () => {
   let component: LobbyPageComponent;

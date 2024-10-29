@@ -19,10 +19,17 @@ export class PlayerService {
     private authService: AuthService,
     private gameManagementClientService: GameManagementClientService,
   ) {
-    this.authService.isLoggedIn$.pipe().subscribe(async (isLoggedIn) => {
+    this.authService.isLoggedIn$.pipe().subscribe((isLoggedIn) => {
       if (isLoggedIn) {
-        this.currentPlayer = await this.gameManagementClientService.getLoggedInPlayer();
-        this.currentPlayerSubject.next(this.currentPlayer);
+        this.gameManagementClientService
+          .getLoggedInPlayer()
+          .then((player) => {
+            this.currentPlayer = player;
+            this.currentPlayerSubject.next(this.currentPlayer);
+          })
+          .catch((error: unknown) => {
+            throw error;
+          });
       } else {
         this.currentPlayer = undefined;
         this.currentPlayerSubject.next(this.currentPlayer);
@@ -37,13 +44,13 @@ export class PlayerService {
 
   async addfriend(username: string): Promise<void> {
     ensureDefined(this.currentPlayer).friends.push(username);
-    return await this.gameManagementClientService.setFriends(ensureDefined(this.currentPlayer));
+    await this.gameManagementClientService.setFriends(ensureDefined(this.currentPlayer));
   }
 
   async removeFriend(username: string): Promise<void> {
     ensureDefined(this.currentPlayer).friends = ensureDefined(this.currentPlayer).friends.filter(
       (friendUsername) => friendUsername !== username,
     );
-    return await this.gameManagementClientService.setFriends(ensureDefined(this.currentPlayer));
+    await this.gameManagementClientService.setFriends(ensureDefined(this.currentPlayer));
   }
 }

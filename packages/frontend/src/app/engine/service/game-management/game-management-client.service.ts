@@ -15,7 +15,7 @@ export class GameManagementClientService {
   ) {}
 
   async createGame(game: Game): Promise<void> {
-    return await lastValueFrom(this.http.post<void>('/game', game));
+    await lastValueFrom(this.http.post('/game', game));
   }
 
   async getGamesForLoggedInPlayer(): Promise<Game[]> {
@@ -28,7 +28,7 @@ export class GameManagementClientService {
   }
 
   async completeGame(gameId: string): Promise<void> {
-    return await lastValueFrom(this.http.patch<void>(`/game/${gameId}`, { complete: true }));
+    await lastValueFrom(this.http.patch(`/game/${gameId}`, { complete: true }));
   }
 
   async getPlayer(username: string): Promise<Player> {
@@ -49,8 +49,6 @@ export class GameManagementClientService {
   }
 
   async setFriends(player: Player): Promise<void> {
-    return await lastValueFrom(
-      this.http.patch<void>(`/player/${player.username}`, { friends: player.friends }),
-    );
+    await lastValueFrom(this.http.patch(`/player/${player.username}`, { friends: player.friends }));
   }
 }
