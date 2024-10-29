@@ -3,8 +3,8 @@ import { GameStateStoreService } from './game-state-store.service';
 import { GameStatePatchService } from './game-state-patch.service';
 import { GameStateClientService } from './game-state-client.service';
 import { filter, Observable } from 'rxjs';
-import { GameStatePatch } from '../../model/game-state-patch.model';
-import {AreaState, FactionState, PileState} from "api-types/src/game-state";
+import {AreaState, FactionState, GameStatePatch, PileState} from "api-types/src/game-state";
+import {deepClone} from "fast-json-patch";
 
 /**
  * The GameStateService provides an interface for the rest of the system to interact with state.
@@ -25,8 +25,9 @@ export class GameStateService {
   }
 
   private applyGsp(gsp: GameStatePatch): void {
-    const updatedState = this.gspService.apply(this.gameStateStore.gameState, gsp);
-    this.gameStateStore.setGameState(updatedState);
+    const newState = this.gameStateStore.gameState
+    newState.gameElements = this.gspService.apply(newState.gameElements, gsp);
+    this.gameStateStore.setGameState(newState);
   }
 
   startTransaction(): void {
@@ -38,8 +39,8 @@ export class GameStateService {
       throw new Error('No transaction in progress to commit');
     } else {
       const gsp = this.gspService.create(
-        this.gameStateStore.gameState,
-        this.gameStateStore.transactionState,
+        this.gameStateStore.gameState.gameElements,
+        this.gameStateStore.transactionState.gameElements,
       );
       this.gameStateStore.commitTransaction();
       this.gameStateClient.sendGspToBackend(gsp);

@@ -1,3 +1,5 @@
+import {Operation} from "fast-json-patch";
+
 export interface GameElementState {
   id: string;
 }
@@ -39,4 +41,9 @@ export interface GameState {
   patch: number,
   playerIds: string[],
   gameElements: GameElementStates,
+}
+
+export interface GameStatePatch {
+  timeStamp: number;
+  patch: Operation[];
 }
