@@ -1,6 +1,6 @@
 import { Callback, Context, Handler, PreSignUpTriggerEvent } from 'aws-lambda';
 
-import { PlayerEntity, PlayerRecordManager } from './lib/db/player';
+import { PlayerEntity, PlayerRecordManager } from './lib/db/player-record-manager';
 
 const playerRecordManager = new PlayerRecordManager(PlayerEntity);
 
