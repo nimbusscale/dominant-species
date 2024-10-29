@@ -79,7 +79,7 @@
 [PlayerService]  -  [GameManagementClientService]
 [GameStateClientService||+sendGspToBackend(): void]
 [GameStatePatchService||+create(): GameStatePatch;+apply(): GameState]
-[GameStateStoreService|-_gameState: GameState;-_transactionState: GameState;-gameStateSubject: BehaviorSubject&lt;GameState&gt;|-getObservableForKey(): Observable&lt;T&gt;;-setTransactionStateElement(): void;-registerTransactionStateElement(): void;-_setGameState(): void;+setGameState(): void;+startTransaction(): void;+commitTransaction(): void;+rollbackTransaction(): void;+setArea(): void;+registerArea(): void;+setFaction(): void;+registerFaction(): void;+setPile(): void;+registerPile(): void]
+[GameStateStoreService|-_gameState: GameState;-_transactionState: any;-gameStateSubject: BehaviorSubject&lt;GameState&gt;|-getObservableForKey(): Observable&lt;T&gt;;-setTransactionStateElement(): void;-registerTransactionStateElement(): void;-_setGameState(): void;+setGameState(): void;+startTransaction(): void;+commitTransaction(): void;+rollbackTransaction(): void;+setArea(): void;+registerArea(): void;+setFaction(): void;+registerFaction(): void;+setPile(): void;+registerPile(): void]
 [GameStateService|-gameStateStore: GameStateStoreService;-gspService: GameStatePatchService;-gameStateClient: GameStateClientService|-applyGsp(): void;+startTransaction(): void;+commitTransaction(): void;+rollbackTransaction(): void;+requireTransaction(): void;+setArea(): void;+registerArea(): void;+setFaction(): void;+registerFaction(): void;+setPile(): void;+registerPile(): void]
 [GameStateService]  -  [GameStateStoreService]
 [GameStateService]  -  [GameStatePatchService]
@@ -1217,7 +1217,7 @@
 <g transform="translate(0, 1476)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="GameStateStoreService">
 <g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="GameStateStoreService">
 <text x="0.0" y="13.5" stroke="none" data-name="GameStateStoreService">-_gameState: GameState</text>
-<text x="0.0" y="28.5" stroke="none" data-name="GameStateStoreService">-_transactionState: GameState</text>
+<text x="0.0" y="28.5" stroke="none" data-name="GameStateStoreService">-_transactionState: any</text>
 <text x="0.0" y="43.5" stroke="none" data-name="GameStateStoreService">-gameStateSubject: BehaviorSubject&lt;GameState&gt;</text>
 
 </g>

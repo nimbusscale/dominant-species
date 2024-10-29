@@ -180,7 +180,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>apply(gameState: <a href="../interfaces/GameState.html" target="_self">GameState</a>, gsp: <a href="../interfaces/GameStatePatch.html" target="_self">GameStatePatch</a>)</code>
+<code>apply(oldState: GameState, gsp: GameStatePatch)</code>
                 </td>
             </tr>
 
@@ -209,9 +209,9 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                                <td>gameState</td>
+                                                <td>oldState</td>
                                             <td>
-                                                            <code><a href="../interfaces/GameState.html" target="_self" >GameState</a></code>
+                                                        <code>GameState</code>
                                             </td>
 
                                             <td>
@@ -223,7 +223,7 @@
                                         <tr>
                                                 <td>gsp</td>
                                             <td>
-                                                            <code><a href="../interfaces/GameStatePatch.html" target="_self" >GameStatePatch</a></code>
+                                                        <code>GameStatePatch</code>
                                             </td>
 
                                             <td>
@@ -236,7 +236,7 @@
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="../interfaces/GameState.html" target="_self" >GameState</a></code>
+                            <b>Returns : </b>    <code>GameState</code>
 
                         </div>
                             <div class="io-description">
@@ -259,15 +259,15 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>create(oldState: <a href="../interfaces/GameState.html" target="_self">GameState</a>, newState: <a href="../interfaces/GameState.html" target="_self">GameState</a>)</code>
+<code>create(oldState: GameState, newState: GameState)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="13"
-                                    class="link-to-prism">src/app/engine/service/game-state/game-state-patch.service.ts:13</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="12"
+                                    class="link-to-prism">src/app/engine/service/game-state/game-state-patch.service.ts:12</a></div>
                         </td>
                     </tr>
 
@@ -290,7 +290,7 @@
                                         <tr>
                                                 <td>oldState</td>
                                             <td>
-                                                            <code><a href="../interfaces/GameState.html" target="_self" >GameState</a></code>
+                                                        <code>GameState</code>
                                             </td>
 
                                             <td>
@@ -302,7 +302,7 @@
                                         <tr>
                                                 <td>newState</td>
                                             <td>
-                                                            <code><a href="../interfaces/GameState.html" target="_self" >GameState</a></code>
+                                                        <code>GameState</code>
                                             </td>
 
                                             <td>
@@ -315,7 +315,7 @@
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="../interfaces/GameStatePatch.html" target="_self" >GameStatePatch</a></code>
+                            <b>Returns : </b>    <code>GameStatePatch</code>
 
                         </div>
                             <div class="io-description">
@@ -332,9 +332,8 @@
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
-import { GameState } from &#x27;../../model/game-state.model&#x27;;
-import { GameStatePatch } from &#x27;../../model/game-state-patch.model&#x27;;
-import { applyPatch, compare } from &#x27;fast-json-patch&#x27;;
+import { applyPatch, compare, deepClone } from &#x27;fast-json-patch&#x27;;
+import { GameState, GameStatePatch } from &#x27;api-types/src/game-state&#x27;;
 
 /**
  * Creates and applies GameStatePatches
@@ -345,13 +344,22 @@ import { applyPatch, compare } from &#x27;fast-json-patch&#x27;;
 export class GameStatePatchService {
   create(oldState: GameState, newState: GameState): GameStatePatch {
     return {
-      timeStamp: Date.now(),
-      patch: compare(oldState, newState),
+      gameId: oldState.id,
+      patchId: oldState.patchId + 1,
+      patch: compare(oldState.gameElements, newState.gameElements),
     };
   }
 
-  apply(gameState: GameState, gsp: GameStatePatch): GameState {
-    return applyPatch(gameState, gsp.patch, undefined, false).newDocument;
+  apply(oldState: GameState, gsp: GameStatePatch): GameState {
+    const newState &#x3D; deepClone(oldState) as GameState;
+    newState.gameElements &#x3D; applyPatch(
+      oldState.gameElements,
+      gsp.patch,
+      undefined,
+      false,
+    ).newDocument;
+    newState.patchId &#x3D; gsp.patchId;
+    return newState;
   }
 }
 </code></pre>

@@ -184,7 +184,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>sendGspToBackend(gsp: <a href="../interfaces/GameStatePatch.html" target="_self">GameStatePatch</a>)</code>
+<code>sendGspToBackend(gsp: GameStatePatch)</code>
                 </td>
             </tr>
 
@@ -215,7 +215,7 @@
                                         <tr>
                                                 <td>gsp</td>
                                             <td>
-                                                            <code><a href="../interfaces/GameStatePatch.html" target="_self" >GameStatePatch</a></code>
+                                                        <code>GameStatePatch</code>
                                             </td>
 
                                             <td>
@@ -272,8 +272,8 @@
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
-import { GameStatePatch } from &#x27;../../model/game-state-patch.model&#x27;;
 import { of, Observable } from &#x27;rxjs&#x27;;
+import { GameStatePatch } from &#x27;api-types/src/game-state&#x27;;
 
 @Injectable({
   providedIn: &#x27;root&#x27;,

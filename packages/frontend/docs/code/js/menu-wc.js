@@ -229,9 +229,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/AnimalConfig.html" data-type="entity-link" >AnimalConfig</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/AreaState.html" data-type="entity-link" >AreaState</a>
-                            </li>
-                            <li class="link">
                                 <a href="interfaces/ElementConfig.html" data-type="entity-link" >ElementConfig</a>
                             </li>
                             <li class="link">
@@ -241,28 +238,10 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/FactionAssignment.html" data-type="entity-link" >FactionAssignment</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/FactionState.html" data-type="entity-link" >FactionState</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/GameElementState.html" data-type="entity-link" >GameElementState</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/GameState.html" data-type="entity-link" >GameState</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/GameStatePatch.html" data-type="entity-link" >GameStatePatch</a>
-                            </li>
-                            <li class="link">
                                 <a href="interfaces/LoginFormData.html" data-type="entity-link" >LoginFormData</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/Piece.html" data-type="entity-link" >Piece</a>
-                            </li>
-                            <li class="link">
                                 <a href="interfaces/PileConfig.html" data-type="entity-link" >PileConfig</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/PileState.html" data-type="entity-link" >PileState</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/PlayerAuthData.html" data-type="entity-link" >PlayerAuthData</a>
@@ -272,9 +251,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="interfaces/SignUpFormData.html" data-type="entity-link" >SignUpFormData</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/SpaceState.html" data-type="entity-link" >SpaceState</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/SpeciesPiece.html" data-type="entity-link" >SpeciesPiece</a>
