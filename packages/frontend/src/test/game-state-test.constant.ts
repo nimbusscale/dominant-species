@@ -1,8 +1,7 @@
-import {Player} from './player';
-import {FactionState, GameState, GameStatePatch, PileState} from "./game-state";
+import {Player} from 'api-types/src/player';
+import {FactionState, GameState, GameStatePatch, PileState} from "api-types/src/game-state";
 
 
-export const test = 'test'
 
 function deepFreeze<T>(obj: T): T {
   const propNames = Object.getOwnPropertyNames(obj) as (keyof T)[];
@@ -29,7 +28,8 @@ export const testPileState2: PileState = deepFreeze({
 });
 
 export const testGameStatePatch1: GameStatePatch = deepFreeze({
-  timeStamp: 1728051798261,
+  gameId: 'testGame1',
+  patchId: 1,
   patch: [
     {op: 'remove', path: '/pile/1'},
     {op: 'replace', path: '/pile/0/inventory/test1', value: 20},
@@ -63,7 +63,7 @@ export const testFactionState2: FactionState = deepFreeze({
 
 export const testGameState1: GameState = deepFreeze({
   id: 'testGame1',
-  patch: 0,
+  patchId: 0,
   playerIds: [],
   gameElements: {
     area: [],
@@ -86,7 +86,7 @@ export const testGameState1: GameState = deepFreeze({
 // Since testGameState1 is frozen, we need to duplicate the object config here.
 export const testGameState1updated: GameState = deepFreeze({
   id: 'testGame1',
-  patch: 1,
+  patchId: 1,
   playerIds: [],
   gameElements: {
     area: [],

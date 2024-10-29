@@ -25,3 +25,21 @@
 //     console.log(await playerRecordManager.setFriends('tester3', ['tester1', 'tester2']))
 //   })
 // })
+
+// import {StateObjectManager} from "../../lib/state/state-object-manager";
+// import {testGameState1} from "api-types/src/game-state-test.constant";
+//
+// describe('StateObjectManager', () => {
+//   let stateObjectManager: StateObjectManager
+//
+//   beforeEach(() => {
+//     stateObjectManager = new StateObjectManager()
+//   })
+//
+//   it('uploads', async () => {
+//     await stateObjectManager.putGameState(testGameState1)
+//   })
+//   it('downloads', async () => {
+//     console.log(await stateObjectManager.getGameState('testGame1', 0))
+//   })
+// })

@@ -38,12 +38,13 @@ export interface GameElementStates {
 
 export interface GameState {
   id: string,
-  patch: number,
+  patchId: number,
   playerIds: string[],
   gameElements: GameElementStates,
 }
 
 export interface GameStatePatch {
-  timeStamp: number;
+  gameId: string;
+  patchId: number;
   patch: Operation[];
 }

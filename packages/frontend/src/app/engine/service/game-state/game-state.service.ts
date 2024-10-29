@@ -25,9 +25,7 @@ export class GameStateService {
   }
 
   private applyGsp(gsp: GameStatePatch): void {
-    const newState = this.gameStateStore.gameState
-    newState.gameElements = this.gspService.apply(newState.gameElements, gsp);
-    this.gameStateStore.setGameState(newState);
+    this.gameStateStore.setGameState(this.gspService.apply(this.gameStateStore.gameState, gsp));
   }
 
   startTransaction(): void {
@@ -39,8 +37,8 @@ export class GameStateService {
       throw new Error('No transaction in progress to commit');
     } else {
       const gsp = this.gspService.create(
-        this.gameStateStore.gameState.gameElements,
-        this.gameStateStore.transactionState.gameElements,
+        this.gameStateStore.gameState,
+        this.gameStateStore.transactionState,
       );
       this.gameStateStore.commitTransaction();
       this.gameStateClient.sendGspToBackend(gsp);

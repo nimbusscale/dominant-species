@@ -2,7 +2,7 @@ import {GameState} from "api-types/src/game-state";
 
 export const emptyGameState: GameState = {
   id: 'placeholder',
-  patch: 0,
+  patchId: 0,
   playerIds: [],
   gameElements: {
     area: [],

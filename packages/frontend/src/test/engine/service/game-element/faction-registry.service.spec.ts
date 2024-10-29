@@ -1,11 +1,11 @@
 import { TestBed } from '@angular/core/testing';
 import { FactionRegistryService } from '../../../../app/engine/service/game-element/faction-registry.service';
 import { Faction } from '../../../../app/engine/model/faction.model';
-import { testFactionState1 } from 'api-types/src/game-state-test.constant';
 import { FactionStateService } from '../../../../app/engine/service/game-element/faction-state.service';
 import { deepClone } from 'fast-json-patch';
 import { skip } from 'rxjs';
 import {FactionState} from "api-types/src/game-state";
+import {testFactionState1} from "../../../game-state-test.constant";
 
 describe('FactionRegistryService', () => {
   let factionRegistrySvc: FactionRegistryService;
