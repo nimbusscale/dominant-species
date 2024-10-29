@@ -127,6 +127,26 @@
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#isLoggedIn$" >isLoggedIn$</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#isLoggedInSubject" >isLoggedInSubject</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
                 <tr>
                     <td class="col-md-4">
@@ -139,6 +159,9 @@
                             <li>
                                     <span class="modifier">Private</span>
                                 <a href="#authResultToPlayerAuth" >authResultToPlayerAuth</a>
+                            </li>
+                            <li>
+                                <a href="#checkIsLoggedIn" >checkIsLoggedIn</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
@@ -171,7 +194,7 @@
                                     <a href="#playerAuthData" >playerAuthData</a>
                                 </li>
                                 <li>
-                                    <a href="#isLoggedIn" >isLoggedIn</a>
+                                    <a href="#loggedInUsername" >loggedInUsername</a>
                                 </li>
                             </ul>
                         </td>
@@ -191,7 +214,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/engine/service/auth/auth.service.ts:12</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/engine/service/auth/auth.service.ts:15</a></div>
                             </td>
                         </tr>
 
@@ -268,8 +291,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="18"
-                                    class="link-to-prism">src/app/engine/service/auth/auth.service.ts:18</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="25"
+                                    class="link-to-prism">src/app/engine/service/auth/auth.service.ts:25</a></div>
                         </td>
                     </tr>
 
@@ -319,6 +342,43 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="checkIsLoggedIn"></a>
+                    <span class="name">
+                        <span ><b>checkIsLoggedIn</b></span>
+                        <a href="#checkIsLoggedIn"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>checkIsLoggedIn()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="78"
+                                    class="link-to-prism">src/app/engine/service/auth/auth.service.ts:78</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="login"></a>
                     <span class="name">
                             <span class="modifier">Async</span>
@@ -337,8 +397,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="28"
-                                    class="link-to-prism">src/app/engine/service/auth/auth.service.ts:28</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="35"
+                                    class="link-to-prism">src/app/engine/service/auth/auth.service.ts:35</a></div>
                         </td>
                     </tr>
 
@@ -416,8 +476,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="42"
-                                    class="link-to-prism">src/app/engine/service/auth/auth.service.ts:42</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="50"
+                                    class="link-to-prism">src/app/engine/service/auth/auth.service.ts:50</a></div>
                         </td>
                     </tr>
 
@@ -455,8 +515,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="57"
-                                    class="link-to-prism">src/app/engine/service/auth/auth.service.ts:57</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="74"
+                                    class="link-to-prism">src/app/engine/service/auth/auth.service.ts:74</a></div>
                         </td>
                     </tr>
 
@@ -503,6 +563,67 @@
         </tbody>
     </table>
 </section>
+            <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isLoggedIn$"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>isLoggedIn$</b></span>
+                        <a href="#isLoggedIn$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Observable&lt;boolean&gt;</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/engine/service/auth/auth.service.ts:15</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isLoggedInSubject"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>isLoggedInSubject</b></span>
+                        <a href="#isLoggedInSubject"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>BehaviorSubject&lt;boolean&gt;</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/engine/service/auth/auth.service.ts:14</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
 
             <section data-compodoc="block-accessors">
     <h3 id="accessors">
@@ -524,7 +645,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/engine/service/auth/auth.service.ts:48</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/engine/service/auth/auth.service.ts:57</a></div>
                                 </td>
                             </tr>
 
@@ -534,19 +655,19 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="isLoggedIn"></a>
-                        <span class="name"><b>isLoggedIn</b><a href="#isLoggedIn"><span class="icon ion-ios-link"></span></a></span>
+                        <a name="loggedInUsername"></a>
+                        <span class="name"><b>loggedInUsername</b><a href="#loggedInUsername"><span class="icon ion-ios-link"></span></a></span>
                     </td>
                 </tr>
 
                 <tr>
                     <td class="col-md-4">
-                        <span class="accessor"><b>get</b><code>isLoggedIn()</code></span>
+                        <span class="accessor"><b>get</b><code>loggedInUsername()</code></span>
                     </td>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/engine/service/auth/auth.service.ts:61</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/app/engine/service/auth/auth.service.ts:66</a></div>
                                 </td>
                             </tr>
 
@@ -564,20 +685,27 @@ import { AuthenticationResultType } from &#x27;@aws-sdk/client-cognito-identity-
 import { PlayerAuthData } from &#x27;../../model/player.model&#x27;;
 import { ensureDefined } from &#x27;../../util/misc&#x27;;
 import { LocalStorageKey } from &#x27;../../constant/local-storage&#x27;;
+import { BehaviorSubject, Observable } from &#x27;rxjs&#x27;;
 
 @Injectable({
   providedIn: &#x27;root&#x27;,
 })
 export class AuthService {
+  private readonly isLoggedInSubject: BehaviorSubject&lt;boolean&gt;;
+  readonly isLoggedIn$: Observable&lt;boolean&gt;;
+
   constructor(
     private cognitoClientService: CognitoClientService,
     private localStorageService: LocalStorageService,
-  ) {}
+  ) {
+    this.isLoggedInSubject &#x3D; new BehaviorSubject&lt;boolean&gt;(this.checkIsLoggedIn());
+    this.isLoggedIn$ &#x3D; this.isLoggedInSubject.asObservable();
+  }
 
   private authResultToPlayerAuth(authResult: AuthenticationResultType): PlayerAuthData {
     const jwt &#x3D; this.cognitoClientService.decodeJwtToken(ensureDefined(authResult.IdToken));
     return {
-      id: ensureDefined(jwt[&#x27;cognito:username&#x27;]),
+      username: ensureDefined(jwt[&#x27;cognito:username&#x27;]),
       accessToken: ensureDefined(authResult.IdToken),
       accessTokenExpire: ensureDefined(jwt.exp),
       refreshToken: ensureDefined(authResult.RefreshToken),
@@ -592,6 +720,7 @@ export class AuthService {
         LocalStorageKey.PLAYER_AUTH_DATA,
         JSON.stringify(this.authResultToPlayerAuth(authResult)),
       );
+      this.isLoggedInSubject.next(true);
       return true;
     } else {
       return false;
@@ -602,14 +731,23 @@ export class AuthService {
     if (this.playerAuthData) {
       this.localStorageService.deletedStorageKey(LocalStorageKey.PLAYER_AUTH_DATA);
     }
+    this.isLoggedInSubject.next(false);
   }
 
-  get playerAuthData(): PlayerAuthData | null {
+  get playerAuthData(): PlayerAuthData | undefined {
     const playerAuthData &#x3D; this.localStorageService.getStorageKey(LocalStorageKey.PLAYER_AUTH_DATA);
     if (playerAuthData) {
       return JSON.parse(playerAuthData) as PlayerAuthData;
     } else {
-      return null;
+      return undefined;
+    }
+  }
+
+  get loggedInUsername(): string {
+    if (this.playerAuthData) {
+      return this.playerAuthData.username;
+    } else {
+      throw new Error(&#x27;No user logged in&#x27;);
     }
   }
 
@@ -617,7 +755,7 @@ export class AuthService {
     return Date.now() &lt; playerAuthData.accessTokenExpire * 1000;
   }
 
-  get isLoggedIn(): boolean {
+  checkIsLoggedIn(): boolean {
     return !!(this.playerAuthData &amp;&amp; this.validatePlayerAuthData(this.playerAuthData));
   }
 }

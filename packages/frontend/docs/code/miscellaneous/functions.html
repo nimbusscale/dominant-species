@@ -113,6 +113,12 @@
                 <td class="col-md-4">
                     <ul class="index-list">
                         <li>
+                            <a href="#apiUrlInterceptor" title="src/app/engine/interceptor/api-url.interceptor.ts" ><b>apiUrlInterceptor</b>&nbsp;&nbsp;&nbsp;(src/.../api-url.interceptor.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#authInterceptor" title="src/app/engine/interceptor/auth.interceptor.ts" ><b>authInterceptor</b>&nbsp;&nbsp;&nbsp;(src/.../auth.interceptor.ts)</a>
+                        </li>
+                        <li>
                             <a href="#deepCompare" title="src/app/engine/util/misc.ts" ><b>deepCompare</b>&nbsp;&nbsp;&nbsp;(src/.../misc.ts)</a>
                         </li>
                         <li>
@@ -120,6 +126,9 @@
                         </li>
                         <li>
                             <a href="#ensureDefined" title="src/app/engine/util/misc.ts" ><b>ensureDefined</b>&nbsp;&nbsp;&nbsp;(src/.../misc.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#errorHandlerInterceptor" title="src/app/engine/interceptor/error-handler.interceptor.ts" ><b>errorHandlerInterceptor</b>&nbsp;&nbsp;&nbsp;(src/.../error-handler.interceptor.ts)</a>
                         </li>
                         <li>
                             <a href="#getOrThrow" title="src/app/engine/util/misc.ts" ><b>getOrThrow</b>&nbsp;&nbsp;&nbsp;(src/.../misc.ts)</a>
@@ -149,7 +158,143 @@
     </table>
 </section>
 
-    <h3>src/app/engine/util/misc.ts</h3>
+    <h3>src/app/engine/interceptor/api-url.interceptor.ts</h3>
+    <section data-compodoc="block-methods">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="apiUrlInterceptor"></a>
+                    <span class="name">
+                        <span ><b>apiUrlInterceptor</b></span>
+                        <a href="#apiUrlInterceptor"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>apiUrlInterceptor(req: HttpRequest, next: HttpHandlerFn)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>req</td>
+                                            <td>
+                                                        <code>HttpRequest</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>next</td>
+                                            <td>
+                                                        <code>HttpHandlerFn</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>src/app/engine/interceptor/auth.interceptor.ts</h3>
+    <section data-compodoc="block-methods">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="authInterceptor"></a>
+                    <span class="name">
+                        <span ><b>authInterceptor</b></span>
+                        <a href="#authInterceptor"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>authInterceptor(req: HttpRequest, next: HttpHandlerFn)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>req</td>
+                                            <td>
+                                                        <code>HttpRequest</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>next</td>
+                                            <td>
+                                                        <code>HttpHandlerFn</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>src/app/engine/util/misc.ts</h3>
     <section data-compodoc="block-methods">
     <h3></h3>    <table class="table table-sm table-bordered">
         <tbody>
@@ -553,6 +698,81 @@ returned unchanged.</p>
                             </div>
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="../interfaces/Piece.html" target="_self" >Piece</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>src/app/engine/interceptor/error-handler.interceptor.ts</h3>
+    <section data-compodoc="block-methods">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="errorHandlerInterceptor"></a>
+                    <span class="name">
+                        <span ><b>errorHandlerInterceptor</b></span>
+                        <a href="#errorHandlerInterceptor"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>errorHandlerInterceptor(req: HttpRequest, next: HttpHandlerFn)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>req</td>
+                                            <td>
+                                                        <code>HttpRequest</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>next</td>
+                                            <td>
+                                                        <code>HttpHandlerFn</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Observable&lt;HttpEvent&lt;&gt;&gt;</code>
 
                         </div>
                             <div class="io-description">

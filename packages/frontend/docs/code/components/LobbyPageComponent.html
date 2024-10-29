@@ -1,0 +1,974 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>frontend documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/vagrant.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">frontend documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  LobbyPageComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/engine/component/lobby-page/lobby-page.component.ts</code>
+</p>
+
+
+
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-lobby-page</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>MatTable</code>
+                            <code>MatColumnDef</code>
+                            <code>MatHeaderCell</code>
+                            <code>MatCell</code>
+                            <code>MatHeaderRow</code>
+                            <code>MatRow</code>
+                            <code>MatHeaderRowDef</code>
+                            <code>MatRowDef</code>
+                            <code>MatHeaderCellDef</code>
+                            <code>MatCellDef</code>
+                            <code>MatButton</code>
+                            <code>MatIcon</code>
+                            <code>MatMiniFabButton</code>
+                            <code>MatChipSet</code>
+                            <code>MatChip</code>
+                            <code>MatTooltip</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./lobby-page.component.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./lobby-page.component.scss</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#currentPlayer" >currentPlayer</a>
+                            </li>
+                            <li>
+                                <a href="#games" >games</a>
+                            </li>
+                            <li>
+                                <a href="#gameTableColumns" >gameTableColumns</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#completeGame" >completeGame</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#createGame" >createGame</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#fetchGames" >fetchGames</a>
+                            </li>
+                            <li>
+                                <a href="#filterPlayers" >filterPlayers</a>
+                            </li>
+                            <li>
+                                <a href="#joinGame" >joinGame</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(gameService: <a href="../injectables/GameService.html" target="_self">GameService</a>, playerService: <a href="../injectables/PlayerService.html" target="_self">PlayerService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/engine/component/lobby-page/lobby-page.component.ts:50</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>gameService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/GameService.html" target="_self" >GameService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>playerService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/PlayerService.html" target="_self" >PlayerService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="completeGame"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>completeGame</b></span>
+                        <a href="#completeGame"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>completeGame(gameId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="78"
+                                    class="link-to-prism">src/app/engine/component/lobby-page/lobby-page.component.ts:78</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>gameId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createGame"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>createGame</b></span>
+                        <a href="#createGame"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>createGame()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="73"
+                                    class="link-to-prism">src/app/engine/component/lobby-page/lobby-page.component.ts:73</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="fetchGames"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>fetchGames</b></span>
+                        <a href="#fetchGames"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>fetchGames()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="69"
+                                    class="link-to-prism">src/app/engine/component/lobby-page/lobby-page.component.ts:69</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="filterPlayers"></a>
+                    <span class="name">
+                        <span ><b>filterPlayers</b></span>
+                        <a href="#filterPlayers"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>filterPlayers(game: Game)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="62"
+                                    class="link-to-prism">src/app/engine/component/lobby-page/lobby-page.component.ts:62</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>game</td>
+                                            <td>
+                                                        <code>Game</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>string[]</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="joinGame"></a>
+                    <span class="name">
+                        <span ><b>joinGame</b></span>
+                        <a href="#joinGame"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>joinGame(gameId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="83"
+                                    class="link-to-prism">src/app/engine/component/lobby-page/lobby-page.component.ts:83</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>gameId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="currentPlayer"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>currentPlayer</b></span>
+                        <a href="#currentPlayer"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;Player | undefined&gt;(undefined)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/engine/component/lobby-page/lobby-page.component.ts:50</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="games"></a>
+                    <span class="name">
+                        <span ><b>games</b></span>
+                        <a href="#games"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;Game[]&gt;([])</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/engine/component/lobby-page/lobby-page.component.ts:48</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="gameTableColumns"></a>
+                    <span class="name">
+                        <span ><b>gameTableColumns</b></span>
+                        <a href="#gameTableColumns"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[&#x27;gameId&#x27;, &#x27;host&#x27;, &#x27;players&#x27;, &#x27;actions&#x27;]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/engine/component/lobby-page/lobby-page.component.ts:49</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, signal } from &#x27;@angular/core&#x27;;
+import { Game } from &#x27;api-types/src/game&#x27;;
+import { GameService } from &#x27;../../service/game-management/game.service&#x27;;
+import {
+  MatCell,
+  MatCellDef,
+  MatColumnDef,
+  MatHeaderCell,
+  MatHeaderCellDef,
+  MatHeaderRow,
+  MatHeaderRowDef,
+  MatRow,
+  MatRowDef,
+  MatTable,
+} from &#x27;@angular/material/table&#x27;;
+import { MatButton, MatMiniFabButton } from &#x27;@angular/material/button&#x27;;
+import { MatIcon } from &#x27;@angular/material/icon&#x27;;
+import { MatChip, MatChipSet } from &#x27;@angular/material/chips&#x27;;
+import { PlayerService } from &#x27;../../service/game-management/player.service&#x27;;
+import { Player } from &#x27;api-types/src/player&#x27;;
+import { MatTooltip } from &#x27;@angular/material/tooltip&#x27;;
+
+@Component({
+  selector: &#x27;app-lobby-page&#x27;,
+  standalone: true,
+  imports: [
+    MatTable,
+    MatColumnDef,
+    MatHeaderCell,
+    MatCell,
+    MatHeaderRow,
+    MatRow,
+    MatHeaderRowDef,
+    MatRowDef,
+    MatHeaderCellDef,
+    MatCellDef,
+    MatButton,
+    MatIcon,
+    MatMiniFabButton,
+    MatChipSet,
+    MatChip,
+    MatTooltip,
+  ],
+  templateUrl: &#x27;./lobby-page.component.html&#x27;,
+  styleUrl: &#x27;./lobby-page.component.scss&#x27;,
+})
+export class LobbyPageComponent {
+  games &#x3D; signal&lt;Game[]&gt;([]);
+  gameTableColumns: string[] &#x3D; [&#x27;gameId&#x27;, &#x27;host&#x27;, &#x27;players&#x27;, &#x27;actions&#x27;];
+  readonly currentPlayer &#x3D; signal&lt;Player | undefined&gt;(undefined);
+
+  constructor(
+    private gameService: GameService,
+    private playerService: PlayerService,
+  ) {
+    this.playerService.currentPlayer$.subscribe((player) &#x3D;&gt; {
+      this.currentPlayer.set(player);
+      void this.fetchGames();
+    });
+  }
+
+  filterPlayers(game: Game): string[] {
+    return game.players
+      .filter((player) &#x3D;&gt; player !&#x3D;&#x3D; game.host)
+      .slice()
+      .sort();
+  }
+
+  async fetchGames(): Promise&lt;void&gt; {
+    this.games.set(await this.gameService.getGamesForLoggedInPlayer());
+  }
+
+  async createGame(): Promise&lt;void&gt; {
+    await this.gameService.createGame([&#x27;tester1&#x27;, &#x27;tester2&#x27;, &#x27;tester3&#x27;]);
+    await this.fetchGames();
+  }
+
+  async completeGame(gameId: string): Promise&lt;void&gt; {
+    await this.gameService.completeGame(gameId);
+    await this.fetchGames();
+  }
+
+  joinGame(gameId: string): void {
+    console.log(&#x60;Joining game ${gameId}&#x60;);
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;article class&#x3D;&quot;lobby-page&quot;&gt;
+  &lt;section class&#x3D;&quot;button-area&quot;&gt;
+    &lt;button mat-mini-fab matTooltip&#x3D;&quot;Refresh Games&quot; (click)&#x3D;&quot;fetchGames()&quot;&gt;
+      &lt;mat-icon&gt;refresh&lt;/mat-icon&gt;
+    &lt;/button&gt;
+    &lt;button mat-mini-fab matTooltip&#x3D;&quot;Create Game&quot; (click)&#x3D;&quot;createGame()&quot;&gt;
+      &lt;mat-icon&gt;add_circle&lt;/mat-icon&gt;
+    &lt;/button&gt;
+  &lt;/section&gt;
+  &lt;section class&#x3D;&quot;table-area&quot;&gt;
+    &lt;table mat-table [dataSource]&#x3D;&quot;games()&quot; class&#x3D;&quot;mat-elevation-z8 games-table&quot;&gt;
+      &lt;ng-container matColumnDef&#x3D;&quot;gameId&quot;&gt;
+        &lt;th mat-header-cell *matHeaderCellDef&gt;Id&lt;/th&gt;
+        &lt;td *matCellDef&#x3D;&quot;let game&quot; mat-cell&gt;{{ game.gameId }}&lt;/td&gt;
+      &lt;/ng-container&gt;
+      &lt;ng-container matColumnDef&#x3D;&quot;host&quot;&gt;
+        &lt;th mat-header-cell *matHeaderCellDef&gt;Host&lt;/th&gt;
+        &lt;td mat-cell *matCellDef&#x3D;&quot;let game&quot;&gt;
+          &lt;mat-chip-set&gt;
+            &lt;mat-chip&gt;{{ game.host }}&lt;/mat-chip&gt;
+          &lt;/mat-chip-set&gt;
+        &lt;/td&gt;
+      &lt;/ng-container&gt;
+      &lt;ng-container matColumnDef&#x3D;&quot;players&quot;&gt;
+        &lt;th mat-header-cell *matHeaderCellDef&gt;Players&lt;/th&gt;
+        &lt;td mat-cell *matCellDef&#x3D;&quot;let game&quot;&gt;
+          &lt;mat-chip-set&gt;
+            @for (player of filterPlayers(game); track $index) {
+              &lt;mat-chip&gt;{{ player }}&lt;/mat-chip&gt;
+            }
+          &lt;/mat-chip-set&gt;
+        &lt;/td&gt;
+      &lt;/ng-container&gt;
+      &lt;ng-container matColumnDef&#x3D;&quot;actions&quot;&gt;
+        &lt;th mat-header-cell *matHeaderCellDef&gt;&lt;/th&gt;
+        &lt;td mat-cell *matCellDef&#x3D;&quot;let game&quot;&gt;
+          &lt;div class&#x3D;&quot;action-button-area&quot;&gt;
+            @if (game.host &#x3D;&#x3D;&#x3D; currentPlayer()?.username) {
+              &lt;button mat-mini-fab matTooltip&#x3D;&quot;Delete Game&quot; (click)&#x3D;&quot;completeGame(game.gameId)&quot;&gt;
+                &lt;mat-icon&gt;delete&lt;/mat-icon&gt;
+              &lt;/button&gt;
+            }
+            &lt;button mat-mini-fab matTooltip&#x3D;&quot;Join Game&quot; (click)&#x3D;&quot;joinGame(game.gameId)&quot;&gt;
+              &lt;mat-icon&gt;login&lt;/mat-icon&gt;
+            &lt;/button&gt;
+          &lt;/div&gt;
+        &lt;/td&gt;
+      &lt;/ng-container&gt;
+
+      &lt;tr mat-header-row *matHeaderRowDef&#x3D;&quot;gameTableColumns&quot;&gt;&lt;/tr&gt;
+      &lt;tr mat-row *matRowDef&#x3D;&quot;let row; columns: gameTableColumns&quot;&gt;&lt;/tr&gt;
+    &lt;/table&gt;
+  &lt;/section&gt;
+&lt;/article&gt;
+</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><article class="lobby-page">  <section class="button-area">    <button mat-mini-fab matTooltip="Refresh Games" (click)="fetchGames()">      <mat-icon>refresh</mat-icon>    </button>    <button mat-mini-fab matTooltip="Create Game" (click)="createGame()">      <mat-icon>add_circle</mat-icon>    </button>  </section>  <section class="table-area">    <table mat-table [dataSource]="games()" class="mat-elevation-z8 games-table">      <ng-container matColumnDef="gameId">        <th mat-header-cell *matHeaderCellDef>Id</th>        <td *matCellDef="let game" mat-cell>{{ game.gameId }}</td>      </ng-container>      <ng-container matColumnDef="host">        <th mat-header-cell *matHeaderCellDef>Host</th>        <td mat-cell *matCellDef="let game">          <mat-chip-set>            <mat-chip>{{ game.host }}</mat-chip>          </mat-chip-set>        </td>      </ng-container>      <ng-container matColumnDef="players">        <th mat-header-cell *matHeaderCellDef>Players</th>        <td mat-cell *matCellDef="let game">          <mat-chip-set>            @for (player of filterPlayers(game); track $index) {              <mat-chip>{{ player }}</mat-chip>            }          </mat-chip-set>        </td>      </ng-container>      <ng-container matColumnDef="actions">        <th mat-header-cell *matHeaderCellDef></th>        <td mat-cell *matCellDef="let game">          <div class="action-button-area">            @if (game.host === currentPlayer()?.username) {              <button mat-mini-fab matTooltip="Delete Game" (click)="completeGame(game.gameId)">                <mat-icon>delete</mat-icon>              </button>            }            <button mat-mini-fab matTooltip="Join Game" (click)="joinGame(game.gameId)">              <mat-icon>login</mat-icon>            </button>          </div>        </td>      </ng-container>      <tr mat-header-row *matHeaderRowDef="gameTableColumns"></tr>      <tr mat-row *matRowDef="let row; columns: gameTableColumns"></tr>    </table>  </section></article></div>'
+    var COMPONENTS = [{'name': 'ActionPawnComponent', 'selector': 'app-action-pawn'},{'name': 'ActionPawnSpaceComponent', 'selector': 'app-action-pawn-space'},{'name': 'AdaptionActionDisplayCardComponent', 'selector': 'app-adaption-action-display-card'},{'name': 'AnimalCardComponent', 'selector': 'app-animal-card'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'DrawPoolGameComponent', 'selector': 'app-draw-pool-game'},{'name': 'ElementComponent', 'selector': 'app-element'},{'name': 'ElementSpaceComponent', 'selector': 'app-element-space'},{'name': 'EyeballComponent', 'selector': 'app-eyeball'},{'name': 'LobbyPageComponent', 'selector': 'app-lobby-page'},{'name': 'LoginPageComponent', 'selector': 'app-login-page'},{'name': 'LogoutPageComponent', 'selector': 'app-logout-page'},{'name': 'SignUpConfirmPageComponent', 'selector': 'app-sign-up-confirm-page'},{'name': 'SignUpPageComponent', 'selector': 'app-sign-up-page'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'LobbyPageComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'LobbyPageComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

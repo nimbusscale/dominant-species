@@ -240,7 +240,7 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(formBuilder: FormBuilder, loginService: <a href="../injectables/AuthService.html" target="_self">AuthService</a>, router: Router)</code>
+<code>constructor(formBuilder: FormBuilder, authService: <a href="../injectables/AuthService.html" target="_self">AuthService</a>, router: Router)</code>
                     </td>
                 </tr>
                         <tr>
@@ -275,7 +275,7 @@
                                                     
                                                 </tr>
                                                 <tr>
-                                                        <td>loginService</td>
+                                                        <td>authService</td>
                                                   
                                                         <td>
                                                                         <code><a href="../injectables/AuthService.html" target="_self" >AuthService</a></code>
@@ -442,7 +442,7 @@ export class LoginPageComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    private loginService: AuthService,
+    private authService: AuthService,
     private router: Router,
   ) {
     this.loginForm &#x3D; this.formBuilder.group({
@@ -454,9 +454,9 @@ export class LoginPageComponent {
   onSubmit(): void {
     if (this.loginForm.valid) {
       const { username, password } &#x3D; this.loginForm.value as LoginFormData;
-      void this.loginService.login(username, password).then((success) &#x3D;&gt; {
+      void this.authService.login(username, password).then((success) &#x3D;&gt; {
         if (success) {
-          void this.router.navigate([&#x27;/game&#x27;]);
+          void this.router.navigate([&#x27;/lobby&#x27;]);
         } else {
           this.errorMessage.set(&#x27;Login failed. See console for more information.&#x27;);
         }
@@ -535,7 +535,7 @@ export class LoginPageComponent {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><body>  <mat-card appearance="outlined" class="auth-card">    <div class="card-header">Login</div>    <mat-card-content>      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="form-container">        <div class="form-row">          <label for="username">Username:</label>          <input id="username" formControlName="username" type="text" />        </div>        <div class="form-row">          <label for="password">Password:</label>          <input id="password" formControlName="password" type="password" />        </div>        .        <div class="form-row">          <div class="spacer-text"></div>          <button mat-raised-button type="submit" [disabled]="loginForm.invalid">Confirm</button>        </div>        <div class="form-row">          <div class="spacer-text"></div>          <div class="error-messages">            @if (errorMessage()) {              <div>{{ errorMessage() }}</div>            }          </div>        </div>        <div class="form-row">          <div class="spacer-text"></div>          <div class="spacer-input">            <a [routerLink]="[\'/sign-up\']" class="sign-up-link">Sign Up Here</a>          </div>        </div>      </form>    </mat-card-content>  </mat-card></body></div>'
-    var COMPONENTS = [{'name': 'ActionPawnComponent', 'selector': 'app-action-pawn'},{'name': 'ActionPawnSpaceComponent', 'selector': 'app-action-pawn-space'},{'name': 'AdaptionActionDisplayCardComponent', 'selector': 'app-adaption-action-display-card'},{'name': 'AnimalCardComponent', 'selector': 'app-animal-card'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'DrawPoolGameComponent', 'selector': 'app-draw-pool-game'},{'name': 'ElementComponent', 'selector': 'app-element'},{'name': 'ElementSpaceComponent', 'selector': 'app-element-space'},{'name': 'EyeballComponent', 'selector': 'app-eyeball'},{'name': 'LoginPageComponent', 'selector': 'app-login-page'},{'name': 'LogoutPageComponent', 'selector': 'app-logout-page'},{'name': 'SignUpConfirmPageComponent', 'selector': 'app-sign-up-confirm-page'},{'name': 'SignUpPageComponent', 'selector': 'app-sign-up-page'}];
+    var COMPONENTS = [{'name': 'ActionPawnComponent', 'selector': 'app-action-pawn'},{'name': 'ActionPawnSpaceComponent', 'selector': 'app-action-pawn-space'},{'name': 'AdaptionActionDisplayCardComponent', 'selector': 'app-adaption-action-display-card'},{'name': 'AnimalCardComponent', 'selector': 'app-animal-card'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'DrawPoolGameComponent', 'selector': 'app-draw-pool-game'},{'name': 'ElementComponent', 'selector': 'app-element'},{'name': 'ElementSpaceComponent', 'selector': 'app-element-space'},{'name': 'EyeballComponent', 'selector': 'app-eyeball'},{'name': 'LobbyPageComponent', 'selector': 'app-lobby-page'},{'name': 'LoginPageComponent', 'selector': 'app-login-page'},{'name': 'LogoutPageComponent', 'selector': 'app-logout-page'},{'name': 'SignUpConfirmPageComponent', 'selector': 'app-sign-up-confirm-page'},{'name': 'SignUpPageComponent', 'selector': 'app-sign-up-page'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'LoginPageComponent'};
 </script>
