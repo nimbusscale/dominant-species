@@ -1,6 +1,6 @@
 import { GameStatePatchService } from '../../../../app/engine/service/game-state/game-state-patch.service';
 import { Operation } from 'fast-json-patch';
-import {testGameState1, testGameState1updated, testGameStatePatch1} from "../../../../../../api-types/src/game-state-test.constant";
+import {testGameState1, testGameState1updated, testGameStatePatch1} from "api-types/src/game-state-test.constant";
 
 describe('GameStatePatchService', () => {
   let service: GameStatePatchService;
