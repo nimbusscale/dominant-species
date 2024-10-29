@@ -166,6 +166,10 @@
                     <td class="col-md-4">
                         <i>Default value : </i><code>{
   providers: [
+    provideHttpClient(
+      withFetch(),
+      withInterceptors([apiUrlInterceptor, authInterceptor, errorHandlerInterceptor]),
+    ),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideAnimationsAsync(&#x27;noop&#x27;),
@@ -200,8 +204,8 @@
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>() &#x3D;&gt; {
-  if (inject(AuthService).isLoggedIn) {
-    return inject(AuthService).isLoggedIn;
+  if (inject(AuthService).checkIsLoggedIn()) {
+    return inject(AuthService).checkIsLoggedIn();
   } else {
     void inject(Router).navigate([&#x27;/login&#x27;]);
     return false;

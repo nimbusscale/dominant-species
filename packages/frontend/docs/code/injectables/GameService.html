@@ -92,7 +92,7 @@
 
 <ol class="breadcrumb">
   <li class="breadcrumb-item">Injectables</li>
-  <li class="breadcrumb-item" >PlayerService</li>
+  <li class="breadcrumb-item" >GameService</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -116,7 +116,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/engine/service/game-management/player.service.ts</code>
+            <code>src/app/engine/service/game-management/game.service.ts</code>
         </p>
 
 
@@ -127,27 +127,6 @@
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <h6><b>Properties</b></h6>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <ul class="index-list">
-                            <li>
-                                <a href="#currentPlayer" >currentPlayer</a>
-                            </li>
-                            <li>
-                                <a href="#currentPlayer$" >currentPlayer$</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#currentPlayerSubject" >currentPlayerSubject</a>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
 
                 <tr>
                     <td class="col-md-4">
@@ -159,15 +138,15 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#addfriend" >addfriend</a>
+                                <a href="#completeGame" >completeGame</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#findPlayers" >findPlayers</a>
+                                <a href="#createGame" >createGame</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#removeFriend" >removeFriend</a>
+                                <a href="#getGamesForLoggedInPlayer" >getGamesForLoggedInPlayer</a>
                             </li>
                         </ul>
                     </td>
@@ -192,7 +171,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/engine/service/game-management/player.service.ts:16</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/app/engine/service/game-management/game.service.ts:10</a></div>
                             </td>
                         </tr>
 
@@ -251,26 +230,26 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="addfriend"></a>
+                    <a name="completeGame"></a>
                     <span class="name">
                             <span class="modifier">Async</span>
-                        <span ><b>addfriend</b></span>
-                        <a href="#addfriend"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>completeGame</b></span>
+                        <a href="#completeGame"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>addfriend(username: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <code>completeGame(gameId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="45"
-                                    class="link-to-prism">src/app/engine/service/game-management/player.service.ts:45</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="30"
+                                    class="link-to-prism">src/app/engine/service/game-management/game.service.ts:30</a></div>
                         </td>
                     </tr>
 
@@ -291,7 +270,7 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                                <td>username</td>
+                                                <td>gameId</td>
                                             <td>
                                                             <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                             </td>
@@ -320,26 +299,26 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="findPlayers"></a>
+                    <a name="createGame"></a>
                     <span class="name">
                             <span class="modifier">Async</span>
-                        <span ><b>findPlayers</b></span>
-                        <a href="#findPlayers"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>createGame</b></span>
+                        <a href="#createGame"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>findPlayers(username: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <code>createGame(otherPlayers: string[])</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="40"
-                                    class="link-to-prism">src/app/engine/service/game-management/player.service.ts:40</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="16"
+                                    class="link-to-prism">src/app/engine/service/game-management/game.service.ts:16</a></div>
                         </td>
                     </tr>
 
@@ -360,78 +339,9 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                                <td>username</td>
+                                                <td>otherPlayers</td>
                                             <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <div class="io-description">
-                            <b>Returns : </b>    <code>Promise&lt;string[]&gt;</code>
-
-                        </div>
-                            <div class="io-description">
-                                
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="removeFriend"></a>
-                    <span class="name">
-                            <span class="modifier">Async</span>
-                        <span ><b>removeFriend</b></span>
-                        <a href="#removeFriend"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                        <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>removeFriend(username: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="50"
-                                    class="link-to-prism">src/app/engine/service/game-management/player.service.ts:50</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>username</td>
-                                            <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        <code>string[]</code>
                                             </td>
 
                                             <td>
@@ -454,100 +364,43 @@
             </tr>
         </tbody>
     </table>
-</section>
-            <section data-compodoc="block-properties">
-    
-    <h3 id="inputs">
-        Properties
-    </h3>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="currentPlayer"></a>
+                    <a name="getGamesForLoggedInPlayer"></a>
                     <span class="name">
-                        <span ><b>currentPlayer</b></span>
-                        <a href="#currentPlayer"><span class="icon ion-ios-link"></span></a>
+                            <span class="modifier">Async</span>
+                        <span ><b>getGamesForLoggedInPlayer</b></span>
+                        <a href="#getGamesForLoggedInPlayer"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>    <code>Player | undefined</code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>undefined</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/engine/service/game-management/player.service.ts:12</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="currentPlayer$"></a>
-                    <span class="name">
-                        <span ><b>currentPlayer$</b></span>
-                        <a href="#currentPlayer$"><span class="icon ion-ios-link"></span></a>
-                    </span>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getGamesForLoggedInPlayer()</code>
                 </td>
             </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>this.currentPlayerSubject.asObservable()</code>
-                    </td>
-                </tr>
+
+
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/engine/service/game-management/player.service.ts:16</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="26"
+                                    class="link-to-prism">src/app/engine/service/game-management/game.service.ts:26</a></div>
                         </td>
                     </tr>
 
 
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="currentPlayerSubject"></a>
-                    <span class="name">
-                            <span class="modifier">Private</span>
-                        <span ><b>currentPlayerSubject</b></span>
-                        <a href="#currentPlayerSubject"><span class="icon ion-ios-link"></span></a>
-                    </span>
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;Game[]&gt;</code>
+
+                        </div>
                 </td>
             </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>    <code>BehaviorSubject&lt;Player | undefined&gt;</code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>new BehaviorSubject&lt;
-    Player | undefined
-  &gt;(this.currentPlayer)</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/engine/service/game-management/player.service.ts:13</a></div>
-                        </td>
-                    </tr>
-
-
         </tbody>
     </table>
 </section>
@@ -557,59 +410,36 @@
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
-import { Player } from &#x27;api-types/src/player&#x27;;
-import { AuthService } from &#x27;../auth/auth.service&#x27;;
+import { humanId } from &#x27;human-id&#x27;;
 import { GameManagementClientService } from &#x27;./game-management-client.service&#x27;;
-import { ensureDefined } from &#x27;../../util/misc&#x27;;
-import { BehaviorSubject } from &#x27;rxjs&#x27;;
+import { AuthService } from &#x27;../auth/auth.service&#x27;;
+import { Game } from &#x27;api-types/src/game&#x27;;
 
 @Injectable({
   providedIn: &#x27;root&#x27;,
 })
-export class PlayerService {
-  currentPlayer: Player | undefined &#x3D; undefined;
-  private currentPlayerSubject: BehaviorSubject&lt;Player | undefined&gt; &#x3D; new BehaviorSubject&lt;
-    Player | undefined
-  &gt;(this.currentPlayer);
-  currentPlayer$ &#x3D; this.currentPlayerSubject.asObservable();
-
+export class GameService {
   constructor(
     private authService: AuthService,
     private gameManagementClientService: GameManagementClientService,
-  ) {
-    this.authService.isLoggedIn$.pipe().subscribe((isLoggedIn) &#x3D;&gt; {
-      if (isLoggedIn) {
-        this.gameManagementClientService
-          .getLoggedInPlayer()
-          .then((player) &#x3D;&gt; {
-            this.currentPlayer &#x3D; player;
-            this.currentPlayerSubject.next(this.currentPlayer);
-          })
-          .catch((error: unknown) &#x3D;&gt; {
-            throw error;
-          });
-      } else {
-        this.currentPlayer &#x3D; undefined;
-        this.currentPlayerSubject.next(this.currentPlayer);
-      }
+  ) {}
+
+  async createGame(otherPlayers: string[]): Promise&lt;void&gt; {
+    const gameId &#x3D; humanId();
+    await this.gameManagementClientService.createGame({
+      gameId,
+      host: this.authService.loggedInUsername,
+      players: [this.authService.loggedInUsername, ...otherPlayers],
     });
+    console.log(&#x60;created game: ${gameId}&#x60;);
   }
 
-  async findPlayers(username: string): Promise&lt;string[]&gt; {
-    const playerCollection &#x3D; await this.gameManagementClientService.findPlayers(username);
-    return playerCollection.map((player) &#x3D;&gt; player.username);
+  async getGamesForLoggedInPlayer(): Promise&lt;Game[]&gt; {
+    return await this.gameManagementClientService.getGamesForLoggedInPlayer();
   }
 
-  async addfriend(username: string): Promise&lt;void&gt; {
-    ensureDefined(this.currentPlayer).friends.push(username);
-    await this.gameManagementClientService.setFriends(ensureDefined(this.currentPlayer));
-  }
-
-  async removeFriend(username: string): Promise&lt;void&gt; {
-    ensureDefined(this.currentPlayer).friends &#x3D; ensureDefined(this.currentPlayer).friends.filter(
-      (friendUsername) &#x3D;&gt; friendUsername !&#x3D;&#x3D; username,
-    );
-    await this.gameManagementClientService.setFriends(ensureDefined(this.currentPlayer));
+  async completeGame(gameId: string): Promise&lt;void&gt; {
+    await this.gameManagementClientService.completeGame(gameId);
   }
 }
 </code></pre>
@@ -655,7 +485,7 @@ export class PlayerService {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
-            var COMPODOC_CURRENT_PAGE_URL = 'PlayerService.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'GameService.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

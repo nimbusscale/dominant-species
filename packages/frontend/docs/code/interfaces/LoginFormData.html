@@ -261,7 +261,7 @@ export class LoginPageComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    private loginService: AuthService,
+    private authService: AuthService,
     private router: Router,
   ) {
     this.loginForm &#x3D; this.formBuilder.group({
@@ -273,9 +273,9 @@ export class LoginPageComponent {
   onSubmit(): void {
     if (this.loginForm.valid) {
       const { username, password } &#x3D; this.loginForm.value as LoginFormData;
-      void this.loginService.login(username, password).then((success) &#x3D;&gt; {
+      void this.authService.login(username, password).then((success) &#x3D;&gt; {
         if (success) {
-          void this.router.navigate([&#x27;/game&#x27;]);
+          void this.router.navigate([&#x27;/lobby&#x27;]);
         } else {
           this.errorMessage.set(&#x27;Login failed. See console for more information.&#x27;);
         }
