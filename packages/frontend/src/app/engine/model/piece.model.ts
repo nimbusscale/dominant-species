@@ -1,10 +1,5 @@
-import { startCase } from 'lodash';
-
-export interface Piece {
-  kind: string;
-  owner: string | null;
-  name: string;
-}
+import {startCase} from 'lodash';
+import {Piece} from "api-types/src/game-state";
 
 export type PieceFactory = (kind: string, owner?: string | null, name?: string | null) => Piece;
 

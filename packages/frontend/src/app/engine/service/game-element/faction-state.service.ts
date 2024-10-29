@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Faction, FactionState } from '../../model/faction.model';
+import { Faction } from '../../model/faction.model';
 import { GameElementStateService } from './game-element-state.service';
+import {FactionState} from "api-types/src/game-state";
 
 @Injectable({
   providedIn: 'root',

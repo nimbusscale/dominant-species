@@ -1,13 +1,7 @@
-import { Space, SpaceState } from './space.model';
-import { GameElement, GameElementState } from './game-element.model';
-import { BehaviorSubject, Observable } from 'rxjs';
-
-/**
- * AreaState does not extend GameStateElement as each Area is unique with a unique ID
- */
-export interface AreaState extends GameElementState {
-  space: SpaceState[];
-}
+import {Space} from './space.model';
+import {GameElement} from './game-element.model';
+import {BehaviorSubject, Observable} from 'rxjs';
+import {AreaState, SpaceState} from "api-types/src/game-state";
 
 export class Area extends GameElement<AreaState> {
   readonly spaces: Space[];

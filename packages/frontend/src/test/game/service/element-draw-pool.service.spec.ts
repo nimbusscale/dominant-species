@@ -3,10 +3,11 @@ import { TestBed } from '@angular/core/testing';
 import { ElementDrawPoolService } from '../../../app/game/service/element-draw-pool.service';
 import { BehaviorSubject, skip } from 'rxjs';
 import { deepClone } from 'fast-json-patch';
-import { Pile, PileState } from '../../../app/engine/model/pile.model';
+import { Pile } from '../../../app/engine/model/pile.model';
 import { testPileState1 } from '../../engine/game-state-test.constant';
 import { PileRegistryService } from '../../../app/engine/service/game-element/pile-registry.service';
 import { PileIdEnum } from '../../../app/game/constant/pile.constant';
+import {PileState} from "api-types/src/game-state";
 
 describe('ElementDrawPoolService', () => {
   let elementDrawPoolSvc: ElementDrawPoolService;

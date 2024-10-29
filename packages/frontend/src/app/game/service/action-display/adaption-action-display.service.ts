@@ -7,9 +7,9 @@ import { ActionPawnPiece } from '../../model/action-pawn.model';
 import { BehaviorSubject, combineLatestWith, filter, first } from 'rxjs';
 import { AreaIdEnum, SpaceKindEnum } from '../../constant/area.constant';
 import { ensureDefined } from '../../../engine/util/misc';
-import { Piece } from '../../../engine/model/piece.model';
 import { Space } from '../../../engine/model/space.model';
 import { isNotNull } from '../../../engine/util/predicate';
+import {Piece} from "api-types/src/game-state";
 
 @Injectable({
   providedIn: 'root',

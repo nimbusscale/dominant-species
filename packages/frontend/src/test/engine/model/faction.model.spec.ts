@@ -1,6 +1,7 @@
-import { Faction, FactionState } from '../../../app/engine/model/faction.model';
+import { Faction } from '../../../app/engine/model/faction.model';
 import { testFactionState1 } from '../game-state-test.constant';
 import { deepClone } from 'fast-json-patch';
+import {FactionState} from "api-types/src/game-state";
 
 describe('Faction', () => {
   let faction: Faction;

@@ -1,10 +1,5 @@
-import { GameElement, GameElementState } from './game-element.model';
-
-export interface FactionState extends GameElementState {
-  name: string;
-  ownerId: string;
-  score: number;
-}
+import {GameElement} from './game-element.model';
+import {FactionState} from "api-types/src/game-state";
 
 export class Faction extends GameElement<FactionState> {
   get name(): string {

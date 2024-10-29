@@ -1,11 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
 import { BehaviorSubject } from 'rxjs';
-import { Pile, PileState } from '../../../../app/engine/model/pile.model';
+import { Pile } from '../../../../app/engine/model/pile.model';
 import { deepClone } from 'fast-json-patch';
 import { testPileState1, testPileState2 } from '../../game-state-test.constant';
 import { GameStateService } from '../../../../app/engine/service/game-state/game-state.service';
 import { PileStateService } from '../../../../app/engine/service/game-element/pile-state.service';
+import {PileState} from "api-types/src/game-state";
 
 /**
  * PileStateService is an implementation of GameElementStateService and provides sufficient testing of GameElementStateService
