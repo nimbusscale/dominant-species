@@ -236,10 +236,11 @@
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
-import { Faction, FactionState } from &#x27;../../model/faction.model&#x27;;
+import { Faction } from &#x27;../../model/faction.model&#x27;;
 import { GameElementRegistryService } from &#x27;./game-element-registry.service&#x27;;
 import { FactionStateService } from &#x27;./faction-state.service&#x27;;
 import { BehaviorSubject, Observable } from &#x27;rxjs&#x27;;
+import { FactionState } from &#x27;api-types/src/game-state&#x27;;
 
 export interface FactionAssignment {
   id: string;

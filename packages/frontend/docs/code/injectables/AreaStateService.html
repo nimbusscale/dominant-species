@@ -240,7 +240,7 @@
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../injectables/GameElementStateService.html#source" target="_self" >GameElementStateService:13</a></code>
+                                <div class="io-line">Defined in         <code><a href="../injectables/GameElementStateService.html#source" target="_self" >GameElementStateService:14</a></code>
 </div>
                         </td>
                     </tr>
@@ -302,7 +302,7 @@
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>setEntityState(state: <a href="../interfaces/AreaState.html" target="_self">AreaState</a>)</code>
+                    <code>setEntityState(state: <a href="../classes/Area.html" target="_self">AreaState</a>)</code>
                 </td>
             </tr>
 
@@ -315,7 +315,7 @@
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../injectables/GameElementStateService.html#source" target="_self" >GameElementStateService:17</a></code>
+                                <div class="io-line">Defined in         <code><a href="../injectables/GameElementStateService.html#source" target="_self" >GameElementStateService:18</a></code>
 </div>
                         </td>
                     </tr>
@@ -339,7 +339,7 @@
                                         <tr>
                                                 <td>state</td>
                                             <td>
-                                                            <code><a href="../interfaces/AreaState.html" target="_self" >AreaState</a></code>
+                                                            <code><a href="../classes/Area.html" target="_self" >AreaState</a></code>
                                             </td>
 
                                             <td>
@@ -390,7 +390,7 @@
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../injectables/GameElementStateService.html#source" target="_self" >GameElementStateService:36</a></code>
+                                <div class="io-line">Defined in         <code><a href="../injectables/GameElementStateService.html#source" target="_self" >GameElementStateService:37</a></code>
 </div>
                         </td>
                     </tr>
@@ -465,7 +465,7 @@
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../injectables/GameElementStateService.html#source" target="_self" >GameElementStateService:25</a></code>
+                                <div class="io-line">Defined in         <code><a href="../injectables/GameElementStateService.html#source" target="_self" >GameElementStateService:26</a></code>
 </div>
                         </td>
                     </tr>
@@ -508,7 +508,7 @@
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../injectables/GameElementStateService.html#source" target="_self" >GameElementStateService:40</a></code>
+                                <div class="io-line">Defined in         <code><a href="../injectables/GameElementStateService.html#source" target="_self" >GameElementStateService:41</a></code>
 </div>
                         </td>
                     </tr>
@@ -592,7 +592,7 @@
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../injectables/GameElementStateService.html#source" target="_self" >GameElementStateService:15</a></code>
+                                <div class="io-line">Defined in         <code><a href="../injectables/GameElementStateService.html#source" target="_self" >GameElementStateService:16</a></code>
 </div>
                         </td>
                     </tr>
@@ -631,7 +631,7 @@
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../injectables/GameElementStateService.html#source" target="_self" >GameElementStateService:14</a></code>
+                                <div class="io-line">Defined in         <code><a href="../injectables/GameElementStateService.html#source" target="_self" >GameElementStateService:15</a></code>
 </div>
                         </td>
                     </tr>
@@ -661,7 +661,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/app/engine/service/game-element/area-state.service.ts:9</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/app/engine/service/game-element/area-state.service.ts:10</a></div>
                                 </td>
                             </tr>
 
@@ -673,8 +673,9 @@
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
-import { Area, AreaState } from &#x27;../../model/area.model&#x27;;
+import { Area } from &#x27;../../model/area.model&#x27;;
 import { GameElementStateService } from &#x27;./game-element-state.service&#x27;;
+import { AreaState } from &#x27;api-types/src/game-state&#x27;;
 
 @Injectable({
   providedIn: &#x27;root&#x27;,
