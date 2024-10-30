@@ -5,7 +5,6 @@ import {
   PutItemCommand,
   schema,
   string,
-  Table,
   UpdateItemCommand,
   QueryCommand,
   list,
@@ -26,10 +25,10 @@ export const PlayerEntity = new Entity({
 type PlayerEntityType = FormattedItem<typeof PlayerEntity>;
 
 export class PlayerRecordManager {
-  private readonly playerEntity: Entity;
-  private readonly gameTable: Table;
+  private readonly playerEntity: typeof PlayerEntity;
+  private readonly gameTable: typeof GameTable;
 
-  constructor(playerEntity: Entity) {
+  constructor(playerEntity: typeof PlayerEntity) {
     this.playerEntity = playerEntity;
     this.gameTable = playerEntity.table;
   }

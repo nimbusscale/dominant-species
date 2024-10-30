@@ -19,10 +19,10 @@ export const GameStateEntity = new Entity({
 type GameStateEntityType = FormattedItem<typeof GameStateEntity>;
 
 export class GameStateRecordManager {
-  private readonly gameStateEntity: Entity;
-  private readonly gameTable: Table;
+  private readonly gameStateEntity: typeof GameStateEntity
+  private readonly gameTable: typeof GameTable
 
-  constructor(gameStateEntity: Entity) {
+  constructor(gameStateEntity: typeof GameStateEntity) {
     this.gameStateEntity = gameStateEntity;
     this.gameTable = gameStateEntity.table;
   }
@@ -55,7 +55,7 @@ export class GameStateRecordManager {
         // TS used to ensure they sort with the latest on top. This is because the record is a string.
         record: `gameState:${Date.now()}`,
         patchId: gsp.patchId,
-        patch: gsp.patch
+        patch: JSON.stringify(gsp.patch)
       }
     ).send()
   }
