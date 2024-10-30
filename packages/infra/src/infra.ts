@@ -14,8 +14,13 @@ const stackProps = {
 
 const app = new cdk.App();
 new WebsiteBucketStack(app, 'vpaWebsiteBucket', stackProps);
-const stateBucketStack = new StateBucketStack(app, 'vpaStateBucket', stackProps);
-const iamStack = new IamStack(app, 'vpaIam', stackProps, stateBucketStack.bucket);
+const iamStack = new IamStack(app, 'vpaIam', stackProps);
+const stateBucketStack = new StateBucketStack(
+  app,
+  'vpaStateBucket',
+  stackProps,
+  iamStack.gameMgmtRole,
+);
 const vpaGameTable = new VpaGamesTableStack(app, 'vpaGameTable', stackProps, iamStack.gameMgmtRole);
 const vpaUserPool = new UserPoolStack(
   app,
