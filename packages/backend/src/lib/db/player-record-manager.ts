@@ -49,7 +49,7 @@ export class PlayerRecordManager {
       .send());
   }
 
-  async getPlayer(username: string): Promise<Player | undefined> {
+  async getPlayer(username: string): Promise<Player | null> {
     const result = await this.playerEntity
       .build(GetItemCommand)
       .key({ username: username, record: 'player' })
@@ -57,7 +57,7 @@ export class PlayerRecordManager {
     if (result.Item) {
       return this.playerEntityToPlayer(result.Item as PlayerEntityType);
     } else {
-      return undefined;
+      return null;
     }
   }
 
