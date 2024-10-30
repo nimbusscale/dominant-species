@@ -1,4 +1,3 @@
-import {Injectable} from '@angular/core';
 import {GameElementStates, SpaceState} from "api-types/src/game-state";
 import {shuffle, startCase} from "lodash";
 import {AnimalEnum} from "../constant/animal.constant";
@@ -13,10 +12,8 @@ import {pileIdsByAnimal} from "../constant/pile-config";
 import {PieceKindEnum} from "../constant/piece.constant";
 import {InitialGameElementStatesFactory} from "../../engine/model/game-state.model";
 
-@Injectable({
-  providedIn: 'root'
-})
-export class GameElementStatesFactoryServiceService implements InitialGameElementStatesFactory {
+// Not injectable as it's built on-demand by GameStateInitializationService
+export class GameElementStatesFactoryService implements InitialGameElementStatesFactory {
   build(playerIds: string[]): GameElementStates {
     const gameElementStates = deepClone(baseGameElementStates) as GameElementStates;
     return this.buildFactions(playerIds, gameElementStates)

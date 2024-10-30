@@ -1,18 +1,15 @@
-import { TestBed } from '@angular/core/testing';
-
-import { GameElementStatesFactoryServiceService } from '../../../app/game/service/game-element-states-factory-service.service';
+import { GameElementStatesFactoryService } from '../../../app/game/service/game-element-states-factory.service';
 import {GameElementStates, PileState} from "api-types/src/game-state";
 import {startCase} from "lodash";
 
 
-describe('GameElementStatesFactoryServiceService', () => {
-  let gameElementStatesFactoryServiceService: GameElementStatesFactoryServiceService;
+describe('GameElementStatesFactoryService', () => {
+  let gameElementStatesFactoryServiceService: GameElementStatesFactoryService;
   let gameElementStates: GameElementStates
   const testPlayerIds= ['tester1', 'tester2', 'tester3']
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
-    gameElementStatesFactoryServiceService = TestBed.inject(GameElementStatesFactoryServiceService);
+    gameElementStatesFactoryServiceService = new GameElementStatesFactoryService();
     gameElementStates = gameElementStatesFactoryServiceService.build(testPlayerIds)
   });
 

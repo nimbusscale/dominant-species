@@ -4,7 +4,7 @@ import { AuthService } from '../../../../app/engine/service/auth/auth.service';
 import { CognitoClientService } from '../../../../app/engine/service/auth/cognito-client.service';
 import { LocalStorageService } from '../../../../app/engine/service/local-storage.service';
 import { AuthenticationResultType } from '@aws-sdk/client-cognito-identity-provider';
-import { LocalStorageKey } from '../../../../app/engine/constant/local-storage';
+import { LocalStorageKey } from '../../../../app/engine/constant/local-storage.constant';
 import { PlayerAuthData } from '../../../../app/engine/model/player.model';
 import { CognitoIdTokenJwt } from 'api-types/src/auth';
 import { firstValueFrom } from 'rxjs';

@@ -28,3 +28,6 @@ export function getEmptyInitialGameState(gameId: string, playerIds: string[]): G
 export interface InitialGameElementStatesFactory {
   build(playerIds: string[]): GameElementStates;
 }
+
+export type InitialGameElementStatesFactoryConstructor = new () => InitialGameElementStatesFactory;
+
