@@ -80,7 +80,8 @@ export class LobbyPageComponent {
     await this.fetchGames();
   }
 
-  joinGame(gameId: string): void {
+  async joinGame(gameId: string): Promise<void> {
     console.log(`Joining game ${gameId}`);
+    console.log(await this.gameService.getState(gameId));
   }
 }

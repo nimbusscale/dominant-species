@@ -5,6 +5,7 @@ import { AuthService } from '../auth/auth.service';
 import { Game } from 'api-types/src/game';
 import { GameStateInitializationService } from '../game-state/game-state-initialization.service';
 import { GameTitle } from '../../constant/game-title.constant';
+import { GameState } from 'api-types/src/game-state';
 
 @Injectable({
   providedIn: 'root',
@@ -39,5 +40,9 @@ export class GameService {
 
   async completeGame(gameId: string): Promise<void> {
     await this.gameManagementClientService.completeGame(gameId);
+  }
+
+  async getState(gameId: string): Promise<GameState> {
+    return await this.gameManagementClientService.getLatestGameState(gameId);
   }
 }
