@@ -97,15 +97,15 @@
 
 <ul class="nav nav-tabs" role="tablist">
         <li class="nav-item">
-            <a href="#info" 
+            <a href="#info"
                 class="nav-link"
                 class="nav-link active"
                 role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
         </li>
         <li class="nav-item">
-            <a href="#source" 
+            <a href="#source"
                 class="nav-link"
-                
+
                 role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
         </li>
 </ul>
@@ -197,75 +197,75 @@
                                         <tbody>
                                                 <tr>
                                                         <td>areaRegistrySvc</td>
-                                                  
+
                                                         <td>
                                                                         <code><a href="../injectables/AreaRegistryService.html" target="_self" >AreaRegistryService</a></code>
                                                         </td>
-                                                  
+
                                                     <td>
                                                             No
                                                     </td>
-                                                    
+
                                                 </tr>
                                                 <tr>
                                                         <td>factionRegistrySvc</td>
-                                                  
+
                                                         <td>
                                                                         <code><a href="../injectables/FactionRegistryService.html" target="_self" >FactionRegistryService</a></code>
                                                         </td>
-                                                  
+
                                                     <td>
                                                             No
                                                     </td>
-                                                    
+
                                                 </tr>
                                                 <tr>
                                                         <td>playerService</td>
-                                                  
+
                                                         <td>
                                                                         <code><a href="../injectables/PlayerService.html" target="_self" >PlayerService</a></code>
                                                         </td>
-                                                  
+
                                                     <td>
                                                             No
                                                     </td>
-                                                    
+
                                                 </tr>
                                                 <tr>
                                                         <td>pileRegistrySvc</td>
-                                                  
+
                                                         <td>
                                                                         <code><a href="../injectables/PileRegistryService.html" target="_self" >PileRegistryService</a></code>
                                                         </td>
-                                                  
+
                                                     <td>
                                                             No
                                                     </td>
-                                                    
+
                                                 </tr>
                                                 <tr>
                                                         <td>gameStateService</td>
-                                                  
+
                                                         <td>
                                                                         <code><a href="../injectables/GameStateService.html" target="_self" >GameStateService</a></code>
                                                         </td>
-                                                  
+
                                                     <td>
                                                             No
                                                     </td>
-                                                    
+
                                                 </tr>
                                                 <tr>
                                                         <td>actionDisplayManagerService</td>
-                                                  
+
                                                         <td>
                                                                         <code><a href="../injectables/ActionDisplayManagerService.html" target="_self" >ActionDisplayManagerService</a></code>
                                                         </td>
-                                                  
+
                                                     <td>
                                                             No
                                                     </td>
-                                                    
+
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -277,7 +277,7 @@
 </section>
 
             <section data-compodoc="block-methods">
-    
+
     <h3 id="methods">
         Methods
     </h3>
@@ -542,7 +542,7 @@ export class GameManagementService {
     const areas: Area[] &#x3D; [];
     const piles: Pile[] &#x3D; [];
     const shuffledAnimals &#x3D; shuffle(Object.values(AnimalEnum));
-    this.playerService.players.forEach((player, index) &#x3D;&gt; {
+    this.playerService.playerIds.forEach((player, index) &#x3D;&gt; {
       const assignedAnimal &#x3D; shuffledAnimals[index];
       const elementConfig &#x3D; getOrThrow(elementConfigByAnimal, assignedAnimal);
 

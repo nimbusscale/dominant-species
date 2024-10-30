@@ -4,7 +4,7 @@ import { LocalStorageService } from '../local-storage.service';
 import { AuthenticationResultType } from '@aws-sdk/client-cognito-identity-provider';
 import { PlayerAuthData } from '../../model/player.model';
 import { ensureDefined } from '../../util/misc';
-import { LocalStorageKey } from '../../constant/local-storage';
+import { LocalStorageKey } from '../../constant/local-storage.constant';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({

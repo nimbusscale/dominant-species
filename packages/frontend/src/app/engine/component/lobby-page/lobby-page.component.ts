@@ -46,7 +46,7 @@ import { MatTooltip } from '@angular/material/tooltip';
 })
 export class LobbyPageComponent {
   games = signal<Game[]>([]);
-  gameTableColumns: string[] = ['gameId', 'host', 'players', 'actions'];
+  gameTableColumns: string[] = ['gameId', 'host', 'playerIds', 'actions'];
   readonly currentPlayer = signal<Player | undefined>(undefined);
 
   constructor(
@@ -60,7 +60,7 @@ export class LobbyPageComponent {
   }
 
   filterPlayers(game: Game): string[] {
-    return game.players
+    return game.playerIds
       .filter((player) => player !== game.host)
       .slice()
       .sort();
@@ -80,7 +80,8 @@ export class LobbyPageComponent {
     await this.fetchGames();
   }
 
-  joinGame(gameId: string): void {
+  async joinGame(gameId: string): Promise<void> {
     console.log(`Joining game ${gameId}`);
+    console.log(await this.gameService.getState(gameId));
   }
 }

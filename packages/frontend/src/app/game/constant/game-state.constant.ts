@@ -1,12 +1,12 @@
 import { AreaIdEnum, SpaceKindEnum } from './area.constant';
 import { PileIdEnum } from './pile.constant';
 import { ElementEnum } from './element.constant';
-import { GameState } from 'api-types/src/game-state';
+import { GameElementStates } from 'api-types/src/game-state';
 
 /**
  * GameState defining the static elements of the DS game
  */
-export const baseGameState: GameState = {
+export const baseGameElementStates: GameElementStates = {
   area: [
     {
       id: AreaIdEnum.ACTION_DISPLAY_ADAPTION,
