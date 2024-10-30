@@ -16,7 +16,7 @@ Game objects represent the various "things" in a game.
 
 A player makes decisions and takes actions in a game. Each player controls a faction, and actions are carried out through this faction. Typically, a player controls one faction throughout the game (e.g., in Dominant Species, each player controls an animal faction like Mammal, Bird, or Insect).
 
-Some games, such as Imperial, allow players to control multiple factions or shift control over the course of the game. In many other games, players are distinguished by colors, such as the red or blue factions.
+Some games, such as Imperial, allow playerIds to control multiple factions or shift control over the course of the game. In many other games, playerIds are distinguished by colors, such as the red or blue factions.
 
 #### Area and Space
 
@@ -50,7 +50,7 @@ The process of how a game is played.
 When considering the concept of "a game" there are two different specific concepts that one could be referring to.
 
 - **Game Title**: The "kind" of game being played, such as Dominant Species or Terraforming Mars. A game title defines how the game works, the rules, winning conditions, etc.
-- **Game Instance**: A specific "play through" of a game title. One or more players participate in a game instance, and the game instance has a definitive start and end. Multiple games instances of the same game title can exist at the same time.
+- **Game Instance**: A specific "play through" of a game title. One or more playerIds participate in a game instance, and the game instance has a definitive start and end. Multiple games instances of the same game title can exist at the same time.
 
 A reference to "game" will be used to mean game instance. Any reference to a game title will specifically use that term.
 
@@ -62,7 +62,7 @@ In the rulebook DS identifies three phases: Planning, Execution and Reset. The p
 
 #### Round
 
-A round is part of a phase and contains a sequence of turns. The most basic round would include a turn for each faction in whatever turn order is used within the game. Once a round is complete, a new round is created or the phase ends. Some games have rounds of play that continue until all players have passed. In this case, when the end of the round is reached a new round is created including only those that have not passed and can still perform an action.
+A round is part of a phase and contains a sequence of turns. The most basic round would include a turn for each faction in whatever turn order is used within the game. Once a round is complete, a new round is created or the phase ends. Some games have rounds of play that continue until all playerIds have passed. In this case, when the end of the round is reached a new round is created including only those that have not passed and can still perform an action.
 
 While a round is an ordered sequence of turns, the remaining turns in the round can be altered. For example, if oen factions action causes another faction to lose a turn.
 

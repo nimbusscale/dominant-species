@@ -6,8 +6,8 @@
 
 The system has two main components: the client and the backend.
 
-- **Client**: This is where the game engine runs. It handles game logic and allows players to interact with the game.
-- **Backend**: This manages the game lifecycle (e.g., creating and managing players) and handles communication between clients, ensuring game state updates are synchronized.
+- **Client**: This is where the game engine runs. It handles game logic and allows playerIds to interact with the game.
+- **Backend**: This manages the game lifecycle (e.g., creating and managing playerIds) and handles communication between clients, ensuring game state updates are synchronized.
 
 Each player is associated with a client. Players can create new games and invite others through their clients. The player who creates a game becomes the game host, a role explained later. The backend supports multiple games running at the same time, ensuring that when one player makes a state change, all other clients in the same game receive the update.
 
@@ -17,7 +17,7 @@ The backend doesn't need to know the specifics of the game being played. It only
 
 ![Game State Patch Flow](./img/game-state-flow.drawio.svg "Game State Patch Flow")
 
-When a player takes an action on their client, a GSP is created and sent to the backend. The backend updates its version of the game state using the GSP and then forwards it to all other clients in the game. These clients apply the GSP to update their game states, ensuring all players see the latest state.
+When a player takes an action on their client, a GSP is created and sent to the backend. The backend updates its version of the game state using the GSP and then forwards it to all other clients in the game. These clients apply the GSP to update their game states, ensuring all playerIds see the latest state.
 
 If a client disconnects (e.g., due to a browser refresh or crash), it can reconnect and retrieve the current game state from the backend.
 

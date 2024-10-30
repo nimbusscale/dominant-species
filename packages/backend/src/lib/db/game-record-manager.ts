@@ -21,7 +21,7 @@ export const GameEntity = new Entity({
     record: string().key(),
     gameId: string(),
     host: string(),
-    players: list(string()),
+    playerIds: list(string()),
     startTS: number().default(() => Math.floor(Date.now() / 1000)),
     complete: boolean().default(false),
   }),
@@ -37,12 +37,12 @@ export class GameRecordManager {
     this.gameTable = gameEntity.table;
   }
 
-  private gameEntityToGame({ gameId, host, players, startTS, complete }: GameEntityType): Game {
-    return { gameId, host, players, startTS, complete };
+  private gameEntityToGame({ gameId, host, playerIds, startTS, complete }: GameEntityType): Game {
+    return { gameId, host, playerIds, startTS, complete };
   }
 
   async addGame(game: Game): Promise<void> {
-    const putPromises = game.players.map((player) => {
+    const putPromises = game.playerIds.map((player) => {
       return this.gameEntity
         .build(PutItemCommand)
         .item({
@@ -50,7 +50,7 @@ export class GameRecordManager {
           record: `game:${game.gameId}`,
           gameId: game.gameId,
           host: game.host,
-          players: game.players,
+          playerIds: game.playerIds,
         })
         .send();
     });

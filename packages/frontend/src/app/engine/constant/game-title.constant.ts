@@ -1,3 +1,3 @@
 export enum GameTitle {
-  DOMINANT_SPECIES = 'dominant-species'
+  DOMINANT_SPECIES = 'dominant-species',
 }

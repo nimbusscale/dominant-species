@@ -1,4 +1,4 @@
-import {GameElementStates, GameState} from 'api-types/src/game-state';
+import { GameElementStates, GameState } from 'api-types/src/game-state';
 
 // current used to initialize GameStoreService, but should be refactored to get the Initial Game State when user joins the game.
 export const emptyGameState: GameState = {
@@ -30,4 +30,3 @@ export interface InitialGameElementStatesFactory {
 }
 
 export type InitialGameElementStatesFactoryConstructor = new () => InitialGameElementStatesFactory;
-

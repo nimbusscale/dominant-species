@@ -1,25 +1,28 @@
-import {GameElementStates, SpaceState} from "api-types/src/game-state";
-import {shuffle, startCase} from "lodash";
-import {AnimalEnum} from "../constant/animal.constant";
-import {getOrThrow} from "../../engine/util/misc";
-import {elementConfigByAnimal} from "../constant/element-config.constant";
-import {baseGameElementStates} from "../constant/game-state.constant";
-import {deepClone} from "fast-json-patch";
-import {Space} from "../../engine/model/space.model";
-import {SpaceKindEnum} from "../constant/area.constant";
-import {defaultPieceFactory} from "../../engine/model/piece.model";
-import {pileIdsByAnimal} from "../constant/pile-config";
-import {PieceKindEnum} from "../constant/piece.constant";
-import {InitialGameElementStatesFactory} from "../../engine/model/game-state.model";
+import { GameElementStates, SpaceState } from 'api-types/src/game-state';
+import { shuffle, startCase } from 'lodash';
+import { AnimalEnum } from '../constant/animal.constant';
+import { getOrThrow } from '../../engine/util/misc';
+import { elementConfigByAnimal } from '../constant/element-config.constant';
+import { baseGameElementStates } from '../constant/game-state.constant';
+import { deepClone } from 'fast-json-patch';
+import { Space } from '../../engine/model/space.model';
+import { SpaceKindEnum } from '../constant/area.constant';
+import { defaultPieceFactory } from '../../engine/model/piece.model';
+import { pileIdsByAnimal } from '../constant/pile-config';
+import { PieceKindEnum } from '../constant/piece.constant';
+import { InitialGameElementStatesFactory } from '../../engine/model/game-state.model';
 
 // Not injectable as it's built on-demand by GameStateInitializationService
 export class GameElementStatesFactoryService implements InitialGameElementStatesFactory {
   build(playerIds: string[]): GameElementStates {
     const gameElementStates = deepClone(baseGameElementStates) as GameElementStates;
-    return this.buildFactions(playerIds, gameElementStates)
+    return this.buildFactions(playerIds, gameElementStates);
   }
 
-  private buildFactions(playerIds: string[], gameElementStates: GameElementStates): GameElementStates {
+  private buildFactions(
+    playerIds: string[],
+    gameElementStates: GameElementStates,
+  ): GameElementStates {
     const shuffledAnimals = shuffle(Object.values(AnimalEnum));
     playerIds.forEach((playerId: string, index) => {
       const assignedAnimal = shuffledAnimals[index];
@@ -30,7 +33,7 @@ export class GameElementStatesFactoryService implements InitialGameElementStates
         name: startCase(assignedAnimal),
         ownerId: playerId,
         score: 0,
-      })
+      });
 
       // AnimalCard Spaces
       const elementSpacesState: SpaceState[] = [];
@@ -49,8 +52,8 @@ export class GameElementStatesFactoryService implements InitialGameElementStates
 
       gameElementStates.area.push({
         id: elementConfig.areaId,
-        space: elementSpacesState
-      })
+        space: elementSpacesState,
+      });
 
       const actionPawnPileState = {
         id: getOrThrow(pileIdsByAnimal, assignedAnimal).actionPawn,
@@ -65,11 +68,11 @@ export class GameElementStatesFactoryService implements InitialGameElementStates
         id: getOrThrow(pileIdsByAnimal, assignedAnimal).species,
         owner: assignedAnimal,
         inventory: {
-          [PieceKindEnum.SPECIES]: 65 - (playerIds.length * 5),
+          [PieceKindEnum.SPECIES]: 65 - playerIds.length * 5,
         },
       };
-      gameElementStates.pile.push(speciesPileState)
-    })
-    return gameElementStates
+      gameElementStates.pile.push(speciesPileState);
+    });
+    return gameElementStates;
   }
 }
