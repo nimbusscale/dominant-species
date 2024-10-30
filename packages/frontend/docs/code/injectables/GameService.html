@@ -97,15 +97,15 @@
 
 <ul class="nav nav-tabs" role="tablist">
         <li class="nav-item">
-            <a href="#info"
+            <a href="#info" 
                 class="nav-link"
                 class="nav-link active"
                 role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
         </li>
         <li class="nav-item">
-            <a href="#source"
+            <a href="#source" 
                 class="nav-link"
-
+                
                 role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
         </li>
 </ul>
@@ -148,6 +148,10 @@
                                     <span class="modifier">Async</span>
                                 <a href="#getGamesForLoggedInPlayer" >getGamesForLoggedInPlayer</a>
                             </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getState" >getState</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -166,12 +170,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(authService: <a href="../injectables/AuthService.html" target="_self">AuthService</a>, gameManagementClientService: <a href="../injectables/GameManagementClientService.html" target="_self">GameManagementClientService</a>)</code>
+<code>constructor(authService: <a href="../injectables/AuthService.html" target="_self">AuthService</a>, gameManagementClientService: <a href="../injectables/GameManagementClientService.html" target="_self">GameManagementClientService</a>, gameStateInitializationService: <a href="../injectables/GameStateInitializationService.html" target="_self">GameStateInitializationService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/app/engine/service/game-management/game.service.ts:10</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/engine/service/game-management/game.service.ts:13</a></div>
                             </td>
                         </tr>
 
@@ -190,27 +194,39 @@
                                         <tbody>
                                                 <tr>
                                                         <td>authService</td>
-
+                                                  
                                                         <td>
                                                                         <code><a href="../injectables/AuthService.html" target="_self" >AuthService</a></code>
                                                         </td>
-
+                                                  
                                                     <td>
                                                             No
                                                     </td>
-
+                                                    
                                                 </tr>
                                                 <tr>
                                                         <td>gameManagementClientService</td>
-
+                                                  
                                                         <td>
                                                                         <code><a href="../injectables/GameManagementClientService.html" target="_self" >GameManagementClientService</a></code>
                                                         </td>
-
+                                                  
                                                     <td>
                                                             No
                                                     </td>
-
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>gameStateInitializationService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/GameStateInitializationService.html" target="_self" >GameStateInitializationService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -222,7 +238,7 @@
 </section>
 
             <section data-compodoc="block-methods">
-
+    
     <h3 id="methods">
         Methods
     </h3>
@@ -248,8 +264,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="30"
-                                    class="link-to-prism">src/app/engine/service/game-management/game.service.ts:30</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="41"
+                                    class="link-to-prism">src/app/engine/service/game-management/game.service.ts:41</a></div>
                         </td>
                     </tr>
 
@@ -259,7 +275,7 @@
 
                             <div class="io-description">
                                 <b>Parameters :</b>
-
+                                
                                 <table class="params">
                                     <thead>
                                         <tr>
@@ -289,7 +305,7 @@
 
                         </div>
                             <div class="io-description">
-
+                                
                             </div>
                 </td>
             </tr>
@@ -317,8 +333,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="16"
-                                    class="link-to-prism">src/app/engine/service/game-management/game.service.ts:16</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="20"
+                                    class="link-to-prism">src/app/engine/service/game-management/game.service.ts:20</a></div>
                         </td>
                     </tr>
 
@@ -328,7 +344,7 @@
 
                             <div class="io-description">
                                 <b>Parameters :</b>
-
+                                
                                 <table class="params">
                                     <thead>
                                         <tr>
@@ -358,7 +374,7 @@
 
                         </div>
                             <div class="io-description">
-
+                                
                             </div>
                 </td>
             </tr>
@@ -386,8 +402,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="26"
-                                    class="link-to-prism">src/app/engine/service/game-management/game.service.ts:26</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="37"
+                                    class="link-to-prism">src/app/engine/service/game-management/game.service.ts:37</a></div>
                         </td>
                     </tr>
 
@@ -403,6 +419,75 @@
             </tr>
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getState"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>getState</b></span>
+                        <a href="#getState"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getState(gameId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="45"
+                                    class="link-to-prism">src/app/engine/service/game-management/game.service.ts:45</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>gameId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;GameState&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </section>
 
     </div>
@@ -414,6 +499,9 @@ import { humanId } from &#x27;human-id&#x27;;
 import { GameManagementClientService } from &#x27;./game-management-client.service&#x27;;
 import { AuthService } from &#x27;../auth/auth.service&#x27;;
 import { Game } from &#x27;api-types/src/game&#x27;;
+import { GameStateInitializationService } from &#x27;../game-state/game-state-initialization.service&#x27;;
+import { GameTitle } from &#x27;../../constant/game-title.constant&#x27;;
+import { GameState } from &#x27;api-types/src/game-state&#x27;;
 
 @Injectable({
   providedIn: &#x27;root&#x27;,
@@ -422,15 +510,23 @@ export class GameService {
   constructor(
     private authService: AuthService,
     private gameManagementClientService: GameManagementClientService,
+    private gameStateInitializationService: GameStateInitializationService,
   ) {}
 
   async createGame(otherPlayers: string[]): Promise&lt;void&gt; {
     const gameId &#x3D; humanId();
+    const playerIds &#x3D; [this.authService.loggedInUsername, ...otherPlayers];
     await this.gameManagementClientService.createGame({
       gameId,
       host: this.authService.loggedInUsername,
-      playerIds: [this.authService.loggedInUsername, ...otherPlayers],
+      playerIds: playerIds,
     });
+    const initialGameState &#x3D; this.gameStateInitializationService.build(
+      GameTitle.DOMINANT_SPECIES,
+      gameId,
+      playerIds,
+    );
+    await this.gameManagementClientService.setInitialGameState(initialGameState);
     console.log(&#x60;created game: ${gameId}&#x60;);
   }
 
@@ -440,6 +536,10 @@ export class GameService {
 
   async completeGame(gameId: string): Promise&lt;void&gt; {
     await this.gameManagementClientService.completeGame(gameId);
+  }
+
+  async getState(gameId: string): Promise&lt;GameState&gt; {
+    return await this.gameManagementClientService.getLatestGameState(gameId);
   }
 }
 </code></pre>

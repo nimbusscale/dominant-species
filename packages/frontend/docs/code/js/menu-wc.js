@@ -119,6 +119,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/GameElement.html" data-type="entity-link" >GameElement</a>
                             </li>
                             <li class="link">
+                                <a href="classes/GameElementStatesFactoryService.html" data-type="entity-link" >GameElementStatesFactoryService</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/Pile.html" data-type="entity-link" >Pile</a>
                             </li>
                             <li class="link">
@@ -183,6 +186,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     <a href="injectables/GameStateClientService.html" data-type="entity-link" >GameStateClientService</a>
                                 </li>
                                 <li class="link">
+                                    <a href="injectables/GameStateInitializationService.html" data-type="entity-link" >GameStateInitializationService</a>
+                                </li>
+                                <li class="link">
                                     <a href="injectables/GameStatePatchService.html" data-type="entity-link" >GameStatePatchService</a>
                                 </li>
                                 <li class="link">
@@ -236,6 +242,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="interfaces/FactionAssignment.html" data-type="entity-link" >FactionAssignment</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/InitialGameElementStatesFactory.html" data-type="entity-link" >InitialGameElementStatesFactory</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/LoginFormData.html" data-type="entity-link" >LoginFormData</a>

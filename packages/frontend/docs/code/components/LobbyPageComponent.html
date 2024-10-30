@@ -246,6 +246,7 @@
                                 <a href="#filterPlayers" >filterPlayers</a>
                             </li>
                             <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#joinGame" >joinGame</a>
                             </li>
                         </ul>
@@ -290,27 +291,27 @@
                                         <tbody>
                                                 <tr>
                                                         <td>gameService</td>
-
+                                                  
                                                         <td>
                                                                         <code><a href="../injectables/GameService.html" target="_self" >GameService</a></code>
                                                         </td>
-
+                                                  
                                                     <td>
                                                             No
                                                     </td>
-
+                                                    
                                                 </tr>
                                                 <tr>
                                                         <td>playerService</td>
-
+                                                  
                                                         <td>
                                                                         <code><a href="../injectables/PlayerService.html" target="_self" >PlayerService</a></code>
                                                         </td>
-
+                                                  
                                                     <td>
                                                             No
                                                     </td>
-
+                                                    
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -326,7 +327,7 @@
 
 
     <section data-compodoc="block-methods">
-
+    
     <h3 id="methods">
         Methods
     </h3>
@@ -363,7 +364,7 @@
 
                             <div class="io-description">
                                 <b>Parameters :</b>
-
+                                
                                 <table class="params">
                                     <thead>
                                         <tr>
@@ -393,7 +394,7 @@
 
                         </div>
                             <div class="io-description">
-
+                                
                             </div>
                 </td>
             </tr>
@@ -508,7 +509,7 @@
 
                             <div class="io-description">
                                 <b>Parameters :</b>
-
+                                
                                 <table class="params">
                                     <thead>
                                         <tr>
@@ -538,7 +539,7 @@
 
                         </div>
                             <div class="io-description">
-
+                                
                             </div>
                 </td>
             </tr>
@@ -550,6 +551,7 @@
                 <td class="col-md-4">
                     <a name="joinGame"></a>
                     <span class="name">
+                            <span class="modifier">Async</span>
                         <span ><b>joinGame</b></span>
                         <a href="#joinGame"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -557,7 +559,8 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>joinGame(gameId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>joinGame(gameId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
@@ -575,7 +578,7 @@
 
                             <div class="io-description">
                                 <b>Parameters :</b>
-
+                                
                                 <table class="params">
                                     <thead>
                                         <tr>
@@ -601,11 +604,11 @@
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
 
                         </div>
                             <div class="io-description">
-
+                                
                             </div>
                 </td>
             </tr>
@@ -613,7 +616,7 @@
     </table>
 </section>
     <section data-compodoc="block-properties">
-
+    
     <h3 id="inputs">
         Properties
     </h3>
@@ -787,8 +790,9 @@ export class LobbyPageComponent {
     await this.fetchGames();
   }
 
-  joinGame(gameId: string): void {
+  async joinGame(gameId: string): Promise&lt;void&gt; {
     console.log(&#x60;Joining game ${gameId}&#x60;);
+    console.log(await this.gameService.getState(gameId));
   }
 }
 </code></pre>
@@ -871,7 +875,7 @@ export class LobbyPageComponent {
         </div>
     </div>
 
-
+    
 </div>
 
 <script src="../js/libs/vis.min.js"></script>
