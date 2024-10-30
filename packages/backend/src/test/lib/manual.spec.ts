@@ -1,8 +1,7 @@
 import { expect, jest, it, describe, beforeEach } from '@jest/globals';
-import {PlayerEntity, PlayerRecordManager} from "../../lib/db/player-record-manager";
-import {GameStateEntity, GameStateRecordManager} from "../../lib/db/game-state-record-manager";
-import {testGameState1} from "frontend/src/test/game-state-test.constant";
-
+import { PlayerEntity, PlayerRecordManager } from '../../lib/db/player-record-manager';
+import { GameStateEntity, GameStateRecordManager } from '../../lib/db/game-state-record-manager';
+import { testGameState1 } from 'frontend/src/test/game-state-test.constant';
 
 // describe('db', () => {
 //   let playerRecordManager: PlayerRecordManager;
@@ -46,15 +45,14 @@ import {testGameState1} from "frontend/src/test/game-state-test.constant";
 //   })
 // })
 
-
 describe('GameStateRecordManager', () => {
   let gameStateRecordManager: GameStateRecordManager;
 
   beforeEach(() => {
-    gameStateRecordManager = new GameStateRecordManager(GameStateEntity)
-  })
+    gameStateRecordManager = new GameStateRecordManager(GameStateEntity);
+  });
 
   it('gets latest state', async () => {
-    console.log(await gameStateRecordManager.getLatestGameStateRecord('test1233'))
-  })
-})
+    console.log(await gameStateRecordManager.getLatestGameStateRecord('test1233'));
+  });
+});

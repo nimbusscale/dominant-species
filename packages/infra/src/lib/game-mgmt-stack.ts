@@ -7,7 +7,8 @@ import {
   aws_dynamodb,
   aws_apigateway,
   aws_certificatemanager,
-  aws_cognito, aws_s3,
+  aws_cognito,
+  aws_s3,
 } from 'aws-cdk-lib';
 import { EnvVarNames } from '../../../backend/src/lib/enum';
 import * as path from 'node:path';
@@ -23,7 +24,7 @@ export class GameMgmtStack extends cdk.Stack {
     gameMgmtRole: aws_iam.Role,
     gameTable: aws_dynamodb.TableV2,
     userPool: aws_cognito.UserPool,
-    stateBucket: aws_s3.Bucket
+    stateBucket: aws_s3.Bucket,
   ) {
     super(scope, id, props);
 

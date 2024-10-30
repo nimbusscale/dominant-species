@@ -1,20 +1,20 @@
 import { GameRecordManager } from '../db/game-record-manager';
 import { Game, GameCollection } from 'api-types/src/game';
-import {BadRequestError, NotFoundError} from '../error';
+import { BadRequestError, NotFoundError } from '../error';
 import { ApiRequest } from './request-handling';
 import { GameStateRecordManager } from '../db/game-state-record-manager';
-import {GameState} from "api-types/src/game-state";
-import {GameStateObjectManager} from "../state/game-state-object-manager";
+import { GameState } from 'api-types/src/game-state';
+import { GameStateObjectManager } from '../state/game-state-object-manager';
 
 export class GameApiController {
   private readonly gameRecordManager: GameRecordManager;
   private readonly gameStateRecordManager: GameStateRecordManager;
-  private readonly gameStateObjectManager: GameStateObjectManager
+  private readonly gameStateObjectManager: GameStateObjectManager;
 
   constructor(
     gameRecordManager: GameRecordManager,
     gameStateRecordManager: GameStateRecordManager,
-    gameStateObjectManager: GameStateObjectManager
+    gameStateObjectManager: GameStateObjectManager,
   ) {
     this.gameRecordManager = gameRecordManager;
     this.gameStateRecordManager = gameStateRecordManager;
@@ -59,9 +59,9 @@ export class GameApiController {
 
   async putInitialGameState(apiRequest: ApiRequest): Promise<undefined> {
     if (apiRequest.body) {
-      const gameState = JSON.parse(apiRequest.body) as GameState
-      await this.gameStateRecordManager.addInitialGameState(gameState)
-      await this.gameStateObjectManager.putGameState(gameState)
+      const gameState = JSON.parse(apiRequest.body) as GameState;
+      await this.gameStateRecordManager.addInitialGameState(gameState);
+      await this.gameStateObjectManager.putGameState(gameState);
     } else {
       throw new BadRequestError('Missing Body');
     }
@@ -70,9 +70,10 @@ export class GameApiController {
   async getLatestGameState(apiRequest: ApiRequest): Promise<GameState> {
     // path should be in the format of '/v1/game/{gameId}'
     const gameId = apiRequest.path.split('/')[3];
-    const latestGameStateRecord = await this.gameStateRecordManager.getLatestGameStateRecord(gameId)
+    const latestGameStateRecord =
+      await this.gameStateRecordManager.getLatestGameStateRecord(gameId);
     if (latestGameStateRecord) {
-      return await this.gameStateObjectManager.getGameState(gameId, latestGameStateRecord.patchId)
+      return await this.gameStateObjectManager.getGameState(gameId, latestGameStateRecord.patchId);
     } else {
       throw new NotFoundError();
     }

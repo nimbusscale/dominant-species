@@ -1,7 +1,14 @@
-import {Entity, FormattedItem, number, PutItemCommand, schema, string, QueryCommand} from 'dynamodb-toolbox';
-import {GameTable} from './table';
-import {GameState, GameStatePatch} from "api-types/src/game-state";
-
+import {
+  Entity,
+  FormattedItem,
+  number,
+  PutItemCommand,
+  schema,
+  string,
+  QueryCommand,
+} from 'dynamodb-toolbox';
+import { GameTable } from './table';
+import { GameState, GameStatePatch } from 'api-types/src/game-state';
 
 export const GameStateEntity = new Entity({
   table: GameTable,
@@ -17,8 +24,8 @@ export const GameStateEntity = new Entity({
 type GameStateEntityType = FormattedItem<typeof GameStateEntity>;
 
 export class GameStateRecordManager {
-  private readonly gameStateEntity: typeof GameStateEntity
-  private readonly gameTable: typeof GameTable
+  private readonly gameStateEntity: typeof GameStateEntity;
+  private readonly gameTable: typeof GameTable;
 
   constructor(gameStateEntity: typeof GameStateEntity) {
     this.gameStateEntity = gameStateEntity;
@@ -35,44 +42,49 @@ export class GameStateRecordManager {
         record: 'gameState:0',
         patchId: 0,
         patch: '[]',
-      }).options({
-          condition: {
-            and: [
-              {attr: 'gameId', ne: gameState.gameId},
-              {attr: 'record', ne: 'gameState:0'}]
-          }
-        }
-      )
+      })
+      .options({
+        condition: {
+          and: [
+            { attr: 'gameId', ne: gameState.gameId },
+            { attr: 'record', ne: 'gameState:0' },
+          ],
+        },
+      })
       .send());
   }
 
   async addGameStatePatch(gsp: GameStatePatch): Promise<void> {
-    void await this.gameStateEntity.build(PutItemCommand).item(
-      {
+    void (await this.gameStateEntity
+      .build(PutItemCommand)
+      .item({
         gameId: gsp.gameId,
         // TS used to ensure they sort with the latest on top. This is because the record is a string.
         record: `gameState:${String(Date.now())}`,
         patchId: gsp.patchId,
-        patch: JSON.stringify(gsp.patch)
-      }
-    ).send()
+        patch: JSON.stringify(gsp.patch),
+      })
+      .send());
   }
 
   async getLatestGameStateRecord(gameId: string): Promise<GameStateEntityType | null> {
-    const result = await this.gameTable.build(QueryCommand).query(
-    {
-      partition: gameId,
-      range: { beginsWith: 'gameState:' },
-    }
-    ).entities(GameStateEntity).options({
-      limit: 1,
-      reverse: true,
-    }).send()
+    const result = await this.gameTable
+      .build(QueryCommand)
+      .query({
+        partition: gameId,
+        range: { beginsWith: 'gameState:' },
+      })
+      .entities(GameStateEntity)
+      .options({
+        limit: 1,
+        reverse: true,
+      })
+      .send();
 
     if (result.Items?.length) {
-      return result.Items[0]
+      return result.Items[0];
     } else {
-      return null
+      return null;
     }
   }
 }

@@ -5,12 +5,16 @@ import { ApiRoute, ApiRequestHandler } from './lib/api/request-handling';
 import { PlayerEntity, PlayerRecordManager } from './lib/db/player-record-manager';
 import { PlayerApiController } from './lib/api/player-api-controller';
 import { GameStateEntity, GameStateRecordManager } from './lib/db/game-state-record-manager';
-import {GameStateObjectManager} from "./lib/state/game-state-object-manager";
+import { GameStateObjectManager } from './lib/state/game-state-object-manager';
 
 const gameRecordManager = new GameRecordManager(GameEntity);
 const gameStateRecordManager = new GameStateRecordManager(GameStateEntity);
-const gameStateObjectManager = new GameStateObjectManager()
-const gameApiController = new GameApiController(gameRecordManager, gameStateRecordManager, gameStateObjectManager);
+const gameStateObjectManager = new GameStateObjectManager();
+const gameApiController = new GameApiController(
+  gameRecordManager,
+  gameStateRecordManager,
+  gameStateObjectManager,
+);
 const playerRecordManager = new PlayerRecordManager(PlayerEntity);
 const playerApiController = new PlayerApiController(playerRecordManager);
 
