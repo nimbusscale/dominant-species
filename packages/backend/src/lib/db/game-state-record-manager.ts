@@ -1,8 +1,7 @@
-import {Entity, FormattedItem, number, PutItemCommand, schema, string, Table} from 'dynamodb-toolbox';
+import {Entity, FormattedItem, number, PutItemCommand, schema, string, QueryCommand} from 'dynamodb-toolbox';
 import {GameTable} from './table';
 import {Game} from 'api-types/src/game';
 import {GameStatePatch} from "api-types/src/game-state";
-import {QueryCommand} from "@aws-sdk/lib-dynamodb";
 
 
 export const GameStateEntity = new Entity({
@@ -60,24 +59,19 @@ export class GameStateRecordManager {
     ).send()
   }
 
-  //using DocClient directly due to this issue: https://github.com/dynamodb-toolbox/dynamodb-toolbox/issues/980
   async getLatestGameStateRecord(gameId: string): Promise<GameStateEntityType | null> {
-    const command = new QueryCommand({
-      TableName: this.gameTable.getName(),
-      KeyConditionExpression:
-        "id = :id AND begins_with(#record, :record)",
-      ExpressionAttributeValues: {
-        ":id": gameId,
-        ":record": "gameState:",
-      },
-      ExpressionAttributeNames: {"#record": "record"},
-      ScanIndexForward: false,
-      Limit: 1
-    });
+    const result = await this.gameTable.build(QueryCommand).query(
+    {
+      partition: gameId,
+      range: { beginsWith: 'gameState:' },
+    }
+    ).entities(GameStateEntity).options({
+      limit: 1,
+      reverse: true,
+    }).send()
 
-    const result = await this.gameTable.getDocumentClient().send(command)
-    if (result.Items && result.Items.length === 1) {
-      return result.Items[0] as GameStateEntityType
+    if (result.Items && result.Items.length) {
+      return result.Items[0]
     } else {
       return null
     }

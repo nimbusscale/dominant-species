@@ -63,6 +63,6 @@ describe('GameStateRecordManager', () => {
   })
 
   it('gets latest state', async () => {
-    console.log(await gameStateRecordManager.getLatestGameStateRecord('test123'))
+    console.log(await gameStateRecordManager.getLatestGameStateRecord('test1233'))
   })
 })
