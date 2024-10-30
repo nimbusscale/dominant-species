@@ -11,7 +11,7 @@ import { GameState, GameStatePatch } from 'api-types/src/game-state';
 export class GameStatePatchService {
   create(oldState: GameState, newState: GameState): GameStatePatch {
     return {
-      gameId: oldState.id,
+      gameId: oldState.gameId,
       patchId: oldState.patchId + 1,
       patch: compare(oldState.gameElements, newState.gameElements),
     };

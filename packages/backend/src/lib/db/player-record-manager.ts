@@ -5,7 +5,6 @@ import {
   PutItemCommand,
   schema,
   string,
-  Table,
   UpdateItemCommand,
   QueryCommand,
   list,
@@ -26,10 +25,10 @@ export const PlayerEntity = new Entity({
 type PlayerEntityType = FormattedItem<typeof PlayerEntity>;
 
 export class PlayerRecordManager {
-  private readonly playerEntity: Entity;
-  private readonly gameTable: Table;
+  private readonly playerEntity: typeof PlayerEntity;
+  private readonly gameTable: typeof GameTable;
 
-  constructor(playerEntity: Entity) {
+  constructor(playerEntity: typeof PlayerEntity) {
     this.playerEntity = playerEntity;
     this.gameTable = playerEntity.table;
   }
@@ -49,7 +48,7 @@ export class PlayerRecordManager {
       .send());
   }
 
-  async getPlayer(username: string): Promise<Player | undefined> {
+  async getPlayer(username: string): Promise<Player | null> {
     const result = await this.playerEntity
       .build(GetItemCommand)
       .key({ username: username, record: 'player' })
@@ -57,7 +56,7 @@ export class PlayerRecordManager {
     if (result.Item) {
       return this.playerEntityToPlayer(result.Item as PlayerEntityType);
     } else {
-      return undefined;
+      return null;
     }
   }
 

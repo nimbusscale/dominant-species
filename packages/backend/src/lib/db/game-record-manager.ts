@@ -8,7 +8,6 @@ import {
   QueryCommand,
   schema,
   string,
-  Table,
   UpdateItemCommand,
 } from 'dynamodb-toolbox';
 import { GameTable, GameTableIndex } from './table';
@@ -31,9 +30,9 @@ export const GameEntity = new Entity({
 type GameEntityType = FormattedItem<typeof GameEntity>;
 
 export class GameRecordManager {
-  private readonly gameEntity: Entity;
-  private readonly gameTable: Table;
-  constructor(gameEntity: Entity) {
+  private readonly gameEntity: typeof GameEntity;
+  private readonly gameTable: typeof GameTable;
+  constructor(gameEntity: typeof GameEntity) {
     this.gameEntity = gameEntity;
     this.gameTable = gameEntity.table;
   }
