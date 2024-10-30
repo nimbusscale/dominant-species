@@ -31,4 +31,5 @@ new GameMgmtStack(
   iamStack.gameMgmtRole,
   vpaGameTable.table,
   vpaUserPool.userPool,
+  stateBucketStack.bucket
 );
