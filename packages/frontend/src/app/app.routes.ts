@@ -16,6 +16,6 @@ export const routes: Routes = [
   { path: 'logout', component: LogoutPageComponent },
   { path: 'sign-up', component: SignUpPageComponent },
   { path: 'sign-up-confirm', component: SignUpConfirmPageComponent },
-  { path: '', redirectTo: '/game', pathMatch: 'full' },
-  { path: '**', redirectTo: '/game' },
+  { path: '', redirectTo: '/lobby', pathMatch: 'full' },
+  { path: '**', redirectTo: '/lobby' },
 ];
