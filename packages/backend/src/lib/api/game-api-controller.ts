@@ -5,7 +5,6 @@ import { ApiRequest } from './request-handling';
 import { GameStateRecordManager } from '../db/game-state-record-manager';
 import {GameState} from "api-types/src/game-state";
 import {GameStateObjectManager} from "../state/game-state-object-manager";
-import {error} from "aws-cdk/lib/logging";
 
 export class GameApiController {
   private readonly gameRecordManager: GameRecordManager;
@@ -61,8 +60,8 @@ export class GameApiController {
   async putInitialGameState(apiRequest: ApiRequest): Promise<undefined> {
     if (apiRequest.body) {
       const gameState = JSON.parse(apiRequest.body) as GameState
-      void await this.gameStateRecordManager.addInitialGameState(gameState)
-      void await this.gameStateObjectManager.putGameState(gameState)
+      await this.gameStateRecordManager.addInitialGameState(gameState)
+      await this.gameStateObjectManager.putGameState(gameState)
     } else {
       throw new BadRequestError('Missing Body');
     }
