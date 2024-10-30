@@ -1,7 +1,6 @@
 import {Entity, FormattedItem, number, PutItemCommand, schema, string, QueryCommand} from 'dynamodb-toolbox';
 import {GameTable} from './table';
-import {Game} from 'api-types/src/game';
-import {GameStatePatch} from "api-types/src/game-state";
+import {GameState, GameStatePatch} from "api-types/src/game-state";
 
 
 export const GameStateEntity = new Entity({
@@ -26,11 +25,11 @@ export class GameStateRecordManager {
     this.gameTable = gameStateEntity.table;
   }
 
-  async addInitialGameState(game: Game): Promise<void> {
+  async addInitialGameState(gameState: GameState): Promise<void> {
     void (await this.gameStateEntity
       .build(PutItemCommand)
       .item({
-        gameId: game.gameId,
+        gameId: gameState.gameId,
         /* Initial gameState record uses :0 to facilitate checking to see if a record exists.
          If TS was used, then the record would be different every time function is run. */
         record: 'gameState:0',
@@ -39,7 +38,7 @@ export class GameStateRecordManager {
       }).options({
           condition: {
             and: [
-              {attr: 'gameId', ne: game.gameId},
+              {attr: 'gameId', ne: gameState.gameId},
               {attr: 'record', ne: 'gameState:0'}]
           }
         }

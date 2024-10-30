@@ -8,7 +8,7 @@ import { EnvVarNames } from '../enum';
 import { ensureDefined } from '../util';
 import { GameState } from 'api-types/src/game-state';
 
-export class StateObjectManager {
+export class GameStateObjectManager {
   readonly bucketName: string;
   private readonly s3Client: S3Client;
 
@@ -58,7 +58,7 @@ export class StateObjectManager {
   }
 
   async putGameState(gameState: GameState): Promise<void> {
-    const key = this.buildKey(gameState.id, gameState.patchId);
+    const key = this.buildKey(gameState.gameId, gameState.patchId);
     const command = new PutObjectCommand({
       Bucket: this.bucketName,
       Key: key,

@@ -59,7 +59,7 @@ export const testFactionState2: FactionState = deepFreeze({
 });
 
 export const testGameState1: GameState = deepFreeze({
-  id: 'testGame1',
+  gameId: 'testGame1',
   patchId: 0,
   playerIds: [],
   gameElements: {
@@ -82,7 +82,7 @@ export const testGameState1: GameState = deepFreeze({
 
 // Since testGameState1 is frozen, we need to duplicate the object config here.
 export const testGameState1updated: GameState = deepFreeze({
-  id: 'testGame1',
+  gameId: 'testGame1',
   patchId: 1,
   playerIds: [],
   gameElements: {

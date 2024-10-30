@@ -37,7 +37,7 @@ export interface GameElementStates {
 }
 
 export interface GameState {
-  id: string,
+  gameId: string,
   patchId: number,
   playerIds: string[],
   gameElements: GameElementStates,

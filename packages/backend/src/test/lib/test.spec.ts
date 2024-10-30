@@ -54,14 +54,6 @@ describe('GameStateRecordManager', () => {
     gameStateRecordManager = new GameStateRecordManager(GameStateEntity)
   })
 
-  it('addInitialGameState', async () => {
-    await gameStateRecordManager.addInitialGameState({
-      gameId: 'test1233',
-      host: 'tester1',
-      players: ['tester1', 'tester2', 'tester3']
-    })
-  })
-
   it('gets latest state', async () => {
     console.log(await gameStateRecordManager.getLatestGameStateRecord('test1233'))
   })
