@@ -76,32 +76,38 @@ export class CreateGamePageComponent implements OnInit {
         .filter((player: string | null, i: number) => player && i !== index) as string[]
     );
 
+    // Reset validation and filtered players for this input
     this.filteredPlayers[index] = [];
-    this.errorMessages[index] = '';  // Reset the error message
-    control.setErrors(null);  // Clear any previous errors
+    this.errorMessages[index] = '';
+    control.setErrors(null);
+
+    // Check for duplicate entries
+    if (selectedPlayers.has(input)) {
+      this.errorMessages[index] = 'Player already in the game';
+      control.setErrors({ duplicate: true });
+      return;
+    }
 
     if (input) {
       try {
         const players = await this.playerService.findPlayers(input);
         this.filteredPlayers[index] = players.filter(player => !selectedPlayers.has(player));
 
-        // Populate validPlayers for validation
         players.forEach(player => this.validPlayers[index].add(player));
 
-        // If input is not in valid players, show an error
         if (!this.validPlayers[index].has(input)) {
           this.errorMessages[index] = 'Invalid username';
-          control.setErrors({invalid: true});  // Mark control as invalid
+          control.setErrors({ invalid: true });
         }
       } catch (error) {
         this.errorMessages[index] = 'Error fetching players';
         console.error(error);
-        control.setErrors({fetchError: true});  // Mark control as invalid
+        control.setErrors({ fetchError: true });
       }
     }
   }
 
-  // Check if any player input is invalid
+  // Check if any player input is invalid or duplicate
   hasInvalidPlayer(): boolean {
     return this.playerControls.controls.some(control => control.invalid);
   }

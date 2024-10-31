@@ -27,7 +27,7 @@
         <mat-error *ngIf="errorMessages[i]">{{ errorMessages[i] }}</mat-error>
       </mat-form-field>
 
-      <!-- Add Friend Button, hidden if user is invalid -->
+      <!-- Add Friend Button, hidden if user is invalid or duplicated -->
       <button
         *ngIf="control.value && !isFriend(control.value) && !control.invalid"
         mat-icon-button
@@ -36,7 +36,7 @@
       </button>
     </ng-container>
 
-    <!-- Create Game Button, disabled if any input is invalid -->
+    <!-- Create Game Button, disabled if any input is invalid or duplicated -->
     <button
       mat-raised-button
       color="primary"
