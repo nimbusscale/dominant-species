@@ -21,7 +21,7 @@ export const GameStateEntity = new Entity({
   }),
 });
 
-type GameStateEntityType = FormattedItem<typeof GameStateEntity>;
+export type GameStateEntityType = FormattedItem<typeof GameStateEntity>;
 
 export class GameStateRecordManager {
   private readonly gameStateEntity: typeof GameStateEntity;
