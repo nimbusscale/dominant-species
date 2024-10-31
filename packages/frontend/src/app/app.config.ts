@@ -7,6 +7,8 @@ import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/
 import { apiUrlInterceptor } from './engine/interceptor/api-url.interceptor';
 import { authInterceptor } from './engine/interceptor/auth.interceptor';
 import { errorHandlerInterceptor } from './engine/interceptor/error-handler.interceptor';
+import {CognitoIdentityProviderClient} from "@aws-sdk/client-cognito-identity-provider";
+import {environment} from "../environments/environment";
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -17,5 +19,9 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideAnimationsAsync('noop'),
+    {
+      provide: CognitoIdentityProviderClient,
+      useFactory: () => new CognitoIdentityProviderClient({ region: environment.cognito.region }),
+    },
   ],
 };
