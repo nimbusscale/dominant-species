@@ -34,7 +34,7 @@ export interface ApiResponse {
 export interface ApiRoute {
   method: 'GET' | 'POST' | 'PATCH';
   pattern: RegExp;
-  handler: (apiRequest: ApiRequest) => Promise<ApiResponseType | undefined>;
+  handler: (apiRequest: ApiRequest) => Promise<ApiResponseType | void>;
 }
 
 export class ApiRequestHandler {
