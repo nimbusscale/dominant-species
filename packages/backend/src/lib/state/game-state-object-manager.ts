@@ -57,7 +57,7 @@ export class GameStateObjectManager {
     }
   }
 
-  async putGameState(gameState: GameState): Promise<void> {
+  async putGameState(gameState: GameState): Promise<undefined> {
     const key = this.buildKey(gameState.gameId, gameState.patchId);
     const command = new PutObjectCommand({
       Bucket: this.bucketName,

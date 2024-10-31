@@ -40,7 +40,7 @@ export class PlayerRecordManager {
     };
   }
 
-  async addPlayer(username: string): Promise<void> {
+  async addPlayer(username: string): Promise<undefined> {
     void (await PlayerEntity.build(PutItemCommand)
       .item({
         username: username,
@@ -61,7 +61,7 @@ export class PlayerRecordManager {
   }
 
   // throws ConditionalCheckFailedException if user not found
-  async setFriends(username: string, friends: string[]): Promise<void> {
+  async setFriends(username: string, friends: string[]): Promise<undefined> {
     await this.playerEntity
       .build(UpdateItemCommand)
       .item({

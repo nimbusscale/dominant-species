@@ -31,7 +31,6 @@ describe('CognitoClientService', () => {
       };
 
       cognitoClientSpy.send.and.returnValue(
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         Promise.resolve({ AuthenticationResult: authResult }) as any,
       );
 
@@ -40,7 +39,6 @@ describe('CognitoClientService', () => {
     });
 
     it('should return null on login failure', async () => {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       cognitoClientSpy.send.and.returnValue(Promise.resolve({ AuthenticationResult: null }) as any);
 
       const result = await service.login('testUser', 'wrongPassword');
@@ -59,7 +57,6 @@ describe('CognitoClientService', () => {
 
   describe('signUp', () => {
     it('should return true on successful sign up', async () => {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       cognitoClientSpy.send.and.returnValue(Promise.resolve({}) as any);
 
       const result = await service.signUp('testUser', 'test@example.com', 'password123');
@@ -78,7 +75,6 @@ describe('CognitoClientService', () => {
 
   describe('confirmSignUp', () => {
     it('should return true on successful confirmation', async () => {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       cognitoClientSpy.send.and.returnValue(Promise.resolve({}) as any);
 
       const result = await service.confirmSignUp('testUser', '123456');

@@ -86,7 +86,6 @@ describe('AnimalProviderService', () => {
     });
     animalProviderService = TestBed.inject(AnimalProviderService);
     mockAnimal = jasmine.createSpyObj<Animal>(['id']);
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     animalFactorySpy = spyOn<any>(animalProviderService, 'animalFactory').and.returnValue(
       mockAnimal,
     );

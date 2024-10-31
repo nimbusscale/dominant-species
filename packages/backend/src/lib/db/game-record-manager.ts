@@ -41,7 +41,7 @@ export class GameRecordManager {
     return { gameId, host, playerIds, startTS, complete };
   }
 
-  async addGame(game: Game): Promise<void> {
+  async addGame(game: Game): Promise<undefined> {
     const putPromises = game.playerIds.map((player) => {
       return this.gameEntity
         .build(PutItemCommand)
@@ -96,7 +96,7 @@ export class GameRecordManager {
     }
   }
 
-  async completeGame(gameId: string): Promise<void> {
+  async completeGame(gameId: string): Promise<undefined> {
     const gameEntities = await this.getGameEntitiesByGameId(gameId);
     const updatePromises = gameEntities.map((gameEntity: GameEntityType) => {
       return this.gameEntity

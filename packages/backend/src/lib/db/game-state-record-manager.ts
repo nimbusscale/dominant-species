@@ -32,7 +32,7 @@ export class GameStateRecordManager {
     this.gameTable = gameStateEntity.table;
   }
 
-  async addInitialGameState(gameState: GameState): Promise<void> {
+  async addInitialGameState(gameState: GameState): Promise<undefined> {
     void (await this.gameStateEntity
       .build(PutItemCommand)
       .item({
@@ -54,7 +54,7 @@ export class GameStateRecordManager {
       .send());
   }
 
-  async addGameStatePatch(gsp: GameStatePatch): Promise<void> {
+  async addGameStatePatch(gsp: GameStatePatch): Promise<undefined> {
     void (await this.gameStateEntity
       .build(PutItemCommand)
       .item({
