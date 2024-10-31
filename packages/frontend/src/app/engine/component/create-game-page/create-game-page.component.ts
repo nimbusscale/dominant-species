@@ -101,6 +101,11 @@ export class CreateGamePageComponent implements OnInit {
     }
   }
 
+  // Check if any player input is invalid
+  hasInvalidPlayer(): boolean {
+    return this.playerControls.controls.some(control => control.invalid);
+  }
+
   async addFriend(playerId: string): Promise<void> {
     if (!this.currentUser || this.currentUser.friends.includes(playerId)) return;
     try {
