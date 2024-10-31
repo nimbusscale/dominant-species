@@ -12,6 +12,7 @@
     "build:backend": "npm run build -w backend",
     "build:frontend": "npm run build -w frontend",
     "build:doc": "npm run compodoc:build -w frontend && npm run tsuml2 -w frontend",
+    "checkFormat:api-types": "npm run checkFormat -w api-types",
     "checkFormat:backend": "npm run checkFormat -w backend",
     "checkFormat:frontend": "npm run checkFormat -w frontend",
     "checkFormat:infra": "npm run checkFormat -w infra",
@@ -21,9 +22,11 @@
     "deploy:infra:stateBucket": "npm run deploy:stateBucket -w infra",
     "deploy:infra:iam": "npm run deploy:iam -w infra",
     "deploy:infra:gameMgmt": "npm run deploy:gameMgmt -w infra",
+    "format:api-types": "npm run format -w api-types",
     "format:backend": "npm run format -w backend",
     "format:frontend": "npm run format -w frontend",
     "format:infra": "npm run format -w infra",
+    "lint:api-types": "npm run lint -w api-types",
     "lint:backend": "npm run lint -w backend",
     "lint:frontend": "npm run lint -w frontend",
     "lint:infra": "npm run lint -w infra",
@@ -40,8 +43,8 @@
     "@compodoc/compodoc": "^1.1.25",
     "@types/aws-lambda": "^8.10.145",
     "@types/jasmine": "~5.1.0",
-    "@types/lodash": "^4.17.10",
     "@types/jest": "^29.5.13",
+    "@types/lodash": "^4.17.10",
     "@types/node": "22.5.4",
     "angular-eslint": "18.3.1",
     "aws-cdk": "2.161.1",
@@ -62,5 +65,8 @@
     "tsuml2": "^0.17.0",
     "typescript": "~5.5.2",
     "typescript-eslint": "8.2.0"
+  },
+  "dependencies": {
+    "fast-json-patch": "^3.1.1"
   }
 }
