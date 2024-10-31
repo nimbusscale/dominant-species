@@ -1,1 +1,33 @@
-<p>create-game-page works!</p>
+<div class="create-game-page">
+  <mat-card>
+    <h2>Create a New Game</h2>
+
+    <!-- Current User Field -->
+    <mat-form-field>
+      <input matInput placeholder="Player 1" [value]="currentUsername" disabled />
+    </mat-form-field>
+
+    <!-- Other Players Fields with Autocomplete -->
+    <ng-container *ngFor="let control of playerControls.controls; let i = index">
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="Player {{ i + 2 }}"
+          [formControl]="control"
+          (input)="onPlayerInput(i)"
+          [matAutocomplete]="auto"
+        />
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let player of filteredPlayers[i]" [value]="player">
+            {{ player }}
+          </mat-option>
+        </mat-autocomplete>
+        <mat-error *ngIf="errorMessages[i]">{{ errorMessages[i] }}</mat-error>
+      </mat-form-field>
+    </ng-container>
+
+
+    <!-- Create Game Button -->
+    <button mat-raised-button color="primary" (click)="createGame()">Create Game</button>
+  </mat-card>
+</div>
