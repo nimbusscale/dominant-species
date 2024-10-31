@@ -13,6 +13,7 @@ import {filter} from "rxjs";
 import {isNotUndefined} from "../../util/predicate";
 import {Router} from "@angular/router";
 import {MatIcon} from "@angular/material/icon";
+import {MatChip} from "@angular/material/chips";
 
 @Component({
   selector: 'app-create-game-page',
@@ -31,7 +32,8 @@ import {MatIcon} from "@angular/material/icon";
     NgIf,
     ReactiveFormsModule,
     MatIcon,
-    MatIconButton
+    MatIconButton,
+    MatChip
   ],
   templateUrl: './create-game-page.component.html',
   styleUrl: './create-game-page.component.scss',
@@ -42,6 +44,7 @@ export class CreateGamePageComponent implements OnInit {
   filteredPlayers: string[][] = [[], [], [], [], []];
   errorMessages: string[] = ['', '', '', '', ''];
   validPlayers: Set<string>[] = Array.from({length: 5}, () => new Set<string>());
+  availableFriends: string[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -59,6 +62,7 @@ export class CreateGamePageComponent implements OnInit {
       .pipe(filter(isNotUndefined))
       .subscribe((player) => {
         this.currentUser = player;
+        this.availableFriends = [...player.friends];
       });
   }
 
@@ -84,7 +88,7 @@ export class CreateGamePageComponent implements OnInit {
     // Check for duplicate entries
     if (selectedPlayers.has(input)) {
       this.errorMessages[index] = 'Player already in the game';
-      control.setErrors({ duplicate: true });
+      control.setErrors({duplicate: true});
       return;
     }
 
@@ -97,14 +101,35 @@ export class CreateGamePageComponent implements OnInit {
 
         if (!this.validPlayers[index].has(input)) {
           this.errorMessages[index] = 'Invalid username';
-          control.setErrors({ invalid: true });
+          control.setErrors({invalid: true});
+        } else {
+          this.updateAvailableFriends();  // Update chips based on current players
         }
       } catch (error) {
         this.errorMessages[index] = 'Error fetching players';
         console.error(error);
-        control.setErrors({ fetchError: true });
+        control.setErrors({fetchError: true});
       }
     }
+  }
+
+  isGameFullOrInvalid(): boolean {
+    return this.hasInvalidPlayer() || this.playerControls.controls.every(control => control.value);
+  }
+
+
+  addFriendToGame(playerId: string): void {
+    const emptyControl = this.playerControls.controls.find(control => !control.value);
+    if (!emptyControl) return;
+
+    emptyControl.setValue(playerId);
+    this.updateAvailableFriends();  // Update chips visibility
+    this.onPlayerInput(this.playerControls.controls.indexOf(emptyControl));  // Trigger validation
+  }
+
+  updateAvailableFriends(): void {
+    const selectedPlayers = new Set(this.playerControls.value.filter(Boolean) as string[]);
+    this.availableFriends = this.currentUser?.friends.filter(friend => !selectedPlayers.has(friend)) ?? [];
   }
 
   // Check if any player input is invalid or duplicate

@@ -2,6 +2,16 @@
   <mat-card>
     <h2>Create a New Game</h2>
 
+    <!-- Friend Chips Section -->
+    <mat-chip
+      *ngFor="let friend of availableFriends"
+      [disabled]="isGameFullOrInvalid()"
+      (click)="addFriendToGame(friend)"
+      selectable="false">
+      {{ friend }}
+    </mat-chip>
+
+
     <!-- Current User Field -->
     <mat-form-field>
       <input matInput placeholder="Player 1" [value]="currentUser?.username ?? ''" disabled />
