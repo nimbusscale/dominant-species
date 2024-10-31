@@ -7,7 +7,7 @@
       <input matInput placeholder="Player 1" [value]="currentUser?.username ?? ''" disabled />
     </mat-form-field>
 
-    <!-- Other Players Fields with Autocomplete -->
+    <!-- Other Players Fields with Autocomplete and Add Friend Button -->
     <ng-container *ngFor="let control of playerControls.controls; let i = index">
       <mat-form-field>
         <input
@@ -24,8 +24,15 @@
         </mat-autocomplete>
         <mat-error *ngIf="errorMessages[i]">{{ errorMessages[i] }}</mat-error>
       </mat-form-field>
-    </ng-container>
 
+      <!-- Add Friend Button -->
+      <button
+        *ngIf="control.value && !isFriend(control.value)"
+        mat-icon-button
+        (click)="addFriend(control.value)">
+        <mat-icon>person_add</mat-icon>
+      </button>
+    </ng-container>
 
     <!-- Create Game Button -->
     <button mat-raised-button color="primary" (click)="createGame()">Create Game</button>

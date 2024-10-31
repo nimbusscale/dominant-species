@@ -42,7 +42,7 @@ export class PlayerService {
     return playerCollection.map((player) => player.username);
   }
 
-  async addfriend(username: string): Promise<void> {
+  async addFriend(username: string): Promise<void> {
     ensureDefined(this.currentPlayer).friends.push(username);
     await this.gameManagementClientService.setFriends(ensureDefined(this.currentPlayer));
     this.currentPlayerSubject.next(this.currentPlayer);

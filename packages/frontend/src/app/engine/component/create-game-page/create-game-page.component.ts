@@ -1,17 +1,18 @@
-import {Component, OnInit} from '@angular/core';
-import {PlayerService} from "../../service/game-management/player.service";
+import { Component, OnInit } from '@angular/core';
+import { PlayerService } from "../../service/game-management/player.service";
 import { Player } from 'api-types/src/player';
-import {GameService} from "../../service/game-management/game.service";
-import {MatCard} from "@angular/material/card";
-import {MatFormField, MatFormFieldModule} from "@angular/material/form-field";
-import {FormArray, FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {MatAutocomplete, MatAutocompleteTrigger, MatOption} from "@angular/material/autocomplete";
-import {MatButton} from "@angular/material/button";
-import {MatInput} from "@angular/material/input";
-import {NgForOf, NgIf} from "@angular/common";
-import {filter, take} from "rxjs";
-import {isNotUndefined} from "../../util/predicate";
-import {Router} from "@angular/router";
+import { GameService } from "../../service/game-management/game.service";
+import { MatCard } from "@angular/material/card";
+import { MatFormField, MatFormFieldModule } from "@angular/material/form-field";
+import { FormArray, FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { MatAutocomplete, MatAutocompleteTrigger, MatOption } from "@angular/material/autocomplete";
+import {MatButton, MatIconButton} from "@angular/material/button";
+import { MatInput } from "@angular/material/input";
+import { NgForOf, NgIf } from "@angular/common";
+import { filter } from "rxjs";
+import { isNotUndefined } from "../../util/predicate";
+import { Router } from "@angular/router";
+import {MatIcon} from "@angular/material/icon";
 
 @Component({
   selector: 'app-create-game-page',
@@ -28,7 +29,9 @@ import {Router} from "@angular/router";
     MatInput,
     NgForOf,
     NgIf,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatIcon,
+    MatIconButton
   ],
   templateUrl: './create-game-page.component.html',
   styleUrl: './create-game-page.component.scss',
@@ -51,9 +54,11 @@ export class CreateGamePageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.playerService.currentPlayer$.pipe(filter(isNotUndefined)).subscribe((player) => {
-      this.currentUser = player;
-    })
+    this.playerService.currentPlayer$
+      .pipe(filter(isNotUndefined))
+      .subscribe((player) => {
+        this.currentUser = player;
+      });
   }
 
   get playerControls(): FormArray<FormControl> {
@@ -77,9 +82,22 @@ export class CreateGamePageComponent implements OnInit {
         this.errorMessages[index] = '';
       } catch (error) {
         this.errorMessages[index] = 'Error fetching players';
-        console.error(error)
+        console.error(error);
       }
     }
+  }
+
+  async addFriend(playerId: string): Promise<void> {
+    if (!this.currentUser || this.currentUser.friends.includes(playerId)) return;
+    try {
+      await this.playerService.addFriend(playerId);
+    } catch (error) {
+      console.error('Failed to add friend', error);
+    }
+  }
+
+  isFriend(playerId: string): boolean {
+    return this.currentUser?.friends.includes(playerId) ?? false;
   }
 
   async createGame(): Promise<void> {
