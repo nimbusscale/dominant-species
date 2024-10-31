@@ -73,7 +73,7 @@ export class LobbyPageComponent {
   }
 
   async createGame(): Promise<void> {
-    void this.router.navigate(['/create-game']);
+    void await this.router.navigate(['/create-game']);
   }
 
   async completeGame(gameId: string): Promise<void> {

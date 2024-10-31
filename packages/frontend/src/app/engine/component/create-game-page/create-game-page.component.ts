@@ -61,7 +61,7 @@ export class CreateGamePageComponent implements OnInit {
   }
 
   async onPlayerInput(index: number): Promise<void> {
-    const input = this.playerControls.at(index).value;
+    const input = this.playerControls.at(index).value as string;
 
     const selectedPlayers = new Set(
       this.playerControls.value
@@ -77,6 +77,7 @@ export class CreateGamePageComponent implements OnInit {
         this.errorMessages[index] = '';
       } catch (error) {
         this.errorMessages[index] = 'Error fetching players';
+        console.error(error)
       }
     }
   }
