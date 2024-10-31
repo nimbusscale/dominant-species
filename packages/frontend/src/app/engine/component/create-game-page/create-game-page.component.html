@@ -22,6 +22,8 @@
             {{ player }}
           </mat-option>
         </mat-autocomplete>
+
+        <!-- Display the error message if there's content in errorMessages[i] -->
         <mat-error *ngIf="errorMessages[i]">{{ errorMessages[i] }}</mat-error>
       </mat-form-field>
 
