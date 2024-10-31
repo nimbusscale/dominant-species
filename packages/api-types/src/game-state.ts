@@ -1,4 +1,4 @@
-import {Operation} from "fast-json-patch";
+import { Operation } from 'fast-json-patch';
 
 export interface GameElementState {
   id: string;
@@ -37,10 +37,10 @@ export interface GameElementStates {
 }
 
 export interface GameState {
-  gameId: string,
-  patchId: number,
-  playerIds: string[],
-  gameElements: GameElementStates,
+  gameId: string;
+  patchId: number;
+  playerIds: string[];
+  gameElements: GameElementStates;
 }
 
 export interface GameStatePatch {
