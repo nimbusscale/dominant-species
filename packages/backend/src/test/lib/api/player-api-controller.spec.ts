@@ -1,10 +1,10 @@
 import { expect, jest, it, describe } from '@jest/globals';
 import { Player, PlayerCollection } from 'api-types/src/player';
 import { ConditionalCheckFailedException } from '@aws-sdk/client-dynamodb';
-import {PlayerApiController} from "../../../lib/api/player-api-controller";
-import {PlayerRecordManager} from "../../../lib/db/player-record-manager";
-import {ApiRequest} from "../../../lib/api/request-handling";
-import {BadRequestError, NotFoundError} from "../../../lib/error";
+import { PlayerApiController } from '../../../lib/api/player-api-controller';
+import { PlayerRecordManager } from '../../../lib/db/player-record-manager';
+import { ApiRequest } from '../../../lib/api/request-handling';
+import { BadRequestError, NotFoundError } from '../../../lib/error';
 
 describe('PlayerApiController', () => {
   let playerApiController: PlayerApiController;
@@ -81,7 +81,9 @@ describe('PlayerApiController', () => {
       const player: Player = { friends: ['friend1', 'friend2'] } as Player;
       apiRequest.path = `/v1/player/${username}`;
       apiRequest.body = JSON.stringify(player);
-      playerRecordManager.setFriends.mockRejectedValue(new ConditionalCheckFailedException({$metadata: {}, message: 'error'}));
+      playerRecordManager.setFriends.mockRejectedValue(
+        new ConditionalCheckFailedException({ $metadata: {}, message: 'error' }),
+      );
 
       await expect(playerApiController.setFriends(apiRequest)).rejects.toThrow(NotFoundError);
     });

@@ -1,12 +1,15 @@
 import { expect, jest, it, describe } from '@jest/globals';
 import { Game, GameCollection } from 'api-types/src/game';
 import { GameState } from 'api-types/src/game-state';
-import {GameApiController} from "../../../lib/api/game-api-controller";
-import {GameRecordManager} from "../../../lib/db/game-record-manager";
-import {GameStateEntityType, GameStateRecordManager} from "../../../lib/db/game-state-record-manager";
-import {GameStateObjectManager} from "../../../lib/state/game-state-object-manager";
-import {ApiRequest} from "../../../lib/api/request-handling";
-import {BadRequestError, NotFoundError} from "../../../lib/error";
+import { GameApiController } from '../../../lib/api/game-api-controller';
+import { GameRecordManager } from '../../../lib/db/game-record-manager';
+import {
+  GameStateEntityType,
+  GameStateRecordManager,
+} from '../../../lib/db/game-state-record-manager';
+import { GameStateObjectManager } from '../../../lib/state/game-state-object-manager';
+import { ApiRequest } from '../../../lib/api/request-handling';
+import { BadRequestError, NotFoundError } from '../../../lib/error';
 
 describe('GameApiController', () => {
   let gameApiController: GameApiController;
@@ -35,7 +38,7 @@ describe('GameApiController', () => {
     gameApiController = new GameApiController(
       gameRecordManager,
       gameStateRecordManager,
-      gameStateObjectManager
+      gameStateObjectManager,
     );
 
     apiRequest = {
@@ -112,7 +115,9 @@ describe('GameApiController', () => {
     it('should throw BadRequestError if body is missing', async () => {
       apiRequest.body = null;
 
-      await expect(gameApiController.putInitialGameState(apiRequest)).rejects.toThrow(BadRequestError);
+      await expect(gameApiController.putInitialGameState(apiRequest)).rejects.toThrow(
+        BadRequestError,
+      );
     });
   });
 
@@ -123,7 +128,9 @@ describe('GameApiController', () => {
       const latestGameState = {} as GameState;
       apiRequest.path = `/v1/game/${gameId}`;
 
-      gameStateRecordManager.getLatestGameStateRecord.mockResolvedValue({ patchId } as GameStateEntityType);
+      gameStateRecordManager.getLatestGameStateRecord.mockResolvedValue({
+        patchId,
+      } as GameStateEntityType);
       gameStateObjectManager.getGameState.mockResolvedValue(latestGameState);
 
       const result = await gameApiController.getLatestGameState(apiRequest);

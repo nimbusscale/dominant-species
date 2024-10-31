@@ -14,6 +14,7 @@ jobs:
         with:
           node-version: 20.x
           cache: 'npm'
+      - run: npm ci -include-workspace-root -w api-types
       - run: npm run lint:api-types
   check-prettier:
     runs-on: ubuntu-latest

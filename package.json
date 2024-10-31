@@ -23,6 +23,7 @@
     "deploy:infra:iam": "npm run deploy:iam -w infra",
     "deploy:infra:gameMgmt": "npm run deploy:gameMgmt -w infra",
     "format:api-types": "npm run format -w api-types",
+    "format:backend": "npm run format -w backend",
     "format:frontend": "npm run format -w frontend",
     "format:infra": "npm run format -w infra",
     "lint:api-types": "npm run lint -w api-types",
@@ -42,8 +43,8 @@
     "@compodoc/compodoc": "^1.1.25",
     "@types/aws-lambda": "^8.10.145",
     "@types/jasmine": "~5.1.0",
-    "@types/lodash": "^4.17.10",
     "@types/jest": "^29.5.13",
+    "@types/lodash": "^4.17.10",
     "@types/node": "22.5.4",
     "angular-eslint": "18.3.1",
     "aws-cdk": "2.161.1",
@@ -64,5 +65,8 @@
     "tsuml2": "^0.17.0",
     "typescript": "~5.5.2",
     "typescript-eslint": "8.2.0"
+  },
+  "dependencies": {
+    "fast-json-patch": "^3.1.1"
   }
 }
