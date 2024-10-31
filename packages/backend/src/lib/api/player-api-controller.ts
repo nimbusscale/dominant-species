@@ -33,7 +33,7 @@ export class PlayerApiController {
     }
   }
 
-  async setFriends(apiRequest: ApiRequest): Promise<undefined> {
+  async setFriends(apiRequest: ApiRequest): Promise<void> {
     // path should be in the format of '/v1/player/{username}'
     const username = apiRequest.path.split('/')[3];
     // This doesn't handle invalid requests very well, should revisit in the future.

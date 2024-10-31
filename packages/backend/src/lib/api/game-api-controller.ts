@@ -21,7 +21,7 @@ export class GameApiController {
     this.gameStateObjectManager = gameStateObjectManager;
   }
 
-  async addGame(apiRequest: ApiRequest): Promise<undefined> {
+  async addGame(apiRequest: ApiRequest): Promise<void> {
     if (apiRequest.body) {
       const game = JSON.parse(apiRequest.body) as Game;
       await this.gameRecordManager.addGame(game);
@@ -41,7 +41,7 @@ export class GameApiController {
     }
   }
 
-  async completeGame(apiRequest: ApiRequest): Promise<undefined> {
+  async completeGame(apiRequest: ApiRequest): Promise<void> {
     // path should be in the format of '/v1/game/{gameId}'
     const gameId = apiRequest.path.split('/')[3];
     if (apiRequest.body) {
@@ -57,7 +57,7 @@ export class GameApiController {
     }
   }
 
-  async putInitialGameState(apiRequest: ApiRequest): Promise<undefined> {
+  async putInitialGameState(apiRequest: ApiRequest): Promise<void> {
     if (apiRequest.body) {
       const gameState = JSON.parse(apiRequest.body) as GameState;
       await this.gameStateRecordManager.addInitialGameState(gameState);
