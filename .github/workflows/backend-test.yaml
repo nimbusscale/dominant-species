@@ -15,7 +15,6 @@ jobs:
           node-version: 20.x
           cache: 'npm'
       - run: npm ci -include-workspace-root -w backend -w api-types
-      - run: npm run build:backend
       - run: npm run lint:backend
       - run: npm run test:backend
   check-prettier:
