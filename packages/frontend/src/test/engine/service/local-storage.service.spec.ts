@@ -10,6 +10,7 @@ describe('LocalStorageService', () => {
     service = TestBed.inject(LocalStorageService);
   });
 
+  // just a wrapper to localStorage, so creation test fine.
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
