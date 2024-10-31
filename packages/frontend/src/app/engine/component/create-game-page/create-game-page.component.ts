@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {PlayerService} from "../../service/game-management/player.service";
+import { Player } from 'api-types/src/player';
 import {GameService} from "../../service/game-management/game.service";
 import {MatCard} from "@angular/material/card";
 import {MatFormField, MatFormFieldModule} from "@angular/material/form-field";
@@ -33,7 +34,7 @@ import {Router} from "@angular/router";
   styleUrl: './create-game-page.component.scss',
 })
 export class CreateGamePageComponent implements OnInit {
-  currentUsername: string = '';
+  currentUser: Player | undefined;
   form: FormGroup;
   filteredPlayers: string[][] = [[], [], [], [], []];
   errorMessages: string[] = ['', '', '', '', ''];
@@ -51,7 +52,7 @@ export class CreateGamePageComponent implements OnInit {
 
   ngOnInit(): void {
     this.playerService.currentPlayer$.pipe(filter(isNotUndefined), take(1)).subscribe((player) => {
-      this.currentUsername = player.username;
+      this.currentUser = player;
     })
   }
 

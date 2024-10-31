@@ -1,10 +1,10 @@
-<div class="create-game-page">
+<article class="create-game-page">
   <mat-card>
     <h2>Create a New Game</h2>
 
     <!-- Current User Field -->
     <mat-form-field>
-      <input matInput placeholder="Player 1" [value]="currentUsername" disabled />
+      <input matInput placeholder="Player 1" [value]="currentUser?.username ?? ''" disabled />
     </mat-form-field>
 
     <!-- Other Players Fields with Autocomplete -->
@@ -30,4 +30,4 @@
     <!-- Create Game Button -->
     <button mat-raised-button color="primary" (click)="createGame()">Create Game</button>
   </mat-card>
-</div>
+</article>
