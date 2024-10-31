@@ -45,6 +45,7 @@ export class PlayerService {
   async addfriend(username: string): Promise<void> {
     ensureDefined(this.currentPlayer).friends.push(username);
     await this.gameManagementClientService.setFriends(ensureDefined(this.currentPlayer));
+    this.currentPlayerSubject.next(this.currentPlayer);
   }
 
   async removeFriend(username: string): Promise<void> {
@@ -52,5 +53,6 @@ export class PlayerService {
       (friendUsername) => friendUsername !== username,
     );
     await this.gameManagementClientService.setFriends(ensureDefined(this.currentPlayer));
+    this.currentPlayerSubject.next(this.currentPlayer);
   }
 }

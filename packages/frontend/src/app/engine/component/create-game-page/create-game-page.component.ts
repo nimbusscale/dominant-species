@@ -51,7 +51,7 @@ export class CreateGamePageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.playerService.currentPlayer$.pipe(filter(isNotUndefined), take(1)).subscribe((player) => {
+    this.playerService.currentPlayer$.pipe(filter(isNotUndefined)).subscribe((player) => {
       this.currentUser = player;
     })
   }
