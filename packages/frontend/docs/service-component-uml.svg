@@ -81,7 +81,7 @@
 [PlayerService]  -  [AuthService]
 [PlayerService]  -  [GameManagementClientService]
 [GameStateClientService||+sendGspToBackend(): void]
-[GameStateInitializationService|-factoryByGameTitle: Map&lt;string, InitialGameElementStatesFactoryConstructor&gt;|+build(): GameState]
+[GameStateInitializationService|-factoryByGameTitle: Map&lt;string, InitialGameElementStatesFactoryConstructor&gt;;+factoryMap: Map&lt;string, InitialGameElementStatesFactoryConstructor&gt;|+build(): GameState]
 [GameStatePatchService||+create(): GameStatePatch;+apply(): GameState]
 [GameStateStoreService|-_gameState: GameState;-_transactionState: any;-gameStateSubject: BehaviorSubject&lt;GameState&gt;|-getObservableForKey(): Observable&lt;T&gt;;-setTransactionStateElement(): void;-registerTransactionStateElement(): void;-_setGameState(): void;+setGameState(): void;+startTransaction(): void;+commitTransaction(): void;+rollbackTransaction(): void;+setArea(): void;+registerArea(): void;+setFaction(): void;+registerFaction(): void;+setPile(): void;+registerPile(): void]
 [GameStateService|-gameStateStore: GameStateStoreService;-gspService: GameStatePatchService;-gameStateClient: GameStateClientService|-applyGsp(): void;+startTransaction(): void;+commitTransaction(): void;+rollbackTransaction(): void;+requireTransaction(): void;+setArea(): void;+registerArea(): void;+setFaction(): void;+registerFaction(): void;+setPile(): void;+registerPile(): void]
@@ -158,7 +158,7 @@
 <path d="M2283.3 1096.8 L2176.25 1142 L2257.9073482428116 1199.5 L2257.9 1199.5 " fill="none"></path>
 <path d="M2038.1 756.5 L1674.25 874 L1674.25 1008 L1674.25 1008 L1674.25 1142 L1674.25 1142 L2202.5 1256.147221263376 L2202.5 1256.1 " fill="none"></path>
 <path d="M2390.7 756.5 L2520 874 L2516.082089552239 894 L2516.1 894.0 " fill="none"></path>
-<path d="M2566.8 711.3 L3693.25 874 L3693.25 961.5 L3693.3 961.5 " fill="none"></path>
+<path d="M2566.8 711.3 L3693.25 874 L3693.25 954 L3693.3 954.0 " fill="none"></path>
 <path d="M1601.8 764.0 L1580 874 L1580 1008 L1580 1008 L1580 1142 L1580 1142 L2202.5 1261.0241295051924 L2202.5 1261.0 " fill="none"></path>
 <path d="M1839.8 764.0 L2104 874 L2283.25 935.6279666452855 L2283.3 935.6 " fill="none"></path>
 <path d="M229.6 1435.0 L206.5 1455 L206.5 1475 L206.5 1475.0 " fill="none"></path>
@@ -1204,23 +1204,24 @@
 </g>
 <g data-name="GameStateInitializationService">
 <g fill="#eee8d5" stroke="#33322E" data-name="GameStateInitializationService">
-<rect x="3369.3" y="961.5" height="93.0" width="648.0" data-name="GameStateInitializationService"></rect>
-<path d="M3369.3 992.5 L4017.3 992.5" fill="none" data-name="GameStateInitializationService"></path>
-<path d="M3369.3 1023.5 L4017.3 1023.5" fill="none" data-name="GameStateInitializationService"></path>
+<rect x="3369.3" y="954.0" height="108.0" width="648.0" data-name="GameStateInitializationService"></rect>
+<path d="M3369.3 985.0 L4017.3 985.0" fill="none" data-name="GameStateInitializationService"></path>
+<path d="M3369.3 1031.0 L4017.3 1031.0" fill="none" data-name="GameStateInitializationService"></path>
 </g>
-<g transform="translate(3369.25, 961.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="GameStateInitializationService">
+<g transform="translate(3369.25, 954)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="GameStateInitializationService">
 <g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="GameStateInitializationService">
 <a id="../src/app/engine/service/game-state/game-state-initialization.service.ts.GameStateInitializationService" xlink:href="../src/app/engine/service/game-state/game-state-initialization.service.ts"><text x="316.0" y="13.5" stroke="none" text-anchor="middle" data-name="GameStateInitializationService">GameStateInitializationService</text></a>
 
 </g>
 </g>
-<g transform="translate(3369.25, 992.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="GameStateInitializationService">
+<g transform="translate(3369.25, 985)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="GameStateInitializationService">
 <g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="GameStateInitializationService">
 <text x="0.0" y="13.5" stroke="none" data-name="GameStateInitializationService">-factoryByGameTitle: Map&lt;string, InitialGameElementStatesFactoryConstructor&gt;</text>
+<text x="0.0" y="28.5" stroke="none" data-name="GameStateInitializationService">+factoryMap: Map&lt;string, InitialGameElementStatesFactoryConstructor&gt;</text>
 
 </g>
 </g>
-<g transform="translate(3369.25, 1023.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="GameStateInitializationService">
+<g transform="translate(3369.25, 1031)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="GameStateInitializationService">
 <g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="GameStateInitializationService">
 <text x="0.0" y="13.5" stroke="none" data-name="GameStateInitializationService">+build(): GameState</text>
 

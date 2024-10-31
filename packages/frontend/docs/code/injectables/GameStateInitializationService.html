@@ -137,6 +137,7 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#factoryByGameTitle" >factoryByGameTitle</a>
                             </li>
                         </ul>
@@ -166,6 +167,54 @@
     </table>
 </section>
 
+            <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(factoryMap: <a href="../interfaces/InitialGameElementStatesFactory.html" target="_self">Map&lt;string | InitialGameElementStatesFactoryConstructor&gt; | null</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/engine/service/game-state/game-state-initialization.service.ts:18</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>factoryMap</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../interfaces/InitialGameElementStatesFactory.html" target="_self" >Map&lt;string | InitialGameElementStatesFactoryConstructor&gt; | null</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
 
             <section data-compodoc="block-methods">
     
@@ -192,8 +241,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="19"
-                                    class="link-to-prism">src/app/engine/service/game-state/game-state-initialization.service.ts:19</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="28"
+                                    class="link-to-prism">src/app/engine/service/game-state/game-state-initialization.service.ts:28</a></div>
                         </td>
                     </tr>
 
@@ -276,6 +325,7 @@
                     <a name="factoryByGameTitle"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
                         <span ><b>factoryByGameTitle</b></span>
                         <a href="#factoryByGameTitle"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -287,17 +337,9 @@
 
                     </td>
                 </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>new Map&lt;
-    string,
-    InitialGameElementStatesFactoryConstructor
-  &gt;([[GameTitle.DOMINANT_SPECIES, GameElementStatesFactoryService]])</code>
-                    </td>
-                </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/engine/service/game-state/game-state-initialization.service.ts:14</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/engine/service/game-state/game-state-initialization.service.ts:18</a></div>
                         </td>
                     </tr>
 
@@ -310,7 +352,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Inject, Injectable, Optional } from &#x27;@angular/core&#x27;;
 import {
   getEmptyInitialGameState,
   InitialGameElementStatesFactoryConstructor,
@@ -319,16 +361,26 @@ import { GameTitle } from &#x27;../../constant/game-title.constant&#x27;;
 import { GameElementStatesFactoryService } from &#x27;../../../game/service/game-element-states-factory.service&#x27;;
 import { GameState } from &#x27;api-types/src/game-state&#x27;;
 
+const FACTORY_MAP &#x3D; new Map&lt;string, InitialGameElementStatesFactoryConstructor&gt;([
+  [GameTitle.DOMINANT_SPECIES, GameElementStatesFactoryService],
+]);
+
 @Injectable({
   providedIn: &#x27;root&#x27;,
 })
 export class GameStateInitializationService {
-  private factoryByGameTitle: Map&lt;string, InitialGameElementStatesFactoryConstructor&gt; &#x3D; new Map&lt;
-    string,
-    InitialGameElementStatesFactoryConstructor
-  &gt;([[GameTitle.DOMINANT_SPECIES, GameElementStatesFactoryService]]);
+  private readonly factoryByGameTitle: Map&lt;string, InitialGameElementStatesFactoryConstructor&gt;;
+
+  constructor(
+    @Optional()
+    @Inject(&#x27;FACTORY_MAP&#x27;)
+    factoryMap: Map&lt;string, InitialGameElementStatesFactoryConstructor&gt; | null,
+  ) {
+    this.factoryByGameTitle &#x3D; factoryMap ?? FACTORY_MAP;
+  }
 
   build(gameTitle: string, gameId: string, playerIds: string[]): GameState {
+    console.log(this.factoryByGameTitle);
     const gameState &#x3D; getEmptyInitialGameState(gameId, playerIds);
     const gameElementsFactoryClass &#x3D; this.factoryByGameTitle.get(gameTitle);
     if (gameElementsFactoryClass) {

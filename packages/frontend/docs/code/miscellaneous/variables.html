@@ -131,6 +131,9 @@
                             <a href="#emptyGameState" title="src/app/engine/model/game-state.model.ts" ><b>emptyGameState</b>&nbsp;&nbsp;&nbsp;(src/.../game-state.model.ts)</a>
                         </li>
                         <li>
+                            <a href="#FACTORY_MAP" title="src/app/engine/service/game-state/game-state-initialization.service.ts" ><b>FACTORY_MAP</b>&nbsp;&nbsp;&nbsp;(src/.../game-state-initialization.service.ts)</a>
+                        </li>
+                        <li>
                             <a href="#imgPathByKind" title="src/app/game/constant/image.constant.ts" ><b>imgPathByKind</b>&nbsp;&nbsp;&nbsp;(src/.../image.constant.ts)</a>
                         </li>
                         <li>
@@ -173,6 +176,10 @@
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideAnimationsAsync(&#x27;noop&#x27;),
+    {
+      provide: CognitoIdentityProviderClient,
+      useFactory: () &#x3D;&gt; new CognitoIdentityProviderClient({ region: environment.cognito.region }),
+    },
   ],
 }</code>
                     </td>
@@ -405,6 +412,31 @@
     pile: [],
   },
 }</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/engine/service/game-state/game-state-initialization.service.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="FACTORY_MAP"></a>
+                    <span class="name">
+                        <span ><b>FACTORY_MAP</b></span>
+                        <a href="#FACTORY_MAP"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Map&lt;string, InitialGameElementStatesFactoryConstructor&gt;([
+  [GameTitle.DOMINANT_SPECIES, GameElementStatesFactoryService],
+])</code>
                     </td>
                 </tr>
 
