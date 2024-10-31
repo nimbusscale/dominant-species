@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
-import {AuthService} from "../../../app/engine/service/auth/auth.service";
-import {authGuard} from "../../../app/engine/gaurd/auth.guard";
+import { AuthService } from '../../../app/engine/service/auth/auth.service';
+import { authGuard } from '../../../app/engine/gaurd/auth.guard';
 import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 
 describe('authGuard', () => {
@@ -18,8 +18,8 @@ describe('authGuard', () => {
     TestBed.configureTestingModule({
       providers: [
         { provide: AuthService, useValue: authService },
-        { provide: Router, useValue: router }
-      ]
+        { provide: Router, useValue: router },
+      ],
     });
 
     authServiceSpy = TestBed.inject(AuthService) as jasmine.SpyObj<AuthService>;

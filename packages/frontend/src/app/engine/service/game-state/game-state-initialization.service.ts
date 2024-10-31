@@ -1,4 +1,4 @@
-import {Inject, Injectable, Optional} from '@angular/core';
+import { Inject, Injectable, Optional } from '@angular/core';
 import {
   getEmptyInitialGameState,
   InitialGameElementStatesFactoryConstructor,
@@ -11,7 +11,6 @@ const FACTORY_MAP = new Map<string, InitialGameElementStatesFactoryConstructor>(
   [GameTitle.DOMINANT_SPECIES, GameElementStatesFactoryService],
 ]);
 
-
 @Injectable({
   providedIn: 'root',
 })
@@ -19,14 +18,15 @@ export class GameStateInitializationService {
   private readonly factoryByGameTitle: Map<string, InitialGameElementStatesFactoryConstructor>;
 
   constructor(
-    @Optional() @Inject('FACTORY_MAP') factoryMap: Map<string, InitialGameElementStatesFactoryConstructor> | null
+    @Optional()
+    @Inject('FACTORY_MAP')
+    factoryMap: Map<string, InitialGameElementStatesFactoryConstructor> | null,
   ) {
     this.factoryByGameTitle = factoryMap ?? FACTORY_MAP;
   }
 
-
   build(gameTitle: string, gameId: string, playerIds: string[]): GameState {
-    console.log(this.factoryByGameTitle)
+    console.log(this.factoryByGameTitle);
     const gameState = getEmptyInitialGameState(gameId, playerIds);
     const gameElementsFactoryClass = this.factoryByGameTitle.get(gameTitle);
     if (gameElementsFactoryClass) {

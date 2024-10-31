@@ -15,9 +15,7 @@ import { CognitoIdTokenJwt } from 'api-types/src/auth';
   providedIn: 'root',
 })
 export class CognitoClientService {
-  constructor(
-    private cognitoClient: CognitoIdentityProviderClient
-  ) {  }
+  constructor(private cognitoClient: CognitoIdentityProviderClient) {}
 
   async login(username: string, password: string): Promise<AuthenticationResultType | null> {
     const input = {

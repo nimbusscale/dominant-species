@@ -1,5 +1,11 @@
 import { Player } from 'api-types/src/player';
-import {FactionState, GameElementStates, GameState, GameStatePatch, PileState} from 'api-types/src/game-state';
+import {
+  FactionState,
+  GameElementStates,
+  GameState,
+  GameStatePatch,
+  PileState,
+} from 'api-types/src/game-state';
 
 function deepFreeze<T>(obj: T): T {
   const propNames = Object.getOwnPropertyNames(obj) as (keyof T)[];
@@ -59,21 +65,21 @@ export const testFactionState2: FactionState = deepFreeze({
 });
 
 export const testGameElementsStates: GameElementStates = deepFreeze({
-    area: [],
-    faction: [testFactionState1, testFactionState2],
-    pile: [
-      {
-        id: 'pile1',
-        owner: 'test',
-        inventory: { test1: 10, test2: 10 },
-      },
-      {
-        id: 'pile2',
-        owner: 'test',
-        inventory: { test3: 10 },
-      },
-    ],
-  } as GameElementStates)
+  area: [],
+  faction: [testFactionState1, testFactionState2],
+  pile: [
+    {
+      id: 'pile1',
+      owner: 'test',
+      inventory: { test1: 10, test2: 10 },
+    },
+    {
+      id: 'pile2',
+      owner: 'test',
+      inventory: { test3: 10 },
+    },
+  ],
+} as GameElementStates);
 
 export const testGameState1: GameState = deepFreeze({
   gameId: 'testGame1',

@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
 import { SignUpService } from '../../../../app/engine/service/auth/sign-up.service';
-import {CognitoIdentityProviderClient} from "@aws-sdk/client-cognito-identity-provider";
+import { CognitoIdentityProviderClient } from '@aws-sdk/client-cognito-identity-provider';
 
 describe('SignUpService', () => {
   let service: SignUpService;
@@ -10,10 +10,8 @@ describe('SignUpService', () => {
   beforeEach(() => {
     cognitoClientSpy = jasmine.createSpyObj('CognitoIdentityProviderClient', ['send']);
 
-   TestBed.configureTestingModule({
-      providers: [
-        { provide: CognitoIdentityProviderClient, useValue: cognitoClientSpy },
-      ],
+    TestBed.configureTestingModule({
+      providers: [{ provide: CognitoIdentityProviderClient, useValue: cognitoClientSpy }],
     });
     service = TestBed.inject(SignUpService);
   });

@@ -1,14 +1,17 @@
 import { TestBed } from '@angular/core/testing';
-import {GameElementStates, GameState} from 'api-types/src/game-state';
-import {GameStateInitializationService} from "../../../../app/engine/service/game-state/game-state-initialization.service";
-import {InitialGameElementStatesFactory, InitialGameElementStatesFactoryConstructor} from "../../../../app/engine/model/game-state.model";
-import {GameTitle} from "../../../../app/engine/constant/game-title.constant";
-import {testGameElementsStates} from "../../../game-state-test.constant";
+import { GameElementStates, GameState } from 'api-types/src/game-state';
+import { GameStateInitializationService } from '../../../../app/engine/service/game-state/game-state-initialization.service';
+import {
+  InitialGameElementStatesFactory,
+  InitialGameElementStatesFactoryConstructor,
+} from '../../../../app/engine/model/game-state.model';
+import { GameTitle } from '../../../../app/engine/constant/game-title.constant';
+import { testGameElementsStates } from '../../../game-state-test.constant';
 
-class MockGameElementStatesFactory implements InitialGameElementStatesFactory{
+class MockGameElementStatesFactory implements InitialGameElementStatesFactory {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   build(playerIds: string[]): GameElementStates {
-    return testGameElementsStates
+    return testGameElementsStates;
   }
 }
 
@@ -17,9 +20,7 @@ describe('GameStateInitializationService', () => {
   let mockFactoryMap: Map<string, InitialGameElementStatesFactoryConstructor>;
 
   beforeEach(() => {
-    mockFactoryMap = new Map([
-      [GameTitle.DOMINANT_SPECIES, MockGameElementStatesFactory],
-    ]);
+    mockFactoryMap = new Map([[GameTitle.DOMINANT_SPECIES, MockGameElementStatesFactory]]);
 
     TestBed.configureTestingModule({
       providers: [
@@ -47,7 +48,7 @@ describe('GameStateInitializationService', () => {
     const playerIds = ['player1', 'player2'];
 
     expect(() => service.build(unsupportedTitle, gameId, playerIds)).toThrowError(
-      `Unable to build initial state for ${unsupportedTitle}`
+      `Unable to build initial state for ${unsupportedTitle}`,
     );
   });
 });

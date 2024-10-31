@@ -7,8 +7,8 @@ import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/
 import { apiUrlInterceptor } from './engine/interceptor/api-url.interceptor';
 import { authInterceptor } from './engine/interceptor/auth.interceptor';
 import { errorHandlerInterceptor } from './engine/interceptor/error-handler.interceptor';
-import {CognitoIdentityProviderClient} from "@aws-sdk/client-cognito-identity-provider";
-import {environment} from "../environments/environment";
+import { CognitoIdentityProviderClient } from '@aws-sdk/client-cognito-identity-provider';
+import { environment } from '../environments/environment';
 
 export const appConfig: ApplicationConfig = {
   providers: [

@@ -29,8 +29,11 @@ describe('CognitoClientService', () => {
         IdToken: 'id',
         RefreshToken: 'refresh',
       };
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      cognitoClientSpy.send.and.returnValue(Promise.resolve({ AuthenticationResult: authResult }) as any);
+
+      cognitoClientSpy.send.and.returnValue(
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        Promise.resolve({ AuthenticationResult: authResult }) as any,
+      );
 
       const result = await service.login('testUser', 'testPassword');
       expect(result).toEqual(authResult);
@@ -53,7 +56,6 @@ describe('CognitoClientService', () => {
       expect(console.error).toHaveBeenCalled();
     });
   });
-
 
   describe('signUp', () => {
     it('should return true on successful sign up', async () => {
