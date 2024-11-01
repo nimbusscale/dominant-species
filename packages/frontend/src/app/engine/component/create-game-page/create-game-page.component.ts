@@ -98,7 +98,10 @@ export class CreateGamePageComponent implements OnInit {
           this.playerControls.value
             .filter((player: string | null, i: number) => player && i !== index) as string[]
         );
-        selectedPlayers.add(ensureDefined(this.currentUser).username)
+
+        // Add the current user's username to the selected players
+        selectedPlayers.add(ensureDefined(this.currentUser).username);
+
         this.filteredPlayers[index] = players.filter(player => !selectedPlayers.has(player));
         players.forEach(player => this.validPlayers[index].add(player));
       } catch (error) {
@@ -118,6 +121,9 @@ export class CreateGamePageComponent implements OnInit {
       this.playerControls.value
         .filter((player: string | null, i: number) => player && i !== index) as string[]
     );
+
+    // Add the current user's username to the selected players
+    selectedPlayers.add(ensureDefined(this.currentUser).username);
 
     this.errorMessages[index] = '';
     control.setErrors(null);
@@ -156,7 +162,7 @@ export class CreateGamePageComponent implements OnInit {
 
   updateAvailableFriends(): void {
     const selectedPlayers = new Set(this.playerControls.value.filter(Boolean) as string[]);
-    this.availableFriends = this.currentUser?.friends.filter(friend => !selectedPlayers.has(friend)) ?? [];
+    this.availableFriends = ensureDefined(this.currentUser).friends.filter(friend => !selectedPlayers.has(friend));
   }
 
   hasInvalidPlayer(): boolean {
@@ -173,7 +179,7 @@ export class CreateGamePageComponent implements OnInit {
   }
 
   isFriend(playerId: string): boolean {
-    return this.currentUser?.friends.includes(playerId) ?? false;
+    return ensureDefined(this.currentUser).friends.includes(playerId);
   }
 
   async createGame(): Promise<void> {
