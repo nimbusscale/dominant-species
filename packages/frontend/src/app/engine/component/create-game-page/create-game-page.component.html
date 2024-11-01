@@ -38,13 +38,13 @@
           </div>
         </ng-container>
 
-        <button
-          mat-raised-button
-          color="primary"
-          (click)="createGame()"
-          [disabled]="hasInvalidPlayer()">
-          Create Game
-        </button>
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="createGame()"
+        [disabled]="!hasValidPlayers() || hasInvalidPlayer()">
+        Create Game
+      </button>
       </section>
 
       <section class="friends-area">
