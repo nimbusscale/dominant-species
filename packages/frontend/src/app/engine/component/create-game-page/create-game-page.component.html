@@ -16,7 +16,7 @@
                 placeholder="Player {{ i + 2 }}"
                 [formControl]="control"
                 (input)="onPlayerInput(i)"
-                (blur)="onPlayerInput(i, true)"
+                (blur)="onPlayerBlur(i)"
                 [matAutocomplete]="auto"
               />
               <mat-autocomplete #auto="matAutocomplete">

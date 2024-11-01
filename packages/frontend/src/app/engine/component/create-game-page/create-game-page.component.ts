@@ -1,20 +1,21 @@
-import {Component, OnInit} from '@angular/core';
-import {PlayerService} from "../../service/game-management/player.service";
-import {Player} from 'api-types/src/player';
-import {GameService} from "../../service/game-management/game.service";
-import {MatCard} from "@angular/material/card";
-import {MatFormField, MatFormFieldModule} from "@angular/material/form-field";
-import {FormArray, FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {MatAutocomplete, MatAutocompleteTrigger, MatOption} from "@angular/material/autocomplete";
-import {MatButton, MatIconButton} from "@angular/material/button";
-import {MatInput} from "@angular/material/input";
-import {NgForOf, NgIf} from "@angular/common";
-import {filter, Subscription} from "rxjs";
-import {isNotUndefined} from "../../util/predicate";
-import {Router} from "@angular/router";
-import {MatIcon} from "@angular/material/icon";
-import {MatChip} from "@angular/material/chips";
-import {MatTooltip} from "@angular/material/tooltip";
+import { Component, OnInit } from '@angular/core';
+import { PlayerService } from '../../service/game-management/player.service';
+import { Player } from 'api-types/src/player';
+import { GameService } from '../../service/game-management/game.service';
+import { MatCard } from '@angular/material/card';
+import { MatFormField, MatFormFieldModule } from '@angular/material/form-field';
+import { FormArray, FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatAutocomplete, MatAutocompleteTrigger, MatOption } from '@angular/material/autocomplete';
+import { MatButton, MatIconButton } from '@angular/material/button';
+import { MatInput } from '@angular/material/input';
+import { NgForOf, NgIf } from '@angular/common';
+import { filter, Subscription } from 'rxjs';
+import { isNotUndefined } from '../../util/predicate';
+import { Router } from '@angular/router';
+import { MatIcon } from '@angular/material/icon';
+import { MatChip } from '@angular/material/chips';
+import { MatTooltip } from '@angular/material/tooltip';
+import {ensureDefined} from "../../util/misc";
 
 @Component({
   selector: 'app-create-game-page',
@@ -41,7 +42,6 @@ import {MatTooltip} from "@angular/material/tooltip";
   styleUrl: './create-game-page.component.scss',
 })
 export class CreateGamePageComponent implements OnInit {
-  // should be set based on title in the future.
   private readonly MAX_PLAYERS = 6;
   private _playerControls: FormArray<FormControl>;
   private subscriptions: Subscription[] = [];
@@ -49,10 +49,9 @@ export class CreateGamePageComponent implements OnInit {
   form: FormGroup;
   filteredPlayers: string[][] = [[], [], [], [], []];
   errorMessages: string[] = ['', '', '', '', ''];
-  validPlayers: Set<string>[] = Array.from({length: 5}, () => new Set<string>());
+  validPlayers: Set<string>[] = Array.from({ length: 5 }, () => new Set<string>());
   availableFriends: string[] = [];
   validInputStates: boolean[] = [false, false, false, false, false];
-
 
   constructor(
     private fb: FormBuilder,
@@ -64,7 +63,7 @@ export class CreateGamePageComponent implements OnInit {
       players: this.fb.array(['', '', '', '', ''])
     });
     this._playerControls = this.fb.array(
-      Array.from({length: this.MAX_PLAYERS - 1}, () => this.fb.control(''))
+      Array.from({ length: this.MAX_PLAYERS - 1 }, () => this.fb.control(''))
     ) as FormArray<FormControl>;
   }
 
@@ -86,52 +85,65 @@ export class CreateGamePageComponent implements OnInit {
     return this._playerControls;
   }
 
-  async onPlayerInput(index: number, triggerValidation = false): Promise<void> {
+  private async fetchPlayers(index: number): Promise<void> {
     const control = this.playerControls.at(index);
     const input = control.value as string;
     this.validPlayers[index].clear();
-    this.validInputStates[index] = false;
+    this.filteredPlayers[index] = [];
 
+    if (input) {
+      try {
+        const players = await this.playerService.findPlayers(input);
+        const selectedPlayers = new Set(
+          this.playerControls.value
+            .filter((player: string | null, i: number) => player && i !== index) as string[]
+        );
+        selectedPlayers.add(ensureDefined(this.currentUser).username)
+        this.filteredPlayers[index] = players.filter(player => !selectedPlayers.has(player));
+        players.forEach(player => this.validPlayers[index].add(player));
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  }
+
+  async onPlayerInput(index: number): Promise<void> {
+    await this.fetchPlayers(index);
+  }
+
+  async onPlayerBlur(index: number): Promise<void> {
+    const control = this.playerControls.at(index);
+    const input = control.value as string;
     const selectedPlayers = new Set(
       this.playerControls.value
         .filter((player: string | null, i: number) => player && i !== index) as string[]
     );
 
-    this.filteredPlayers[index] = [];
     this.errorMessages[index] = '';
     control.setErrors(null);
 
     if (input) {
-      try {
-        const players = await this.playerService.findPlayers(input);
-        this.filteredPlayers[index] = players.filter(player => !selectedPlayers.has(player));
-        players.forEach(player => this.validPlayers[index].add(player));
-
-        if (triggerValidation) {
-          if (!this.validPlayers[index].has(input)) {
-            this.errorMessages[index] = 'Invalid username';
-            control.setErrors({invalid: true});
-          } else if (selectedPlayers.has(input)) {
-            this.errorMessages[index] = 'Player already in the game';
-            control.setErrors({duplicate: true});
-          } else {
-            this.validInputStates[index] = !this.isFriend(input);  // Button only appears if not a friend
-          }
-          this.updateAvailableFriends();
-        }
-      } catch (error) {
-        this.errorMessages[index] = 'Error fetching players';
-        console.error(error);
-        control.setErrors({fetchError: true});
+      // Ensure the validPlayers set is populated
+      if (!this.validPlayers[index].has(input)) {
+        await this.fetchPlayers(index);
       }
+
+      if (!this.validPlayers[index].has(input)) {
+        this.errorMessages[index] = 'Invalid username';
+        control.setErrors({ invalid: true });
+      } else if (selectedPlayers.has(input)) {
+        this.errorMessages[index] = 'Player already in the game';
+        control.setErrors({ duplicate: true });
+      } else {
+        this.validInputStates[index] = !this.isFriend(input); // Button only appears if not a friend
+      }
+      this.updateAvailableFriends();
     }
   }
-
 
   isGameFullOrInvalid(): boolean {
     return this.hasInvalidPlayer() || this.playerControls.controls.every(control => control.value);
   }
-
 
   addFriendToGame(playerId: string): void {
     const emptyControl = this.playerControls.controls.find(control => !control.value);
