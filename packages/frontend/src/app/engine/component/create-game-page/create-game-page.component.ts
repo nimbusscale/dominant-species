@@ -45,8 +45,10 @@ export class CreateGamePageComponent implements OnInit {
   form: FormGroup;
   filteredPlayers: string[][] = [[], [], [], [], []];
   errorMessages: string[] = ['', '', '', '', ''];
-  validPlayers: Set<string>[] = Array.from({length: 5}, () => new Set<string>());
+  validPlayers: Set<string>[] = Array.from({ length: 5 }, () => new Set<string>());
   availableFriends: string[] = [];
+  validInputStates: boolean[] = [false, false, false, false, false];  // Track valid states for each input
+
 
   constructor(
     private fb: FormBuilder,
@@ -75,14 +77,14 @@ export class CreateGamePageComponent implements OnInit {
   async onPlayerInput(index: number, triggerValidation: boolean = false): Promise<void> {
     const control = this.playerControls.at(index);
     const input = control.value as string;
-    this.validPlayers[index].clear();  // Reset valid players for this input
+    this.validPlayers[index].clear();
+    this.validInputStates[index] = false;  // Reset to false initially
 
     const selectedPlayers = new Set(
       this.playerControls.value
         .filter((player: string | null, i: number) => player && i !== index) as string[]
     );
 
-    // Reset validation and filtered players for this input
     this.filteredPlayers[index] = [];
     this.errorMessages[index] = '';
     control.setErrors(null);
@@ -93,21 +95,22 @@ export class CreateGamePageComponent implements OnInit {
         this.filteredPlayers[index] = players.filter(player => !selectedPlayers.has(player));
         players.forEach(player => this.validPlayers[index].add(player));
 
-        // Run validation only if explicitly triggered by blur event
         if (triggerValidation) {
           if (!this.validPlayers[index].has(input)) {
             this.errorMessages[index] = 'Invalid username';
-            control.setErrors({invalid: true});
+            control.setErrors({ invalid: true });
           } else if (selectedPlayers.has(input)) {
             this.errorMessages[index] = 'Player already in the game';
-            control.setErrors({duplicate: true});
+            control.setErrors({ duplicate: true });
+          } else {
+            this.validInputStates[index] = true;  // Validation passes, mark as valid
           }
           this.updateAvailableFriends();
         }
       } catch (error) {
         this.errorMessages[index] = 'Error fetching players';
         console.error(error);
-        control.setErrors({fetchError: true});
+        control.setErrors({ fetchError: true });
       }
     }
   }

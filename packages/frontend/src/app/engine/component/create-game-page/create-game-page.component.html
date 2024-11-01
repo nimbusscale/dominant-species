@@ -29,13 +29,13 @@
         </mat-form-field>
 
         <button
-          *ngIf="control.value && !isFriend(control.value) && !control.invalid"
+          *ngIf="validInputStates[i]"
           mat-icon-button
           matTooltip="Add Friend"
           (click)="addFriend(control.value)">
           <mat-icon>person_add</mat-icon>
         </button>
-          </div>
+        </div>
       </ng-container>
 
       <button
@@ -56,8 +56,8 @@
         (click)="addFriendToGame(friend)">
         {{ friend }}
       </mat-chip>
-        </div>
-    </section>
       </div>
+    </section>
+    </div>
   </mat-card>
 </article>
