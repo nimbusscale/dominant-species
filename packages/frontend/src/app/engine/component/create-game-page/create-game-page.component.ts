@@ -47,7 +47,7 @@ export class CreateGamePageComponent implements OnInit {
   errorMessages: string[] = ['', '', '', '', ''];
   validPlayers: Set<string>[] = Array.from({length: 5}, () => new Set<string>());
   availableFriends: string[] = [];
-  validInputStates: boolean[] = [false, false, false, false, false];  // Track valid states for each input
+  validInputStates: boolean[] = [false, false, false, false, false];
 
 
   constructor(
@@ -61,24 +61,24 @@ export class CreateGamePageComponent implements OnInit {
     });
   }
 
-ngOnInit(): void {
-  this.playerService.currentPlayer$
-    .pipe(filter(isNotUndefined))
-    .subscribe((player) => {
-      this.currentUser = player;
-      this.updateAvailableFriends();
-    });
-}
+  ngOnInit(): void {
+    this.playerService.currentPlayer$
+      .pipe(filter(isNotUndefined))
+      .subscribe((player) => {
+        this.currentUser = player;
+        this.updateAvailableFriends();
+      });
+  }
 
   get playerControls(): FormArray<FormControl> {
     return this.form.get('players') as FormArray<FormControl>;
   }
 
-  async onPlayerInput(index: number, triggerValidation: boolean = false): Promise<void> {
+  async onPlayerInput(index: number, triggerValidation = false): Promise<void> {
     const control = this.playerControls.at(index);
     const input = control.value as string;
     this.validPlayers[index].clear();
-    this.validInputStates[index] = false;  // Reset to false initially
+    this.validInputStates[index] = false;
 
     const selectedPlayers = new Set(
       this.playerControls.value
@@ -126,8 +126,8 @@ ngOnInit(): void {
     if (!emptyControl) return;
 
     emptyControl.setValue(playerId);
-    this.updateAvailableFriends();  // Update chips visibility
-    this.onPlayerInput(this.playerControls.controls.indexOf(emptyControl));  // Trigger validation
+    this.updateAvailableFriends();
+    void this.onPlayerInput(this.playerControls.controls.indexOf(emptyControl));
   }
 
   updateAvailableFriends(): void {
@@ -135,19 +135,18 @@ ngOnInit(): void {
     this.availableFriends = this.currentUser?.friends.filter(friend => !selectedPlayers.has(friend)) ?? [];
   }
 
-
   hasInvalidPlayer(): boolean {
     return this.playerControls.controls.some(control => control.invalid);
   }
 
-async addFriend(playerId: string): Promise<void> {
-  if (!this.currentUser || this.currentUser.friends.includes(playerId)) return;
-  try {
-    await this.playerService.addFriend(playerId);
-  } catch (error) {
-    console.error('Failed to add friend', error);
+  async addFriend(playerId: string): Promise<void> {
+    if (!this.currentUser || this.currentUser.friends.includes(playerId)) return;
+    try {
+      await this.playerService.addFriend(playerId);
+    } catch (error) {
+      console.error('Failed to add friend', error);
+    }
   }
-}
 
   isFriend(playerId: string): boolean {
     return this.currentUser?.friends.includes(playerId) ?? false;
