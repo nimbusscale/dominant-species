@@ -23,14 +23,17 @@
 }
 
 .player-field {
-  width: 250px; /* Set a fixed width for input fields */
+  width: 250px;
 }
 
 button[mat-icon-button] {
   position: absolute;
-  right: -40px; /* Adjust based on the button width to align properly */
+  right: -50px;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translateY(-70%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .friends-area {
