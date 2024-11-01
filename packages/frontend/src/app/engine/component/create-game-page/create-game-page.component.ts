@@ -46,7 +46,6 @@ export class CreateGamePageComponent implements OnInit {
   private _playerControls: FormArray<FormControl>;
   private subscriptions: Subscription[] = [];
   currentUser: Player | undefined;
-  form: FormGroup;
   filteredPlayers: string[][] = [[], [], [], [], []];
   errorMessages: string[] = ['', '', '', '', ''];
   validPlayers: Set<string>[] = Array.from({ length: 5 }, () => new Set<string>());
@@ -59,9 +58,6 @@ export class CreateGamePageComponent implements OnInit {
     private playerService: PlayerService,
     private gameService: GameService
   ) {
-    this.form = this.fb.group({
-      players: this.fb.array(['', '', '', '', ''])
-    });
     this._playerControls = this.fb.array(
       Array.from({ length: this.MAX_PLAYERS - 1 }, () => this.fb.control(''))
     ) as FormArray<FormControl>;
@@ -106,6 +102,8 @@ export class CreateGamePageComponent implements OnInit {
         players.forEach(player => this.validPlayers[index].add(player));
       } catch (error) {
         console.error(error);
+        this.errorMessages[index] = 'Error fetching players';
+        control.setErrors({ fetchError: true });
       }
     }
   }
@@ -170,13 +168,14 @@ export class CreateGamePageComponent implements OnInit {
   }
 
   async addFriend(playerId: string): Promise<void> {
-    if (!this.currentUser || this.currentUser.friends.includes(playerId)) return;
+    if (ensureDefined(this.currentUser).friends.includes(playerId)) return;
     try {
       await this.playerService.addFriend(playerId);
     } catch (error) {
       console.error('Failed to add friend', error);
     }
   }
+
 
   isFriend(playerId: string): boolean {
     return ensureDefined(this.currentUser).friends.includes(playerId);
