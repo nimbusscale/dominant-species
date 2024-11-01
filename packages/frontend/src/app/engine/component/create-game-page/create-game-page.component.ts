@@ -72,7 +72,7 @@ export class CreateGamePageComponent implements OnInit {
     return this.form.get('players') as FormArray<FormControl>;
   }
 
-  async onPlayerInput(index: number): Promise<void> {
+  async onPlayerInput(index: number, triggerValidation: boolean = false): Promise<void> {
     const control = this.playerControls.at(index);
     const input = control.value as string;
     this.validPlayers[index].clear();  // Reset valid players for this input
@@ -87,25 +87,22 @@ export class CreateGamePageComponent implements OnInit {
     this.errorMessages[index] = '';
     control.setErrors(null);
 
-    // Check for duplicate entries
-    if (selectedPlayers.has(input)) {
-      this.errorMessages[index] = 'Player already in the game';
-      control.setErrors({duplicate: true});
-      return;
-    }
-
     if (input) {
       try {
         const players = await this.playerService.findPlayers(input);
         this.filteredPlayers[index] = players.filter(player => !selectedPlayers.has(player));
-
         players.forEach(player => this.validPlayers[index].add(player));
 
-        if (!this.validPlayers[index].has(input)) {
-          this.errorMessages[index] = 'Invalid username';
-          control.setErrors({invalid: true});
-        } else {
-          this.updateAvailableFriends();  // Update chips based on current players
+        // Run validation only if explicitly triggered by blur event
+        if (triggerValidation) {
+          if (!this.validPlayers[index].has(input)) {
+            this.errorMessages[index] = 'Invalid username';
+            control.setErrors({invalid: true});
+          } else if (selectedPlayers.has(input)) {
+            this.errorMessages[index] = 'Player already in the game';
+            control.setErrors({duplicate: true});
+          }
+          this.updateAvailableFriends();
         }
       } catch (error) {
         this.errorMessages[index] = 'Error fetching players';
@@ -114,6 +111,7 @@ export class CreateGamePageComponent implements OnInit {
       }
     }
   }
+
 
   isGameFullOrInvalid(): boolean {
     return this.hasInvalidPlayer() || this.playerControls.controls.every(control => control.value);

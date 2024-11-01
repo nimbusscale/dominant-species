@@ -16,6 +16,7 @@
             placeholder="Player {{ i + 2 }}"
             [formControl]="control"
             (input)="onPlayerInput(i)"
+            (blur)="onPlayerInput(i, true)"
             [matAutocomplete]="auto"
           />
           <mat-autocomplete #auto="matAutocomplete">
@@ -52,8 +53,7 @@
       <mat-chip
         *ngFor="let friend of availableFriends"
         [disabled]="isGameFullOrInvalid()"
-        (click)="addFriendToGame(friend)"
-        selectable="false">
+        (click)="addFriendToGame(friend)">
         {{ friend }}
       </mat-chip>
         </div>
