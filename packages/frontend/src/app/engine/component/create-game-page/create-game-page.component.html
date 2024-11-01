@@ -1,58 +1,63 @@
 <article class="create-game-page">
-  <mat-card>
-    <h2>Create a New Game</h2>
+  <mat-card appearance="outlined" class="create-game-card">
+    <div class="create-game-area">
 
-    <!-- Friend Chips Section -->
-    <mat-chip
-      *ngFor="let friend of availableFriends"
-      [disabled]="isGameFullOrInvalid()"
-      (click)="addFriendToGame(friend)"
-      selectable="false">
-      {{ friend }}
-    </mat-chip>
-
-
-    <!-- Current User Field -->
-    <mat-form-field>
-      <input matInput placeholder="Player 1" [value]="currentUser?.username ?? ''" disabled />
-    </mat-form-field>
-
-    <!-- Other Players Fields with Autocomplete and Add Friend Button -->
-    <ng-container *ngFor="let control of playerControls.controls; let i = index">
+    <section class="add-player-area">
+      <h4>Players</h4>
       <mat-form-field>
-        <input
-          matInput
-          placeholder="Player {{ i + 2 }}"
-          [formControl]="control"
-          (input)="onPlayerInput(i)"
-          [matAutocomplete]="auto"
-        />
-        <mat-autocomplete #auto="matAutocomplete">
-          <mat-option *ngFor="let player of filteredPlayers[i]" [value]="player">
-            {{ player }}
-          </mat-option>
-        </mat-autocomplete>
-
-        <!-- Display the error message if there's content in errorMessages[i] -->
-        <mat-error *ngIf="errorMessages[i]">{{ errorMessages[i] }}</mat-error>
+        <input matInput placeholder="Player 1" [value]="currentUser?.username ?? ''" disabled/>
       </mat-form-field>
 
-      <!-- Add Friend Button, hidden if user is invalid or duplicated -->
-      <button
-        *ngIf="control.value && !isFriend(control.value) && !control.invalid"
-        mat-icon-button
-        (click)="addFriend(control.value)">
-        <mat-icon>person_add</mat-icon>
-      </button>
-    </ng-container>
+      <ng-container *ngFor="let control of playerControls.controls; let i = index">
+        <div class="player-input-area">
+        <mat-form-field>
+          <input
+            matInput
+            placeholder="Player {{ i + 2 }}"
+            [formControl]="control"
+            (input)="onPlayerInput(i)"
+            [matAutocomplete]="auto"
+          />
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let player of filteredPlayers[i]" [value]="player">
+              {{ player }}
+            </mat-option>
+          </mat-autocomplete>
 
-    <!-- Create Game Button, disabled if any input is invalid or duplicated -->
-    <button
-      mat-raised-button
-      color="primary"
-      (click)="createGame()"
-      [disabled]="hasInvalidPlayer()">
-      Create Game
-    </button>
+          <mat-error *ngIf="errorMessages[i]">{{ errorMessages[i] }}</mat-error>
+        </mat-form-field>
+
+        <button
+          *ngIf="control.value && !isFriend(control.value) && !control.invalid"
+          mat-icon-button
+          matTooltip="Add Friend"
+          (click)="addFriend(control.value)">
+          <mat-icon>person_add</mat-icon>
+        </button>
+          </div>
+      </ng-container>
+
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="createGame()"
+        [disabled]="hasInvalidPlayer()">
+        Create Game
+      </button>
+    </section>
+
+    <section class="friends-area">
+      <h4>Friends</h4>
+      <div class="friend-chip-area">
+      <mat-chip
+        *ngFor="let friend of availableFriends"
+        [disabled]="isGameFullOrInvalid()"
+        (click)="addFriendToGame(friend)"
+        selectable="false">
+        {{ friend }}
+      </mat-chip>
+        </div>
+    </section>
+      </div>
   </mat-card>
 </article>

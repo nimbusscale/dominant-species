@@ -14,6 +14,7 @@ import {isNotUndefined} from "../../util/predicate";
 import {Router} from "@angular/router";
 import {MatIcon} from "@angular/material/icon";
 import {MatChip} from "@angular/material/chips";
+import {MatTooltip} from "@angular/material/tooltip";
 
 @Component({
   selector: 'app-create-game-page',
@@ -33,7 +34,8 @@ import {MatChip} from "@angular/material/chips";
     ReactiveFormsModule,
     MatIcon,
     MatIconButton,
-    MatChip
+    MatChip,
+    MatTooltip
   ],
   templateUrl: './create-game-page.component.html',
   styleUrl: './create-game-page.component.scss',

@@ -1,0 +1,34 @@
+.create-game-card {
+  background: #fff;
+  margin: 10px;
+  max-width: 1000px;
+}
+
+.create-game-area {
+  display: flex;
+  flex-direction: row;
+}
+
+.add-player-area {
+  display: flex;
+  flex-direction: column;
+}
+
+.player-input-area {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.friends-area {
+  display: flex;
+  flex-direction: column;
+  padding-left: 80px;
+}
+
+.friend-chip-area {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: center;
+}
