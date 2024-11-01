@@ -28,13 +28,13 @@
           <mat-error *ngIf="errorMessages[i]">{{ errorMessages[i] }}</mat-error>
         </mat-form-field>
 
-        <button
-          *ngIf="validInputStates[i]"
-          mat-icon-button
-          matTooltip="Add Friend"
-          (click)="addFriend(control.value)">
-          <mat-icon>person_add</mat-icon>
-        </button>
+      <button
+        *ngIf="validInputStates[i] && !isFriend(control.value)"
+        mat-icon-button
+        matTooltip="Add Friend"
+        (click)="addFriend(control.value)">
+        <mat-icon>person_add</mat-icon>
+      </button>
         </div>
       </ng-container>
 

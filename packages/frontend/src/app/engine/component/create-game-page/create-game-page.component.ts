@@ -45,7 +45,7 @@ export class CreateGamePageComponent implements OnInit {
   form: FormGroup;
   filteredPlayers: string[][] = [[], [], [], [], []];
   errorMessages: string[] = ['', '', '', '', ''];
-  validPlayers: Set<string>[] = Array.from({ length: 5 }, () => new Set<string>());
+  validPlayers: Set<string>[] = Array.from({length: 5}, () => new Set<string>());
   availableFriends: string[] = [];
   validInputStates: boolean[] = [false, false, false, false, false];  // Track valid states for each input
 
@@ -61,14 +61,14 @@ export class CreateGamePageComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-    this.playerService.currentPlayer$
-      .pipe(filter(isNotUndefined))
-      .subscribe((player) => {
-        this.currentUser = player;
-        this.availableFriends = [...player.friends];
-      });
-  }
+ngOnInit(): void {
+  this.playerService.currentPlayer$
+    .pipe(filter(isNotUndefined))
+    .subscribe((player) => {
+      this.currentUser = player;
+      this.updateAvailableFriends();
+    });
+}
 
   get playerControls(): FormArray<FormControl> {
     return this.form.get('players') as FormArray<FormControl>;
@@ -98,19 +98,19 @@ export class CreateGamePageComponent implements OnInit {
         if (triggerValidation) {
           if (!this.validPlayers[index].has(input)) {
             this.errorMessages[index] = 'Invalid username';
-            control.setErrors({ invalid: true });
+            control.setErrors({invalid: true});
           } else if (selectedPlayers.has(input)) {
             this.errorMessages[index] = 'Player already in the game';
-            control.setErrors({ duplicate: true });
+            control.setErrors({duplicate: true});
           } else {
-            this.validInputStates[index] = true;  // Validation passes, mark as valid
+            this.validInputStates[index] = !this.isFriend(input);  // Button only appears if not a friend
           }
           this.updateAvailableFriends();
         }
       } catch (error) {
         this.errorMessages[index] = 'Error fetching players';
         console.error(error);
-        control.setErrors({ fetchError: true });
+        control.setErrors({fetchError: true});
       }
     }
   }
@@ -135,19 +135,19 @@ export class CreateGamePageComponent implements OnInit {
     this.availableFriends = this.currentUser?.friends.filter(friend => !selectedPlayers.has(friend)) ?? [];
   }
 
-  // Check if any player input is invalid or duplicate
+
   hasInvalidPlayer(): boolean {
     return this.playerControls.controls.some(control => control.invalid);
   }
 
-  async addFriend(playerId: string): Promise<void> {
-    if (!this.currentUser || this.currentUser.friends.includes(playerId)) return;
-    try {
-      await this.playerService.addFriend(playerId);
-    } catch (error) {
-      console.error('Failed to add friend', error);
-    }
+async addFriend(playerId: string): Promise<void> {
+  if (!this.currentUser || this.currentUser.friends.includes(playerId)) return;
+  try {
+    await this.playerService.addFriend(playerId);
+  } catch (error) {
+    console.error('Failed to add friend', error);
   }
+}
 
   isFriend(playerId: string): boolean {
     return this.currentUser?.friends.includes(playerId) ?? false;
