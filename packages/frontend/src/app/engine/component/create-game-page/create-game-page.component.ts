@@ -9,7 +9,7 @@ import {MatAutocomplete, MatAutocompleteTrigger, MatOption} from "@angular/mater
 import {MatButton, MatIconButton} from "@angular/material/button";
 import {MatInput} from "@angular/material/input";
 import {NgForOf, NgIf} from "@angular/common";
-import {filter} from "rxjs";
+import {filter, Subscription} from "rxjs";
 import {isNotUndefined} from "../../util/predicate";
 import {Router} from "@angular/router";
 import {MatIcon} from "@angular/material/icon";
@@ -41,6 +41,10 @@ import {MatTooltip} from "@angular/material/tooltip";
   styleUrl: './create-game-page.component.scss',
 })
 export class CreateGamePageComponent implements OnInit {
+  // should be set based on title in the future.
+  private readonly MAX_PLAYERS = 6;
+  private _playerControls: FormArray<FormControl>;
+  private subscriptions: Subscription[] = [];
   currentUser: Player | undefined;
   form: FormGroup;
   filteredPlayers: string[][] = [[], [], [], [], []];
@@ -59,19 +63,27 @@ export class CreateGamePageComponent implements OnInit {
     this.form = this.fb.group({
       players: this.fb.array(['', '', '', '', ''])
     });
+    this._playerControls = this.fb.array(
+      Array.from({length: this.MAX_PLAYERS - 1}, () => this.fb.control(''))
+    ) as FormArray<FormControl>;
   }
 
   ngOnInit(): void {
-    this.playerService.currentPlayer$
+    const playerSubscription = this.playerService.currentPlayer$
       .pipe(filter(isNotUndefined))
       .subscribe((player) => {
         this.currentUser = player;
         this.updateAvailableFriends();
       });
+    this.subscriptions.push(playerSubscription);
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 
   get playerControls(): FormArray<FormControl> {
-    return this.form.get('players') as FormArray<FormControl>;
+    return this._playerControls;
   }
 
   async onPlayerInput(index: number, triggerValidation = false): Promise<void> {
