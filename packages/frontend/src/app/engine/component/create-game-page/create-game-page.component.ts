@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {PlayerService} from '../../service/game-management/player.service';
 import {Player} from 'api-types/src/player';
 import {GameService} from '../../service/game-management/game.service';
@@ -42,7 +42,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
   templateUrl: './create-game-page.component.html',
   styleUrl: './create-game-page.component.scss',
 })
-export class CreateGamePageComponent implements OnInit {
+export class CreateGamePageComponent implements OnInit, OnDestroy {
   private readonly MAX_PLAYERS = 6;
   playerControls: FormArray<FormControl>;
   private subscriptions: Subscription[] = [];
@@ -158,6 +158,10 @@ export class CreateGamePageComponent implements OnInit {
   async addFriendToGame(playerId: string): Promise<void> {
     const emptyControl = this.playerControls.controls.find(control => !control.value);
     if (!emptyControl) return;
+
+    const isPlayerAlreadyAdded = this.playerControls.controls.some(control => control.value === playerId);
+    if (isPlayerAlreadyAdded) return;
+
 
     emptyControl.setValue(playerId);
     this.updateAvailableFriends();
