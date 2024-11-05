@@ -1,0 +1,1802 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>frontend documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/vagrant.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">frontend documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  CreateGamePageComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/engine/component/create-game-page/create-game-page.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnInit</code>
+                <code>OnDestroy</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-create-game-page</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>MatCard</code>
+                            <code>MatFormField</code>
+                            <code>MatFormFieldModule</code>
+                            <code>FormsModule</code>
+                            <code>MatAutocompleteTrigger</code>
+                            <code>MatAutocomplete</code>
+                            <code>MatOption</code>
+                            <code>MatButton</code>
+                            <code>MatInput</code>
+                            <code>NgForOf</code>
+                            <code>NgIf</code>
+                            <code>ReactiveFormsModule</code>
+                            <code>MatIcon</code>
+                            <code>MatIconButton</code>
+                            <code>MatChip</code>
+                            <code>MatTooltip</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./create-game-page.component.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./create-game-page.component.scss</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#availableFriends" >availableFriends</a>
+                            </li>
+                            <li>
+                                <a href="#currentUser" >currentUser</a>
+                            </li>
+                            <li>
+                                <a href="#errorMessages" >errorMessages</a>
+                            </li>
+                            <li>
+                                <a href="#filteredPlayers" >filteredPlayers</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#MAX_PLAYERS" >MAX_PLAYERS</a>
+                            </li>
+                            <li>
+                                <a href="#playerControls" >playerControls</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#subscriptions" >subscriptions</a>
+                            </li>
+                            <li>
+                                <a href="#validInputStates" >validInputStates</a>
+                            </li>
+                            <li>
+                                <a href="#validPlayers" >validPlayers</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#addFriend" >addFriend</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#addFriendToGame" >addFriendToGame</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#createGame" >createGame</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#fetchPlayers" >fetchPlayers</a>
+                            </li>
+                            <li>
+                                <a href="#hasInvalidPlayer" >hasInvalidPlayer</a>
+                            </li>
+                            <li>
+                                <a href="#hasValidPlayers" >hasValidPlayers</a>
+                            </li>
+                            <li>
+                                <a href="#isFriend" >isFriend</a>
+                            </li>
+                            <li>
+                                <a href="#isGameFullOrInvalid" >isGameFullOrInvalid</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnDestroy" >ngOnDestroy</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#onPlayerBlur" >onPlayerBlur</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#onPlayerInput" >onPlayerInput</a>
+                            </li>
+                            <li>
+                                <a href="#updateAvailableFriends" >updateAvailableFriends</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(fb: FormBuilder, router: Router, snackBar: MatSnackBar, playerService: <a href="../injectables/PlayerService.html" target="_self">PlayerService</a>, gameService: <a href="../injectables/GameService.html" target="_self">GameService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/engine/component/create-game-page/create-game-page.component.ts:60</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>fb</td>
+                                                  
+                                                        <td>
+                                                                    <code>FormBuilder</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                    <code>Router</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>snackBar</td>
+                                                  
+                                                        <td>
+                                                                    <code>MatSnackBar</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>playerService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/PlayerService.html" target="_self" >PlayerService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>gameService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/GameService.html" target="_self" >GameService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addFriend"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>addFriend</b></span>
+                        <a href="#addFriend"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>addFriend(playerId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="199"
+                                    class="link-to-prism">src/app/engine/component/create-game-page/create-game-page.component.ts:199</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>playerId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addFriendToGame"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>addFriendToGame</b></span>
+                        <a href="#addFriendToGame"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>addFriendToGame(playerId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="170"
+                                    class="link-to-prism">src/app/engine/component/create-game-page/create-game-page.component.ts:170</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>playerId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createGame"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>createGame</b></span>
+                        <a href="#createGame"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>createGame()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="215"
+                                    class="link-to-prism">src/app/engine/component/create-game-page/create-game-page.component.ts:215</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="fetchPlayers"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Async</span>
+                        <span ><b>fetchPlayers</b></span>
+                        <a href="#fetchPlayers"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>fetchPlayers(index: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="90"
+                                    class="link-to-prism">src/app/engine/component/create-game-page/create-game-page.component.ts:90</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>index</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="hasInvalidPlayer"></a>
+                    <span class="name">
+                        <span ><b>hasInvalidPlayer</b></span>
+                        <a href="#hasInvalidPlayer"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>hasInvalidPlayer()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="195"
+                                    class="link-to-prism">src/app/engine/component/create-game-page/create-game-page.component.ts:195</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="hasValidPlayers"></a>
+                    <span class="name">
+                        <span ><b>hasValidPlayers</b></span>
+                        <a href="#hasValidPlayers"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>hasValidPlayers()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="191"
+                                    class="link-to-prism">src/app/engine/component/create-game-page/create-game-page.component.ts:191</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isFriend"></a>
+                    <span class="name">
+                        <span ><b>isFriend</b></span>
+                        <a href="#isFriend"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>isFriend(playerId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="211"
+                                    class="link-to-prism">src/app/engine/component/create-game-page/create-game-page.component.ts:211</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>playerId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isGameFullOrInvalid"></a>
+                    <span class="name">
+                        <span ><b>isGameFullOrInvalid</b></span>
+                        <a href="#isGameFullOrInvalid"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>isGameFullOrInvalid()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="164"
+                                    class="link-to-prism">src/app/engine/component/create-game-page/create-game-page.component.ts:164</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnDestroy"></a>
+                    <span class="name">
+                        <span ><b>ngOnDestroy</b></span>
+                        <a href="#ngOnDestroy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnDestroy()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="84"
+                                    class="link-to-prism">src/app/engine/component/create-game-page/create-game-page.component.ts:84</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="74"
+                                    class="link-to-prism">src/app/engine/component/create-game-page/create-game-page.component.ts:74</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onPlayerBlur"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>onPlayerBlur</b></span>
+                        <a href="#onPlayerBlur"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>onPlayerBlur(index: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="122"
+                                    class="link-to-prism">src/app/engine/component/create-game-page/create-game-page.component.ts:122</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>index</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onPlayerInput"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>onPlayerInput</b></span>
+                        <a href="#onPlayerInput"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>onPlayerInput(index: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="118"
+                                    class="link-to-prism">src/app/engine/component/create-game-page/create-game-page.component.ts:118</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>index</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateAvailableFriends"></a>
+                    <span class="name">
+                        <span ><b>updateAvailableFriends</b></span>
+                        <a href="#updateAvailableFriends"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>updateAvailableFriends()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="184"
+                                    class="link-to-prism">src/app/engine/component/create-game-page/create-game-page.component.ts:184</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="availableFriends"></a>
+                    <span class="name">
+                        <span ><b>availableFriends</b></span>
+                        <a href="#availableFriends"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/app/engine/component/create-game-page/create-game-page.component.ts:59</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="currentUser"></a>
+                    <span class="name">
+                        <span ><b>currentUser</b></span>
+                        <a href="#currentUser"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Player | undefined</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/engine/component/create-game-page/create-game-page.component.ts:55</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="errorMessages"></a>
+                    <span class="name">
+                        <span ><b>errorMessages</b></span>
+                        <a href="#errorMessages"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[&#x27;&#x27;, &#x27;&#x27;, &#x27;&#x27;, &#x27;&#x27;, &#x27;&#x27;]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/engine/component/create-game-page/create-game-page.component.ts:57</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="filteredPlayers"></a>
+                    <span class="name">
+                        <span ><b>filteredPlayers</b></span>
+                        <a href="#filteredPlayers"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string[][]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[[], [], [], [], []]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/engine/component/create-game-page/create-game-page.component.ts:56</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="MAX_PLAYERS"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>MAX_PLAYERS</b></span>
+                        <a href="#MAX_PLAYERS"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>6</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/engine/component/create-game-page/create-game-page.component.ts:52</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="playerControls"></a>
+                    <span class="name">
+                        <span ><b>playerControls</b></span>
+                        <a href="#playerControls"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>FormArray&lt;FormControl&gt;</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/engine/component/create-game-page/create-game-page.component.ts:53</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="subscriptions"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>subscriptions</b></span>
+                        <a href="#subscriptions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Subscription[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/engine/component/create-game-page/create-game-page.component.ts:54</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="validInputStates"></a>
+                    <span class="name">
+                        <span ><b>validInputStates</b></span>
+                        <a href="#validInputStates"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>boolean[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[false, false, false, false, false]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/engine/component/create-game-page/create-game-page.component.ts:60</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="validPlayers"></a>
+                    <span class="name">
+                        <span ><b>validPlayers</b></span>
+                        <a href="#validPlayers"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Set&lt;string&gt;[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>Array.from({ length: 5 }, () &#x3D;&gt; new Set&lt;string&gt;())</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/engine/component/create-game-page/create-game-page.component.ts:58</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnDestroy, OnInit } from &#x27;@angular/core&#x27;;
+import { PlayerService } from &#x27;../../service/game-management/player.service&#x27;;
+import { Player } from &#x27;api-types/src/player&#x27;;
+import { GameService } from &#x27;../../service/game-management/game.service&#x27;;
+import { MatCard } from &#x27;@angular/material/card&#x27;;
+import { MatFormField, MatFormFieldModule } from &#x27;@angular/material/form-field&#x27;;
+import {
+  FormArray,
+  FormBuilder,
+  FormControl,
+  FormsModule,
+  ReactiveFormsModule,
+} from &#x27;@angular/forms&#x27;;
+import { MatAutocomplete, MatAutocompleteTrigger, MatOption } from &#x27;@angular/material/autocomplete&#x27;;
+import { MatButton, MatIconButton } from &#x27;@angular/material/button&#x27;;
+import { MatInput } from &#x27;@angular/material/input&#x27;;
+import { NgForOf, NgIf } from &#x27;@angular/common&#x27;;
+import { filter, Subscription } from &#x27;rxjs&#x27;;
+import { isNotUndefined } from &#x27;../../util/predicate&#x27;;
+import { Router } from &#x27;@angular/router&#x27;;
+import { MatIcon } from &#x27;@angular/material/icon&#x27;;
+import { MatChip } from &#x27;@angular/material/chips&#x27;;
+import { MatTooltip } from &#x27;@angular/material/tooltip&#x27;;
+import { ensureDefined } from &#x27;../../util/misc&#x27;;
+import { MatSnackBar } from &#x27;@angular/material/snack-bar&#x27;;
+
+@Component({
+  selector: &#x27;app-create-game-page&#x27;,
+  standalone: true,
+  imports: [
+    MatCard,
+    MatFormField,
+    MatFormFieldModule,
+    FormsModule,
+    MatAutocompleteTrigger,
+    MatAutocomplete,
+    MatOption,
+    MatButton,
+    MatInput,
+    NgForOf,
+    NgIf,
+    ReactiveFormsModule,
+    MatIcon,
+    MatIconButton,
+    MatChip,
+    MatTooltip,
+  ],
+  templateUrl: &#x27;./create-game-page.component.html&#x27;,
+  styleUrl: &#x27;./create-game-page.component.scss&#x27;,
+})
+export class CreateGamePageComponent implements OnInit, OnDestroy {
+  private readonly MAX_PLAYERS &#x3D; 6;
+  playerControls: FormArray&lt;FormControl&gt;;
+  private subscriptions: Subscription[] &#x3D; [];
+  currentUser: Player | undefined;
+  filteredPlayers: string[][] &#x3D; [[], [], [], [], []];
+  errorMessages: string[] &#x3D; [&#x27;&#x27;, &#x27;&#x27;, &#x27;&#x27;, &#x27;&#x27;, &#x27;&#x27;];
+  validPlayers: Set&lt;string&gt;[] &#x3D; Array.from({ length: 5 }, () &#x3D;&gt; new Set&lt;string&gt;());
+  availableFriends: string[] &#x3D; [];
+  validInputStates: boolean[] &#x3D; [false, false, false, false, false];
+
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private snackBar: MatSnackBar,
+    private playerService: PlayerService,
+    private gameService: GameService,
+  ) {
+    this.playerControls &#x3D; this.fb.array(
+      Array.from({ length: this.MAX_PLAYERS - 1 }, () &#x3D;&gt; this.fb.control(&#x27;&#x27;)),
+    ) as FormArray&lt;FormControl&gt;;
+  }
+
+  ngOnInit(): void {
+    const playerSubscription &#x3D; this.playerService.currentPlayer$
+      .pipe(filter(isNotUndefined))
+      .subscribe((player) &#x3D;&gt; {
+        this.currentUser &#x3D; player;
+        this.updateAvailableFriends();
+      });
+    this.subscriptions.push(playerSubscription);
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((sub) &#x3D;&gt; {
+      sub.unsubscribe();
+    });
+  }
+
+  private async fetchPlayers(index: number): Promise&lt;void&gt; {
+    const control &#x3D; this.playerControls.at(index);
+    const input &#x3D; control.value as string | null;
+    this.validPlayers[index].clear();
+    this.filteredPlayers[index] &#x3D; [];
+
+    if (input) {
+      try {
+        const players &#x3D; await this.playerService.findPlayers(input);
+        const selectedPlayers &#x3D; new Set(
+          this.playerControls.value.filter(
+            (player: string | null, i: number) &#x3D;&gt; player &amp;&amp; i !&#x3D;&#x3D; index,
+          ) as string[],
+        );
+
+        // Add the current user&#x27;s username to the selected players
+        selectedPlayers.add(ensureDefined(this.currentUser).username);
+
+        this.filteredPlayers[index] &#x3D; players.filter((player) &#x3D;&gt; !selectedPlayers.has(player));
+        players.forEach((player) &#x3D;&gt; this.validPlayers[index].add(player));
+      } catch (error) {
+        console.error(error);
+        this.errorMessages[index] &#x3D; &#x27;Error fetching players&#x27;;
+        control.setErrors({ fetchError: true });
+      }
+    }
+  }
+
+  async onPlayerInput(index: number): Promise&lt;void&gt; {
+    await this.fetchPlayers(index);
+  }
+
+  async onPlayerBlur(index: number): Promise&lt;void&gt; {
+    const control &#x3D; this.playerControls.at(index);
+    const input &#x3D; control.value as string | null;
+    const selectedPlayers &#x3D; new Set(
+      this.playerControls.value.filter(
+        (player: string | null, i: number) &#x3D;&gt; player &amp;&amp; i !&#x3D;&#x3D; index,
+      ) as string[],
+    );
+
+    // Add the current user&#x27;s username to the selected players
+    selectedPlayers.add(ensureDefined(this.currentUser).username);
+
+    this.errorMessages[index] &#x3D; &#x27;&#x27;;
+    control.setErrors(null);
+
+    if (input) {
+      // Ensure the validPlayers set is populated
+      if (!this.validPlayers[index].has(input)) {
+        await this.fetchPlayers(index);
+      }
+
+      if (!this.validPlayers[index].has(input)) {
+        this.errorMessages[index] &#x3D; &#x27;Invalid username&#x27;;
+        control.setErrors({ invalid: true });
+        this.validInputStates[index] &#x3D; false;
+      } else if (selectedPlayers.has(input)) {
+        this.errorMessages[index] &#x3D; &#x27;Player already in the game&#x27;;
+        control.setErrors({ duplicate: true });
+        this.validInputStates[index] &#x3D; false;
+      } else {
+        this.validInputStates[index] &#x3D; !this.isFriend(input);
+      }
+
+      this.updateAvailableFriends();
+    } else {
+      // Clear validation states if input is empty
+      this.validPlayers[index].clear();
+      this.validInputStates[index] &#x3D; false;
+      this.filteredPlayers[index] &#x3D; [];
+    }
+  }
+
+  isGameFullOrInvalid(): boolean {
+    return (
+      this.hasInvalidPlayer() || this.playerControls.controls.every((control) &#x3D;&gt; control.value)
+    );
+  }
+
+  async addFriendToGame(playerId: string): Promise&lt;void&gt; {
+    const emptyControl &#x3D; this.playerControls.controls.find((control) &#x3D;&gt; !control.value);
+    if (!emptyControl) return;
+
+    const isPlayerAlreadyAdded &#x3D; this.playerControls.controls.some(
+      (control) &#x3D;&gt; control.value &#x3D;&#x3D;&#x3D; playerId,
+    );
+    if (isPlayerAlreadyAdded) return;
+
+    emptyControl.setValue(playerId);
+    this.updateAvailableFriends();
+    await this.onPlayerInput(this.playerControls.controls.indexOf(emptyControl));
+  }
+
+  updateAvailableFriends(): void {
+    const selectedPlayers &#x3D; new Set(this.playerControls.value.filter(Boolean) as string[]);
+    this.availableFriends &#x3D; ensureDefined(this.currentUser).friends.filter(
+      (friend) &#x3D;&gt; !selectedPlayers.has(friend),
+    );
+  }
+
+  hasValidPlayers(): boolean {
+    return this.playerControls.controls.some((control) &#x3D;&gt; control.value &amp;&amp; !control.invalid);
+  }
+
+  hasInvalidPlayer(): boolean {
+    return this.playerControls.controls.some((control) &#x3D;&gt; control.invalid);
+  }
+
+  async addFriend(playerId: string): Promise&lt;void&gt; {
+    if (ensureDefined(this.currentUser).friends.includes(playerId)) return;
+    try {
+      await this.playerService.addFriend(playerId);
+    } catch (error) {
+      this.snackBar.open(&#x27;Failed to add friend&#x27;, &#x27;Close&#x27;, {
+        duration: 3000,
+      });
+      console.error(&#x27;Failed to add friend&#x27;, error);
+    }
+  }
+
+  isFriend(playerId: string): boolean {
+    return ensureDefined(this.currentUser).friends.includes(playerId);
+  }
+
+  async createGame(): Promise&lt;void&gt; {
+    const otherPlayers &#x3D; this.playerControls.value.filter(
+      (player: string | null): player is string &#x3D;&gt; !!player,
+    );
+    try {
+      await this.gameService.createGame(otherPlayers);
+      void this.router.navigate([&#x27;/lobby&#x27;]);
+    } catch (error) {
+      this.snackBar.open(&#x27;Error creating game&#x27;, &#x27;Close&#x27;, {
+        duration: 3000,
+      });
+      console.error(error);
+    }
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;article class&#x3D;&quot;create-game-page&quot;&gt;
+  &lt;mat-card appearance&#x3D;&quot;outlined&quot; class&#x3D;&quot;create-game-card&quot;&gt;
+    &lt;div class&#x3D;&quot;create-game-area&quot;&gt;
+      &lt;section class&#x3D;&quot;add-player-area&quot;&gt;
+        &lt;h4&gt;Players&lt;/h4&gt;
+        &lt;mat-form-field class&#x3D;&quot;player-field&quot;&gt;
+          &lt;input matInput placeholder&#x3D;&quot;Player 1&quot; [value]&#x3D;&quot;currentUser?.username ?? &#x27;&#x27;&quot; disabled /&gt;
+        &lt;/mat-form-field&gt;
+
+        &lt;ng-container *ngFor&#x3D;&quot;let control of playerControls.controls; let i &#x3D; index&quot;&gt;
+          &lt;div class&#x3D;&quot;player-input-wrapper&quot;&gt;
+            &lt;mat-form-field class&#x3D;&quot;player-field&quot;&gt;
+              &lt;input
+                matInput
+                placeholder&#x3D;&quot;Player {{ i + 2 }}&quot;
+                [formControl]&#x3D;&quot;control&quot;
+                (input)&#x3D;&quot;onPlayerInput(i)&quot;
+                (blur)&#x3D;&quot;onPlayerBlur(i)&quot;
+                [matAutocomplete]&#x3D;&quot;auto&quot;
+              /&gt;
+              &lt;mat-autocomplete #auto&#x3D;&quot;matAutocomplete&quot;&gt;
+                &lt;mat-option *ngFor&#x3D;&quot;let player of filteredPlayers[i]&quot; [value]&#x3D;&quot;player&quot;&gt;
+                  {{ player }}
+                &lt;/mat-option&gt;
+              &lt;/mat-autocomplete&gt;
+
+              &lt;mat-error *ngIf&#x3D;&quot;errorMessages[i]&quot;&gt;{{ errorMessages[i] }}&lt;/mat-error&gt;
+            &lt;/mat-form-field&gt;
+
+            &lt;button
+              *ngIf&#x3D;&quot;validInputStates[i] &amp;&amp; !isFriend(control.value)&quot;
+              mat-icon-button
+              matTooltip&#x3D;&quot;Add Friend&quot;
+              (click)&#x3D;&quot;addFriend(control.value)&quot;
+            &gt;
+              &lt;mat-icon&gt;person_add&lt;/mat-icon&gt;
+            &lt;/button&gt;
+          &lt;/div&gt;
+        &lt;/ng-container&gt;
+
+        &lt;button
+          mat-raised-button
+          color&#x3D;&quot;primary&quot;
+          (click)&#x3D;&quot;createGame()&quot;
+          [disabled]&#x3D;&quot;!hasValidPlayers() || hasInvalidPlayer()&quot;
+        &gt;
+          Create Game
+        &lt;/button&gt;
+      &lt;/section&gt;
+
+      &lt;section class&#x3D;&quot;friends-area&quot;&gt;
+        &lt;h4&gt;Friends&lt;/h4&gt;
+        &lt;div class&#x3D;&quot;friend-chip-area&quot;&gt;
+          &lt;mat-chip
+            *ngFor&#x3D;&quot;let friend of availableFriends&quot;
+            [disabled]&#x3D;&quot;isGameFullOrInvalid()&quot;
+            (click)&#x3D;&quot;addFriendToGame(friend)&quot;
+          &gt;
+            {{ friend }}
+          &lt;/mat-chip&gt;
+        &lt;/div&gt;
+      &lt;/section&gt;
+    &lt;/div&gt;
+  &lt;/mat-card&gt;
+&lt;/article&gt;
+</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><article class="create-game-page">  <mat-card appearance="outlined" class="create-game-card">    <div class="create-game-area">      <section class="add-player-area">        <h4>Players</h4>        <mat-form-field class="player-field">          <input matInput placeholder="Player 1" [value]="currentUser?.username ?? \'\'" disabled />        </mat-form-field>        <ng-container *ngFor="let control of playerControls.controls; let i = index">          <div class="player-input-wrapper">            <mat-form-field class="player-field">              <input                matInput                placeholder="Player {{ i + 2 }}"                [formControl]="control"                (input)="onPlayerInput(i)"                (blur)="onPlayerBlur(i)"                [matAutocomplete]="auto"              />              <mat-autocomplete #auto="matAutocomplete">                <mat-option *ngFor="let player of filteredPlayers[i]" [value]="player">                  {{ player }}                </mat-option>              </mat-autocomplete>              <mat-error *ngIf="errorMessages[i]">{{ errorMessages[i] }}</mat-error>            </mat-form-field>            <button              *ngIf="validInputStates[i] && !isFriend(control.value)"              mat-icon-button              matTooltip="Add Friend"              (click)="addFriend(control.value)"            >              <mat-icon>person_add</mat-icon>            </button>          </div>        </ng-container>        <button          mat-raised-button          color="primary"          (click)="createGame()"          [disabled]="!hasValidPlayers() || hasInvalidPlayer()"        >          Create Game        </button>      </section>      <section class="friends-area">        <h4>Friends</h4>        <div class="friend-chip-area">          <mat-chip            *ngFor="let friend of availableFriends"            [disabled]="isGameFullOrInvalid()"            (click)="addFriendToGame(friend)"          >            {{ friend }}          </mat-chip>        </div>      </section>    </div>  </mat-card></article></div>'
+    var COMPONENTS = [{'name': 'ActionPawnComponent', 'selector': 'app-action-pawn'},{'name': 'ActionPawnSpaceComponent', 'selector': 'app-action-pawn-space'},{'name': 'AdaptionActionDisplayCardComponent', 'selector': 'app-adaption-action-display-card'},{'name': 'AnimalCardComponent', 'selector': 'app-animal-card'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CreateGamePageComponent', 'selector': 'app-create-game-page'},{'name': 'DrawPoolGameComponent', 'selector': 'app-draw-pool-game'},{'name': 'ElementComponent', 'selector': 'app-element'},{'name': 'ElementSpaceComponent', 'selector': 'app-element-space'},{'name': 'EyeballComponent', 'selector': 'app-eyeball'},{'name': 'LobbyPageComponent', 'selector': 'app-lobby-page'},{'name': 'LoginPageComponent', 'selector': 'app-login-page'},{'name': 'LogoutPageComponent', 'selector': 'app-logout-page'},{'name': 'SignUpConfirmPageComponent', 'selector': 'app-sign-up-confirm-page'},{'name': 'SignUpPageComponent', 'selector': 'app-sign-up-page'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'CreateGamePageComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'CreateGamePageComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

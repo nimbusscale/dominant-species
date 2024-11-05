@@ -380,7 +380,6 @@ export class GameStateInitializationService {
   }
 
   build(gameTitle: string, gameId: string, playerIds: string[]): GameState {
-    console.log(this.factoryByGameTitle);
     const gameState &#x3D; getEmptyInitialGameState(gameId, playerIds);
     const gameElementsFactoryClass &#x3D; this.factoryByGameTitle.get(gameTitle);
     if (gameElementsFactoryClass) {
