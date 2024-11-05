@@ -19,6 +19,7 @@ import { MatChip, MatChipSet } from '@angular/material/chips';
 import { PlayerService } from '../../service/game-management/player.service';
 import { Player } from 'api-types/src/player';
 import { MatTooltip } from '@angular/material/tooltip';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-lobby-page',
@@ -52,6 +53,7 @@ export class LobbyPageComponent {
   constructor(
     private gameService: GameService,
     private playerService: PlayerService,
+    private router: Router,
   ) {
     this.playerService.currentPlayer$.subscribe((player) => {
       this.currentPlayer.set(player);
@@ -71,8 +73,7 @@ export class LobbyPageComponent {
   }
 
   async createGame(): Promise<void> {
-    await this.gameService.createGame(['tester1', 'tester2', 'tester3']);
-    await this.fetchGames();
+    void (await this.router.navigate(['/create-game']));
   }
 
   async completeGame(gameId: string): Promise<void> {

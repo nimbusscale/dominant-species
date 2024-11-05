@@ -1,1 +1,65 @@
-<p>create-game-page works!</p>
+<article class="create-game-page">
+  <mat-card appearance="outlined" class="create-game-card">
+    <div class="create-game-area">
+      <section class="add-player-area">
+        <h4>Players</h4>
+        <mat-form-field class="player-field">
+          <input matInput placeholder="Player 1" [value]="currentUser?.username ?? ''" disabled />
+        </mat-form-field>
+
+        <ng-container *ngFor="let control of playerControls.controls; let i = index">
+          <div class="player-input-wrapper">
+            <mat-form-field class="player-field">
+              <input
+                matInput
+                placeholder="Player {{ i + 2 }}"
+                [formControl]="control"
+                (input)="onPlayerInput(i)"
+                (blur)="onPlayerBlur(i)"
+                [matAutocomplete]="auto"
+              />
+              <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let player of filteredPlayers[i]" [value]="player">
+                  {{ player }}
+                </mat-option>
+              </mat-autocomplete>
+
+              <mat-error *ngIf="errorMessages[i]">{{ errorMessages[i] }}</mat-error>
+            </mat-form-field>
+
+            <button
+              *ngIf="validInputStates[i] && !isFriend(control.value)"
+              mat-icon-button
+              matTooltip="Add Friend"
+              (click)="addFriend(control.value)"
+            >
+              <mat-icon>person_add</mat-icon>
+            </button>
+          </div>
+        </ng-container>
+
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="createGame()"
+          [disabled]="!hasValidPlayers() || hasInvalidPlayer()"
+        >
+          Create Game
+        </button>
+      </section>
+
+      <section class="friends-area">
+        <h4>Friends</h4>
+        <div class="friend-chip-area">
+          <mat-chip
+            *ngFor="let friend of availableFriends"
+            [disabled]="isGameFullOrInvalid()"
+            (click)="addFriendToGame(friend)"
+          >
+            {{ friend }}
+          </mat-chip>
+        </div>
+      </section>
+    </div>
+  </mat-card>
+</article>

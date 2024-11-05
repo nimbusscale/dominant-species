@@ -1,0 +1,50 @@
+.create-game-card {
+  background: #fff;
+  margin: 10px;
+  max-width: 1000px;
+}
+
+.create-game-area {
+  display: flex;
+  flex-direction: row;
+  margin: 10px;
+}
+
+.add-player-area {
+  display: flex;
+  flex-direction: column;
+}
+
+.player-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.player-field {
+  width: 250px;
+}
+
+button[mat-icon-button] {
+  position: absolute;
+  right: -50px;
+  top: 50%;
+  transform: translateY(-70%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.friends-area {
+  display: flex;
+  flex-direction: column;
+  padding-left: 80px;
+}
+
+.friend-chip-area {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: center;
+}
