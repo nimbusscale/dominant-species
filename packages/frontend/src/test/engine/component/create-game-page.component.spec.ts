@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { of } from 'rxjs';
 import { Player } from 'api-types/src/player';
-import {FormControl, ReactiveFormsModule} from '@angular/forms';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
@@ -13,9 +13,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import {PlayerService} from "../../../app/engine/service/game-management/player.service";
-import {CreateGamePageComponent} from "../../../app/engine/component/create-game-page/create-game-page.component";
-import {GameService} from "../../../app/engine/service/game-management/game.service";
+import { PlayerService } from '../../../app/engine/service/game-management/player.service';
+import { CreateGamePageComponent } from '../../../app/engine/component/create-game-page/create-game-page.component';
+import { GameService } from '../../../app/engine/service/game-management/game.service';
 
 describe('CreateGamePageComponent', () => {
   let component: CreateGamePageComponent;
@@ -31,7 +31,11 @@ describe('CreateGamePageComponent', () => {
   };
 
   beforeEach(waitForAsync(() => {
-    mockPlayerService = jasmine.createSpyObj('PlayerService', ['currentPlayer$', 'findPlayers', 'addFriend']);
+    mockPlayerService = jasmine.createSpyObj('PlayerService', [
+      'currentPlayer$',
+      'findPlayers',
+      'addFriend',
+    ]);
     mockGameService = jasmine.createSpyObj('GameService', ['createGame']);
     mockRouter = jasmine.createSpyObj('Router', ['navigate']);
     mockSnackBar = jasmine.createSpyObj('MatSnackBar', ['open']);
@@ -144,7 +148,9 @@ describe('CreateGamePageComponent', () => {
     });
 
     component.addFriendToGame('friend1');
-    expect(component.playerControls.controls.some((control: FormControl) => control.value === 'friend1')).toBeFalse();
+    expect(
+      component.playerControls.controls.some((control: FormControl) => control.value === 'friend1'),
+    ).toBeFalse();
   });
 
   it('should create game with valid players', fakeAsync(() => {
@@ -233,7 +239,11 @@ describe('CreateGamePageComponent', () => {
     component.playerControls.at(0).setValue('friend1');
     component.addFriendToGame('friend1');
 
-    expect(component.playerControls.controls.filter((control: FormControl) => control.value === 'friend1').length).toBe(1);
+    expect(
+      component.playerControls.controls.filter(
+        (control: FormControl) => control.value === 'friend1',
+      ).length,
+    ).toBe(1);
   });
 
   it('should handle empty input on blur', fakeAsync(() => {
