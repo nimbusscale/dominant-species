@@ -4,7 +4,7 @@ import {Player} from 'api-types/src/player';
 import {GameService} from '../../service/game-management/game.service';
 import {MatCard} from '@angular/material/card';
 import {MatFormField, MatFormFieldModule} from '@angular/material/form-field';
-import {FormArray, FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {FormArray, FormBuilder, FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatAutocomplete, MatAutocompleteTrigger, MatOption} from '@angular/material/autocomplete';
 import {MatButton, MatIconButton} from '@angular/material/button';
 import {MatInput} from '@angular/material/input';
@@ -76,7 +76,7 @@ export class CreateGamePageComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subscriptions.forEach(sub => sub.unsubscribe());
+    this.subscriptions.forEach(sub => {sub.unsubscribe()});
   }
 
   private async fetchPlayers(index: number): Promise<void> {
@@ -165,7 +165,7 @@ export class CreateGamePageComponent implements OnInit, OnDestroy {
 
     emptyControl.setValue(playerId);
     this.updateAvailableFriends();
-    void await this.onPlayerInput(this.playerControls.controls.indexOf(emptyControl));
+    await this.onPlayerInput(this.playerControls.controls.indexOf(emptyControl));
   }
 
   updateAvailableFriends(): void {
