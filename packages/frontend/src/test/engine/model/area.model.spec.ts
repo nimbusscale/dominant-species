@@ -13,8 +13,8 @@ describe('Area', () => {
 
   beforeEach(() => {
     // these should be mocks
-    space1 = new Space('testSpace');
-    space2 = new Space('testSpace');
+    space1 = new Space({kind: 'testSpace', piece: null});
+    space2 = new Space({kind: 'testSpace', piece: null});
     testPiece1 = defaultPieceFactory('testPiece', null);
     testPiece2 = defaultPieceFactory('testPiece', null);
     area = new Area('testArea', [space1, space2]);

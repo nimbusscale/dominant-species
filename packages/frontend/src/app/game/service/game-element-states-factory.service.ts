@@ -39,14 +39,14 @@ export class GameElementStatesFactoryService implements InitialGameElementStates
       const elementSpacesState: SpaceState[] = [];
       // inherent element spaces
       for (let i = 0; i < elementConfig.inherentCount; i++) {
-        const space = new Space(SpaceKindEnum.ELEMENT);
+        const space = new Space({kind: SpaceKindEnum.ELEMENT, piece: null});
         space.addPiece(defaultPieceFactory(elementConfig.kind));
         elementSpacesState.push(space.state);
       }
 
       // added element spaces
       for (let i = 0; i < 6 - elementConfig.inherentCount; i++) {
-        const space = new Space(SpaceKindEnum.ELEMENT);
+        const space = new Space({kind: SpaceKindEnum.ELEMENT, piece: null});
         elementSpacesState.push(space.state);
       }
 

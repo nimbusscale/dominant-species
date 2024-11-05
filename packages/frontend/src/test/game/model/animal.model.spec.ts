@@ -15,7 +15,7 @@ describe('AnimalElements', () => {
   let testArea: Area;
 
   beforeEach(() => {
-    testSpaces = Array.from({ length: 6 }, () => new Space(SpaceKindEnum.ELEMENT));
+    testSpaces = Array.from({ length: 6 }, () => new Space({kind: SpaceKindEnum.ELEMENT, piece: null}));
     // inherent elements /
     testSpaces[0].addPiece(defaultPieceFactory(ElementEnum.SEED));
     testSpaces[1].addPiece(defaultPieceFactory(ElementEnum.SEED));

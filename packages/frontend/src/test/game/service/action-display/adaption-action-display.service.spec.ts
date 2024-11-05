@@ -23,14 +23,14 @@ describe('AdaptionActionDisplayService', () => {
   let mockElementDrawPoolService: jasmine.SpyObj<ElementDrawPoolService>;
 
   beforeEach(() => {
-    testActionPawnSpace = new Space(SpaceKindEnum.ACTION_PAWN);
-    testElementSpace = new Space(SpaceKindEnum.ELEMENT);
+    testActionPawnSpace = new Space({kind: SpaceKindEnum.ACTION_PAWN, piece: null});
+    testElementSpace = new Space({kind: SpaceKindEnum.ELEMENT, piece: null});
     testArea = new Area(AreaIdEnum.ACTION_DISPLAY_ADAPTION, [
       // need 4 spaces to test replenish, but only need to check the status of first space /
       testElementSpace,
-      new Space(SpaceKindEnum.ELEMENT),
-      new Space(SpaceKindEnum.ELEMENT),
-      new Space(SpaceKindEnum.ELEMENT),
+      new Space({kind: SpaceKindEnum.ELEMENT, piece: null}),
+      new Space({kind: SpaceKindEnum.ELEMENT, piece: null}),
+      new Space({kind: SpaceKindEnum.ELEMENT, piece: null}),
       testActionPawnSpace,
     ]);
     mockAreaRegistryService = jasmine.createSpyObj('AreaRegistryService', ['get'], {
