@@ -1,4 +1,4 @@
-import { deepCompare, ensureDefined, getOrThrow } from '../../../app/engine/util/misc';
+import {deepCompare, deepFreeze, ensureDefined, getOrThrow} from '../../../app/engine/util/misc';
 
 describe('deepCompare', () => {
   it('returns true when two objects are equal', () => {
@@ -90,5 +90,66 @@ describe('ensureDefined', () => {
   it('should return null if null is passed, as it is considered a valid value', () => {
     const nullValue = null;
     expect(ensureDefined(nullValue)).toBe(nullValue);
+  });
+});
+
+describe('deepFreeze', () => {
+  it('should return the object itself', () => {
+    const obj = { a: 1 };
+    const frozenObj = deepFreeze(obj);
+    expect(frozenObj).toBe(obj);
+  });
+
+  it('should freeze the top-level properties of an object', () => {
+    const obj = { a: 1, b: 'test' };
+    deepFreeze(obj);
+
+    expect(Object.isFrozen(obj)).toBeTrue();
+    expect(() => { obj.a = 2; }).toThrowError(TypeError);
+    expect(() => { obj.b = 'changed'; }).toThrowError(TypeError);
+  });
+
+  it('should freeze nested objects', () => {
+    const obj = { a: { b: 2 } };
+    deepFreeze(obj);
+
+    expect(Object.isFrozen(obj)).toBeTrue();
+    expect(Object.isFrozen(obj.a)).toBeTrue();
+    expect(() => { obj.a.b = 3; }).toThrowError(TypeError);
+  });
+
+  it('should freeze deeply nested objects', () => {
+    const obj = { a: { b: { c: { d: 4 } } } };
+    deepFreeze(obj);
+
+    expect(Object.isFrozen(obj.a)).toBeTrue();
+    expect(Object.isFrozen(obj.a.b)).toBeTrue();
+    expect(Object.isFrozen(obj.a.b.c)).toBeTrue();
+    expect(Object.isFrozen(obj.a.b.c.d)).toBeTrue(); // Even primitive properties should not be modified
+    expect(() => { obj.a.b.c.d = 5; }).toThrowError(TypeError);
+  });
+
+  it('should not freeze null properties', () => {
+    const obj = { a: null };
+    deepFreeze(obj);
+
+    expect(Object.isFrozen(obj)).toBeTrue();
+    expect(obj.a).toBeNull();
+  });
+
+  it('should handle objects with arrays correctly', () => {
+    const obj = { a: [1, 2, 3] };
+    deepFreeze(obj);
+
+    expect(Object.isFrozen(obj)).toBeTrue();
+    expect(Object.isFrozen(obj.a)).toBeTrue();
+    expect(() => { obj.a[0] = 4; }).toThrowError(TypeError);
+  });
+
+  it('should not freeze primitive values directly', () => {
+    const primitiveNumber = 5;
+    const frozenPrimitive = deepFreeze(primitiveNumber);
+
+    expect(frozenPrimitive).toBe(5); // The primitive itself remains unchanged
   });
 });

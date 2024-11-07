@@ -1,23 +1,6 @@
-import { Player } from 'api-types/src/player';
-import {
-  FactionState,
-  GameElementStates,
-  GameState,
-  GameStatePatch,
-  PileState,
-} from 'api-types/src/game-state';
-
-function deepFreeze<T>(obj: T): T {
-  const propNames = Object.getOwnPropertyNames(obj) as (keyof T)[];
-  for (const name of propNames) {
-    const value = obj[name];
-    if (typeof value === 'object' && value !== null) {
-      deepFreeze(value);
-    }
-  }
-
-  return Object.freeze(obj);
-}
+import {Player} from 'api-types/src/player';
+import {FactionState, GameElementStates, GameState, GameStatePatch, PileState,} from 'api-types/src/game-state';
+import {deepFreeze} from "../app/engine/util/misc";
 
 export const testPileState1: PileState = deepFreeze({
   id: 'pile1',
