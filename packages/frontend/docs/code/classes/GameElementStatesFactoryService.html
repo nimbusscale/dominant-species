@@ -207,7 +207,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/game/service/game-element-states-factory.service.ts:24</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/game/service/game-element-states-factory.service.ts:26</a></div>
                             </td>
                         </tr>
 
@@ -240,7 +240,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/game/service/game-element-states-factory.service.ts:24</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/game/service/game-element-states-factory.service.ts:26</a></div>
                         </td>
                     </tr>
 
@@ -268,7 +268,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/game/service/game-element-states-factory.service.ts:23</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/game/service/game-element-states-factory.service.ts:25</a></div>
                         </td>
                     </tr>
 
@@ -302,8 +302,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="31"
-                                    class="link-to-prism">src/app/game/service/game-element-states-factory.service.ts:31</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="33"
+                                    class="link-to-prism">src/app/game/service/game-element-states-factory.service.ts:33</a></div>
                         </td>
                     </tr>
 
@@ -371,8 +371,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="84"
-                                    class="link-to-prism">src/app/game/service/game-element-states-factory.service.ts:84</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="65"
+                                    class="link-to-prism">src/app/game/service/game-element-states-factory.service.ts:65</a></div>
                         </td>
                     </tr>
 
@@ -408,8 +408,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="56"
-                                    class="link-to-prism">src/app/game/service/game-element-states-factory.service.ts:56</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="46"
+                                    class="link-to-prism">src/app/game/service/game-element-states-factory.service.ts:46</a></div>
                         </td>
                     </tr>
 
@@ -445,8 +445,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="40"
-                                    class="link-to-prism">src/app/game/service/game-element-states-factory.service.ts:40</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="42"
+                                    class="link-to-prism">src/app/game/service/game-element-states-factory.service.ts:42</a></div>
                         </td>
                     </tr>
 
@@ -484,8 +484,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="88"
-                                    class="link-to-prism">src/app/game/service/game-element-states-factory.service.ts:88</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="69"
+                                    class="link-to-prism">src/app/game/service/game-element-states-factory.service.ts:69</a></div>
                         </td>
                     </tr>
 
@@ -541,14 +541,14 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { GameElementStates, SpaceState } from &#x27;api-types/src/game-state&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { AreaState, GameElementStates, PileState, SpaceState } from &#x27;api-types/src/game-state&#x27;;
 import { shuffle, startCase } from &#x27;lodash&#x27;;
 import { AnimalEnum } from &#x27;../constant/animal.constant&#x27;;
 import { getOrThrow } from &#x27;../../engine/util/misc&#x27;;
 import { elementConfigByAnimal } from &#x27;../constant/element-config.constant&#x27;;
 import { deepClone } from &#x27;fast-json-patch&#x27;;
 import { Space } from &#x27;../../engine/model/space.model&#x27;;
-import { AreaIdEnum, SpaceKindEnum } from &#x27;../constant/area.constant&#x27;;
+import { SpaceKindEnum } from &#x27;../constant/area.constant&#x27;;
 import { defaultPieceFactory } from &#x27;../../engine/model/piece.model&#x27;;
 import { pileIdsByAnimal } from &#x27;../constant/pile-config&#x27;;
 import { PieceKindEnum } from &#x27;../constant/piece.constant&#x27;;
@@ -558,8 +558,10 @@ import {
 } from &#x27;../../engine/model/game-state.model&#x27;;
 import { Area } from &#x27;../../engine/model/area.model&#x27;;
 import { Pile } from &#x27;../../engine/model/pile.model&#x27;;
-import { PileIdEnum } from &#x27;../constant/pile.constant&#x27;;
-import { ElementEnum } from &#x27;../constant/element.constant&#x27;;
+import {
+  ACTION_DISPLAY_ADAPTION_STATE,
+  ELEMENT_DRAW_POOL_STATE,
+} from &#x27;../constant/game-state.constant&#x27;;
 
 // Not injectable as it&#x27;s built on-demand by GameStateInitializationService
 export class GameElementStatesFactoryService implements InitialGameElementStatesFactory {
@@ -581,34 +583,13 @@ export class GameElementStatesFactoryService implements InitialGameElementStates
   }
 
   buildElementDrawPool(): Pile {
-    return new Pile({
-      id: PileIdEnum.ELEMENT,
-      owner: null,
-      inventory: {
-        // 20 Elements each, with 2 being places on Earth, leaving 18 in the bag
-        [ElementEnum.GRASS]: 18,
-        [ElementEnum.GRUB]: 18,
-        [ElementEnum.MEAT]: 18,
-        [ElementEnum.SEED]: 18,
-        [ElementEnum.SUN]: 18,
-        [ElementEnum.WATER]: 18,
-      },
-    });
+    return new Pile(deepClone(ELEMENT_DRAW_POOL_STATE) as PileState);
   }
 
   buildAdaptionActionDisplay(): Area {
-    const adaptionActionDisplayArea &#x3D; new Area({
-      id: AreaIdEnum.ACTION_DISPLAY_ADAPTION,
-      space: [
-        { kind: SpaceKindEnum.ELEMENT, piece: null },
-        { kind: SpaceKindEnum.ELEMENT, piece: null },
-        { kind: SpaceKindEnum.ELEMENT, piece: null },
-        { kind: SpaceKindEnum.ELEMENT, piece: null },
-        { kind: SpaceKindEnum.ACTION_PAWN, piece: null },
-        { kind: SpaceKindEnum.ACTION_PAWN, piece: null },
-        { kind: SpaceKindEnum.ACTION_PAWN, piece: null },
-      ],
-    });
+    const adaptionActionDisplayArea &#x3D; new Area(
+      deepClone(ACTION_DISPLAY_ADAPTION_STATE) as AreaState,
+    );
     this.elementDrawPool.pullMany(4).forEach((element) &#x3D;&gt; {
       if (element) {
         const nextSpace &#x3D; adaptionActionDisplayArea.nextAvailableSpace(SpaceKindEnum.ELEMENT);
