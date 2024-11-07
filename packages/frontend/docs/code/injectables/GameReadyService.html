@@ -80,115 +80,50 @@
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content component">
+               <div class="content injectable">
                    <div class="content-data">
 
 
 
 
+
+
+
+
 <ol class="breadcrumb">
-  <li class="breadcrumb-item">Components</li>
-  <li class="breadcrumb-item"
-  >
-  DominantSpeciesGameComponent</li>
+  <li class="breadcrumb-item">Injectables</li>
+  <li class="breadcrumb-item" >GameReadyService</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
         <li class="nav-item">
-            <a href="#info" class="nav-link active"
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
                 role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
         </li>
         <li class="nav-item">
-            <a href="#source" class="nav-link"
+            <a href="#source" 
+                class="nav-link"
+                
                 role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
-        </li>
-        <li class="nav-item">
-            <a href="#templateData" class="nav-link"
-                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
-        </li>
-        <li class="nav-item">
-            <a href="#tree" class="nav-link"
-                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="info"><p class="comment">
-    <h3>File</h3>
-</p>
-<p class="comment">
-    <code>src/app/game/component/dominant-species-game/dominant-species-game.component.ts</code>
-</p>
-
-
-
-
-    <p class="comment">
-        <h3>Implements</h3>
-    </p>
-    <p class="comment">
-                <code>OnInit</code>
-    </p>
-
-
-<section data-compodoc="block-metadata">
-    <h3>Metadata</h3>
-    <table class="table table-sm table-hover metadata">
-        <tbody>
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/game/service/game-ready.service.ts</code>
+        </p>
 
 
 
 
 
-
-
-
-
-
-
-
-            <tr>
-                <td class="col-md-3">selector</td>
-                <td class="col-md-9"><code>app-dominant-species-game</code></td>
-            </tr>
-
-            <tr>
-                <td class="col-md-3">standalone</td>
-                <td class="col-md-9"><code>true</code></td>
-            </tr>
-
-            <tr>
-                <td class="col-md-3">imports</td>
-                <td class="col-md-9">
-                                <code><a href="../components/DrawPoolGameComponent.html" target="_self" >DrawPoolGameComponent</a></code>
-                            <code>MatProgressSpinner</code>
-                </td>
-            </tr>
-
-
-
-
-            <tr>
-                <td class="col-md-3">templateUrl</td>
-                <td class="col-md-9"><code>./dominant-species-game.component.html</code></td>
-            </tr>
-
-
-
-            <tr>
-                <td class="col-md-3">styleUrl</td>
-                <td class="col-md-9"><code>./dominant-species-game.component.scss</code></td>
-            </tr>
-
-
-
-
-
-        </tbody>
-    </table>
-</section>
-
-    <section data-compodoc="block-index">
+            <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
@@ -201,7 +136,15 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#gameReady" >gameReady</a>
+                                <a href="#ready$" >ready$</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#readySubject" >readySubject</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#subscriptions" >subscriptions</a>
                             </li>
                         </ul>
                     </td>
@@ -217,11 +160,11 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Private</span>
-                                    <span class="modifier">Async</span>
-                                <a href="#initializeGame" >initializeGame</a>
+                                <a href="#animalsReady" >animalsReady</a>
                             </li>
                             <li>
-                                <a href="#ngOnInit" >ngOnInit</a>
+                                    <span class="modifier">Private</span>
+                                <a href="#signalReady" >signalReady</a>
                             </li>
                         </ul>
                     </td>
@@ -235,18 +178,18 @@
     </table>
 </section>
 
-    <section data-compodoc="block-constructor">
+            <section data-compodoc="block-constructor">
     <h3 id="constructor">Constructor</h3>
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(route: ActivatedRoute, router: Router, gameService: <a href="../injectables/GameService.html" target="_self">GameService</a>, gameReadyService: <a href="../injectables/GameReadyService.html" target="_self">GameReadyService</a>)</code>
+<code>constructor(gameStateService: <a href="../injectables/GameStateService.html" target="_self">GameStateService</a>, elementDrawPoolService: <a href="../injectables/ElementDrawPoolService.html" target="_self">ElementDrawPoolService</a>, animalProviderService: <a href="../injectables/AnimalProviderService.html" target="_self">AnimalProviderService</a>, actionDisplayManagerService: <a href="../injectables/ActionDisplayManagerService.html" target="_self">ActionDisplayManagerService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/game/component/dominant-species-game/dominant-species-game.component.ts:17</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/game/service/game-ready.service.ts:14</a></div>
                             </td>
                         </tr>
 
@@ -264,10 +207,10 @@
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>route</td>
+                                                        <td>gameStateService</td>
                                                   
                                                         <td>
-                                                                    <code>ActivatedRoute</code>
+                                                                        <code><a href="../injectables/GameStateService.html" target="_self" >GameStateService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -276,10 +219,10 @@
                                                     
                                                 </tr>
                                                 <tr>
-                                                        <td>router</td>
+                                                        <td>elementDrawPoolService</td>
                                                   
                                                         <td>
-                                                                    <code>Router</code>
+                                                                        <code><a href="../injectables/ElementDrawPoolService.html" target="_self" >ElementDrawPoolService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -288,10 +231,10 @@
                                                     
                                                 </tr>
                                                 <tr>
-                                                        <td>gameService</td>
+                                                        <td>animalProviderService</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../injectables/GameService.html" target="_self" >GameService</a></code>
+                                                                        <code><a href="../injectables/AnimalProviderService.html" target="_self" >AnimalProviderService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -300,10 +243,10 @@
                                                     
                                                 </tr>
                                                 <tr>
-                                                        <td>gameReadyService</td>
+                                                        <td>actionDisplayManagerService</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../injectables/GameReadyService.html" target="_self" >GameReadyService</a></code>
+                                                                        <code><a href="../injectables/ActionDisplayManagerService.html" target="_self" >ActionDisplayManagerService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -320,11 +263,7 @@
         </table>
 </section>
 
-
-
-
-
-    <section data-compodoc="block-methods">
+            <section data-compodoc="block-methods">
     
     <h3 id="methods">
         Methods
@@ -333,27 +272,26 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="initializeGame"></a>
+                    <a name="animalsReady"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
-                            <span class="modifier">Async</span>
-                        <span ><b>initializeGame</b></span>
-                        <a href="#initializeGame"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>animalsReady</b></span>
+                        <a href="#animalsReady"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>initializeGame(gameId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <code>animalsReady()</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="42"
-                                    class="link-to-prism">src/app/game/component/dominant-species-game/dominant-species-game.component.ts:42</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="25"
+                                    class="link-to-prism">src/app/game/service/game-ready.service.ts:25</a></div>
                         </td>
                     </tr>
 
@@ -361,40 +299,10 @@
             <tr>
                 <td class="col-md-4">
 
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>gameId</td>
-                                            <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
                         <div class="io-description">
-                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+                            <b>Returns : </b>    <code>Observable&lt;boolean&gt;</code>
 
                         </div>
-                            <div class="io-description">
-                                
-                            </div>
                 </td>
             </tr>
         </tbody>
@@ -403,24 +311,26 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="ngOnInit"></a>
+                    <a name="signalReady"></a>
                     <span class="name">
-                        <span ><b>ngOnInit</b></span>
-                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                            <span class="modifier">Private</span>
+                        <span ><b>signalReady</b></span>
+                        <a href="#signalReady"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>ngOnInit()</code>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>signalReady()</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="25"
-                                    class="link-to-prism">src/app/game/component/dominant-species-game/dominant-species-game.component.ts:25</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="36"
+                                    class="link-to-prism">src/app/game/service/game-ready.service.ts:36</a></div>
                         </td>
                     </tr>
 
@@ -437,7 +347,7 @@
         </tbody>
     </table>
 </section>
-    <section data-compodoc="block-properties">
+            <section data-compodoc="block-properties">
     
     <h3 id="inputs">
         Properties
@@ -446,21 +356,91 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="gameReady"></a>
+                    <a name="ready$"></a>
                     <span class="name">
-                        <span ><b>gameReady</b></span>
-                        <a href="#gameReady"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>ready$</b></span>
+                        <a href="#ready$"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>signal(false)</code>
+                        <i>Type : </i>    <code>Observable&lt;boolean&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.readySubject.asObservable()</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/game/component/dominant-species-game/dominant-species-game.component.ts:17</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/game/service/game-ready.service.ts:14</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="readySubject"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>readySubject</b></span>
+                        <a href="#readySubject"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>BehaviorSubject&lt;boolean&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new BehaviorSubject&lt;boolean&gt;(false)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/game/service/game-ready.service.ts:13</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="subscriptions"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>subscriptions</b></span>
+                        <a href="#subscriptions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Subscription[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/game/service/game-ready.service.ts:12</a></div>
                         </td>
                     </tr>
 
@@ -469,105 +449,69 @@
     </table>
 </section>
 
-</div>
+    </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit, signal } from &#x27;@angular/core&#x27;;
-import { DrawPoolGameComponent } from &#x27;../draw-pool-game/draw-pool-game.component&#x27;;
-import { ActivatedRoute, Router } from &#x27;@angular/router&#x27;;
-import { GameService } from &#x27;../../../engine/service/game-management/game.service&#x27;;
-import { GameReadyService } from &#x27;../../service/game-ready.service&#x27;;
-import { MatProgressSpinner } from &#x27;@angular/material/progress-spinner&#x27;;
-import { filter, first } from &#x27;rxjs&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
+import { ElementDrawPoolService } from &#x27;./element-draw-pool.service&#x27;;
+import { AnimalProviderService } from &#x27;./animal-provider.service&#x27;;
+import { ActionDisplayManagerService } from &#x27;./action-display/action-display-manager.service&#x27;;
+import { BehaviorSubject, combineLatest, filter, first, map, Observable, Subscription } from &#x27;rxjs&#x27;;
+import { GameStateService } from &#x27;../../engine/service/game-state/game-state.service&#x27;;
 
-@Component({
-  selector: &#x27;app-dominant-species-game&#x27;,
-  standalone: true,
-  imports: [DrawPoolGameComponent, MatProgressSpinner],
-  templateUrl: &#x27;./dominant-species-game.component.html&#x27;,
-  styleUrl: &#x27;./dominant-species-game.component.scss&#x27;,
+@Injectable({
+  providedIn: &#x27;root&#x27;,
 })
-export class DominantSpeciesGameComponent implements OnInit {
-  gameReady &#x3D; signal(false);
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private gameService: GameService,
-    private gameReadyService: GameReadyService,
-  ) {}
+export class GameReadyService {
+  private subscriptions: Subscription[] &#x3D; [];
+  private readySubject: BehaviorSubject&lt;boolean&gt; &#x3D; new BehaviorSubject&lt;boolean&gt;(false);
+  ready$: Observable&lt;boolean&gt; &#x3D; this.readySubject.asObservable();
 
-  ngOnInit(): void {
-    const gameId &#x3D; this.route.snapshot.queryParamMap.get(&#x27;gameId&#x27;);
-    if (!gameId) {
-      void this.router.navigate([&#x27;/lobby&#x27;]);
-    } else {
-      void this.initializeGame(gameId);
-    }
-    this.gameReadyService.ready$
+  constructor(
+    private gameStateService: GameStateService,
+    private elementDrawPoolService: ElementDrawPoolService,
+    private animalProviderService: AnimalProviderService,
+    private actionDisplayManagerService: ActionDisplayManagerService,
+  ) {
+    this.signalReady();
+  }
+
+  private animalsReady(): Observable&lt;boolean&gt; {
+    const animalReadySubject: BehaviorSubject&lt;boolean&gt; &#x3D; new BehaviorSubject&lt;boolean&gt;(false);
+    const animalSubscription &#x3D; this.animalProviderService.animals$.subscribe((animals) &#x3D;&gt; {
+      if (animals.length &#x3D;&#x3D;&#x3D; this.gameStateService.playerIds.length) {
+        animalReadySubject.next(true);
+      }
+    });
+    this.subscriptions.push(animalSubscription);
+    return animalReadySubject.asObservable();
+  }
+
+  private signalReady(): void {
+    const readyObs &#x3D; [
+      this.animalsReady(),
+      this.elementDrawPoolService.ready$,
+      this.actionDisplayManagerService.ready$,
+    ];
+    combineLatest(readyObs)
       .pipe(
-        filter((isReady) &#x3D;&gt; isReady),
+        map((serviceReady: boolean[]) &#x3D;&gt; serviceReady.every((ready) &#x3D;&gt; ready)),
+        filter((serviceReady) &#x3D;&gt; serviceReady),
         first(),
       )
-      .subscribe(() &#x3D;&gt; {
-        this.gameReady.set(true);
+      .subscribe((allReady) &#x3D;&gt; {
+        this.readySubject.next(allReady);
+        this.subscriptions.forEach((sub) &#x3D;&gt; {
+          sub.unsubscribe();
+        });
       });
   }
-
-  private async initializeGame(gameId: string): Promise&lt;void&gt; {
-    await this.gameService.initializeGame(gameId);
-  }
 }
 </code></pre>
     </div>
 
-    <div class="tab-pane fade " id="templateData">
-        <pre class="line-numbers"><code class="language-html">@if (gameReady()) {
-  &lt;app-draw-pool-game&gt;&lt;/app-draw-pool-game&gt;
-} @else {
-  &lt;div class&#x3D;&quot;game-loading&quot;&gt;
-    &lt;mat-spinner&gt;&lt;/mat-spinner&gt;
-  &lt;/div&gt;
-}
-</code></pre>
-    </div>
-
-
-    <div class="tab-pane fade " id="tree">
-        <div id="tree-container"></div>
-        <div class="tree-legend">
-            <div class="title">
-                <b>Legend</b>
-            </div>
-            <div>
-                <div class="color htmlelement"></div><span>Html element</span>
-            </div>
-            <div>
-                <div class="color component"></div><span>Component</span>
-            </div>
-            <div>
-                <div class="color directive"></div><span>Html element with directive</span>
-            </div>
-        </div>
-    </div>
-
-    
 </div>
-
-<script src="../js/libs/vis.min.js"></script>
-<script src="../js/libs/htmlparser.js"></script>
-<script src="../js/libs/deep-iterator.js"></script>
-<script>
-        var COMPONENT_TEMPLATE = '<div>@if (gameReady()) {  <app-draw-pool-game></app-draw-pool-game>} @else {  <div class="game-loading">    <mat-spinner></mat-spinner>  </div>}</div>'
-    var COMPONENTS = [{'name': 'ActionPawnComponent', 'selector': 'app-action-pawn'},{'name': 'ActionPawnSpaceComponent', 'selector': 'app-action-pawn-space'},{'name': 'AdaptionActionDisplayCardComponent', 'selector': 'app-adaption-action-display-card'},{'name': 'AnimalCardComponent', 'selector': 'app-animal-card'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CreateGamePageComponent', 'selector': 'app-create-game-page'},{'name': 'DominantSpeciesGameComponent', 'selector': 'app-dominant-species-game'},{'name': 'DrawPoolGameComponent', 'selector': 'app-draw-pool-game'},{'name': 'ElementComponent', 'selector': 'app-element'},{'name': 'ElementSpaceComponent', 'selector': 'app-element-space'},{'name': 'EyeballComponent', 'selector': 'app-eyeball'},{'name': 'LobbyPageComponent', 'selector': 'app-lobby-page'},{'name': 'LoginPageComponent', 'selector': 'app-login-page'},{'name': 'LogoutPageComponent', 'selector': 'app-logout-page'},{'name': 'SignUpConfirmPageComponent', 'selector': 'app-sign-up-confirm-page'},{'name': 'SignUpPageComponent', 'selector': 'app-sign-up-page'}];
-    var DIRECTIVES = [];
-    var ACTUAL_COMPONENT = {'name': 'DominantSpeciesGameComponent'};
-</script>
-<script src="../js/tree.js"></script>
-
-
-
-
 
 
 
@@ -606,8 +550,8 @@ export class DominantSpeciesGameComponent implements OnInit {
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
-            var COMPODOC_CURRENT_PAGE_URL = 'DominantSpeciesGameComponent.html';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'GameReadyService.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 
