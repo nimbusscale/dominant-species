@@ -179,8 +179,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="29"
-                                    class="link-to-prism">src/app/engine/model/game-state.model.ts:29</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="27"
+                                    class="link-to-prism">src/app/engine/model/game-state.model.ts:27</a></div>
                         </td>
                     </tr>
 
@@ -234,16 +234,18 @@
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { GameElementStates, GameState } from &#x27;api-types/src/game-state&#x27;;
 
+export const emptyGameElementStates: GameElementStates &#x3D; {
+  area: [],
+  faction: [],
+  pile: [],
+};
+
 // current used to initialize GameStoreService, but should be refactored to get the Initial Game State when user joins the game.
 export const emptyGameState: GameState &#x3D; {
   gameId: &#x27;placeholder&#x27;,
   patchId: 0,
   playerIds: [],
-  gameElements: {
-    area: [],
-    faction: [],
-    pile: [],
-  },
+  gameElements: emptyGameElementStates,
 };
 
 export function getEmptyInitialGameState(gameId: string, playerIds: string[]): GameState {
@@ -251,11 +253,7 @@ export function getEmptyInitialGameState(gameId: string, playerIds: string[]): G
     gameId: gameId,
     patchId: 0,
     playerIds: playerIds,
-    gameElements: {
-      area: [],
-      faction: [],
-      pile: [],
-    },
+    gameElements: emptyGameElementStates,
   };
 }
 

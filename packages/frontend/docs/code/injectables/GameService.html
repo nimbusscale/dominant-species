@@ -150,7 +150,11 @@
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#getState" >getState</a>
+                                <a href="#initializeGame" >initializeGame</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#joinGame" >joinGame</a>
                             </li>
                         </ul>
                     </td>
@@ -170,12 +174,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(authService: <a href="../injectables/AuthService.html" target="_self">AuthService</a>, gameManagementClientService: <a href="../injectables/GameManagementClientService.html" target="_self">GameManagementClientService</a>, gameStateInitializationService: <a href="../injectables/GameStateInitializationService.html" target="_self">GameStateInitializationService</a>)</code>
+<code>constructor(router: Router, authService: <a href="../injectables/AuthService.html" target="_self">AuthService</a>, gameManagementClientService: <a href="../injectables/GameManagementClientService.html" target="_self">GameManagementClientService</a>, gameStateInitializationService: <a href="../injectables/GameStateInitializationService.html" target="_self">GameStateInitializationService</a>, areaRegistryService: <a href="../injectables/AreaRegistryService.html" target="_self">AreaRegistryService</a>, factionRegistryService: <a href="../injectables/FactionRegistryService.html" target="_self">FactionRegistryService</a>, pileRegistryService: <a href="../injectables/PileRegistryService.html" target="_self">PileRegistryService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/engine/service/game-management/game.service.ts:13</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/engine/service/game-management/game.service.ts:19</a></div>
                             </td>
                         </tr>
 
@@ -192,6 +196,18 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                    <code>Router</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
                                                 <tr>
                                                         <td>authService</td>
                                                   
@@ -221,6 +237,42 @@
                                                   
                                                         <td>
                                                                         <code><a href="../injectables/GameStateInitializationService.html" target="_self" >GameStateInitializationService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>areaRegistryService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/AreaRegistryService.html" target="_self" >AreaRegistryService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>factionRegistryService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/FactionRegistryService.html" target="_self" >FactionRegistryService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>pileRegistryService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/PileRegistryService.html" target="_self" >PileRegistryService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -264,8 +316,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="41"
-                                    class="link-to-prism">src/app/engine/service/game-management/game.service.ts:41</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="51"
+                                    class="link-to-prism">src/app/engine/service/game-management/game.service.ts:51</a></div>
                         </td>
                     </tr>
 
@@ -333,8 +385,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="20"
-                                    class="link-to-prism">src/app/engine/service/game-management/game.service.ts:20</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="30"
+                                    class="link-to-prism">src/app/engine/service/game-management/game.service.ts:30</a></div>
                         </td>
                     </tr>
 
@@ -402,8 +454,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="37"
-                                    class="link-to-prism">src/app/engine/service/game-management/game.service.ts:37</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="47"
+                                    class="link-to-prism">src/app/engine/service/game-management/game.service.ts:47</a></div>
                         </td>
                     </tr>
 
@@ -423,26 +475,26 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="getState"></a>
+                    <a name="initializeGame"></a>
                     <span class="name">
                             <span class="modifier">Async</span>
-                        <span ><b>getState</b></span>
-                        <a href="#getState"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>initializeGame</b></span>
+                        <a href="#initializeGame"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>getState(gameId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <code>initializeGame(gameId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="45"
-                                    class="link-to-prism">src/app/engine/service/game-management/game.service.ts:45</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="55"
+                                    class="link-to-prism">src/app/engine/service/game-management/game.service.ts:55</a></div>
                         </td>
                     </tr>
 
@@ -478,7 +530,76 @@
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>    <code>Promise&lt;GameState&gt;</code>
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="joinGame"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>joinGame</b></span>
+                        <a href="#joinGame"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>joinGame(gameId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="68"
+                                    class="link-to-prism">src/app/engine/service/game-management/game.service.ts:68</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>gameId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
 
                         </div>
                             <div class="io-description">
@@ -501,16 +622,26 @@ import { AuthService } from &#x27;../auth/auth.service&#x27;;
 import { Game } from &#x27;api-types/src/game&#x27;;
 import { GameStateInitializationService } from &#x27;../game-state/game-state-initialization.service&#x27;;
 import { GameTitle } from &#x27;../../constant/game-title.constant&#x27;;
-import { GameState } from &#x27;api-types/src/game-state&#x27;;
+import { FactionRegistryService } from &#x27;../game-element/faction-registry.service&#x27;;
+import { AreaRegistryService } from &#x27;../game-element/area-registry.service&#x27;;
+import { PileRegistryService } from &#x27;../game-element/pile-registry.service&#x27;;
+import { Area } from &#x27;../../model/area.model&#x27;;
+import { Faction } from &#x27;../../model/faction.model&#x27;;
+import { Pile } from &#x27;../../model/pile.model&#x27;;
+import { Router } from &#x27;@angular/router&#x27;;
 
 @Injectable({
   providedIn: &#x27;root&#x27;,
 })
 export class GameService {
   constructor(
+    private router: Router,
     private authService: AuthService,
     private gameManagementClientService: GameManagementClientService,
     private gameStateInitializationService: GameStateInitializationService,
+    private areaRegistryService: AreaRegistryService,
+    private factionRegistryService: FactionRegistryService,
+    private pileRegistryService: PileRegistryService,
   ) {}
 
   async createGame(otherPlayers: string[]): Promise&lt;void&gt; {
@@ -538,8 +669,25 @@ export class GameService {
     await this.gameManagementClientService.completeGame(gameId);
   }
 
-  async getState(gameId: string): Promise&lt;GameState&gt; {
-    return await this.gameManagementClientService.getLatestGameState(gameId);
+  async initializeGame(gameId: string): Promise&lt;void&gt; {
+    const gameState &#x3D; await this.gameManagementClientService.getLatestGameState(gameId);
+    gameState.gameElements.area.forEach((areaState) &#x3D;&gt; {
+      this.areaRegistryService.register(new Area(areaState));
+    });
+    gameState.gameElements.faction.forEach((state) &#x3D;&gt; {
+      this.factionRegistryService.register(new Faction(state));
+    });
+    gameState.gameElements.pile.forEach((state) &#x3D;&gt; {
+      this.pileRegistryService.register(new Pile(state));
+    });
+  }
+
+  async joinGame(gameId: string): Promise&lt;void&gt; {
+    await this.router.navigate([&#x27;/game/dominant-species&#x27;], {
+      queryParams: {
+        gameId: gameId,
+      },
+    });
   }
 }
 </code></pre>

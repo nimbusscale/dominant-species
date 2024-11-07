@@ -123,6 +123,12 @@
 
 
 
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnInit</code>
+    </p>
 
 
 <section data-compodoc="block-metadata">
@@ -210,9 +216,6 @@
                                 <a href="#factions" >factions</a>
                             </li>
                             <li>
-                                <a href="#gameStarted" >gameStarted</a>
-                            </li>
-                            <li>
                                 <a href="#log" >log</a>
                             </li>
                         </ul>
@@ -228,11 +231,7 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#initialize" >initialize</a>
-                            </li>
-                            <li>
-                                <a href="#startGame" >startGame</a>
+                                <a href="#ngOnInit" >ngOnInit</a>
                             </li>
                             <li>
                                 <a href="#takeAction" >takeAction</a>
@@ -255,12 +254,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(gameStateSvc: <a href="../injectables/GameStateService.html" target="_self">GameStateService</a>, factionRegistrySvc: <a href="../injectables/FactionRegistryService.html" target="_self">FactionRegistryService</a>, playerService: <a href="../injectables/PlayerService.html" target="_self">PlayerService</a>, areaRegistryService: <a href="../injectables/AreaRegistryService.html" target="_self">AreaRegistryService</a>, animalProviderService: <a href="../injectables/AnimalProviderService.html" target="_self">AnimalProviderService</a>, adaptionActionDisplayService: <a href="../injectables/AdaptionActionDisplayService.html" target="_self">AdaptionActionDisplayService</a>)</code>
+<code>constructor(gameStateSvc: <a href="../injectables/GameStateService.html" target="_self">GameStateService</a>, areaRegistryService: <a href="../injectables/AreaRegistryService.html" target="_self">AreaRegistryService</a>, factionRegistrySvc: <a href="../injectables/FactionRegistryService.html" target="_self">FactionRegistryService</a>, playerService: <a href="../injectables/PlayerService.html" target="_self">PlayerService</a>, animalProviderService: <a href="../injectables/AnimalProviderService.html" target="_self">AnimalProviderService</a>, adaptionActionDisplayService: <a href="../injectables/AdaptionActionDisplayService.html" target="_self">AdaptionActionDisplayService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/game/component/draw-pool-game/draw-pool-game.component.ts:43</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/game/component/draw-pool-game/draw-pool-game.component.ts:42</a></div>
                             </td>
                         </tr>
 
@@ -290,6 +289,18 @@
                                                     
                                                 </tr>
                                                 <tr>
+                                                        <td>areaRegistryService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/AreaRegistryService.html" target="_self" >AreaRegistryService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
                                                         <td>factionRegistrySvc</td>
                                                   
                                                         <td>
@@ -306,18 +317,6 @@
                                                   
                                                         <td>
                                                                         <code><a href="../injectables/PlayerService.html" target="_self" >PlayerService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>areaRegistryService</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/AreaRegistryService.html" target="_self" >AreaRegistryService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -371,63 +370,24 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="initialize"></a>
+                    <a name="ngOnInit"></a>
                     <span class="name">
-                            <span class="modifier">Private</span>
-                        <span ><b>initialize</b></span>
-                        <a href="#initialize"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-                        <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>initialize()</code>
+<code>ngOnInit()</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="57"
-                                    class="link-to-prism">src/app/game/component/draw-pool-game/draw-pool-game.component.ts:57</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                        </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="startGame"></a>
-                    <span class="name">
-                        <span ><b>startGame</b></span>
-                        <a href="#startGame"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>startGame()</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="68"
-                                    class="link-to-prism">src/app/game/component/draw-pool-game/draw-pool-game.component.ts:68</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="53"
+                                    class="link-to-prism">src/app/game/component/draw-pool-game/draw-pool-game.component.ts:53</a></div>
                         </td>
                     </tr>
 
@@ -463,8 +423,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="85"
-                                    class="link-to-prism">src/app/game/component/draw-pool-game/draw-pool-game.component.ts:85</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="73"
+                                    class="link-to-prism">src/app/game/component/draw-pool-game/draw-pool-game.component.ts:73</a></div>
                         </td>
                     </tr>
 
@@ -510,7 +470,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/game/component/draw-pool-game/draw-pool-game.component.ts:42</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/game/component/draw-pool-game/draw-pool-game.component.ts:41</a></div>
                         </td>
                     </tr>
 
@@ -541,7 +501,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/game/component/draw-pool-game/draw-pool-game.component.ts:40</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/game/component/draw-pool-game/draw-pool-game.component.ts:39</a></div>
                         </td>
                     </tr>
 
@@ -572,32 +532,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/game/component/draw-pool-game/draw-pool-game.component.ts:41</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="gameStarted"></a>
-                    <span class="name">
-                        <span ><b>gameStarted</b></span>
-                        <a href="#gameStarted"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>false</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/game/component/draw-pool-game/draw-pool-game.component.ts:39</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/game/component/draw-pool-game/draw-pool-game.component.ts:40</a></div>
                         </td>
                     </tr>
 
@@ -628,7 +563,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/game/component/draw-pool-game/draw-pool-game.component.ts:43</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/game/component/draw-pool-game/draw-pool-game.component.ts:42</a></div>
                         </td>
                     </tr>
 
@@ -641,18 +576,15 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component } from &#x27;@angular/core&#x27;;
-// import { GameManagementService } from &#x27;../../../engine/service/game-management.service&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
 import { MatButton } from &#x27;@angular/material/button&#x27;;
 import { MatTooltip } from &#x27;@angular/material/tooltip&#x27;;
 import { GameStateService } from &#x27;../../../engine/service/game-state/game-state.service&#x27;;
 import { filter, first } from &#x27;rxjs&#x27;;
-import { FactionRegistryService } from &#x27;../../../engine/service/game-element/faction-registry.service&#x27;;
 import { ElementComponent } from &#x27;../element/element.component&#x27;;
 import { Faction } from &#x27;../../../engine/model/faction.model&#x27;;
 import { ActionPawnComponent } from &#x27;../action-pawn/action-pawn.component&#x27;;
 import { AnimalCardComponent } from &#x27;../animal-card/animal-card.component&#x27;;
-import { PlayerService } from &#x27;../../../engine/service/game-management/player.service&#x27;;
 import { EyeballComponent } from &#x27;../action-display/space/eyeball/eyeball.component&#x27;;
 import { ElementSpaceComponent } from &#x27;../action-display/space/element-space/element-space.component&#x27;;
 import { AdaptionActionDisplayCardComponent } from &#x27;../action-display/adaption-action-display-card/adaption-action-display-card.component&#x27;;
@@ -661,6 +593,9 @@ import { Area } from &#x27;../../../engine/model/area.model&#x27;;
 import { AreaIdEnum } from &#x27;../../constant/area.constant&#x27;;
 import { AnimalProviderService } from &#x27;../../service/animal-provider.service&#x27;;
 import { AdaptionActionDisplayService } from &#x27;../../service/action-display/adaption-action-display.service&#x27;;
+import { ensureDefined } from &#x27;../../../engine/util/misc&#x27;;
+import { FactionRegistryService } from &#x27;../../../engine/service/game-element/faction-registry.service&#x27;;
+import { PlayerService } from &#x27;../../../engine/service/game-management/player.service&#x27;;
 
 @Component({
   selector: &#x27;app-draw-pool-game&#x27;,
@@ -678,26 +613,31 @@ import { AdaptionActionDisplayService } from &#x27;../../service/action-display/
   templateUrl: &#x27;./draw-pool-game.component.html&#x27;,
   styleUrl: &#x27;./draw-pool-game.component.scss&#x27;,
 })
-export class DrawPoolGameComponent {
-  gameStarted &#x3D; false;
+export class DrawPoolGameComponent implements OnInit {
   currentPlayerFaction: Faction | undefined &#x3D; undefined;
   factions: Faction[] &#x3D; [];
   adaptionArea: Area | undefined &#x3D; undefined;
   log: string[] &#x3D; [];
 
   constructor(
-    // private gameManagementSvc: GameManagementService,
     private gameStateSvc: GameStateService,
+    private areaRegistryService: AreaRegistryService,
     private factionRegistrySvc: FactionRegistryService,
     private playerService: PlayerService,
-    private areaRegistryService: AreaRegistryService,
     private animalProviderService: AnimalProviderService,
     private adaptionActionDisplayService: AdaptionActionDisplayService,
-  ) {
-    this.initialize();
-  }
+  ) {}
 
-  private initialize(): void {
+  ngOnInit() {
+    this.factionRegistrySvc.factionAssignment$.subscribe((factionAssignments) &#x3D;&gt; {
+      this.factions &#x3D; factionAssignments.map((factionAssignment) &#x3D;&gt;
+        this.factionRegistrySvc.get(factionAssignment.factionId),
+      );
+      this.currentPlayerFaction &#x3D; this.factions.find(
+        (faction) &#x3D;&gt; faction.ownerId &#x3D;&#x3D;&#x3D; this.playerService.currentPlayer?.username,
+      );
+    });
+
     this.areaRegistryService.registeredIds$
       .pipe(
         filter((ids) &#x3D;&gt; ids.has(AreaIdEnum.ACTION_DISPLAY_ADAPTION)),
@@ -708,39 +648,22 @@ export class DrawPoolGameComponent {
       });
   }
 
-  startGame(): void {
-    // this.gameManagementSvc.createGame();
-    // console.log(&#x27;Create Game&#x27;);
-    // this.factionRegistrySvc.factionAssignment$.subscribe((factionAssignments) &#x3D;&gt; {
-    //   const factionAssignment &#x3D; factionAssignments[0];
-    //   this.factions &#x3D; [this.factionRegistrySvc.get(factionAssignment.id)];
-    //
-    //   this.factions &#x3D; factionAssignments.map((factionAssignment) &#x3D;&gt;
-    //     this.factionRegistrySvc.get(factionAssignment.id),
-    //   );
-    //   this.currentPlayerFaction &#x3D; this.factions.find(
-    //     (faction) &#x3D;&gt; faction.ownerId &#x3D;&#x3D;&#x3D; this.playerService.currentPlayer.id,
-    //   );
-    // });
-    // this.gameStarted &#x3D; true;
-  }
-
   takeAction(): void {
-    // this.gameStateSvc.startTransaction();
-    // const animal &#x3D; this.animalProviderService.get(ensureDefined(this.currentPlayerFaction).id);
-    // const actionPawn &#x3D; animal.actionPawn.pullOne();
-    // if (actionPawn) {
-    //   const nextActionPawnSpaceIndex &#x3D; this.adaptionActionDisplayService.actionPawns.findIndex(
-    //     (value) &#x3D;&gt; value &#x3D;&#x3D;&#x3D; null,
-    //   );
-    //   const nextElementSpaceIndex &#x3D; this.adaptionActionDisplayService.elements.findIndex(
-    //     (value) &#x3D;&gt; value !&#x3D;&#x3D; null,
-    //   );
-    //   this.adaptionActionDisplayService.addActionPawn(nextActionPawnSpaceIndex, actionPawn);
-    //   const element &#x3D; this.adaptionActionDisplayService.removeElement(nextElementSpaceIndex);
-    //   animal.elements.addElement(element);
-    // }
-    // this.gameStateSvc.commitTransaction();
+    this.gameStateSvc.startTransaction();
+    const animal &#x3D; this.animalProviderService.get(ensureDefined(this.currentPlayerFaction).id);
+    const actionPawn &#x3D; animal.actionPawn.pullOne();
+    if (actionPawn) {
+      const nextActionPawnSpaceIndex &#x3D; this.adaptionActionDisplayService.actionPawns.findIndex(
+        (value) &#x3D;&gt; value &#x3D;&#x3D;&#x3D; null,
+      );
+      const nextElementSpaceIndex &#x3D; this.adaptionActionDisplayService.elements.findIndex(
+        (value) &#x3D;&gt; value !&#x3D;&#x3D; null,
+      );
+      this.adaptionActionDisplayService.addActionPawn(nextActionPawnSpaceIndex, actionPawn);
+      const element &#x3D; this.adaptionActionDisplayService.removeElement(nextElementSpaceIndex);
+      animal.elements.addElement(element);
+    }
+    this.gameStateSvc.commitTransaction();
   }
 }
 </code></pre>
@@ -750,19 +673,16 @@ export class DrawPoolGameComponent {
         <pre class="line-numbers"><code class="language-html">&lt;body&gt;
   &lt;section class&#x3D;&quot;draw-pool-play-area&quot;&gt;
     &lt;section class&#x3D;&quot;button-container&quot;&gt;
-      &lt;button mat-raised-button (click)&#x3D;&quot;startGame()&quot;&gt;Start Game&lt;/button&gt;
       &lt;button mat-raised-button (click)&#x3D;&quot;takeAction()&quot;&gt;Take Action&lt;/button&gt;
     &lt;/section&gt;
-    @if (gameStarted) {
-      &lt;section class&#x3D;&quot;card-display&quot;&gt;
-        &lt;app-adaption-action-display-card&gt;&lt;/app-adaption-action-display-card&gt;
-        &lt;div class&#x3D;&quot;animal-card-area&quot;&gt;
-          @for (faction of factions; track faction.id) {
-            &lt;app-animal-card [faction]&#x3D;&quot;faction&quot;&gt;&lt;/app-animal-card&gt;
-          }
-        &lt;/div&gt;
-      &lt;/section&gt;
-    }
+    &lt;section class&#x3D;&quot;card-display&quot;&gt;
+      &lt;app-adaption-action-display-card&gt;&lt;/app-adaption-action-display-card&gt;
+      &lt;div class&#x3D;&quot;animal-card-area&quot;&gt;
+        @for (faction of factions; track faction.id) {
+          &lt;app-animal-card [faction]&#x3D;&quot;faction&quot;&gt;&lt;/app-animal-card&gt;
+        }
+      &lt;/div&gt;
+    &lt;/section&gt;
   &lt;/section&gt;
 &lt;/body&gt;
 </code></pre>
@@ -794,8 +714,8 @@ export class DrawPoolGameComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><body>  <section class="draw-pool-play-area">    <section class="button-container">      <button mat-raised-button (click)="startGame()">Start Game</button>      <button mat-raised-button (click)="takeAction()">Take Action</button>    </section>    @if (gameStarted) {      <section class="card-display">        <app-adaption-action-display-card></app-adaption-action-display-card>        <div class="animal-card-area">          @for (faction of factions; track faction.id) {            <app-animal-card [faction]="faction"></app-animal-card>          }        </div>      </section>    }  </section></body></div>'
-    var COMPONENTS = [{'name': 'ActionPawnComponent', 'selector': 'app-action-pawn'},{'name': 'ActionPawnSpaceComponent', 'selector': 'app-action-pawn-space'},{'name': 'AdaptionActionDisplayCardComponent', 'selector': 'app-adaption-action-display-card'},{'name': 'AnimalCardComponent', 'selector': 'app-animal-card'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CreateGamePageComponent', 'selector': 'app-create-game-page'},{'name': 'DrawPoolGameComponent', 'selector': 'app-draw-pool-game'},{'name': 'ElementComponent', 'selector': 'app-element'},{'name': 'ElementSpaceComponent', 'selector': 'app-element-space'},{'name': 'EyeballComponent', 'selector': 'app-eyeball'},{'name': 'LobbyPageComponent', 'selector': 'app-lobby-page'},{'name': 'LoginPageComponent', 'selector': 'app-login-page'},{'name': 'LogoutPageComponent', 'selector': 'app-logout-page'},{'name': 'SignUpConfirmPageComponent', 'selector': 'app-sign-up-confirm-page'},{'name': 'SignUpPageComponent', 'selector': 'app-sign-up-page'}];
+        var COMPONENT_TEMPLATE = '<div><body>  <section class="draw-pool-play-area">    <section class="button-container">      <button mat-raised-button (click)="takeAction()">Take Action</button>    </section>    <section class="card-display">      <app-adaption-action-display-card></app-adaption-action-display-card>      <div class="animal-card-area">        @for (faction of factions; track faction.id) {          <app-animal-card [faction]="faction"></app-animal-card>        }      </div>    </section>  </section></body></div>'
+    var COMPONENTS = [{'name': 'ActionPawnComponent', 'selector': 'app-action-pawn'},{'name': 'ActionPawnSpaceComponent', 'selector': 'app-action-pawn-space'},{'name': 'AdaptionActionDisplayCardComponent', 'selector': 'app-adaption-action-display-card'},{'name': 'AnimalCardComponent', 'selector': 'app-animal-card'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CreateGamePageComponent', 'selector': 'app-create-game-page'},{'name': 'DominantSpeciesGameComponent', 'selector': 'app-dominant-species-game'},{'name': 'DrawPoolGameComponent', 'selector': 'app-draw-pool-game'},{'name': 'ElementComponent', 'selector': 'app-element'},{'name': 'ElementSpaceComponent', 'selector': 'app-element-space'},{'name': 'EyeballComponent', 'selector': 'app-eyeball'},{'name': 'LobbyPageComponent', 'selector': 'app-lobby-page'},{'name': 'LoginPageComponent', 'selector': 'app-login-page'},{'name': 'LogoutPageComponent', 'selector': 'app-logout-page'},{'name': 'SignUpConfirmPageComponent', 'selector': 'app-sign-up-confirm-page'},{'name': 'SignUpPageComponent', 'selector': 'app-sign-up-page'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'DrawPoolGameComponent'};
 </script>
