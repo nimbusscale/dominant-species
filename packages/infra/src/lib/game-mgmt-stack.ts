@@ -70,7 +70,7 @@ export class GameMgmtStack extends cdk.Stack {
         domainName: 'api.vpa-games.com',
         certificate: aws_certificatemanager.Certificate.fromCertificateArn(
           this,
-          'api.vpa-games.com',
+          'gameMgmtCert',
           'arn:aws:acm:us-east-2:011528296709:certificate/6d5e10a7-6cfd-49dc-b5f4-9dc0616b03c6',
         ),
       },
@@ -83,16 +83,31 @@ export class GameMgmtStack extends cdk.Stack {
       },
     });
 
+    const gameStateDomainName = new aws_apigatewayv2.DomainName(this, 'gameStateDomain', {
+      domainName: 'state.vpa-games.com',
+      certificate: aws_certificatemanager.Certificate.fromCertificateArn(
+        this,
+        'gameStateCert',
+        'arn:aws:acm:us-east-2:011528296709:certificate/9cc1972f-d8d4-425b-86cc-d5d815616a47'
+      )
+    })
+
     this.gameStateApiGw = new aws_apigatewayv2.WebSocketApi(this, 'gameState', {
       connectRouteOptions: {integration: new WebSocketLambdaIntegration('ConnectIntegration', this.wsHandlerFunction)},
       disconnectRouteOptions: {integration: new WebSocketLambdaIntegration('DisconnectIntegration', this.wsHandlerFunction)},
       defaultRouteOptions: {integration: new WebSocketLambdaIntegration('DefaultIntegration', this.wsHandlerFunction)},
     })
 
-    new aws_apigatewayv2.WebSocketStage(this, 'v1', {
+    const gameStateStage = new aws_apigatewayv2.WebSocketStage(this, 'v1', {
       webSocketApi: this.gameStateApiGw,
       stageName: 'v1',
       autoDeploy: true,
     });
+
+    new aws_apigatewayv2.CfnApiMapping(this, 'gameStateDomainMapping', {
+      apiId: this.gameStateApiGw.apiId,
+      domainName: gameStateDomainName.name,
+      stage: gameStateStage.stageName
+    })
   }
 }
