@@ -1,9 +1,10 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { AuthService } from '../../service/auth/auth.service';
 import { MatButton } from '@angular/material/button';
 import { MatCard, MatCardContent } from '@angular/material/card';
+import { NavigateService } from '../../service/navigate.service';
 
 interface LoginFormData {
   username: string;
@@ -25,7 +26,7 @@ export class LoginPageComponent {
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
-    private router: Router,
+    private navigate: NavigateService,
   ) {
     this.loginForm = this.formBuilder.group({
       username: ['', Validators.required],
@@ -38,7 +39,7 @@ export class LoginPageComponent {
       const { username, password } = this.loginForm.value as LoginFormData;
       void this.authService.login(username, password).then((success) => {
         if (success) {
-          void this.router.navigate(['/lobby']);
+          void this.navigate.toLobbyPage();
         } else {
           this.errorMessage.set('Login failed. See console for more information.');
         }

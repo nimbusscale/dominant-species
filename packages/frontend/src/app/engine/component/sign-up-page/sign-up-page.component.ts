@@ -3,7 +3,7 @@ import { SignUpService } from '../../service/auth/sign-up.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatCard, MatCardContent, MatCardHeader } from '@angular/material/card';
 import { MatButton } from '@angular/material/button';
-import { Router } from '@angular/router';
+import { NavigateService } from '../../service/navigate.service';
 
 interface SignUpFormData {
   username: string;
@@ -26,7 +26,7 @@ export class SignUpPageComponent {
   constructor(
     private formBuilder: FormBuilder,
     private signUpService: SignUpService,
-    private router: Router,
+    private navigate: NavigateService,
   ) {
     this.signUpForm = this.formBuilder.group(
       {
@@ -43,7 +43,7 @@ export class SignUpPageComponent {
       const { username, email, password } = this.signUpForm.value as SignUpFormData;
       void this.signUpService.signUp(username, email, password).then((success) => {
         if (success) {
-          void this.router.navigate(['/sign-up-confirm']);
+          void this.navigate.toSignUpConfirmPage();
         } else {
           this.errorMessage.set('Sign up failed. See console for more information.');
         }

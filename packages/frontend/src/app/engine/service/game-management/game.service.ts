@@ -11,14 +11,14 @@ import { PileRegistryService } from '../game-element/pile-registry.service';
 import { Area } from '../../model/area.model';
 import { Faction } from '../../model/faction.model';
 import { Pile } from '../../model/pile.model';
-import { Router } from '@angular/router';
+import { NavigateService } from '../navigate.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class GameService {
   constructor(
-    private router: Router,
+    private navigate: NavigateService,
     private authService: AuthService,
     private gameManagementClientService: GameManagementClientService,
     private gameStateInitializationService: GameStateInitializationService,
@@ -66,10 +66,6 @@ export class GameService {
   }
 
   async joinGame(gameId: string): Promise<void> {
-    await this.router.navigate(['/game/dominant-species'], {
-      queryParams: {
-        gameId: gameId,
-      },
-    });
+    await this.navigate.toGamePage('dominant-species', gameId);
   }
 }
