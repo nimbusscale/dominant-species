@@ -1,11 +1,11 @@
-import { GameElementStates, SpaceState } from 'api-types/src/game-state';
+import { AreaState, GameElementStates, PileState, SpaceState } from 'api-types/src/game-state';
 import { shuffle, startCase } from 'lodash';
 import { AnimalEnum } from '../constant/animal.constant';
 import { getOrThrow } from '../../engine/util/misc';
 import { elementConfigByAnimal } from '../constant/element-config.constant';
 import { deepClone } from 'fast-json-patch';
 import { Space } from '../../engine/model/space.model';
-import { AreaIdEnum, SpaceKindEnum } from '../constant/area.constant';
+import { SpaceKindEnum } from '../constant/area.constant';
 import { defaultPieceFactory } from '../../engine/model/piece.model';
 import { pileIdsByAnimal } from '../constant/pile-config';
 import { PieceKindEnum } from '../constant/piece.constant';
@@ -15,8 +15,10 @@ import {
 } from '../../engine/model/game-state.model';
 import { Area } from '../../engine/model/area.model';
 import { Pile } from '../../engine/model/pile.model';
-import { PileIdEnum } from '../constant/pile.constant';
-import { ElementEnum } from '../constant/element.constant';
+import {
+  ACTION_DISPLAY_ADAPTION_STATE,
+  ELEMENT_DRAW_POOL_STATE,
+} from '../constant/game-state.constant';
 
 // Not injectable as it's built on-demand by GameStateInitializationService
 export class GameElementStatesFactoryService implements InitialGameElementStatesFactory {
@@ -38,34 +40,13 @@ export class GameElementStatesFactoryService implements InitialGameElementStates
   }
 
   buildElementDrawPool(): Pile {
-    return new Pile({
-      id: PileIdEnum.ELEMENT,
-      owner: null,
-      inventory: {
-        // 20 Elements each, with 2 being places on Earth, leaving 18 in the bag
-        [ElementEnum.GRASS]: 18,
-        [ElementEnum.GRUB]: 18,
-        [ElementEnum.MEAT]: 18,
-        [ElementEnum.SEED]: 18,
-        [ElementEnum.SUN]: 18,
-        [ElementEnum.WATER]: 18,
-      },
-    });
+    return new Pile(deepClone(ELEMENT_DRAW_POOL_STATE) as PileState);
   }
 
   buildAdaptionActionDisplay(): Area {
-    const adaptionActionDisplayArea = new Area({
-      id: AreaIdEnum.ACTION_DISPLAY_ADAPTION,
-      space: [
-        { kind: SpaceKindEnum.ELEMENT, piece: null },
-        { kind: SpaceKindEnum.ELEMENT, piece: null },
-        { kind: SpaceKindEnum.ELEMENT, piece: null },
-        { kind: SpaceKindEnum.ELEMENT, piece: null },
-        { kind: SpaceKindEnum.ACTION_PAWN, piece: null },
-        { kind: SpaceKindEnum.ACTION_PAWN, piece: null },
-        { kind: SpaceKindEnum.ACTION_PAWN, piece: null },
-      ],
-    });
+    const adaptionActionDisplayArea = new Area(
+      deepClone(ACTION_DISPLAY_ADAPTION_STATE) as AreaState,
+    );
     this.elementDrawPool.pullMany(4).forEach((element) => {
       if (element) {
         const nextSpace = adaptionActionDisplayArea.nextAvailableSpace(SpaceKindEnum.ELEMENT);

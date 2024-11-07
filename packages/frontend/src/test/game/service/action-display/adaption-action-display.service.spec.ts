@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { AdaptionActionDisplayService } from '../../../../app/game/service/action-display/adaption-action-display.service';
 import { AreaRegistryService } from '../../../../app/engine/service/game-element/area-registry.service';
 import { ElementDrawPoolService } from '../../../../app/game/service/element-draw-pool.service';
-import { AreaIdEnum, SpaceKindEnum } from '../../../../app/game/constant/area.constant';
+import { AreaIdEnum } from '../../../../app/game/constant/area.constant';
 import { filter, first, of, skip } from 'rxjs';
 import { Area } from '../../../../app/engine/model/area.model';
 import { defaultPieceFactory } from '../../../../app/engine/model/piece.model';
@@ -11,6 +11,9 @@ import { ElementEnum } from '../../../../app/game/constant/element.constant';
 import { ElementPiece } from '../../../../app/game/model/element.model';
 import { PieceKindEnum } from '../../../../app/game/constant/piece.constant';
 import { ActionPawnPiece } from '../../../../app/game/model/action-pawn.model';
+import { deepClone } from 'fast-json-patch';
+import { ACTION_DISPLAY_ADAPTION_STATE } from '../../../../app/game/constant/game-state.constant';
+import { AreaState } from 'api-types/src/game-state';
 
 describe('AdaptionActionDisplayService', () => {
   let adaptionActionDisplayService: AdaptionActionDisplayService;
@@ -20,18 +23,7 @@ describe('AdaptionActionDisplayService', () => {
   let mockElementDrawPoolService: jasmine.SpyObj<ElementDrawPoolService>;
 
   beforeEach(() => {
-    testArea = new Area({
-      id: AreaIdEnum.ACTION_DISPLAY_ADAPTION,
-      space: [
-        { kind: SpaceKindEnum.ELEMENT, piece: null },
-        { kind: SpaceKindEnum.ELEMENT, piece: null },
-        { kind: SpaceKindEnum.ELEMENT, piece: null },
-        { kind: SpaceKindEnum.ELEMENT, piece: null },
-        { kind: SpaceKindEnum.ACTION_PAWN, piece: null },
-        { kind: SpaceKindEnum.ACTION_PAWN, piece: null },
-        { kind: SpaceKindEnum.ACTION_PAWN, piece: null },
-      ],
-    });
+    testArea = new Area(deepClone(ACTION_DISPLAY_ADAPTION_STATE) as AreaState);
     mockAreaRegistryService = jasmine.createSpyObj('AreaRegistryService', ['get'], {
       registeredIds$: of(new Set<string>([AreaIdEnum.ACTION_DISPLAY_ADAPTION])),
     });
