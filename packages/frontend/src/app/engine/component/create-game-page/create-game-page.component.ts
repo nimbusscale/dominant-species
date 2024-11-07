@@ -17,12 +17,12 @@ import { MatInput } from '@angular/material/input';
 import { NgForOf, NgIf } from '@angular/common';
 import { filter, Subscription } from 'rxjs';
 import { isNotUndefined } from '../../util/predicate';
-import { Router } from '@angular/router';
 import { MatIcon } from '@angular/material/icon';
 import { MatChip } from '@angular/material/chips';
 import { MatTooltip } from '@angular/material/tooltip';
 import { ensureDefined } from '../../util/misc';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { NavigateService } from '../../service/navigate.service';
 
 @Component({
   selector: 'app-create-game-page',
@@ -61,7 +61,7 @@ export class CreateGamePageComponent implements OnInit, OnDestroy {
 
   constructor(
     private fb: FormBuilder,
-    private router: Router,
+    private navigate: NavigateService,
     private snackBar: MatSnackBar,
     private playerService: PlayerService,
     private gameService: GameService,
@@ -218,7 +218,7 @@ export class CreateGamePageComponent implements OnInit, OnDestroy {
     );
     try {
       await this.gameService.createGame(otherPlayers);
-      void this.router.navigate(['/lobby']);
+      void this.navigate.toLobbyPage();
     } catch (error) {
       this.snackBar.open('Error creating game', 'Close', {
         duration: 3000,

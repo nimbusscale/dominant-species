@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { SignUpService } from '../../service/auth/sign-up.service';
 import { MatCard, MatCardContent } from '@angular/material/card';
 import { MatButton } from '@angular/material/button';
-import { Router } from '@angular/router';
+import { NavigateService } from '../../service/navigate.service';
 
 interface SignUpConfirmFormData {
   username: string;
@@ -25,7 +25,7 @@ export class SignUpConfirmPageComponent {
   constructor(
     private formBuilder: FormBuilder,
     private signUpService: SignUpService,
-    private router: Router,
+    private navigate: NavigateService,
   ) {
     this.signUpConfirmForm = this.formBuilder.group({
       username: ['', Validators.required],
@@ -38,7 +38,7 @@ export class SignUpConfirmPageComponent {
       const { username, code } = this.signUpConfirmForm.value as SignUpConfirmFormData;
       void this.signUpService.confirmSignUp(username, code).then((success) => {
         if (success) {
-          void this.router.navigate(['/login']);
+          void this.navigate.toLoginPage();
         } else {
           this.errorMessage.set('Sign up confirmation failed. See console for more information.');
         }
