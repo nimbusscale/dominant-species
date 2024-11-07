@@ -1,15 +1,15 @@
-import {Injectable} from '@angular/core';
-import {AreaRegistryService} from '../../../engine/service/game-element/area-registry.service';
-import {ElementDrawPoolService} from '../element-draw-pool.service';
-import {Area} from '../../../engine/model/area.model';
-import {ElementPiece} from '../../model/element.model';
-import {ActionPawnPiece} from '../../model/action-pawn.model';
-import {BehaviorSubject, combineLatestWith, filter, first} from 'rxjs';
-import {AreaIdEnum, SpaceKindEnum} from '../../constant/area.constant';
-import {ensureDefined} from '../../../engine/util/misc';
-import {Space} from '../../../engine/model/space.model';
-import {isNotNull} from '../../../engine/util/predicate';
-import {Piece} from 'api-types/src/game-state';
+import { Injectable } from '@angular/core';
+import { AreaRegistryService } from '../../../engine/service/game-element/area-registry.service';
+import { ElementDrawPoolService } from '../element-draw-pool.service';
+import { Area } from '../../../engine/model/area.model';
+import { ElementPiece } from '../../model/element.model';
+import { ActionPawnPiece } from '../../model/action-pawn.model';
+import { BehaviorSubject, combineLatestWith, filter, first } from 'rxjs';
+import { AreaIdEnum, SpaceKindEnum } from '../../constant/area.constant';
+import { ensureDefined } from '../../../engine/util/misc';
+import { Space } from '../../../engine/model/space.model';
+import { isNotNull } from '../../../engine/util/predicate';
+import { Piece } from 'api-types/src/game-state';
 
 @Injectable({
   providedIn: 'root',

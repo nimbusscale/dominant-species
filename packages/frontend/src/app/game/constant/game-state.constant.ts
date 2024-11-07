@@ -8,17 +8,17 @@ import { GameElementStates } from 'api-types/src/game-state';
  */
 
 export const ACTION_DISPLAY_ADAPTION = {
-      id: AreaIdEnum.ACTION_DISPLAY_ADAPTION,
-      space: [
-        { kind: SpaceKindEnum.ELEMENT, piece: null },
-        { kind: SpaceKindEnum.ELEMENT, piece: null },
-        { kind: SpaceKindEnum.ELEMENT, piece: null },
-        { kind: SpaceKindEnum.ELEMENT, piece: null },
-        { kind: SpaceKindEnum.ACTION_PAWN, piece: null },
-        { kind: SpaceKindEnum.ACTION_PAWN, piece: null },
-        { kind: SpaceKindEnum.ACTION_PAWN, piece: null },
-      ],
-    }
+  id: AreaIdEnum.ACTION_DISPLAY_ADAPTION,
+  space: [
+    { kind: SpaceKindEnum.ELEMENT, piece: null },
+    { kind: SpaceKindEnum.ELEMENT, piece: null },
+    { kind: SpaceKindEnum.ELEMENT, piece: null },
+    { kind: SpaceKindEnum.ELEMENT, piece: null },
+    { kind: SpaceKindEnum.ACTION_PAWN, piece: null },
+    { kind: SpaceKindEnum.ACTION_PAWN, piece: null },
+    { kind: SpaceKindEnum.ACTION_PAWN, piece: null },
+  ],
+};
 
 export const baseGameElementStates: GameElementStates = {
   area: [

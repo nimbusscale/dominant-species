@@ -16,7 +16,11 @@ describe('Area', () => {
     testPiece2 = defaultPieceFactory('testPiece', null);
     area = new Area({
       id: 'testArea',
-      space: [{kind: 'testSpace', piece: null}, {kind: 'testSpace', piece: null}]});
+      space: [
+        { kind: 'testSpace', piece: null },
+        { kind: 'testSpace', piece: null },
+      ],
+    });
     space1 = area.spaces[0];
     space2 = area.spaces[1];
   });

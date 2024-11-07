@@ -7,7 +7,7 @@ describe('Space', () => {
   let testPiece: Piece;
 
   beforeEach(() => {
-    space = new Space({kind: 'test', piece: null});
+    space = new Space({ kind: 'test', piece: null });
     testPiece = defaultPieceFactory('test');
   });
   it('should not emit initial state', (done) => {

@@ -1,16 +1,16 @@
-import {TestBed} from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 
-import {AdaptionActionDisplayService} from '../../../../app/game/service/action-display/adaption-action-display.service';
-import {AreaRegistryService} from '../../../../app/engine/service/game-element/area-registry.service';
-import {ElementDrawPoolService} from '../../../../app/game/service/element-draw-pool.service';
-import {AreaIdEnum, SpaceKindEnum} from '../../../../app/game/constant/area.constant';
-import {filter, first, of, skip} from 'rxjs';
-import {Area} from '../../../../app/engine/model/area.model';
-import {defaultPieceFactory} from '../../../../app/engine/model/piece.model';
-import {ElementEnum} from '../../../../app/game/constant/element.constant';
-import {ElementPiece} from '../../../../app/game/model/element.model';
-import {PieceKindEnum} from '../../../../app/game/constant/piece.constant';
-import {ActionPawnPiece} from '../../../../app/game/model/action-pawn.model';
+import { AdaptionActionDisplayService } from '../../../../app/game/service/action-display/adaption-action-display.service';
+import { AreaRegistryService } from '../../../../app/engine/service/game-element/area-registry.service';
+import { ElementDrawPoolService } from '../../../../app/game/service/element-draw-pool.service';
+import { AreaIdEnum, SpaceKindEnum } from '../../../../app/game/constant/area.constant';
+import { filter, first, of, skip } from 'rxjs';
+import { Area } from '../../../../app/engine/model/area.model';
+import { defaultPieceFactory } from '../../../../app/engine/model/piece.model';
+import { ElementEnum } from '../../../../app/game/constant/element.constant';
+import { ElementPiece } from '../../../../app/game/model/element.model';
+import { PieceKindEnum } from '../../../../app/game/constant/piece.constant';
+import { ActionPawnPiece } from '../../../../app/game/model/action-pawn.model';
 
 describe('AdaptionActionDisplayService', () => {
   let adaptionActionDisplayService: AdaptionActionDisplayService;
@@ -23,13 +23,13 @@ describe('AdaptionActionDisplayService', () => {
     testArea = new Area({
       id: AreaIdEnum.ACTION_DISPLAY_ADAPTION,
       space: [
-        {kind: SpaceKindEnum.ELEMENT, piece: null},
-        {kind: SpaceKindEnum.ELEMENT, piece: null},
-        {kind: SpaceKindEnum.ELEMENT, piece: null},
-        {kind: SpaceKindEnum.ELEMENT, piece: null},
-        {kind: SpaceKindEnum.ACTION_PAWN, piece: null},
-        {kind: SpaceKindEnum.ACTION_PAWN, piece: null},
-        {kind: SpaceKindEnum.ACTION_PAWN, piece: null},
+        { kind: SpaceKindEnum.ELEMENT, piece: null },
+        { kind: SpaceKindEnum.ELEMENT, piece: null },
+        { kind: SpaceKindEnum.ELEMENT, piece: null },
+        { kind: SpaceKindEnum.ELEMENT, piece: null },
+        { kind: SpaceKindEnum.ACTION_PAWN, piece: null },
+        { kind: SpaceKindEnum.ACTION_PAWN, piece: null },
+        { kind: SpaceKindEnum.ACTION_PAWN, piece: null },
       ],
     });
     mockAreaRegistryService = jasmine.createSpyObj('AreaRegistryService', ['get'], {
@@ -51,8 +51,8 @@ describe('AdaptionActionDisplayService', () => {
     TestBed.configureTestingModule({
       providers: [
         AdaptionActionDisplayService,
-        {provide: AreaRegistryService, useValue: mockAreaRegistryService},
-        {provide: ElementDrawPoolService, useValue: mockElementDrawPoolService},
+        { provide: AreaRegistryService, useValue: mockAreaRegistryService },
+        { provide: ElementDrawPoolService, useValue: mockElementDrawPoolService },
       ],
     });
     adaptionActionDisplayService = TestBed.inject(AdaptionActionDisplayService);
@@ -81,7 +81,7 @@ describe('AdaptionActionDisplayService', () => {
 
       adaptionActionDisplayService.replenish();
     });
-        it('should throw error if replenish and spaces not cleared', () => {
+    it('should throw error if replenish and spaces not cleared', () => {
       adaptionActionDisplayService.elementSpaces[0].addPiece(defaultPieceFactory(ElementEnum.SUN));
       expect(() => {
         adaptionActionDisplayService.replenish();

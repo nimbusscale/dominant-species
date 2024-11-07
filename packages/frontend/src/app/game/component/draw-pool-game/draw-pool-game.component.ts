@@ -1,23 +1,23 @@
-import {Component, OnInit} from '@angular/core';
-import {MatButton} from '@angular/material/button';
-import {MatTooltip} from '@angular/material/tooltip';
-import {GameStateService} from '../../../engine/service/game-state/game-state.service';
-import {filter, first} from 'rxjs';
-import {ElementComponent} from '../element/element.component';
-import {Faction} from '../../../engine/model/faction.model';
-import {ActionPawnComponent} from '../action-pawn/action-pawn.component';
-import {AnimalCardComponent} from '../animal-card/animal-card.component';
-import {EyeballComponent} from '../action-display/space/eyeball/eyeball.component';
-import {ElementSpaceComponent} from '../action-display/space/element-space/element-space.component';
-import {AdaptionActionDisplayCardComponent} from '../action-display/adaption-action-display-card/adaption-action-display-card.component';
-import {AreaRegistryService} from '../../../engine/service/game-element/area-registry.service';
-import {Area} from '../../../engine/model/area.model';
-import {AreaIdEnum} from '../../constant/area.constant';
-import {AnimalProviderService} from '../../service/animal-provider.service';
-import {AdaptionActionDisplayService} from '../../service/action-display/adaption-action-display.service';
-import {ensureDefined} from "../../../engine/util/misc";
-import {FactionRegistryService} from "../../../engine/service/game-element/faction-registry.service";
-import {PlayerService} from "../../../engine/service/game-management/player.service";
+import { Component, OnInit } from '@angular/core';
+import { MatButton } from '@angular/material/button';
+import { MatTooltip } from '@angular/material/tooltip';
+import { GameStateService } from '../../../engine/service/game-state/game-state.service';
+import { filter, first } from 'rxjs';
+import { ElementComponent } from '../element/element.component';
+import { Faction } from '../../../engine/model/faction.model';
+import { ActionPawnComponent } from '../action-pawn/action-pawn.component';
+import { AnimalCardComponent } from '../animal-card/animal-card.component';
+import { EyeballComponent } from '../action-display/space/eyeball/eyeball.component';
+import { ElementSpaceComponent } from '../action-display/space/element-space/element-space.component';
+import { AdaptionActionDisplayCardComponent } from '../action-display/adaption-action-display-card/adaption-action-display-card.component';
+import { AreaRegistryService } from '../../../engine/service/game-element/area-registry.service';
+import { Area } from '../../../engine/model/area.model';
+import { AreaIdEnum } from '../../constant/area.constant';
+import { AnimalProviderService } from '../../service/animal-provider.service';
+import { AdaptionActionDisplayService } from '../../service/action-display/adaption-action-display.service';
+import { ensureDefined } from '../../../engine/util/misc';
+import { FactionRegistryService } from '../../../engine/service/game-element/faction-registry.service';
+import { PlayerService } from '../../../engine/service/game-management/player.service';
 
 @Component({
   selector: 'app-draw-pool-game',
@@ -48,8 +48,7 @@ export class DrawPoolGameComponent implements OnInit {
     private playerService: PlayerService,
     private animalProviderService: AnimalProviderService,
     private adaptionActionDisplayService: AdaptionActionDisplayService,
-  ) {
-  }
+  ) {}
 
   ngOnInit() {
     this.factionRegistrySvc.factionAssignment$.subscribe((factionAssignments) => {

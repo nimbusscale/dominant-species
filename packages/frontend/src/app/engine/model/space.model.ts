@@ -12,7 +12,7 @@ export class Space {
 
   constructor(state: SpaceState) {
     this.kind = state.kind;
-    this._piece = state.piece
+    this._piece = state.piece;
     this.stateSubject = new Subject<SpaceState>();
     this.state$ = this.stateSubject.asObservable();
   }
