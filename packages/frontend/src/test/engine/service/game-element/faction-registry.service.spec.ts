@@ -30,7 +30,7 @@ describe('FactionRegistryService', () => {
   describe('factionAssignment$', () => {
     it('emits FactionAssignment when registered', (done) => {
       factionRegistrySvc.factionAssignment$.pipe(skip(1)).subscribe((factionAssignments) => {
-        expect(factionAssignments[0]).toEqual({ id: 'redTester', ownerId: 'tester1' });
+        expect(factionAssignments[0]).toEqual({ factionId: 'redTester', ownerId: 'tester1' });
         done();
       });
       factionRegistrySvc.register([testFaction]);

@@ -9,13 +9,12 @@ export class Area extends GameElement<AreaState> {
   spaces$: Observable<Space[]>;
   private readonly spaceState: SpaceState[];
 
-  constructor(id: string, spaces: Space[]) {
-    const spaceState = spaces.map((space) => space.state);
-    super({ id: id, space: spaceState });
-    this.spaces = spaces;
+  constructor(state: AreaState) {
+    super(state);
+    this.spaces = state.space.map((spaceState) => new Space(spaceState));
     this.spacesSubject = new BehaviorSubject<Space[]>(this.spaces);
     this.spaces$ = this.spacesSubject.asObservable();
-    this.spaceState = spaceState;
+    this.spaceState = state.space;
     this.initialize();
   }
 

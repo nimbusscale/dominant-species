@@ -66,24 +66,21 @@ export class AdaptionActionDisplayService {
       });
   }
 
-  setup(): void {
-    this.replenish();
-  }
-
   replenish(): void {
     if (this.elements.filter(isNotNull).length > 0) {
       throw new Error('Element spaces must be cleared before replenish');
     }
 
     this.elementDrawPoolService.pull(4).forEach((element) => {
-      const nextSpace = ensureDefined(this.area).nextAvailableSpace(SpaceKindEnum.ELEMENT);
-      if (nextSpace) {
-        nextSpace.addPiece(element as Piece);
-      } else {
-        throw new Error('No Spaces available');
+      if (element) {
+        const nextSpace = ensureDefined(this.area).nextAvailableSpace(SpaceKindEnum.ELEMENT);
+        if (nextSpace) {
+          nextSpace.addPiece(element as Piece);
+        } else {
+          throw new Error('No Spaces available');
+        }
       }
     });
-    this.elementsSubject.next(this.elements);
   }
 
   removeElement(index: number): ElementPiece {

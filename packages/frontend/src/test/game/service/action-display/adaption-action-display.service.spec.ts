@@ -5,7 +5,6 @@ import { AreaRegistryService } from '../../../../app/engine/service/game-element
 import { ElementDrawPoolService } from '../../../../app/game/service/element-draw-pool.service';
 import { AreaIdEnum, SpaceKindEnum } from '../../../../app/game/constant/area.constant';
 import { filter, first, of, skip } from 'rxjs';
-import { Space } from '../../../../app/engine/model/space.model';
 import { Area } from '../../../../app/engine/model/area.model';
 import { defaultPieceFactory } from '../../../../app/engine/model/piece.model';
 import { ElementEnum } from '../../../../app/game/constant/element.constant';
@@ -15,24 +14,24 @@ import { ActionPawnPiece } from '../../../../app/game/model/action-pawn.model';
 
 describe('AdaptionActionDisplayService', () => {
   let adaptionActionDisplayService: AdaptionActionDisplayService;
-  let testActionPawnSpace: Space;
-  let testElementSpace: Space;
   let testElements: ElementPiece[];
   let testArea: Area;
   let mockAreaRegistryService: jasmine.SpyObj<AreaRegistryService>;
   let mockElementDrawPoolService: jasmine.SpyObj<ElementDrawPoolService>;
 
   beforeEach(() => {
-    testActionPawnSpace = new Space(SpaceKindEnum.ACTION_PAWN);
-    testElementSpace = new Space(SpaceKindEnum.ELEMENT);
-    testArea = new Area(AreaIdEnum.ACTION_DISPLAY_ADAPTION, [
-      // need 4 spaces to test replenish, but only need to check the status of first space /
-      testElementSpace,
-      new Space(SpaceKindEnum.ELEMENT),
-      new Space(SpaceKindEnum.ELEMENT),
-      new Space(SpaceKindEnum.ELEMENT),
-      testActionPawnSpace,
-    ]);
+    testArea = new Area({
+      id: AreaIdEnum.ACTION_DISPLAY_ADAPTION,
+      space: [
+        { kind: SpaceKindEnum.ELEMENT, piece: null },
+        { kind: SpaceKindEnum.ELEMENT, piece: null },
+        { kind: SpaceKindEnum.ELEMENT, piece: null },
+        { kind: SpaceKindEnum.ELEMENT, piece: null },
+        { kind: SpaceKindEnum.ACTION_PAWN, piece: null },
+        { kind: SpaceKindEnum.ACTION_PAWN, piece: null },
+        { kind: SpaceKindEnum.ACTION_PAWN, piece: null },
+      ],
+    });
     mockAreaRegistryService = jasmine.createSpyObj('AreaRegistryService', ['get'], {
       registeredIds$: of(new Set<string>([AreaIdEnum.ACTION_DISPLAY_ADAPTION])),
     });
@@ -83,7 +82,7 @@ describe('AdaptionActionDisplayService', () => {
       adaptionActionDisplayService.replenish();
     });
     it('should throw error if replenish and spaces not cleared', () => {
-      testElementSpace.addPiece(defaultPieceFactory(ElementEnum.SUN));
+      adaptionActionDisplayService.elementSpaces[0].addPiece(defaultPieceFactory(ElementEnum.SUN));
       expect(() => {
         adaptionActionDisplayService.replenish();
       }).toThrowError();
@@ -121,7 +120,7 @@ describe('AdaptionActionDisplayService', () => {
 
   describe('elements', () => {
     it('should allow remove element', () => {
-      testElementSpace.addPiece(defaultPieceFactory(ElementEnum.SUN));
+      adaptionActionDisplayService.elementSpaces[0].addPiece(defaultPieceFactory(ElementEnum.SUN));
       expect(adaptionActionDisplayService.removeElement(0)).toEqual(
         defaultPieceFactory(ElementEnum.SUN) as ElementPiece,
       );

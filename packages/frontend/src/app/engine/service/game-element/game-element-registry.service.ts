@@ -18,14 +18,18 @@ export abstract class GameElementRegistryService<
   private registeredElementSubject = new BehaviorSubject<Set<string>>(new Set());
   registeredIds$: Observable<Set<string>> = this.registeredElementSubject.asObservable();
 
-  constructor(protected gameElementStateSvc: TgameElementStateSvc) {}
+  protected constructor(protected gameElementStateSvc: TgameElementStateSvc) {}
 
   get(id: string): TgameElement {
     return getOrThrow(this.elementById, id);
   }
 
-  register(elements: TgameElement[]): void {
-    elements.forEach((element) => {
+  // register(element: TgameElement): void;
+  // register(elements: TgameElement[]): void;
+  register(elements: TgameElement | TgameElement[]): void {
+    const elementsArray = Array.isArray(elements) ? elements : [elements];
+
+    elementsArray.forEach((element) => {
       if (!this.registeredIds.has(element.id)) {
         this.elementById.set(element.id, element);
         this.registeredIds.add(element.id);
@@ -33,7 +37,8 @@ export abstract class GameElementRegistryService<
         throw new Error(`Element with id ${element.id} already registered.`);
       }
     });
+
     this.registeredElementSubject.next(this.registeredIds);
-    this.gameElementStateSvc.register(elements);
+    this.gameElementStateSvc.register(elementsArray);
   }
 }

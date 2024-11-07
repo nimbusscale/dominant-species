@@ -38,6 +38,10 @@ describe('PileRegistryService', () => {
       pileRegistrySvc.register(piles);
       expect(pileStateSvcSpy.register).toHaveBeenCalledWith(piles);
     });
+    it('should allow registration of a new single pile and register it with state svc', () => {
+      pileRegistrySvc.register(testPile1);
+      expect(pileStateSvcSpy.register).toHaveBeenCalledWith([testPile1]);
+    });
     it('updates and emits registeredPiles$', (done) => {
       pileRegistrySvc.registeredIds$.pipe(skip(1)).subscribe((pileIds) => {
         expect(pileIds.has(testPile1.id)).toBeTrue();

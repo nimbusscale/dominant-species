@@ -6,7 +6,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { FactionState } from 'api-types/src/game-state';
 
 export interface FactionAssignment {
-  id: string;
+  factionId: string;
   ownerId: string;
 }
 
@@ -28,11 +28,14 @@ export class FactionRegistryService extends GameElementRegistryService<
     super(factionStateSvc);
   }
 
-  override register(elements: Faction[]): void {
-    super.register(elements);
-    elements.forEach((faction) => {
+  // override register(element: Faction): void;
+  // override register(elements: Faction[]): void
+  override register(elements: Faction | Faction[]): void {
+    const elementsArray = Array.isArray(elements) ? elements : [elements];
+    super.register(elementsArray);
+    elementsArray.forEach((faction) => {
       this.factionAssignment.push({
-        id: faction.id,
+        factionId: faction.id,
         ownerId: faction.ownerId,
       });
     });

@@ -29,7 +29,7 @@ export class AnimalProviderService {
     this.factionRegistryService.factionAssignment$.subscribe((factionAssignments) => {
       // To minimize any building an animal several times, we add the animal id to processedFactionIds as quickly as possible /
       const factionIds = new Set<string>(
-        factionAssignments.map((factionAssignment) => factionAssignment.id),
+        factionAssignments.map((factionAssignment) => factionAssignment.factionId),
       );
       const factionIdsToProcess = setDifference(factionIds, this.processedFactionIds);
       this.processedFactionIds = new Set<string>([

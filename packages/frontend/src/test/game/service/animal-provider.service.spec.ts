@@ -41,8 +41,8 @@ describe('AnimalProviderService', () => {
       ['get'],
       {
         factionAssignment$: of([
-          { id: AnimalEnum.BIRD, ownerId: 'tester1' },
-          { id: AnimalEnum.INSECT, ownerId: 'tester2' },
+          { factionId: AnimalEnum.BIRD, ownerId: 'tester1' },
+          { factionId: AnimalEnum.INSECT, ownerId: 'tester2' },
         ]),
       },
     );

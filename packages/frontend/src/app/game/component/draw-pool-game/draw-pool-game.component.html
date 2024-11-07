@@ -1,18 +1,15 @@
 <body>
   <section class="draw-pool-play-area">
     <section class="button-container">
-      <button mat-raised-button (click)="startGame()">Start Game</button>
       <button mat-raised-button (click)="takeAction()">Take Action</button>
     </section>
-    @if (gameStarted) {
-      <section class="card-display">
-        <app-adaption-action-display-card></app-adaption-action-display-card>
-        <div class="animal-card-area">
-          @for (faction of factions; track faction.id) {
-            <app-animal-card [faction]="faction"></app-animal-card>
-          }
-        </div>
-      </section>
-    }
+    <section class="card-display">
+      <app-adaption-action-display-card></app-adaption-action-display-card>
+      <div class="animal-card-area">
+        @for (faction of factions; track faction.id) {
+          <app-animal-card [faction]="faction"></app-animal-card>
+        }
+      </div>
+    </section>
   </section>
 </body>
