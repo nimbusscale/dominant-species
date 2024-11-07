@@ -63,13 +63,13 @@ export function setDifference<T>(setA: Set<T>, setB: Set<T>): Set<T> {
  * This is intended to be used with "seed" objects that should be copied to create a "read/write" object that can be used.
  */
 export function deepFreeze<T>(obj: T): T {
-    const propNames = Object.getOwnPropertyNames(obj) as (keyof T)[];
-    for (const name of propNames) {
-        const value = obj[name];
-        if (typeof value === 'object' && value !== null) {
-            deepFreeze(value);
-        }
+  const propNames = Object.getOwnPropertyNames(obj) as (keyof T)[];
+  for (const name of propNames) {
+    const value = obj[name];
+    if (typeof value === 'object' && value !== null) {
+      deepFreeze(value);
     }
+  }
 
-    return Object.freeze(obj);
+  return Object.freeze(obj);
 }

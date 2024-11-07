@@ -1,18 +1,18 @@
-import {AreaIdEnum, SpaceKindEnum} from './area.constant';
-import {PileIdEnum} from './pile.constant';
-import {ElementEnum} from './element.constant';
-import {deepFreeze} from "../../engine/util/misc";
+import { AreaIdEnum, SpaceKindEnum } from './area.constant';
+import { PileIdEnum } from './pile.constant';
+import { ElementEnum } from './element.constant';
+import { deepFreeze } from '../../engine/util/misc';
 
 export const ACTION_DISPLAY_ADAPTION_STATE = deepFreeze({
   id: AreaIdEnum.ACTION_DISPLAY_ADAPTION,
   space: [
-    {kind: SpaceKindEnum.ELEMENT, piece: null},
-    {kind: SpaceKindEnum.ELEMENT, piece: null},
-    {kind: SpaceKindEnum.ELEMENT, piece: null},
-    {kind: SpaceKindEnum.ELEMENT, piece: null},
-    {kind: SpaceKindEnum.ACTION_PAWN, piece: null},
-    {kind: SpaceKindEnum.ACTION_PAWN, piece: null},
-    {kind: SpaceKindEnum.ACTION_PAWN, piece: null},
+    { kind: SpaceKindEnum.ELEMENT, piece: null },
+    { kind: SpaceKindEnum.ELEMENT, piece: null },
+    { kind: SpaceKindEnum.ELEMENT, piece: null },
+    { kind: SpaceKindEnum.ELEMENT, piece: null },
+    { kind: SpaceKindEnum.ACTION_PAWN, piece: null },
+    { kind: SpaceKindEnum.ACTION_PAWN, piece: null },
+    { kind: SpaceKindEnum.ACTION_PAWN, piece: null },
   ],
 });
 
@@ -28,4 +28,4 @@ export const ELEMENT_DRAW_POOL_STATE = deepFreeze({
     [ElementEnum.SUN]: 18,
     [ElementEnum.WATER]: 18,
   },
-})
+});
