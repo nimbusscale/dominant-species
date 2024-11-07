@@ -58,7 +58,7 @@ export class GameStateService {
   }
 
   get playerIds(): string[] {
-    return this.gameStateStore.playerIds
+    return this.gameStateStore.playerIds;
   }
 
   get area$(): Observable<AreaState[]> {
