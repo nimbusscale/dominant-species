@@ -18,8 +18,6 @@ import {AdaptionActionDisplayService} from '../../service/action-display/adaptio
 import {ensureDefined} from "../../../engine/util/misc";
 import {FactionRegistryService} from "../../../engine/service/game-element/faction-registry.service";
 import {PlayerService} from "../../../engine/service/game-management/player.service";
-import {GameService} from "../../../engine/service/game-management/game.service";
-import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-draw-pool-game',
@@ -44,10 +42,7 @@ export class DrawPoolGameComponent implements OnInit {
   log: string[] = [];
 
   constructor(
-    private route: ActivatedRoute,
-    private router: Router,
     private gameStateSvc: GameStateService,
-    private gameService: GameService,
     private areaRegistryService: AreaRegistryService,
     private factionRegistrySvc: FactionRegistryService,
     private playerService: PlayerService,
@@ -57,12 +52,6 @@ export class DrawPoolGameComponent implements OnInit {
   }
 
   async ngOnInit() {
-    const gameId = this.route.snapshot.queryParamMap.get('gameId')
-    if (!gameId) {
-      await this.router.navigate(['/lobby'])
-    } else {
-      await this.gameService.initializeGame(gameId)
-    }
     this.factionRegistrySvc.factionAssignment$.subscribe((factionAssignments) => {
       this.factions = factionAssignments.map((factionAssignment) =>
         this.factionRegistrySvc.get(factionAssignment.factionId),
