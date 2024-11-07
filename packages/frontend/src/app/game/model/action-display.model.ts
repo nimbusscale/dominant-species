@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
 
-export interface ActionDisplayServiceWithSetup {
+export interface ActionDisplayService {
   ready$: Observable<boolean>;
 }
