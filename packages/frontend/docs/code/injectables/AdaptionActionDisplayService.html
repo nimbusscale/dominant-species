@@ -201,9 +201,6 @@
                             <li>
                                 <a href="#replenish" >replenish</a>
                             </li>
-                            <li>
-                                <a href="#setup" >setup</a>
-                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -302,8 +299,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="99"
-                                    class="link-to-prism">src/app/game/service/action-display/adaption-action-display.service.ts:99</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="96"
+                                    class="link-to-prism">src/app/game/service/action-display/adaption-action-display.service.ts:96</a></div>
                         </td>
                     </tr>
 
@@ -418,8 +415,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="103"
-                                    class="link-to-prism">src/app/game/service/action-display/adaption-action-display.service.ts:103</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="100"
+                                    class="link-to-prism">src/app/game/service/action-display/adaption-action-display.service.ts:100</a></div>
                         </td>
                     </tr>
 
@@ -485,8 +482,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="89"
-                                    class="link-to-prism">src/app/game/service/action-display/adaption-action-display.service.ts:89</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="86"
+                                    class="link-to-prism">src/app/game/service/action-display/adaption-action-display.service.ts:86</a></div>
                         </td>
                     </tr>
 
@@ -552,8 +549,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="93"
-                                    class="link-to-prism">src/app/game/service/action-display/adaption-action-display.service.ts:93</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="90"
+                                    class="link-to-prism">src/app/game/service/action-display/adaption-action-display.service.ts:90</a></div>
                         </td>
                     </tr>
 
@@ -583,43 +580,6 @@
             <tr>
                 <td class="col-md-4">
 <code>replenish()</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="73"
-                                    class="link-to-prism">src/app/game/service/action-display/adaption-action-display.service.ts:73</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                        </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="setup"></a>
-                    <span class="name">
-                        <span ><b>setup</b></span>
-                        <a href="#setup"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>setup()</code>
                 </td>
             </tr>
 
@@ -1031,24 +991,21 @@ export class AdaptionActionDisplayService {
       });
   }
 
-  setup(): void {
-    this.replenish();
-  }
-
   replenish(): void {
     if (this.elements.filter(isNotNull).length &gt; 0) {
       throw new Error(&#x27;Element spaces must be cleared before replenish&#x27;);
     }
 
     this.elementDrawPoolService.pull(4).forEach((element) &#x3D;&gt; {
-      const nextSpace &#x3D; ensureDefined(this.area).nextAvailableSpace(SpaceKindEnum.ELEMENT);
-      if (nextSpace) {
-        nextSpace.addPiece(element as Piece);
-      } else {
-        throw new Error(&#x27;No Spaces available&#x27;);
+      if (element) {
+        const nextSpace &#x3D; ensureDefined(this.area).nextAvailableSpace(SpaceKindEnum.ELEMENT);
+        if (nextSpace) {
+          nextSpace.addPiece(element as Piece);
+        } else {
+          throw new Error(&#x27;No Spaces available&#x27;);
+        }
       }
     });
-    this.elementsSubject.next(this.elements);
   }
 
   removeElement(index: number): ElementPiece {

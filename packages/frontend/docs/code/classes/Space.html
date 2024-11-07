@@ -218,7 +218,7 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(kind: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>constructor(state: <a href="../classes/Space.html" target="_self">SpaceState</a>)</code>
                     </td>
                 </tr>
                         <tr>
@@ -241,10 +241,10 @@
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>kind</td>
+                                                        <td>state</td>
                                                   
                                                         <td>
-                                                                        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                                        <code><a href="../classes/Space.html" target="_self" >SpaceState</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -437,8 +437,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="34"
-                                    class="link-to-prism">src/app/engine/model/space.model.ts:34</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="35"
+                                    class="link-to-prism">src/app/engine/model/space.model.ts:35</a></div>
                         </td>
                     </tr>
 
@@ -504,8 +504,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="43"
-                                    class="link-to-prism">src/app/engine/model/space.model.ts:43</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="44"
+                                    class="link-to-prism">src/app/engine/model/space.model.ts:44</a></div>
                         </td>
                     </tr>
 
@@ -541,8 +541,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="54"
-                                    class="link-to-prism">src/app/engine/model/space.model.ts:54</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="55"
+                                    class="link-to-prism">src/app/engine/model/space.model.ts:55</a></div>
                         </td>
                     </tr>
 
@@ -614,7 +614,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/engine/model/space.model.ts:19</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/engine/model/space.model.ts:20</a></div>
                                 </td>
                             </tr>
 
@@ -636,7 +636,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/engine/model/space.model.ts:26</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/engine/model/space.model.ts:27</a></div>
                                 </td>
                             </tr>
 
@@ -658,7 +658,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/engine/model/space.model.ts:30</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/engine/model/space.model.ts:31</a></div>
                                 </td>
                             </tr>
 
@@ -681,8 +681,9 @@ export class Space {
   private stateSubject: Subject&lt;SpaceState&gt;;
   state$: Observable&lt;SpaceState&gt;;
 
-  constructor(kind: string) {
-    this.kind &#x3D; kind;
+  constructor(state: SpaceState) {
+    this.kind &#x3D; state.kind;
+    this._piece &#x3D; state.piece;
     this.stateSubject &#x3D; new Subject&lt;SpaceState&gt;();
     this.state$ &#x3D; this.stateSubject.asObservable();
   }

@@ -142,9 +142,9 @@
                         <td class="col-md-4">
                             <ul class="index-list">
                                 <li>
-                                        <a href="#id" 
+                                        <a href="#factionId" 
 >
-                                            id
+                                            factionId
                                         </a>
                                 </li>
                                 <li>
@@ -168,9 +168,9 @@
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
-                                        <a name="id"></a>
-                                        <span class="name "><b>id</b>
-                                            <a href="#id">
+                                        <a name="factionId"></a>
+                                        <span class="name "><b>factionId</b>
+                                            <a href="#factionId">
                                                 <span class="icon ion-ios-link"></span>
                                             </a>
                                         </span>
@@ -178,7 +178,7 @@
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>id:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                        <code>factionId:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 </code>
                                     </td>
                                 </tr>
@@ -243,7 +243,7 @@ import { BehaviorSubject, Observable } from &#x27;rxjs&#x27;;
 import { FactionState } from &#x27;api-types/src/game-state&#x27;;
 
 export interface FactionAssignment {
-  id: string;
+  factionId: string;
   ownerId: string;
 }
 
@@ -265,11 +265,14 @@ export class FactionRegistryService extends GameElementRegistryService&lt;
     super(factionStateSvc);
   }
 
-  override register(elements: Faction[]): void {
-    super.register(elements);
-    elements.forEach((faction) &#x3D;&gt; {
+  // override register(element: Faction): void;
+  // override register(elements: Faction[]): void
+  override register(elements: Faction | Faction[]): void {
+    const elementsArray &#x3D; Array.isArray(elements) ? elements : [elements];
+    super.register(elementsArray);
+    elementsArray.forEach((faction) &#x3D;&gt; {
       this.factionAssignment.push({
-        id: faction.id,
+        factionId: faction.id,
         ownerId: faction.ownerId,
       });
     });

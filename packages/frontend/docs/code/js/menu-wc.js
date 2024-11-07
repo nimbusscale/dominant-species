@@ -67,6 +67,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/CreateGamePageComponent.html" data-type="entity-link" >CreateGamePageComponent</a>
                             </li>
                             <li class="link">
+                                <a href="components/DominantSpeciesGameComponent.html" data-type="entity-link" >DominantSpeciesGameComponent</a>
+                            </li>
+                            <li class="link">
                                 <a href="components/DrawPoolGameComponent.html" data-type="entity-link" >DrawPoolGameComponent</a>
                             </li>
                             <li class="link">
@@ -104,9 +107,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         </div>
                         <ul class="links collapse " ${ isNormalMode ? 'id="classes-links"' : 'id="xs-classes-links"' }>
                             <li class="link">
-                                <a href="classes/ActionDisplaySetupManager.html" data-type="entity-link" >ActionDisplaySetupManager</a>
-                            </li>
-                            <li class="link">
                                 <a href="classes/Animal.html" data-type="entity-link" >Animal</a>
                             </li>
                             <li class="link">
@@ -143,9 +143,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <span class="icon ion-ios-arrow-down"></span>
                             </div>
                             <ul class="links collapse " ${ isNormalMode ? 'id="injectables-links"' : 'id="xs-injectables-links"' }>
-                                <li class="link">
-                                    <a href="injectables/ActionDisplayManagerService.html" data-type="entity-link" >ActionDisplayManagerService</a>
-                                </li>
                                 <li class="link">
                                     <a href="injectables/AdaptionActionDisplayService.html" data-type="entity-link" >AdaptionActionDisplayService</a>
                                 </li>
