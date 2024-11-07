@@ -12,12 +12,13 @@ describe('Area', () => {
   let testPiece2: Piece;
 
   beforeEach(() => {
-    // these should be mocks
-    space1 = new Space({kind: 'testSpace', piece: null});
-    space2 = new Space({kind: 'testSpace', piece: null});
     testPiece1 = defaultPieceFactory('testPiece', null);
     testPiece2 = defaultPieceFactory('testPiece', null);
-    area = new Area('testArea', [space1, space2]);
+    area = new Area({
+      id: 'testArea',
+      space: [{kind: 'testSpace', piece: null}, {kind: 'testSpace', piece: null}]});
+    space1 = area.spaces[0];
+    space2 = area.spaces[1];
   });
   describe('state', () => {
     it('state should include state of spaces', () => {

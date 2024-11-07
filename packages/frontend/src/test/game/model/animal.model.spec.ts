@@ -19,7 +19,10 @@ describe('AnimalElements', () => {
     // inherent elements /
     testSpaces[0].addPiece(defaultPieceFactory(ElementEnum.SEED));
     testSpaces[1].addPiece(defaultPieceFactory(ElementEnum.SEED));
-    testArea = new Area(AreaIdEnum.BIRD_ELEMENT, testSpaces);
+    testArea = new Area({
+      id: AreaIdEnum.BIRD_ELEMENT,
+      space: testSpaces.map((space) => space.state)
+    })
     animalElements = new AnimalElements(
       testArea,
       getOrThrow(elementConfigByAnimal, AnimalEnum.BIRD),
