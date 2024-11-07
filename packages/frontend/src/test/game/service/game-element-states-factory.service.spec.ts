@@ -12,7 +12,7 @@ describe('GameElementStatesFactoryService', () => {
     gameElementStates = gameElementStatesFactoryServiceService.build(testPlayerIds);
   });
 
-  describe('build', () => {
+  describe('Factions', () => {
     it('creates Element AreaStates', () => {
       // Includes an Element area for each animal
       expect(
