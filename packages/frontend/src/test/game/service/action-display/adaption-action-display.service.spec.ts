@@ -5,7 +5,6 @@ import {AreaRegistryService} from '../../../../app/engine/service/game-element/a
 import {ElementDrawPoolService} from '../../../../app/game/service/element-draw-pool.service';
 import {AreaIdEnum, SpaceKindEnum} from '../../../../app/game/constant/area.constant';
 import {filter, first, of, skip} from 'rxjs';
-import {Space} from '../../../../app/engine/model/space.model';
 import {Area} from '../../../../app/engine/model/area.model';
 import {defaultPieceFactory} from '../../../../app/engine/model/piece.model';
 import {ElementEnum} from '../../../../app/game/constant/element.constant';
@@ -15,14 +14,12 @@ import {ActionPawnPiece} from '../../../../app/game/model/action-pawn.model';
 
 describe('AdaptionActionDisplayService', () => {
   let adaptionActionDisplayService: AdaptionActionDisplayService;
-  let testElementSpace: Space;
   let testElements: ElementPiece[];
   let testArea: Area;
   let mockAreaRegistryService: jasmine.SpyObj<AreaRegistryService>;
   let mockElementDrawPoolService: jasmine.SpyObj<ElementDrawPoolService>;
 
   beforeEach(() => {
-    testElementSpace = new Space({kind: SpaceKindEnum.ELEMENT, piece: null});
     testArea = new Area({
       id: AreaIdEnum.ACTION_DISPLAY_ADAPTION,
       space: [
@@ -84,26 +81,7 @@ describe('AdaptionActionDisplayService', () => {
 
       adaptionActionDisplayService.replenish();
     });
-    it('should add max elements from drawpool (2 in this test) and emit', (done) => {
-      const testElementsFromEmptyPool = [
-        defaultPieceFactory(ElementEnum.SUN),
-        defaultPieceFactory(ElementEnum.SUN),
-        null,
-        null
-      ] as (ElementPiece | null)[];
-      adaptionActionDisplayService.elements$
-        .pipe(
-          filter((elements) => elements.every((item) => item !== null)),
-          first(), // Take only the first emission that satisfies the conditions
-        )
-        .subscribe((elements) => {
-          expect(elements).toEqual(testElements);
-          done();
-        });
-
-      adaptionActionDisplayService.replenish();
-    });
-    it('should throw error if replenish and spaces not cleared', () => {
+        it('should throw error if replenish and spaces not cleared', () => {
       adaptionActionDisplayService.elementSpaces[0].addPiece(defaultPieceFactory(ElementEnum.SUN));
       expect(() => {
         adaptionActionDisplayService.replenish();

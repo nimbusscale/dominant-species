@@ -28,8 +28,8 @@ export class FactionRegistryService extends GameElementRegistryService<
     super(factionStateSvc);
   }
 
-  override register(element: Faction): void;
-  override register(elements: Faction[]): void
+  // override register(element: Faction): void;
+  // override register(elements: Faction[]): void
   override register(elements: Faction | Faction[]): void {
     const elementsArray = Array.isArray(elements) ? elements : [elements];
     super.register(elementsArray);

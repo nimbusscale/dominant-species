@@ -51,7 +51,7 @@ export class DrawPoolGameComponent implements OnInit {
   ) {
   }
 
-  async ngOnInit() {
+  ngOnInit() {
     this.factionRegistrySvc.factionAssignment$.subscribe((factionAssignments) => {
       this.factions = factionAssignments.map((factionAssignment) =>
         this.factionRegistrySvc.get(factionAssignment.factionId),

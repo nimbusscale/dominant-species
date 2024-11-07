@@ -21,12 +21,16 @@ export class DominantSpeciesGameComponent implements OnInit {
   ) {
   }
 
-  async ngOnInit() {
-    const gameId = this.route.snapshot.queryParamMap.get('gameId')
+  ngOnInit(): void {
+    const gameId = this.route.snapshot.queryParamMap.get('gameId');
     if (!gameId) {
-      await this.router.navigate(['/lobby'])
+      void this.router.navigate(['/lobby'])
     } else {
-      await this.gameService.initializeGame(gameId)
+      void this.initializeGame(gameId);
     }
+  }
+
+  private async initializeGame(gameId: string): Promise<void> {
+    await this.gameService.initializeGame(gameId);
   }
 }

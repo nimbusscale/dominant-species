@@ -1,4 +1,4 @@
-import {GameElementStates, Piece, SpaceState} from 'api-types/src/game-state';
+import {GameElementStates, SpaceState} from 'api-types/src/game-state';
 import {shuffle, startCase} from 'lodash';
 import {AnimalEnum} from '../constant/animal.constant';
 import {getOrThrow} from '../../engine/util/misc';
@@ -71,7 +71,7 @@ export class GameElementStatesFactoryService implements InitialGameElementStates
       if (element) {
         const nextSpace = adaptionActionDisplayArea.nextAvailableSpace(SpaceKindEnum.ELEMENT)
         if (nextSpace) {
-          nextSpace.addPiece(element as Piece);
+          nextSpace.addPiece(element);
         } else {
           throw new Error('No Spaces available');
         }
