@@ -207,6 +207,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     <a href="injectables/LocalStorageService.html" data-type="entity-link" >LocalStorageService</a>
                                 </li>
                                 <li class="link">
+                                    <a href="injectables/NavigateService.html" data-type="entity-link" >NavigateService</a>
+                                </li>
+                                <li class="link">
                                     <a href="injectables/PileRegistryService.html" data-type="entity-link" >PileRegistryService</a>
                                 </li>
                                 <li class="link">

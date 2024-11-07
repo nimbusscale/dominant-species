@@ -215,7 +215,7 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(authService: <a href="../injectables/AuthService.html" target="_self">AuthService</a>, router: Router)</code>
+<code>constructor(authService: <a href="../injectables/AuthService.html" target="_self">AuthService</a>, navigate: <a href="../injectables/NavigateService.html" target="_self">NavigateService</a>)</code>
                     </td>
                 </tr>
                         <tr>
@@ -250,10 +250,10 @@
                                                     
                                                 </tr>
                                                 <tr>
-                                                        <td>router</td>
+                                                        <td>navigate</td>
                                                   
                                                         <td>
-                                                                    <code>Router</code>
+                                                                        <code><a href="../injectables/NavigateService.html" target="_self" >NavigateService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -324,7 +324,7 @@
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
 import { AuthService } from &#x27;../../service/auth/auth.service&#x27;;
-import { Router } from &#x27;@angular/router&#x27;;
+import { NavigateService } from &#x27;../../service/navigate.service&#x27;;
 
 @Component({
   selector: &#x27;app-logout-page&#x27;,
@@ -336,12 +336,12 @@ import { Router } from &#x27;@angular/router&#x27;;
 export class LogoutPageComponent implements OnInit {
   constructor(
     private authService: AuthService,
-    private router: Router,
+    private navigate: NavigateService,
   ) {}
 
   ngOnInit() {
     this.authService.logout();
-    void this.router.navigate([&#x27;/login&#x27;]);
+    void this.navigate.toLoginPage();
   }
 }
 </code></pre>

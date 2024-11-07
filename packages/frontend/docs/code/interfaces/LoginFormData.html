@@ -237,10 +237,11 @@
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, signal } from &#x27;@angular/core&#x27;;
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from &#x27;@angular/forms&#x27;;
-import { Router, RouterLink } from &#x27;@angular/router&#x27;;
+import { RouterLink } from &#x27;@angular/router&#x27;;
 import { AuthService } from &#x27;../../service/auth/auth.service&#x27;;
 import { MatButton } from &#x27;@angular/material/button&#x27;;
 import { MatCard, MatCardContent } from &#x27;@angular/material/card&#x27;;
+import { NavigateService } from &#x27;../../service/navigate.service&#x27;;
 
 interface LoginFormData {
   username: string;
@@ -262,7 +263,7 @@ export class LoginPageComponent {
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
-    private router: Router,
+    private navigate: NavigateService,
   ) {
     this.loginForm &#x3D; this.formBuilder.group({
       username: [&#x27;&#x27;, Validators.required],
@@ -275,7 +276,7 @@ export class LoginPageComponent {
       const { username, password } &#x3D; this.loginForm.value as LoginFormData;
       void this.authService.login(username, password).then((success) &#x3D;&gt; {
         if (success) {
-          void this.router.navigate([&#x27;/lobby&#x27;]);
+          void this.navigate.toLobbyPage();
         } else {
           this.errorMessage.set(&#x27;Login failed. See console for more information.&#x27;);
         }

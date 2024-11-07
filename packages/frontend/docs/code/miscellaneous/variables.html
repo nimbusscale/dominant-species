@@ -246,6 +246,7 @@
       withInterceptors([apiUrlInterceptor, authInterceptor, errorHandlerInterceptor]),
     ),
     provideZoneChangeDetection({ eventCoalescing: true }),
+    provideAnimationsAsync(&#x27;animations&#x27;),
     provideRouter(routes),
     {
       provide: CognitoIdentityProviderClient,
@@ -285,7 +286,7 @@
   if (inject(AuthService).checkIsLoggedIn()) {
     return inject(AuthService).checkIsLoggedIn();
   } else {
-    void inject(Router).navigate([&#x27;/login&#x27;]);
+    void inject(NavigateService).toLoginPage();
     return false;
   }
 }</code>
