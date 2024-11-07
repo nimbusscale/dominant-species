@@ -6,9 +6,12 @@ import { ElementDrawPoolService } from '../../../app/game/service/element-draw-p
 import { AnimalProviderService } from '../../../app/game/service/animal-provider.service';
 import { ActionDisplayManagerService } from '../../../app/game/service/action-display/action-display-manager.service';
 import { Animal } from '../../../app/game/model/animal.model';
+import { PlayerService } from '../../../app/engine/service/game-management/player.service';
+import { Player } from 'api-types/src/player';
 
 describe('GameReadyService', () => {
-  let service: GameReadyService;
+  let gameReadyService: GameReadyService;
+  let playerServiceMock: jasmine.SpyObj<PlayerService>;
   let gameStateServiceMock: jasmine.SpyObj<GameStateService>;
   let elementDrawPoolServiceMock: jasmine.SpyObj<ElementDrawPoolService>;
   let animalProviderServiceMock: jasmine.SpyObj<AnimalProviderService>;
@@ -16,7 +19,9 @@ describe('GameReadyService', () => {
   let animalsSubject: BehaviorSubject<Animal[]>;
 
   beforeEach(() => {
-    // Mock dependencies
+    playerServiceMock = jasmine.createSpyObj([], {
+      currentPlayer$: of(jasmine.createSpyObj<Player>(['username'])),
+    });
     gameStateServiceMock = jasmine.createSpyObj([], {
       playerIds: ['player1', 'player2'],
     });
@@ -35,6 +40,7 @@ describe('GameReadyService', () => {
     TestBed.configureTestingModule({
       providers: [
         GameReadyService,
+        { provide: PlayerService, useValue: playerServiceMock },
         { provide: GameStateService, useValue: gameStateServiceMock },
         { provide: ElementDrawPoolService, useValue: elementDrawPoolServiceMock },
         { provide: AnimalProviderService, useValue: animalProviderServiceMock },
@@ -42,11 +48,11 @@ describe('GameReadyService', () => {
       ],
     });
 
-    service = TestBed.inject(GameReadyService);
+    gameReadyService = TestBed.inject(GameReadyService);
   });
 
   it('should initialize ready$ as an Observable', (done) => {
-    service.ready$.subscribe((ready) => {
+    gameReadyService.ready$.subscribe((ready) => {
       expect(ready).toBeFalse(); // Initially, ready should be false
       done();
     });
@@ -59,7 +65,7 @@ describe('GameReadyService', () => {
       jasmine.createSpyObj<Animal>(['id']),
     ]);
 
-    service.ready$.subscribe((ready) => {
+    gameReadyService.ready$.subscribe((ready) => {
       expect(ready).toBeTrue();
       done();
     });
