@@ -11,12 +11,12 @@ describe('ActionDisplaySetupManager', () => {
 
   beforeEach(() => {
     mockReadySubject1 = new BehaviorSubject<boolean>(false);
-    mockService1 = jasmine.createSpyObj('ActionDisplayServiceWithSetup', ['setup'], {
+    mockService1 = jasmine.createSpyObj('ActionDisplayServiceWithSetup', [], {
       ready$: mockReadySubject1.asObservable(),
     });
 
     mockReadySubject2 = new BehaviorSubject<boolean>(false);
-    mockService2 = jasmine.createSpyObj('ActionDisplayServiceWithSetup', ['setup'], {
+    mockService2 = jasmine.createSpyObj('ActionDisplayServiceWithSetup', [], {
       ready$: mockReadySubject2.asObservable(),
     });
 

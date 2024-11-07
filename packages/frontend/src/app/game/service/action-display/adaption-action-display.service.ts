@@ -66,10 +66,6 @@ export class AdaptionActionDisplayService {
       });
   }
 
-  setup(): void {
-    this.replenish();
-  }
-
   replenish(): void {
     if (this.elements.filter(isNotNull).length > 0) {
       throw new Error('Element spaces must be cleared before replenish');
