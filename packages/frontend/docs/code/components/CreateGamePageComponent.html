@@ -321,7 +321,7 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(fb: FormBuilder, router: Router, snackBar: MatSnackBar, playerService: <a href="../injectables/PlayerService.html" target="_self">PlayerService</a>, gameService: <a href="../injectables/GameService.html" target="_self">GameService</a>)</code>
+<code>constructor(fb: FormBuilder, navigate: <a href="../injectables/NavigateService.html" target="_self">NavigateService</a>, snackBar: MatSnackBar, playerService: <a href="../injectables/PlayerService.html" target="_self">PlayerService</a>, gameService: <a href="../injectables/GameService.html" target="_self">GameService</a>)</code>
                     </td>
                 </tr>
                         <tr>
@@ -356,10 +356,10 @@
                                                     
                                                 </tr>
                                                 <tr>
-                                                        <td>router</td>
+                                                        <td>navigate</td>
                                                   
                                                         <td>
-                                                                    <code>Router</code>
+                                                                        <code><a href="../injectables/NavigateService.html" target="_self" >NavigateService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -1398,12 +1398,12 @@ import { MatInput } from &#x27;@angular/material/input&#x27;;
 import { NgForOf, NgIf } from &#x27;@angular/common&#x27;;
 import { filter, Subscription } from &#x27;rxjs&#x27;;
 import { isNotUndefined } from &#x27;../../util/predicate&#x27;;
-import { Router } from &#x27;@angular/router&#x27;;
 import { MatIcon } from &#x27;@angular/material/icon&#x27;;
 import { MatChip } from &#x27;@angular/material/chips&#x27;;
 import { MatTooltip } from &#x27;@angular/material/tooltip&#x27;;
 import { ensureDefined } from &#x27;../../util/misc&#x27;;
 import { MatSnackBar } from &#x27;@angular/material/snack-bar&#x27;;
+import { NavigateService } from &#x27;../../service/navigate.service&#x27;;
 
 @Component({
   selector: &#x27;app-create-game-page&#x27;,
@@ -1442,7 +1442,7 @@ export class CreateGamePageComponent implements OnInit, OnDestroy {
 
   constructor(
     private fb: FormBuilder,
-    private router: Router,
+    private navigate: NavigateService,
     private snackBar: MatSnackBar,
     private playerService: PlayerService,
     private gameService: GameService,
@@ -1599,7 +1599,7 @@ export class CreateGamePageComponent implements OnInit, OnDestroy {
     );
     try {
       await this.gameService.createGame(otherPlayers);
-      void this.router.navigate([&#x27;/lobby&#x27;]);
+      void this.navigate.toLobbyPage();
     } catch (error) {
       this.snackBar.open(&#x27;Error creating game&#x27;, &#x27;Close&#x27;, {
         duration: 3000,

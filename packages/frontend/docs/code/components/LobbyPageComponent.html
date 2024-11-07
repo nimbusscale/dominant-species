@@ -267,7 +267,7 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(gameService: <a href="../injectables/GameService.html" target="_self">GameService</a>, playerService: <a href="../injectables/PlayerService.html" target="_self">PlayerService</a>, router: Router)</code>
+<code>constructor(gameService: <a href="../injectables/GameService.html" target="_self">GameService</a>, playerService: <a href="../injectables/PlayerService.html" target="_self">PlayerService</a>, navigate: <a href="../injectables/NavigateService.html" target="_self">NavigateService</a>)</code>
                     </td>
                 </tr>
                         <tr>
@@ -314,10 +314,10 @@
                                                     
                                                 </tr>
                                                 <tr>
-                                                        <td>router</td>
+                                                        <td>navigate</td>
                                                   
                                                         <td>
-                                                                    <code>Router</code>
+                                                                        <code><a href="../injectables/NavigateService.html" target="_self" >NavigateService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -741,7 +741,7 @@ import { MatChip, MatChipSet } from &#x27;@angular/material/chips&#x27;;
 import { PlayerService } from &#x27;../../service/game-management/player.service&#x27;;
 import { Player } from &#x27;api-types/src/player&#x27;;
 import { MatTooltip } from &#x27;@angular/material/tooltip&#x27;;
-import { Router } from &#x27;@angular/router&#x27;;
+import { NavigateService } from &#x27;../../service/navigate.service&#x27;;
 
 @Component({
   selector: &#x27;app-lobby-page&#x27;,
@@ -775,7 +775,7 @@ export class LobbyPageComponent {
   constructor(
     private gameService: GameService,
     private playerService: PlayerService,
-    private router: Router,
+    private navigate: NavigateService,
   ) {
     this.playerService.currentPlayer$.subscribe((player) &#x3D;&gt; {
       this.currentPlayer.set(player);
@@ -795,7 +795,7 @@ export class LobbyPageComponent {
   }
 
   async createGame(): Promise&lt;void&gt; {
-    void (await this.router.navigate([&#x27;/create-game&#x27;]));
+    await this.navigate.toCreateGamePage();
   }
 
   async completeGame(gameId: string): Promise&lt;void&gt; {

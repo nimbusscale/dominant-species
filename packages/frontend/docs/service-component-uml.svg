@@ -1,4 +1,4 @@
-<svg version="1.1" baseProfile="full" width="5862.8" height="2467.0" viewbox="0 0 5862.75 2467" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events">
+<svg version="1.1" baseProfile="full" width="8440.8" height="2467.0" viewbox="0 0 8440.75 2467" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events">
 <desc >#.interface: fill=lightblue
 #.enumeration: fill=lightgreen
 #.type: fill=lightgray
@@ -17,13 +17,15 @@
 [GameReadyService]  -  [AnimalProviderService]
 [GameReadyService]  -  [ActionDisplayManagerService]
 [LocalStorageService||+deletedStorageKey(): void;+getStorageKey(): string;+setStorageKey(): void]
+[NavigateService|-router: Router|+toCreateGamePage(): Promise&lt;void&gt;;+toGamePage(): Promise&lt;void&gt;;+toLobbyPage(): Promise&lt;void&gt;;+toLoginPage(): Promise&lt;void&gt;;+toSignUpConfirmPage(): Promise&lt;void&gt;]
 [ActionPawnComponent|+actionPawn: ActionPawnPiece|]
 [AnimalCardComponent|+faction: InputSignal&lt;Faction&gt;;+elements: WritableSignal&lt;ElementPiece\[\]&gt;;+emptyElementSpaces: WritableSignal&lt;null\[\]&gt;;+actionPawnPileLength: WritableSignal&lt;number&gt;;+speciesPileLength: WritableSignal&lt;number&gt;;+actionPawnForHeader: Signal&lt;ActionPawnPiece&gt;;+currentPlayerAnimal: Signal&lt;boolean&gt;;-animalProviderService: AnimalProviderService;-playerService: PlayerService|+ngOnInit(): void;-getAnimal(): void;-getActionPawnForHeader(): ActionPawnPiece]
 [OnInit]&lt;:--[AnimalCardComponent]
 [AnimalCardComponent]  -  [AnimalProviderService]
 [AnimalCardComponent]  -  [PlayerService]
-[DominantSpeciesGameComponent|+gameReady: WritableSignal&lt;boolean&gt;;-route: ActivatedRoute;-router: Router;-gameService: GameService;-gameReadyService: GameReadyService|+ngOnInit(): void;-initializeGame(): Promise&lt;void&gt;]
+[DominantSpeciesGameComponent|+gameReady: WritableSignal&lt;boolean&gt;;-route: ActivatedRoute;-navigate: NavigateService;-gameService: GameService;-gameReadyService: GameReadyService|+ngOnInit(): void;-initializeGame(): Promise&lt;void&gt;]
 [OnInit]&lt;:--[DominantSpeciesGameComponent]
+[DominantSpeciesGameComponent]  -  [NavigateService]
 [DominantSpeciesGameComponent]  -  [GameService]
 [DominantSpeciesGameComponent]  -  [GameReadyService]
 [DrawPoolGameComponent|+currentPlayerFaction: Faction;+factions: Faction\[\];+adaptionArea: Area;+log: string\[\];-gameStateSvc: GameStateService;-areaRegistryService: AreaRegistryService;-factionRegistrySvc: FactionRegistryService;-playerService: PlayerService;-animalProviderService: AnimalProviderService;-adaptionActionDisplayService: AdaptionActionDisplayService|+ngOnInit(): void;+takeAction(): void]
@@ -35,26 +37,32 @@
 [DrawPoolGameComponent]  -  [AnimalProviderService]
 [DrawPoolGameComponent]  -  [AdaptionActionDisplayService]
 [ElementComponent|+element: ElementPiece|]
-[CreateGamePageComponent|-MAX_PLAYERS: 6;+playerControls: FormArray&lt;FormControl&lt;any&gt;&gt;;-subscriptions: Subscription\[\];+currentUser: any;+filteredPlayers: string\[\]\[\];+errorMessages: string\[\];+validPlayers: Set&lt;string&gt;\[\];+availableFriends: string\[\];+validInputStates: boolean\[\];-fb: FormBuilder;-router: Router;-snackBar: MatSnackBar;-playerService: PlayerService;-gameService: GameService|+ngOnInit(): void;+ngOnDestroy(): void;-fetchPlayers(): Promise&lt;void&gt;;+onPlayerInput(): Promise&lt;void&gt;;+onPlayerBlur(): Promise&lt;void&gt;;+isGameFullOrInvalid(): boolean;+addFriendToGame(): Promise&lt;void&gt;;+updateAvailableFriends(): void;+hasValidPlayers(): boolean;+hasInvalidPlayer(): boolean;+addFriend(): Promise&lt;void&gt;;+isFriend(): boolean;+createGame(): Promise&lt;void&gt;]
+[CreateGamePageComponent|-MAX_PLAYERS: 6;+playerControls: FormArray&lt;FormControl&lt;any&gt;&gt;;-subscriptions: Subscription\[\];+currentUser: any;+filteredPlayers: string\[\]\[\];+errorMessages: string\[\];+validPlayers: Set&lt;string&gt;\[\];+availableFriends: string\[\];+validInputStates: boolean\[\];-fb: FormBuilder;-navigate: NavigateService;-snackBar: MatSnackBar;-playerService: PlayerService;-gameService: GameService|+ngOnInit(): void;+ngOnDestroy(): void;-fetchPlayers(): Promise&lt;void&gt;;+onPlayerInput(): Promise&lt;void&gt;;+onPlayerBlur(): Promise&lt;void&gt;;+isGameFullOrInvalid(): boolean;+addFriendToGame(): Promise&lt;void&gt;;+updateAvailableFriends(): void;+hasValidPlayers(): boolean;+hasInvalidPlayer(): boolean;+addFriend(): Promise&lt;void&gt;;+isFriend(): boolean;+createGame(): Promise&lt;void&gt;]
 [OnInit]&lt;:--[CreateGamePageComponent]
 [OnDestroy]&lt;:--[CreateGamePageComponent]
+[CreateGamePageComponent]  -  [NavigateService]
 [CreateGamePageComponent]  -  [PlayerService]
 [CreateGamePageComponent]  -  [GameService]
-[LobbyPageComponent|+games: WritableSignal&lt;Game\[\]&gt;;+gameTableColumns: string\[\];+currentPlayer: WritableSignal&lt;any&gt;;-gameService: GameService;-playerService: PlayerService;-router: Router|+filterPlayers(): string\[\];+fetchGames(): Promise&lt;void&gt;;+createGame(): Promise&lt;void&gt;;+completeGame(): Promise&lt;void&gt;;+joinGame(): Promise&lt;void&gt;]
+[LobbyPageComponent|+games: WritableSignal&lt;Game\[\]&gt;;+gameTableColumns: string\[\];+currentPlayer: WritableSignal&lt;any&gt;;-gameService: GameService;-playerService: PlayerService;-navigate: NavigateService|+filterPlayers(): string\[\];+fetchGames(): Promise&lt;void&gt;;+createGame(): Promise&lt;void&gt;;+completeGame(): Promise&lt;void&gt;;+joinGame(): Promise&lt;void&gt;]
 [LobbyPageComponent]  -  [GameService]
 [LobbyPageComponent]  -  [PlayerService]
-[LoginPageComponent|+loginForm: FormGroup&lt;any&gt;;+errorMessage: WritableSignal&lt;string&gt;;-formBuilder: FormBuilder;-authService: AuthService;-router: Router|+onSubmit(): void]
+[LobbyPageComponent]  -  [NavigateService]
+[LoginPageComponent|+loginForm: FormGroup&lt;any&gt;;+errorMessage: WritableSignal&lt;string&gt;;-formBuilder: FormBuilder;-authService: AuthService;-navigate: NavigateService|+onSubmit(): void]
 [&lt;interface&gt;LoginFormData|+username: string;+password: string|]
 [LoginPageComponent]  -  [AuthService]
-[LogoutPageComponent|-authService: AuthService;-router: Router|+ngOnInit(): void]
+[LoginPageComponent]  -  [NavigateService]
+[LogoutPageComponent|-authService: AuthService;-navigate: NavigateService|+ngOnInit(): void]
 [OnInit]&lt;:--[LogoutPageComponent]
 [LogoutPageComponent]  -  [AuthService]
-[SignUpConfirmPageComponent|+signUpConfirmForm: FormGroup&lt;any&gt;;+errorMessage: WritableSignal&lt;string&gt;;-formBuilder: FormBuilder;-signUpService: SignUpService;-router: Router|+onSubmit(): void]
+[LogoutPageComponent]  -  [NavigateService]
+[SignUpConfirmPageComponent|+signUpConfirmForm: FormGroup&lt;any&gt;;+errorMessage: WritableSignal&lt;string&gt;;-formBuilder: FormBuilder;-signUpService: SignUpService;-navigate: NavigateService|+onSubmit(): void]
 [&lt;interface&gt;SignUpConfirmFormData|+username: string;+code: string|]
 [SignUpConfirmPageComponent]  -  [SignUpService]
-[SignUpPageComponent|+signUpForm: FormGroup&lt;any&gt;;+errorMessage: WritableSignal&lt;string&gt;;-formBuilder: FormBuilder;-signUpService: SignUpService;-router: Router|+onSubmit(): void]
+[SignUpConfirmPageComponent]  -  [NavigateService]
+[SignUpPageComponent|+signUpForm: FormGroup&lt;any&gt;;+errorMessage: WritableSignal&lt;string&gt;;-formBuilder: FormBuilder;-signUpService: SignUpService;-navigate: NavigateService|+onSubmit(): void]
 [&lt;interface&gt;SignUpFormData|+username: string;+email: string;+password: string|]
 [SignUpPageComponent]  -  [SignUpService]
+[SignUpPageComponent]  -  [NavigateService]
 [ActionDisplayManagerService|-readySubject: BehaviorSubject&lt;boolean&gt;;+ready$: Observable&lt;boolean&gt;;-adaptionActionDisplayService: AdaptionActionDisplayService|+signalReady(): void]
 [ActionDisplayManagerService]  -  [AdaptionActionDisplayService]
 [AdaptionActionDisplayService|+area: Area;+actionPawnSpaces: Space\[\];+actionPawns: ActionPawnPiece\[\];-actionPawnsSubject: BehaviorSubject&lt;ActionPawnPiece\[\]&gt;;+actionPawns$: Observable&lt;ActionPawnPiece\[\]&gt;;+elementSpaces: Space\[\];+elements: ElementPiece\[\];-elementsSubject: BehaviorSubject&lt;ElementPiece\[\]&gt;;+elements$: Observable&lt;ElementPiece\[\]&gt;;-readySubject: BehaviorSubject&lt;boolean&gt;;+ready$: Observable&lt;boolean&gt;;-areaRegistryService: AreaRegistryService;-elementDrawPoolService: ElementDrawPoolService|+initialize(): void;+replenish(): void;+removeElement(): ElementPiece;+removeRemainingElements(): ElementPiece\[\];+addActionPawn(): void;+removeActionPawn(): ActionPawnPiece]
@@ -88,7 +96,8 @@
 [GameElementStateService&lt;TgameElementState,TgameElement&gt;]&lt;:-[PileStateService]
 [GameManagementClientService|-http: HttpClient;-authService: AuthService|+createGame(): Promise&lt;void&gt;;+getGamesForLoggedInPlayer(): Promise&lt;Game\[\]&gt;;+completeGame(): Promise&lt;void&gt;;+setInitialGameState(): Promise&lt;void&gt;;+getLatestGameState(): Promise&lt;GameState&gt;;+getPlayer(): Promise&lt;Player&gt;;+getLoggedInPlayer(): Promise&lt;Player&gt;;+findPlayers(): Promise&lt;Player\[\]&gt;;+setFriends(): Promise&lt;void&gt;]
 [GameManagementClientService]  -  [AuthService]
-[GameService|-router: Router;-authService: AuthService;-gameManagementClientService: GameManagementClientService;-gameStateInitializationService: GameStateInitializationService;-areaRegistryService: AreaRegistryService;-factionRegistryService: FactionRegistryService;-pileRegistryService: PileRegistryService|+createGame(): Promise&lt;void&gt;;+getGamesForLoggedInPlayer(): Promise&lt;Game\[\]&gt;;+completeGame(): Promise&lt;void&gt;;+initializeGame(): Promise&lt;void&gt;;+joinGame(): Promise&lt;void&gt;]
+[GameService|-navigate: NavigateService;-authService: AuthService;-gameManagementClientService: GameManagementClientService;-gameStateInitializationService: GameStateInitializationService;-areaRegistryService: AreaRegistryService;-factionRegistryService: FactionRegistryService;-pileRegistryService: PileRegistryService|+createGame(): Promise&lt;void&gt;;+getGamesForLoggedInPlayer(): Promise&lt;Game\[\]&gt;;+completeGame(): Promise&lt;void&gt;;+initializeGame(): Promise&lt;void&gt;;+joinGame(): Promise&lt;void&gt;]
+[GameService]  -  [NavigateService]
 [GameService]  -  [AuthService]
 [GameService]  -  [GameManagementClientService]
 [GameService]  -  [GameStateInitializationService]
@@ -115,119 +124,127 @@
 <g stroke-width="1.0" text-align="left" font="12pt Helvetica, Arial, sans-serif" font-size="12pt" font-family="Helvetica" font-weight="bold" font-style="normal">
 <g font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" stroke-width="3.0" stroke-linejoin="round" stroke-linecap="round" stroke="#33322E">
 <g stroke="transparent" fill="transparent">
-<rect x="0.0" y="0.0" height="2467.0" width="5862.8" stroke="none"></rect>
+<rect x="0.0" y="0.0" height="2467.0" width="8440.8" stroke="none"></rect>
 </g>
-<g transform="translate(8, 8)" fill="#33322E">
+<g transform="translate(48, 8)" fill="#33322E">
 <g transform="translate(20, 20)" fill="#33322E" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal">
-<path d="M4966.0 1326.1 L3812.75 1492 L3668.6828358208954 1591 L3668.7 1591.0 " fill="none"></path>
-<path d="M5161.5 1412.0 L5161.5 1492 L4407.25 1590.436328220112 L4407.3 1590.4 " fill="none"></path>
-<path d="M5357.0 1356.8 L5806.75 1492 L5806.75 1626 L5806.75 1626 L5806.75 1760 L5806.75 1760 L5640.22124600639 1881.5 L5640.2 1881.5 " fill="none"></path>
-<path d="M5592.3 1717.5 L5592.25 1760 L5592.25 1881.5 L5592.3 1881.5 " fill="none"></path>
+<path d="M2583.5 1317.6 L4323.5 1492 L5215.25 1607.8734545454545 L5215.3 1607.9 " fill="none"></path>
+<path d="M2583.5 1308.2 L6090.25 1492 L6328.179104477612 1557 L6328.2 1557.0 " fill="none"></path>
+<path d="M2192.5 1313.6 L-40 1492 L-40 1626 L-40 1626 L-40 1760 L-40 1760 L289.1757188498402 1881.5 L289.2 1881.5 " fill="none"></path>
+<path d="M174.5 1717.5 L174.5 1760 L337.14696485623006 1881.5 L337.1 1881.5 " fill="none"></path>
 <g stroke-dasharray="6 6">
-<path d="M1021.0 78.8 L1021 120 L1021 140 L1021.0 140.0 " fill="none"></path>
+<path d="M751.5 78.8 L751.5 120 L751.5 140 L751.5 140.0 " fill="none"></path>
 </g>
-<path d="M1026.3 78.8 L1021.0 78.8 L1015.7 78.8 L1021.0 65.5 Z"></path>
-<path d="M3128.5 490.1 L2181.25 596 L2181.25 850 L2181.25 850 L2181.25 1104 L2181.25 1104 L2181.25 1298 L2181.25 1298 L2181.25 1492 L2181.25 1492 L2181.25 1626 L2181.25 1626 L2181.25 1760 L2181.25 1760 L2176.138178913738 1780 L2176.1 1780.0 " fill="none"></path>
-<path d="M3128.5 476.1 L992.5 596 L992.5 850 L992.5 850 L992.5 1104 L992.5 1104 L922.097293814433 1206.5 L922.1 1206.5 " fill="none"></path>
-<path d="M3631.5 476.7 L5679.5 596 L5679.5 850 L5679.5 850 L5679.5 1104 L5679.5 1104 L5679.5 1298 L5679.5 1298 L5679.5 1492 L5679.5 1492 L5651.827425373134 1534.5 L5651.8 1534.5 " fill="none"></path>
-<path d="M3631.5 478.9 L5377 596 L5377 850 L5377 850 L5377 1104 L5377 1104 L5288.134020618557 1184 L5288.1 1184.0 " fill="none"></path>
-<path d="M3631.5 486.5 L4757.5 596 L4757.5 788.5 L4757.5 788.5 " fill="none"></path>
+<path d="M756.8 78.8 L751.5 78.8 L746.2 78.8 L751.5 65.5 Z"></path>
+<path d="M2599.5 468.5 L7564.75 596 L7564.75 850 L7564.75 850 L7564.75 1104 L7564.75 1104 L7564.75 1298 L7564.75 1298 L7564.75 1492 L7564.75 1492 L7564.75 1626 L7564.75 1626 L7564.75 1760 L7564.75 1760 L7929.25 1865.3448753462603 L7929.3 1865.3 " fill="none"></path>
+<path d="M2599.5 478.7 L4366.5 596 L4366.5 850 L4366.5 850 L4366.5 1104 L4366.5 1104 L4464.641108247422 1206.5 L4464.6 1206.5 " fill="none"></path>
+<path d="M2096.5 476.9 L87.25 596 L87.25 850 L87.25 850 L87.25 1104 L87.25 1104 L87.25 1298 L87.25 1298 L87.25 1492 L87.25 1492 L114.92257462686567 1534.5 L114.9 1534.5 " fill="none"></path>
+<path d="M2348.0 576.0 L2348 596 L2348 850 L2348 850 L2348 1104 L2348 1104 L2364.494845360825 1184 L2364.5 1184.0 " fill="none"></path>
+<path d="M2096.5 502.4 L1513.5 596 L1513.5 788.5 L1513.5 788.5 " fill="none"></path>
 <g stroke-dasharray="6 6">
-<path d="M3596.3 55.7 L3088.5 120 L3088.5 224 L3088.5 224 L3088.5 328 L3088.5 328 L3088.5 462 L3088.5 462 L3088.5 596 L3088.5 596 L3088.5 728.5 L3088.5 728.5 " fill="none"></path>
+<path d="M2416.1 51.8 L4118.5 120 L4118.5 224 L4118.5 224 L4118.5 328 L4118.5 328 L4118.5 462 L4118.5 462 L4118.5 596 L4118.5 596 L4118.5 728.5 L4118.5 728.5 " fill="none"></path>
 </g>
-<path d="M3596.9 61.0 L3596.3 55.7 L3595.6 50.4 L3609.5 54.0 Z"></path>
-<path d="M3296.5 876.5 L5083.75 1104 L5115.811855670103 1184 L5115.8 1184.0 " fill="none"></path>
-<path d="M2880.5 874.7 L952.5 1104 L903.2313144329897 1206.5 L903.2 1206.5 " fill="none"></path>
+<path d="M2416.3 46.5 L2416.1 51.8 L2415.9 57.1 L2402.8 51.3 Z"></path>
+<path d="M3910.5 880.5 L2388 1104 L2388 1184 L2388.0 1184.0 " fill="none"></path>
+<path d="M4306.8 971.5 L4512.25 1104 L4533.384020618557 1206.5 L4533.4 1206.5 " fill="none"></path>
 <g stroke-dasharray="6 6">
-<path d="M3596.6 61.9 L3380 120 L3380 140 L3380.0 140.0 " fill="none"></path>
+<path d="M2361.9 78.2 L2348 120 L2348 140 L2348.0 140.0 " fill="none"></path>
 </g>
-<path d="M3598.0 67.1 L3596.6 61.9 L3595.2 56.8 L3609.5 58.4 Z"></path>
-<path d="M3208.5 250.5 L2706 328 L2706 462 L2706 462 L2706 596 L2706 596 L2706 850 L2706 850 L2706 1104 L2706 1104 L2653.4001288659792 1176.5 L2653.4 1176.5 " fill="none"></path>
-<path d="M3380.0 308.0 L3380 328 L3380 348 L3380.0 348.0 " fill="none"></path>
+<path d="M2367.0 79.8 L2361.9 78.2 L2356.8 76.5 L2366.1 65.5 Z"></path>
+<path d="M2176.5 233.3 L429 328 L429 462 L429 462 L429 596 L429 596 L429 850 L429 850 L429 1104 L429 1104 L429 1298 L429 1298 L429 1492 L429 1492 L802 1584.1327188940093 L802.0 1584.1 " fill="none"></path>
+<path d="M2519.5 243.8 L3247.25 328 L3247.25 462 L3247.25 462 L3247.25 596 L3247.25 596 L3247.25 850 L3247.25 850 L3247.25 1104 L3247.25 1104 L3409.5 1177.0737086477075 L3409.5 1177.1 " fill="none"></path>
+<path d="M2348.0 308.0 L2348 328 L2348 348 L2348.0 348.0 " fill="none"></path>
 <g stroke-dasharray="6 6">
-<path d="M3653.1 77.7 L3671.5 120 L3671.5 224 L3671.5 224 L3671.5 328 L3671.5 328 L3671.5 462 L3671.5 462 L3671.5 596 L3671.5 596 L3671.5 728.5 L3671.5 728.5 " fill="none"></path>
+<path d="M2416.1 51.0 L5374.75 120 L5374.75 224 L5374.75 224 L5374.75 328 L5374.75 328 L5374.75 462 L5374.75 462 L5374.75 596 L5374.75 596 L5374.75 728.5 L5374.8 728.5 " fill="none"></path>
 </g>
-<path d="M3658.0 75.6 L3653.1 77.7 L3648.2 79.9 L3647.8 65.5 Z"></path>
-<path d="M3420.0 886.1 L1900 1104 L1900 1298 L1900 1298 L1900 1492 L1900 1492 L1900 1626 L1900 1626 L1900 1760 L1900 1760 L1964.25 1801.679274611399 L1964.3 1801.7 " fill="none"></path>
-<path d="M3607.2 971.5 L3537 1104 L3537 1298 L3537 1298 L3537 1492 L3537 1492 L3596.658582089552 1591 L3596.7 1591.0 " fill="none"></path>
-<path d="M3923.0 900.9 L4926 1104 L4926 1298 L4926 1298 L4926 1492 L4926 1492 L4407.25 1579.8515007898893 L4407.3 1579.9 " fill="none"></path>
-<path d="M3420.0 872.4 L819.25 1104 L840.3840206185567 1206.5 L840.4 1206.5 " fill="none"></path>
-<path d="M3923.0 896.6 L5043.75 1104 L5092.306701030928 1184 L5092.3 1184.0 " fill="none"></path>
-<path d="M3923.0 908.4 L4764.5 1104 L4751.974226804124 1124 L4752.0 1124.0 " fill="none"></path>
+<path d="M2416.2 45.7 L2416.1 51.0 L2416.0 56.4 L2402.8 50.7 Z"></path>
+<path d="M5626.3 873.2 L8126.25 1104 L8126.25 1298 L8126.25 1298 L8126.25 1492 L8126.25 1492 L8126.25 1626 L8126.25 1626 L8126.25 1760 L8126.25 1760 L8123.694089456869 1780 L8123.7 1780.0 " fill="none"></path>
+<path d="M5626.3 965.0 L5930.25 1104 L5930.25 1298 L5930.25 1298 L5930.25 1492 L5930.25 1492 L5494.25 1593.5186794092094 L5494.3 1593.5 " fill="none"></path>
+<path d="M5626.3 919.3 L6296.25 1104 L6296.25 1298 L6296.25 1298 L6296.25 1492 L6296.25 1492 L6434.253731343284 1557 L6434.3 1557.0 " fill="none"></path>
+<path d="M5123.3 927.7 L4552.25 1104 L4552.25 1206.5 L4552.3 1206.5 " fill="none"></path>
+<path d="M5123.3 876.4 L2956.75 1104 L2583.5 1231.3151648351648 L2583.5 1231.3 " fill="none"></path>
+<path d="M5123.3 865.7 L1314.75 1104 L1335.2396907216494 1124 L1335.2 1124.0 " fill="none"></path>
 <g stroke-dasharray="6 6">
-<path d="M3596.2 51.7 L1762.5 120 L1762.5 224 L1762.5 224 L1762.5 328 L1762.5 328 L1762.5 462 L1762.5 462 L1762.5 596 L1762.5 596 L1754.6456692913387 616 L1754.6 616.0 " fill="none"></path>
+<path d="M2416.0 55.3 L2962.75 120 L2962.75 224 L2962.75 224 L2962.75 328 L2962.75 328 L2962.75 462 L2962.75 462 L2962.75 596 L2962.75 596 L2966.2933070866143 616 L2966.3 616.0 " fill="none"></path>
 </g>
-<path d="M3596.4 57.0 L3596.2 51.7 L3596.0 46.3 L3609.5 51.2 Z"></path>
+<path d="M2416.6 50.0 L2416.0 55.3 L2415.4 60.6 L2402.8 53.7 Z"></path>
 <g stroke-dasharray="6 6">
-<path d="M1588.0 490.8 L1588 596 L1593.8858267716535 616 L1593.9 616.0 " fill="none"></path>
+<path d="M3082.5 490.8 L3082.5 596 L3076.6141732283463 616 L3076.6 616.0 " fill="none"></path>
 </g>
-<path d="M1593.3 490.8 L1588.0 490.8 L1582.7 490.8 L1588.0 477.5 Z"></path>
-<path d="M1463.3 907.4 L779.25 1104 L821.5180412371134 1206.5 L821.5 1206.5 " fill="none"></path>
-<path d="M1862.3 918.4 L2403.25 1104 L2463.791237113402 1176.5 L2463.8 1176.5 " fill="none"></path>
-<path d="M1337.5 882.9 L2363.25 1104 L2438.7396907216494 1176.5 L2438.7 1176.5 " fill="none"></path>
-<path d="M1032.5 936.9 L739.25 1104 L802.6520618556701 1206.5 L802.7 1206.5 " fill="none"></path>
-<path d="M1698.0 1702.5 L1698 1760 L1352 1859.9059040590405 L1352.0 1859.9 " fill="none"></path>
+<path d="M3087.8 490.8 L3082.5 490.8 L3077.2 490.8 L3082.5 477.5 Z"></path>
+<path d="M2808.3 870.0 L469 1104 L469 1298 L469 1298 L469 1492 L469 1492 L802 1580.8 L802.0 1580.8 " fill="none"></path>
+<path d="M3207.3 871.4 L5375 1104 L4820.75 1234.6891522333638 L4820.8 1234.7 " fill="none"></path>
+<path d="M3207.3 925.6 L3678 1104 L3678 1176.5 L3678.0 1176.5 " fill="none"></path>
+<path d="M3718.0 964.0 L3718 1104 L3703.0515463917527 1176.5 L3703.1 1176.5 " fill="none"></path>
+<path d="M3870.5 872.8 L5415 1104 L4820.75 1237.6244566792234 L4820.8 1237.6 " fill="none"></path>
+<path d="M3565.5 862.1 L509 1104 L509 1298 L509 1298 L509 1492 L509 1492 L802 1576.8908108108108 L802.0 1576.9 " fill="none"></path>
+<path d="M961.5 1312.7 L2944.75 1492 L2944.75 1626 L2944.75 1626 L2944.75 1760 L2944.75 1760 L3383.25 1868.1564223798266 L3383.3 1868.2 " fill="none"></path>
+<path d="M732.7 1374.5 L630 1492 L802 1559.4904831625183 L802.0 1559.5 " fill="none"></path>
 <g stroke-dasharray="6 6">
-<path d="M3596.2 51.4 L1385.5 120 L1385.5 224 L1385.5 224 L1385.5 328 L1385.5 328 L1385.5 462 L1385.5 462 L1385.5 596 L1385.5 596 L1385.5 850 L1385.5 850 L1385.5 1104 L1385.5 1104 L1385.5 1298 L1385.5 1298 L1385.5 1492 L1385.5 1492 L1385.5 1572 L1385.5 1572.0 " fill="none"></path>
+<path d="M2326.4 52.5 L1116 120 L1116 224 L1116 224 L1116 328 L1116 328 L1116 462 L1116 462 L1116 596 L1116 596 L1116 850 L1116 850 L1116 1104 L1116 1104 L1116 1244 L1116.0 1244.0 " fill="none"></path>
 </g>
-<path d="M3596.3 56.7 L3596.2 51.4 L3596.0 46.1 L3609.5 51.0 Z"></path>
-<path d="M1385.5 1680.0 L1385.5 1760 L1301.1789137380192 1817.5 L1301.2 1817.5 " fill="none"></path>
-<path d="M529.0 1702.5 L529 1760 L408.81629392971246 1862.5 L408.8 1862.5 " fill="none"></path>
-<path d="M162.0 1702.5 L162 1760 L282.18370607028754 1862.5 L282.2 1862.5 " fill="none"></path>
-<path d="M4724.9 911.5 L4623 1104 L4625.061855670103 1124 L4625.1 1124.0 " fill="none"></path>
-<path d="M4400.0 1329.4 L3141.5 1492 L3493.356343283582 1591 L3493.4 1591.0 " fill="none"></path>
-<path d="M4886.0 1352.7 L5505 1492 L5532.672574626866 1534.5 L5532.7 1534.5 " fill="none"></path>
-<path d="M960.0 1977.3 L651.5 2073 L475.74581005586595 2183 L475.7 2183.0 " fill="none"></path>
-<path d="M1320.9 2015.5 L1416.75 2073 L1416.75 2202 L1416.8 2202.0 " fill="none"></path>
-<path d="M345.5 1970.5 L345.5 2073 L357.79050279329607 2183 L357.8 2183.0 " fill="none"></path>
-<path d="M3574.4 1384.9 L3101.5 1492 L3482.908582089552 1591 L3482.9 1591.0 " fill="none"></path>
-<path d="M3575.6 1390.1 L3574.4 1384.9 L3573.2 1379.7 L3587.4 1382.0 Z"></path>
-<path d="M3617.8 1661.0 L3617.75 1760 L3603.1813099041533 1874 L3603.2 1874.0 " fill="none"></path>
-<path d="M3322.8 1724.9 L3375.75 1760 L3537.4624600638977 1874 L3537.5 1874.0 " fill="none"></path>
-<path d="M3325.7 1720.4 L3322.8 1724.9 L3319.8 1729.3 L3311.7 1717.5 Z"></path>
-<path d="M3958.5 1395.3 L3958.5 1492 L4043.9944029850744 1557 L4044.0 1557.0 " fill="none"></path>
-<path d="M3963.8 1395.3 L3958.5 1395.3 L3953.2 1395.3 L3958.5 1382.0 Z"></path>
-<text x="3935.8" y="1866.0" stroke="none">0..*</text>
-<path d="M4050.3 1695.0 L3970.75 1760 L3970.75 1874 L3970.8 1874.0 " fill="none"></path>
-<path d="M4407.3 1661.6 L5161.5 1760 L5087.017571884984 1874 L5087.0 1874.0 " fill="none"></path>
-<path d="M3451.5 1654.6 L4475.75 1760 L4946.25 1886.1923736075407 L4946.3 1886.2 " fill="none"></path>
-<path d="M3452.1 1649.3 L3451.5 1654.6 L3451.0 1659.9 L3438.3 1653.2 Z"></path>
-<path d="M2909.3 1651.8 L1799 1760 L1964.25 1835.563550036523 L1964.3 1835.6 " fill="none"></path>
-<path d="M4344.7 1350.8 L5377.75 1492 L5377.75 1626 L5377.75 1626 L5377.75 1760 L5377.75 1760 L5544.27875399361 1881.5 L5544.3 1881.5 " fill="none"></path>
-<path d="M4345.4 1345.5 L4344.7 1350.8 L4344.0 1356.1 L4331.5 1349.0 Z"></path>
-<path d="M5592.3 1951.5 L5592.25 2073 L4251.25 2238.088720770289 L4251.3 2238.1 " fill="none"></path>
-<path d="M2930.4 1722.4 L2835.5 1760 L2835.5 1916.5 L2835.5 1916.5 L2835.5 2073 L2835.5 2073 L4025.25 2236.473613509883 L4025.3 2236.5 " fill="none"></path>
-<path d="M2932.3 1727.4 L2930.4 1722.4 L2928.4 1717.5 L2942.8 1717.5 Z"></path>
-<path d="M1024.5 1740.0 L1024.5 1760 L1072.814696485623 1817.5 L1072.8 1817.5 " fill="none"></path>
-<path d="M2296.8 1327.1 L774 1492 L774 1626 L774 1626 L774 1760 L774 1760 L960 1836.2015706806283 L960.0 1836.2 " fill="none"></path>
-<path d="M2296.8 1335.7 L1185 1492 L1161.044776119403 1512 L1161.0 1512.0 " fill="none"></path>
-<path d="M2552.7 1419.5 L2545.25 1492 L2545.25 1572 L2545.3 1572.0 " fill="none"></path>
-<path d="M2833.8 1403.0 L3061.5 1492 L3478.25 1592.394606741573 L3478.3 1592.4 " fill="none"></path>
-<path d="M2833.8 1338.5 L3852.75 1492 L3989.5410447761196 1557 L3989.5 1557.0 " fill="none"></path>
-<path d="M2833.8 1316.8 L5337.75 1492 L5337.75 1626 L5337.75 1626 L5337.75 1760 L5337.75 1760 L5535.333067092652 1881.5 L5535.3 1881.5 " fill="none"></path>
-<path d="M800.2 1389.5 L734 1492 L734 1626 L734 1626 L734 1760 L734 1760 L960 1843.812796208531 L960.0 1843.8 " fill="none"></path>
-<path d="M927.8 1389.5 L1004.5 1492 L1007.4850746268656 1512 L1007.5 1512.0 " fill="none"></path>
-<path d="M1964.3 1993.0 L1779.25 2073 L1779.25 2093 L1779.3 2093.0 " fill="none"></path>
-<path d="M2141.3 2053.0 L2141.25 2073 L2141.25 2209.5 L2141.3 2209.5 " fill="none"></path>
-<path d="M2318.3 1968.0 L2678.75 2073 L2678.75 2217 L2678.8 2217.0 " fill="none"></path>
+<path d="M2326.7 57.8 L2326.4 52.5 L2326.1 47.2 L2339.8 51.8 Z"></path>
+<path d="M1230.5 1309.9 L2984.75 1492 L2984.75 1626 L2984.75 1626 L2984.75 1760 L2984.75 1760 L3383.25 1864.90370058873 L3383.3 1864.9 " fill="none"></path>
+<path d="M1031.7 1352.0 L813 1492 L881.0130597014926 1549.5 L881.0 1549.5 " fill="none"></path>
+<path d="M5190.8 1315.6 L6846.75 1492 L6981.675373134329 1572 L6981.7 1572.0 " fill="none"></path>
+<path d="M4860.8 1309.9 L2332.75 1492 L1141 1609.314600550964 L1141.0 1609.3 " fill="none"></path>
+<path d="M5554.8 1313.4 L7435 1492 L7218.731343283582 1572 L7218.7 1572.0 " fill="none"></path>
+<path d="M5230.8 1309.0 L2536.25 1492 L1141 1611.4845822016296 L1141.0 1611.5 " fill="none"></path>
+<path d="M1513.5 911.5 L1513.5 1104 L1513.5 1124 L1513.5 1124.0 " fill="none"></path>
+<path d="M1756.5 1308.6 L5970.25 1492 L5494.25 1595.629569455727 L5494.3 1595.6 " fill="none"></path>
+<path d="M1270.5 1335.7 L261.75 1492 L234.07742537313433 1534.5 L234.1 1534.5 " fill="none"></path>
+<path d="M3579.3 2015.5 L3579.25 2073 L6687.5 2241.8932989299537 L6687.5 2241.9 " fill="none"></path>
+<path d="M3775.3 1924.8 L7263.75 2073 L7263.75 2202 L7263.8 2202.0 " fill="none"></path>
+<path d="M7072.8 1680.0 L7072.75 1760 L7072.75 1916.5 L7072.75 1916.5 L7072.75 2073 L7072.75 2073 L6950.305865921788 2183 L6950.3 2183.0 " fill="none"></path>
+<path d="M3382.8 1322.9 L6010.25 1492 L5494.25 1597.482837528604 L5494.3 1597.5 " fill="none"></path>
+<path d="M3383.1 1317.5 L3382.8 1322.9 L3382.5 1328.2 L3369.5 1322.0 Z"></path>
+<path d="M5354.8 1661.0 L5354.75 1760 L5531.031150159744 1874 L5531.0 1874.0 " fill="none"></path>
+<path d="M6003.8 1730.8 L6003.75 1760 L5707.27715654952 1874 L5707.3 1874.0 " fill="none"></path>
+<path d="M6009.1 1730.8 L6003.8 1730.8 L5998.4 1730.8 L6003.8 1717.5 Z"></path>
+<path d="M3382.8 1317.9 L6766.75 1492 L6676.526119402985 1557 L6676.5 1557.0 " fill="none"></path>
+<path d="M3383.1 1312.6 L3382.8 1317.9 L3382.5 1323.2 L3369.5 1317.2 Z"></path>
+<text x="6375.3" y="1866.0" stroke="none">0..*</text>
+<path d="M6493.0 1695.0 L6410.25 1760 L6410.25 1874 L6410.3 1874.0 " fill="none"></path>
+<path d="M6668.0 1695.0 L6750.25 1760 L6764.818690095846 1874 L6764.8 1874.0 " fill="none"></path>
+<path d="M6281.4 1671.2 L6826.75 1760 L6785.593450479233 1874 L6785.6 1874.0 " fill="none"></path>
+<path d="M6282.3 1665.9 L6281.4 1671.2 L6280.6 1676.5 L6268.3 1669.1 Z"></path>
+<path d="M6268.3 1642.4 L8166.25 1760 L8158.582268370607 1780 L8158.6 1780.0 " fill="none"></path>
+<path d="M2610.2 1326.7 L389 1492 L389 1626 L389 1626 L389 1760 L389 1760 L385.11821086261983 1881.5 L385.1 1881.5 " fill="none"></path>
+<path d="M2610.6 1332.1 L2610.2 1326.7 L2609.8 1321.4 L2623.5 1325.8 Z"></path>
+<path d="M384.0 1951.5 L384 2073 L481.03701117318434 2209.5 L481.0 2209.5 " fill="none"></path>
+<path d="M5725.9 1637.6 L2806.75 1760 L2806.75 1916.5 L2806.75 1916.5 L2806.75 2073 L2806.75 2073 L624.25 2243.1884121106514 L624.3 2243.2 " fill="none"></path>
+<path d="M5726.2 1643.0 L5725.9 1637.6 L5725.7 1632.3 L5739.3 1637.1 Z"></path>
+<path d="M3923.3 1740.0 L3923.25 1760 L3775.25 1827.3313953488373 L3775.3 1827.3 " fill="none"></path>
+<path d="M3409.5 1345.3 L2576.25 1492 L1141 1611.8463935192397 L1141.0 1611.8 " fill="none"></path>
+<path d="M3946.5 1403.1 L4173.75 1492 L4173.75 1626 L4173.75 1626 L4173.75 1760 L4173.75 1760 L3775.25 1864.90370058873 L3775.3 1864.9 " fill="none"></path>
+<path d="M3664.2 1419.5 L3656 1492 L3712.75 1520.4546304957905 L3712.8 1520.5 " fill="none"></path>
+<path d="M3471.8 1419.5 L3348.75 1492 L3348.75 1572 L3348.8 1572.0 " fill="none"></path>
+<path d="M3946.5 1320.0 L6050.25 1492 L5494.25 1599.1229331416248 L5494.3 1599.1 " fill="none"></path>
+<path d="M3946.5 1314.6 L6806.75 1492 L6697.123134328358 1557 L6697.1 1557.0 " fill="none"></path>
+<path d="M3409.5 1351.3 L2701 1492 L2701 1626 L2701 1626 L2701 1760 L2701 1760 L515.5 1907.617932671558 L515.5 1907.6 " fill="none"></path>
+<path d="M4392.6 1389.5 L4213.75 1492 L4213.75 1626 L4213.75 1626 L4213.75 1760 L4213.75 1760 L3775.25 1868.1564223798266 L3775.3 1868.2 " fill="none"></path>
+<path d="M4305.2 1389.5 L4028.5 1492 L4012.7910447761196 1512 L4012.8 1512.0 " fill="none"></path>
+<path d="M7929.3 1974.2 L7626.25 2073 L7626.25 2093 L7626.3 2093.0 " fill="none"></path>
+<path d="M8003.3 2053.0 L7988.25 2073 L7988.25 2209.5 L7988.3 2209.5 " fill="none"></path>
+<path d="M8244.1 2053.0 L8264.25 2073 L8264.25 2217 L8264.3 2217.0 " fill="none"></path>
 <g stroke-dasharray="6 6">
-<path d="M3685.7 55.5 L4214.5 120 L4214.5 224 L4214.5 224 L4214.5 328 L4214.5 328 L4214.5 462 L4214.5 462 L4214.5 596 L4214.5 596 L4214.5 788.5 L4214.5 788.5 " fill="none"></path>
+<path d="M2326.7 59.9 L2056.5 120 L2056.5 224 L2056.5 224 L2056.5 328 L2056.5 328 L2056.5 462 L2056.5 462 L2056.5 596 L2056.5 596 L2056.5 788.5 L2056.5 788.5 " fill="none"></path>
 </g>
-<path d="M3686.4 50.2 L3685.7 55.5 L3685.1 60.8 L3672.5 53.8 Z"></path>
-<path d="M4181.9 911.5 L4080 1104 L4400 1214.266429840142 L4400.0 1214.3 " fill="none"></path>
+<path d="M2327.9 65.1 L2326.7 59.9 L2325.6 54.7 L2339.8 57.0 Z"></path>
+<path d="M2056.5 911.5 L2056.5 1104 L1756.5 1211.1823204419888 L1756.5 1211.2 " fill="none"></path>
 <g data-name="AnimalProviderService">
 <g fill="#eee8d5" stroke="#33322E" data-name="AnimalProviderService">
-<rect x="4966.0" y="1184.0" height="228.0" width="391.0" data-name="AnimalProviderService"></rect>
-<path d="M4966.0 1215.0 L5357.0 1215.0" fill="none" data-name="AnimalProviderService"></path>
-<path d="M4966.0 1336.0 L5357.0 1336.0" fill="none" data-name="AnimalProviderService"></path>
+<rect x="2192.5" y="1184.0" height="228.0" width="391.0" data-name="AnimalProviderService"></rect>
+<path d="M2192.5 1215.0 L2583.5 1215.0" fill="none" data-name="AnimalProviderService"></path>
+<path d="M2192.5 1336.0 L2583.5 1336.0" fill="none" data-name="AnimalProviderService"></path>
 </g>
-<g transform="translate(4966, 1184)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="AnimalProviderService">
+<g transform="translate(2192.5, 1184)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="AnimalProviderService">
 <g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="AnimalProviderService">
 <a id="../src/app/game/service/animal-provider.service.ts.AnimalProviderService" xlink:href="../src/app/game/service/animal-provider.service.ts"><text x="187.5" y="13.5" stroke="none" text-anchor="middle" data-name="AnimalProviderService">AnimalProviderService</text></a>
 
 </g>
 </g>
-<g transform="translate(4966, 1215)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="AnimalProviderService">
+<g transform="translate(2192.5, 1215)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="AnimalProviderService">
 <g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="AnimalProviderService">
 <text x="0.0" y="13.5" stroke="none" data-name="AnimalProviderService">-processedFactionIds: Set&lt;string&gt;</text>
 <text x="0.0" y="28.5" stroke="none" data-name="AnimalProviderService">-animalById: Map&lt;string, Animal&gt;</text>
@@ -239,7 +256,7 @@
 
 </g>
 </g>
-<g transform="translate(4966, 1336)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="AnimalProviderService">
+<g transform="translate(2192.5, 1336)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="AnimalProviderService">
 <g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="AnimalProviderService">
 <text x="0.0" y="13.5" stroke="none" data-name="AnimalProviderService">-buildAnimals(): void</text>
 <text x="0.0" y="28.5" stroke="none" data-name="AnimalProviderService">-animalFactory(): Animal</text>
@@ -251,23 +268,23 @@
 </g>
 <g data-name="AreaRegistryService">
 <g fill="#eee8d5" stroke="#33322E" data-name="AreaRegistryService">
-<rect x="3478.3" y="1591.0" height="70.0" width="279.0" data-name="AreaRegistryService"></rect>
-<path d="M3478.3 1622.0 L3757.3 1622.0" fill="none" data-name="AreaRegistryService"></path>
-<path d="M3478.3 1653.0 L3757.3 1653.0" fill="none" data-name="AreaRegistryService"></path>
+<rect x="5215.3" y="1591.0" height="70.0" width="279.0" data-name="AreaRegistryService"></rect>
+<path d="M5215.3 1622.0 L5494.3 1622.0" fill="none" data-name="AreaRegistryService"></path>
+<path d="M5215.3 1653.0 L5494.3 1653.0" fill="none" data-name="AreaRegistryService"></path>
 </g>
-<g transform="translate(3478.25, 1591)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="AreaRegistryService">
+<g transform="translate(5215.25, 1591)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="AreaRegistryService">
 <g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="AreaRegistryService">
 <a id="../src/app/engine/service/game-element/area-registry.service.ts.AreaRegistryService" xlink:href="../src/app/engine/service/game-element/area-registry.service.ts"><text x="131.5" y="13.5" stroke="none" text-anchor="middle" data-name="AreaRegistryService">AreaRegistryService</text></a>
 
 </g>
 </g>
-<g transform="translate(3478.25, 1622)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="AreaRegistryService">
+<g transform="translate(5215.25, 1622)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="AreaRegistryService">
 <g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="AreaRegistryService">
 <text x="0.0" y="13.5" stroke="none" data-name="AreaRegistryService">#areaStateSvc: AreaStateService</text>
 
 </g>
 </g>
-<g transform="translate(3478.25, 1653)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="AreaRegistryService">
+<g transform="translate(5215.25, 1653)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="AreaRegistryService">
 <g transform="translate(8, 8)" fill="#33322E" data-name="AreaRegistryService">
 
 </g>
@@ -275,17 +292,17 @@
 </g>
 <g data-name="FactionRegistryService">
 <g fill="#eee8d5" stroke="#33322E" data-name="FactionRegistryService">
-<rect x="3862.3" y="1557.0" height="138.0" width="545.0" data-name="FactionRegistryService"></rect>
-<path d="M3862.3 1588.0 L4407.3 1588.0" fill="none" data-name="FactionRegistryService"></path>
-<path d="M3862.3 1664.0 L4407.3 1664.0" fill="none" data-name="FactionRegistryService"></path>
+<rect x="6308.3" y="1557.0" height="138.0" width="545.0" data-name="FactionRegistryService"></rect>
+<path d="M6308.3 1588.0 L6853.3 1588.0" fill="none" data-name="FactionRegistryService"></path>
+<path d="M6308.3 1664.0 L6853.3 1664.0" fill="none" data-name="FactionRegistryService"></path>
 </g>
-<g transform="translate(3862.25, 1557)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="FactionRegistryService">
+<g transform="translate(6308.25, 1557)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="FactionRegistryService">
 <g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="FactionRegistryService">
 <a id="../src/app/engine/service/game-element/faction-registry.service.ts.FactionRegistryService" xlink:href="../src/app/engine/service/game-element/faction-registry.service.ts"><text x="264.5" y="13.5" stroke="none" text-anchor="middle" data-name="FactionRegistryService">FactionRegistryService</text></a>
 
 </g>
 </g>
-<g transform="translate(3862.25, 1588)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="FactionRegistryService">
+<g transform="translate(6308.25, 1588)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="FactionRegistryService">
 <g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="FactionRegistryService">
 <text x="0.0" y="13.5" stroke="none" data-name="FactionRegistryService">-factionAssignment: FactionAssignment[]</text>
 <text x="0.0" y="28.5" stroke="none" data-name="FactionRegistryService">-factionAssignmentSubject: BehaviorSubject&lt;FactionAssignment[]&gt;</text>
@@ -294,7 +311,7 @@
 
 </g>
 </g>
-<g transform="translate(3862.25, 1664)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="FactionRegistryService">
+<g transform="translate(6308.25, 1664)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="FactionRegistryService">
 <g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="FactionRegistryService">
 <text x="0.0" y="13.5" stroke="none" data-name="FactionRegistryService">+register(): void</text>
 
@@ -303,23 +320,23 @@
 </g>
 <g data-name="PileRegistryService">
 <g fill="#eee8d5" stroke="#33322E" data-name="PileRegistryService">
-<rect x="5460.8" y="1881.5" height="70.0" width="263.0" data-name="PileRegistryService"></rect>
-<path d="M5460.8 1912.5 L5723.8 1912.5" fill="none" data-name="PileRegistryService"></path>
-<path d="M5460.8 1943.5 L5723.8 1943.5" fill="none" data-name="PileRegistryService"></path>
+<rect x="252.5" y="1881.5" height="70.0" width="263.0" data-name="PileRegistryService"></rect>
+<path d="M252.5 1912.5 L515.5 1912.5" fill="none" data-name="PileRegistryService"></path>
+<path d="M252.5 1943.5 L515.5 1943.5" fill="none" data-name="PileRegistryService"></path>
 </g>
-<g transform="translate(5460.75, 1881.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="PileRegistryService">
+<g transform="translate(252.5, 1881.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="PileRegistryService">
 <g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="PileRegistryService">
 <a id="../src/app/engine/service/game-element/pile-registry.service.ts.PileRegistryService" xlink:href="../src/app/engine/service/game-element/pile-registry.service.ts"><text x="123.5" y="13.5" stroke="none" text-anchor="middle" data-name="PileRegistryService">PileRegistryService</text></a>
 
 </g>
 </g>
-<g transform="translate(5460.75, 1912.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="PileRegistryService">
+<g transform="translate(252.5, 1912.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="PileRegistryService">
 <g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="PileRegistryService">
 <text x="0.0" y="13.5" stroke="none" data-name="PileRegistryService">#pileStateSvc: PileStateService</text>
 
 </g>
 </g>
-<g transform="translate(5460.75, 1943.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="PileRegistryService">
+<g transform="translate(252.5, 1943.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="PileRegistryService">
 <g transform="translate(8, 8)" fill="#33322E" data-name="PileRegistryService">
 
 </g>
@@ -327,17 +344,17 @@
 </g>
 <g data-name="ElementDrawPoolService">
 <g fill="#eee8d5" stroke="#33322E" data-name="ElementDrawPoolService">
-<rect x="5417.8" y="1534.5" height="183.0" width="349.0" data-name="ElementDrawPoolService"></rect>
-<path d="M5417.8 1565.5 L5766.8 1565.5" fill="none" data-name="ElementDrawPoolService"></path>
-<path d="M5417.8 1656.5 L5766.8 1656.5" fill="none" data-name="ElementDrawPoolService"></path>
+<rect x="0.0" y="1534.5" height="183.0" width="349.0" data-name="ElementDrawPoolService"></rect>
+<path d="M0.0 1565.5 L349.0 1565.5" fill="none" data-name="ElementDrawPoolService"></path>
+<path d="M0.0 1656.5 L349.0 1656.5" fill="none" data-name="ElementDrawPoolService"></path>
 </g>
-<g transform="translate(5417.75, 1534.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="ElementDrawPoolService">
+<g transform="translate(0, 1534.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="ElementDrawPoolService">
 <g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="ElementDrawPoolService">
 <a id="../src/app/game/service/element-draw-pool.service.ts.ElementDrawPoolService" xlink:href="../src/app/game/service/element-draw-pool.service.ts"><text x="166.5" y="13.5" stroke="none" text-anchor="middle" data-name="ElementDrawPoolService">ElementDrawPoolService</text></a>
 
 </g>
 </g>
-<g transform="translate(5417.75, 1565.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ElementDrawPoolService">
+<g transform="translate(0, 1565.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ElementDrawPoolService">
 <g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="ElementDrawPoolService">
 <text x="0.0" y="13.5" stroke="none" data-name="ElementDrawPoolService">-_drawPool: Pile</text>
 <text x="0.0" y="28.5" stroke="none" data-name="ElementDrawPoolService">-ready: boolean</text>
@@ -347,7 +364,7 @@
 
 </g>
 </g>
-<g transform="translate(5417.75, 1656.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ElementDrawPoolService">
+<g transform="translate(0, 1656.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ElementDrawPoolService">
 <g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="ElementDrawPoolService">
 <text x="0.0" y="13.5" stroke="none" data-name="ElementDrawPoolService">-initialize(): void</text>
 <text x="0.0" y="28.5" stroke="none" data-name="ElementDrawPoolService">+pull(): ElementPiece[]</text>
@@ -358,24 +375,24 @@
 </g>
 <g data-name="GameElementStatesFactoryService">
 <g fill="#eee8d5" stroke="#33322E" data-name="GameElementStatesFactoryService">
-<rect x="845.5" y="140.0" height="168.0" width="351.0" data-name="GameElementStatesFactoryService"></rect>
-<path d="M845.5 171.0 L1196.5 171.0" fill="none" data-name="GameElementStatesFactoryService"></path>
-<path d="M845.5 217.0 L1196.5 217.0" fill="none" data-name="GameElementStatesFactoryService"></path>
+<rect x="576.0" y="140.0" height="168.0" width="351.0" data-name="GameElementStatesFactoryService"></rect>
+<path d="M576.0 171.0 L927.0 171.0" fill="none" data-name="GameElementStatesFactoryService"></path>
+<path d="M576.0 217.0 L927.0 217.0" fill="none" data-name="GameElementStatesFactoryService"></path>
 </g>
-<g transform="translate(845.5, 140)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="GameElementStatesFactoryService">
+<g transform="translate(576, 140)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="GameElementStatesFactoryService">
 <g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="GameElementStatesFactoryService">
 <a id="../src/app/game/service/game-element-states-factory.service.ts.GameElementStatesFactoryService" xlink:href="../src/app/game/service/game-element-states-factory.service.ts"><text x="167.5" y="13.5" stroke="none" text-anchor="middle" data-name="GameElementStatesFactoryService">GameElementStatesFactoryService</text></a>
 
 </g>
 </g>
-<g transform="translate(845.5, 171)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="GameElementStatesFactoryService">
+<g transform="translate(576, 171)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="GameElementStatesFactoryService">
 <g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="GameElementStatesFactoryService">
 <text x="0.0" y="13.5" stroke="none" data-name="GameElementStatesFactoryService">-gameElementStates: GameElementStates</text>
 <text x="0.0" y="28.5" stroke="none" data-name="GameElementStatesFactoryService">-elementDrawPool: Pile</text>
 
 </g>
 </g>
-<g transform="translate(845.5, 217)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="GameElementStatesFactoryService">
+<g transform="translate(576, 217)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="GameElementStatesFactoryService">
 <g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="GameElementStatesFactoryService">
 <text x="0.0" y="13.5" stroke="none" data-name="GameElementStatesFactoryService">+build(): GameElementStates</text>
 <text x="0.0" y="28.5" stroke="none" data-name="GameElementStatesFactoryService">+buildElementDrawPool(): Pile</text>
@@ -388,9 +405,9 @@
 </g>
 <g data-name="InitialGameElementStatesFactory">
 <g fill="#eee8d5" stroke="#33322E" data-name="InitialGameElementStatesFactory">
-<rect x="882.0" y="34.5" height="31.0" width="278.0" data-name="InitialGameElementStatesFactory"></rect>
+<rect x="612.5" y="34.5" height="31.0" width="278.0" data-name="InitialGameElementStatesFactory"></rect>
 </g>
-<g transform="translate(882, 34.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="InitialGameElementStatesFactory">
+<g transform="translate(612.5, 34.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="InitialGameElementStatesFactory">
 <g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="InitialGameElementStatesFactory">
 <text x="131.0" y="13.5" stroke="none" text-anchor="middle" data-name="InitialGameElementStatesFactory">InitialGameElementStatesFactory</text>
 
@@ -399,17 +416,17 @@
 </g>
 <g data-name="GameReadyService">
 <g fill="#eee8d5" stroke="#33322E" data-name="GameReadyService">
-<rect x="3128.5" y="348.0" height="228.0" width="503.0" data-name="GameReadyService"></rect>
-<path d="M3128.5 379.0 L3631.5 379.0" fill="none" data-name="GameReadyService"></path>
-<path d="M3128.5 515.0 L3631.5 515.0" fill="none" data-name="GameReadyService"></path>
+<rect x="2096.5" y="348.0" height="228.0" width="503.0" data-name="GameReadyService"></rect>
+<path d="M2096.5 379.0 L2599.5 379.0" fill="none" data-name="GameReadyService"></path>
+<path d="M2096.5 515.0 L2599.5 515.0" fill="none" data-name="GameReadyService"></path>
 </g>
-<g transform="translate(3128.5, 348)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="GameReadyService">
+<g transform="translate(2096.5, 348)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="GameReadyService">
 <g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="GameReadyService">
 <a id="../src/app/game/service/game-ready.service.ts.GameReadyService" xlink:href="../src/app/game/service/game-ready.service.ts"><text x="243.5" y="13.5" stroke="none" text-anchor="middle" data-name="GameReadyService">GameReadyService</text></a>
 
 </g>
 </g>
-<g transform="translate(3128.5, 379)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="GameReadyService">
+<g transform="translate(2096.5, 379)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="GameReadyService">
 <g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="GameReadyService">
 <text x="0.0" y="13.5" stroke="none" data-name="GameReadyService">-subscriptions: Subscription[]</text>
 <text x="0.0" y="28.5" stroke="none" data-name="GameReadyService">-readySubject: BehaviorSubject&lt;boolean&gt;</text>
@@ -422,7 +439,7 @@
 
 </g>
 </g>
-<g transform="translate(3128.5, 515)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="GameReadyService">
+<g transform="translate(2096.5, 515)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="GameReadyService">
 <g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="GameReadyService">
 <text x="0.0" y="13.5" stroke="none" data-name="GameReadyService">-currentPlayerReady(): Observable&lt;boolean&gt;</text>
 <text x="0.0" y="28.5" stroke="none" data-name="GameReadyService">-animalsReady(): Observable&lt;boolean&gt;</text>
@@ -433,17 +450,17 @@
 </g>
 <g data-name="GameStateService">
 <g fill="#eee8d5" stroke="#33322E" data-name="GameStateService">
-<rect x="1964.3" y="1780.0" height="273.0" width="354.0" data-name="GameStateService"></rect>
-<path d="M1964.3 1811.0 L2318.3 1811.0" fill="none" data-name="GameStateService"></path>
-<path d="M1964.3 1872.0 L2318.3 1872.0" fill="none" data-name="GameStateService"></path>
+<rect x="7929.3" y="1780.0" height="273.0" width="354.0" data-name="GameStateService"></rect>
+<path d="M7929.3 1811.0 L8283.3 1811.0" fill="none" data-name="GameStateService"></path>
+<path d="M7929.3 1872.0 L8283.3 1872.0" fill="none" data-name="GameStateService"></path>
 </g>
-<g transform="translate(1964.25, 1780)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="GameStateService">
+<g transform="translate(7929.25, 1780)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="GameStateService">
 <g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="GameStateService">
 <a id="../src/app/engine/service/game-state/game-state.service.ts.GameStateService" xlink:href="../src/app/engine/service/game-state/game-state.service.ts"><text x="169.0" y="13.5" stroke="none" text-anchor="middle" data-name="GameStateService">GameStateService</text></a>
 
 </g>
 </g>
-<g transform="translate(1964.25, 1811)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="GameStateService">
+<g transform="translate(7929.25, 1811)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="GameStateService">
 <g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="GameStateService">
 <text x="0.0" y="13.5" stroke="none" data-name="GameStateService">-gameStateStore: GameStateStoreService</text>
 <text x="0.0" y="28.5" stroke="none" data-name="GameStateService">-gspService: GameStatePatchService</text>
@@ -451,7 +468,7 @@
 
 </g>
 </g>
-<g transform="translate(1964.25, 1872)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="GameStateService">
+<g transform="translate(7929.25, 1872)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="GameStateService">
 <g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="GameStateService">
 <text x="0.0" y="13.5" stroke="none" data-name="GameStateService">-applyGsp(): void</text>
 <text x="0.0" y="28.5" stroke="none" data-name="GameStateService">+startTransaction(): void</text>
@@ -470,17 +487,17 @@
 </g>
 <g data-name="PlayerService">
 <g fill="#eee8d5" stroke="#33322E" data-name="PlayerService">
-<rect x="590.8" y="1206.5" height="183.0" width="537.0" data-name="PlayerService"></rect>
-<path d="M590.8 1237.5 L1127.8 1237.5" fill="none" data-name="PlayerService"></path>
-<path d="M590.8 1328.5 L1127.8 1328.5" fill="none" data-name="PlayerService"></path>
+<rect x="4283.8" y="1206.5" height="183.0" width="537.0" data-name="PlayerService"></rect>
+<path d="M4283.8 1237.5 L4820.8 1237.5" fill="none" data-name="PlayerService"></path>
+<path d="M4283.8 1328.5 L4820.8 1328.5" fill="none" data-name="PlayerService"></path>
 </g>
-<g transform="translate(590.75, 1206.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="PlayerService">
+<g transform="translate(4283.75, 1206.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="PlayerService">
 <g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="PlayerService">
 <a id="../src/app/engine/service/game-management/player.service.ts.PlayerService" xlink:href="../src/app/engine/service/game-management/player.service.ts"><text x="260.5" y="13.5" stroke="none" text-anchor="middle" data-name="PlayerService">PlayerService</text></a>
 
 </g>
 </g>
-<g transform="translate(590.75, 1237.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="PlayerService">
+<g transform="translate(4283.75, 1237.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="PlayerService">
 <g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="PlayerService">
 <text x="0.0" y="13.5" stroke="none" data-name="PlayerService">+currentPlayer: any</text>
 <text x="0.0" y="28.5" stroke="none" data-name="PlayerService">-currentPlayerSubject: BehaviorSubject&lt;any&gt;</text>
@@ -490,7 +507,7 @@
 
 </g>
 </g>
-<g transform="translate(590.75, 1328.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="PlayerService">
+<g transform="translate(4283.75, 1328.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="PlayerService">
 <g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="PlayerService">
 <text x="0.0" y="13.5" stroke="none" data-name="PlayerService">+findPlayers(): Promise&lt;string[]&gt;</text>
 <text x="0.0" y="28.5" stroke="none" data-name="PlayerService">+addFriend(): Promise&lt;void&gt;</text>
@@ -501,17 +518,17 @@
 </g>
 <g data-name="ActionDisplayManagerService">
 <g fill="#eee8d5" stroke="#33322E" data-name="ActionDisplayManagerService">
-<rect x="4506.0" y="788.5" height="123.0" width="503.0" data-name="ActionDisplayManagerService"></rect>
-<path d="M4506.0 819.5 L5009.0 819.5" fill="none" data-name="ActionDisplayManagerService"></path>
-<path d="M4506.0 880.5 L5009.0 880.5" fill="none" data-name="ActionDisplayManagerService"></path>
+<rect x="1262.0" y="788.5" height="123.0" width="503.0" data-name="ActionDisplayManagerService"></rect>
+<path d="M1262.0 819.5 L1765.0 819.5" fill="none" data-name="ActionDisplayManagerService"></path>
+<path d="M1262.0 880.5 L1765.0 880.5" fill="none" data-name="ActionDisplayManagerService"></path>
 </g>
-<g transform="translate(4506, 788.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="ActionDisplayManagerService">
+<g transform="translate(1262, 788.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="ActionDisplayManagerService">
 <g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="ActionDisplayManagerService">
 <a id="../src/app/game/service/action-display/action-display-manager.service.ts.ActionDisplayManagerService" xlink:href="../src/app/game/service/action-display/action-display-manager.service.ts"><text x="243.5" y="13.5" stroke="none" text-anchor="middle" data-name="ActionDisplayManagerService">ActionDisplayManagerService</text></a>
 
 </g>
 </g>
-<g transform="translate(4506, 819.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ActionDisplayManagerService">
+<g transform="translate(1262, 819.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ActionDisplayManagerService">
 <g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="ActionDisplayManagerService">
 <text x="0.0" y="13.5" stroke="none" data-name="ActionDisplayManagerService">-readySubject: BehaviorSubject&lt;boolean&gt;</text>
 <text x="0.0" y="28.5" stroke="none" data-name="ActionDisplayManagerService">+ready$: Observable&lt;boolean&gt;</text>
@@ -519,7 +536,7 @@
 
 </g>
 </g>
-<g transform="translate(4506, 880.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ActionDisplayManagerService">
+<g transform="translate(1262, 880.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ActionDisplayManagerService">
 <g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="ActionDisplayManagerService">
 <text x="0.0" y="13.5" stroke="none" data-name="ActionDisplayManagerService">+signalReady(): void</text>
 
@@ -528,22 +545,22 @@
 </g>
 <g data-name="LocalStorageService">
 <g fill="#eee8d5" stroke="#33322E" data-name="LocalStorageService">
-<rect x="1300.8" y="2202.0" height="100.0" width="232.0" data-name="LocalStorageService"></rect>
-<path d="M1300.8 2233.0 L1532.8 2233.0" fill="none" data-name="LocalStorageService"></path>
-<path d="M1300.8 2241.0 L1532.8 2241.0" fill="none" data-name="LocalStorageService"></path>
+<rect x="7147.8" y="2202.0" height="100.0" width="232.0" data-name="LocalStorageService"></rect>
+<path d="M7147.8 2233.0 L7379.8 2233.0" fill="none" data-name="LocalStorageService"></path>
+<path d="M7147.8 2241.0 L7379.8 2241.0" fill="none" data-name="LocalStorageService"></path>
 </g>
-<g transform="translate(1300.75, 2202)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="LocalStorageService">
+<g transform="translate(7147.75, 2202)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="LocalStorageService">
 <g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="LocalStorageService">
 <a id="../src/app/engine/service/local-storage.service.ts.LocalStorageService" xlink:href="../src/app/engine/service/local-storage.service.ts"><text x="108.0" y="13.5" stroke="none" text-anchor="middle" data-name="LocalStorageService">LocalStorageService</text></a>
 
 </g>
 </g>
-<g transform="translate(1300.75, 2233)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="LocalStorageService">
+<g transform="translate(7147.75, 2233)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="LocalStorageService">
 <g transform="translate(8, 8)" fill="#33322E" data-name="LocalStorageService">
 
 </g>
 </g>
-<g transform="translate(1300.75, 2241)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="LocalStorageService">
+<g transform="translate(7147.75, 2241)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="LocalStorageService">
 <g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="LocalStorageService">
 <text x="0.0" y="13.5" stroke="none" data-name="LocalStorageService">+deletedStorageKey(): void</text>
 <text x="0.0" y="28.5" stroke="none" data-name="LocalStorageService">+getStorageKey(): string</text>
@@ -552,25 +569,54 @@
 </g>
 </g>
 </g>
+<g data-name="NavigateService">
+<g fill="#eee8d5" stroke="#33322E" data-name="NavigateService">
+<rect x="802.0" y="1549.5" height="153.0" width="339.0" data-name="NavigateService"></rect>
+<path d="M802.0 1580.5 L1141.0 1580.5" fill="none" data-name="NavigateService"></path>
+<path d="M802.0 1611.5 L1141.0 1611.5" fill="none" data-name="NavigateService"></path>
+</g>
+<g transform="translate(802, 1549.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="NavigateService">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="NavigateService">
+<a id="../src/app/engine/service/navigate.service.ts.NavigateService" xlink:href="../src/app/engine/service/navigate.service.ts"><text x="161.5" y="13.5" stroke="none" text-anchor="middle" data-name="NavigateService">NavigateService</text></a>
+
+</g>
+</g>
+<g transform="translate(802, 1580.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="NavigateService">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="NavigateService">
+<text x="0.0" y="13.5" stroke="none" data-name="NavigateService">-router: Router</text>
+
+</g>
+</g>
+<g transform="translate(802, 1611.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="NavigateService">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="NavigateService">
+<text x="0.0" y="13.5" stroke="none" data-name="NavigateService">+toCreateGamePage(): Promise&lt;void&gt;</text>
+<text x="0.0" y="28.5" stroke="none" data-name="NavigateService">+toGamePage(): Promise&lt;void&gt;</text>
+<text x="0.0" y="43.5" stroke="none" data-name="NavigateService">+toLobbyPage(): Promise&lt;void&gt;</text>
+<text x="0.0" y="58.5" stroke="none" data-name="NavigateService">+toLoginPage(): Promise&lt;void&gt;</text>
+<text x="0.0" y="73.5" stroke="none" data-name="NavigateService">+toSignUpConfirmPage(): Promise&lt;void&gt;</text>
+
+</g>
+</g>
+</g>
 <g data-name="ActionPawnComponent">
 <g fill="#eee8d5" stroke="#33322E" data-name="ActionPawnComponent">
-<rect x="1200.0" y="15.0" height="70.0" width="263.0" data-name="ActionPawnComponent"></rect>
-<path d="M1200.0 46.0 L1463.0 46.0" fill="none" data-name="ActionPawnComponent"></path>
-<path d="M1200.0 77.0 L1463.0 77.0" fill="none" data-name="ActionPawnComponent"></path>
+<rect x="930.5" y="15.0" height="70.0" width="263.0" data-name="ActionPawnComponent"></rect>
+<path d="M930.5 46.0 L1193.5 46.0" fill="none" data-name="ActionPawnComponent"></path>
+<path d="M930.5 77.0 L1193.5 77.0" fill="none" data-name="ActionPawnComponent"></path>
 </g>
-<g transform="translate(1200, 15)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="ActionPawnComponent">
+<g transform="translate(930.5, 15)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="ActionPawnComponent">
 <g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="ActionPawnComponent">
 <a id="../src/app/game/component/action-pawn/action-pawn.component.ts.ActionPawnComponent" xlink:href="../src/app/game/component/action-pawn/action-pawn.component.ts"><text x="123.5" y="13.5" stroke="none" text-anchor="middle" data-name="ActionPawnComponent">ActionPawnComponent</text></a>
 
 </g>
 </g>
-<g transform="translate(1200, 46)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ActionPawnComponent">
+<g transform="translate(930.5, 46)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ActionPawnComponent">
 <g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="ActionPawnComponent">
 <text x="0.0" y="13.5" stroke="none" data-name="ActionPawnComponent">+actionPawn: ActionPawnPiece</text>
 
 </g>
 </g>
-<g transform="translate(1200, 77)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ActionPawnComponent">
+<g transform="translate(930.5, 77)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ActionPawnComponent">
 <g transform="translate(8, 8)" fill="#33322E" data-name="ActionPawnComponent">
 
 </g>
@@ -578,17 +624,17 @@
 </g>
 <g data-name="AnimalCardComponent">
 <g fill="#eee8d5" stroke="#33322E" data-name="AnimalCardComponent">
-<rect x="2880.5" y="728.5" height="243.0" width="416.0" data-name="AnimalCardComponent"></rect>
-<path d="M2880.5 759.5 L3296.5 759.5" fill="none" data-name="AnimalCardComponent"></path>
-<path d="M2880.5 910.5 L3296.5 910.5" fill="none" data-name="AnimalCardComponent"></path>
+<rect x="3910.5" y="728.5" height="243.0" width="416.0" data-name="AnimalCardComponent"></rect>
+<path d="M3910.5 759.5 L4326.5 759.5" fill="none" data-name="AnimalCardComponent"></path>
+<path d="M3910.5 910.5 L4326.5 910.5" fill="none" data-name="AnimalCardComponent"></path>
 </g>
-<g transform="translate(2880.5, 728.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="AnimalCardComponent">
+<g transform="translate(3910.5, 728.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="AnimalCardComponent">
 <g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="AnimalCardComponent">
 <a id="../src/app/game/component/animal-card/animal-card.component.ts.AnimalCardComponent" xlink:href="../src/app/game/component/animal-card/animal-card.component.ts"><text x="200.0" y="13.5" stroke="none" text-anchor="middle" data-name="AnimalCardComponent">AnimalCardComponent</text></a>
 
 </g>
 </g>
-<g transform="translate(2880.5, 759.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="AnimalCardComponent">
+<g transform="translate(3910.5, 759.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="AnimalCardComponent">
 <g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="AnimalCardComponent">
 <text x="0.0" y="13.5" stroke="none" data-name="AnimalCardComponent">+faction: InputSignal&lt;Faction&gt;</text>
 <text x="0.0" y="28.5" stroke="none" data-name="AnimalCardComponent">+elements: WritableSignal&lt;ElementPiece[]&gt;</text>
@@ -602,7 +648,7 @@
 
 </g>
 </g>
-<g transform="translate(2880.5, 910.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="AnimalCardComponent">
+<g transform="translate(3910.5, 910.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="AnimalCardComponent">
 <g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="AnimalCardComponent">
 <text x="0.0" y="13.5" stroke="none" data-name="AnimalCardComponent">+ngOnInit(): void</text>
 <text x="0.0" y="28.5" stroke="none" data-name="AnimalCardComponent">-getAnimal(): void</text>
@@ -613,9 +659,9 @@
 </g>
 <g data-name="OnInit">
 <g fill="#eee8d5" stroke="#33322E" data-name="OnInit">
-<rect x="3609.5" y="34.5" height="31.0" width="63.0" data-name="OnInit"></rect>
+<rect x="2339.8" y="34.5" height="31.0" width="63.0" data-name="OnInit"></rect>
 </g>
-<g transform="translate(3609.5, 34.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="OnInit">
+<g transform="translate(2339.75, 34.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="OnInit">
 <g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="OnInit">
 <text x="23.5" y="13.5" stroke="none" text-anchor="middle" data-name="OnInit">OnInit</text>
 
@@ -624,27 +670,27 @@
 </g>
 <g data-name="DominantSpeciesGameComponent">
 <g fill="#eee8d5" stroke="#33322E" data-name="DominantSpeciesGameComponent">
-<rect x="3208.5" y="140.0" height="168.0" width="343.0" data-name="DominantSpeciesGameComponent"></rect>
-<path d="M3208.5 171.0 L3551.5 171.0" fill="none" data-name="DominantSpeciesGameComponent"></path>
-<path d="M3208.5 262.0 L3551.5 262.0" fill="none" data-name="DominantSpeciesGameComponent"></path>
+<rect x="2176.5" y="140.0" height="168.0" width="343.0" data-name="DominantSpeciesGameComponent"></rect>
+<path d="M2176.5 171.0 L2519.5 171.0" fill="none" data-name="DominantSpeciesGameComponent"></path>
+<path d="M2176.5 262.0 L2519.5 262.0" fill="none" data-name="DominantSpeciesGameComponent"></path>
 </g>
-<g transform="translate(3208.5, 140)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="DominantSpeciesGameComponent">
+<g transform="translate(2176.5, 140)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="DominantSpeciesGameComponent">
 <g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="DominantSpeciesGameComponent">
 <a id="../src/app/game/component/dominant-species-game/dominant-species-game.component.ts.DominantSpeciesGameComponent" xlink:href="../src/app/game/component/dominant-species-game/dominant-species-game.component.ts"><text x="163.5" y="13.5" stroke="none" text-anchor="middle" data-name="DominantSpeciesGameComponent">DominantSpeciesGameComponent</text></a>
 
 </g>
 </g>
-<g transform="translate(3208.5, 171)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="DominantSpeciesGameComponent">
+<g transform="translate(2176.5, 171)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="DominantSpeciesGameComponent">
 <g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="DominantSpeciesGameComponent">
 <text x="0.0" y="13.5" stroke="none" data-name="DominantSpeciesGameComponent">+gameReady: WritableSignal&lt;boolean&gt;</text>
 <text x="0.0" y="28.5" stroke="none" data-name="DominantSpeciesGameComponent">-route: ActivatedRoute</text>
-<text x="0.0" y="43.5" stroke="none" data-name="DominantSpeciesGameComponent">-router: Router</text>
+<text x="0.0" y="43.5" stroke="none" data-name="DominantSpeciesGameComponent">-navigate: NavigateService</text>
 <text x="0.0" y="58.5" stroke="none" data-name="DominantSpeciesGameComponent">-gameService: GameService</text>
 <text x="0.0" y="73.5" stroke="none" data-name="DominantSpeciesGameComponent">-gameReadyService: GameReadyService</text>
 
 </g>
 </g>
-<g transform="translate(3208.5, 262)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="DominantSpeciesGameComponent">
+<g transform="translate(2176.5, 262)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="DominantSpeciesGameComponent">
 <g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="DominantSpeciesGameComponent">
 <text x="0.0" y="13.5" stroke="none" data-name="DominantSpeciesGameComponent">+ngOnInit(): void</text>
 <text x="0.0" y="28.5" stroke="none" data-name="DominantSpeciesGameComponent">-initializeGame(): Promise&lt;void&gt;</text>
@@ -654,19 +700,19 @@
 </g>
 <g data-name="GameService">
 <g fill="#eee8d5" stroke="#33322E" data-name="GameService">
-<rect x="2296.8" y="1176.5" height="243.0" width="537.0" data-name="GameService"></rect>
-<path d="M2296.8 1207.5 L2833.8 1207.5" fill="none" data-name="GameService"></path>
-<path d="M2296.8 1328.5 L2833.8 1328.5" fill="none" data-name="GameService"></path>
+<rect x="3409.5" y="1176.5" height="243.0" width="537.0" data-name="GameService"></rect>
+<path d="M3409.5 1207.5 L3946.5 1207.5" fill="none" data-name="GameService"></path>
+<path d="M3409.5 1328.5 L3946.5 1328.5" fill="none" data-name="GameService"></path>
 </g>
-<g transform="translate(2296.75, 1176.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="GameService">
+<g transform="translate(3409.5, 1176.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="GameService">
 <g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="GameService">
 <a id="../src/app/engine/service/game-management/game.service.ts.GameService" xlink:href="../src/app/engine/service/game-management/game.service.ts"><text x="260.5" y="13.5" stroke="none" text-anchor="middle" data-name="GameService">GameService</text></a>
 
 </g>
 </g>
-<g transform="translate(2296.75, 1207.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="GameService">
+<g transform="translate(3409.5, 1207.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="GameService">
 <g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="GameService">
-<text x="0.0" y="13.5" stroke="none" data-name="GameService">-router: Router</text>
+<text x="0.0" y="13.5" stroke="none" data-name="GameService">-navigate: NavigateService</text>
 <text x="0.0" y="28.5" stroke="none" data-name="GameService">-authService: AuthService</text>
 <text x="0.0" y="43.5" stroke="none" data-name="GameService">-gameManagementClientService: GameManagementClientService</text>
 <text x="0.0" y="58.5" stroke="none" data-name="GameService">-gameStateInitializationService: GameStateInitializationService</text>
@@ -676,7 +722,7 @@
 
 </g>
 </g>
-<g transform="translate(2296.75, 1328.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="GameService">
+<g transform="translate(3409.5, 1328.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="GameService">
 <g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="GameService">
 <text x="0.0" y="13.5" stroke="none" data-name="GameService">+createGame(): Promise&lt;void&gt;</text>
 <text x="0.0" y="28.5" stroke="none" data-name="GameService">+getGamesForLoggedInPlayer(): Promise&lt;Game[]&gt;</text>
@@ -689,17 +735,17 @@
 </g>
 <g data-name="DrawPoolGameComponent">
 <g fill="#eee8d5" stroke="#33322E" data-name="DrawPoolGameComponent">
-<rect x="3420.0" y="728.5" height="243.0" width="503.0" data-name="DrawPoolGameComponent"></rect>
-<path d="M3420.0 759.5 L3923.0 759.5" fill="none" data-name="DrawPoolGameComponent"></path>
-<path d="M3420.0 925.5 L3923.0 925.5" fill="none" data-name="DrawPoolGameComponent"></path>
+<rect x="5123.3" y="728.5" height="243.0" width="503.0" data-name="DrawPoolGameComponent"></rect>
+<path d="M5123.3 759.5 L5626.3 759.5" fill="none" data-name="DrawPoolGameComponent"></path>
+<path d="M5123.3 925.5 L5626.3 925.5" fill="none" data-name="DrawPoolGameComponent"></path>
 </g>
-<g transform="translate(3420, 728.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="DrawPoolGameComponent">
+<g transform="translate(5123.25, 728.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="DrawPoolGameComponent">
 <g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="DrawPoolGameComponent">
 <a id="../src/app/game/component/draw-pool-game/draw-pool-game.component.ts.DrawPoolGameComponent" xlink:href="../src/app/game/component/draw-pool-game/draw-pool-game.component.ts"><text x="243.5" y="13.5" stroke="none" text-anchor="middle" data-name="DrawPoolGameComponent">DrawPoolGameComponent</text></a>
 
 </g>
 </g>
-<g transform="translate(3420, 759.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="DrawPoolGameComponent">
+<g transform="translate(5123.25, 759.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="DrawPoolGameComponent">
 <g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="DrawPoolGameComponent">
 <text x="0.0" y="13.5" stroke="none" data-name="DrawPoolGameComponent">+currentPlayerFaction: Faction</text>
 <text x="0.0" y="28.5" stroke="none" data-name="DrawPoolGameComponent">+factions: Faction[]</text>
@@ -714,7 +760,7 @@
 
 </g>
 </g>
-<g transform="translate(3420, 925.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="DrawPoolGameComponent">
+<g transform="translate(5123.25, 925.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="DrawPoolGameComponent">
 <g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="DrawPoolGameComponent">
 <text x="0.0" y="13.5" stroke="none" data-name="DrawPoolGameComponent">+ngOnInit(): void</text>
 <text x="0.0" y="28.5" stroke="none" data-name="DrawPoolGameComponent">+takeAction(): void</text>
@@ -724,17 +770,17 @@
 </g>
 <g data-name="AdaptionActionDisplayService">
 <g fill="#eee8d5" stroke="#33322E" data-name="AdaptionActionDisplayService">
-<rect x="4400.0" y="1124.0" height="348.0" width="486.0" data-name="AdaptionActionDisplayService"></rect>
-<path d="M4400.0 1155.0 L4886.0 1155.0" fill="none" data-name="AdaptionActionDisplayService"></path>
-<path d="M4400.0 1366.0 L4886.0 1366.0" fill="none" data-name="AdaptionActionDisplayService"></path>
+<rect x="1270.5" y="1124.0" height="348.0" width="486.0" data-name="AdaptionActionDisplayService"></rect>
+<path d="M1270.5 1155.0 L1756.5 1155.0" fill="none" data-name="AdaptionActionDisplayService"></path>
+<path d="M1270.5 1366.0 L1756.5 1366.0" fill="none" data-name="AdaptionActionDisplayService"></path>
 </g>
-<g transform="translate(4400, 1124)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="AdaptionActionDisplayService">
+<g transform="translate(1270.5, 1124)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="AdaptionActionDisplayService">
 <g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="AdaptionActionDisplayService">
 <a id="../src/app/game/service/action-display/adaption-action-display.service.ts.AdaptionActionDisplayService" xlink:href="../src/app/game/service/action-display/adaption-action-display.service.ts"><text x="235.0" y="13.5" stroke="none" text-anchor="middle" data-name="AdaptionActionDisplayService">AdaptionActionDisplayService</text></a>
 
 </g>
 </g>
-<g transform="translate(4400, 1155)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="AdaptionActionDisplayService">
+<g transform="translate(1270.5, 1155)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="AdaptionActionDisplayService">
 <g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="AdaptionActionDisplayService">
 <text x="0.0" y="13.5" stroke="none" data-name="AdaptionActionDisplayService">+area: Area</text>
 <text x="0.0" y="28.5" stroke="none" data-name="AdaptionActionDisplayService">+actionPawnSpaces: Space[]</text>
@@ -752,7 +798,7 @@
 
 </g>
 </g>
-<g transform="translate(4400, 1366)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="AdaptionActionDisplayService">
+<g transform="translate(1270.5, 1366)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="AdaptionActionDisplayService">
 <g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="AdaptionActionDisplayService">
 <text x="0.0" y="13.5" stroke="none" data-name="AdaptionActionDisplayService">+initialize(): void</text>
 <text x="0.0" y="28.5" stroke="none" data-name="AdaptionActionDisplayService">+replenish(): void</text>
@@ -766,23 +812,23 @@
 </g>
 <g data-name="ElementComponent">
 <g fill="#eee8d5" stroke="#33322E" data-name="ElementComponent">
-<rect x="3712.5" y="15.0" height="70.0" width="207.0" data-name="ElementComponent"></rect>
-<path d="M3712.5 46.0 L3919.5 46.0" fill="none" data-name="ElementComponent"></path>
-<path d="M3712.5 77.0 L3919.5 77.0" fill="none" data-name="ElementComponent"></path>
+<rect x="2442.8" y="15.0" height="70.0" width="207.0" data-name="ElementComponent"></rect>
+<path d="M2442.8 46.0 L2649.8 46.0" fill="none" data-name="ElementComponent"></path>
+<path d="M2442.8 77.0 L2649.8 77.0" fill="none" data-name="ElementComponent"></path>
 </g>
-<g transform="translate(3712.5, 15)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="ElementComponent">
+<g transform="translate(2442.75, 15)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="ElementComponent">
 <g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="ElementComponent">
 <a id="../src/app/game/component/element/element.component.ts.ElementComponent" xlink:href="../src/app/game/component/element/element.component.ts"><text x="95.5" y="13.5" stroke="none" text-anchor="middle" data-name="ElementComponent">ElementComponent</text></a>
 
 </g>
 </g>
-<g transform="translate(3712.5, 46)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ElementComponent">
+<g transform="translate(2442.75, 46)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ElementComponent">
 <g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="ElementComponent">
 <text x="0.0" y="13.5" stroke="none" data-name="ElementComponent">+element: ElementPiece</text>
 
 </g>
 </g>
-<g transform="translate(3712.5, 77)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ElementComponent">
+<g transform="translate(2442.75, 77)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ElementComponent">
 <g transform="translate(8, 8)" fill="#33322E" data-name="ElementComponent">
 
 </g>
@@ -790,17 +836,17 @@
 </g>
 <g data-name="CreateGamePageComponent">
 <g fill="#eee8d5" stroke="#33322E" data-name="CreateGamePageComponent">
-<rect x="1463.3" y="616.0" height="468.0" width="399.0" data-name="CreateGamePageComponent"></rect>
-<path d="M1463.3 647.0 L1862.3 647.0" fill="none" data-name="CreateGamePageComponent"></path>
-<path d="M1463.3 873.0 L1862.3 873.0" fill="none" data-name="CreateGamePageComponent"></path>
+<rect x="2808.3" y="616.0" height="468.0" width="399.0" data-name="CreateGamePageComponent"></rect>
+<path d="M2808.3 647.0 L3207.3 647.0" fill="none" data-name="CreateGamePageComponent"></path>
+<path d="M2808.3 873.0 L3207.3 873.0" fill="none" data-name="CreateGamePageComponent"></path>
 </g>
-<g transform="translate(1463.25, 616)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="CreateGamePageComponent">
+<g transform="translate(2808.25, 616)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="CreateGamePageComponent">
 <g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="CreateGamePageComponent">
 <a id="../src/app/engine/component/create-game-page/create-game-page.component.ts.CreateGamePageComponent" xlink:href="../src/app/engine/component/create-game-page/create-game-page.component.ts"><text x="191.5" y="13.5" stroke="none" text-anchor="middle" data-name="CreateGamePageComponent">CreateGamePageComponent</text></a>
 
 </g>
 </g>
-<g transform="translate(1463.25, 647)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="CreateGamePageComponent">
+<g transform="translate(2808.25, 647)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="CreateGamePageComponent">
 <g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="CreateGamePageComponent">
 <text x="0.0" y="13.5" stroke="none" data-name="CreateGamePageComponent">-MAX_PLAYERS: 6</text>
 <text x="0.0" y="28.5" stroke="none" data-name="CreateGamePageComponent">+playerControls: FormArray&lt;FormControl&lt;any&gt;&gt;</text>
@@ -812,14 +858,14 @@
 <text x="0.0" y="118.5" stroke="none" data-name="CreateGamePageComponent">+availableFriends: string[]</text>
 <text x="0.0" y="133.5" stroke="none" data-name="CreateGamePageComponent">+validInputStates: boolean[]</text>
 <text x="0.0" y="148.5" stroke="none" data-name="CreateGamePageComponent">-fb: FormBuilder</text>
-<text x="0.0" y="163.5" stroke="none" data-name="CreateGamePageComponent">-router: Router</text>
+<text x="0.0" y="163.5" stroke="none" data-name="CreateGamePageComponent">-navigate: NavigateService</text>
 <text x="0.0" y="178.5" stroke="none" data-name="CreateGamePageComponent">-snackBar: MatSnackBar</text>
 <text x="0.0" y="193.5" stroke="none" data-name="CreateGamePageComponent">-playerService: PlayerService</text>
 <text x="0.0" y="208.5" stroke="none" data-name="CreateGamePageComponent">-gameService: GameService</text>
 
 </g>
 </g>
-<g transform="translate(1463.25, 873)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="CreateGamePageComponent">
+<g transform="translate(2808.25, 873)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="CreateGamePageComponent">
 <g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="CreateGamePageComponent">
 <text x="0.0" y="13.5" stroke="none" data-name="CreateGamePageComponent">+ngOnInit(): void</text>
 <text x="0.0" y="28.5" stroke="none" data-name="CreateGamePageComponent">+ngOnDestroy(): void</text>
@@ -840,9 +886,9 @@
 </g>
 <g data-name="OnDestroy">
 <g fill="#eee8d5" stroke="#33322E" data-name="OnDestroy">
-<rect x="1538.0" y="446.5" height="31.0" width="100.0" data-name="OnDestroy"></rect>
+<rect x="3032.5" y="446.5" height="31.0" width="100.0" data-name="OnDestroy"></rect>
 </g>
-<g transform="translate(1538, 446.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="OnDestroy">
+<g transform="translate(3032.5, 446.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="OnDestroy">
 <g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="OnDestroy">
 <text x="42.0" y="13.5" stroke="none" text-anchor="middle" data-name="OnDestroy">OnDestroy</text>
 
@@ -851,28 +897,28 @@
 </g>
 <g data-name="LobbyPageComponent">
 <g fill="#eee8d5" stroke="#33322E" data-name="LobbyPageComponent">
-<rect x="1032.5" y="736.0" height="228.0" width="305.0" data-name="LobbyPageComponent"></rect>
-<path d="M1032.5 767.0 L1337.5 767.0" fill="none" data-name="LobbyPageComponent"></path>
-<path d="M1032.5 873.0 L1337.5 873.0" fill="none" data-name="LobbyPageComponent"></path>
+<rect x="3565.5" y="736.0" height="228.0" width="305.0" data-name="LobbyPageComponent"></rect>
+<path d="M3565.5 767.0 L3870.5 767.0" fill="none" data-name="LobbyPageComponent"></path>
+<path d="M3565.5 873.0 L3870.5 873.0" fill="none" data-name="LobbyPageComponent"></path>
 </g>
-<g transform="translate(1032.5, 736)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="LobbyPageComponent">
+<g transform="translate(3565.5, 736)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="LobbyPageComponent">
 <g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="LobbyPageComponent">
 <a id="../src/app/engine/component/lobby-page/lobby-page.component.ts.LobbyPageComponent" xlink:href="../src/app/engine/component/lobby-page/lobby-page.component.ts"><text x="144.5" y="13.5" stroke="none" text-anchor="middle" data-name="LobbyPageComponent">LobbyPageComponent</text></a>
 
 </g>
 </g>
-<g transform="translate(1032.5, 767)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="LobbyPageComponent">
+<g transform="translate(3565.5, 767)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="LobbyPageComponent">
 <g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="LobbyPageComponent">
 <text x="0.0" y="13.5" stroke="none" data-name="LobbyPageComponent">+games: WritableSignal&lt;Game[]&gt;</text>
 <text x="0.0" y="28.5" stroke="none" data-name="LobbyPageComponent">+gameTableColumns: string[]</text>
 <text x="0.0" y="43.5" stroke="none" data-name="LobbyPageComponent">+currentPlayer: WritableSignal&lt;any&gt;</text>
 <text x="0.0" y="58.5" stroke="none" data-name="LobbyPageComponent">-gameService: GameService</text>
 <text x="0.0" y="73.5" stroke="none" data-name="LobbyPageComponent">-playerService: PlayerService</text>
-<text x="0.0" y="88.5" stroke="none" data-name="LobbyPageComponent">-router: Router</text>
+<text x="0.0" y="88.5" stroke="none" data-name="LobbyPageComponent">-navigate: NavigateService</text>
 
 </g>
 </g>
-<g transform="translate(1032.5, 873)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="LobbyPageComponent">
+<g transform="translate(3565.5, 873)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="LobbyPageComponent">
 <g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="LobbyPageComponent">
 <text x="0.0" y="13.5" stroke="none" data-name="LobbyPageComponent">+filterPlayers(): string[]</text>
 <text x="0.0" y="28.5" stroke="none" data-name="LobbyPageComponent">+fetchGames(): Promise&lt;void&gt;</text>
@@ -885,27 +931,27 @@
 </g>
 <g data-name="LoginPageComponent">
 <g fill="#eee8d5" stroke="#33322E" data-name="LoginPageComponent">
-<rect x="1536.0" y="1549.5" height="153.0" width="324.0" data-name="LoginPageComponent"></rect>
-<path d="M1536.0 1580.5 L1860.0 1580.5" fill="none" data-name="LoginPageComponent"></path>
-<path d="M1536.0 1671.5 L1860.0 1671.5" fill="none" data-name="LoginPageComponent"></path>
+<rect x="637.5" y="1221.5" height="153.0" width="324.0" data-name="LoginPageComponent"></rect>
+<path d="M637.5 1252.5 L961.5 1252.5" fill="none" data-name="LoginPageComponent"></path>
+<path d="M637.5 1343.5 L961.5 1343.5" fill="none" data-name="LoginPageComponent"></path>
 </g>
-<g transform="translate(1536, 1549.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="LoginPageComponent">
+<g transform="translate(637.5, 1221.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="LoginPageComponent">
 <g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="LoginPageComponent">
 <a id="../src/app/engine/component/login-page/login-page.component.ts.LoginPageComponent" xlink:href="../src/app/engine/component/login-page/login-page.component.ts"><text x="154.0" y="13.5" stroke="none" text-anchor="middle" data-name="LoginPageComponent">LoginPageComponent</text></a>
 
 </g>
 </g>
-<g transform="translate(1536, 1580.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="LoginPageComponent">
+<g transform="translate(637.5, 1252.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="LoginPageComponent">
 <g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="LoginPageComponent">
 <text x="0.0" y="13.5" stroke="none" data-name="LoginPageComponent">+loginForm: FormGroup&lt;any&gt;</text>
 <text x="0.0" y="28.5" stroke="none" data-name="LoginPageComponent">+errorMessage: WritableSignal&lt;string&gt;</text>
 <text x="0.0" y="43.5" stroke="none" data-name="LoginPageComponent">-formBuilder: FormBuilder</text>
 <text x="0.0" y="58.5" stroke="none" data-name="LoginPageComponent">-authService: AuthService</text>
-<text x="0.0" y="73.5" stroke="none" data-name="LoginPageComponent">-router: Router</text>
+<text x="0.0" y="73.5" stroke="none" data-name="LoginPageComponent">-navigate: NavigateService</text>
 
 </g>
 </g>
-<g transform="translate(1536, 1671.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="LoginPageComponent">
+<g transform="translate(637.5, 1343.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="LoginPageComponent">
 <g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="LoginPageComponent">
 <text x="0.0" y="13.5" stroke="none" data-name="LoginPageComponent">+onSubmit(): void</text>
 
@@ -914,24 +960,24 @@
 </g>
 <g data-name="LoginFormData">
 <g fill="lightblue" stroke="#33322E" data-name="LoginFormData">
-<rect x="3959.5" y="7.5" height="85.0" width="159.0" data-name="LoginFormData"></rect>
-<path d="M3959.5 38.5 L4118.5 38.5" fill="none" data-name="LoginFormData"></path>
-<path d="M3959.5 84.5 L4118.5 84.5" fill="none" data-name="LoginFormData"></path>
+<rect x="2689.8" y="7.5" height="85.0" width="159.0" data-name="LoginFormData"></rect>
+<path d="M2689.8 38.5 L2848.8 38.5" fill="none" data-name="LoginFormData"></path>
+<path d="M2689.8 84.5 L2848.8 84.5" fill="none" data-name="LoginFormData"></path>
 </g>
-<g transform="translate(3959.5, 7.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="LoginFormData">
+<g transform="translate(2689.75, 7.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="LoginFormData">
 <g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="LoginFormData">
 <a id="../src/app/engine/component/login-page/login-page.component.ts.LoginFormData" xlink:href="../src/app/engine/component/login-page/login-page.component.ts"><text x="71.5" y="13.5" stroke="none" text-anchor="middle" data-name="LoginFormData">LoginFormData</text></a>
 
 </g>
 </g>
-<g transform="translate(3959.5, 38.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="LoginFormData">
+<g transform="translate(2689.75, 38.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="LoginFormData">
 <g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="LoginFormData">
 <text x="0.0" y="13.5" stroke="none" data-name="LoginFormData">+username: string</text>
 <text x="0.0" y="28.5" stroke="none" data-name="LoginFormData">+password: string</text>
 
 </g>
 </g>
-<g transform="translate(3959.5, 84.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="LoginFormData">
+<g transform="translate(2689.75, 84.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="LoginFormData">
 <g transform="translate(8, 8)" fill="#33322E" data-name="LoginFormData">
 
 </g>
@@ -939,17 +985,17 @@
 </g>
 <g data-name="AuthService">
 <g fill="#eee8d5" stroke="#33322E" data-name="AuthService">
-<rect x="960.0" y="1817.5" height="198.0" width="392.0" data-name="AuthService"></rect>
-<path d="M960.0 1848.5 L1352.0 1848.5" fill="none" data-name="AuthService"></path>
-<path d="M960.0 1924.5 L1352.0 1924.5" fill="none" data-name="AuthService"></path>
+<rect x="3383.3" y="1817.5" height="198.0" width="392.0" data-name="AuthService"></rect>
+<path d="M3383.3 1848.5 L3775.3 1848.5" fill="none" data-name="AuthService"></path>
+<path d="M3383.3 1924.5 L3775.3 1924.5" fill="none" data-name="AuthService"></path>
 </g>
-<g transform="translate(960, 1817.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="AuthService">
+<g transform="translate(3383.25, 1817.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="AuthService">
 <g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="AuthService">
 <a id="../src/app/engine/service/auth/auth.service.ts.AuthService" xlink:href="../src/app/engine/service/auth/auth.service.ts"><text x="188.0" y="13.5" stroke="none" text-anchor="middle" data-name="AuthService">AuthService</text></a>
 
 </g>
 </g>
-<g transform="translate(960, 1848.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="AuthService">
+<g transform="translate(3383.25, 1848.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="AuthService">
 <g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="AuthService">
 <text x="0.0" y="13.5" stroke="none" data-name="AuthService">-isLoggedInSubject: BehaviorSubject&lt;boolean&gt;</text>
 <text x="0.0" y="28.5" stroke="none" data-name="AuthService">+isLoggedIn$: Observable&lt;boolean&gt;</text>
@@ -958,7 +1004,7 @@
 
 </g>
 </g>
-<g transform="translate(960, 1924.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="AuthService">
+<g transform="translate(3383.25, 1924.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="AuthService">
 <g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="AuthService">
 <text x="0.0" y="13.5" stroke="none" data-name="AuthService">-authResultToPlayerAuth(): PlayerAuthData</text>
 <text x="0.0" y="28.5" stroke="none" data-name="AuthService">+login(): Promise&lt;boolean&gt;</text>
@@ -971,24 +1017,24 @@
 </g>
 <g data-name="LogoutPageComponent">
 <g fill="#eee8d5" stroke="#33322E" data-name="LogoutPageComponent">
-<rect x="1275.0" y="1572.0" height="108.0" width="221.0" data-name="LogoutPageComponent"></rect>
-<path d="M1275.0 1603.0 L1496.0 1603.0" fill="none" data-name="LogoutPageComponent"></path>
-<path d="M1275.0 1649.0 L1496.0 1649.0" fill="none" data-name="LogoutPageComponent"></path>
+<rect x="1001.5" y="1244.0" height="108.0" width="229.0" data-name="LogoutPageComponent"></rect>
+<path d="M1001.5 1275.0 L1230.5 1275.0" fill="none" data-name="LogoutPageComponent"></path>
+<path d="M1001.5 1321.0 L1230.5 1321.0" fill="none" data-name="LogoutPageComponent"></path>
 </g>
-<g transform="translate(1275, 1572)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="LogoutPageComponent">
+<g transform="translate(1001.5, 1244)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="LogoutPageComponent">
 <g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="LogoutPageComponent">
-<a id="../src/app/engine/component/logout-page/logout-page.component.ts.LogoutPageComponent" xlink:href="../src/app/engine/component/logout-page/logout-page.component.ts"><text x="102.5" y="13.5" stroke="none" text-anchor="middle" data-name="LogoutPageComponent">LogoutPageComponent</text></a>
+<a id="../src/app/engine/component/logout-page/logout-page.component.ts.LogoutPageComponent" xlink:href="../src/app/engine/component/logout-page/logout-page.component.ts"><text x="106.5" y="13.5" stroke="none" text-anchor="middle" data-name="LogoutPageComponent">LogoutPageComponent</text></a>
 
 </g>
 </g>
-<g transform="translate(1275, 1603)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="LogoutPageComponent">
+<g transform="translate(1001.5, 1275)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="LogoutPageComponent">
 <g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="LogoutPageComponent">
 <text x="0.0" y="13.5" stroke="none" data-name="LogoutPageComponent">-authService: AuthService</text>
-<text x="0.0" y="28.5" stroke="none" data-name="LogoutPageComponent">-router: Router</text>
+<text x="0.0" y="28.5" stroke="none" data-name="LogoutPageComponent">-navigate: NavigateService</text>
 
 </g>
 </g>
-<g transform="translate(1275, 1649)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="LogoutPageComponent">
+<g transform="translate(1001.5, 1321)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="LogoutPageComponent">
 <g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="LogoutPageComponent">
 <text x="0.0" y="13.5" stroke="none" data-name="LogoutPageComponent">+ngOnInit(): void</text>
 
@@ -997,27 +1043,27 @@
 </g>
 <g data-name="SignUpConfirmPageComponent">
 <g fill="#eee8d5" stroke="#33322E" data-name="SignUpConfirmPageComponent">
-<rect x="364.0" y="1549.5" height="153.0" width="330.0" data-name="SignUpConfirmPageComponent"></rect>
-<path d="M364.0 1580.5 L694.0 1580.5" fill="none" data-name="SignUpConfirmPageComponent"></path>
-<path d="M364.0 1671.5 L694.0 1671.5" fill="none" data-name="SignUpConfirmPageComponent"></path>
+<rect x="4860.8" y="1221.5" height="153.0" width="330.0" data-name="SignUpConfirmPageComponent"></rect>
+<path d="M4860.8 1252.5 L5190.8 1252.5" fill="none" data-name="SignUpConfirmPageComponent"></path>
+<path d="M4860.8 1343.5 L5190.8 1343.5" fill="none" data-name="SignUpConfirmPageComponent"></path>
 </g>
-<g transform="translate(364, 1549.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="SignUpConfirmPageComponent">
+<g transform="translate(4860.75, 1221.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="SignUpConfirmPageComponent">
 <g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="SignUpConfirmPageComponent">
 <a id="../src/app/engine/component/sign-up-confirm-page/sign-up-confirm-page.component.ts.SignUpConfirmPageComponent" xlink:href="../src/app/engine/component/sign-up-confirm-page/sign-up-confirm-page.component.ts"><text x="157.0" y="13.5" stroke="none" text-anchor="middle" data-name="SignUpConfirmPageComponent">SignUpConfirmPageComponent</text></a>
 
 </g>
 </g>
-<g transform="translate(364, 1580.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="SignUpConfirmPageComponent">
+<g transform="translate(4860.75, 1252.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="SignUpConfirmPageComponent">
 <g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="SignUpConfirmPageComponent">
 <text x="0.0" y="13.5" stroke="none" data-name="SignUpConfirmPageComponent">+signUpConfirmForm: FormGroup&lt;any&gt;</text>
 <text x="0.0" y="28.5" stroke="none" data-name="SignUpConfirmPageComponent">+errorMessage: WritableSignal&lt;string&gt;</text>
 <text x="0.0" y="43.5" stroke="none" data-name="SignUpConfirmPageComponent">-formBuilder: FormBuilder</text>
 <text x="0.0" y="58.5" stroke="none" data-name="SignUpConfirmPageComponent">-signUpService: SignUpService</text>
-<text x="0.0" y="73.5" stroke="none" data-name="SignUpConfirmPageComponent">-router: Router</text>
+<text x="0.0" y="73.5" stroke="none" data-name="SignUpConfirmPageComponent">-navigate: NavigateService</text>
 
 </g>
 </g>
-<g transform="translate(364, 1671.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="SignUpConfirmPageComponent">
+<g transform="translate(4860.75, 1343.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="SignUpConfirmPageComponent">
 <g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="SignUpConfirmPageComponent">
 <text x="0.0" y="13.5" stroke="none" data-name="SignUpConfirmPageComponent">+onSubmit(): void</text>
 
@@ -1026,24 +1072,24 @@
 </g>
 <g data-name="SignUpConfirmFormData">
 <g fill="lightblue" stroke="#33322E" data-name="SignUpConfirmFormData">
-<rect x="4158.5" y="7.5" height="85.0" width="211.0" data-name="SignUpConfirmFormData"></rect>
-<path d="M4158.5 38.5 L4369.5 38.5" fill="none" data-name="SignUpConfirmFormData"></path>
-<path d="M4158.5 84.5 L4369.5 84.5" fill="none" data-name="SignUpConfirmFormData"></path>
+<rect x="2888.8" y="7.5" height="85.0" width="211.0" data-name="SignUpConfirmFormData"></rect>
+<path d="M2888.8 38.5 L3099.8 38.5" fill="none" data-name="SignUpConfirmFormData"></path>
+<path d="M2888.8 84.5 L3099.8 84.5" fill="none" data-name="SignUpConfirmFormData"></path>
 </g>
-<g transform="translate(4158.5, 7.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="SignUpConfirmFormData">
+<g transform="translate(2888.75, 7.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="SignUpConfirmFormData">
 <g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="SignUpConfirmFormData">
 <a id="../src/app/engine/component/sign-up-confirm-page/sign-up-confirm-page.component.ts.SignUpConfirmFormData" xlink:href="../src/app/engine/component/sign-up-confirm-page/sign-up-confirm-page.component.ts"><text x="97.5" y="13.5" stroke="none" text-anchor="middle" data-name="SignUpConfirmFormData">SignUpConfirmFormData</text></a>
 
 </g>
 </g>
-<g transform="translate(4158.5, 38.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="SignUpConfirmFormData">
+<g transform="translate(2888.75, 38.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="SignUpConfirmFormData">
 <g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="SignUpConfirmFormData">
 <text x="0.0" y="13.5" stroke="none" data-name="SignUpConfirmFormData">+username: string</text>
 <text x="0.0" y="28.5" stroke="none" data-name="SignUpConfirmFormData">+code: string</text>
 
 </g>
 </g>
-<g transform="translate(4158.5, 84.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="SignUpConfirmFormData">
+<g transform="translate(2888.75, 84.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="SignUpConfirmFormData">
 <g transform="translate(8, 8)" fill="#33322E" data-name="SignUpConfirmFormData">
 
 </g>
@@ -1051,23 +1097,23 @@
 </g>
 <g data-name="SignUpService">
 <g fill="#eee8d5" stroke="#33322E" data-name="SignUpService">
-<rect x="166.0" y="1862.5" height="108.0" width="359.0" data-name="SignUpService"></rect>
-<path d="M166.0 1893.5 L525.0 1893.5" fill="none" data-name="SignUpService"></path>
-<path d="M166.0 1924.5 L525.0 1924.5" fill="none" data-name="SignUpService"></path>
+<rect x="6893.3" y="1572.0" height="108.0" width="359.0" data-name="SignUpService"></rect>
+<path d="M6893.3 1603.0 L7252.3 1603.0" fill="none" data-name="SignUpService"></path>
+<path d="M6893.3 1634.0 L7252.3 1634.0" fill="none" data-name="SignUpService"></path>
 </g>
-<g transform="translate(166, 1862.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="SignUpService">
+<g transform="translate(6893.25, 1572)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="SignUpService">
 <g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="SignUpService">
 <a id="../src/app/engine/service/auth/sign-up.service.ts.SignUpService" xlink:href="../src/app/engine/service/auth/sign-up.service.ts"><text x="171.5" y="13.5" stroke="none" text-anchor="middle" data-name="SignUpService">SignUpService</text></a>
 
 </g>
 </g>
-<g transform="translate(166, 1893.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="SignUpService">
+<g transform="translate(6893.25, 1603)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="SignUpService">
 <g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="SignUpService">
 <text x="0.0" y="13.5" stroke="none" data-name="SignUpService">-cognitoClientService: CognitoClientService</text>
 
 </g>
 </g>
-<g transform="translate(166, 1924.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="SignUpService">
+<g transform="translate(6893.25, 1634)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="SignUpService">
 <g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="SignUpService">
 <text x="0.0" y="13.5" stroke="none" data-name="SignUpService">+signUp(): Promise&lt;boolean&gt;</text>
 <text x="0.0" y="28.5" stroke="none" data-name="SignUpService">+confirmSignUp(): Promise&lt;boolean&gt;</text>
@@ -1077,27 +1123,27 @@
 </g>
 <g data-name="SignUpPageComponent">
 <g fill="#eee8d5" stroke="#33322E" data-name="SignUpPageComponent">
-<rect x="0.0" y="1549.5" height="153.0" width="324.0" data-name="SignUpPageComponent"></rect>
-<path d="M0.0 1580.5 L324.0 1580.5" fill="none" data-name="SignUpPageComponent"></path>
-<path d="M0.0 1671.5 L324.0 1671.5" fill="none" data-name="SignUpPageComponent"></path>
+<rect x="5230.8" y="1221.5" height="153.0" width="324.0" data-name="SignUpPageComponent"></rect>
+<path d="M5230.8 1252.5 L5554.8 1252.5" fill="none" data-name="SignUpPageComponent"></path>
+<path d="M5230.8 1343.5 L5554.8 1343.5" fill="none" data-name="SignUpPageComponent"></path>
 </g>
-<g transform="translate(0, 1549.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="SignUpPageComponent">
+<g transform="translate(5230.75, 1221.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="SignUpPageComponent">
 <g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="SignUpPageComponent">
 <a id="../src/app/engine/component/sign-up-page/sign-up-page.component.ts.SignUpPageComponent" xlink:href="../src/app/engine/component/sign-up-page/sign-up-page.component.ts"><text x="154.0" y="13.5" stroke="none" text-anchor="middle" data-name="SignUpPageComponent">SignUpPageComponent</text></a>
 
 </g>
 </g>
-<g transform="translate(0, 1580.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="SignUpPageComponent">
+<g transform="translate(5230.75, 1252.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="SignUpPageComponent">
 <g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="SignUpPageComponent">
 <text x="0.0" y="13.5" stroke="none" data-name="SignUpPageComponent">+signUpForm: FormGroup&lt;any&gt;</text>
 <text x="0.0" y="28.5" stroke="none" data-name="SignUpPageComponent">+errorMessage: WritableSignal&lt;string&gt;</text>
 <text x="0.0" y="43.5" stroke="none" data-name="SignUpPageComponent">-formBuilder: FormBuilder</text>
 <text x="0.0" y="58.5" stroke="none" data-name="SignUpPageComponent">-signUpService: SignUpService</text>
-<text x="0.0" y="73.5" stroke="none" data-name="SignUpPageComponent">-router: Router</text>
+<text x="0.0" y="73.5" stroke="none" data-name="SignUpPageComponent">-navigate: NavigateService</text>
 
 </g>
 </g>
-<g transform="translate(0, 1671.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="SignUpPageComponent">
+<g transform="translate(5230.75, 1343.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="SignUpPageComponent">
 <g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="SignUpPageComponent">
 <text x="0.0" y="13.5" stroke="none" data-name="SignUpPageComponent">+onSubmit(): void</text>
 
@@ -1106,17 +1152,17 @@
 </g>
 <g data-name="SignUpFormData">
 <g fill="lightblue" stroke="#33322E" data-name="SignUpFormData">
-<rect x="4409.5" y="0.0" height="100.0" width="159.0" data-name="SignUpFormData"></rect>
-<path d="M4409.5 31.0 L4568.5 31.0" fill="none" data-name="SignUpFormData"></path>
-<path d="M4409.5 92.0 L4568.5 92.0" fill="none" data-name="SignUpFormData"></path>
+<rect x="3139.8" y="0.0" height="100.0" width="159.0" data-name="SignUpFormData"></rect>
+<path d="M3139.8 31.0 L3298.8 31.0" fill="none" data-name="SignUpFormData"></path>
+<path d="M3139.8 92.0 L3298.8 92.0" fill="none" data-name="SignUpFormData"></path>
 </g>
-<g transform="translate(4409.5, 0)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="SignUpFormData">
+<g transform="translate(3139.75, 0)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="SignUpFormData">
 <g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="SignUpFormData">
 <a id="../src/app/engine/component/sign-up-page/sign-up-page.component.ts.SignUpFormData" xlink:href="../src/app/engine/component/sign-up-page/sign-up-page.component.ts"><text x="71.5" y="13.5" stroke="none" text-anchor="middle" data-name="SignUpFormData">SignUpFormData</text></a>
 
 </g>
 </g>
-<g transform="translate(4409.5, 31)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="SignUpFormData">
+<g transform="translate(3139.75, 31)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="SignUpFormData">
 <g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="SignUpFormData">
 <text x="0.0" y="13.5" stroke="none" data-name="SignUpFormData">+username: string</text>
 <text x="0.0" y="28.5" stroke="none" data-name="SignUpFormData">+email: string</text>
@@ -1124,7 +1170,7 @@
 
 </g>
 </g>
-<g transform="translate(4409.5, 92)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="SignUpFormData">
+<g transform="translate(3139.75, 92)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="SignUpFormData">
 <g transform="translate(8, 8)" fill="#33322E" data-name="SignUpFormData">
 
 </g>
@@ -1132,23 +1178,23 @@
 </g>
 <g data-name="CognitoClientService">
 <g fill="#eee8d5" stroke="#33322E" data-name="CognitoClientService">
-<rect x="179.5" y="2183.0" height="138.0" width="372.0" data-name="CognitoClientService"></rect>
-<path d="M179.5 2214.0 L551.5 2214.0" fill="none" data-name="CognitoClientService"></path>
-<path d="M179.5 2245.0 L551.5 2245.0" fill="none" data-name="CognitoClientService"></path>
+<rect x="6687.5" y="2183.0" height="138.0" width="372.0" data-name="CognitoClientService"></rect>
+<path d="M6687.5 2214.0 L7059.5 2214.0" fill="none" data-name="CognitoClientService"></path>
+<path d="M6687.5 2245.0 L7059.5 2245.0" fill="none" data-name="CognitoClientService"></path>
 </g>
-<g transform="translate(179.5, 2183)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="CognitoClientService">
+<g transform="translate(6687.5, 2183)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="CognitoClientService">
 <g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="CognitoClientService">
 <a id="../src/app/engine/service/auth/cognito-client.service.ts.CognitoClientService" xlink:href="../src/app/engine/service/auth/cognito-client.service.ts"><text x="178.0" y="13.5" stroke="none" text-anchor="middle" data-name="CognitoClientService">CognitoClientService</text></a>
 
 </g>
 </g>
-<g transform="translate(179.5, 2214)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="CognitoClientService">
+<g transform="translate(6687.5, 2214)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="CognitoClientService">
 <g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="CognitoClientService">
 <text x="0.0" y="13.5" stroke="none" data-name="CognitoClientService">-cognitoClient: CognitoIdentityProviderClient</text>
 
 </g>
 </g>
-<g transform="translate(179.5, 2245)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="CognitoClientService">
+<g transform="translate(6687.5, 2245)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="CognitoClientService">
 <g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="CognitoClientService">
 <text x="0.0" y="13.5" stroke="none" data-name="CognitoClientService">+login(): Promise&lt;AuthenticationResultType&gt;</text>
 <text x="0.0" y="28.5" stroke="none" data-name="CognitoClientService">+decodeJwtToken(): CognitoIdTokenJwt</text>
@@ -1160,17 +1206,17 @@
 </g>
 <g data-name="GameElementRegistryService&lt;TgameElementState,TgameElement,TgameElementStateSvc&gt;">
 <g fill="#eee8d5" stroke="#33322E" data-name="GameElementRegistryService&lt;TgameElementState,TgameElement,TgameElementStateSvc&gt;">
-<rect x="3585.5" y="1214.0" height="168.0" width="746.0" data-name="GameElementRegistryService&lt;TgameElementState,TgameElement,TgameElementStateSvc&gt;"></rect>
-<path d="M3585.5 1245.0 L4331.5 1245.0" fill="none" data-name="GameElementRegistryService&lt;TgameElementState,TgameElement,TgameElementStateSvc&gt;"></path>
-<path d="M3585.5 1336.0 L4331.5 1336.0" fill="none" data-name="GameElementRegistryService&lt;TgameElementState,TgameElement,TgameElementStateSvc&gt;"></path>
+<rect x="2623.5" y="1214.0" height="168.0" width="746.0" data-name="GameElementRegistryService&lt;TgameElementState,TgameElement,TgameElementStateSvc&gt;"></rect>
+<path d="M2623.5 1245.0 L3369.5 1245.0" fill="none" data-name="GameElementRegistryService&lt;TgameElementState,TgameElement,TgameElementStateSvc&gt;"></path>
+<path d="M2623.5 1336.0 L3369.5 1336.0" fill="none" data-name="GameElementRegistryService&lt;TgameElementState,TgameElement,TgameElementStateSvc&gt;"></path>
 </g>
-<g transform="translate(3585.5, 1214)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="GameElementRegistryService&lt;TgameElementState,TgameElement,TgameElementStateSvc&gt;">
+<g transform="translate(2623.5, 1214)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="GameElementRegistryService&lt;TgameElementState,TgameElement,TgameElementStateSvc&gt;">
 <g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="GameElementRegistryService&lt;TgameElementState,TgameElement,TgameElementStateSvc&gt;">
 <a id="../src/app/engine/service/game-element/game-element-registry.service.ts.GameElementRegistryService&lt;TgameElementState,TgameElement,TgameElementStateSvc&gt;" xlink:href="../src/app/engine/service/game-element/game-element-registry.service.ts"><text x="365.0" y="13.5" stroke="none" text-anchor="middle" data-name="GameElementRegistryService&lt;TgameElementState,TgameElement,TgameElementStateSvc&gt;">GameElementRegistryService&lt;TgameElementState,TgameElement,TgameElementStateSvc&gt;</text></a>
 
 </g>
 </g>
-<g transform="translate(3585.5, 1245)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="GameElementRegistryService&lt;TgameElementState,TgameElement,TgameElementStateSvc&gt;">
+<g transform="translate(2623.5, 1245)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="GameElementRegistryService&lt;TgameElementState,TgameElement,TgameElementStateSvc&gt;">
 <g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="GameElementRegistryService&lt;TgameElementState,TgameElement,TgameElementStateSvc&gt;">
 <text x="0.0" y="13.5" stroke="none" data-name="GameElementRegistryService&lt;TgameElementState,TgameElement,TgameElementStateSvc&gt;">-registeredIds: Set&lt;string&gt;</text>
 <text x="0.0" y="28.5" stroke="none" data-name="GameElementRegistryService&lt;TgameElementState,TgameElement,TgameElementStateSvc&gt;">-elementById: Map&lt;string, TgameElement&gt;</text>
@@ -1180,7 +1226,7 @@
 
 </g>
 </g>
-<g transform="translate(3585.5, 1336)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="GameElementRegistryService&lt;TgameElementState,TgameElement,TgameElementStateSvc&gt;">
+<g transform="translate(2623.5, 1336)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="GameElementRegistryService&lt;TgameElementState,TgameElement,TgameElementStateSvc&gt;">
 <g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="GameElementRegistryService&lt;TgameElementState,TgameElement,TgameElementStateSvc&gt;">
 <text x="0.0" y="13.5" stroke="none" data-name="GameElementRegistryService&lt;TgameElementState,TgameElement,TgameElementStateSvc&gt;">+get(): TgameElement</text>
 <text x="0.0" y="28.5" stroke="none" data-name="GameElementRegistryService&lt;TgameElementState,TgameElement,TgameElementStateSvc&gt;">+register(): void</text>
@@ -1190,22 +1236,22 @@
 </g>
 <g data-name="AreaStateService">
 <g fill="#eee8d5" stroke="#33322E" data-name="AreaStateService">
-<rect x="3484.8" y="1874.0" height="85.0" width="226.0" data-name="AreaStateService"></rect>
-<path d="M3484.8 1905.0 L3710.8 1905.0" fill="none" data-name="AreaStateService"></path>
-<path d="M3484.8 1913.0 L3710.8 1913.0" fill="none" data-name="AreaStateService"></path>
+<rect x="5483.8" y="1874.0" height="85.0" width="226.0" data-name="AreaStateService"></rect>
+<path d="M5483.8 1905.0 L5709.8 1905.0" fill="none" data-name="AreaStateService"></path>
+<path d="M5483.8 1913.0 L5709.8 1913.0" fill="none" data-name="AreaStateService"></path>
 </g>
-<g transform="translate(3484.75, 1874)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="AreaStateService">
+<g transform="translate(5483.75, 1874)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="AreaStateService">
 <g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="AreaStateService">
 <a id="../src/app/engine/service/game-element/area-state.service.ts.AreaStateService" xlink:href="../src/app/engine/service/game-element/area-state.service.ts"><text x="105.0" y="13.5" stroke="none" text-anchor="middle" data-name="AreaStateService">AreaStateService</text></a>
 
 </g>
 </g>
-<g transform="translate(3484.75, 1905)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="AreaStateService">
+<g transform="translate(5483.75, 1905)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="AreaStateService">
 <g transform="translate(8, 8)" fill="#33322E" data-name="AreaStateService">
 
 </g>
 </g>
-<g transform="translate(3484.75, 1913)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="AreaStateService">
+<g transform="translate(5483.75, 1913)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="AreaStateService">
 <g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="AreaStateService">
 <text x="0.0" y="13.5" stroke="none" data-name="AreaStateService">#registerEntityState(): void</text>
 <text x="0.0" y="28.5" stroke="none" data-name="AreaStateService">#setEntityState(): void</text>
@@ -1215,17 +1261,17 @@
 </g>
 <g data-name="GameElementStateService&lt;TgameElementState,TgameElement&gt;">
 <g fill="#eee8d5" stroke="#33322E" data-name="GameElementStateService&lt;TgameElementState,TgameElement&gt;">
-<rect x="2909.3" y="1534.5" height="183.0" width="529.0" data-name="GameElementStateService&lt;TgameElementState,TgameElement&gt;"></rect>
-<path d="M2909.3 1565.5 L3438.3 1565.5" fill="none" data-name="GameElementStateService&lt;TgameElementState,TgameElement&gt;"></path>
-<path d="M2909.3 1626.5 L3438.3 1626.5" fill="none" data-name="GameElementStateService&lt;TgameElementState,TgameElement&gt;"></path>
+<rect x="5739.3" y="1534.5" height="183.0" width="529.0" data-name="GameElementStateService&lt;TgameElementState,TgameElement&gt;"></rect>
+<path d="M5739.3 1565.5 L6268.3 1565.5" fill="none" data-name="GameElementStateService&lt;TgameElementState,TgameElement&gt;"></path>
+<path d="M5739.3 1626.5 L6268.3 1626.5" fill="none" data-name="GameElementStateService&lt;TgameElementState,TgameElement&gt;"></path>
 </g>
-<g transform="translate(2909.25, 1534.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="GameElementStateService&lt;TgameElementState,TgameElement&gt;">
+<g transform="translate(5739.25, 1534.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="GameElementStateService&lt;TgameElementState,TgameElement&gt;">
 <g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="GameElementStateService&lt;TgameElementState,TgameElement&gt;">
 <a id="../src/app/engine/service/game-element/game-element-state.service.ts.GameElementStateService&lt;TgameElementState,TgameElement&gt;" xlink:href="../src/app/engine/service/game-element/game-element-state.service.ts"><text x="256.5" y="13.5" stroke="none" text-anchor="middle" data-name="GameElementStateService&lt;TgameElementState,TgameElement&gt;">GameElementStateService&lt;TgameElementState,TgameElement&gt;</text></a>
 
 </g>
 </g>
-<g transform="translate(2909.25, 1565.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="GameElementStateService&lt;TgameElementState,TgameElement&gt;">
+<g transform="translate(5739.25, 1565.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="GameElementStateService&lt;TgameElementState,TgameElement&gt;">
 <g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="GameElementStateService&lt;TgameElementState,TgameElement&gt;">
 <text x="0.0" y="13.5" stroke="none" data-name="GameElementStateService&lt;TgameElementState,TgameElement&gt;">-registeredIds: Set&lt;string&gt;</text>
 <text x="0.0" y="28.5" stroke="none" data-name="GameElementStateService&lt;TgameElementState,TgameElement&gt;">-elementById: Map&lt;string, TgameElement&gt;</text>
@@ -1233,7 +1279,7 @@
 
 </g>
 </g>
-<g transform="translate(2909.25, 1626.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="GameElementStateService&lt;TgameElementState,TgameElement&gt;">
+<g transform="translate(5739.25, 1626.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="GameElementStateService&lt;TgameElementState,TgameElement&gt;">
 <g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="GameElementStateService&lt;TgameElementState,TgameElement&gt;">
 <text x="0.0" y="13.5" stroke="none" data-name="GameElementStateService&lt;TgameElementState,TgameElement&gt;">#abstract registerEntityState(): void</text>
 <text x="0.0" y="28.5" stroke="none" data-name="GameElementStateService&lt;TgameElementState,TgameElement&gt;">#abstract setEntityState(): void</text>
@@ -1246,24 +1292,24 @@
 </g>
 <g data-name="FactionAssignment">
 <g fill="lightblue" stroke="#33322E" data-name="FactionAssignment">
-<rect x="3887.8" y="1874.0" height="85.0" width="166.0" data-name="FactionAssignment"></rect>
-<path d="M3887.8 1905.0 L4053.8 1905.0" fill="none" data-name="FactionAssignment"></path>
-<path d="M3887.8 1951.0 L4053.8 1951.0" fill="none" data-name="FactionAssignment"></path>
+<rect x="6327.3" y="1874.0" height="85.0" width="166.0" data-name="FactionAssignment"></rect>
+<path d="M6327.3 1905.0 L6493.3 1905.0" fill="none" data-name="FactionAssignment"></path>
+<path d="M6327.3 1951.0 L6493.3 1951.0" fill="none" data-name="FactionAssignment"></path>
 </g>
-<g transform="translate(3887.75, 1874)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="FactionAssignment">
+<g transform="translate(6327.25, 1874)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="FactionAssignment">
 <g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="FactionAssignment">
 <a id="../src/app/engine/service/game-element/faction-registry.service.ts.FactionAssignment" xlink:href="../src/app/engine/service/game-element/faction-registry.service.ts"><text x="75.0" y="13.5" stroke="none" text-anchor="middle" data-name="FactionAssignment">FactionAssignment</text></a>
 
 </g>
 </g>
-<g transform="translate(3887.75, 1905)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="FactionAssignment">
+<g transform="translate(6327.25, 1905)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="FactionAssignment">
 <g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="FactionAssignment">
 <text x="0.0" y="13.5" stroke="none" data-name="FactionAssignment">+factionId: string</text>
 <text x="0.0" y="28.5" stroke="none" data-name="FactionAssignment">+ownerId: string</text>
 
 </g>
 </g>
-<g transform="translate(3887.75, 1951)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="FactionAssignment">
+<g transform="translate(6327.25, 1951)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="FactionAssignment">
 <g transform="translate(8, 8)" fill="#33322E" data-name="FactionAssignment">
 
 </g>
@@ -1271,22 +1317,22 @@
 </g>
 <g data-name="FactionStateService">
 <g fill="#eee8d5" stroke="#33322E" data-name="FactionStateService">
-<rect x="4946.3" y="1874.0" height="85.0" width="226.0" data-name="FactionStateService"></rect>
-<path d="M4946.3 1905.0 L5172.3 1905.0" fill="none" data-name="FactionStateService"></path>
-<path d="M4946.3 1913.0 L5172.3 1913.0" fill="none" data-name="FactionStateService"></path>
+<rect x="6657.3" y="1874.0" height="85.0" width="226.0" data-name="FactionStateService"></rect>
+<path d="M6657.3 1905.0 L6883.3 1905.0" fill="none" data-name="FactionStateService"></path>
+<path d="M6657.3 1913.0 L6883.3 1913.0" fill="none" data-name="FactionStateService"></path>
 </g>
-<g transform="translate(4946.25, 1874)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="FactionStateService">
+<g transform="translate(6657.25, 1874)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="FactionStateService">
 <g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="FactionStateService">
 <a id="../src/app/engine/service/game-element/faction-state.service.ts.FactionStateService" xlink:href="../src/app/engine/service/game-element/faction-state.service.ts"><text x="105.0" y="13.5" stroke="none" text-anchor="middle" data-name="FactionStateService">FactionStateService</text></a>
 
 </g>
 </g>
-<g transform="translate(4946.25, 1905)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="FactionStateService">
+<g transform="translate(6657.25, 1905)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="FactionStateService">
 <g transform="translate(8, 8)" fill="#33322E" data-name="FactionStateService">
 
 </g>
 </g>
-<g transform="translate(4946.25, 1913)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="FactionStateService">
+<g transform="translate(6657.25, 1913)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="FactionStateService">
 <g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="FactionStateService">
 <text x="0.0" y="13.5" stroke="none" data-name="FactionStateService">#registerEntityState(): void</text>
 <text x="0.0" y="28.5" stroke="none" data-name="FactionStateService">#setEntityState(): void</text>
@@ -1296,22 +1342,22 @@
 </g>
 <g data-name="PileStateService">
 <g fill="#eee8d5" stroke="#33322E" data-name="PileStateService">
-<rect x="4025.3" y="2209.5" height="85.0" width="226.0" data-name="PileStateService"></rect>
-<path d="M4025.3 2240.5 L4251.3 2240.5" fill="none" data-name="PileStateService"></path>
-<path d="M4025.3 2248.5 L4251.3 2248.5" fill="none" data-name="PileStateService"></path>
+<rect x="398.3" y="2209.5" height="85.0" width="226.0" data-name="PileStateService"></rect>
+<path d="M398.3 2240.5 L624.3 2240.5" fill="none" data-name="PileStateService"></path>
+<path d="M398.3 2248.5 L624.3 2248.5" fill="none" data-name="PileStateService"></path>
 </g>
-<g transform="translate(4025.25, 2209.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="PileStateService">
+<g transform="translate(398.25, 2209.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="PileStateService">
 <g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="PileStateService">
 <a id="../src/app/engine/service/game-element/pile-state.service.ts.PileStateService" xlink:href="../src/app/engine/service/game-element/pile-state.service.ts"><text x="105.0" y="13.5" stroke="none" text-anchor="middle" data-name="PileStateService">PileStateService</text></a>
 
 </g>
 </g>
-<g transform="translate(4025.25, 2240.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="PileStateService">
+<g transform="translate(398.25, 2240.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="PileStateService">
 <g transform="translate(8, 8)" fill="#33322E" data-name="PileStateService">
 
 </g>
 </g>
-<g transform="translate(4025.25, 2248.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="PileStateService">
+<g transform="translate(398.25, 2248.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="PileStateService">
 <g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="PileStateService">
 <text x="0.0" y="13.5" stroke="none" data-name="PileStateService">#registerEntityState(): void</text>
 <text x="0.0" y="28.5" stroke="none" data-name="PileStateService">#setEntityState(): void</text>
@@ -1321,24 +1367,24 @@
 </g>
 <g data-name="GameManagementClientService">
 <g fill="#eee8d5" stroke="#33322E" data-name="GameManagementClientService">
-<rect x="814.0" y="1512.0" height="228.0" width="421.0" data-name="GameManagementClientService"></rect>
-<path d="M814.0 1543.0 L1235.0 1543.0" fill="none" data-name="GameManagementClientService"></path>
-<path d="M814.0 1589.0 L1235.0 1589.0" fill="none" data-name="GameManagementClientService"></path>
+<rect x="3712.8" y="1512.0" height="228.0" width="421.0" data-name="GameManagementClientService"></rect>
+<path d="M3712.8 1543.0 L4133.8 1543.0" fill="none" data-name="GameManagementClientService"></path>
+<path d="M3712.8 1589.0 L4133.8 1589.0" fill="none" data-name="GameManagementClientService"></path>
 </g>
-<g transform="translate(814, 1512)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="GameManagementClientService">
+<g transform="translate(3712.75, 1512)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="GameManagementClientService">
 <g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="GameManagementClientService">
 <a id="../src/app/engine/service/game-management/game-management-client.service.ts.GameManagementClientService" xlink:href="../src/app/engine/service/game-management/game-management-client.service.ts"><text x="202.5" y="13.5" stroke="none" text-anchor="middle" data-name="GameManagementClientService">GameManagementClientService</text></a>
 
 </g>
 </g>
-<g transform="translate(814, 1543)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="GameManagementClientService">
+<g transform="translate(3712.75, 1543)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="GameManagementClientService">
 <g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="GameManagementClientService">
 <text x="0.0" y="13.5" stroke="none" data-name="GameManagementClientService">-http: HttpClient</text>
 <text x="0.0" y="28.5" stroke="none" data-name="GameManagementClientService">-authService: AuthService</text>
 
 </g>
 </g>
-<g transform="translate(814, 1589)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="GameManagementClientService">
+<g transform="translate(3712.75, 1589)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="GameManagementClientService">
 <g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="GameManagementClientService">
 <text x="0.0" y="13.5" stroke="none" data-name="GameManagementClientService">+createGame(): Promise&lt;void&gt;</text>
 <text x="0.0" y="28.5" stroke="none" data-name="GameManagementClientService">+getGamesForLoggedInPlayer(): Promise&lt;Game[]&gt;</text>
@@ -1355,24 +1401,24 @@
 </g>
 <g data-name="GameStateInitializationService">
 <g fill="#eee8d5" stroke="#33322E" data-name="GameStateInitializationService">
-<rect x="2221.3" y="1572.0" height="108.0" width="648.0" data-name="GameStateInitializationService"></rect>
-<path d="M2221.3 1603.0 L2869.3 1603.0" fill="none" data-name="GameStateInitializationService"></path>
-<path d="M2221.3 1649.0 L2869.3 1649.0" fill="none" data-name="GameStateInitializationService"></path>
+<rect x="3024.8" y="1572.0" height="108.0" width="648.0" data-name="GameStateInitializationService"></rect>
+<path d="M3024.8 1603.0 L3672.8 1603.0" fill="none" data-name="GameStateInitializationService"></path>
+<path d="M3024.8 1649.0 L3672.8 1649.0" fill="none" data-name="GameStateInitializationService"></path>
 </g>
-<g transform="translate(2221.25, 1572)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="GameStateInitializationService">
+<g transform="translate(3024.75, 1572)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="GameStateInitializationService">
 <g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="GameStateInitializationService">
 <a id="../src/app/engine/service/game-state/game-state-initialization.service.ts.GameStateInitializationService" xlink:href="../src/app/engine/service/game-state/game-state-initialization.service.ts"><text x="316.0" y="13.5" stroke="none" text-anchor="middle" data-name="GameStateInitializationService">GameStateInitializationService</text></a>
 
 </g>
 </g>
-<g transform="translate(2221.25, 1603)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="GameStateInitializationService">
+<g transform="translate(3024.75, 1603)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="GameStateInitializationService">
 <g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="GameStateInitializationService">
 <text x="0.0" y="13.5" stroke="none" data-name="GameStateInitializationService">-factoryByGameTitle: Map&lt;string, InitialGameElementStatesFactoryConstructor&gt;</text>
 <text x="0.0" y="28.5" stroke="none" data-name="GameStateInitializationService">+factoryMap: Map&lt;string, InitialGameElementStatesFactoryConstructor&gt;</text>
 
 </g>
 </g>
-<g transform="translate(2221.25, 1649)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="GameStateInitializationService">
+<g transform="translate(3024.75, 1649)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="GameStateInitializationService">
 <g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="GameStateInitializationService">
 <text x="0.0" y="13.5" stroke="none" data-name="GameStateInitializationService">+build(): GameState</text>
 
@@ -1381,22 +1427,22 @@
 </g>
 <g data-name="GameStateClientService">
 <g fill="#eee8d5" stroke="#33322E" data-name="GameStateClientService">
-<rect x="2558.3" y="2217.0" height="70.0" width="241.0" data-name="GameStateClientService"></rect>
-<path d="M2558.3 2248.0 L2799.3 2248.0" fill="none" data-name="GameStateClientService"></path>
-<path d="M2558.3 2256.0 L2799.3 2256.0" fill="none" data-name="GameStateClientService"></path>
+<rect x="8143.8" y="2217.0" height="70.0" width="241.0" data-name="GameStateClientService"></rect>
+<path d="M8143.8 2248.0 L8384.8 2248.0" fill="none" data-name="GameStateClientService"></path>
+<path d="M8143.8 2256.0 L8384.8 2256.0" fill="none" data-name="GameStateClientService"></path>
 </g>
-<g transform="translate(2558.25, 2217)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="GameStateClientService">
+<g transform="translate(8143.75, 2217)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="GameStateClientService">
 <g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="GameStateClientService">
 <a id="../src/app/engine/service/game-state/game-state-client.service.ts.GameStateClientService" xlink:href="../src/app/engine/service/game-state/game-state-client.service.ts"><text x="112.5" y="13.5" stroke="none" text-anchor="middle" data-name="GameStateClientService">GameStateClientService</text></a>
 
 </g>
 </g>
-<g transform="translate(2558.25, 2248)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="GameStateClientService">
+<g transform="translate(8143.75, 2248)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="GameStateClientService">
 <g transform="translate(8, 8)" fill="#33322E" data-name="GameStateClientService">
 
 </g>
 </g>
-<g transform="translate(2558.25, 2256)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="GameStateClientService">
+<g transform="translate(8143.75, 2256)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="GameStateClientService">
 <g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="GameStateClientService">
 <text x="0.0" y="13.5" stroke="none" data-name="GameStateClientService">+sendGspToBackend(): void</text>
 
@@ -1405,22 +1451,22 @@
 </g>
 <g data-name="GameStatePatchService">
 <g fill="#eee8d5" stroke="#33322E" data-name="GameStatePatchService">
-<rect x="2025.8" y="2209.5" height="85.0" width="231.0" data-name="GameStatePatchService"></rect>
-<path d="M2025.8 2240.5 L2256.8 2240.5" fill="none" data-name="GameStatePatchService"></path>
-<path d="M2025.8 2248.5 L2256.8 2248.5" fill="none" data-name="GameStatePatchService"></path>
+<rect x="7872.8" y="2209.5" height="85.0" width="231.0" data-name="GameStatePatchService"></rect>
+<path d="M7872.8 2240.5 L8103.8 2240.5" fill="none" data-name="GameStatePatchService"></path>
+<path d="M7872.8 2248.5 L8103.8 2248.5" fill="none" data-name="GameStatePatchService"></path>
 </g>
-<g transform="translate(2025.75, 2209.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="GameStatePatchService">
+<g transform="translate(7872.75, 2209.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="GameStatePatchService">
 <g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="GameStatePatchService">
 <a id="../src/app/engine/service/game-state/game-state-patch.service.ts.GameStatePatchService" xlink:href="../src/app/engine/service/game-state/game-state-patch.service.ts"><text x="107.5" y="13.5" stroke="none" text-anchor="middle" data-name="GameStatePatchService">GameStatePatchService</text></a>
 
 </g>
 </g>
-<g transform="translate(2025.75, 2240.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="GameStatePatchService">
+<g transform="translate(7872.75, 2240.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="GameStatePatchService">
 <g transform="translate(8, 8)" fill="#33322E" data-name="GameStatePatchService">
 
 </g>
 </g>
-<g transform="translate(2025.75, 2248.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="GameStatePatchService">
+<g transform="translate(7872.75, 2248.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="GameStatePatchService">
 <g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="GameStatePatchService">
 <text x="0.0" y="13.5" stroke="none" data-name="GameStatePatchService">+create(): GameStatePatch</text>
 <text x="0.0" y="28.5" stroke="none" data-name="GameStatePatchService">+apply(): GameState</text>
@@ -1430,17 +1476,17 @@
 </g>
 <g data-name="GameStateStoreService">
 <g fill="#eee8d5" stroke="#33322E" data-name="GameStateStoreService">
-<rect x="1572.8" y="2093.0" height="318.0" width="413.0" data-name="GameStateStoreService"></rect>
-<path d="M1572.8 2124.0 L1985.8 2124.0" fill="none" data-name="GameStateStoreService"></path>
-<path d="M1572.8 2185.0 L1985.8 2185.0" fill="none" data-name="GameStateStoreService"></path>
+<rect x="7419.8" y="2093.0" height="318.0" width="413.0" data-name="GameStateStoreService"></rect>
+<path d="M7419.8 2124.0 L7832.8 2124.0" fill="none" data-name="GameStateStoreService"></path>
+<path d="M7419.8 2185.0 L7832.8 2185.0" fill="none" data-name="GameStateStoreService"></path>
 </g>
-<g transform="translate(1572.75, 2093)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="GameStateStoreService">
+<g transform="translate(7419.75, 2093)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="GameStateStoreService">
 <g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="GameStateStoreService">
 <a id="../src/app/engine/service/game-state/game-state-store.service.ts.GameStateStoreService" xlink:href="../src/app/engine/service/game-state/game-state-store.service.ts"><text x="198.5" y="13.5" stroke="none" text-anchor="middle" data-name="GameStateStoreService">GameStateStoreService</text></a>
 
 </g>
 </g>
-<g transform="translate(1572.75, 2124)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="GameStateStoreService">
+<g transform="translate(7419.75, 2124)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="GameStateStoreService">
 <g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="GameStateStoreService">
 <text x="0.0" y="13.5" stroke="none" data-name="GameStateStoreService">-_gameState: GameState</text>
 <text x="0.0" y="28.5" stroke="none" data-name="GameStateStoreService">-_transactionState: any</text>
@@ -1448,7 +1494,7 @@
 
 </g>
 </g>
-<g transform="translate(1572.75, 2185)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="GameStateStoreService">
+<g transform="translate(7419.75, 2185)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="GameStateStoreService">
 <g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="GameStateStoreService">
 <text x="0.0" y="13.5" stroke="none" data-name="GameStateStoreService">-getObservableForKey(): Observable&lt;T&gt;</text>
 <text x="0.0" y="28.5" stroke="none" data-name="GameStateStoreService">-setTransactionStateElement(): void</text>
@@ -1470,17 +1516,17 @@
 </g>
 <g data-name="AdaptionActionDisplayCardComponent">
 <g fill="#eee8d5" stroke="#33322E" data-name="AdaptionActionDisplayCardComponent">
-<rect x="3963.0" y="788.5" height="123.0" width="503.0" data-name="AdaptionActionDisplayCardComponent"></rect>
-<path d="M3963.0 819.5 L4466.0 819.5" fill="none" data-name="AdaptionActionDisplayCardComponent"></path>
-<path d="M3963.0 880.5 L4466.0 880.5" fill="none" data-name="AdaptionActionDisplayCardComponent"></path>
+<rect x="1805.0" y="788.5" height="123.0" width="503.0" data-name="AdaptionActionDisplayCardComponent"></rect>
+<path d="M1805.0 819.5 L2308.0 819.5" fill="none" data-name="AdaptionActionDisplayCardComponent"></path>
+<path d="M1805.0 880.5 L2308.0 880.5" fill="none" data-name="AdaptionActionDisplayCardComponent"></path>
 </g>
-<g transform="translate(3963, 788.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="AdaptionActionDisplayCardComponent">
+<g transform="translate(1805, 788.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="AdaptionActionDisplayCardComponent">
 <g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="AdaptionActionDisplayCardComponent">
 <a id="../src/app/game/component/action-display/adaption-action-display-card/adaption-action-display-card.component.ts.AdaptionActionDisplayCardComponent" xlink:href="../src/app/game/component/action-display/adaption-action-display-card/adaption-action-display-card.component.ts"><text x="243.5" y="13.5" stroke="none" text-anchor="middle" data-name="AdaptionActionDisplayCardComponent">AdaptionActionDisplayCardComponent</text></a>
 
 </g>
 </g>
-<g transform="translate(3963, 819.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="AdaptionActionDisplayCardComponent">
+<g transform="translate(1805, 819.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="AdaptionActionDisplayCardComponent">
 <g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="AdaptionActionDisplayCardComponent">
 <text x="0.0" y="13.5" stroke="none" data-name="AdaptionActionDisplayCardComponent">+actionPawns: WritableSignal&lt;ActionPawnPiece[]&gt;</text>
 <text x="0.0" y="28.5" stroke="none" data-name="AdaptionActionDisplayCardComponent">+elements: WritableSignal&lt;ElementPiece[]&gt;</text>
@@ -1488,7 +1534,7 @@
 
 </g>
 </g>
-<g transform="translate(3963, 880.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="AdaptionActionDisplayCardComponent">
+<g transform="translate(1805, 880.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="AdaptionActionDisplayCardComponent">
 <g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="AdaptionActionDisplayCardComponent">
 <text x="0.0" y="13.5" stroke="none" data-name="AdaptionActionDisplayCardComponent">+ngOnInit(): void</text>
 
@@ -1497,23 +1543,23 @@
 </g>
 <g data-name="ActionPawnSpaceComponent">
 <g fill="#eee8d5" stroke="#33322E" data-name="ActionPawnSpaceComponent">
-<rect x="4608.5" y="15.0" height="70.0" width="263.0" data-name="ActionPawnSpaceComponent"></rect>
-<path d="M4608.5 46.0 L4871.5 46.0" fill="none" data-name="ActionPawnSpaceComponent"></path>
-<path d="M4608.5 77.0 L4871.5 77.0" fill="none" data-name="ActionPawnSpaceComponent"></path>
+<rect x="3338.8" y="15.0" height="70.0" width="263.0" data-name="ActionPawnSpaceComponent"></rect>
+<path d="M3338.8 46.0 L3601.8 46.0" fill="none" data-name="ActionPawnSpaceComponent"></path>
+<path d="M3338.8 77.0 L3601.8 77.0" fill="none" data-name="ActionPawnSpaceComponent"></path>
 </g>
-<g transform="translate(4608.5, 15)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="ActionPawnSpaceComponent">
+<g transform="translate(3338.75, 15)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="ActionPawnSpaceComponent">
 <g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="ActionPawnSpaceComponent">
 <a id="../src/app/game/component/action-display/space/action-pawn-space/action-pawn-space.component.ts.ActionPawnSpaceComponent" xlink:href="../src/app/game/component/action-display/space/action-pawn-space/action-pawn-space.component.ts"><text x="123.5" y="13.5" stroke="none" text-anchor="middle" data-name="ActionPawnSpaceComponent">ActionPawnSpaceComponent</text></a>
 
 </g>
 </g>
-<g transform="translate(4608.5, 46)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ActionPawnSpaceComponent">
+<g transform="translate(3338.75, 46)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ActionPawnSpaceComponent">
 <g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="ActionPawnSpaceComponent">
 <text x="0.0" y="13.5" stroke="none" data-name="ActionPawnSpaceComponent">+actionPawn: ActionPawnPiece</text>
 
 </g>
 </g>
-<g transform="translate(4608.5, 77)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ActionPawnSpaceComponent">
+<g transform="translate(3338.75, 77)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ActionPawnSpaceComponent">
 <g transform="translate(8, 8)" fill="#33322E" data-name="ActionPawnSpaceComponent">
 
 </g>
@@ -1521,23 +1567,23 @@
 </g>
 <g data-name="ElementSpaceComponent">
 <g fill="#eee8d5" stroke="#33322E" data-name="ElementSpaceComponent">
-<rect x="4911.5" y="15.0" height="70.0" width="221.0" data-name="ElementSpaceComponent"></rect>
-<path d="M4911.5 46.0 L5132.5 46.0" fill="none" data-name="ElementSpaceComponent"></path>
-<path d="M4911.5 77.0 L5132.5 77.0" fill="none" data-name="ElementSpaceComponent"></path>
+<rect x="3641.8" y="15.0" height="70.0" width="221.0" data-name="ElementSpaceComponent"></rect>
+<path d="M3641.8 46.0 L3862.8 46.0" fill="none" data-name="ElementSpaceComponent"></path>
+<path d="M3641.8 77.0 L3862.8 77.0" fill="none" data-name="ElementSpaceComponent"></path>
 </g>
-<g transform="translate(4911.5, 15)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="ElementSpaceComponent">
+<g transform="translate(3641.75, 15)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="ElementSpaceComponent">
 <g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="ElementSpaceComponent">
 <a id="../src/app/game/component/action-display/space/element-space/element-space.component.ts.ElementSpaceComponent" xlink:href="../src/app/game/component/action-display/space/element-space/element-space.component.ts"><text x="102.5" y="13.5" stroke="none" text-anchor="middle" data-name="ElementSpaceComponent">ElementSpaceComponent</text></a>
 
 </g>
 </g>
-<g transform="translate(4911.5, 46)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ElementSpaceComponent">
+<g transform="translate(3641.75, 46)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ElementSpaceComponent">
 <g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="ElementSpaceComponent">
 <text x="0.0" y="13.5" stroke="none" data-name="ElementSpaceComponent">+element: ElementPiece</text>
 
 </g>
 </g>
-<g transform="translate(4911.5, 77)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ElementSpaceComponent">
+<g transform="translate(3641.75, 77)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ElementSpaceComponent">
 <g transform="translate(8, 8)" fill="#33322E" data-name="ElementSpaceComponent">
 
 </g>
@@ -1545,22 +1591,22 @@
 </g>
 <g data-name="EyeballComponent">
 <g fill="#eee8d5" stroke="#33322E" data-name="EyeballComponent">
-<rect x="5172.5" y="26.5" height="47.0" width="165.0" data-name="EyeballComponent"></rect>
-<path d="M5172.5 57.5 L5337.5 57.5" fill="none" data-name="EyeballComponent"></path>
-<path d="M5172.5 65.5 L5337.5 65.5" fill="none" data-name="EyeballComponent"></path>
+<rect x="3902.8" y="26.5" height="47.0" width="165.0" data-name="EyeballComponent"></rect>
+<path d="M3902.8 57.5 L4067.8 57.5" fill="none" data-name="EyeballComponent"></path>
+<path d="M3902.8 65.5 L4067.8 65.5" fill="none" data-name="EyeballComponent"></path>
 </g>
-<g transform="translate(5172.5, 26.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="EyeballComponent">
+<g transform="translate(3902.75, 26.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="EyeballComponent">
 <g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="EyeballComponent">
 <a id="../src/app/game/component/action-display/space/eyeball/eyeball.component.ts.EyeballComponent" xlink:href="../src/app/game/component/action-display/space/eyeball/eyeball.component.ts"><text x="74.5" y="13.5" stroke="none" text-anchor="middle" data-name="EyeballComponent">EyeballComponent</text></a>
 
 </g>
 </g>
-<g transform="translate(5172.5, 57.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="EyeballComponent">
+<g transform="translate(3902.75, 57.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="EyeballComponent">
 <g transform="translate(8, 8)" fill="#33322E" data-name="EyeballComponent">
 
 </g>
 </g>
-<g transform="translate(5172.5, 65.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="EyeballComponent">
+<g transform="translate(3902.75, 65.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="EyeballComponent">
 <g transform="translate(8, 8)" fill="#33322E" data-name="EyeballComponent">
 
 </g>

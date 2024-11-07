@@ -80,132 +80,53 @@
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content component">
+               <div class="content injectable">
                    <div class="content-data">
 
 
 
 
+
+
+
+
 <ol class="breadcrumb">
-  <li class="breadcrumb-item">Components</li>
-  <li class="breadcrumb-item"
-  >
-  DominantSpeciesGameComponent</li>
+  <li class="breadcrumb-item">Injectables</li>
+  <li class="breadcrumb-item" >NavigateService</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
         <li class="nav-item">
-            <a href="#info" class="nav-link active"
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
                 role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
         </li>
         <li class="nav-item">
-            <a href="#source" class="nav-link"
+            <a href="#source" 
+                class="nav-link"
+                
                 role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
-        </li>
-        <li class="nav-item">
-            <a href="#templateData" class="nav-link"
-                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
-        </li>
-        <li class="nav-item">
-            <a href="#tree" class="nav-link"
-                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="info"><p class="comment">
-    <h3>File</h3>
-</p>
-<p class="comment">
-    <code>src/app/game/component/dominant-species-game/dominant-species-game.component.ts</code>
-</p>
-
-
-
-
-    <p class="comment">
-        <h3>Implements</h3>
-    </p>
-    <p class="comment">
-                <code>OnInit</code>
-    </p>
-
-
-<section data-compodoc="block-metadata">
-    <h3>Metadata</h3>
-    <table class="table table-sm table-hover metadata">
-        <tbody>
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/engine/service/navigate.service.ts</code>
+        </p>
 
 
 
 
 
-
-
-
-
-
-
-
-            <tr>
-                <td class="col-md-3">selector</td>
-                <td class="col-md-9"><code>app-dominant-species-game</code></td>
-            </tr>
-
-            <tr>
-                <td class="col-md-3">standalone</td>
-                <td class="col-md-9"><code>true</code></td>
-            </tr>
-
-            <tr>
-                <td class="col-md-3">imports</td>
-                <td class="col-md-9">
-                                <code><a href="../components/DrawPoolGameComponent.html" target="_self" >DrawPoolGameComponent</a></code>
-                            <code>MatProgressSpinner</code>
-                </td>
-            </tr>
-
-
-
-
-            <tr>
-                <td class="col-md-3">templateUrl</td>
-                <td class="col-md-9"><code>./dominant-species-game.component.html</code></td>
-            </tr>
-
-
-
-            <tr>
-                <td class="col-md-3">styleUrl</td>
-                <td class="col-md-9"><code>./dominant-species-game.component.scss</code></td>
-            </tr>
-
-
-
-
-
-        </tbody>
-    </table>
-</section>
-
-    <section data-compodoc="block-index">
+            <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <h6><b>Properties</b></h6>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <ul class="index-list">
-                            <li>
-                                <a href="#gameReady" >gameReady</a>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
 
                 <tr>
                     <td class="col-md-4">
@@ -216,12 +137,24 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                    <span class="modifier">Private</span>
                                     <span class="modifier">Async</span>
-                                <a href="#initializeGame" >initializeGame</a>
+                                <a href="#toCreateGamePage" >toCreateGamePage</a>
                             </li>
                             <li>
-                                <a href="#ngOnInit" >ngOnInit</a>
+                                    <span class="modifier">Async</span>
+                                <a href="#toGamePage" >toGamePage</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#toLobbyPage" >toLobbyPage</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#toLoginPage" >toLoginPage</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#toSignUpConfirmPage" >toSignUpConfirmPage</a>
                             </li>
                         </ul>
                     </td>
@@ -235,18 +168,18 @@
     </table>
 </section>
 
-    <section data-compodoc="block-constructor">
+            <section data-compodoc="block-constructor">
     <h3 id="constructor">Constructor</h3>
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(route: ActivatedRoute, navigate: <a href="../injectables/NavigateService.html" target="_self">NavigateService</a>, gameService: <a href="../injectables/GameService.html" target="_self">GameService</a>, gameReadyService: <a href="../injectables/GameReadyService.html" target="_self">GameReadyService</a>)</code>
+<code>constructor(router: Router)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/game/component/dominant-species-game/dominant-species-game.component.ts:18</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="7" class="link-to-prism">src/app/engine/service/navigate.service.ts:7</a></div>
                             </td>
                         </tr>
 
@@ -264,46 +197,10 @@
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>route</td>
+                                                        <td>router</td>
                                                   
                                                         <td>
-                                                                    <code>ActivatedRoute</code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>navigate</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/NavigateService.html" target="_self" >NavigateService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>gameService</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/GameService.html" target="_self" >GameService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>gameReadyService</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/GameReadyService.html" target="_self" >GameReadyService</a></code>
+                                                                    <code>Router</code>
                                                         </td>
                                                   
                                                     <td>
@@ -320,11 +217,7 @@
         </table>
 </section>
 
-
-
-
-
-    <section data-compodoc="block-methods">
+            <section data-compodoc="block-methods">
     
     <h3 id="methods">
         Methods
@@ -333,27 +226,65 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="initializeGame"></a>
+                    <a name="toCreateGamePage"></a>
                     <span class="name">
-                            <span class="modifier">Private</span>
                             <span class="modifier">Async</span>
-                        <span ><b>initializeGame</b></span>
-                        <a href="#initializeGame"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>toCreateGamePage</b></span>
+                        <a href="#toCreateGamePage"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>initializeGame(gameId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <code>toCreateGamePage()</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="43"
-                                    class="link-to-prism">src/app/game/component/dominant-species-game/dominant-species-game.component.ts:43</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="10"
+                                    class="link-to-prism">src/app/engine/service/navigate.service.ts:10</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="toGamePage"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>toGamePage</b></span>
+                        <a href="#toGamePage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>toGamePage(gameTitle: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, gameId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="14"
+                                    class="link-to-prism">src/app/engine/service/navigate.service.ts:14</a></div>
                         </td>
                     </tr>
 
@@ -373,6 +304,18 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <tr>
+                                                <td>gameTitle</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
                                         <tr>
                                                 <td>gameId</td>
                                             <td>
@@ -403,24 +346,26 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="ngOnInit"></a>
+                    <a name="toLobbyPage"></a>
                     <span class="name">
-                        <span ><b>ngOnInit</b></span>
-                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                            <span class="modifier">Async</span>
+                        <span ><b>toLobbyPage</b></span>
+                        <a href="#toLobbyPage"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>ngOnInit()</code>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>toLobbyPage()</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="26"
-                                    class="link-to-prism">src/app/game/component/dominant-species-game/dominant-species-game.component.ts:26</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="22"
+                                    class="link-to-prism">src/app/engine/service/navigate.service.ts:22</a></div>
                         </td>
                     </tr>
 
@@ -429,7 +374,85 @@
                 <td class="col-md-4">
 
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="toLoginPage"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>toLoginPage</b></span>
+                        <a href="#toLoginPage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>toLoginPage()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="26"
+                                    class="link-to-prism">src/app/engine/service/navigate.service.ts:26</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="toSignUpConfirmPage"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>toSignUpConfirmPage</b></span>
+                        <a href="#toSignUpConfirmPage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>toSignUpConfirmPage()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="30"
+                                    class="link-to-prism">src/app/engine/service/navigate.service.ts:30</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
 
                         </div>
                 </td>
@@ -437,138 +460,48 @@
         </tbody>
     </table>
 </section>
-    <section data-compodoc="block-properties">
-    
-    <h3 id="inputs">
-        Properties
-    </h3>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="gameReady"></a>
-                    <span class="name">
-                        <span ><b>gameReady</b></span>
-                        <a href="#gameReady"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>signal(false)</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/game/component/dominant-species-game/dominant-species-game.component.ts:18</a></div>
-                        </td>
-                    </tr>
 
-
-        </tbody>
-    </table>
-</section>
-
-</div>
+    </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit, signal } from &#x27;@angular/core&#x27;;
-import { DrawPoolGameComponent } from &#x27;../draw-pool-game/draw-pool-game.component&#x27;;
-import { ActivatedRoute } from &#x27;@angular/router&#x27;;
-import { GameService } from &#x27;../../../engine/service/game-management/game.service&#x27;;
-import { GameReadyService } from &#x27;../../service/game-ready.service&#x27;;
-import { MatProgressSpinner } from &#x27;@angular/material/progress-spinner&#x27;;
-import { filter, first } from &#x27;rxjs&#x27;;
-import { NavigateService } from &#x27;../../../engine/service/navigate.service&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
+import { Router } from &#x27;@angular/router&#x27;;
 
-@Component({
-  selector: &#x27;app-dominant-species-game&#x27;,
-  standalone: true,
-  imports: [DrawPoolGameComponent, MatProgressSpinner],
-  templateUrl: &#x27;./dominant-species-game.component.html&#x27;,
-  styleUrl: &#x27;./dominant-species-game.component.scss&#x27;,
+@Injectable({
+  providedIn: &#x27;root&#x27;,
 })
-export class DominantSpeciesGameComponent implements OnInit {
-  gameReady &#x3D; signal(false);
-  constructor(
-    private route: ActivatedRoute,
-    private navigate: NavigateService,
-    private gameService: GameService,
-    private gameReadyService: GameReadyService,
-  ) {}
+export class NavigateService {
+  constructor(private router: Router) {}
 
-  ngOnInit(): void {
-    const gameId &#x3D; this.route.snapshot.queryParamMap.get(&#x27;gameId&#x27;);
-    if (!gameId) {
-      void this.navigate.toLobbyPage();
-    } else {
-      void this.initializeGame(gameId);
-    }
-    this.gameReadyService.ready$
-      .pipe(
-        filter((isReady) &#x3D;&gt; isReady),
-        first(),
-      )
-      .subscribe(() &#x3D;&gt; {
-        this.gameReady.set(true);
-      });
+  async toCreateGamePage(): Promise&lt;void&gt; {
+    await this.router.navigate([&#x27;/create-game&#x27;]);
   }
 
-  private async initializeGame(gameId: string): Promise&lt;void&gt; {
-    await this.gameService.initializeGame(gameId);
+  async toGamePage(gameTitle: string, gameId: string): Promise&lt;void&gt; {
+    await this.router.navigate([&#x27;game&#x27;, gameTitle], {
+      queryParams: {
+        gameId: gameId,
+      },
+    });
+  }
+
+  async toLobbyPage(): Promise&lt;void&gt; {
+    await this.router.navigate([&#x27;/lobby&#x27;]);
+  }
+
+  async toLoginPage(): Promise&lt;void&gt; {
+    await this.router.navigate([&#x27;/login&#x27;]);
+  }
+
+  async toSignUpConfirmPage(): Promise&lt;void&gt; {
+    await this.router.navigate([&#x27;/sign-up-confirm&#x27;]);
   }
 }
 </code></pre>
     </div>
 
-    <div class="tab-pane fade " id="templateData">
-        <pre class="line-numbers"><code class="language-html">@if (gameReady()) {
-  &lt;app-draw-pool-game&gt;&lt;/app-draw-pool-game&gt;
-} @else {
-  &lt;div class&#x3D;&quot;game-loading&quot;&gt;
-    &lt;mat-spinner&gt;&lt;/mat-spinner&gt;
-  &lt;/div&gt;
-}
-</code></pre>
-    </div>
-
-
-    <div class="tab-pane fade " id="tree">
-        <div id="tree-container"></div>
-        <div class="tree-legend">
-            <div class="title">
-                <b>Legend</b>
-            </div>
-            <div>
-                <div class="color htmlelement"></div><span>Html element</span>
-            </div>
-            <div>
-                <div class="color component"></div><span>Component</span>
-            </div>
-            <div>
-                <div class="color directive"></div><span>Html element with directive</span>
-            </div>
-        </div>
-    </div>
-
-    
 </div>
-
-<script src="../js/libs/vis.min.js"></script>
-<script src="../js/libs/htmlparser.js"></script>
-<script src="../js/libs/deep-iterator.js"></script>
-<script>
-        var COMPONENT_TEMPLATE = '<div>@if (gameReady()) {  <app-draw-pool-game></app-draw-pool-game>} @else {  <div class="game-loading">    <mat-spinner></mat-spinner>  </div>}</div>'
-    var COMPONENTS = [{'name': 'ActionPawnComponent', 'selector': 'app-action-pawn'},{'name': 'ActionPawnSpaceComponent', 'selector': 'app-action-pawn-space'},{'name': 'AdaptionActionDisplayCardComponent', 'selector': 'app-adaption-action-display-card'},{'name': 'AnimalCardComponent', 'selector': 'app-animal-card'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CreateGamePageComponent', 'selector': 'app-create-game-page'},{'name': 'DominantSpeciesGameComponent', 'selector': 'app-dominant-species-game'},{'name': 'DrawPoolGameComponent', 'selector': 'app-draw-pool-game'},{'name': 'ElementComponent', 'selector': 'app-element'},{'name': 'ElementSpaceComponent', 'selector': 'app-element-space'},{'name': 'EyeballComponent', 'selector': 'app-eyeball'},{'name': 'LobbyPageComponent', 'selector': 'app-lobby-page'},{'name': 'LoginPageComponent', 'selector': 'app-login-page'},{'name': 'LogoutPageComponent', 'selector': 'app-logout-page'},{'name': 'SignUpConfirmPageComponent', 'selector': 'app-sign-up-confirm-page'},{'name': 'SignUpPageComponent', 'selector': 'app-sign-up-page'}];
-    var DIRECTIVES = [];
-    var ACTUAL_COMPONENT = {'name': 'DominantSpeciesGameComponent'};
-</script>
-<script src="../js/tree.js"></script>
-
-
-
-
 
 
 
@@ -607,8 +540,8 @@ export class DominantSpeciesGameComponent implements OnInit {
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
-            var COMPODOC_CURRENT_PAGE_URL = 'DominantSpeciesGameComponent.html';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'NavigateService.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

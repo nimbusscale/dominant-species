@@ -174,7 +174,7 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(router: Router, authService: <a href="../injectables/AuthService.html" target="_self">AuthService</a>, gameManagementClientService: <a href="../injectables/GameManagementClientService.html" target="_self">GameManagementClientService</a>, gameStateInitializationService: <a href="../injectables/GameStateInitializationService.html" target="_self">GameStateInitializationService</a>, areaRegistryService: <a href="../injectables/AreaRegistryService.html" target="_self">AreaRegistryService</a>, factionRegistryService: <a href="../injectables/FactionRegistryService.html" target="_self">FactionRegistryService</a>, pileRegistryService: <a href="../injectables/PileRegistryService.html" target="_self">PileRegistryService</a>)</code>
+<code>constructor(navigate: <a href="../injectables/NavigateService.html" target="_self">NavigateService</a>, authService: <a href="../injectables/AuthService.html" target="_self">AuthService</a>, gameManagementClientService: <a href="../injectables/GameManagementClientService.html" target="_self">GameManagementClientService</a>, gameStateInitializationService: <a href="../injectables/GameStateInitializationService.html" target="_self">GameStateInitializationService</a>, areaRegistryService: <a href="../injectables/AreaRegistryService.html" target="_self">AreaRegistryService</a>, factionRegistryService: <a href="../injectables/FactionRegistryService.html" target="_self">FactionRegistryService</a>, pileRegistryService: <a href="../injectables/PileRegistryService.html" target="_self">PileRegistryService</a>)</code>
                     </td>
                 </tr>
                         <tr>
@@ -197,10 +197,10 @@
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>router</td>
+                                                        <td>navigate</td>
                                                   
                                                         <td>
-                                                                    <code>Router</code>
+                                                                        <code><a href="../injectables/NavigateService.html" target="_self" >NavigateService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -628,14 +628,14 @@ import { PileRegistryService } from &#x27;../game-element/pile-registry.service&
 import { Area } from &#x27;../../model/area.model&#x27;;
 import { Faction } from &#x27;../../model/faction.model&#x27;;
 import { Pile } from &#x27;../../model/pile.model&#x27;;
-import { Router } from &#x27;@angular/router&#x27;;
+import { NavigateService } from &#x27;../navigate.service&#x27;;
 
 @Injectable({
   providedIn: &#x27;root&#x27;,
 })
 export class GameService {
   constructor(
-    private router: Router,
+    private navigate: NavigateService,
     private authService: AuthService,
     private gameManagementClientService: GameManagementClientService,
     private gameStateInitializationService: GameStateInitializationService,
@@ -683,11 +683,7 @@ export class GameService {
   }
 
   async joinGame(gameId: string): Promise&lt;void&gt; {
-    await this.router.navigate([&#x27;/game/dominant-species&#x27;], {
-      queryParams: {
-        gameId: gameId,
-      },
-    });
+    await this.navigate.toGamePage(&#x27;dominant-species&#x27;, gameId);
   }
 }
 </code></pre>
