@@ -247,7 +247,6 @@
     ),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
-    provideAnimationsAsync(&#x27;noop&#x27;),
     {
       provide: CognitoIdentityProviderClient,
       useFactory: () &#x3D;&gt; new CognitoIdentityProviderClient({ region: environment.cognito.region }),

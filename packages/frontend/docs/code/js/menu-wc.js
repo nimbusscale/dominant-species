@@ -144,6 +144,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </div>
                             <ul class="links collapse " ${ isNormalMode ? 'id="injectables-links"' : 'id="xs-injectables-links"' }>
                                 <li class="link">
+                                    <a href="injectables/ActionDisplayManagerService.html" data-type="entity-link" >ActionDisplayManagerService</a>
+                                </li>
+                                <li class="link">
                                     <a href="injectables/AdaptionActionDisplayService.html" data-type="entity-link" >AdaptionActionDisplayService</a>
                                 </li>
                                 <li class="link">
@@ -178,6 +181,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 </li>
                                 <li class="link">
                                     <a href="injectables/GameManagementClientService.html" data-type="entity-link" >GameManagementClientService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="injectables/GameReadyService.html" data-type="entity-link" >GameReadyService</a>
                                 </li>
                                 <li class="link">
                                     <a href="injectables/GameService.html" data-type="entity-link" >GameService</a>
@@ -226,7 +232,7 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/Action.html" data-type="entity-link" >Action</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/ActionDisplayServiceWithSetup.html" data-type="entity-link" >ActionDisplayServiceWithSetup</a>
+                                <a href="interfaces/ActionDisplayService.html" data-type="entity-link" >ActionDisplayService</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/ActionPawnPiece.html" data-type="entity-link" >ActionPawnPiece</a>
