@@ -1,6 +1,12 @@
-import {Player} from 'api-types/src/player';
-import {FactionState, GameElementStates, GameState, GameStatePatch, PileState,} from 'api-types/src/game-state';
-import {deepFreeze} from "../app/engine/util/misc";
+import { Player } from 'api-types/src/player';
+import {
+  FactionState,
+  GameElementStates,
+  GameState,
+  GameStatePatch,
+  PileState,
+} from 'api-types/src/game-state';
+import { deepFreeze } from '../app/engine/util/misc';
 
 export const testPileState1: PileState = deepFreeze({
   id: 'pile1',

@@ -1,4 +1,4 @@
-import {deepCompare, deepFreeze, ensureDefined, getOrThrow} from '../../../app/engine/util/misc';
+import { deepCompare, deepFreeze, ensureDefined, getOrThrow } from '../../../app/engine/util/misc';
 
 describe('deepCompare', () => {
   it('returns true when two objects are equal', () => {
@@ -105,8 +105,12 @@ describe('deepFreeze', () => {
     deepFreeze(obj);
 
     expect(Object.isFrozen(obj)).toBeTrue();
-    expect(() => { obj.a = 2; }).toThrowError(TypeError);
-    expect(() => { obj.b = 'changed'; }).toThrowError(TypeError);
+    expect(() => {
+      obj.a = 2;
+    }).toThrowError(TypeError);
+    expect(() => {
+      obj.b = 'changed';
+    }).toThrowError(TypeError);
   });
 
   it('should freeze nested objects', () => {
@@ -115,7 +119,9 @@ describe('deepFreeze', () => {
 
     expect(Object.isFrozen(obj)).toBeTrue();
     expect(Object.isFrozen(obj.a)).toBeTrue();
-    expect(() => { obj.a.b = 3; }).toThrowError(TypeError);
+    expect(() => {
+      obj.a.b = 3;
+    }).toThrowError(TypeError);
   });
 
   it('should freeze deeply nested objects', () => {
@@ -126,7 +132,9 @@ describe('deepFreeze', () => {
     expect(Object.isFrozen(obj.a.b)).toBeTrue();
     expect(Object.isFrozen(obj.a.b.c)).toBeTrue();
     expect(Object.isFrozen(obj.a.b.c.d)).toBeTrue(); // Even primitive properties should not be modified
-    expect(() => { obj.a.b.c.d = 5; }).toThrowError(TypeError);
+    expect(() => {
+      obj.a.b.c.d = 5;
+    }).toThrowError(TypeError);
   });
 
   it('should not freeze null properties', () => {
@@ -143,7 +151,9 @@ describe('deepFreeze', () => {
 
     expect(Object.isFrozen(obj)).toBeTrue();
     expect(Object.isFrozen(obj.a)).toBeTrue();
-    expect(() => { obj.a[0] = 4; }).toThrowError(TypeError);
+    expect(() => {
+      obj.a[0] = 4;
+    }).toThrowError(TypeError);
   });
 
   it('should not freeze primitive values directly', () => {

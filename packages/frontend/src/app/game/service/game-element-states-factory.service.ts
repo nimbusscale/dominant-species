@@ -1,4 +1,4 @@
-import { GameElementStates, SpaceState } from 'api-types/src/game-state';
+import { AreaState, GameElementStates, PileState, SpaceState } from 'api-types/src/game-state';
 import { shuffle, startCase } from 'lodash';
 import { AnimalEnum } from '../constant/animal.constant';
 import { getOrThrow } from '../../engine/util/misc';
@@ -15,7 +15,10 @@ import {
 } from '../../engine/model/game-state.model';
 import { Area } from '../../engine/model/area.model';
 import { Pile } from '../../engine/model/pile.model';
-import {ACTION_DISPLAY_ADAPTION_STATE, ELEMENT_DRAW_POOL_STATE} from "../constant/game-state.constant";
+import {
+  ACTION_DISPLAY_ADAPTION_STATE,
+  ELEMENT_DRAW_POOL_STATE,
+} from '../constant/game-state.constant';
 
 // Not injectable as it's built on-demand by GameStateInitializationService
 export class GameElementStatesFactoryService implements InitialGameElementStatesFactory {
@@ -37,11 +40,13 @@ export class GameElementStatesFactoryService implements InitialGameElementStates
   }
 
   buildElementDrawPool(): Pile {
-    return new Pile(deepClone(ELEMENT_DRAW_POOL_STATE));
+    return new Pile(deepClone(ELEMENT_DRAW_POOL_STATE) as PileState);
   }
 
   buildAdaptionActionDisplay(): Area {
-    const adaptionActionDisplayArea = new Area(deepClone(ACTION_DISPLAY_ADAPTION_STATE));
+    const adaptionActionDisplayArea = new Area(
+      deepClone(ACTION_DISPLAY_ADAPTION_STATE) as AreaState,
+    );
     this.elementDrawPool.pullMany(4).forEach((element) => {
       if (element) {
         const nextSpace = adaptionActionDisplayArea.nextAvailableSpace(SpaceKindEnum.ELEMENT);
