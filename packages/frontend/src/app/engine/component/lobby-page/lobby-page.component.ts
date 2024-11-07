@@ -82,6 +82,6 @@ export class LobbyPageComponent {
   }
 
   async joinGame(gameId: string): Promise<void> {
-    console.log(`Joining game ${gameId}`);
+    await this.gameService.joinGame(gameId)
   }
 }

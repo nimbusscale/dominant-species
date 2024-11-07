@@ -1,21 +1,34 @@
-import { Injectable } from '@angular/core';
-import { humanId } from 'human-id';
-import { GameManagementClientService } from './game-management-client.service';
-import { AuthService } from '../auth/auth.service';
-import { Game } from 'api-types/src/game';
-import { GameStateInitializationService } from '../game-state/game-state-initialization.service';
-import { GameTitle } from '../../constant/game-title.constant';
-import { GameState } from 'api-types/src/game-state';
+import {Injectable} from '@angular/core';
+import {humanId} from 'human-id';
+import {GameManagementClientService} from './game-management-client.service';
+import {AuthService} from '../auth/auth.service';
+import {Game} from 'api-types/src/game';
+import {GameStateInitializationService} from '../game-state/game-state-initialization.service';
+import {GameTitle} from '../../constant/game-title.constant';
+import {AreaState, FactionState, GameState, PileState} from 'api-types/src/game-state';
+import {FactionRegistryService} from "../game-element/faction-registry.service";
+import {AreaRegistryService} from "../game-element/area-registry.service";
+import {PileRegistryService} from "../game-element/pile-registry.service";
+import {Area} from "../../model/area.model";
+import {Space} from "../../model/space.model";
+import {Faction} from "../../model/faction.model";
+import {Pile} from "../../model/pile.model";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root',
 })
 export class GameService {
   constructor(
+    private router: Router,
     private authService: AuthService,
     private gameManagementClientService: GameManagementClientService,
     private gameStateInitializationService: GameStateInitializationService,
-  ) {}
+    private areaRegistryService: AreaRegistryService,
+    private factionRegistryService: FactionRegistryService,
+    private pileRegistryService: PileRegistryService,
+  ) {
+  }
 
   async createGame(otherPlayers: string[]): Promise<void> {
     const gameId = humanId();
@@ -42,7 +55,24 @@ export class GameService {
     await this.gameManagementClientService.completeGame(gameId);
   }
 
-  async getState(gameId: string): Promise<GameState> {
-    return await this.gameManagementClientService.getLatestGameState(gameId);
+  async initializeGame(gameId: string): Promise<void> {
+    const gameState = await this.gameManagementClientService.getLatestGameState(gameId);
+    gameState.gameElements.area.forEach((areaState) => {
+      this.areaRegistryService.register(new Area(areaState))
+    })
+    gameState.gameElements.faction.forEach((state) => {
+      this.factionRegistryService.register(new Faction(state))
+    })
+    gameState.gameElements.pile.forEach((state) => {
+      this.pileRegistryService.register(new Pile(state))
+    })
+  }
+
+  async joinGame(gameId: string): Promise<void> {
+    await this.router.navigate(['/game/dominant-species'], {
+      queryParams: {
+        gameId: gameId
+      }
+    })
   }
 }
