@@ -8,14 +8,17 @@ import {
   aws_apigateway,
   aws_certificatemanager,
   aws_cognito,
-  aws_s3,
+  aws_s3, aws_apigatewayv2,
 } from 'aws-cdk-lib';
+import { WebSocketLambdaIntegration } from 'aws-cdk-lib/aws-apigatewayv2-integrations';
 import { EnvVarNames } from '../../../backend/src/lib/enum';
 import * as path from 'node:path';
 
 export class GameMgmtStack extends cdk.Stack {
   readonly apiHandlerFunction: aws_lambda_nodejs.NodejsFunction;
+  readonly wsHandlerFunction: aws_lambda_nodejs.NodejsFunction
   readonly gameMgmtApiGw: aws_apigateway.LambdaRestApi;
+  readonly gameStateApiGw: aws_apigatewayv2.WebSocketApi
 
   constructor(
     scope: Construct,
@@ -32,6 +35,17 @@ export class GameMgmtStack extends cdk.Stack {
       runtime: aws_lambda.Runtime.NODEJS_20_X,
       entry: path.join(__dirname, '../../../backend/src/api-handler.ts'),
       handler: 'apiHandler',
+      role: gameMgmtRole,
+      environment: {
+        [EnvVarNames.VPA_GAME_TABLE_NAME]: gameTable.tableName,
+        [EnvVarNames.VPA_STATE_BUCKET_NAME]: stateBucket.bucketName,
+      },
+    });
+
+    this.wsHandlerFunction = new aws_lambda_nodejs.NodejsFunction(this, 'wsHandler', {
+      runtime: aws_lambda.Runtime.NODEJS_20_X,
+      entry: path.join(__dirname, '../../../backend/src/ws-handler.ts'),
+      handler: 'wsHandler',
       role: gameMgmtRole,
       environment: {
         [EnvVarNames.VPA_GAME_TABLE_NAME]: gameTable.tableName,
@@ -67,6 +81,18 @@ export class GameMgmtStack extends cdk.Stack {
       defaultCorsPreflightOptions: {
         allowOrigins: aws_apigateway.Cors.ALL_ORIGINS,
       },
+    });
+
+    this.gameStateApiGw = new aws_apigatewayv2.WebSocketApi(this, 'gameState', {
+      connectRouteOptions: {integration: new WebSocketLambdaIntegration('ConnectIntegration', this.wsHandlerFunction)},
+      disconnectRouteOptions: {integration: new WebSocketLambdaIntegration('DisconnectIntegration', this.wsHandlerFunction)},
+      defaultRouteOptions: {integration: new WebSocketLambdaIntegration('DefaultIntegration', this.wsHandlerFunction)},
+    })
+
+    new aws_apigatewayv2.WebSocketStage(this, 'v1', {
+      webSocketApi: this.gameStateApiGw,
+      stageName: 'v1',
+      autoDeploy: true,
     });
   }
 }
