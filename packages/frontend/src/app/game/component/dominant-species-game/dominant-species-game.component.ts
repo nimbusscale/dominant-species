@@ -1,20 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Signal, signal} from '@angular/core';
 import { DrawPoolGameComponent } from '../draw-pool-game/draw-pool-game.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GameService } from '../../../engine/service/game-management/game.service';
+import {GameReadyService} from "../../service/game-ready.service";
+import {toSignal} from "@angular/core/rxjs-interop";
+import {MatProgressSpinner} from "@angular/material/progress-spinner";
+import {filter, first} from "rxjs";
 
 @Component({
   selector: 'app-dominant-species-game',
   standalone: true,
-  imports: [DrawPoolGameComponent],
+  imports: [DrawPoolGameComponent, MatProgressSpinner],
   templateUrl: './dominant-species-game.component.html',
   styleUrl: './dominant-species-game.component.scss',
 })
 export class DominantSpeciesGameComponent implements OnInit {
+  gameReady = signal(false)
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private gameService: GameService,
+    private gameReadyService: GameReadyService
   ) {}
 
   ngOnInit(): void {
@@ -24,6 +30,12 @@ export class DominantSpeciesGameComponent implements OnInit {
     } else {
       void this.initializeGame(gameId);
     }
+    this.gameReadyService.ready$.pipe(
+      filter(isReady => isReady),
+      first(),
+    ).subscribe(() => {
+      this.gameReady.set(true)
+    })
   }
 
   private async initializeGame(gameId: string): Promise<void> {

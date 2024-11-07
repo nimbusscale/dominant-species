@@ -1,1 +1,10 @@
-<app-draw-pool-game></app-draw-pool-game>
+@if (gameReady()) {
+  <app-draw-pool-game></app-draw-pool-game>
+} @else {
+  <div class="game-loading">
+  <mat-spinner></mat-spinner>
+  </div>
+}
+
+
+

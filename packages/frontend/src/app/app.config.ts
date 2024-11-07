@@ -18,7 +18,6 @@ export const appConfig: ApplicationConfig = {
     ),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
-    provideAnimationsAsync('noop'),
     {
       provide: CognitoIdentityProviderClient,
       useFactory: () => new CognitoIdentityProviderClient({ region: environment.cognito.region }),
