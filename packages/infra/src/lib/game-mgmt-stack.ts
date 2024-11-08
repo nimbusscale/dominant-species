@@ -13,9 +13,11 @@ import {
 import { WebSocketLambdaIntegration } from 'aws-cdk-lib/aws-apigatewayv2-integrations';
 import { EnvVarNames } from '../../../backend/src/lib/enum';
 import * as path from 'node:path';
+import {WebSocketLambdaAuthorizer} from "aws-cdk-lib/aws-apigatewayv2-authorizers";
 
 export class GameMgmtStack extends cdk.Stack {
   readonly apiHandlerFunction: aws_lambda_nodejs.NodejsFunction;
+  readonly authHandlerFunction: aws_lambda_nodejs.NodejsFunction;
   readonly wsHandlerFunction: aws_lambda_nodejs.NodejsFunction
   readonly gameMgmtApiGw: aws_apigateway.LambdaRestApi;
   readonly gameStateApiGw: aws_apigatewayv2.WebSocketApi
@@ -27,6 +29,7 @@ export class GameMgmtStack extends cdk.Stack {
     gameMgmtRole: aws_iam.Role,
     gameTable: aws_dynamodb.TableV2,
     userPool: aws_cognito.UserPool,
+    userPoolClient: aws_cognito.UserPoolClient,
     stateBucket: aws_s3.Bucket,
   ) {
     super(scope, id, props);
@@ -50,6 +53,17 @@ export class GameMgmtStack extends cdk.Stack {
       environment: {
         [EnvVarNames.VPA_GAME_TABLE_NAME]: gameTable.tableName,
         [EnvVarNames.VPA_STATE_BUCKET_NAME]: stateBucket.bucketName,
+      },
+    });
+
+    this.authHandlerFunction = new aws_lambda_nodejs.NodejsFunction(this, 'authHandler', {
+      runtime: aws_lambda.Runtime.NODEJS_20_X,
+      entry: path.join(__dirname, '../../../backend/src/auth-handler.ts'),
+      handler: 'authHandler',
+      role: gameMgmtRole,
+      environment: {
+        [EnvVarNames.COGNITO_CLIENT_ID]: userPoolClient.userPoolClientId,
+        [EnvVarNames.COGNITO_USER_POOL_ID]: userPool.userPoolId,
       },
     });
 
@@ -92,8 +106,10 @@ export class GameMgmtStack extends cdk.Stack {
       )
     })
 
+    const gameStateAuthorizer = new WebSocketLambdaAuthorizer('gameStateAuthorizer', this.authHandlerFunction)
+
     this.gameStateApiGw = new aws_apigatewayv2.WebSocketApi(this, 'gameState', {
-      connectRouteOptions: {integration: new WebSocketLambdaIntegration('ConnectIntegration', this.wsHandlerFunction)},
+      connectRouteOptions: {authorizer: gameStateAuthorizer, integration: new WebSocketLambdaIntegration('ConnectIntegration', this.wsHandlerFunction)},
       disconnectRouteOptions: {integration: new WebSocketLambdaIntegration('DisconnectIntegration', this.wsHandlerFunction)},
       defaultRouteOptions: {integration: new WebSocketLambdaIntegration('DefaultIntegration', this.wsHandlerFunction)},
     })

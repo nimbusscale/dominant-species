@@ -4,7 +4,7 @@ module.exports = {
   transform: {
     "^.+.tsx?$": ["ts-jest",{}],
   },
-  testPathIgnorePatterns: [
-    "test/lib/manual.spec.ts"
-  ]
+  // testPathIgnorePatterns: [
+  //   "test/lib/manual.spec.ts"
+  // ]
 };
