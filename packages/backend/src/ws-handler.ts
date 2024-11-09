@@ -2,40 +2,39 @@ import { APIGatewayProxyEvent, Callback, Context, Handler } from 'aws-lambda';
 import { ensureDefined } from './lib/util';
 import { ClientEntity, ClientRecordManager } from './lib/db/client-record-manager';
 import { StatusCodes } from 'http-status-codes';
+import {StateApiController} from "./lib/api/state-api-controller";
+import {GameStateEntity, GameStateRecordManager} from "./lib/db/game-state-record-manager";
+import {GameStateObjectManager} from "./lib/state/game-state-object-manager";
+import {ApiResponseType} from 'api-types/src/request-response';
+import {createResponseFromError} from "./lib/error";
 
 const clientRecordManager = new ClientRecordManager(ClientEntity);
+const gameStateRecordManager = new GameStateRecordManager(GameStateEntity)
+const gameStateObjectManager = new GameStateObjectManager()
+const stateApiController = new StateApiController(clientRecordManager, gameStateRecordManager, gameStateObjectManager)
 
 export const wsHandler: Handler = async (
   event: APIGatewayProxyEvent,
   context: Context,
   callback: Callback,
 ) => {
-  console.log(event);
-  const route = ensureDefined(event.requestContext.routeKey);
-  const clientId = ensureDefined(event.requestContext.connectionId);
+  try {
+    const route = ensureDefined(event.requestContext.routeKey);
+    let response: ApiResponseType | undefined
 
-  switch (route) {
-    case '$connect': {
-      const queryStringParameters = event.queryStringParameters;
-      if (queryStringParameters) {
-        const gameId = ensureDefined(queryStringParameters['gameId']);
-        const playerId = ensureDefined(queryStringParameters['playerId']);
-        await clientRecordManager.addClient(gameId, clientId, playerId);
-        callback(null, { statusCode: 200 });
+    switch (route) {
+      case '$connect': {
+        await stateApiController.connect(event)
         break;
-      } else {
-        // throw new BadRequestError("must define gameId and playerId query params")
-        callback(null, {
-          statusCode: StatusCodes.BAD_REQUEST,
-          body: JSON.stringify({ message: 'must define gameId and playerId query params' }),
-        });
+      }
+      case '$disconnect': {
+        await stateApiController.disconnect(event);
         break;
       }
     }
-    case '$disconnect': {
-      await clientRecordManager.removeClient(clientId);
-      callback(null, { statusCode: 200 });
-      break;
-    }
+    callback(null, {statusCode: StatusCodes.OK, body: JSON.stringify(response ?? {})})
+  } catch (error) {
+    console.error(event);
+    callback(null, createResponseFromError(error as Error))
   }
 };
