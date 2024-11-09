@@ -1,15 +1,15 @@
-#name: pr-merge-notify-discord
-#
-#on:
-#  pull_request:
-#    types: [ closed ]
-#
-#jobs:
-#  notify-discord:
-#    if: github.event.pull_request.merged == true && startsWith(github.head_ref, 'automation') == false
-#    runs-on: ubuntu-latest
-#    steps:
-#      - name: Discord notification
-#        env:
-#          DISCORD_WEBHOOK: ${{ secrets.DS_DEV_DIARY_WEBHOOK_URL }}
-#        uses: Ilshidur/action-discord@master
+name: pr-merge-notify-discord
+
+on:
+  pull_request:
+    types: [ closed ]
+
+jobs:
+  notify-discord:
+    if: github.event.pull_request.merged == true && startsWith(github.head_ref, 'automation') == false
+    runs-on: ubuntu-latest
+    steps:
+      - name: Discord notification
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DS_DEV_DIARY_WEBHOOK_URL }}
+        uses: Ilshidur/action-discord@master
