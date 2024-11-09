@@ -1,6 +1,6 @@
 import { Table } from 'dynamodb-toolbox';
 import { EnvVarNames } from '../enum';
-import { dynamoDBDocumentClient } from './client';
+import { dynamoDBDocumentClient } from './dynamodb-client';
 
 export enum GameTableIndex {
   BY_GAME_ID = 'gameByGameId',

@@ -36,5 +36,6 @@ new GameMgmtStack(
   iamStack.gameMgmtRole,
   vpaGameTable.table,
   vpaUserPool.userPool,
+  vpaUserPool.vpaWebClient,
   stateBucketStack.bucket,
 );
