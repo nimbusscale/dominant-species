@@ -4,6 +4,7 @@ import { ConditionalCheckFailedException } from '@aws-sdk/client-dynamodb';
 import { PlayerApiController } from '../../../lib/api/player-api-controller';
 import { PlayerRecordManager } from '../../../lib/db/player-record-manager';
 import { BadRequestError, NotFoundError } from '../../../lib/error';
+import { ApiRequest } from 'api-types/src/request-response';
 
 describe('PlayerApiController', () => {
   let playerApiController: PlayerApiController;

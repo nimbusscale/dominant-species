@@ -2,6 +2,7 @@ import { PlayerRecordManager } from '../db/player-record-manager';
 import { Player, PlayerCollection } from 'api-types/src/player';
 import { BadRequestError, NotFoundError } from '../error';
 import { ConditionalCheckFailedException } from '@aws-sdk/client-dynamodb';
+import { ApiRequest } from 'api-types/src/request-response';
 
 export class PlayerApiController {
   private readonly playerRecordManager: PlayerRecordManager;

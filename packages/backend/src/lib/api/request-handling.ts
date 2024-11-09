@@ -1,10 +1,10 @@
-import {APIGatewayProxyEvent} from 'aws-lambda';
-import {ensureDefined} from '../util';
-import {CognitoIdTokenJwt} from 'api-types/src/auth';
-import {jwtDecode} from 'jwt-decode';
-import {createResponseFromError, NotFoundError} from '../error';
-import {StatusCodes} from 'http-status-codes';
-import {ApiRequest, ApiResponse, ApiRoute} from 'api-types/src/request-response';
+import { APIGatewayProxyEvent } from 'aws-lambda';
+import { ensureDefined } from '../util';
+import { CognitoIdTokenJwt } from 'api-types/src/auth';
+import { jwtDecode } from 'jwt-decode';
+import { createResponseFromError, NotFoundError } from '../error';
+import { StatusCodes } from 'http-status-codes';
+import { ApiRequest, ApiResponse, ApiRoute } from 'api-types/src/request-response';
 
 export class ApiRequestHandler {
   constructor(private routes: ApiRoute[]) {}
