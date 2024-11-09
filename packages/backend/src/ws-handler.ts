@@ -2,16 +2,20 @@ import { APIGatewayProxyEvent, Callback, Context, Handler } from 'aws-lambda';
 import { ensureDefined } from './lib/util';
 import { ClientEntity, ClientRecordManager } from './lib/db/client-record-manager';
 import { StatusCodes } from 'http-status-codes';
-import {StateApiController} from "./lib/api/state-api-controller";
-import {GameStateEntity, GameStateRecordManager} from "./lib/db/game-state-record-manager";
-import {GameStateObjectManager} from "./lib/state/game-state-object-manager";
-import {ApiResponseType} from 'api-types/src/request-response';
-import {createResponseFromError} from "./lib/error";
+import { StateApiController } from './lib/api/state-api-controller';
+import { GameStateEntity, GameStateRecordManager } from './lib/db/game-state-record-manager';
+import { GameStateObjectManager } from './lib/state/game-state-object-manager';
+import { ApiResponseType } from 'api-types/src/request-response';
+import { createResponseFromError } from './lib/error';
 
 const clientRecordManager = new ClientRecordManager(ClientEntity);
-const gameStateRecordManager = new GameStateRecordManager(GameStateEntity)
-const gameStateObjectManager = new GameStateObjectManager()
-const stateApiController = new StateApiController(clientRecordManager, gameStateRecordManager, gameStateObjectManager)
+const gameStateRecordManager = new GameStateRecordManager(GameStateEntity);
+const gameStateObjectManager = new GameStateObjectManager();
+const stateApiController = new StateApiController(
+  clientRecordManager,
+  gameStateRecordManager,
+  gameStateObjectManager,
+);
 
 export const wsHandler: Handler = async (
   event: APIGatewayProxyEvent,
@@ -20,11 +24,11 @@ export const wsHandler: Handler = async (
 ) => {
   try {
     const route = ensureDefined(event.requestContext.routeKey);
-    let response: ApiResponseType | undefined
+    let response: ApiResponseType | undefined;
 
     switch (route) {
       case '$connect': {
-        await stateApiController.connect(event)
+        await stateApiController.connect(event);
         break;
       }
       case '$disconnect': {
@@ -32,9 +36,9 @@ export const wsHandler: Handler = async (
         break;
       }
     }
-    callback(null, {statusCode: StatusCodes.OK, body: JSON.stringify(response ?? {})})
+    callback(null, { statusCode: StatusCodes.OK, body: JSON.stringify(response ?? {}) });
   } catch (error) {
     console.error(event);
-    callback(null, createResponseFromError(error as Error))
+    callback(null, createResponseFromError(error as Error));
   }
 };
