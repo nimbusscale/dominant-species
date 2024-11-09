@@ -32,6 +32,5 @@ jobs:
     steps:
       - env:
           DISCORD_WEBHOOK: ${{ secrets.DS_DEV_DIARY_WEBHOOK_URL }}
+          DISCORD_EMBEDS: '[{"title": "${{github.workflow}} Failed",  "color": 13840175}]'
         uses: Ilshidur/action-discord@master
-        with:
-          args: '{"embeds": [{"title": "${{github.workflow}} failed",  "color": 13840175}]}'
