@@ -22,7 +22,7 @@ export class GameMgmtStack extends cdk.Stack {
   readonly wsHandlerFunction: aws_lambda_nodejs.NodejsFunction;
   readonly gameMgmtApiGw: aws_apigateway.LambdaRestApi;
   readonly gameStateApiGw: aws_apigatewayv2.WebSocketApi;
-  readonly gameStateApiGwStage: aws_apigatewayv2.WebSocketStage
+  readonly gameStateApiGwStage: aws_apigatewayv2.WebSocketStage;
 
   constructor(
     scope: Construct,
@@ -129,22 +129,16 @@ export class GameMgmtStack extends cdk.Stack {
     });
 
     this.gameStateApiGw.addRoute('$connect', {
-        authorizer: gameStateAuthorizer,
-        integration: new WebSocketLambdaIntegration('ConnectIntegration', this.wsHandlerFunction),
-      })
+      authorizer: gameStateAuthorizer,
+      integration: new WebSocketLambdaIntegration('ConnectIntegration', this.wsHandlerFunction),
+    });
 
     this.gameStateApiGw.addRoute('$disconnect', {
-        integration: new WebSocketLambdaIntegration(
-          'DisconnectIntegration',
-          this.wsHandlerFunction,
-        ),
-      })
+      integration: new WebSocketLambdaIntegration('DisconnectIntegration', this.wsHandlerFunction),
+    });
 
-        this.gameStateApiGw.addRoute('$default', {
-        integration: new WebSocketLambdaIntegration(
-          'DefaultIntegration',
-          this.wsHandlerFunction,
-        ),
-      })
+    this.gameStateApiGw.addRoute('$default', {
+      integration: new WebSocketLambdaIntegration('DefaultIntegration', this.wsHandlerFunction),
+    });
   }
 }
