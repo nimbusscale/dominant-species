@@ -1,5 +1,5 @@
-import {BehaviorSubject, map, Observable, of, switchMap} from 'rxjs';
-import {emptyGameState, getEmptyInitialGameState} from '../../model/game-state.model';
+import { BehaviorSubject, Observable, of, switchMap } from 'rxjs';
+import { getEmptyInitialGameState } from '../../model/game-state.model';
 import { Injectable } from '@angular/core';
 import { deepClone } from 'fast-json-patch';
 
@@ -11,7 +11,7 @@ import {
   GameState,
   PileState,
 } from 'api-types/src/game-state';
-import {ensureDefined} from "../../util/misc";
+import { ensureDefined } from '../../util/misc';
 
 /**
  * GameStateStoreService is responsible for maintain the GameState and making it accessible to others.
@@ -37,16 +37,16 @@ import {ensureDefined} from "../../util/misc";
   providedIn: 'root',
 })
 export class GameStateStoreService {
-  private _gameState: GameState | undefined
+  private _gameState: GameState | undefined;
   private _transactionState: GameState | null = null;
-  private gameStateSubject: BehaviorSubject<GameState | undefined>
+  private gameStateSubject: BehaviorSubject<GameState | undefined>;
 
   constructor() {
     this.gameStateSubject = new BehaviorSubject<GameState | undefined>(this._gameState);
   }
 
   initializeGameState(gameState: GameState): void {
-    this._gameState = getEmptyInitialGameState(gameState.gameId, gameState.playerIds)
+    this._gameState = getEmptyInitialGameState(gameState.gameId, gameState.playerIds);
   }
 
   private getObservableForKey<T>(selector: (state: GameState) => T[]): Observable<T[]> {
@@ -56,8 +56,8 @@ export class GameStateStoreService {
           return of([] as T[]);
         }
         return of(selector(gameState));
-      })
-    )
+      }),
+    );
   }
 
   /**
@@ -101,7 +101,9 @@ export class GameStateStoreService {
     if (this.transactionState) {
       throw new Error('Can not register new State Elements while a transaction is in progress.');
     }
-    const subStateArray = ensureDefined(this._gameState).gameElements[key] as (typeof newGameStateElement)[];
+    const subStateArray = ensureDefined(this._gameState).gameElements[
+      key
+    ] as (typeof newGameStateElement)[];
     const index = subStateArray.findIndex((item) => item.id === newGameStateElement.id);
 
     if (index > -1) {
@@ -115,7 +117,7 @@ export class GameStateStoreService {
     if (this._gameState) {
       return deepClone(this._gameState) as GameState;
     } else {
-      return undefined
+      return undefined;
     }
   }
 
@@ -171,7 +173,7 @@ export class GameStateStoreService {
     if (this._gameState) {
       return this._gameState.playerIds;
     } else {
-      return undefined
+      return undefined;
     }
   }
 

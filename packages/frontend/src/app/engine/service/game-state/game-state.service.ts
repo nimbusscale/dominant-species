@@ -3,8 +3,14 @@ import { GameStateStoreService } from './game-state-store.service';
 import { GameStatePatchService } from './game-state-patch.service';
 import { GameStateClientService } from './game-state-client.service';
 import { filter, Observable } from 'rxjs';
-import {AreaState, FactionState, GameState, GameStatePatch, PileState} from 'api-types/src/game-state';
-import {ensureDefined} from "../../util/misc";
+import {
+  AreaState,
+  FactionState,
+  GameState,
+  GameStatePatch,
+  PileState,
+} from 'api-types/src/game-state';
+import { ensureDefined } from '../../util/misc';
 
 /**
  * The GameStateService provides an interface for the rest of the system to interact with state.
@@ -25,11 +31,13 @@ export class GameStateService {
   }
 
   initializeGameState(gameState: GameState): void {
-    this.gameStateStore.initializeGameState(gameState)
+    this.gameStateStore.initializeGameState(gameState);
   }
 
   private applyGsp(gsp: GameStatePatch): void {
-    this.gameStateStore.setGameState(this.gspService.apply(ensureDefined(this.gameStateStore.gameState), gsp));
+    this.gameStateStore.setGameState(
+      this.gspService.apply(ensureDefined(this.gameStateStore.gameState), gsp),
+    );
   }
 
   startTransaction(): void {

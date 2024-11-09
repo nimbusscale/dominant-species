@@ -1,19 +1,33 @@
-import {GameStateStoreService} from '../../../../app/engine/service/game-state/game-state-store.service';
-import {skip} from 'rxjs';
-import {testGameState1, testGameState1updated} from '../../../game-state-test.constant';
-import {GameState} from 'api-types/src/game-state';
+import { GameStateStoreService } from '../../../../app/engine/service/game-state/game-state-store.service';
+import { skip } from 'rxjs';
+import { testGameState1, testGameState1updated } from '../../../game-state-test.constant';
+import { GameState } from 'api-types/src/game-state';
 
 describe('GameStateStore', () => {
   let gameStateStore: GameStateStoreService;
 
-  describe('when blank', () => {
+  describe('before initialized', () => {
     beforeEach(() => {
       gameStateStore = new GameStateStoreService();
-      gameStateStore.initializeGameState({gameId: 'test', playerIds: ['tester1', 'tester2']} as unknown as GameState)
+    });
+    it('should return gameState as undefined', () => {
+      expect(gameStateStore.gameState).toBeUndefined();
+    });
+    it('should return playerIds as undefined', () => {
+      expect(gameStateStore.playerIds).toBeUndefined();
+    });
+  });
+  describe('when initialized', () => {
+    beforeEach(() => {
+      gameStateStore = new GameStateStoreService();
+      gameStateStore.initializeGameState({
+        gameId: 'test',
+        playerIds: ['tester1', 'tester2'],
+      } as unknown as GameState);
     });
     it('can register new game state elements', () => {
       gameStateStore.registerPile(testGameState1.gameElements.pile[0]);
-      expect(gameStateStore.gameState).toBeTruthy()
+      expect(gameStateStore.gameState).toBeTruthy();
       if (gameStateStore.gameState) {
         expect(gameStateStore.gameState.gameElements.pile[0]).toEqual(
           testGameState1.gameElements.pile[0],
@@ -40,6 +54,9 @@ describe('GameStateStore', () => {
       expect(() => {
         gameStateStore.setPile(testGameState1.gameElements.pile[0]);
       }).toThrowError();
+    });
+    it('should return PlayerIds', () => {
+      expect(gameStateStore.playerIds).toEqual(['tester1', 'tester2']);
     });
   });
   describe('when GameState set', () => {
