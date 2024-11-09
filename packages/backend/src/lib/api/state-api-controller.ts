@@ -6,11 +6,13 @@ import { GameStateRecordManager } from '../db/game-state-record-manager';
 import { GameStateObjectManager } from '../state/game-state-object-manager';
 import {GameStatePatch} from 'api-types/src/game-state';
 import {applyPatch} from "fast-json-patch";
+import {ApiGatewayManagementApiClient, PostToConnectionCommand} from "@aws-sdk/client-apigatewaymanagementapi";
 
 export class StateApiController {
   private readonly clientRecordManager: ClientRecordManager;
   private readonly gameStateRecordManager: GameStateRecordManager;
   private readonly gameStateObjectManager: GameStateObjectManager;
+  private readonly apiGwClient: ApiGatewayManagementApiClient
 
   constructor(
     clientRecordManager: ClientRecordManager,
@@ -20,9 +22,12 @@ export class StateApiController {
     this.clientRecordManager = clientRecordManager;
     this.gameStateRecordManager = gameStateRecordManager;
     this.gameStateObjectManager = gameStateObjectManager;
+    this.apiGwClient = new ApiGatewayManagementApiClient({
+      endpoint: `https://state.vpa-games.com`
+    })
   }
 
-  async connect(event: APIGatewayProxyEvent): Promise<undefined> {
+  async connect(event: APIGatewayProxyEvent): Promise<void> {
     const clientId = ensureDefined(event.requestContext.connectionId);
     const queryStringParameters = event.queryStringParameters;
     if (queryStringParameters) {
@@ -34,12 +39,21 @@ export class StateApiController {
     }
   }
 
-  async disconnect(event: APIGatewayProxyEvent): Promise<undefined> {
+  async disconnect(event: APIGatewayProxyEvent): Promise<void> {
     const clientId = ensureDefined(event.requestContext.connectionId);
     await this.clientRecordManager.removeClient(clientId);
   }
 
-  async applyGsp(event: APIGatewayProxyEvent): Promise<undefined> {
+  async sendGspToOtherClients(sendingClientId: string, gsp: GameStatePatch): Promise<void> {
+    const gspJSON = JSON.stringify(gsp)
+    const clientIds = await this.clientRecordManager.getClientsForGame(gsp.gameId)
+    await Promise.all(clientIds.filter((clientId) => clientId !== sendingClientId).map((clientId) => {
+      this.apiGwClient.send(new PostToConnectionCommand({ ConnectionId: clientId, Data: gspJSON}))
+    }))
+  }
+
+  async applyGsp(event: APIGatewayProxyEvent): Promise<void> {
+    const clientId = ensureDefined(event.requestContext.connectionId);
     if (event.body) {
       const gsp = JSON.parse(event.body) as GameStatePatch
       // The previous patchId is the one before this one.
@@ -51,10 +65,11 @@ export class StateApiController {
         undefined,
         false
       ).newDocument
-      Promise.all([
+      await Promise.all([
         this.gameStateObjectManager.putGameState(gameState),
         this.gameStateRecordManager.addGameStatePatch(gsp)
-      ]).then().catch((error: unknown) => {throw error})
+      ])
+      await this.sendGspToOtherClients(clientId, gsp)
     } else {
       throw new BadRequestError("Request must include body")
     }
