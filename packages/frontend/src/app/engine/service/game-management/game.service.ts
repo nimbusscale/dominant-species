@@ -12,6 +12,7 @@ import { Area } from '../../model/area.model';
 import { Faction } from '../../model/faction.model';
 import { Pile } from '../../model/pile.model';
 import { NavigateService } from '../navigate.service';
+import { GameStateService } from '../game-state/game-state.service';
 
 @Injectable({
   providedIn: 'root',
@@ -21,6 +22,7 @@ export class GameService {
     private navigate: NavigateService,
     private authService: AuthService,
     private gameManagementClientService: GameManagementClientService,
+    private gameStateService: GameStateService,
     private gameStateInitializationService: GameStateInitializationService,
     private areaRegistryService: AreaRegistryService,
     private factionRegistryService: FactionRegistryService,
@@ -54,6 +56,7 @@ export class GameService {
 
   async initializeGame(gameId: string): Promise<void> {
     const gameState = await this.gameManagementClientService.getLatestGameState(gameId);
+    this.gameStateService.initializeGameState(gameState);
     gameState.gameElements.area.forEach((areaState) => {
       this.areaRegistryService.register(new Area(areaState));
     });
@@ -66,6 +69,6 @@ export class GameService {
   }
 
   async joinGame(gameId: string): Promise<void> {
-    await this.navigate.toGamePage('dominant-species', gameId);
+    await this.navigate.toGamePage(GameTitle.DOMINANT_SPECIES, gameId);
   }
 }
