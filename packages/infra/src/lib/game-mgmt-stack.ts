@@ -117,7 +117,7 @@ export class GameMgmtStack extends cdk.Stack {
       role: gameMgmtRole,
       environment: {
         [EnvVarNames.VPA_GAME_TABLE_NAME]: gameTable.tableName,
-        [EnvVarNames.VPA_STATE_API_GW_URL]: this.gameStateApiGwStage.url,
+        [EnvVarNames.VPA_STATE_API_GW_URL]: this.gameStateApiGwStage.callbackUrl,
         [EnvVarNames.VPA_STATE_BUCKET_NAME]: stateBucket.bucketName,
       },
     });

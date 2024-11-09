@@ -53,6 +53,7 @@ export class StateApiController {
   }
 
   private async updateGameState(gsp: GameStatePatch): Promise<void> {
+    console.log(`Applying GSP GameId: ${gsp.gameId} PatchId: ${String(gsp.patchId)}`)
     // The previous patchId is the one before this one.
     const gameState = await this.gameStateObjectManager.getGameState(gsp.gameId, gsp.patchId - 1)
     gameState.patchId = gsp.patchId
@@ -66,6 +67,7 @@ export class StateApiController {
       this.gameStateObjectManager.putGameState(gameState),
       this.gameStateRecordManager.addGameStatePatch(gsp)
     ])
+    console.log(`Applied GSP GameId: ${gsp.gameId} PatchId: ${String(gsp.patchId)}`)
   }
 
   private async sendGspToOtherClients(sendingClientId: string, gsp: GameStatePatch): Promise<void> {
