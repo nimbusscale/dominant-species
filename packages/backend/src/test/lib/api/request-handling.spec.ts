@@ -1,6 +1,6 @@
 import { expect, jest, it, describe } from '@jest/globals';
-import { ApiRequest, ApiRequestHandler, ApiRoute } from '../../../lib/api/request-handling';
-import { ApiResponseType } from 'api-types/src/request-response';
+import { ApiRequestHandler } from '../../../lib/api/request-handling';
+import { ApiRequest, ApiResponseType, ApiRoute } from 'api-types/src/request-response';
 import { GameCollection } from 'api-types/src/game';
 import { APIGatewayProxyEvent } from 'aws-lambda';
 import { StatusCodes } from 'http-status-codes';
