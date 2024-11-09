@@ -14,5 +14,14 @@ export class IamStack extends cdk.Stack {
     this.gameMgmtRole.addManagedPolicy(
       aws_iam.ManagedPolicy.fromAwsManagedPolicyName('service-role/AWSLambdaBasicExecutionRole'),
     );
+    this.gameMgmtRole.addToPolicy(
+      new aws_iam.PolicyStatement({
+        actions: ['execute-api:ManageConnections'],
+        resources: [
+          `arn:aws:execute-api:${props.env?.region}:${props.env?.account}:*/*/POST/@connections/*`,
+        ],
+        effect: aws_iam.Effect.ALLOW,
+      }),
+    );
   }
 }
