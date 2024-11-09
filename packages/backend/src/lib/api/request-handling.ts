@@ -1,41 +1,10 @@
-import { APIGatewayProxyEvent } from 'aws-lambda';
-import { ensureDefined } from '../util';
-import { CognitoIdTokenJwt } from 'api-types/src/auth';
-import { jwtDecode } from 'jwt-decode';
-import { ApiResponseType } from 'api-types/src/request-response';
-import { BadRequestError, NotFoundError } from '../error';
-import { StatusCodes } from 'http-status-codes';
-
-interface QueryParameters {
-  username?: string;
-}
-
-export interface ApiRequest {
-  path: string;
-  httpMethod: string;
-  queryStringParameters: QueryParameters | null;
-  username: string | null;
-  body: string | null;
-}
-
-export interface ApiResponseHeaders {
-  'Content-Type': string;
-  'Access-Control-Allow-Origin': string;
-  'Access-Control-Allow-Methods': string;
-  'Access-Control-Allow-Headers': string;
-}
-
-export interface ApiResponse {
-  statusCode: number;
-  body: string;
-  headers?: ApiResponseHeaders;
-}
-
-export interface ApiRoute {
-  method: 'GET' | 'POST' | 'PATCH';
-  pattern: RegExp;
-  handler: (apiRequest: ApiRequest) => Promise<ApiResponseType | undefined>;
-}
+import {APIGatewayProxyEvent} from 'aws-lambda';
+import {ensureDefined} from '../util';
+import {CognitoIdTokenJwt} from 'api-types/src/auth';
+import {jwtDecode} from 'jwt-decode';
+import {createResponseFromError, NotFoundError} from '../error';
+import {StatusCodes} from 'http-status-codes';
+import {ApiRequest, ApiResponse, ApiRoute} from 'api-types/src/request-response';
 
 export class ApiRequestHandler {
   constructor(private routes: ApiRoute[]) {}
@@ -61,23 +30,6 @@ export class ApiRequestHandler {
     );
   }
 
-  private formatErrorResponseBody(error: Error): string {
-    return JSON.stringify({ message: error.message });
-  }
-
-  private createResponseFromError(error: Error): ApiResponse {
-    if (error instanceof BadRequestError) {
-      return { statusCode: StatusCodes.BAD_REQUEST, body: this.formatErrorResponseBody(error) };
-    } else if (error instanceof NotFoundError) {
-      return { statusCode: StatusCodes.NOT_FOUND, body: this.formatErrorResponseBody(error) };
-    } else {
-      return {
-        statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
-        body: this.formatErrorResponseBody(error),
-      };
-    }
-  }
-
   async handleApiEvent(apiGwEvent: APIGatewayProxyEvent): Promise<ApiResponse> {
     let apiResponse: ApiResponse;
     try {
@@ -100,7 +52,7 @@ export class ApiRequestHandler {
       }
     } catch (error) {
       console.error(error);
-      apiResponse = this.createResponseFromError(error as Error);
+      apiResponse = createResponseFromError(error as Error);
     }
     return apiResponse;
   }

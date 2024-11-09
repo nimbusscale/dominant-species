@@ -8,7 +8,6 @@ import {
   GameStateRecordManager,
 } from '../../../lib/db/game-state-record-manager';
 import { GameStateObjectManager } from '../../../lib/state/game-state-object-manager';
-import { ApiRequest } from '../../../lib/api/request-handling';
 import { BadRequestError, NotFoundError } from '../../../lib/error';
 
 describe('GameApiController', () => {

@@ -1,7 +1,6 @@
 import { GameRecordManager } from '../db/game-record-manager';
 import { Game, GameCollection } from 'api-types/src/game';
 import { BadRequestError, NotFoundError } from '../error';
-import { ApiRequest } from './request-handling';
 import { GameStateRecordManager } from '../db/game-state-record-manager';
 import { GameState } from 'api-types/src/game-state';
 import { GameStateObjectManager } from '../state/game-state-object-manager';

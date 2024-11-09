@@ -1,5 +1,4 @@
 import { PlayerRecordManager } from '../db/player-record-manager';
-import { ApiRequest } from './request-handling';
 import { Player, PlayerCollection } from 'api-types/src/player';
 import { BadRequestError, NotFoundError } from '../error';
 import { ConditionalCheckFailedException } from '@aws-sdk/client-dynamodb';
