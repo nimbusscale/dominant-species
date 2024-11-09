@@ -1,22 +1,27 @@
-import { GameStateStoreService } from '../../../../app/engine/service/game-state/game-state-store.service';
-import { skip } from 'rxjs';
-import { testGameState1, testGameState1updated } from '../../../game-state-test.constant';
+import {GameStateStoreService} from '../../../../app/engine/service/game-state/game-state-store.service';
+import {skip} from 'rxjs';
+import {testGameState1, testGameState1updated} from '../../../game-state-test.constant';
+import {GameState} from 'api-types/src/game-state';
 
 describe('GameStateStore', () => {
   let gameStateStore: GameStateStoreService;
 
-  beforeEach(() => {
-    gameStateStore = new GameStateStoreService();
-  });
   describe('when blank', () => {
+    beforeEach(() => {
+      gameStateStore = new GameStateStoreService();
+      gameStateStore.initializeGameState({gameId: 'test', playerIds: ['tester1', 'tester2']} as unknown as GameState)
+    });
     it('can register new game state elements', () => {
       gameStateStore.registerPile(testGameState1.gameElements.pile[0]);
-      expect(gameStateStore.gameState.gameElements.pile[0]).toEqual(
-        testGameState1.gameElements.pile[0],
-      );
-      expect(gameStateStore.gameState.gameElements.pile[0]).not.toBe(
-        testGameState1.gameElements.pile[0],
-      );
+      expect(gameStateStore.gameState).toBeTruthy()
+      if (gameStateStore.gameState) {
+        expect(gameStateStore.gameState.gameElements.pile[0]).toEqual(
+          testGameState1.gameElements.pile[0],
+        );
+        expect(gameStateStore.gameState.gameElements.pile[0]).not.toBe(
+          testGameState1.gameElements.pile[0],
+        );
+      }
     });
     it('throws error if transaction started with trying to register', () => {
       gameStateStore.startTransaction();
@@ -39,6 +44,7 @@ describe('GameStateStore', () => {
   });
   describe('when GameState set', () => {
     beforeEach(() => {
+      gameStateStore = new GameStateStoreService();
       gameStateStore.setGameState(testGameState1);
     });
     describe('state observable', () => {

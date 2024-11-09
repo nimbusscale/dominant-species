@@ -1,5 +1,5 @@
-import { BehaviorSubject, map, Observable } from 'rxjs';
-import { emptyGameState } from '../../model/game-state.model';
+import {BehaviorSubject, map, Observable, of, switchMap} from 'rxjs';
+import {emptyGameState, getEmptyInitialGameState} from '../../model/game-state.model';
 import { Injectable } from '@angular/core';
 import { deepClone } from 'fast-json-patch';
 
@@ -11,6 +11,7 @@ import {
   GameState,
   PileState,
 } from 'api-types/src/game-state';
+import {ensureDefined} from "../../util/misc";
 
 /**
  * GameStateStoreService is responsible for maintain the GameState and making it accessible to others.
@@ -36,20 +37,27 @@ import {
   providedIn: 'root',
 })
 export class GameStateStoreService {
-  private _gameState: GameState = deepClone(emptyGameState) as GameState;
+  private _gameState: GameState | undefined
   private _transactionState: GameState | null = null;
-  private gameStateSubject: BehaviorSubject<GameState>;
+  private gameStateSubject: BehaviorSubject<GameState | undefined>
 
   constructor() {
-    this.gameStateSubject = new BehaviorSubject<GameState>(this._gameState);
+    this.gameStateSubject = new BehaviorSubject<GameState | undefined>(this._gameState);
   }
 
-  private getObservableForKey<T>(selector: (state: GameState) => T): Observable<T> {
+  initializeGameState(gameState: GameState): void {
+    this._gameState = getEmptyInitialGameState(gameState.gameId, gameState.playerIds)
+  }
+
+  private getObservableForKey<T>(selector: (state: GameState) => T[]): Observable<T[]> {
     return this.gameStateSubject.asObservable().pipe(
-      map((gameState) => {
-        return selector(gameState);
-      }),
-    );
+      switchMap((gameState) => {
+        if (gameState === undefined) {
+          return of([] as T[]);
+        }
+        return of(selector(gameState));
+      })
+    )
   }
 
   /**
@@ -93,7 +101,7 @@ export class GameStateStoreService {
     if (this.transactionState) {
       throw new Error('Can not register new State Elements while a transaction is in progress.');
     }
-    const subStateArray = this._gameState.gameElements[key] as (typeof newGameStateElement)[];
+    const subStateArray = ensureDefined(this._gameState).gameElements[key] as (typeof newGameStateElement)[];
     const index = subStateArray.findIndex((item) => item.id === newGameStateElement.id);
 
     if (index > -1) {
@@ -103,8 +111,12 @@ export class GameStateStoreService {
     }
   }
 
-  get gameState(): GameState {
-    return deepClone(this._gameState) as GameState;
+  get gameState(): GameState | undefined {
+    if (this._gameState) {
+      return deepClone(this._gameState) as GameState;
+    } else {
+      return undefined
+    }
   }
 
   get transactionState(): GameState | null {
@@ -155,8 +167,12 @@ export class GameStateStoreService {
     }
   }
 
-  get playerIds(): string[] {
-    return this._gameState.playerIds;
+  get playerIds(): string[] | undefined {
+    if (this._gameState) {
+      return this._gameState.playerIds;
+    } else {
+      return undefined
+    }
   }
 
   get area$(): Observable<AreaState[]> {

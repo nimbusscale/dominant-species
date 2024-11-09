@@ -40,7 +40,7 @@ export class GameReadyService {
   private animalsReady(): Observable<boolean> {
     const animalReadySubject = new BehaviorSubject<boolean>(false);
     const animalSubscription = this.animalProviderService.animals$.subscribe((animals) => {
-      if (animals.length === this.gameStateService.playerIds.length) {
+      if (this.gameStateService.playerIds && animals.length === this.gameStateService.playerIds.length) {
         animalReadySubject.next(true);
       }
     });

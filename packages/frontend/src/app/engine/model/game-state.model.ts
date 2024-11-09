@@ -1,4 +1,5 @@
 import { GameElementStates, GameState } from 'api-types/src/game-state';
+import {deepClone} from "fast-json-patch";
 
 export const emptyGameElementStates: GameElementStates = {
   area: [],
@@ -19,7 +20,7 @@ export function getEmptyInitialGameState(gameId: string, playerIds: string[]): G
     gameId: gameId,
     patchId: 0,
     playerIds: playerIds,
-    gameElements: emptyGameElementStates,
+    gameElements: deepClone(emptyGameElementStates),
   };
 }
 
