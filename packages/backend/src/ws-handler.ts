@@ -5,7 +5,6 @@ import { StatusCodes } from 'http-status-codes';
 import { StateApiController } from './lib/api/state-api-controller';
 import { GameStateEntity, GameStateRecordManager } from './lib/db/game-state-record-manager';
 import { GameStateObjectManager } from './lib/state/game-state-object-manager';
-import { ApiResponseType } from 'api-types/src/request-response';
 import { createResponseFromError } from './lib/error';
 
 const clientRecordManager = new ClientRecordManager(ClientEntity);
@@ -24,7 +23,6 @@ export const wsHandler: Handler = async (
 ) => {
   try {
     const route = ensureDefined(event.requestContext.routeKey);
-    let response: ApiResponseType | undefined;
 
     switch (route) {
       case '$connect': {
@@ -35,8 +33,11 @@ export const wsHandler: Handler = async (
         await stateApiController.disconnect(event);
         break;
       }
+      case '$default': {
+        await stateApiController.applyGsp(event)
+      }
     }
-    callback(null, { statusCode: StatusCodes.OK, body: JSON.stringify(response ?? {}) });
+    callback(null, { statusCode: StatusCodes.OK});
   } catch (error) {
     console.error(event);
     callback(null, createResponseFromError(error as Error));
