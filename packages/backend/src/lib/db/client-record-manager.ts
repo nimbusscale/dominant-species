@@ -1,5 +1,5 @@
 import {DeleteItemCommand, Entity, FormattedItem, number, PutItemCommand, QueryCommand, schema, string} from "dynamodb-toolbox";
-import {GameTable} from "./table";
+import {GameTable, GameTableIndex} from "./table";
 
 export const ClientEntity = new Entity({
   table: GameTable,
@@ -33,17 +33,38 @@ export class ClientRecordManager {
     )
   }
 
-  async removeClient(gameId: string, clientId: string): Promise<undefined> {
-    void (await this.clientEntity.build(DeleteItemCommand).key({
-      gameId: gameId,
-      record: `client:${clientId}`
-    }).send())
+  async removeClient(clientId: string): Promise<undefined> {
+    const clientRecord = await this.getClient(clientId)
+    if (clientRecord) {
+      void (await this.clientEntity.build(DeleteItemCommand).key({
+        gameId: clientRecord?.gameId,
+        record: `client:${clientId}`
+      }).send())
+    } else {
+      throw new Error(`Unable to remove client record for clientId: ${clientId}`)
+    }
   }
 
-  async getClients(gameId: string): Promise<string[]> {
+  async getClient(clientId: string): Promise<ClientEntityType | null> {
+    const result = await this.gameTable.build(QueryCommand).query({
+      index: GameTableIndex.BY_RECORD,
+      partition: `client:${clientId}`
+    }).entities(ClientEntity).send()
+
+    if (result.Items) {
+      if (result.Items.length === 1) {
+        return result.Items[0]
+      } else if (result.Items?.length > 1) {
+        throw new Error(`Returned more than one record for clientId: ${clientId}`)
+      }
+    }
+    return null;
+  }
+
+  async getClientsForGame(gameId: string): Promise<string[]> {
     const result = await this.gameTable.build(QueryCommand).query({
       partition: gameId,
-      range: { beginsWith: 'client:' },
+      range: {beginsWith: 'client:'},
     }).entities(ClientEntity).send()
 
     if (result.Items?.length) {

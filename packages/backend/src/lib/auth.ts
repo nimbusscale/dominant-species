@@ -2,9 +2,10 @@ import {CognitoJwtVerifier} from "aws-jwt-verify";
 import {EnvVarNames} from "./enum";
 import {ensureDefined} from "./util";
 import {CognitoIdTokenPayload, CognitoJwtPayload} from "aws-jwt-verify/jwt-model";
+import {APIGatewayRequestAuthorizerEvent} from "aws-lambda/trigger/api-gateway-authorizer";
+import {APIGatewayProxyEvent} from "aws-lambda";
 
 export type CognitoTokenType = 'id' | 'access'
-
 
 
 export async function validateCognitoJwt(jwt: string, tokenType: CognitoTokenType): Promise<CognitoJwtPayload | null> {
@@ -26,3 +27,11 @@ export async function validateCognitoIdJwt(jwt: string): Promise<CognitoIdTokenP
   return await validateCognitoJwt(jwt, 'id') as CognitoIdTokenPayload
 }
 
+export function getAuthHeader(event: APIGatewayRequestAuthorizerEvent | APIGatewayProxyEvent): string | undefined {
+  const headers = event.headers
+  if (headers) {
+    return headers['Authorization']
+  } else {
+    return undefined
+  }
+}

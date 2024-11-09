@@ -1,17 +1,8 @@
 import {APIGatewayAuthorizerResult, Callback, Context, Handler} from "aws-lambda";
-import {validateCognitoIdJwt} from "./lib/auth";
+import {getAuthHeader, validateCognitoIdJwt} from "./lib/auth";
 import {APIGatewayRequestAuthorizerEvent} from "aws-lambda/trigger/api-gateway-authorizer";
 import {CognitoIdTokenPayload} from "aws-jwt-verify/jwt-model";
 
-
-function getAuthHeader(event: APIGatewayRequestAuthorizerEvent): string | undefined {
-  const headers = event.headers
-  if (headers) {
-    return headers['Authorization']
-  } else {
-    return undefined
-  }
-}
 
 function buildAuthResponse(event: APIGatewayRequestAuthorizerEvent, jwtPayload: CognitoIdTokenPayload): APIGatewayAuthorizerResult {
   return {
