@@ -22,6 +22,7 @@ export class GameMgmtStack extends cdk.Stack {
   readonly wsHandlerFunction: aws_lambda_nodejs.NodejsFunction;
   readonly gameMgmtApiGw: aws_apigateway.LambdaRestApi;
   readonly gameStateApiGw: aws_apigatewayv2.WebSocketApi;
+  readonly gameStateApiGwStage: aws_apigatewayv2.WebSocketStage
 
   constructor(
     scope: Construct,
@@ -39,17 +40,6 @@ export class GameMgmtStack extends cdk.Stack {
       runtime: aws_lambda.Runtime.NODEJS_20_X,
       entry: path.join(__dirname, '../../../backend/src/api-handler.ts'),
       handler: 'apiHandler',
-      role: gameMgmtRole,
-      environment: {
-        [EnvVarNames.VPA_GAME_TABLE_NAME]: gameTable.tableName,
-        [EnvVarNames.VPA_STATE_BUCKET_NAME]: stateBucket.bucketName,
-      },
-    });
-
-    this.wsHandlerFunction = new aws_lambda_nodejs.NodejsFunction(this, 'wsHandler', {
-      runtime: aws_lambda.Runtime.NODEJS_20_X,
-      entry: path.join(__dirname, '../../../backend/src/ws-handler.ts'),
-      handler: 'wsHandler',
       role: gameMgmtRole,
       environment: {
         [EnvVarNames.VPA_GAME_TABLE_NAME]: gameTable.tableName,
@@ -112,32 +102,49 @@ export class GameMgmtStack extends cdk.Stack {
       this.authHandlerFunction,
     );
 
-    this.gameStateApiGw = new aws_apigatewayv2.WebSocketApi(this, 'gameState', {
-      connectRouteOptions: {
-        authorizer: gameStateAuthorizer,
-        integration: new WebSocketLambdaIntegration('ConnectIntegration', this.wsHandlerFunction),
-      },
-      disconnectRouteOptions: {
-        integration: new WebSocketLambdaIntegration(
-          'DisconnectIntegration',
-          this.wsHandlerFunction,
-        ),
-      },
-      defaultRouteOptions: {
-        integration: new WebSocketLambdaIntegration('DefaultIntegration', this.wsHandlerFunction),
-      },
-    });
+    this.gameStateApiGw = new aws_apigatewayv2.WebSocketApi(this, 'gameState');
 
-    const gameStateStage = new aws_apigatewayv2.WebSocketStage(this, 'v1', {
+    this.gameStateApiGwStage = new aws_apigatewayv2.WebSocketStage(this, 'v1', {
       webSocketApi: this.gameStateApiGw,
       stageName: 'v1',
       autoDeploy: true,
     });
 
+    this.wsHandlerFunction = new aws_lambda_nodejs.NodejsFunction(this, 'wsHandler', {
+      runtime: aws_lambda.Runtime.NODEJS_20_X,
+      entry: path.join(__dirname, '../../../backend/src/ws-handler.ts'),
+      handler: 'wsHandler',
+      role: gameMgmtRole,
+      environment: {
+        [EnvVarNames.VPA_GAME_TABLE_NAME]: gameTable.tableName,
+        [EnvVarNames.VPA_STATE_API_GW_URL]: this.gameStateApiGwStage.url,
+        [EnvVarNames.VPA_STATE_BUCKET_NAME]: stateBucket.bucketName,
+      },
+    });
+
     new aws_apigatewayv2.CfnApiMapping(this, 'gameStateDomainMapping', {
       apiId: this.gameStateApiGw.apiId,
       domainName: gameStateDomainName.name,
-      stage: gameStateStage.stageName,
+      stage: this.gameStateApiGwStage.stageName,
     });
+
+    this.gameStateApiGw.addRoute('$connect', {
+        authorizer: gameStateAuthorizer,
+        integration: new WebSocketLambdaIntegration('ConnectIntegration', this.wsHandlerFunction),
+      })
+
+    this.gameStateApiGw.addRoute('$disconnect', {
+        integration: new WebSocketLambdaIntegration(
+          'DisconnectIntegration',
+          this.wsHandlerFunction,
+        ),
+      })
+
+        this.gameStateApiGw.addRoute('$default', {
+        integration: new WebSocketLambdaIntegration(
+          'DefaultIntegration',
+          this.wsHandlerFunction,
+        ),
+      })
   }
 }

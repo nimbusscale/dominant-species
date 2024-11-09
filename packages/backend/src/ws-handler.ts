@@ -6,11 +6,17 @@ import { StateApiController } from './lib/api/state-api-controller';
 import { GameStateEntity, GameStateRecordManager } from './lib/db/game-state-record-manager';
 import { GameStateObjectManager } from './lib/state/game-state-object-manager';
 import { createResponseFromError } from './lib/error';
+import {ApiGatewayManagementApiClient} from "@aws-sdk/client-apigatewaymanagementapi";
+import {EnvVarNames} from "./lib/enum";
 
+const apiGwClient = new ApiGatewayManagementApiClient({
+      endpoint: process.env[EnvVarNames.VPA_STATE_API_GW_URL]
+    })
 const clientRecordManager = new ClientRecordManager(ClientEntity);
 const gameStateRecordManager = new GameStateRecordManager(GameStateEntity);
 const gameStateObjectManager = new GameStateObjectManager();
 const stateApiController = new StateApiController(
+  apiGwClient,
   clientRecordManager,
   gameStateRecordManager,
   gameStateObjectManager,
