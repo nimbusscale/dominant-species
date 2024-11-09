@@ -8,19 +8,20 @@ import {
   aws_apigateway,
   aws_certificatemanager,
   aws_cognito,
-  aws_s3, aws_apigatewayv2,
+  aws_s3,
+  aws_apigatewayv2,
 } from 'aws-cdk-lib';
 import { WebSocketLambdaIntegration } from 'aws-cdk-lib/aws-apigatewayv2-integrations';
 import { EnvVarNames } from '../../../backend/src/lib/enum';
 import * as path from 'node:path';
-import {WebSocketLambdaAuthorizer} from "aws-cdk-lib/aws-apigatewayv2-authorizers";
+import { WebSocketLambdaAuthorizer } from 'aws-cdk-lib/aws-apigatewayv2-authorizers';
 
 export class GameMgmtStack extends cdk.Stack {
   readonly apiHandlerFunction: aws_lambda_nodejs.NodejsFunction;
   readonly authHandlerFunction: aws_lambda_nodejs.NodejsFunction;
-  readonly wsHandlerFunction: aws_lambda_nodejs.NodejsFunction
+  readonly wsHandlerFunction: aws_lambda_nodejs.NodejsFunction;
   readonly gameMgmtApiGw: aws_apigateway.LambdaRestApi;
-  readonly gameStateApiGw: aws_apigatewayv2.WebSocketApi
+  readonly gameStateApiGw: aws_apigatewayv2.WebSocketApi;
 
   constructor(
     scope: Construct,
@@ -102,17 +103,30 @@ export class GameMgmtStack extends cdk.Stack {
       certificate: aws_certificatemanager.Certificate.fromCertificateArn(
         this,
         'gameStateCert',
-        'arn:aws:acm:us-east-2:011528296709:certificate/9cc1972f-d8d4-425b-86cc-d5d815616a47'
-      )
-    })
+        'arn:aws:acm:us-east-2:011528296709:certificate/9cc1972f-d8d4-425b-86cc-d5d815616a47',
+      ),
+    });
 
-    const gameStateAuthorizer = new WebSocketLambdaAuthorizer('gameStateAuthorizer', this.authHandlerFunction)
+    const gameStateAuthorizer = new WebSocketLambdaAuthorizer(
+      'gameStateAuthorizer',
+      this.authHandlerFunction,
+    );
 
     this.gameStateApiGw = new aws_apigatewayv2.WebSocketApi(this, 'gameState', {
-      connectRouteOptions: {authorizer: gameStateAuthorizer, integration: new WebSocketLambdaIntegration('ConnectIntegration', this.wsHandlerFunction)},
-      disconnectRouteOptions: {integration: new WebSocketLambdaIntegration('DisconnectIntegration', this.wsHandlerFunction)},
-      defaultRouteOptions: {integration: new WebSocketLambdaIntegration('DefaultIntegration', this.wsHandlerFunction)},
-    })
+      connectRouteOptions: {
+        authorizer: gameStateAuthorizer,
+        integration: new WebSocketLambdaIntegration('ConnectIntegration', this.wsHandlerFunction),
+      },
+      disconnectRouteOptions: {
+        integration: new WebSocketLambdaIntegration(
+          'DisconnectIntegration',
+          this.wsHandlerFunction,
+        ),
+      },
+      defaultRouteOptions: {
+        integration: new WebSocketLambdaIntegration('DefaultIntegration', this.wsHandlerFunction),
+      },
+    });
 
     const gameStateStage = new aws_apigatewayv2.WebSocketStage(this, 'v1', {
       webSocketApi: this.gameStateApiGw,
@@ -123,7 +137,7 @@ export class GameMgmtStack extends cdk.Stack {
     new aws_apigatewayv2.CfnApiMapping(this, 'gameStateDomainMapping', {
       apiId: this.gameStateApiGw.apiId,
       domainName: gameStateDomainName.name,
-      stage: gameStateStage.stageName
-    })
+      stage: gameStateStage.stageName,
+    });
   }
 }
