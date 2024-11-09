@@ -35,3 +35,13 @@ jobs:
         with:
           pull-request-number: ${{ steps.generate.outputs.pull-request-number }}
           merge-method: squash
+  notify:
+    runs-on: ubuntu-latest
+    needs:
+      - generate-docs-pr
+    if: ${{ always() && contains(needs.*.result, 'failure') }}
+    steps:
+      - env:
+          DISCORD_WEBHOOK: ${{ secrets.DS_DEV_DIARY_WEBHOOK_URL }}
+          DISCORD_EMBEDS: '[{"title": "${{github.workflow}} Failed",  "color": 13840175}]'
+        uses: Ilshidur/action-discord@master
