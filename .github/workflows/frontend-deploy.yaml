@@ -34,4 +34,4 @@ jobs:
           DISCORD_WEBHOOK: ${{ secrets.DS_DEV_DIARY_WEBHOOK_URL }}
         uses: Ilshidur/action-discord@master
         with:
-          args: "${{github.workflow}} failed"
+          args: '{"embeds": [{"title": "${{github.workflow}} failed",  "color": 13840175}]}'
