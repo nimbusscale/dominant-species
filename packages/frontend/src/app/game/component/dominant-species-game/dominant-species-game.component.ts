@@ -1,4 +1,4 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, OnDestroy, OnInit, signal } from '@angular/core';
 import { DrawPoolGameComponent } from '../draw-pool-game/draw-pool-game.component';
 import { ActivatedRoute } from '@angular/router';
 import { GameService } from '../../../engine/service/game-management/game.service';
@@ -14,7 +14,7 @@ import { NavigateService } from '../../../engine/service/navigate.service';
   templateUrl: './dominant-species-game.component.html',
   styleUrl: './dominant-species-game.component.scss',
 })
-export class DominantSpeciesGameComponent implements OnInit {
+export class DominantSpeciesGameComponent implements OnInit, OnDestroy {
   gameReady = signal(false);
   constructor(
     private route: ActivatedRoute,
@@ -38,6 +38,10 @@ export class DominantSpeciesGameComponent implements OnInit {
       .subscribe(() => {
         this.gameReady.set(true);
       });
+  }
+
+  ngOnDestroy() {
+    this.gameService.cleanupGame();
   }
 
   private async initializeGame(gameId: string): Promise<void> {

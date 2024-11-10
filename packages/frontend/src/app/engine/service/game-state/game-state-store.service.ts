@@ -145,6 +145,7 @@ export class GameStateStoreService {
   startTransaction(): void {
     if (!this._transactionState) {
       this._transactionState = deepClone(this._gameState) as GameState;
+      this._transactionState.patchId += 1;
     } else {
       throw new Error("Can't start transaction as one already in progress.");
     }

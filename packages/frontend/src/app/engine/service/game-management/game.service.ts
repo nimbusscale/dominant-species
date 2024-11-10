@@ -54,6 +54,10 @@ export class GameService {
     await this.gameManagementClientService.completeGame(gameId);
   }
 
+  async joinGame(gameId: string): Promise<void> {
+    await this.navigate.toGamePage(GameTitle.DOMINANT_SPECIES, gameId);
+  }
+
   async initializeGame(gameId: string): Promise<void> {
     const gameState = await this.gameManagementClientService.getLatestGameState(gameId);
     this.gameStateService.initializeGameState(gameState);
@@ -68,7 +72,7 @@ export class GameService {
     });
   }
 
-  async joinGame(gameId: string): Promise<void> {
-    await this.navigate.toGamePage(GameTitle.DOMINANT_SPECIES, gameId);
+  cleanupGame(): void {
+    this.gameStateService.disconnectFromBackend();
   }
 }

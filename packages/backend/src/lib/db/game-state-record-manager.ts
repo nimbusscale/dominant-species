@@ -60,7 +60,7 @@ export class GameStateRecordManager {
       .item({
         gameId: gsp.gameId,
         // TS used to ensure they sort with the latest on top. This is because the record is a string.
-        record: `gameState:${String(Date.now())}`,
+        record: `gameState:${String(gsp.patchId)}`,
         patchId: gsp.patchId,
         patch: JSON.stringify(gsp.patch),
       })

@@ -82,7 +82,8 @@ describe('GameStateStore', () => {
       });
       it('transactionState should return a copy of transaction game state when transaction', () => {
         gameStateStore.startTransaction();
-        expect(gameStateStore.transactionState).toEqual(testGameState1);
+        expect(gameStateStore.transactionState).toBeTruthy();
+        expect(gameStateStore.transactionState?.gameElements).toEqual(testGameState1.gameElements);
         expect(gameStateStore.transactionState).not.toBe(testGameState1);
       });
       it('transactionState should return null when no transaction', () => {
@@ -116,6 +117,17 @@ describe('GameStateStore', () => {
         gameStateStore.startTransaction();
         gameStateStore.setPile(testGameState1updated.gameElements.pile[0]);
         gameStateStore.commitTransaction();
+      });
+      it('increments PatchId', () => {
+        expect(gameStateStore.gameState).toBeTruthy();
+        if (gameStateStore.gameState) {
+          const currentPatchId = gameStateStore.gameState.patchId;
+          gameStateStore.startTransaction();
+          gameStateStore.setPile(testGameState1updated.gameElements.pile[0]);
+          gameStateStore.commitTransaction();
+
+          expect(gameStateStore.gameState.patchId).toEqual(currentPatchId + 1);
+        }
       });
       it('emits original state when rollback', (done) => {
         gameStateStore.pile$

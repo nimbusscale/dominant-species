@@ -35,6 +35,7 @@ export class StateApiController {
     if (queryStringParameters) {
       const gameId = ensureDefined(queryStringParameters['gameId']);
       const playerId = ensureDefined(queryStringParameters['playerId']);
+      console.log(`Connect gameId: ${gameId} playerId: ${playerId} clientId: ${clientId} `);
       await this.clientRecordManager.addClient(gameId, clientId, playerId);
     } else {
       throw new BadRequestError('must define gameId and playerId query params');
@@ -43,6 +44,7 @@ export class StateApiController {
 
   async disconnect(event: APIGatewayProxyEvent): Promise<void> {
     const clientId = ensureDefined(event.requestContext.connectionId);
+    console.log(`Disconnect clientId: ${clientId} `);
     await this.clientRecordManager.removeClient(clientId);
   }
 
