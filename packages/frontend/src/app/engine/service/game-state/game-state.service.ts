@@ -40,10 +40,9 @@ export class GameStateService {
   }
 
   private applyGsp(gsp: GameStatePatch): void {
-    console.log(JSON.stringify(gsp))
-    // this.gameStateStore.setGameState(
-    //   this.gspService.apply(ensureDefined(this.gameStateStore.gameState), gsp),
-    // );
+    this.gameStateStore.setGameState(
+      this.gspService.apply(ensureDefined(this.gameStateStore.gameState), gsp),
+    );
   }
 
   startTransaction(): void {
