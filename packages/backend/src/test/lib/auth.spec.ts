@@ -2,7 +2,7 @@ import { expect, jest, it, describe } from '@jest/globals';
 import { CognitoJwtVerifier } from 'aws-jwt-verify';
 import { APIGatewayProxyEvent, APIGatewayRequestAuthorizerEvent } from 'aws-lambda';
 import { getAuthHeader, getTokenQueryParam, validateCognitoJwt } from '../../lib/auth';
-import {EnvVarNames} from "../../lib/enum";
+import { EnvVarNames } from '../../lib/enum';
 
 jest.mock('aws-jwt-verify');
 
@@ -13,8 +13,8 @@ describe('validateCognitoJwt', () => {
 
   beforeEach(() => {
     (CognitoJwtVerifier.create as jest.Mock).mockReturnValue(mockVerifier);
-    process.env[EnvVarNames.COGNITO_USER_POOL_ID] = 'test'
-    process.env[EnvVarNames.COGNITO_CLIENT_ID] = 'test'
+    process.env[EnvVarNames.COGNITO_USER_POOL_ID] = 'test';
+    process.env[EnvVarNames.COGNITO_CLIENT_ID] = 'test';
   });
 
   it('should return payload if JWT is valid', async () => {
