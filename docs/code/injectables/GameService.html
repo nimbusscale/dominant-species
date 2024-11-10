@@ -174,12 +174,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(navigate: <a href="../injectables/NavigateService.html" target="_self">NavigateService</a>, authService: <a href="../injectables/AuthService.html" target="_self">AuthService</a>, gameManagementClientService: <a href="../injectables/GameManagementClientService.html" target="_self">GameManagementClientService</a>, gameStateInitializationService: <a href="../injectables/GameStateInitializationService.html" target="_self">GameStateInitializationService</a>, areaRegistryService: <a href="../injectables/AreaRegistryService.html" target="_self">AreaRegistryService</a>, factionRegistryService: <a href="../injectables/FactionRegistryService.html" target="_self">FactionRegistryService</a>, pileRegistryService: <a href="../injectables/PileRegistryService.html" target="_self">PileRegistryService</a>)</code>
+<code>constructor(navigate: <a href="../injectables/NavigateService.html" target="_self">NavigateService</a>, authService: <a href="../injectables/AuthService.html" target="_self">AuthService</a>, gameManagementClientService: <a href="../injectables/GameManagementClientService.html" target="_self">GameManagementClientService</a>, gameStateService: <a href="../injectables/GameStateService.html" target="_self">GameStateService</a>, gameStateInitializationService: <a href="../injectables/GameStateInitializationService.html" target="_self">GameStateInitializationService</a>, areaRegistryService: <a href="../injectables/AreaRegistryService.html" target="_self">AreaRegistryService</a>, factionRegistryService: <a href="../injectables/FactionRegistryService.html" target="_self">FactionRegistryService</a>, pileRegistryService: <a href="../injectables/PileRegistryService.html" target="_self">PileRegistryService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/engine/service/game-management/game.service.ts:19</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/engine/service/game-management/game.service.ts:20</a></div>
                             </td>
                         </tr>
 
@@ -225,6 +225,18 @@
                                                   
                                                         <td>
                                                                         <code><a href="../injectables/GameManagementClientService.html" target="_self" >GameManagementClientService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>gameStateService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/GameStateService.html" target="_self" >GameStateService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -316,8 +328,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="51"
-                                    class="link-to-prism">src/app/engine/service/game-management/game.service.ts:51</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="53"
+                                    class="link-to-prism">src/app/engine/service/game-management/game.service.ts:53</a></div>
                         </td>
                     </tr>
 
@@ -385,8 +397,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="30"
-                                    class="link-to-prism">src/app/engine/service/game-management/game.service.ts:30</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="32"
+                                    class="link-to-prism">src/app/engine/service/game-management/game.service.ts:32</a></div>
                         </td>
                     </tr>
 
@@ -454,8 +466,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="47"
-                                    class="link-to-prism">src/app/engine/service/game-management/game.service.ts:47</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="49"
+                                    class="link-to-prism">src/app/engine/service/game-management/game.service.ts:49</a></div>
                         </td>
                     </tr>
 
@@ -493,8 +505,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="55"
-                                    class="link-to-prism">src/app/engine/service/game-management/game.service.ts:55</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="57"
+                                    class="link-to-prism">src/app/engine/service/game-management/game.service.ts:57</a></div>
                         </td>
                     </tr>
 
@@ -562,8 +574,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="68"
-                                    class="link-to-prism">src/app/engine/service/game-management/game.service.ts:68</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="71"
+                                    class="link-to-prism">src/app/engine/service/game-management/game.service.ts:71</a></div>
                         </td>
                     </tr>
 
@@ -629,6 +641,7 @@ import { Area } from &#x27;../../model/area.model&#x27;;
 import { Faction } from &#x27;../../model/faction.model&#x27;;
 import { Pile } from &#x27;../../model/pile.model&#x27;;
 import { NavigateService } from &#x27;../navigate.service&#x27;;
+import { GameStateService } from &#x27;../game-state/game-state.service&#x27;;
 
 @Injectable({
   providedIn: &#x27;root&#x27;,
@@ -638,6 +651,7 @@ export class GameService {
     private navigate: NavigateService,
     private authService: AuthService,
     private gameManagementClientService: GameManagementClientService,
+    private gameStateService: GameStateService,
     private gameStateInitializationService: GameStateInitializationService,
     private areaRegistryService: AreaRegistryService,
     private factionRegistryService: FactionRegistryService,
@@ -671,6 +685,7 @@ export class GameService {
 
   async initializeGame(gameId: string): Promise&lt;void&gt; {
     const gameState &#x3D; await this.gameManagementClientService.getLatestGameState(gameId);
+    this.gameStateService.initializeGameState(gameState);
     gameState.gameElements.area.forEach((areaState) &#x3D;&gt; {
       this.areaRegistryService.register(new Area(areaState));
     });
@@ -683,7 +698,7 @@ export class GameService {
   }
 
   async joinGame(gameId: string): Promise&lt;void&gt; {
-    await this.navigate.toGamePage(&#x27;dominant-species&#x27;, gameId);
+    await this.navigate.toGamePage(GameTitle.DOMINANT_SPECIES, gameId);
   }
 }
 </code></pre>

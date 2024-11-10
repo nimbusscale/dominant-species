@@ -384,8 +384,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="51"
-                                    class="link-to-prism">src/app/game/service/game-ready.service.ts:51</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="54"
+                                    class="link-to-prism">src/app/game/service/game-ready.service.ts:54</a></div>
                         </td>
                     </tr>
 
@@ -550,7 +550,10 @@ export class GameReadyService {
   private animalsReady(): Observable&lt;boolean&gt; {
     const animalReadySubject &#x3D; new BehaviorSubject&lt;boolean&gt;(false);
     const animalSubscription &#x3D; this.animalProviderService.animals$.subscribe((animals) &#x3D;&gt; {
-      if (animals.length &#x3D;&#x3D;&#x3D; this.gameStateService.playerIds.length) {
+      if (
+        this.gameStateService.playerIds &amp;&amp;
+        animals.length &#x3D;&#x3D;&#x3D; this.gameStateService.playerIds.length
+      ) {
         animalReadySubject.next(true);
       }
     });
