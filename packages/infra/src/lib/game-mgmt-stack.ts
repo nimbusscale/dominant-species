@@ -100,6 +100,9 @@ export class GameMgmtStack extends cdk.Stack {
     const gameStateAuthorizer = new WebSocketLambdaAuthorizer(
       'gameStateAuthorizer',
       this.authHandlerFunction,
+      {
+        identitySource: ['route.request.querystring.token'],
+      },
     );
 
     this.gameStateApiGw = new aws_apigatewayv2.WebSocketApi(this, 'gameState');
