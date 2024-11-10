@@ -37,5 +37,12 @@ export class GameStateClientService {
 
   sendGspToBackend(gsp: GameStatePatch): void {
     console.log(JSON.stringify(gsp));
+    if (this.websocketSubject) {
+      this.websocketSubject.next(gsp)
+    } else {
+      throw new Error("Must connect first")
+    }
+
+
   }
 }
