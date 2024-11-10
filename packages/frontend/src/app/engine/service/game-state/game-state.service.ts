@@ -25,19 +25,25 @@ export class GameStateService {
     private gspService: GameStatePatchService,
     private gameStateClient: GameStateClientService,
   ) {
-    this.gameStateClient.gsp$.pipe(filter((gsp) => gsp != undefined)).subscribe((gsp) => {
+    this.gameStateClient.gsp$.subscribe((gsp) => {
       this.applyGsp(gsp);
     });
   }
 
   initializeGameState(gameState: GameState): void {
     this.gameStateStore.initializeGameState(gameState);
+    this.gameStateClient.connect(gameState.gameId)
+  }
+
+  disconnectFromBackend(): void {
+    this.gameStateClient.disconnect()
   }
 
   private applyGsp(gsp: GameStatePatch): void {
-    this.gameStateStore.setGameState(
-      this.gspService.apply(ensureDefined(this.gameStateStore.gameState), gsp),
-    );
+    console.log(JSON.stringify(gsp))
+    // this.gameStateStore.setGameState(
+    //   this.gspService.apply(ensureDefined(this.gameStateStore.gameState), gsp),
+    // );
   }
 
   startTransaction(): void {
