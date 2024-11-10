@@ -24,8 +24,6 @@ export abstract class GameElementRegistryService<
     return getOrThrow(this.elementById, id);
   }
 
-  // register(element: TgameElement): void;
-  // register(elements: TgameElement[]): void;
   register(elements: TgameElement | TgameElement[]): void {
     const elementsArray = Array.isArray(elements) ? elements : [elements];
 
