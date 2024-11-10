@@ -39,3 +39,14 @@ export function getAuthHeader(
     return undefined;
   }
 }
+
+export function getTokenQueryParam(
+  event: APIGatewayRequestAuthorizerEvent | APIGatewayProxyEvent,
+): string | undefined {
+  const queryParams = event.queryStringParameters;
+  if (queryParams) {
+    return queryParams['token'];
+  } else {
+    return undefined;
+  }
+}
