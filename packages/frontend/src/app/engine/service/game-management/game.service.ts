@@ -73,6 +73,6 @@ export class GameService {
   }
 
   cleanupGame(): void {
-    this.gameStateService.disconnectFromBackend()
+    this.gameStateService.disconnectFromBackend();
   }
 }

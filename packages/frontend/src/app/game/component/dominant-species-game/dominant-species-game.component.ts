@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit, signal} from '@angular/core';
+import { Component, OnDestroy, OnInit, signal } from '@angular/core';
 import { DrawPoolGameComponent } from '../draw-pool-game/draw-pool-game.component';
 import { ActivatedRoute } from '@angular/router';
 import { GameService } from '../../../engine/service/game-management/game.service';
@@ -41,7 +41,7 @@ export class DominantSpeciesGameComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.gameService.cleanupGame()
+    this.gameService.cleanupGame();
   }
 
   private async initializeGame(gameId: string): Promise<void> {

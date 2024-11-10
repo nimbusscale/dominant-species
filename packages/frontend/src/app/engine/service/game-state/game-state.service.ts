@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { GameStateStoreService } from './game-state-store.service';
 import { GameStatePatchService } from './game-state-patch.service';
 import { GameStateClientService } from './game-state-client.service';
-import { filter, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import {
   AreaState,
   FactionState,
@@ -32,11 +32,11 @@ export class GameStateService {
 
   initializeGameState(gameState: GameState): void {
     this.gameStateStore.initializeGameState(gameState);
-    this.gameStateClient.connect(gameState.gameId)
+    this.gameStateClient.connect(gameState.gameId);
   }
 
   disconnectFromBackend(): void {
-    this.gameStateClient.disconnect()
+    this.gameStateClient.disconnect();
   }
 
   private applyGsp(gsp: GameStatePatch): void {

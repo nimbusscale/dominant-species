@@ -1,7 +1,7 @@
-import {GameStateStoreService} from '../../../../app/engine/service/game-state/game-state-store.service';
-import {skip} from 'rxjs';
-import {testGameState1, testGameState1updated} from '../../../game-state-test.constant';
-import {GameState} from 'api-types/src/game-state';
+import { GameStateStoreService } from '../../../../app/engine/service/game-state/game-state-store.service';
+import { skip } from 'rxjs';
+import { testGameState1, testGameState1updated } from '../../../game-state-test.constant';
+import { GameState } from 'api-types/src/game-state';
 
 describe('GameStateStore', () => {
   let gameStateStore: GameStateStoreService;
@@ -82,7 +82,7 @@ describe('GameStateStore', () => {
       });
       it('transactionState should return a copy of transaction game state when transaction', () => {
         gameStateStore.startTransaction();
-        expect(gameStateStore.transactionState).toBeTruthy()
+        expect(gameStateStore.transactionState).toBeTruthy();
         expect(gameStateStore.transactionState?.gameElements).toEqual(testGameState1.gameElements);
         expect(gameStateStore.transactionState).not.toBe(testGameState1);
       });
@@ -119,17 +119,16 @@ describe('GameStateStore', () => {
         gameStateStore.commitTransaction();
       });
       it('increments PatchId', () => {
-
-        expect(gameStateStore.gameState).toBeTruthy()
+        expect(gameStateStore.gameState).toBeTruthy();
         if (gameStateStore.gameState) {
-          const currentPatchId = gameStateStore.gameState.patchId
+          const currentPatchId = gameStateStore.gameState.patchId;
           gameStateStore.startTransaction();
           gameStateStore.setPile(testGameState1updated.gameElements.pile[0]);
           gameStateStore.commitTransaction();
 
-          expect(gameStateStore.gameState.patchId).toEqual(currentPatchId + 1)
+          expect(gameStateStore.gameState.patchId).toEqual(currentPatchId + 1);
         }
-      })
+      });
       it('emits original state when rollback', (done) => {
         gameStateStore.pile$
           .pipe(skip(1)) // Skip the initial state
