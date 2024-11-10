@@ -137,6 +137,9 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#cleanupGame" >cleanupGame</a>
+                            </li>
+                            <li>
                                     <span class="modifier">Async</span>
                                 <a href="#completeGame" >completeGame</a>
                             </li>
@@ -306,6 +309,43 @@
     <h3 id="methods">
         Methods
     </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cleanupGame"></a>
+                    <span class="name">
+                        <span ><b>cleanupGame</b></span>
+                        <a href="#cleanupGame"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>cleanupGame()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="75"
+                                    class="link-to-prism">src/app/engine/service/game-management/game.service.ts:75</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -505,8 +545,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="57"
-                                    class="link-to-prism">src/app/engine/service/game-management/game.service.ts:57</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="61"
+                                    class="link-to-prism">src/app/engine/service/game-management/game.service.ts:61</a></div>
                         </td>
                     </tr>
 
@@ -574,8 +614,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="71"
-                                    class="link-to-prism">src/app/engine/service/game-management/game.service.ts:71</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="57"
+                                    class="link-to-prism">src/app/engine/service/game-management/game.service.ts:57</a></div>
                         </td>
                     </tr>
 
@@ -683,6 +723,10 @@ export class GameService {
     await this.gameManagementClientService.completeGame(gameId);
   }
 
+  async joinGame(gameId: string): Promise&lt;void&gt; {
+    await this.navigate.toGamePage(GameTitle.DOMINANT_SPECIES, gameId);
+  }
+
   async initializeGame(gameId: string): Promise&lt;void&gt; {
     const gameState &#x3D; await this.gameManagementClientService.getLatestGameState(gameId);
     this.gameStateService.initializeGameState(gameState);
@@ -697,8 +741,8 @@ export class GameService {
     });
   }
 
-  async joinGame(gameId: string): Promise&lt;void&gt; {
-    await this.navigate.toGamePage(GameTitle.DOMINANT_SPECIES, gameId);
+  cleanupGame(): void {
+    this.gameStateService.disconnectFromBackend();
   }
 }
 </code></pre>
