@@ -29,7 +29,7 @@ export class AnimalElements {
   ) {
     this.elementArea.spaces$.subscribe(() => {
       this.elementsSubject.next(this.allElements);
-    })
+    });
   }
 
   private get addedElementSpaces(): Space[] {
