@@ -40,7 +40,7 @@ export class Area extends GameElement<AreaState> {
     newState.space.forEach((spaceState, index) => {
       /* We need to set the state of the space in both the Area and the Space as the Space does not notify the Area when it's
          updated using setState. State updates are only sent when the local player takes an action. However, since setState is done
-         when a GSP is received there are not state update notifications sent, so anything interested in the state needs to be updated
+         when a GSP is received, there are no state update notifications sent, so anything interested in the state needs to be updated
          when the setState is done. So it needs to be done both at the Space and Area objects.
        */
       this.spaceState[index] = spaceState;

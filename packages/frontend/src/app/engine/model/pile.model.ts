@@ -1,7 +1,7 @@
 import { defaultPieceFactory, PieceFactory } from './piece.model';
 import { BehaviorSubject, distinctUntilChanged, Observable } from 'rxjs';
 import { GameElement } from './game-element.model';
-import { Piece, PileState } from 'api-types/src/game-state';
+import {Piece, PileState} from 'api-types/src/game-state';
 
 /**
  * A Pile is used to draw one or more random pieces for a defined pool of pieces.
@@ -36,9 +36,18 @@ export class Pile extends GameElement<PileState> {
     );
   }
 
+  override setState(newState: PileState) {
+    super.setState(newState)
+    this.emitLength()
+  }
+
+  private emitLength(): void {
+    this.lengthSubject.next(this.length);
+  }
+
   private emitPileState(): void {
     this.emitState();
-    this.lengthSubject.next(this.length);
+    this.emitLength()
   }
 
   /**
