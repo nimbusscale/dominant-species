@@ -541,8 +541,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="47"
-                                    class="link-to-prism">src/app/engine/model/area.model.ts:47</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="53"
+                                    class="link-to-prism">src/app/engine/model/area.model.ts:53</a></div>
                         </td>
                     </tr>
 
@@ -758,6 +758,12 @@ export class Area extends GameElement&lt;AreaState&gt; {
     }
 
     newState.space.forEach((spaceState, index) &#x3D;&gt; {
+      /* We need to set the state of the space in both the Area and the Space as the Space does not notify the Area when it&#x27;s
+         updated using setState. State updates are only sent when the local player takes an action. However, since setState is done
+         when a GSP is received there are not state update notifications sent, so anything interested in the state needs to be updated
+         when the setState is done. So it needs to be done both at the Space and Area objects.
+       */
+      this.spaceState[index] &#x3D; spaceState;
       this.spaces[index].setState(spaceState);
     });
 
