@@ -11,7 +11,6 @@ const FACTORY_MAP = new Map<string, InitialGameElementStatesFactoryConstructor>(
   [GameTitle.DOMINANT_SPECIES, GameElementStatesFactoryService],
 ]);
 
-
 /**
  * The GameStateInitializationService is responsible for creating the initial GameElementStates for a game.
  *
