@@ -120,6 +120,22 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Abstract base class that manages the synchronization between individual
+<code>GameElement</code> instances and the central <code>GameStateService</code>.</p>
+<p>This service handles:</p>
+<ul>
+<li>Registration of <code>GameElement</code> instances.</li>
+<li>Listening to state changes in individual <code>GameElement</code> instances and updating the central game state.</li>
+<li>Subscribing to changes in the central game state and updating the corresponding <code>GameElement</code> instances.</li>
+</ul>
+<p>Subclasses must implement methods to interact with specific types of <code>GameElement</code>
+and their corresponding states.</p>
+
+            </p>
 
 
 
@@ -213,7 +229,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/engine/service/game-element/game-element-state.service.ts:16</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/engine/service/game-element/game-element-state.service.ts:31</a></div>
                             </td>
                         </tr>
 
@@ -278,14 +294,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="37"
-                                    class="link-to-prism">src/app/engine/service/game-element/game-element-state.service.ts:37</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="88"
+                                    class="link-to-prism">src/app/engine/service/game-element/game-element-state.service.ts:88</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Retrieves a registered <code>GameElement</code> by its ID.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -296,6 +314,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -310,6 +329,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>The ID of the <code>GameElement</code> to retrieve.</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -319,7 +344,8 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <p>The <code>GameElement</code> associated with the given ID.</p>
+
                             </div>
                 </td>
             </tr>
@@ -347,14 +373,18 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="26"
-                                    class="link-to-prism">src/app/engine/service/game-element/game-element-state.service.ts:26</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="70"
+                                    class="link-to-prism">src/app/engine/service/game-element/game-element-state.service.ts:70</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Initializes the service by subscribing to the central <code>GameStateService</code>&#39;s observable
+of <code>GameElementState</code>. When the state of a registered <code>GameElement</code> changes in the
+central game state, this method updates the corresponding <code>GameElement</code>.</p>
+</div>
 
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -384,14 +414,22 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="41"
-                                    class="link-to-prism">src/app/engine/service/game-element/game-element-state.service.ts:41</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="103"
+                                    class="link-to-prism">src/app/engine/service/game-element/game-element-state.service.ts:103</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Registers one or more <code>GameElement</code> instances with the service.</p>
+<p>This method:</p>
+<ul>
+<li>Adds the <code>GameElement</code> instances to the internal registry.</li>
+<li>Registers their state with the central <code>GameStateService</code>.</li>
+<li>Subscribes to their state changes to update the central game state.</li>
+</ul>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -402,6 +440,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -416,6 +455,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>The <code>GameElement</code> instances to register.</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -454,14 +499,18 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="23"
-                                    class="link-to-prism">src/app/engine/service/game-element/game-element-state.service.ts:23</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="53"
+                                    class="link-to-prism">src/app/engine/service/game-element/game-element-state.service.ts:53</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Registers the state of a <code>GameElement</code> with the central <code>GameStateService</code>.</p>
+<p>Subclasses must implement this method to add the <code>GameElement</code>&#39;s state
+to the central game state.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -472,6 +521,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -486,6 +536,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>The <code>GameElement</code> to register.</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -524,14 +580,18 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="24"
-                                    class="link-to-prism">src/app/engine/service/game-element/game-element-state.service.ts:24</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="63"
+                                    class="link-to-prism">src/app/engine/service/game-element/game-element-state.service.ts:63</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Updates the state of a <code>GameElement</code> in the central <code>GameStateService</code>.</p>
+<p>Subclasses must implement this method to update the state of a <code>GameElement</code>
+in the central game state when its state changes.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -542,6 +602,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -556,6 +617,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>The new state of the <code>GameElement</code>.</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -602,7 +669,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/engine/service/game-element/game-element-state.service.ts:16</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/engine/service/game-element/game-element-state.service.ts:31</a></div>
                         </td>
                     </tr>
 
@@ -634,7 +701,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/engine/service/game-element/game-element-state.service.ts:15</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/engine/service/game-element/game-element-state.service.ts:30</a></div>
                         </td>
                     </tr>
 
@@ -663,9 +730,22 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/engine/service/game-element/game-element-state.service.ts:22</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/engine/service/game-element/game-element-state.service.ts:43</a></div>
                                 </td>
                             </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Observable that emits arrays of <code>GameElementState</code> from the central <code>GameStateService</code>.</p>
+<p>Subclasses must provide an observable that emits the relevant <code>GameElementState</code>
+instances for their specific type of <code>GameElement</code>.</p>
+</div>
+
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code>Observable&lt;TgameElementState[]&gt;</code>
+
+                                </div>
+                        </td>
+                    </tr>
 
             </tbody>
         </table>
@@ -681,6 +761,21 @@ import { GameElement } from &#x27;../../model/game-element.model&#x27;;
 import { getOrThrow } from &#x27;../../util/misc&#x27;;
 import { GameElementState } from &#x27;api-types/src/game-state&#x27;;
 
+/**
+ * Abstract base class that manages the synchronization between individual
+ * &#x60;GameElement&#x60; instances and the central &#x60;GameStateService&#x60;.
+ *
+ * This service handles:
+ * - Registration of &#x60;GameElement&#x60; instances.
+ * - Listening to state changes in individual &#x60;GameElement&#x60; instances and updating the central game state.
+ * - Subscribing to changes in the central game state and updating the corresponding &#x60;GameElement&#x60; instances.
+ *
+ * Subclasses must implement methods to interact with specific types of &#x60;GameElement&#x60;
+ * and their corresponding states.
+ *
+ * @typeParam TgameElementState - The specific type of &#x60;GameElementState&#x60; managed by the subclass.
+ * @typeParam TgameElement - The specific type of &#x60;GameElement&#x60; managed by the subclass.
+ */
 @Injectable({
   providedIn: &#x27;root&#x27;,
 })
@@ -695,10 +790,39 @@ export abstract class GameElementStateService&lt;
     this.initialize();
   }
 
+  /**
+   * Observable that emits arrays of &#x60;GameElementState&#x60; from the central &#x60;GameStateService&#x60;.
+   *
+   * Subclasses must provide an observable that emits the relevant &#x60;GameElementState&#x60;
+   * instances for their specific type of &#x60;GameElement&#x60;.
+   */
   protected abstract get elementState$(): Observable&lt;TgameElementState[]&gt;;
+
+  /**
+   * Registers the state of a &#x60;GameElement&#x60; with the central &#x60;GameStateService&#x60;.
+   *
+   * Subclasses must implement this method to add the &#x60;GameElement&#x60;&#x27;s state
+   * to the central game state.
+   *
+   * @param element - The &#x60;GameElement&#x60; to register.
+   */
   protected abstract registerEntityState(element: TgameElement): void;
+
+  /**
+   * Updates the state of a &#x60;GameElement&#x60; in the central &#x60;GameStateService&#x60;.
+   *
+   * Subclasses must implement this method to update the state of a &#x60;GameElement&#x60;
+   * in the central game state when its state changes.
+   *
+   * @param state - The new state of the &#x60;GameElement&#x60;.
+   */
   protected abstract setEntityState(state: GameElementState): void;
 
+  /**
+   * Initializes the service by subscribing to the central &#x60;GameStateService&#x60;&#x27;s observable
+   * of &#x60;GameElementState&#x60;. When the state of a registered &#x60;GameElement&#x60; changes in the
+   * central game state, this method updates the corresponding &#x60;GameElement&#x60;.
+   */
   private initialize(): void {
     this.elementState$.subscribe((entities) &#x3D;&gt; {
       entities.forEach((elementState) &#x3D;&gt; {
@@ -710,10 +834,28 @@ export abstract class GameElementStateService&lt;
     });
   }
 
+  /**
+   * Retrieves a registered &#x60;GameElement&#x60; by its ID.
+   *
+   * @param id - The ID of the &#x60;GameElement&#x60; to retrieve.
+   * @returns The &#x60;GameElement&#x60; associated with the given ID.
+   * @throws If no &#x60;GameElement&#x60; with the given ID is registered.
+   */
   private getEntity(id: string): TgameElement {
     return getOrThrow(this.elementById, id);
   }
 
+  /**
+   * Registers one or more &#x60;GameElement&#x60; instances with the service.
+   *
+   * This method:
+   * - Adds the &#x60;GameElement&#x60; instances to the internal registry.
+   * - Registers their state with the central &#x60;GameStateService&#x60;.
+   * - Subscribes to their state changes to update the central game state.
+   *
+   * @param entities - The &#x60;GameElement&#x60; instances to register.
+   * @throws If a &#x60;GameElement&#x60; with the same ID is already registered.
+   */
   register(entities: TgameElement[]): void {
     entities.forEach((element) &#x3D;&gt; {
       if (!this.registeredIds.has(element.id)) {
