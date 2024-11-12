@@ -18,5 +18,5 @@ Another example is that I am utilizing Angular as the framework, which may not m
 
 # Code
 - [Code Docs](./code/index.html)
-- [Service and Component UML](./service-component-uml.svg)
-
+- [Engine Service UML](./engine-service-uml.svg)
+- [Game Component and Service UML](./game-service-component-uml.svg)
