@@ -16,8 +16,8 @@ import { ensureDefined } from '../../util/misc';
 /**
  * GameStateStoreService is responsible for maintain the GameState and making it accessible to others.
  *
- * When a GameStateStoreService is instantiated, it creates an empty GameState and the various GameStateElements will need to be added by
- * using the register method of the state element management service such as PileService or AreaService.
+ * When a GameStateStoreService is instantiated, it does not have a GameState, and it must be initialized with a GameState before it
+ * can be used.
  *
  * The GameState has several top level keys, and GameStateStoreService provides observables for each of those keys.
  * So if someone was interested in the pile key, then they could subscribe to the pile$ observable.

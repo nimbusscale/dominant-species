@@ -11,6 +11,13 @@ const FACTORY_MAP = new Map<string, InitialGameElementStatesFactoryConstructor>(
   [GameTitle.DOMINANT_SPECIES, GameElementStatesFactoryService],
 ]);
 
+
+/**
+ * The GameStateInitializationService is responsible for creating the initial GameElementStates for a game.
+ *
+ * It does this by getting an "empty GameState" object and then using a game-specific Factory function to create the Game Elements for the
+ * specific title.
+ */
 @Injectable({
   providedIn: 'root',
 })
