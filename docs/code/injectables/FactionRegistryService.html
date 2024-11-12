@@ -280,7 +280,7 @@
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../injectables/GameElementRegistryService.html#source" target="_self" >GameElementRegistryService:33</a></code>
+                                <div class="io-line">Defined in         <code><a href="../injectables/GameElementRegistryService.html#source" target="_self" >GameElementRegistryService:31</a></code>
 </div>
                         </td>
                     </tr>
@@ -353,7 +353,7 @@
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../injectables/GameElementRegistryService.html#source" target="_self" >GameElementRegistryService:23</a></code>
+                                <div class="io-line">Defined in         <code><a href="../injectables/GameElementRegistryService.html#source" target="_self" >GameElementRegistryService:50</a></code>
 </div>
                         </td>
                     </tr>
@@ -361,6 +361,8 @@
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Retrieves a registered <code>GameElement</code> by its ID.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -371,6 +373,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -385,6 +388,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>The ID of the <code>GameElement</code> to retrieve.</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -394,7 +403,8 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <p>The <code>GameElement</code> associated with the given ID.</p>
+
                             </div>
                 </td>
             </tr>
@@ -528,7 +538,7 @@
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../injectables/GameElementRegistryService.html#source" target="_self" >GameElementRegistryService:17</a></code>
+                                <div class="io-line">Defined in         <code><a href="../injectables/GameElementRegistryService.html#source" target="_self" >GameElementRegistryService:36</a></code>
 </div>
                         </td>
                     </tr>
@@ -561,7 +571,7 @@
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../injectables/GameElementRegistryService.html#source" target="_self" >GameElementRegistryService:18</a></code>
+                                <div class="io-line">Defined in         <code><a href="../injectables/GameElementRegistryService.html#source" target="_self" >GameElementRegistryService:37</a></code>
 </div>
                         </td>
                     </tr>
@@ -600,7 +610,7 @@
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../injectables/GameElementRegistryService.html#source" target="_self" >GameElementRegistryService:16</a></code>
+                                <div class="io-line">Defined in         <code><a href="../injectables/GameElementRegistryService.html#source" target="_self" >GameElementRegistryService:35</a></code>
 </div>
                         </td>
                     </tr>
@@ -638,7 +648,7 @@
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../injectables/GameElementRegistryService.html#source" target="_self" >GameElementRegistryService:19</a></code>
+                                <div class="io-line">Defined in         <code><a href="../injectables/GameElementRegistryService.html#source" target="_self" >GameElementRegistryService:39</a></code>
 </div>
                         </td>
                     </tr>
@@ -682,8 +692,6 @@ export class FactionRegistryService extends GameElementRegistryService&lt;
     super(factionStateSvc);
   }
 
-  // override register(element: Faction): void;
-  // override register(elements: Faction[]): void
   override register(elements: Faction | Faction[]): void {
     const elementsArray &#x3D; Array.isArray(elements) ? elements : [elements];
     super.register(elementsArray);

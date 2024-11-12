@@ -390,7 +390,7 @@
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../injectables/GameElementStateService.html#source" target="_self" >GameElementStateService:37</a></code>
+                                <div class="io-line">Defined in         <code><a href="../injectables/GameElementStateService.html#source" target="_self" >GameElementStateService:88</a></code>
 </div>
                         </td>
                     </tr>
@@ -398,6 +398,8 @@
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Retrieves a registered <code>GameElement</code> by its ID.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -408,6 +410,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -422,6 +425,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>The ID of the <code>GameElement</code> to retrieve.</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -431,7 +440,8 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <p>The <code>GameElement</code> associated with the given ID.</p>
+
                             </div>
                 </td>
             </tr>
@@ -465,7 +475,7 @@
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../injectables/GameElementStateService.html#source" target="_self" >GameElementStateService:26</a></code>
+                                <div class="io-line">Defined in         <code><a href="../injectables/GameElementStateService.html#source" target="_self" >GameElementStateService:70</a></code>
 </div>
                         </td>
                     </tr>
@@ -473,6 +483,10 @@
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Initializes the service by subscribing to the central <code>GameStateService</code>&#39;s observable
+of <code>GameElementState</code>. When the state of a registered <code>GameElement</code> changes in the
+central game state, this method updates the corresponding <code>GameElement</code>.</p>
+</div>
 
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -508,7 +522,7 @@
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../injectables/GameElementStateService.html#source" target="_self" >GameElementStateService:41</a></code>
+                                <div class="io-line">Defined in         <code><a href="../injectables/GameElementStateService.html#source" target="_self" >GameElementStateService:103</a></code>
 </div>
                         </td>
                     </tr>
@@ -516,6 +530,14 @@
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Registers one or more <code>GameElement</code> instances with the service.</p>
+<p>This method:</p>
+<ul>
+<li>Adds the <code>GameElement</code> instances to the internal registry.</li>
+<li>Registers their state with the central <code>GameStateService</code>.</li>
+<li>Subscribes to their state changes to update the central game state.</li>
+</ul>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -526,6 +548,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -540,6 +563,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>The <code>GameElement</code> instances to register.</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -592,7 +621,7 @@
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../injectables/GameElementStateService.html#source" target="_self" >GameElementStateService:16</a></code>
+                                <div class="io-line">Defined in         <code><a href="../injectables/GameElementStateService.html#source" target="_self" >GameElementStateService:31</a></code>
 </div>
                         </td>
                     </tr>
@@ -631,7 +660,7 @@
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../injectables/GameElementStateService.html#source" target="_self" >GameElementStateService:15</a></code>
+                                <div class="io-line">Defined in         <code><a href="../injectables/GameElementStateService.html#source" target="_self" >GameElementStateService:30</a></code>
 </div>
                         </td>
                     </tr>
