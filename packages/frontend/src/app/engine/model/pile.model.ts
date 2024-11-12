@@ -36,9 +36,18 @@ export class Pile extends GameElement<PileState> {
     );
   }
 
+  override setState(newState: PileState) {
+    super.setState(newState);
+    this.emitLength();
+  }
+
+  private emitLength(): void {
+    this.lengthSubject.next(this.length);
+  }
+
   private emitPileState(): void {
     this.emitState();
-    this.lengthSubject.next(this.length);
+    this.emitLength();
   }
 
   /**
