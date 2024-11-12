@@ -46,6 +46,18 @@ describe('Area', () => {
       area.setState(newState);
       expect(space1.piece).not.toBeNull();
     });
+    it('AreaState and SpaceState should be in sync', () => {
+      const newState = {
+        id: 'testArea',
+        space: [
+          { kind: 'testSpace', piece: testPiece1 },
+          { kind: 'testSpace', piece: null },
+        ],
+      };
+      area.setState(newState);
+      expect(area.state.space[0]).toEqual(space1.state);
+      expect(area.state.space[1]).toEqual(space2.state);
+    });
     it('state should be emitted when space updated', (done) => {
       area.state$.pipe(skip(1)).subscribe((state) => {
         expect(state.space[0].piece).not.toBeNull();
