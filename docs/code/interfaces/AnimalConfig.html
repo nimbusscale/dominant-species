@@ -381,7 +381,9 @@ export class AnimalElements {
     private elementArea: Area,
     private elementConfig: ElementConfig,
   ) {
-    this.elementsSubject.next(this.allElements);
+    this.elementArea.spaces$.subscribe(() &#x3D;&gt; {
+      this.elementsSubject.next(this.allElements);
+    });
   }
 
   private get addedElementSpaces(): Space[] {
@@ -400,7 +402,6 @@ export class AnimalElements {
     );
     if (availableSpace) {
       availableSpace.addPiece(element);
-      this.elementsSubject.next(this.allElements);
     } else {
       throw new Error(&#x27;No available element spaces&#x27;);
     }
@@ -412,7 +413,6 @@ export class AnimalElements {
     );
     if (elementSpace) {
       elementSpace.removePiece();
-      this.elementsSubject.next(this.allElements);
     } else {
       throw new Error(&#x60;Animal does not have added element ${JSON.stringify(element)}&#x60;);
     }

@@ -341,8 +341,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="43"
-                                    class="link-to-prism">src/app/game/model/animal.model.ts:43</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="45"
+                                    class="link-to-prism">src/app/game/model/animal.model.ts:45</a></div>
                         </td>
                     </tr>
 
@@ -408,8 +408,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="55"
-                                    class="link-to-prism">src/app/game/model/animal.model.ts:55</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="56"
+                                    class="link-to-prism">src/app/game/model/animal.model.ts:56</a></div>
                         </td>
                     </tr>
 
@@ -481,7 +481,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/game/model/animal.model.ts:33</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/game/model/animal.model.ts:35</a></div>
                                 </td>
                             </tr>
 
@@ -565,7 +565,9 @@ export class AnimalElements {
     private elementArea: Area,
     private elementConfig: ElementConfig,
   ) {
-    this.elementsSubject.next(this.allElements);
+    this.elementArea.spaces$.subscribe(() &#x3D;&gt; {
+      this.elementsSubject.next(this.allElements);
+    });
   }
 
   private get addedElementSpaces(): Space[] {
@@ -584,7 +586,6 @@ export class AnimalElements {
     );
     if (availableSpace) {
       availableSpace.addPiece(element);
-      this.elementsSubject.next(this.allElements);
     } else {
       throw new Error(&#x27;No available element spaces&#x27;);
     }
@@ -596,7 +597,6 @@ export class AnimalElements {
     );
     if (elementSpace) {
       elementSpace.removePiece();
-      this.elementsSubject.next(this.allElements);
     } else {
       throw new Error(&#x60;Animal does not have added element ${JSON.stringify(element)}&#x60;);
     }
