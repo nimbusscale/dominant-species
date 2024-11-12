@@ -14,6 +14,9 @@ import { Pile } from '../../model/pile.model';
 import { NavigateService } from '../navigate.service';
 import { GameStateService } from '../game-state/game-state.service';
 
+/**
+ * GameService is responsible for the lifecycle of a Game.
+ */
 @Injectable({
   providedIn: 'root',
 })

@@ -11,11 +11,12 @@ Another example is that I am utilizing Angular as the framework, which may not m
 
 - [Conceptual-Model](./conceptual-model) - Describes an implementation agnostic model of boardgames and how that model is used in DS.
 - [System Architecture](./system-architecture)
-- [Game State Design](./game-state-design)
-- [Area, Space and Action](./area-space-action-design)
+- [Game State](./game-state) - Describes how games are create/updated, the role of the GameState and how GameState updates flow through the system
+  - [Game State Design](./game-state-design) - Diagrams used during development to understand the flow.
+- [Area, Space and Action](./area-space-action-design) - Diagrams used during development to understand how Areas/Spaces/Actions would related
 - [Milestone](./milestone) - Describes the development milestones and which capabilities are to be added in each milestone.
 
 # Code
 - [Code Docs](./code/index.html)
-- [Service and Component UML](./service-component-uml.svg)
-
+- [Engine Service UML](./engine-service-uml.svg)
+- [Game Component and Service UML](./game-service-component-uml.svg)

@@ -3,6 +3,12 @@ import { GameElement } from './game-element.model';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { AreaState, SpaceState } from 'api-types/src/game-state';
 
+/**
+ * An Area represents a collections of related Spaces.
+ *
+ * Each area has one or more Spaces. Each Space can contain a Piece. Each Space maintains its own state and the Area object keeps track
+ * of the state of all the Spaces.
+ */
 export class Area extends GameElement<AreaState> {
   readonly spaces: Space[];
   private spacesSubject: BehaviorSubject<Space[]>;

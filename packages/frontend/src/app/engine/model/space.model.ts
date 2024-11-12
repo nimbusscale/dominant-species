@@ -3,6 +3,9 @@ import { deepClone } from 'fast-json-patch';
 import { Observable, Subject } from 'rxjs';
 import { Piece, SpaceState } from 'api-types/src/game-state';
 
+/**
+ * A Space is part of an Area and can either be empty or contain a Piece.
+ */
 export class Space {
   readonly kind: string;
   private _action: Action[] = [];
