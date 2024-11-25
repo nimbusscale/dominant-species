@@ -1,7 +1,7 @@
-import { Action } from './action.model';
 import { deepClone } from 'fast-json-patch';
 import { Observable, Subject } from 'rxjs';
 import { Piece, SpaceState } from 'api-types/src/game-state';
+import {Action} from "./action.model";
 
 /**
  * A Space is part of an Area and can either be empty or contain a Piece.
