@@ -8,8 +8,8 @@
         }
       </div>
       <div class="action-display-area-action-pawn-spaces">
-        @for (actionPawn of actionPawns(); track $index) {
-          <app-action-pawn-space [actionPawn]="actionPawn"></app-action-pawn-space>
+        @for (actionPawnSpace of actionPawnSpaces(); track $index) {
+          <app-action-pawn-space [space]="actionPawnSpace"></app-action-pawn-space>
         }
       </div>
     </div>

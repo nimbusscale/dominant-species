@@ -19,12 +19,9 @@ import {ActionIdEnum} from "../../constant/action.constant";
 })
 export class AdaptionActionDisplayService {
   area: Area | undefined = undefined;
-  // An array of spaces that can hold ActionPawn pieces
   actionPawnSpaces: Space[] = [];
-  // An array of pieces in each actionPawnSpaces. If there is no action pawn in a space, then the value is null
-  actionPawns: (ActionPawnPiece | null)[] = [];
-  private actionPawnsSubject = new BehaviorSubject<(ActionPawnPiece | null)[]>(this.actionPawns);
-  actionPawns$ = this.actionPawnsSubject.asObservable();
+  private actionPawnsSpacesSubject = new BehaviorSubject<Space[]>(this.actionPawnSpaces);
+  actionPawnSpaces$ = this.actionPawnsSpacesSubject.asObservable()
   // An array of spaces that can hold Element pieces
   elementSpaces: Space[] = [];
   // An array of pieces in each elementSpaces. If there is no element in a space, then the value is null
@@ -59,10 +56,7 @@ export class AdaptionActionDisplayService {
           this.actionPawnSpaces = spaces.filter(
             (space) => (space.kind as SpaceKindEnum) === SpaceKindEnum.ACTION_PAWN,
           );
-          this.actionPawns = this.actionPawnSpaces.map(
-            (space) => space.piece,
-          ) as (ActionPawnPiece | null)[];
-          this.actionPawnsSubject.next(this.actionPawns);
+          this.actionPawnsSpacesSubject.next(this.actionPawnSpaces)
 
           this.elementSpaces = spaces.filter(
             (space) => (space.kind as SpaceKindEnum) === SpaceKindEnum.ELEMENT,

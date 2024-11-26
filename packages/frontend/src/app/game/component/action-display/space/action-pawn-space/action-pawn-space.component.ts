@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, computed, input} from '@angular/core';
+import {ChangeDetectionStrategy, Component, computed, input, OnInit, signal} from '@angular/core';
 import { ElementComponent } from '../../../element/element.component';
 import { ActionPawnComponent } from '../../../action-pawn/action-pawn.component';
 import { EyeballComponent } from '../eyeball/eyeball.component';
@@ -13,22 +13,21 @@ import {ActionPawnPiece} from "../../../../model/action-pawn.model";
   templateUrl: './action-pawn-space.component.html',
   styleUrl: './action-pawn-space.component.scss',
 })
-export class ActionPawnSpaceComponent {
+export class ActionPawnSpaceComponent implements OnInit {
   space = input.required<Space>()
-  actionPawn = computed(() => {
-    if (this.space().piece) {
-      return this.space().piece as ActionPawnPiece
-    } else {
-      /**
-       * Ideally we would return None, but '@if (actionPawn())' doesn't "narrow" the returned type in the template, so we have to return
-       * a compatible type for ActionPawnComponent, which in this case is undefined.
-       */
-      return undefined
-    }
-  })
-  hasAction = computed(() => {
-    return this.space().actions.length > 0;
-  })
+  actionPawn = signal<ActionPawnPiece | undefined>(undefined)
+  hasAction = signal<boolean>(false)
+
+  ngOnInit() {
+    this.space().space$.subscribe((space) => {
+      if (space.piece) {
+        this.actionPawn.set(space.piece as ActionPawnPiece)
+      } else {
+        this.actionPawn.set(undefined)
+      }
+      this.hasAction.set(space.actions.length > 0)
+    })
+  }
 
   performAction(): void {
     if (this.space().actions.length > 0) {
