@@ -8,7 +8,7 @@ import {Action} from "./action.model";
  */
 export class Space {
   readonly kind: string;
-  private _action: Action[] = [];
+  private _actions: Action[] = [];
   private _piece: Piece | null = null;
   private stateSubject: Subject<SpaceState>;
   state$: Observable<SpaceState>;
@@ -27,8 +27,16 @@ export class Space {
     }) as SpaceState;
   }
 
-  get action(): Action[] {
-    return this._action;
+  setActions(actions: Action[]): void {
+    this._actions = actions
+  }
+
+  clearActions(): void {
+    this._actions = []
+  }
+
+  get actions(): Action[] {
+    return this._actions;
   }
 
   get piece(): Piece | null {
