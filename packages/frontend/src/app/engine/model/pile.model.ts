@@ -111,7 +111,7 @@ export class PileAdapter<T> {
   }
 
   pullOne(): T | null {
-    return this.pullMany(1)[0] as T;
+    return this.pile.pullOne() as T;
   }
 
   put(pieces: T[]): void {
