@@ -7,16 +7,6 @@ export interface ActionContext {
 
 
 export type ActionFunction = () => ActionContext | null
-
-/**
- * Type for a factory function that create ActionFunctions that are added to Spaces.
- */
-export type SpaceActionFunctionFactory = (
-  space: Space,
-  actionContext: ActionContext,
-  ...args: object[]
-) => ActionFunction
-
 export type ActionCompleteCallback = (nextActionContext: ActionContext | null) => void
 
 export class Action {

@@ -18,6 +18,8 @@ import { AdaptionActionDisplayService } from '../../service/action-display/adapt
 import { ensureDefined } from '../../../engine/util/misc';
 import { FactionRegistryService } from '../../../engine/service/game-element/faction-registry.service';
 import { PlayerService } from '../../../engine/service/game-management/player.service';
+import {ActionService} from "../../service/action.service";
+import {ActionIdEnum} from "../../constant/action.constant";
 
 @Component({
   selector: 'app-draw-pool-game',
@@ -48,6 +50,7 @@ export class DrawPoolGameComponent implements OnInit {
     private playerService: PlayerService,
     private animalProviderService: AnimalProviderService,
     private adaptionActionDisplayService: AdaptionActionDisplayService,
+    private actionService: ActionService,
   ) {}
 
   ngOnInit() {
@@ -70,21 +73,27 @@ export class DrawPoolGameComponent implements OnInit {
       });
   }
 
+
+
   takeAction(): void {
-    this.gameStateSvc.startTransaction();
-    const animal = this.animalProviderService.get(ensureDefined(this.currentPlayerFaction).id);
-    const actionPawn = animal.actionPawn.pullOne();
-    if (actionPawn) {
-      const nextActionPawnSpaceIndex = this.adaptionActionDisplayService.actionPawns.findIndex(
-        (value) => value === null,
-      );
-      const nextElementSpaceIndex = this.adaptionActionDisplayService.elements.findIndex(
-        (value) => value !== null,
-      );
-      this.adaptionActionDisplayService.addActionPawn(nextActionPawnSpaceIndex, actionPawn);
-      const element = this.adaptionActionDisplayService.removeElement(nextElementSpaceIndex);
-      animal.elements.addElement(element);
-    }
-    this.gameStateSvc.commitTransaction();
+    this.actionService.buildActions({
+      actionId: ActionIdEnum.PLACE_ACTION_PAWN,
+      currentPlayerFactionId: ensureDefined(this.currentPlayerFaction).id
+    })
+    // this.gameStateSvc.startTransaction();
+    // const animal = this.animalProviderService.get(ensureDefined(this.currentPlayerFaction).id);
+    // const actionPawn = animal.actionPawn.pullOne();
+    // if (actionPawn) {
+    //   const nextActionPawnSpaceIndex = this.adaptionActionDisplayService.actionPawns.findIndex(
+    //     (value) => value === null,
+    //   );
+    //   const nextElementSpaceIndex = this.adaptionActionDisplayService.elements.findIndex(
+    //     (value) => value !== null,
+    //   );
+    //   this.adaptionActionDisplayService.addActionPawn(nextActionPawnSpaceIndex, actionPawn);
+    //   const element = this.adaptionActionDisplayService.removeElement(nextElementSpaceIndex);
+    //   animal.elements.addElement(element);
+    // }
+    // this.gameStateSvc.commitTransaction();
   }
 }
