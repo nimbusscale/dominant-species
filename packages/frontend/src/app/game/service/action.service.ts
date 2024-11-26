@@ -21,7 +21,7 @@ export class ActionService {
   }
 
   buildActions(actionContext: ActionContext): void {
-    this.actionDisplayManagerService.buildActions(actionContext, this.actionCompleteCallback)
+    this.actionDisplayManagerService.buildActions(actionContext, this.actionCompleteCallback.bind(this))
   }
 
   clearActions(): void {
