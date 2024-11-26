@@ -5,6 +5,12 @@ import {Action} from "./action.model";
 
 /**
  * A Space is part of an Area and can either be empty or contain a Piece.
+ *
+ * A space can have zero or more actions associated with it. Actions are not part of the Space's state, so when an action is added/removed,
+ * interested parties need to be notified. Notifications also need to happen when the state is updated, so a GSP can be created, etc.
+ * This leads to having two observables:
+ * - state$ for when anything state relates, such as the space's piece
+ * - space$ for when anything about the space changes, even if the change is not state related such as adding/removing action.
  */
 export class Space {
   readonly kind: string;
