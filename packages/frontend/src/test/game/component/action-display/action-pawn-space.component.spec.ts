@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, fakeAsync, TestBed, tick} from '@angular/core/testing';
 
 import { ActionPawnSpaceComponent } from '../../../../app/game/component/action-display/space/action-pawn-space/action-pawn-space.component';
 import {ComponentRef, DebugElement} from '@angular/core';
@@ -8,7 +8,7 @@ import { ActionPawnComponent } from '../../../../app/game/component/action-pawn/
 import { AnimalEnum } from '../../../../app/game/constant/animal.constant';
 import { By } from '@angular/platform-browser';
 import {Space} from "../../../../app/engine/model/space.model";
-import {of} from "rxjs";
+import {Subject} from "rxjs";
 
 describe('ActionPawnSpaceComponent', () => {
   let component: ActionPawnSpaceComponent;
@@ -16,22 +16,33 @@ describe('ActionPawnSpaceComponent', () => {
   let componentRef: ComponentRef<ActionPawnSpaceComponent>
   let debugElement: DebugElement;
   let mockActionPawn: jasmine.SpyObj<ActionPawnPiece>;
+  let mockActionPawnSpaceSubject: Subject<Space>;
   let mockActionPawnSpaceWithActionPawn: jasmine.SpyObj<Space>;
   let mockActionPawnSpaceWithoutActionPawn: jasmine.SpyObj<Space>;
+  let mockActionPawnSpaceInput: jasmine.SpyObj<Space>;
 
   beforeEach(async () => {
     mockActionPawn = jasmine.createSpyObj('ActionPawnPiece', [], {
       owner: AnimalEnum.REPTILE,
     });
+
+    /**
+     * mockActionPawnSpaceInput is used for the input signal and includes the space$ observable. Then different Space mocks can be injected
+     * into the component by using the mockActionPawnSpaceSubject. Note that since the component subscribes to the space$ and sets some signals,
+     * the tests need to wait for the subscriber function to run using tock and then do a detectChanges after the signal has been updated.
+     */
+    mockActionPawnSpaceSubject = new Subject<Space>()
+    mockActionPawnSpaceInput = jasmine.createSpyObj('Space', [], {
+      space$: mockActionPawnSpaceSubject.asObservable(),
+    })
     mockActionPawnSpaceWithActionPawn = jasmine.createSpyObj('Space', [], {
-      space$: of(mockActionPawnSpaceWithActionPawn),
-      piece: mockActionPawn
+      piece: mockActionPawn,
+      actions: []
     })
     mockActionPawnSpaceWithoutActionPawn = jasmine.createSpyObj('Space', [], {
-      space$: of(mockActionPawnSpaceWithoutActionPawn),
-      piece: null
+      piece: null,
+      actions: []
     })
-
 
     await TestBed.configureTestingModule({
       imports: [ActionPawnSpaceComponent, EyeballComponent, ActionPawnComponent],
@@ -43,18 +54,24 @@ describe('ActionPawnSpaceComponent', () => {
     debugElement = fixture.debugElement;
   });
 
-  it('should display app-action-pawn if actionPawn is defined', () => {
-    componentRef.setInput('space', mockActionPawnSpaceWithActionPawn)
+  it('should display app-action-pawn if actionPawn is defined', fakeAsync(() => {
+    componentRef.setInput('space', mockActionPawnSpaceInput)
+    fixture.detectChanges();
+    mockActionPawnSpaceSubject.next(mockActionPawnSpaceWithActionPawn)
+    tick()
     fixture.detectChanges();
 
     const appActionPawnDebug = debugElement.query(By.directive(ActionPawnComponent));
     expect(appActionPawnDebug).toBeTruthy();
-  });
-  it('should display app-eyeball if actionPawn is not defined', () => {
-    componentRef.setInput('space', mockActionPawnSpaceWithoutActionPawn)
+  }));
+  it('should display app-eyeball if actionPawn is not defined', fakeAsync(() => {
+    componentRef.setInput('space', mockActionPawnSpaceInput)
+    fixture.detectChanges();
+    mockActionPawnSpaceSubject.next(mockActionPawnSpaceWithoutActionPawn)
+    tick()
     fixture.detectChanges();
 
     const appActionPawnDebug = debugElement.query(By.directive(EyeballComponent));
     expect(appActionPawnDebug).toBeTruthy();
-  });
+  }));
 });
