@@ -14,6 +14,7 @@ import { ActionPawnPiece } from '../../../../app/game/model/action-pawn.model';
 import { deepClone } from 'fast-json-patch';
 import { ACTION_DISPLAY_ADAPTION_STATE } from '../../../../app/game/constant/game-state.constant';
 import { AreaState } from 'api-types/src/game-state';
+import {ActionFactoryService} from "../../../../app/game/service/action-factory.service";
 
 describe('AdaptionActionDisplayService', () => {
   let adaptionActionDisplayService: AdaptionActionDisplayService;
@@ -21,6 +22,7 @@ describe('AdaptionActionDisplayService', () => {
   let testArea: Area;
   let mockAreaRegistryService: jasmine.SpyObj<AreaRegistryService>;
   let mockElementDrawPoolService: jasmine.SpyObj<ElementDrawPoolService>;
+  let mockActionFactoryService: jasmine.SpyObj<ActionFactoryService>
 
   beforeEach(() => {
     testArea = new Area(deepClone(ACTION_DISPLAY_ADAPTION_STATE) as AreaState);
@@ -40,11 +42,14 @@ describe('AdaptionActionDisplayService', () => {
     });
     mockElementDrawPoolService.pull.and.returnValue(testElements);
 
+    mockActionFactoryService = jasmine.createSpyObj('ActionFactoryService', ['buildPlaceActionPawnInSpace', 'buildTakeElementFromSpace'])
+
     TestBed.configureTestingModule({
       providers: [
         AdaptionActionDisplayService,
         { provide: AreaRegistryService, useValue: mockAreaRegistryService },
         { provide: ElementDrawPoolService, useValue: mockElementDrawPoolService },
+        { provide: ActionFactoryService, useValue: mockActionFactoryService },
       ],
     });
     adaptionActionDisplayService = TestBed.inject(AdaptionActionDisplayService);
@@ -61,13 +66,13 @@ describe('AdaptionActionDisplayService', () => {
 
   describe('setup/replenish', () => {
     it('should add 4 elements and emit', (done) => {
-      adaptionActionDisplayService.elements$
+      adaptionActionDisplayService.elementSpaces$
         .pipe(
-          filter((elements) => elements.every((item) => item !== null)),
+          filter((elements) => elements.every((space) => space.piece !== null)),
           first(), // Take only the first emission that satisfies the conditions
         )
-        .subscribe((elements) => {
-          expect(elements).toEqual(testElements);
+        .subscribe((spaces) => {
+          expect(spaces.map((space) => space.piece)).toEqual(testElements);
           done();
         });
 
@@ -81,46 +86,45 @@ describe('AdaptionActionDisplayService', () => {
     });
   });
 
-  describe('actionPawns', () => {
-    it('actionPawns$ should emit null array when no action pawns', (done) => {
-      adaptionActionDisplayService.actionPawns$.subscribe((actionPawns) => {
-        expect(actionPawns[0]).toBeNull();
+  describe('actionPawnSpaces$', () => {
+    it('should emit space array when no action pawns', (done) => {
+      adaptionActionDisplayService.actionPawnSpaces$.subscribe((spaces) => {
+        expect(spaces.map((space) => space.piece)).toEqual([null, null, null]);
         done();
       });
     });
-    it('Should be able to add actionPawn', (done) => {
+    it('should emit when piece added', (done) => {
       const actionPawn = defaultPieceFactory(PieceKindEnum.ACTION_PAWN) as ActionPawnPiece;
 
       // skip first value before placing actionPawn
-      adaptionActionDisplayService.actionPawns$.pipe(skip(1)).subscribe((actionPawns) => {
-        expect(actionPawns[0]).toEqual(actionPawn);
+      adaptionActionDisplayService.actionPawnSpaces$.pipe(skip(1)).subscribe((spaces) => {
+        expect(spaces.map((space) => space.piece)).toEqual([actionPawn, null, null]);
         done();
       });
-      adaptionActionDisplayService.addActionPawn(0, actionPawn);
+      adaptionActionDisplayService.actionPawnSpaces[0].addPiece(actionPawn)
     });
-    it('should be able to remove actionPawn', (done) => {
+    it('should emit when piece removed', (done) => {
       const actionPawn = defaultPieceFactory(PieceKindEnum.ACTION_PAWN) as ActionPawnPiece;
-      adaptionActionDisplayService.addActionPawn(0, actionPawn);
+      adaptionActionDisplayService.actionPawnSpaces[0].addPiece(actionPawn)
       // skip value with actionPawn
-      adaptionActionDisplayService.actionPawns$.pipe(skip(1)).subscribe((actionPawns) => {
-        expect(actionPawns[0]).toBeNull();
+      adaptionActionDisplayService.actionPawnSpaces$.pipe(skip(1)).subscribe((spaces) => {
+        expect(spaces.map((space) => space.piece)).toEqual([null, null, null]);
         done();
       });
-      expect(adaptionActionDisplayService.removeActionPawn(0));
+      expect(adaptionActionDisplayService.actionPawnSpaces[0].removePiece()).toEqual(actionPawn);
     });
   });
 
-  describe('elements', () => {
-    it('should allow remove element', () => {
-      adaptionActionDisplayService.elementSpaces[0].addPiece(defaultPieceFactory(ElementEnum.SUN));
-      expect(adaptionActionDisplayService.removeElement(0)).toEqual(
-        defaultPieceFactory(ElementEnum.SUN) as ElementPiece,
-      );
-    });
-    it('should allow removeRemainingElements', () => {
-      // adds the testElements to the spaces /
-      adaptionActionDisplayService.replenish();
-      expect(adaptionActionDisplayService.removeRemainingElements()).toEqual(testElements);
+  describe('elementSpaces$', () => {
+    it('should emit when piece removed', (done) => {
+      const element = defaultPieceFactory(ElementEnum.SUN) as ElementPiece;
+      adaptionActionDisplayService.replenish()
+      // skip value with element
+      adaptionActionDisplayService.elementSpaces$.pipe(skip(1)).subscribe((spaces) => {
+        expect(spaces.map((space) => space.piece)).toEqual([null, element, element, element]);
+        done();
+      });
+      expect(adaptionActionDisplayService.elementSpaces[0].removePiece()).toEqual(element);
     });
   });
 });
