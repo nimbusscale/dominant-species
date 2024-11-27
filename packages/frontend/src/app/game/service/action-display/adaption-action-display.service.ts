@@ -20,14 +20,12 @@ import {ActionIdEnum} from "../../constant/action.constant";
 export class AdaptionActionDisplayService {
   area: Area | undefined = undefined;
   actionPawnSpaces: Space[] = [];
-  private actionPawnsSpacesSubject = new BehaviorSubject<Space[]>(this.actionPawnSpaces);
-  actionPawnSpaces$ = this.actionPawnsSpacesSubject.asObservable()
+  private actionPawnSpacesSubject = new BehaviorSubject<Space[]>(this.actionPawnSpaces);
+  actionPawnSpaces$ = this.actionPawnSpacesSubject.asObservable()
   // An array of spaces that can hold Element pieces
   elementSpaces: Space[] = [];
-  // An array of pieces in each elementSpaces. If there is no element in a space, then the value is null
-  elements: (ElementPiece | null)[] = [];
-  private elementsSubject = new BehaviorSubject<(ElementPiece | null)[]>(this.elements);
-  elements$ = this.elementsSubject.asObservable();
+  private elementSpacesSubject = new BehaviorSubject<Space[]>(this.elementSpaces);
+  elementSpaces$ = this.elementSpacesSubject.asObservable()
   private readySubject = new BehaviorSubject<boolean>(false);
   ready$ = this.readySubject.asObservable();
 
@@ -56,20 +54,19 @@ export class AdaptionActionDisplayService {
           this.actionPawnSpaces = spaces.filter(
             (space) => (space.kind as SpaceKindEnum) === SpaceKindEnum.ACTION_PAWN,
           );
-          this.actionPawnsSpacesSubject.next(this.actionPawnSpaces)
+          this.actionPawnSpacesSubject.next(this.actionPawnSpaces)
 
           this.elementSpaces = spaces.filter(
             (space) => (space.kind as SpaceKindEnum) === SpaceKindEnum.ELEMENT,
           );
-          this.elements = this.elementSpaces.map((space) => space.piece) as (ElementPiece | null)[];
-          this.elementsSubject.next(this.elements);
+          this.elementSpacesSubject.next(this.elementSpaces)
           this.readySubject.next(true);
         });
       });
   }
 
   replenish(): void {
-    if (this.elements.filter(isNotNull).length > 0) {
+    if (this.elementSpaces.map((space) => space.piece).filter(isNotNull).length > 0) {
       throw new Error('Element spaces must be cleared before replenish');
     }
 

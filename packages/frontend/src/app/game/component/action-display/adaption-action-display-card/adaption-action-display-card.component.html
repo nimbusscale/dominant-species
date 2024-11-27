@@ -3,8 +3,8 @@
     <div class="action-display-title">Adaption</div>
     <div class="action-display-area">
       <div class="action-display-area-element-spaces">
-        @for (element of elements(); track $index) {
-          <app-element-space [element]="element"></app-element-space>
+        @for (elementSpace of elementSpaces(); track $index) {
+          <app-element-space [space]="elementSpace"></app-element-space>
         }
       </div>
       <div class="action-display-area-action-pawn-spaces">

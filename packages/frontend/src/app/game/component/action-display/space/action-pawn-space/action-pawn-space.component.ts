@@ -1,5 +1,4 @@
 import {ChangeDetectionStrategy, Component, computed, input, OnInit, signal} from '@angular/core';
-import { ElementComponent } from '../../../element/element.component';
 import { ActionPawnComponent } from '../../../action-pawn/action-pawn.component';
 import { EyeballComponent } from '../eyeball/eyeball.component';
 import {Space} from "../../../../../engine/model/space.model";
@@ -9,7 +8,7 @@ import {ActionPawnPiece} from "../../../../model/action-pawn.model";
   selector: 'app-action-pawn-space',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [ElementComponent, ActionPawnComponent, EyeballComponent],
+  imports: [ActionPawnComponent, EyeballComponent],
   templateUrl: './action-pawn-space.component.html',
   styleUrl: './action-pawn-space.component.scss',
 })

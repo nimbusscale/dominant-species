@@ -3,8 +3,6 @@ import { MatCard } from '@angular/material/card';
 import { ElementSpaceComponent } from '../space/element-space/element-space.component';
 import { EyeballComponent } from '../space/eyeball/eyeball.component';
 import { ActionPawnSpaceComponent } from '../space/action-pawn-space/action-pawn-space.component';
-import { ElementPiece } from '../../../model/element.model';
-import { ActionPawnPiece } from '../../../model/action-pawn.model';
 import { AdaptionActionDisplayService } from '../../../service/action-display/adaption-action-display.service';
 import { filter, first } from 'rxjs';
 import { isTrue } from '../../../../engine/util/predicate';
@@ -20,7 +18,7 @@ import {Space} from "../../../../engine/model/space.model";
 })
 export class AdaptionActionDisplayCardComponent implements OnInit {
   actionPawnSpaces = signal<Space[]>([]);
-  elements = signal<(ElementPiece | null)[]>([]);
+  elementSpaces = signal<Space[]>([]);
 
   constructor(private adaptionActionDisplayService: AdaptionActionDisplayService) {}
 
@@ -29,8 +27,8 @@ export class AdaptionActionDisplayCardComponent implements OnInit {
       this.adaptionActionDisplayService.actionPawnSpaces$.subscribe((spaces) => {
         this.actionPawnSpaces.set(spaces);
       });
-      this.adaptionActionDisplayService.elements$.subscribe((elements) => {
-        this.elements.set(elements);
+      this.adaptionActionDisplayService.elementSpaces$.subscribe((spaces) => {
+        this.elementSpaces.set(spaces);
       });
     });
   }
