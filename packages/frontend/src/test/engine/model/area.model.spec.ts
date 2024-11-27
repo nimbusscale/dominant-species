@@ -84,15 +84,21 @@ describe('Area', () => {
       space1.addPiece(testPiece1);
     });
     it('Spaces should be emitted when state updated', (done) => {
+      let callCount = 0;
       area.spaces$.pipe(skip(1)).subscribe((spaces) => {
-        expect(spaces[0].piece).toEqual(testPiece1);
-        done();
+        callCount++;
+        if (callCount === 1) {
+          expect(spaces.map((space) => space.piece)).toEqual([testPiece1, null]);
+        } else {
+          expect(spaces.map((space) => space.piece)).toEqual([testPiece1, testPiece1]);
+          done();
+        }
       });
       const newState = {
         id: 'testArea',
         space: [
           { kind: 'testSpace', piece: testPiece1 },
-          { kind: 'testSpace', piece: null },
+          { kind: 'testSpace', piece: testPiece1 },
         ],
       };
       area.setState(newState);
