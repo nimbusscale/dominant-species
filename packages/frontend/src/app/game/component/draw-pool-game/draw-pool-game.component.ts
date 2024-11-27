@@ -18,8 +18,7 @@ import { AdaptionActionDisplayService } from '../../service/action-display/adapt
 import { ensureDefined } from '../../../engine/util/misc';
 import { FactionRegistryService } from '../../../engine/service/game-element/faction-registry.service';
 import { PlayerService } from '../../../engine/service/game-management/player.service';
-import {ActionService} from "../../service/action.service";
-import {ActionIdEnum} from "../../constant/action.constant";
+import { ActionService } from '../../service/action.service';
 
 @Component({
   selector: 'app-draw-pool-game',
@@ -72,8 +71,6 @@ export class DrawPoolGameComponent implements OnInit {
         this.adaptionArea = this.areaRegistryService.get(AreaIdEnum.ACTION_DISPLAY_ADAPTION);
       });
   }
-
-
 
   takeAction(): void {
     // this.actionService.clearActions()

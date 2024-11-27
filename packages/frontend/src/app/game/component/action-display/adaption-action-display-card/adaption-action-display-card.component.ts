@@ -6,7 +6,7 @@ import { ActionPawnSpaceComponent } from '../space/action-pawn-space/action-pawn
 import { AdaptionActionDisplayService } from '../../../service/action-display/adaption-action-display.service';
 import { filter, first } from 'rxjs';
 import { isTrue } from '../../../../engine/util/predicate';
-import {Space} from "../../../../engine/model/space.model";
+import { Space } from '../../../../engine/model/space.model';
 
 @Component({
   selector: 'app-adaption-action-display-card',

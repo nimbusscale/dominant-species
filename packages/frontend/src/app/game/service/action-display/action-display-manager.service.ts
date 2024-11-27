@@ -1,26 +1,23 @@
 import { Injectable } from '@angular/core';
 import { AdaptionActionDisplayService } from './adaption-action-display.service';
 import { BehaviorSubject, combineLatest, filter, first, map, Observable } from 'rxjs';
-import {ActionDisplayService} from "../../model/action-display.model";
-import {ActionCompleteCallback, ActionContext} from "../../../engine/model/action.model";
+import { ActionDisplayService } from '../../model/action-display.model';
+import { ActionCompleteCallback, ActionContext } from '../../../engine/model/action.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ActionDisplayManagerService {
-  actionDisplayServices: ActionDisplayService[] = []
+  actionDisplayServices: ActionDisplayService[] = [];
   private readySubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   ready$: Observable<boolean> = this.readySubject.asObservable();
 
   constructor(private adaptionActionDisplayService: AdaptionActionDisplayService) {
-    this.actionDisplayServices = [
-      adaptionActionDisplayService
-    ]
+    this.actionDisplayServices = [adaptionActionDisplayService];
     this.signalReady();
   }
 
   signalReady(): void {
-    const actionDisplayServices = [this.adaptionActionDisplayService];
     const readyObs = this.actionDisplayServices.map((service) => service.ready$);
     combineLatest(readyObs)
       .pipe(
@@ -34,10 +31,12 @@ export class ActionDisplayManagerService {
   }
 
   buildActions(actionContext: ActionContext, callback: ActionCompleteCallback): void {
-    this.actionDisplayServices.forEach((service) => service.buildActions(actionContext, callback))
+    this.actionDisplayServices.forEach((service) => {
+      service.buildActions(actionContext, callback);
+    });
   }
 
   clearActions(): void {
-    this.actionDisplayServices.forEach((service) => service.clearActions)
+    this.actionDisplayServices.forEach((service) => service.clearActions);
   }
 }

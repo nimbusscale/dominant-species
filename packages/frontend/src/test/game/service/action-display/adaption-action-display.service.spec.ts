@@ -14,7 +14,7 @@ import { ActionPawnPiece } from '../../../../app/game/model/action-pawn.model';
 import { deepClone } from 'fast-json-patch';
 import { ACTION_DISPLAY_ADAPTION_STATE } from '../../../../app/game/constant/game-state.constant';
 import { AreaState } from 'api-types/src/game-state';
-import {ActionFactoryService} from "../../../../app/game/service/action-factory.service";
+import { ActionFactoryService } from '../../../../app/game/service/action-factory.service';
 
 describe('AdaptionActionDisplayService', () => {
   let adaptionActionDisplayService: AdaptionActionDisplayService;
@@ -22,7 +22,7 @@ describe('AdaptionActionDisplayService', () => {
   let testArea: Area;
   let mockAreaRegistryService: jasmine.SpyObj<AreaRegistryService>;
   let mockElementDrawPoolService: jasmine.SpyObj<ElementDrawPoolService>;
-  let mockActionFactoryService: jasmine.SpyObj<ActionFactoryService>
+  let mockActionFactoryService: jasmine.SpyObj<ActionFactoryService>;
 
   beforeEach(() => {
     testArea = new Area(deepClone(ACTION_DISPLAY_ADAPTION_STATE) as AreaState);
@@ -42,7 +42,10 @@ describe('AdaptionActionDisplayService', () => {
     });
     mockElementDrawPoolService.pull.and.returnValue(testElements);
 
-    mockActionFactoryService = jasmine.createSpyObj('ActionFactoryService', ['buildPlaceActionPawnInSpace', 'buildTakeElementFromSpace'])
+    mockActionFactoryService = jasmine.createSpyObj('ActionFactoryService', [
+      'buildPlaceActionPawnInSpace',
+      'buildTakeElementFromSpace',
+    ]);
 
     TestBed.configureTestingModule({
       providers: [
@@ -101,11 +104,11 @@ describe('AdaptionActionDisplayService', () => {
         expect(spaces.map((space) => space.piece)).toEqual([actionPawn, null, null]);
         done();
       });
-      adaptionActionDisplayService.actionPawnSpaces[0].addPiece(actionPawn)
+      adaptionActionDisplayService.actionPawnSpaces[0].addPiece(actionPawn);
     });
     it('should emit when piece removed', (done) => {
       const actionPawn = defaultPieceFactory(PieceKindEnum.ACTION_PAWN) as ActionPawnPiece;
-      adaptionActionDisplayService.actionPawnSpaces[0].addPiece(actionPawn)
+      adaptionActionDisplayService.actionPawnSpaces[0].addPiece(actionPawn);
       // skip value with actionPawn
       adaptionActionDisplayService.actionPawnSpaces$.pipe(skip(1)).subscribe((spaces) => {
         expect(spaces.map((space) => space.piece)).toEqual([null, null, null]);
@@ -118,7 +121,7 @@ describe('AdaptionActionDisplayService', () => {
   describe('elementSpaces$', () => {
     it('should emit when piece removed', (done) => {
       const element = defaultPieceFactory(ElementEnum.SUN) as ElementPiece;
-      adaptionActionDisplayService.replenish()
+      adaptionActionDisplayService.replenish();
       // skip value with element
       adaptionActionDisplayService.elementSpaces$.pipe(skip(1)).subscribe((spaces) => {
         expect(spaces.map((space) => space.piece)).toEqual([null, element, element, element]);

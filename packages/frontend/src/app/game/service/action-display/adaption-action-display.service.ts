@@ -10,9 +10,9 @@ import { ensureDefined } from '../../../engine/util/misc';
 import { Space } from '../../../engine/model/space.model';
 import { isNotNull } from '../../../engine/util/predicate';
 import { Piece } from 'api-types/src/game-state';
-import {Action, ActionCompleteCallback, ActionContext} from "../../../engine/model/action.model";
-import {ActionFactoryService} from "../action-factory.service";
-import {ActionIdEnum} from "../../constant/action.constant";
+import { Action, ActionCompleteCallback, ActionContext } from '../../../engine/model/action.model';
+import { ActionFactoryService } from '../action-factory.service';
+import { ActionIdEnum } from '../../constant/action.constant';
 
 @Injectable({
   providedIn: 'root',
@@ -21,11 +21,11 @@ export class AdaptionActionDisplayService {
   area: Area | undefined = undefined;
   actionPawnSpaces: Space[] = [];
   private actionPawnSpacesSubject = new BehaviorSubject<Space[]>(this.actionPawnSpaces);
-  actionPawnSpaces$ = this.actionPawnSpacesSubject.asObservable()
+  actionPawnSpaces$ = this.actionPawnSpacesSubject.asObservable();
   // An array of spaces that can hold Element pieces
   elementSpaces: Space[] = [];
   private elementSpacesSubject = new BehaviorSubject<Space[]>(this.elementSpaces);
-  elementSpaces$ = this.elementSpacesSubject.asObservable()
+  elementSpaces$ = this.elementSpacesSubject.asObservable();
   private readySubject = new BehaviorSubject<boolean>(false);
   ready$ = this.readySubject.asObservable();
 
@@ -54,12 +54,12 @@ export class AdaptionActionDisplayService {
           this.actionPawnSpaces = spaces.filter(
             (space) => (space.kind as SpaceKindEnum) === SpaceKindEnum.ACTION_PAWN,
           );
-          this.actionPawnSpacesSubject.next(this.actionPawnSpaces)
+          this.actionPawnSpacesSubject.next(this.actionPawnSpaces);
 
           this.elementSpaces = spaces.filter(
             (space) => (space.kind as SpaceKindEnum) === SpaceKindEnum.ELEMENT,
           );
-          this.elementSpacesSubject.next(this.elementSpaces)
+          this.elementSpacesSubject.next(this.elementSpaces);
           this.readySubject.next(true);
         });
       });
@@ -101,28 +101,32 @@ export class AdaptionActionDisplayService {
   }
 
   buildActions(actionContext: ActionContext, callback: ActionCompleteCallback): void {
-    if (actionContext.actionId === ActionIdEnum.PLACE_ACTION_PAWN) {
-      this.actionPawnSpaces.filter((space) => space.piece === null).forEach((space) => {
-        const action = new Action(
-          actionContext,
-          this.actionFactoryService.buildPlaceActionPawnInSpace(actionContext, space),
-          callback
-        )
-        space.setActions([action])
-      })
-    } else if (actionContext.actionId === ActionIdEnum.TAKE_ELEMENT) {
-      this.elementSpaces.filter((space) => space.piece).forEach((space) => {
-        const action = new Action(
-          actionContext,
-          this.actionFactoryService.buildTakeElementFromSpace(actionContext, space),
-          callback
-        )
-        space.setActions([action])
-      })
+    if (actionContext.actionId === (ActionIdEnum.PLACE_ACTION_PAWN as string)) {
+      this.actionPawnSpaces
+        .filter((space) => space.piece === null)
+        .forEach((space) => {
+          const action = new Action(
+            actionContext,
+            this.actionFactoryService.buildPlaceActionPawnInSpace(actionContext, space),
+            callback,
+          );
+          space.setActions([action]);
+        });
+    } else if (actionContext.actionId === (ActionIdEnum.TAKE_ELEMENT as string)) {
+      this.elementSpaces
+        .filter((space) => space.piece)
+        .forEach((space) => {
+          const action = new Action(
+            actionContext,
+            this.actionFactoryService.buildTakeElementFromSpace(actionContext, space),
+            callback,
+          );
+          space.setActions([action]);
+        });
     }
   }
 
   clearActions(): void {
-    ensureDefined(this.area).clearActions()
+    ensureDefined(this.area).clearActions();
   }
 }

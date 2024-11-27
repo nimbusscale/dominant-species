@@ -1,4 +1,9 @@
-import {Action, ActionCompleteCallback, ActionContext, ActionFunction} from "../../../app/engine/model/action.model";
+import {
+  Action,
+  ActionCompleteCallback,
+  ActionContext,
+  ActionFunction,
+} from '../../../app/engine/model/action.model';
 
 describe('Action', () => {
   let actionContext: ActionContext;
@@ -9,7 +14,7 @@ describe('Action', () => {
   beforeEach(() => {
     actionContext = {
       actionId: 'test-action-1',
-      currentPlayerFactionId: 'faction-1'
+      currentPlayerFactionId: 'faction-1',
     };
 
     mockActionFunction = jasmine.createSpy('mockActionFunction');
@@ -28,7 +33,7 @@ describe('Action', () => {
     it('should call actionFunction and pass its result to actionCompleteCallback', () => {
       const mockNextContext: ActionContext = {
         actionId: 'next-action',
-        currentPlayerFactionId: 'faction-2'
+        currentPlayerFactionId: 'faction-2',
       };
       mockActionFunction.and.returnValue(mockNextContext);
 

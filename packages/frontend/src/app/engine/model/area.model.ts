@@ -65,6 +65,8 @@ export class Area extends GameElement<AreaState> {
   }
 
   clearActions(): void {
-    this.spaces.forEach((space) => space.clearActions())
+    this.spaces.forEach((space) => {
+      space.clearActions();
+    });
   }
 }

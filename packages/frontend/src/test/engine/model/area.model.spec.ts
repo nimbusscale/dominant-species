@@ -3,7 +3,7 @@ import { Space } from '../../../app/engine/model/space.model';
 import { skip } from 'rxjs';
 import { defaultPieceFactory } from '../../../app/engine/model/piece.model';
 import { Piece } from 'api-types/src/game-state';
-import {Action} from "../../../app/engine/model/action.model";
+import { Action } from '../../../app/engine/model/action.model';
 
 describe('Area', () => {
   let area: Area;
@@ -83,8 +83,8 @@ describe('Area', () => {
         done();
       });
       space1.addPiece(testPiece1);
-    })
-  })
+    });
+  });
   describe('spaces$', () => {
     it('Spaces should be emitted when space updated', (done) => {
       area.spaces$.pipe(skip(1)).subscribe((spaces) => {
@@ -135,11 +135,11 @@ describe('Area', () => {
   });
   describe('clearActions', () => {
     it('clears Actions', () => {
-      space1.setActions([jasmine.createSpyObj<Action>('Action', ['execute'])])
-      space2.setActions([jasmine.createSpyObj<Action>('Action', ['execute'])])
-      area.clearActions()
-      expect(space1.actions.length).toEqual(0)
-      expect(space2.actions.length).toEqual(0)
-    })
-  })
+      space1.setActions([jasmine.createSpyObj<Action>('Action', ['execute'])]);
+      space2.setActions([jasmine.createSpyObj<Action>('Action', ['execute'])]);
+      area.clearActions();
+      expect(space1.actions.length).toEqual(0);
+      expect(space2.actions.length).toEqual(0);
+    });
+  });
 });
