@@ -1,5 +1,3 @@
-import {Space} from "./space.model";
-
 export interface ActionContext {
   actionId: string,
   currentPlayerFactionId: string
