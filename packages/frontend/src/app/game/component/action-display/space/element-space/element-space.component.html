@@ -1,7 +1,9 @@
 <div class="square-space element-space subdued-solid-border">
   <div class="element-space-icon-box">
     @if (element()) {
+      <div (click)="hasAction() ? performAction() : null" [class.clickable]="hasAction()">
       <app-element [element]="element()"></app-element>
+      </div>
     } @else {
       <img src="{{ imgPath }}" alt="Empty Element Space" />
     }
