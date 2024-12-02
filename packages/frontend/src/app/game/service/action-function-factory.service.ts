@@ -8,7 +8,7 @@ import { ElementPiece } from '../model/element.model';
 @Injectable({
   providedIn: 'root',
 })
-export class ActionFactoryService {
+export class ActionFunctionFactoryService {
   constructor(private animalProviderService: AnimalProviderService) {}
 
   buildPlaceActionPawnInSpace(actionContext: ActionContext, space: Space): ActionFunction {

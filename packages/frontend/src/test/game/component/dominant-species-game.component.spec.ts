@@ -2,18 +2,17 @@ import { RouterTestingHarness } from '@angular/router/testing';
 import { TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 import { of } from 'rxjs';
-import {GameReadyService} from "../../../app/game/service/game-ready.service";
-import {GameService} from "../../../app/engine/service/game-management/game.service";
-import {NavigateService} from "../../../app/engine/service/navigate.service";
-import {DominantSpeciesGameComponent} from "../../../app/game/component/dominant-species-game/dominant-species-game.component";
-import {Component} from "@angular/core";
-import {DrawPoolGameComponent} from "../../../app/game/component/draw-pool-game/draw-pool-game.component";
-
+import { GameReadyService } from '../../../app/game/service/game-ready.service';
+import { GameService } from '../../../app/engine/service/game-management/game.service';
+import { NavigateService } from '../../../app/engine/service/navigate.service';
+import { DominantSpeciesGameComponent } from '../../../app/game/component/dominant-species-game/dominant-species-game.component';
+import { Component } from '@angular/core';
+import { DrawPoolGameComponent } from '../../../app/game/component/draw-pool-game/draw-pool-game.component';
 
 @Component({
   selector: 'app-draw-pool-game',
   template: '',
-  standalone: true
+  standalone: true,
 })
 export class MockDrawPoolGameComponent {}
 
@@ -64,13 +63,19 @@ describe('DominantSpeciesGameComponent', () => {
 
   it('should set gameReady to true when the game is ready', async () => {
     const harness = await RouterTestingHarness.create();
-    const component = await harness.navigateByUrl('/game?gameId=testGameId', DominantSpeciesGameComponent);
+    const component = await harness.navigateByUrl(
+      '/game?gameId=testGameId',
+      DominantSpeciesGameComponent,
+    );
     expect(component.gameReady()).toBeTrue();
   });
 
   it('should call cleanupGame on destroy', async () => {
     const harness = await RouterTestingHarness.create();
-    const component = await harness.navigateByUrl('/game?gameId=testGameId', DominantSpeciesGameComponent);
+    const component = await harness.navigateByUrl(
+      '/game?gameId=testGameId',
+      DominantSpeciesGameComponent,
+    );
     component.ngOnDestroy();
     expect(mockGameService.cleanupGame).toHaveBeenCalled();
   });

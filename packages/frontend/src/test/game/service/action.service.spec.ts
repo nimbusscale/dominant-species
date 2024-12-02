@@ -1,8 +1,7 @@
 import { TestBed } from '@angular/core/testing';
-import {ActionDisplayManagerService} from "../../../app/game/service/action-display/action-display-manager.service";
-import {ActionService} from "../../../app/game/service/action.service";
-import {ActionContext} from "../../../app/engine/model/action.model";
-
+import { ActionDisplayManagerService } from '../../../app/game/service/action-display/action-display-manager.service';
+import { ActionService } from '../../../app/game/service/action.service';
+import { ActionContext } from '../../../app/engine/model/action.model';
 
 describe('ActionService', () => {
   let actionService: ActionService;
@@ -32,7 +31,7 @@ describe('ActionService', () => {
 
       expect(mockActionDisplayManagerService.buildActions).toHaveBeenCalledWith(
         mockActionContext,
-        jasmine.any(Function)
+        jasmine.any(Function),
       );
     });
   });

@@ -11,7 +11,7 @@ import { Space } from '../../../engine/model/space.model';
 import { isNotNull } from '../../../engine/util/predicate';
 import { Piece } from 'api-types/src/game-state';
 import { Action, ActionCompleteCallback, ActionContext } from '../../../engine/model/action.model';
-import { ActionFactoryService } from '../action-factory.service';
+import { ActionFunctionFactoryService } from '../action-function-factory.service';
 import { ActionIdEnum } from '../../constant/action.constant';
 
 @Injectable({
@@ -31,7 +31,7 @@ export class AdaptionActionDisplayService {
 
   constructor(
     private areaRegistryService: AreaRegistryService,
-    private actionFactoryService: ActionFactoryService,
+    private actionFunctionFactoryService: ActionFunctionFactoryService,
     private elementDrawPoolService: ElementDrawPoolService,
   ) {
     this.initialize();
@@ -107,7 +107,7 @@ export class AdaptionActionDisplayService {
         .forEach((space) => {
           const action = new Action(
             actionContext,
-            this.actionFactoryService.buildPlaceActionPawnInSpace(actionContext, space),
+            this.actionFunctionFactoryService.buildPlaceActionPawnInSpace(actionContext, space),
             callback,
           );
           space.setActions([action]);
@@ -118,7 +118,7 @@ export class AdaptionActionDisplayService {
         .forEach((space) => {
           const action = new Action(
             actionContext,
-            this.actionFactoryService.buildTakeElementFromSpace(actionContext, space),
+            this.actionFunctionFactoryService.buildTakeElementFromSpace(actionContext, space),
             callback,
           );
           space.setActions([action]);

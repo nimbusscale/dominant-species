@@ -14,7 +14,7 @@ import { ActionPawnPiece } from '../../../../app/game/model/action-pawn.model';
 import { deepClone } from 'fast-json-patch';
 import { ACTION_DISPLAY_ADAPTION_STATE } from '../../../../app/game/constant/game-state.constant';
 import { AreaState } from 'api-types/src/game-state';
-import { ActionFactoryService } from '../../../../app/game/service/action-factory.service';
+import { ActionFunctionFactoryService } from '../../../../app/game/service/action-function-factory.service';
 
 describe('AdaptionActionDisplayService', () => {
   let adaptionActionDisplayService: AdaptionActionDisplayService;
@@ -22,7 +22,7 @@ describe('AdaptionActionDisplayService', () => {
   let testArea: Area;
   let mockAreaRegistryService: jasmine.SpyObj<AreaRegistryService>;
   let mockElementDrawPoolService: jasmine.SpyObj<ElementDrawPoolService>;
-  let mockActionFactoryService: jasmine.SpyObj<ActionFactoryService>;
+  let mockActionFactoryService: jasmine.SpyObj<ActionFunctionFactoryService>;
 
   beforeEach(() => {
     testArea = new Area(deepClone(ACTION_DISPLAY_ADAPTION_STATE) as AreaState);
@@ -52,7 +52,7 @@ describe('AdaptionActionDisplayService', () => {
         AdaptionActionDisplayService,
         { provide: AreaRegistryService, useValue: mockAreaRegistryService },
         { provide: ElementDrawPoolService, useValue: mockElementDrawPoolService },
-        { provide: ActionFactoryService, useValue: mockActionFactoryService },
+        { provide: ActionFunctionFactoryService, useValue: mockActionFactoryService },
       ],
     });
     adaptionActionDisplayService = TestBed.inject(AdaptionActionDisplayService);

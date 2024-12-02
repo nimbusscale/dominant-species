@@ -19,7 +19,7 @@ import { ensureDefined } from '../../../engine/util/misc';
 import { FactionRegistryService } from '../../../engine/service/game-element/faction-registry.service';
 import { PlayerService } from '../../../engine/service/game-management/player.service';
 import { ActionService } from '../../service/action.service';
-import {ActionIdEnum} from "../../constant/action.constant";
+import { ActionIdEnum } from '../../constant/action.constant';
 
 @Component({
   selector: 'app-draw-pool-game',
@@ -76,8 +76,8 @@ export class DrawPoolGameComponent implements OnInit {
   startTurn(): void {
     this.actionService.buildActions({
       actionId: ActionIdEnum.PLACE_ACTION_PAWN,
-      currentPlayerFactionId: ensureDefined(this.currentPlayerFaction).id
-    })
+      currentPlayerFactionId: ensureDefined(this.currentPlayerFaction).id,
+    });
     this.gameStateSvc.startTransaction();
   }
 

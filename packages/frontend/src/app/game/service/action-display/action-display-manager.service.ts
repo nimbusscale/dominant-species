@@ -8,7 +8,7 @@ import { ActionCompleteCallback, ActionContext } from '../../../engine/model/act
   providedIn: 'root',
 })
 export class ActionDisplayManagerService {
-  actionDisplayServices: ActionDisplayService[]
+  actionDisplayServices: ActionDisplayService[];
   private readySubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   ready$: Observable<boolean> = this.readySubject.asObservable();
 
@@ -38,7 +38,7 @@ export class ActionDisplayManagerService {
 
   clearActions(): void {
     this.actionDisplayServices.forEach((service) => {
-      service.clearActions()
+      service.clearActions();
     });
   }
 }
