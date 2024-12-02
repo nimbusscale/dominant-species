@@ -15,10 +15,10 @@ export const emptyGameState: GameState = {
   gameElements: emptyGameElementStates,
 };
 
-export function getEmptyInitialGameState(gameId: string, playerIds: string[]): GameState {
+export function getEmptyInitialGameState(gameId: string, playerIds: string[], patchId: number): GameState {
   return {
     gameId: gameId,
-    patchId: 0,
+    patchId: patchId,
     playerIds: playerIds,
     gameElements: deepClone(emptyGameElementStates) as GameElementStates,
   };

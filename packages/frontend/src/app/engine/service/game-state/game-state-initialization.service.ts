@@ -32,7 +32,7 @@ export class GameStateInitializationService {
   }
 
   build(gameTitle: string, gameId: string, playerIds: string[]): GameState {
-    const gameState = getEmptyInitialGameState(gameId, playerIds);
+    const gameState = getEmptyInitialGameState(gameId, playerIds, 0);
     const gameElementsFactoryClass = this.factoryByGameTitle.get(gameTitle);
     if (gameElementsFactoryClass) {
       const gameElementsFactory = new gameElementsFactoryClass();
