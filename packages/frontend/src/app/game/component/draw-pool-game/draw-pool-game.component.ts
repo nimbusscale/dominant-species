@@ -19,6 +19,7 @@ import { ensureDefined } from '../../../engine/util/misc';
 import { FactionRegistryService } from '../../../engine/service/game-element/faction-registry.service';
 import { PlayerService } from '../../../engine/service/game-management/player.service';
 import { ActionService } from '../../service/action.service';
+import {ActionIdEnum} from "../../constant/action.constant";
 
 @Component({
   selector: 'app-draw-pool-game',
@@ -72,14 +73,20 @@ export class DrawPoolGameComponent implements OnInit {
       });
   }
 
-  takeAction(): void {
-    // this.actionService.clearActions()
-    // this.actionService.buildActions({
-    //   actionId: ActionIdEnum.PLACE_ACTION_PAWN,
-    //   currentPlayerFactionId: ensureDefined(this.currentPlayerFaction).id
-    // })
+  startTurn(): void {
+    this.actionService.buildActions({
+      actionId: ActionIdEnum.PLACE_ACTION_PAWN,
+      currentPlayerFactionId: ensureDefined(this.currentPlayerFaction).id
+    })
     this.gameStateSvc.startTransaction();
+  }
 
+  endTurn(): void {
+    this.gameStateSvc.commitTransaction();
+  }
+
+  takeAction(): void {
+    this.gameStateSvc.startTransaction();
     const animal = this.animalProviderService.get(ensureDefined(this.currentPlayerFaction).id);
     const actionPawn = animal.actionPawn.pullOne();
     if (actionPawn) {

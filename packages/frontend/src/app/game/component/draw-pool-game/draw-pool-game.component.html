@@ -1,7 +1,9 @@
 <body>
   <section class="draw-pool-play-area">
     <section class="button-container">
-      <button mat-raised-button (click)="takeAction()">Take Action</button>
+      <button mat-raised-button (click)="startTurn()">Start Turn</button>
+      <button mat-raised-button (click)="endTurn()">End Turn</button>
+<!--      <button mat-raised-button (click)="takeAction()">Take Action</button>-->
     </section>
     <section class="card-display">
       <app-adaption-action-display-card></app-adaption-action-display-card>

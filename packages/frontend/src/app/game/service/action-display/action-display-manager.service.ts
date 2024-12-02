@@ -8,12 +8,12 @@ import { ActionCompleteCallback, ActionContext } from '../../../engine/model/act
   providedIn: 'root',
 })
 export class ActionDisplayManagerService {
-  actionDisplayServices: ActionDisplayService[] = [];
+  actionDisplayServices: ActionDisplayService[]
   private readySubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   ready$: Observable<boolean> = this.readySubject.asObservable();
 
   constructor(private adaptionActionDisplayService: AdaptionActionDisplayService) {
-    this.actionDisplayServices = [adaptionActionDisplayService];
+    this.actionDisplayServices = [this.adaptionActionDisplayService];
     this.signalReady();
   }
 
@@ -37,6 +37,8 @@ export class ActionDisplayManagerService {
   }
 
   clearActions(): void {
-    this.actionDisplayServices.forEach((service) => service.clearActions);
+    this.actionDisplayServices.forEach((service) => {
+      service.clearActions()
+    });
   }
 }
