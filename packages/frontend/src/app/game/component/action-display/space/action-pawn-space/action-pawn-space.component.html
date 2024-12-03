@@ -1,9 +1,11 @@
 <div class="square-space subdued-solid-border">
   <div>
-    @if (actionPawn) {
-      <app-action-pawn [actionPawn]="actionPawn"></app-action-pawn>
+    @if (actionPawn()) {
+      <app-action-pawn [actionPawn]="actionPawn()"></app-action-pawn>
     } @else {
-      <app-eyeball></app-eyeball>
+      <div (click)="hasAction() ? performAction() : null" [class.clickable]="hasAction()">
+        <app-eyeball></app-eyeball>
+      </div>
     }
   </div>
 </div>

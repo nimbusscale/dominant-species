@@ -26,10 +26,12 @@ export class Area extends GameElement<AreaState> {
 
   private initialize() {
     this.spaces.forEach((space, index) => {
-      space.state$.subscribe((spaceState) => {
-        this.spaceState[index] = spaceState;
-        this.stateSubject.next(this.state);
+      space.space$.subscribe(() => {
         this.spacesSubject.next(this.spaces);
+      });
+      space.state$.subscribe(() => {
+        this.spaceState[index] = space.state;
+        this.stateSubject.next(this.state);
       });
     });
   }
@@ -52,8 +54,6 @@ export class Area extends GameElement<AreaState> {
       this.spaceState[index] = spaceState;
       this.spaces[index].setState(spaceState);
     });
-
-    this.spacesSubject.next(this.spaces);
   }
 
   nextAvailableSpace(kind?: string): Space | null {
@@ -62,5 +62,11 @@ export class Area extends GameElement<AreaState> {
       .filter((space) => space.piece === null);
 
     return availableSpaces.length > 0 ? availableSpaces[0] : null;
+  }
+
+  clearActions(): void {
+    this.spaces.forEach((space) => {
+      space.clearActions();
+    });
   }
 }

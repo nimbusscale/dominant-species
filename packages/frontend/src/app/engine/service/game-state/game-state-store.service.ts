@@ -46,7 +46,11 @@ export class GameStateStoreService {
   }
 
   initializeGameState(gameState: GameState): void {
-    this._gameState = getEmptyInitialGameState(gameState.gameId, gameState.playerIds);
+    this._gameState = getEmptyInitialGameState(
+      gameState.gameId,
+      gameState.playerIds,
+      gameState.patchId,
+    );
   }
 
   private getObservableForKey<T>(selector: (state: GameState) => T[]): Observable<T[]> {
