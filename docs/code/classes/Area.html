@@ -195,6 +195,9 @@ of the state of all the Spaces.</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#clearActions" >clearActions</a>
+                            </li>
+                            <li>
                                     <span class="modifier">Private</span>
                                 <a href="#initialize" >initialize</a>
                             </li>
@@ -495,6 +498,43 @@ of the state of all the Spaces.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="clearActions"></a>
+                    <span class="name">
+                        <span ><b>clearActions</b></span>
+                        <a href="#clearActions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>clearActions()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="67"
+                                    class="link-to-prism">src/app/engine/model/area.model.ts:67</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="initialize"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
@@ -625,7 +665,7 @@ of the state of all the Spaces.</p>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../classes/GameElement.html#source" target="_self" >GameElement:37</a></code>
+                                <div class="io-line">Defined in         <code><a href="../classes/GameElement.html#source" target="_self" >GameElement:39</a></code>
 </div>
                         </td>
                     </tr>
@@ -755,10 +795,12 @@ export class Area extends GameElement&lt;AreaState&gt; {
 
   private initialize() {
     this.spaces.forEach((space, index) &#x3D;&gt; {
-      space.state$.subscribe((spaceState) &#x3D;&gt; {
-        this.spaceState[index] &#x3D; spaceState;
-        this.stateSubject.next(this.state);
+      space.space$.subscribe(() &#x3D;&gt; {
         this.spacesSubject.next(this.spaces);
+      });
+      space.state$.subscribe(() &#x3D;&gt; {
+        this.spaceState[index] &#x3D; space.state;
+        this.stateSubject.next(this.state);
       });
     });
   }
@@ -781,8 +823,6 @@ export class Area extends GameElement&lt;AreaState&gt; {
       this.spaceState[index] &#x3D; spaceState;
       this.spaces[index].setState(spaceState);
     });
-
-    this.spacesSubject.next(this.spaces);
   }
 
   nextAvailableSpace(kind?: string): Space | null {
@@ -791,6 +831,12 @@ export class Area extends GameElement&lt;AreaState&gt; {
       .filter((space) &#x3D;&gt; space.piece &#x3D;&#x3D;&#x3D; null);
 
     return availableSpaces.length &gt; 0 ? availableSpaces[0] : null;
+  }
+
+  clearActions(): void {
+    this.spaces.forEach((space) &#x3D;&gt; {
+      space.clearActions();
+    });
   }
 }
 </code></pre>

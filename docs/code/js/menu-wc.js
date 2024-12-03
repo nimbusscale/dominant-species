@@ -107,6 +107,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         </div>
                         <ul class="links collapse " ${ isNormalMode ? 'id="classes-links"' : 'id="xs-classes-links"' }>
                             <li class="link">
+                                <a href="classes/Action.html" data-type="entity-link" >Action</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/Animal.html" data-type="entity-link" >Animal</a>
                             </li>
                             <li class="link">
@@ -145,6 +148,12 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             <ul class="links collapse " ${ isNormalMode ? 'id="injectables-links"' : 'id="xs-injectables-links"' }>
                                 <li class="link">
                                     <a href="injectables/ActionDisplayManagerService.html" data-type="entity-link" >ActionDisplayManagerService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="injectables/ActionFunctionFactoryService.html" data-type="entity-link" >ActionFunctionFactoryService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="injectables/ActionService.html" data-type="entity-link" >ActionService</a>
                                 </li>
                                 <li class="link">
                                     <a href="injectables/AdaptionActionDisplayService.html" data-type="entity-link" >AdaptionActionDisplayService</a>
@@ -232,7 +241,7 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         </div>
                         <ul class="links collapse " ${ isNormalMode ? ' id="interfaces-links"' : 'id="xs-interfaces-links"' }>
                             <li class="link">
-                                <a href="interfaces/Action.html" data-type="entity-link" >Action</a>
+                                <a href="interfaces/ActionContext.html" data-type="entity-link" >ActionContext</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/ActionDisplayService.html" data-type="entity-link" >ActionDisplayService</a>

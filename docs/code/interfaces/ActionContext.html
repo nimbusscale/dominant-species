@@ -99,7 +99,7 @@
   <li class="breadcrumb-item">Interfaces</li>
   <li class="breadcrumb-item"
   >
-  ActionDisplayService</li>
+  ActionContext</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -123,7 +123,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/game/model/action-display.model.ts</code>
+            <code>src/app/engine/model/action.model.ts</code>
         </p>
 
 
@@ -142,21 +142,15 @@
                         <td class="col-md-4">
                             <ul class="index-list">
                                 <li>
-                                        <a href="#buildActions" 
+                                        <a href="#actionId" 
 >
-                                            buildActions
+                                            actionId
                                         </a>
                                 </li>
                                 <li>
-                                        <a href="#clearActions" 
+                                        <a href="#currentPlayerFactionId" 
 >
-                                            clearActions
-                                        </a>
-                                </li>
-                                <li>
-                                        <a href="#ready$" 
->
-                                            ready$
+                                            currentPlayerFactionId
                                         </a>
                                 </li>
                             </ul>
@@ -174,9 +168,9 @@
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
-                                        <a name="buildActions"></a>
-                                        <span class="name "><b>buildActions</b>
-                                            <a href="#buildActions">
+                                        <a name="actionId"></a>
+                                        <span class="name "><b>actionId</b>
+                                            <a href="#actionId">
                                                 <span class="icon ion-ios-link"></span>
                                             </a>
                                         </span>
@@ -184,7 +178,7 @@
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>buildActions:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
+                                        <code>actionId:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 </code>
                                     </td>
                                 </tr>
@@ -192,7 +186,7 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
                                         </td>
                                     </tr>
@@ -207,9 +201,9 @@
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
-                                        <a name="clearActions"></a>
-                                        <span class="name "><b>clearActions</b>
-                                            <a href="#clearActions">
+                                        <a name="currentPlayerFactionId"></a>
+                                        <span class="name "><b>currentPlayerFactionId</b>
+                                            <a href="#currentPlayerFactionId">
                                                 <span class="icon ion-ios-link"></span>
                                             </a>
                                         </span>
@@ -217,7 +211,7 @@
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>clearActions:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
+                                        <code>currentPlayerFactionId:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 </code>
                                     </td>
                                 </tr>
@@ -225,40 +219,7 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
-
-                                        </td>
-                                    </tr>
-
-
-
-
-
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <a name="ready$"></a>
-                                        <span class="name "><b>ready$</b>
-                                            <a href="#ready$">
-                                                <span class="icon ion-ios-link"></span>
-                                            </a>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <code>ready$:     <code>Observable&lt;boolean&gt;</code>
-</code>
-                                    </td>
-                                </tr>
-
-
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Type : </i>    <code>Observable&lt;boolean&gt;</code>
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
                                         </td>
                                     </tr>
@@ -274,13 +235,28 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Observable } from &#x27;rxjs&#x27;;
-import { ActionCompleteCallback, ActionContext } from &#x27;../../engine/model/action.model&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export interface ActionContext {
+  actionId: string;
+  currentPlayerFactionId: string;
+}
 
-export interface ActionDisplayService {
-  ready$: Observable&lt;boolean&gt;;
-  buildActions: (actionContext: ActionContext, callback: ActionCompleteCallback) &#x3D;&gt; void;
-  clearActions: () &#x3D;&gt; void;
+export type ActionFunction &#x3D; () &#x3D;&gt; ActionContext | null;
+export type ActionCompleteCallback &#x3D; (nextActionContext: ActionContext | null) &#x3D;&gt; void;
+
+export class Action {
+  constructor(
+    public readonly actionContext: ActionContext,
+    private readonly actionFunction: ActionFunction,
+    private readonly actionCompleteCallBack: ActionCompleteCallback,
+  ) {}
+  execute(): void {
+    const nextActionContext &#x3D; this.actionFunction();
+    this.actionCompleteCallBack(nextActionContext);
+  }
+
+  get id(): string {
+    return this.actionContext.actionId;
+  }
 }
 </code></pre>
     </div>
@@ -319,7 +295,7 @@ export interface ActionDisplayService {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
-            var COMPODOC_CURRENT_PAGE_URL = 'ActionDisplayService.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'ActionContext.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 
