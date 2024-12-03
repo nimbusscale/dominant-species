@@ -80,7 +80,7 @@
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content injectable">
+               <div class="content class">
                    <div class="content-data">
 
 
@@ -90,9 +90,13 @@
 
 
 
+
+
+
+
 <ol class="breadcrumb">
-  <li class="breadcrumb-item">Injectables</li>
-  <li class="breadcrumb-item" >GameStateInitializationService</li>
+  <li class="breadcrumb-item">Classes</li>
+  <li class="breadcrumb-item" >Action</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -116,19 +120,11 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/engine/service/game-state/game-state-initialization.service.ts</code>
+            <code>src/app/engine/model/action.model.ts</code>
         </p>
 
 
-            <p class="comment">
-                <h3>Description</h3>
-            </p>
-            <p class="comment">
-                <p>The GameStateInitializationService is responsible for creating the initial GameElementStates for a game.</p>
-<p>It does this by getting an &quot;empty GameState&quot; object and then using a game-specific Factory function to create the Game Elements for the
-specific title.</p>
 
-            </p>
 
 
 
@@ -145,9 +141,9 @@ specific title.</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Public</span>
                                     <span class="modifier">Readonly</span>
-                                <a href="#factoryByGameTitle" >factoryByGameTitle</a>
+                                <a href="#actionContext" >actionContext</a>
                             </li>
                         </ul>
                     </td>
@@ -162,7 +158,7 @@ specific title.</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#build" >build</a>
+                                <a href="#execute" >execute</a>
                             </li>
                         </ul>
                     </td>
@@ -172,6 +168,20 @@ specific title.</p>
 
 
 
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#id" >id</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
         </tbody>
     </table>
 </section>
@@ -182,12 +192,12 @@ specific title.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(factoryMap: <a href="../interfaces/InitialGameElementStatesFactory.html" target="_self">Map&lt;string | InitialGameElementStatesFactoryConstructor&gt; | null</a>)</code>
+<code>constructor(actionContext: <a href="../interfaces/ActionContext.html" target="_self">ActionContext</a>, actionFunction: <a href="../undefineds/ActionFunction.html" target="_self">ActionFunction</a>, actionCompleteCallBack: <a href="../undefineds/ActionCompleteCallback.html" target="_self">ActionCompleteCallback</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/engine/service/game-state/game-state-initialization.service.ts:24</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/app/engine/model/action.model.ts:9</a></div>
                             </td>
                         </tr>
 
@@ -205,10 +215,34 @@ specific title.</p>
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>factoryMap</td>
+                                                        <td>actionContext</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../interfaces/InitialGameElementStatesFactory.html" target="_self" >Map&lt;string | InitialGameElementStatesFactoryConstructor&gt; | null</a></code>
+                                                                        <code><a href="../interfaces/ActionContext.html" target="_self" >ActionContext</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>actionFunction</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../miscellaneous/typealiases.html#ActionFunction" target="_self" >ActionFunction</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>actionCompleteCallBack</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../miscellaneous/typealiases.html#ActionCompleteCallback" target="_self" >ActionCompleteCallback</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -225,103 +259,6 @@ specific title.</p>
         </table>
 </section>
 
-            <section data-compodoc="block-methods">
-    
-    <h3 id="methods">
-        Methods
-    </h3>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="build"></a>
-                    <span class="name">
-                        <span ><b>build</b></span>
-                        <a href="#build"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>build(gameTitle: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, gameId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, playerIds: string[])</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="34"
-                                    class="link-to-prism">src/app/engine/service/game-state/game-state-initialization.service.ts:34</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>gameTitle</td>
-                                            <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                        </tr>
-                                        <tr>
-                                                <td>gameId</td>
-                                            <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                        </tr>
-                                        <tr>
-                                                <td>playerIds</td>
-                                            <td>
-                                                        <code>string[]</code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <div class="io-description">
-                            <b>Returns : </b>    <code>GameState</code>
-
-                        </div>
-                            <div class="io-description">
-                                
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</section>
             <section data-compodoc="block-properties">
     
     <h3 id="inputs">
@@ -331,24 +268,24 @@ specific title.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="factoryByGameTitle"></a>
+                    <a name="actionContext"></a>
                     <span class="name">
-                            <span class="modifier">Private</span>
+                            <span class="modifier">Public</span>
                             <span class="modifier">Readonly</span>
-                        <span ><b>factoryByGameTitle</b></span>
-                        <a href="#factoryByGameTitle"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>actionContext</b></span>
+                        <a href="#actionContext"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../interfaces/InitialGameElementStatesFactory.html" target="_self" >Map&lt;string | InitialGameElementStatesFactoryConstructor&gt;</a></code>
+                        <i>Type : </i>        <code><a href="../interfaces/ActionContext.html" target="_self" >ActionContext</a></code>
 
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/engine/service/game-state/game-state-initialization.service.ts:24</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/app/engine/model/action.model.ts:11</a></div>
                         </td>
                     </tr>
 
@@ -357,63 +294,111 @@ specific title.</p>
     </table>
 </section>
 
+            <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="execute"></a>
+                    <span class="name">
+                        <span ><b>execute</b></span>
+                        <a href="#execute"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>execute()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="15"
+                                    class="link-to-prism">src/app/engine/model/action.model.ts:15</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+
+
+
+
+            <section data-compodoc="block-accessors">
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="id"></a>
+                        <span class="name"><b>id</b><a href="#id"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>id()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/engine/model/action.model.ts:20</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+</section>
     </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Inject, Injectable, Optional } from &#x27;@angular/core&#x27;;
-import {
-  getEmptyInitialGameState,
-  InitialGameElementStatesFactoryConstructor,
-} from &#x27;../../model/game-state.model&#x27;;
-import { GameTitle } from &#x27;../../constant/game-title.constant&#x27;;
-import { GameElementStatesFactoryService } from &#x27;../../../game/service/game-element-states-factory.service&#x27;;
-import { GameState } from &#x27;api-types/src/game-state&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export interface ActionContext {
+  actionId: string;
+  currentPlayerFactionId: string;
+}
 
-const FACTORY_MAP &#x3D; new Map&lt;string, InitialGameElementStatesFactoryConstructor&gt;([
-  [GameTitle.DOMINANT_SPECIES, GameElementStatesFactoryService],
-]);
+export type ActionFunction &#x3D; () &#x3D;&gt; ActionContext | null;
+export type ActionCompleteCallback &#x3D; (nextActionContext: ActionContext | null) &#x3D;&gt; void;
 
-/**
- * The GameStateInitializationService is responsible for creating the initial GameElementStates for a game.
- *
- * It does this by getting an &quot;empty GameState&quot; object and then using a game-specific Factory function to create the Game Elements for the
- * specific title.
- */
-@Injectable({
-  providedIn: &#x27;root&#x27;,
-})
-export class GameStateInitializationService {
-  private readonly factoryByGameTitle: Map&lt;string, InitialGameElementStatesFactoryConstructor&gt;;
-
+export class Action {
   constructor(
-    @Optional()
-    @Inject(&#x27;FACTORY_MAP&#x27;)
-    factoryMap: Map&lt;string, InitialGameElementStatesFactoryConstructor&gt; | null,
-  ) {
-    this.factoryByGameTitle &#x3D; factoryMap ?? FACTORY_MAP;
+    public readonly actionContext: ActionContext,
+    private readonly actionFunction: ActionFunction,
+    private readonly actionCompleteCallBack: ActionCompleteCallback,
+  ) {}
+  execute(): void {
+    const nextActionContext &#x3D; this.actionFunction();
+    this.actionCompleteCallBack(nextActionContext);
   }
 
-  build(gameTitle: string, gameId: string, playerIds: string[]): GameState {
-    const gameState &#x3D; getEmptyInitialGameState(gameId, playerIds, 0);
-    const gameElementsFactoryClass &#x3D; this.factoryByGameTitle.get(gameTitle);
-    if (gameElementsFactoryClass) {
-      const gameElementsFactory &#x3D; new gameElementsFactoryClass();
-      gameState.gameElements &#x3D; gameElementsFactory.build(playerIds);
-      return gameState;
-    } else {
-      throw new Error(&#x60;Unable to build initial state for ${gameTitle}&#x60;);
-    }
+  get id(): string {
+    return this.actionContext.actionId;
   }
 }
 </code></pre>
     </div>
-
 </div>
-
-
-
-
 
 
 
@@ -448,8 +433,8 @@ export class GameStateInitializationService {
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
-            var COMPODOC_CURRENT_PAGE_URL = 'GameStateInitializationService.html';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
+            var COMPODOC_CURRENT_PAGE_URL = 'Action.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

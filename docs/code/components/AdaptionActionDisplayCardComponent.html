@@ -207,10 +207,10 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#actionPawns" >actionPawns</a>
+                                <a href="#actionPawnSpaces" >actionPawnSpaces</a>
                             </li>
                             <li>
-                                <a href="#elements" >elements</a>
+                                <a href="#elementSpaces" >elementSpaces</a>
                             </li>
                         </ul>
                     </td>
@@ -250,7 +250,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/game/component/action-display/adaption-action-display-card/adaption-action-display-card.component.ts:22</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/game/component/action-display/adaption-action-display-card/adaption-action-display-card.component.ts:21</a></div>
                             </td>
                         </tr>
 
@@ -317,8 +317,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="26"
-                                    class="link-to-prism">src/app/game/component/action-display/adaption-action-display-card/adaption-action-display-card.component.ts:26</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="25"
+                                    class="link-to-prism">src/app/game/component/action-display/adaption-action-display-card/adaption-action-display-card.component.ts:25</a></div>
                         </td>
                     </tr>
 
@@ -344,21 +344,21 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="actionPawns"></a>
+                    <a name="actionPawnSpaces"></a>
                     <span class="name">
-                        <span ><b>actionPawns</b></span>
-                        <a href="#actionPawns"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>actionPawnSpaces</b></span>
+                        <a href="#actionPawnSpaces"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>signal&lt;(ActionPawnPiece | null)[]&gt;([])</code>
+                        <i>Default value : </i><code>signal&lt;Space[]&gt;([])</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/game/component/action-display/adaption-action-display-card/adaption-action-display-card.component.ts:21</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/game/component/action-display/adaption-action-display-card/adaption-action-display-card.component.ts:20</a></div>
                         </td>
                     </tr>
 
@@ -369,21 +369,21 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="elements"></a>
+                    <a name="elementSpaces"></a>
                     <span class="name">
-                        <span ><b>elements</b></span>
-                        <a href="#elements"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>elementSpaces</b></span>
+                        <a href="#elementSpaces"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>signal&lt;(ElementPiece | null)[]&gt;([])</code>
+                        <i>Default value : </i><code>signal&lt;Space[]&gt;([])</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/game/component/action-display/adaption-action-display-card/adaption-action-display-card.component.ts:22</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/game/component/action-display/adaption-action-display-card/adaption-action-display-card.component.ts:21</a></div>
                         </td>
                     </tr>
 
@@ -401,11 +401,10 @@ import { MatCard } from &#x27;@angular/material/card&#x27;;
 import { ElementSpaceComponent } from &#x27;../space/element-space/element-space.component&#x27;;
 import { EyeballComponent } from &#x27;../space/eyeball/eyeball.component&#x27;;
 import { ActionPawnSpaceComponent } from &#x27;../space/action-pawn-space/action-pawn-space.component&#x27;;
-import { ElementPiece } from &#x27;../../../model/element.model&#x27;;
-import { ActionPawnPiece } from &#x27;../../../model/action-pawn.model&#x27;;
 import { AdaptionActionDisplayService } from &#x27;../../../service/action-display/adaption-action-display.service&#x27;;
 import { filter, first } from &#x27;rxjs&#x27;;
 import { isTrue } from &#x27;../../../../engine/util/predicate&#x27;;
+import { Space } from &#x27;../../../../engine/model/space.model&#x27;;
 
 @Component({
   selector: &#x27;app-adaption-action-display-card&#x27;,
@@ -416,18 +415,18 @@ import { isTrue } from &#x27;../../../../engine/util/predicate&#x27;;
   styleUrl: &#x27;./adaption-action-display-card.component.scss&#x27;,
 })
 export class AdaptionActionDisplayCardComponent implements OnInit {
-  actionPawns &#x3D; signal&lt;(ActionPawnPiece | null)[]&gt;([]);
-  elements &#x3D; signal&lt;(ElementPiece | null)[]&gt;([]);
+  actionPawnSpaces &#x3D; signal&lt;Space[]&gt;([]);
+  elementSpaces &#x3D; signal&lt;Space[]&gt;([]);
 
   constructor(private adaptionActionDisplayService: AdaptionActionDisplayService) {}
 
   ngOnInit() {
     this.adaptionActionDisplayService.ready$.pipe(filter(isTrue), first()).subscribe(() &#x3D;&gt; {
-      this.adaptionActionDisplayService.actionPawns$.subscribe((actionPawns) &#x3D;&gt; {
-        this.actionPawns.set(actionPawns);
+      this.adaptionActionDisplayService.actionPawnSpaces$.subscribe((spaces) &#x3D;&gt; {
+        this.actionPawnSpaces.set(spaces);
       });
-      this.adaptionActionDisplayService.elements$.subscribe((elements) &#x3D;&gt; {
-        this.elements.set(elements);
+      this.adaptionActionDisplayService.elementSpaces$.subscribe((spaces) &#x3D;&gt; {
+        this.elementSpaces.set(spaces);
       });
     });
   }
@@ -441,13 +440,13 @@ export class AdaptionActionDisplayCardComponent implements OnInit {
     &lt;div class&#x3D;&quot;action-display-title&quot;&gt;Adaption&lt;/div&gt;
     &lt;div class&#x3D;&quot;action-display-area&quot;&gt;
       &lt;div class&#x3D;&quot;action-display-area-element-spaces&quot;&gt;
-        @for (element of elements(); track $index) {
-          &lt;app-element-space [element]&#x3D;&quot;element&quot;&gt;&lt;/app-element-space&gt;
+        @for (elementSpace of elementSpaces(); track $index) {
+          &lt;app-element-space [space]&#x3D;&quot;elementSpace&quot;&gt;&lt;/app-element-space&gt;
         }
       &lt;/div&gt;
       &lt;div class&#x3D;&quot;action-display-area-action-pawn-spaces&quot;&gt;
-        @for (actionPawn of actionPawns(); track $index) {
-          &lt;app-action-pawn-space [actionPawn]&#x3D;&quot;actionPawn&quot;&gt;&lt;/app-action-pawn-space&gt;
+        @for (actionPawnSpace of actionPawnSpaces(); track $index) {
+          &lt;app-action-pawn-space [space]&#x3D;&quot;actionPawnSpace&quot;&gt;&lt;/app-action-pawn-space&gt;
         }
       &lt;/div&gt;
     &lt;/div&gt;
@@ -482,7 +481,7 @@ export class AdaptionActionDisplayCardComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><mat-card appearance="outlined" class="action-display-card">  <div class="action-display-content">    <div class="action-display-title">Adaption</div>    <div class="action-display-area">      <div class="action-display-area-element-spaces">        @for (element of elements(); track $index) {          <app-element-space [element]="element"></app-element-space>        }      </div>      <div class="action-display-area-action-pawn-spaces">        @for (actionPawn of actionPawns(); track $index) {          <app-action-pawn-space [actionPawn]="actionPawn"></app-action-pawn-space>        }      </div>    </div>  </div></mat-card></div>'
+        var COMPONENT_TEMPLATE = '<div><mat-card appearance="outlined" class="action-display-card">  <div class="action-display-content">    <div class="action-display-title">Adaption</div>    <div class="action-display-area">      <div class="action-display-area-element-spaces">        @for (elementSpace of elementSpaces(); track $index) {          <app-element-space [space]="elementSpace"></app-element-space>        }      </div>      <div class="action-display-area-action-pawn-spaces">        @for (actionPawnSpace of actionPawnSpaces(); track $index) {          <app-action-pawn-space [space]="actionPawnSpace"></app-action-pawn-space>        }      </div>    </div>  </div></mat-card></div>'
     var COMPONENTS = [{'name': 'ActionPawnComponent', 'selector': 'app-action-pawn'},{'name': 'ActionPawnSpaceComponent', 'selector': 'app-action-pawn-space'},{'name': 'AdaptionActionDisplayCardComponent', 'selector': 'app-adaption-action-display-card'},{'name': 'AnimalCardComponent', 'selector': 'app-animal-card'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CreateGamePageComponent', 'selector': 'app-create-game-page'},{'name': 'DominantSpeciesGameComponent', 'selector': 'app-dominant-species-game'},{'name': 'DrawPoolGameComponent', 'selector': 'app-draw-pool-game'},{'name': 'ElementComponent', 'selector': 'app-element'},{'name': 'ElementSpaceComponent', 'selector': 'app-element-space'},{'name': 'EyeballComponent', 'selector': 'app-eyeball'},{'name': 'LobbyPageComponent', 'selector': 'app-lobby-page'},{'name': 'LoginPageComponent', 'selector': 'app-login-page'},{'name': 'LogoutPageComponent', 'selector': 'app-logout-page'},{'name': 'SignUpConfirmPageComponent', 'selector': 'app-sign-up-confirm-page'},{'name': 'SignUpPageComponent', 'selector': 'app-sign-up-page'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'AdaptionActionDisplayCardComponent'};
